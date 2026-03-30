@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{NOMBRE_NEGOCIO}} en {{CIUDAD}} — Box de CrossFit. WODs diarios, coaches certificados, comunidad real. Prueba gratis: {{TELEFONO}}">
+  <meta name="keywords" content="crossfit {{CIUDAD}}, box crossfit, wod, entrenamiento funcional, coaches certificados, {{NOMBRE_NEGOCIO}}">
+  <meta property="og:title" content="{{NOMBRE_NEGOCIO}} — Box de CrossFit en {{CIUDAD}}">
+  <meta property="og:description" content="{{NOMBRE_NEGOCIO}} — Forging Elite Fitness en {{CIUDAD}}. WODs, halterofilia, gimnasia y comunidad. Prueba gratis: {{TELEFONO}}">
+  <meta property="og:type" content="website">
+  <title>{{NOMBRE_NEGOCIO}} — Box de CrossFit en {{CIUDAD}}</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "{{NOMBRE_NEGOCIO}}",
+    "telephone": "{{TELEFONO}}",
+    "email": "{{EMAIL}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{DIRECCION}}",
+      "addressLocality": "{{CIUDAD}}",
+      "addressCountry": "ES"
+    },
+    "priceRange": "$$"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================================
+       RESET & BASE
+    =========================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #d0d0d0;
+      background: #0a0a0a;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===========================================
+       VARIABLES — PALETA CROSSFIT RAW/INDUSTRIAL
+    =========================================== */
+    :root {
+      --dark:        #0a0a0a;
+      --dark-card:   #111111;
+      --dark-mid:    #1a1a1a;
+      --dark-light:  #222222;
+      --accent:      #e5192a;
+      --accent-light:#ff2d3f;
+      --accent-dark: #b81420;
+      --chalk:       #f0ede8;
+      --white:       #ffffff;
+      --gray-100:    #f2f2f2;
+      --gray-200:    #d8d8d8;
+      --gray-400:    #8a8a8a;
+      --gray-600:    #5a5a5a;
+      --text-light:  #a0a0a0;
+      --shadow-soft:  0 4px 24px rgba(0,0,0,0.40);
+      --shadow-card:  0 2px 16px rgba(0,0,0,0.35);
+      --shadow-hover: 0 8px 32px rgba(229,25,42,0.25);
+      --shadow-glow:  0 0 40px rgba(229,25,42,0.15);
+      --radius:      8px;
+      --radius-sm:   6px;
+      --radius-lg:   14px;
+      --transition:  all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ===========================================
+       TIPOGRAFIA
+    =========================================== */
+    h1, h2, h3, h4, h5 { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; }
+    .display-font { font-family: 'Bebas Neue', sans-serif; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.0;
+      margin-bottom: 1rem;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ===========================================
+       LAYOUT
+    =========================================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { padding: 80px 0; }
+
+    /* ===========================================
+       HEADER / NAV
+    =========================================== */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,10,10,0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(229,25,42,0.15);
+      transition: var(--transition);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      transition: var(--transition);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      font-size: 0.85rem !important;
+      transition: var(--transition);
+    }
+    .nav-cta:hover {
+      background: var(--accent-light);
+      box-shadow: 0 4px 20px rgba(229,25,42,0.4);
+    }
+
+    /* Hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 28px; height: 3px;
+      background: var(--white);
+      border-radius: 1px;
+      transition: var(--transition);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gray-200);
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ===========================================
+       HERO
+    =========================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 120px 0 80px;
+      background: var(--dark);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1526403223670-2aa44aaface2?w=1600&q=80') center/cover no-repeat;
+      background-color: var(--dark-mid);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,10,0.94) 0%, rgba(26,26,26,0.7) 50%, rgba(10,10,10,0.9) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(229,25,42,0.15);
+      border: 1px solid rgba(229,25,42,0.35);
+      color: var(--accent-light);
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-badge svg { width: 16px; height: 16px; }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      font-weight: 400;
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 24px;
+      letter-spacing: 2px;
+    }
+    .hero h1 .accent-text {
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: var(--accent-light);
+      box-shadow: 0 8px 30px rgba(229,25,42,0.45);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.25);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent-light);
+      background: rgba(229,25,42,0.08);
+    }
+    .btn-icon { width: 18px; height: 18px; }
+
+    /* Hero Stats */
+    .hero-stats {
+      display: flex;
+      gap: 44px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stat .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .hero-stat .stat-number span { color: var(--accent); }
+    .hero-stat .stat-label {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Decorative element */
+    .hero-deco {
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(229,25,42,0.06) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    /* ===========================================
+       QUE ES CROSSFIT / FILOSOFIA
+    =========================================== */
+    .philosophy {
+      background: var(--dark-card);
+      position: relative;
+    }
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .philosophy-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 440px;
+      background: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80') center/cover no-repeat;
+      background-color: var(--dark-mid);
+    }
+    .philosophy-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.6) 100%);
+    }
+    .philosophy-image-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 2;
+      background: var(--accent);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .philosophy-text .section-subtitle {
+      margin-bottom: 32px;
+    }
+    .philosophy-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .philosophy-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--dark-mid);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-left: 3px solid var(--accent);
+    }
+    .philosophy-feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(229,25,42,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .philosophy-feature-icon svg { width: 20px; height: 20px; color: var(--accent); }
+    .philosophy-feature-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-200);
+    }
+
+    /* ===========================================
+       PROGRAMAS / CLASES
+    =========================================== */
+    .programs {
+      background: var(--dark);
+      position: relative;
+    }
+    .programs-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .programs-header .section-subtitle {
+      margin: 0 auto;
+    }
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .program-card {
+      background: var(--dark-card);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+    }
+    .program-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(229,25,42,0.3);
+      box-shadow: var(--shadow-hover);
+    }
+    .program-card-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--dark-mid);
+      position: relative;
+    }
+    .program-card-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 70px;
+      background: linear-gradient(transparent, var(--dark-card));
+    }
+    .program-card-tag {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      background: var(--accent);
+      color: var(--white);
+      padding: 4px 12px;
+      border-radius: 3px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .program-card-body {
+      padding: 20px 24px 24px;
+    }
+    .program-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(229,25,42,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      margin-top: -40px;
+      position: relative;
+      z-index: 2;
+      border: 2px solid var(--dark-card);
+    }
+    .program-card-icon svg { width: 22px; height: 22px; color: var(--accent); }
+    .program-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .program-card p {
+      font-size: 0.88rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+
+    /* ===========================================
+       COACHES
+    =========================================== */
+    .coaches {
+      background: var(--dark-card);
+      position: relative;
+    }
+    .coaches-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .coaches-header .section-subtitle { margin: 0 auto; }
+    .coaches-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .coach-card {
+      background: var(--dark-mid);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .coach-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(229,25,42,0.2);
+      box-shadow: var(--shadow-card);
+    }
+    .coach-img {
+      height: 260px;
+      background-size: cover;
+      background-position: center top;
+      background-color: var(--dark-light);
+      position: relative;
+    }
+    .coach-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(transparent, var(--dark-mid));
+    }
+    .coach-info {
+      padding: 20px 24px 28px;
+    }
+    .coach-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .coach-role {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .coach-certs {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+
+    /* ===========================================
+       GALERIA WOD
+    =========================================== */
+    .gallery {
+      background: var(--dark);
+    }
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .gallery-header .section-subtitle { margin: 0 auto; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 250px 250px;
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--dark-mid);
+      min-height: 200px;
+      transition: var(--transition);
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+    }
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.5) 100%);
+      transition: var(--transition);
+    }
+    .gallery-item:hover::after {
+      background: linear-gradient(180deg, transparent 40%, rgba(229,25,42,0.2) 100%);
+    }
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      background-image: url('https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?w=800&q=80');
+    }
+    .gallery-item:nth-child(2) {
+      background-image: url('https://images.unsplash.com/photo-1517344884509-a0c97ec11bcc?w=600&q=80');
+    }
+    .gallery-item:nth-child(3) {
+      background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80');
+    }
+    .gallery-item:nth-child(4) {
+      background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80');
+    }
+    .gallery-item:nth-child(5) {
+      grid-column: span 2;
+      background-image: url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=800&q=80');
+    }
+    .gallery-item:nth-child(6) {
+      background-image: url('https://images.unsplash.com/photo-1526403223670-2aa44aaface2?w=600&q=80');
+    }
+
+    /* ===========================================
+       RESENAS
+    =========================================== */
+    .reviews {
+      background: var(--dark-card);
+    }
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .reviews-header .section-subtitle { margin: 0 auto; }
+    .reviews-score {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .reviews-score-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .reviews-score-detail {
+      text-align: left;
+    }
+    .reviews-stars {
+      color: #fbbf24;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+    .reviews-count {
+      font-size: 0.85rem;
+      color: var(--gray-400);
+      margin-top: 2px;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--dark-mid);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: var(--transition);
+    }
+    .review-card:hover {
+      border-color: rgba(229,25,42,0.15);
+      box-shadow: var(--shadow-card);
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .review-info { flex: 1; }
+    .review-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--white);
+    }
+    .review-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      color: #34d399;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .review-badge svg { width: 12px; height: 12px; }
+    .review-stars {
+      color: #fbbf24;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .review-text {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    /* ===========================================
+       UBICACION + MAPA
+    =========================================== */
+    .location {
+      background: var(--dark);
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .location-info { padding-right: 20px; }
+    .location-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .location-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: rgba(229,25,42,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .location-icon svg { width: 20px; height: 20px; color: var(--accent); }
+    .location-address h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+      text-transform: none;
+    }
+    .location-address p {
+      font-size: 0.88rem;
+      color: var(--gray-400);
+      line-height: 1.5;
+    }
+    .schedule-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .schedule-list { list-style: none; }
+    .schedule-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.9rem;
+    }
+    .schedule-list li:last-child { border-bottom: none; }
+    .schedule-day { color: var(--gray-200); font-weight: 500; }
+    .schedule-hours { color: var(--gray-400); }
+    .schedule-hours.open { color: #34d399; font-weight: 600; }
+    .location-map {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 420px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .location-map iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+    }
+
+    /* ===========================================
+       CTA PRUEBA GRATIS
+    =========================================== */
+    .cta-banner {
+      padding: 90px 0;
+      background: var(--dark-card);
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1526403223670-2aa44aaface2?w=1400&q=60') center/cover no-repeat;
+      opacity: 0.08;
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(229,25,42,0.15) 0%, transparent 50%, rgba(229,25,42,0.1) 100%);
+    }
+    .cta-banner .container { position: relative; z-index: 2; }
+    .cta-banner h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: 3px;
+    }
+    .cta-banner h2 .accent-text { color: var(--accent); }
+    .cta-banner p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--dark);
+      padding: 16px 36px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.2);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 16px 36px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--white);
+    }
+
+    /* ===========================================
+       FOOTER
+    =========================================== */
+    .footer {
+      background: #050505;
+      padding: 48px 0 24px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 24px;
+    }
+    .footer-brand .logo { margin-bottom: 12px; }
+    .footer-desc {
+      font-size: 0.88rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      max-width: 320px;
+    }
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gray-200);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a {
+      font-size: 0.88rem;
+      color: var(--gray-600);
+      transition: var(--transition);
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--gray-600);
+    }
+
+    /* ===========================================
+       WHATSAPP FLOTANTE
+    =========================================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 900;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: var(--transition);
+      animation: whatsapp-pulse 2s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+    }
+    .whatsapp-float svg { width: 32px; height: 32px; color: white; }
+
+    @keyframes whatsapp-pulse {
+      0% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 12px rgba(37,211,102,0.12); }
+      100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    }
+
+    /* ===========================================
+       ANIMACIONES SCROLL
+    =========================================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===========================================
+       RESPONSIVE
+    =========================================== */
+    @media (max-width: 1024px) {
+      .programs-grid { grid-template-columns: repeat(2, 1fr); }
+      .coaches-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .gallery-item:nth-child(1) { grid-column: span 2; }
+      .gallery-item:nth-child(5) { grid-column: span 2; }
+    }
+
+    @media (max-width: 768px) {
+      /* Mobile fallback */
+      .fade-in { opacity: 1 !important; transform: none !important; }
+
+      section { padding: 56px 0; }
+      .container { padding: 0 18px; }
+      .section-title { font-size: 2rem; }
+
+      /* Nav */
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      /* Hero */
+      .hero { min-height: auto; padding: 110px 0 60px; }
+      .hero h1 { font-size: 3rem; }
+      .hero-desc { font-size: 1rem; }
+      .hero-ctas { flex-direction: column; }
+      .btn-primary, .btn-secondary { justify-content: center; width: 100%; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .hero-stat .stat-number { font-size: 1.8rem; }
+      .hero-deco { display: none; }
+
+      /* Philosophy */
+      .philosophy-grid { grid-template-columns: 1fr; gap: 32px; }
+      .philosophy-image { min-height: 280px; }
+      .philosophy-features { grid-template-columns: 1fr; }
+
+      /* Programs */
+      .programs-grid { grid-template-columns: 1fr; }
+
+      /* Coaches */
+      .coaches-grid { grid-template-columns: 1fr; }
+
+      /* Gallery */
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item:nth-child(1) { grid-column: span 2; }
+      .gallery-item:nth-child(5) { grid-column: span 2; }
+      .gallery-item { min-height: 180px; }
+
+      /* Reviews */
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-score-number { font-size: 2.5rem; }
+
+      /* Location */
+      .location-grid { grid-template-columns: 1fr; }
+      .location-map { min-height: 300px; }
+      .location-map iframe { height: 300px; }
+      .location-info { padding-right: 0; }
+
+      /* CTA */
+      .cta-banner h2 { font-size: 2.2rem; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .btn-white, .btn-ghost { width: 100%; justify-content: center; max-width: 320px; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+      /* WhatsApp */
+      .whatsapp-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+      .whatsapp-float svg { width: 28px; height: 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.4rem; }
+      .hero-stats { gap: 16px; }
+      .hero-stat .stat-number { font-size: 1.5rem; }
+      .section-title { font-size: 1.7rem; }
+      .cta-banner h2 { font-size: 1.8rem; }
+    }
+  
+    /* ══════════════════════════════════
+       MOBILE IMAGE FIX (universal)
+    ══════════════════════════════════ */
+    img {
+      max-width: 100%;
+    }
+    @media (max-width: 768px) {
+      .gallery-item {
+        min-height: 180px;
+        overflow: hidden;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        min-height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .about-img img,
+      .philosophy-image img,
+      .team-img img,
+      .intro-img img,
+      .studio-img img,
+      .space-img img {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .featured-dish-img,
+      .featured-item-img,
+      .highlight-img,
+      .featured-product-img {
+        width: 100%;
+        min-height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .menu-card-img,
+      .service-card-img,
+      .treatment-img,
+      .program-img,
+      .product-card-img,
+      .course-img,
+      .class-img {
+        width: 100%;
+        height: auto;
+        min-height: 140px;
+        object-fit: cover;
+        display: block;
+      }
+      [style*="background-image"],
+      .program-card-img,
+      .coach-img,
+      .team-member-img,
+      .trainer-img,
+      .specialist-img,
+      .staff-img {
+        background-size: cover !important;
+        background-position: center !important;
+        min-height: 180px;
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery-item {
+        min-height: 160px;
+      }
+      .gallery-item img {
+        min-height: 160px;
+      }
+      .about-img img,
+      .philosophy-image img,
+      .team-img img,
+      .intro-img img {
+        min-height: 160px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">{{NOMBRE_NEGOCIO}}</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#philosophy">CrossFit</a></li>
+          <li><a href="#programs">Programas</a></li>
+          <li><a href="#coaches">Coaches</a></li>
+          <li><a href="#gallery">Box</a></li>
+          <li><a href="#reviews">Opiniones</a></li>
+          <li><a href="#location">Ubicacion</a></li>
+          <li><a href="tel:{{TELEFONO}}" class="nav-cta">Clase gratis</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu">
+      <a href="#philosophy" onclick="document.querySelector('.mobile-menu').classList.remove('active')">CrossFit</a>
+      <a href="#programs" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Programas</a>
+      <a href="#coaches" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Coaches</a>
+      <a href="#gallery" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Box</a>
+      <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Opiniones</a>
+      <a href="#location" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Ubicacion</a>
+      <a href="tel:{{TELEFONO}}" style="color: var(--accent); font-weight: 700;">Reservar clase</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-deco"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          BOX DE CROSSFIT EN {{CIUDAD}}
+        </div>
+        <h1>Forja tu mejor<br><span class="accent-text">version</span></h1>
+        <p class="hero-desc">En {{NOMBRE_NEGOCIO}} entrenamos movimientos funcionales, constantemente variados, ejecutados a alta intensidad. Coaches certificados, comunidad real, resultados reales.</p>
+        <div class="hero-ctas">
+          <a href="tel:{{TELEFONO}}" class="btn-primary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Prueba gratis
+          </a>
+          <a href="#programs" class="btn-secondary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Ver programas
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="stat-number">+500<span>m2</span></div>
+            <div class="stat-label">de box equipado</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number">+25</div>
+            <div class="stat-label">clases semanales</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number">4.8<span>/5</span></div>
+            <div class="stat-label">en Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUE ES CROSSFIT / FILOSOFIA ===== -->
+  <section class="philosophy" id="philosophy">
+    <div class="container">
+      <div class="philosophy-grid fade-in">
+        <div class="philosophy-image">
+          <div class="philosophy-image-badge">Forging Elite Fitness</div>
+        </div>
+        <div class="philosophy-text">
+          <div class="section-label">Nuestra filosofia</div>
+          <h2 class="section-title">Mas que un gimnasio.<br>Una comunidad.</h2>
+          <p class="section-subtitle">CrossFit combina halterofilia, gimnasia y entrenamiento metabolico en WODs (Workout of the Day) que nunca se repiten. Cada sesion es diferente, cada dia es un reto nuevo. No importa tu nivel: los movimientos se escalan para que cualquier persona pueda entrenar. Lo que nos diferencia es la comunidad que se crea cuando sudas al lado de los tuyos.</p>
+          <div class="philosophy-features" style="margin-top: 28px;">
+            <div class="philosophy-feature">
+              <div class="philosophy-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <span class="philosophy-feature-text">WODs diarios variados</span>
+            </div>
+            <div class="philosophy-feature">
+              <div class="philosophy-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <span class="philosophy-feature-text">Comunidad real</span>
+            </div>
+            <div class="philosophy-feature">
+              <div class="philosophy-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span class="philosophy-feature-text">Coaches certificados</span>
+            </div>
+            <div class="philosophy-feature">
+              <div class="philosophy-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+              </div>
+              <span class="philosophy-feature-text">Escalable a tu nivel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROGRAMAS / CLASES ===== -->
+  <section class="programs" id="programs">
+    <div class="container">
+      <div class="programs-header fade-in">
+        <div class="section-label">Programas</div>
+        <h2 class="section-title">Elige tu forma<br>de entrenar</h2>
+        <p class="section-subtitle">Programas disenados por coaches certificados para todos los niveles. Desde tu primer dia hasta la competicion.</p>
+      </div>
+      <div class="programs-grid">
+        <!-- WOD -->
+        <div class="program-card fade-in">
+          <div class="program-card-img" style="background-image: url('https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?w=600&q=80');">
+            <div class="program-card-tag">Todos los niveles</div>
+          </div>
+          <div class="program-card-body">
+            <div class="program-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>WOD CrossFit</h3>
+            <p>El entrenamiento del dia: movimientos funcionales constantemente variados a alta intensidad. Cada clase incluye calentamiento, tecnica, WOD y vuelta a la calma. Siempre diferente, siempre intenso.</p>
+          </div>
+        </div>
+        <!-- Halterofilia -->
+        <div class="program-card fade-in">
+          <div class="program-card-img" style="background-image: url('https://images.unsplash.com/photo-1517344884509-a0c97ec11bcc?w=600&q=80');">
+            <div class="program-card-tag">Tecnica</div>
+          </div>
+          <div class="program-card-body">
+            <div class="program-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><rect x="4" y="5" width="2" height="3" rx="0.5"/><rect x="18" y="5" width="2" height="3" rx="0.5"/><rect x="4" y="16" width="2" height="3" rx="0.5"/><rect x="18" y="16" width="2" height="3" rx="0.5"/><line x1="12" y1="5" x2="12" y2="19"/></svg>
+            </div>
+            <h3>Halterofilia</h3>
+            <p>Perfecciona tu snatch, clean & jerk y sentadillas. Sesiones centradas en la tecnica olimpica, progresiones de fuerza y movilidad. Para los que quieren dominar la barra.</p>
+          </div>
+        </div>
+        <!-- Endurance -->
+        <div class="program-card fade-in">
+          <div class="program-card-img" style="background-image: url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=600&q=80');">
+            <div class="program-card-tag">Cardio</div>
+          </div>
+          <div class="program-card-body">
+            <div class="program-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3>Endurance</h3>
+            <p>Mejora tu capacidad cardiovascular y resistencia. Combina remo, assault bike, carrera, salto de cuerda y movimientos a alta repeticion. Ideal para mejorar tus tiempos en los WODs.</p>
+          </div>
+        </div>
+        <!-- Gymnastics -->
+        <div class="program-card fade-in">
+          <div class="program-card-img" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&q=80');">
+            <div class="program-card-tag">Bodyweight</div>
+          </div>
+          <div class="program-card-body">
+            <div class="program-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="16" x2="8" y2="22"/><line x1="12" y1="16" x2="16" y2="22"/></svg>
+            </div>
+            <h3>Gimnasia</h3>
+            <p>Domina los muscle-ups, handstand push-ups, pistols y toes-to-bar. Trabajo de habilidad, control corporal y fuerza relativa. Tu peso corporal es tu herramienta principal.</p>
+          </div>
+        </div>
+        <!-- Open Box -->
+        <div class="program-card fade-in">
+          <div class="program-card-img" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80');">
+            <div class="program-card-tag">Libre</div>
+          </div>
+          <div class="program-card-body">
+            <div class="program-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+            </div>
+            <h3>Open Box</h3>
+            <p>Acceso libre al box para entrenar tu propia programacion. Usa todo el equipamiento: barras, rigs, remos, bikes, cajones, kettlebells. Ideal para atletas con experiencia.</p>
+          </div>
+        </div>
+        <!-- Principiantes -->
+        <div class="program-card fade-in">
+          <div class="program-card-img" style="background-image: url('https://images.unsplash.com/photo-1526403223670-2aa44aaface2?w=600&q=80');">
+            <div class="program-card-tag">Nuevos</div>
+          </div>
+          <div class="program-card-body">
+            <div class="program-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <h3>Fundamentals</h3>
+            <p>Curso de iniciacion para aprender los 9 movimientos basicos de CrossFit con seguridad y buena tecnica. 4-6 sesiones para incorporarte a las clases regulares con confianza.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COACHES ===== -->
+  <section class="coaches" id="coaches">
+    <div class="container">
+      <div class="coaches-header fade-in">
+        <div class="section-label">Nuestro equipo</div>
+        <h2 class="section-title">Coaches certificados<br>que marcan la diferencia</h2>
+        <p class="section-subtitle">Profesionales con certificaciones oficiales CrossFit, formacion continua y pasion real por ayudarte a mejorar cada dia.</p>
+      </div>
+      <div class="coaches-grid">
+        <div class="coach-card fade-in">
+          <div class="coach-img" style="background-image: url('https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=600&q=80');"></div>
+          <div class="coach-info">
+            <div class="coach-name">Coach 1</div>
+            <div class="coach-role">Head Coach</div>
+            <p class="coach-certs">CrossFit Level 2 Trainer (CF-L2)<br>Especialista en halterofilia y programacion</p>
+          </div>
+        </div>
+        <div class="coach-card fade-in">
+          <div class="coach-img" style="background-image: url('https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600&q=80');"></div>
+          <div class="coach-info">
+            <div class="coach-name">Coach 2</div>
+            <div class="coach-role">Coach WOD & Endurance</div>
+            <p class="coach-certs">CrossFit Level 1 Trainer (CF-L1)<br>Certificacion en Mobility & Movement</p>
+          </div>
+        </div>
+        <div class="coach-card fade-in">
+          <div class="coach-img" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80');"></div>
+          <div class="coach-info">
+            <div class="coach-name">Coach 3</div>
+            <div class="coach-role">Coach Gymnastics</div>
+            <p class="coach-certs">CrossFit Level 1 Trainer (CF-L1)<br>Especialista en gimnasia y bodyweight</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALERIA ===== -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="gallery-header fade-in">
+        <div class="section-label">Nuestro box</div>
+        <h2 class="section-title">Donde el trabajo<br>se hace realidad</h2>
+        <p class="section-subtitle">Equipamiento profesional: rigs, barras olimpicas, bumpers, remos, assault bikes, cajones plyometricos, cuerdas y mas.</p>
+      </div>
+      <div class="gallery-grid fade-in">
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+        <div class="gallery-item"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESENAS ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="reviews-header fade-in">
+        <div class="section-label">Opiniones</div>
+        <h2 class="section-title">Lo que dice<br>nuestra comunidad</h2>
+      </div>
+      <div class="reviews-score fade-in">
+        <div class="reviews-score-number">4.8</div>
+        <div class="reviews-score-detail">
+          <div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="reviews-count">Basado en +150 resenas en Google</div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <!-- Resena 1 -->
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">DM</div>
+            <div class="review-info">
+              <div class="review-name">Daniel Martinez</div>
+              <div class="review-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Resena verificada de Google
+              </div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Llevo un ano entrenando aqui y ha cambiado mi forma de ver el deporte. Los coaches corrigen cada movimiento, el ambiente es increible y los WODs son adictivos. La mejor decision que he tomado.</p>
+        </div>
+        <!-- Resena 2 -->
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">PL</div>
+            <div class="review-info">
+              <div class="review-name">Patricia Lopez</div>
+              <div class="review-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Resena verificada de Google
+              </div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Vine sin saber nada de CrossFit y en el curso de fundamentals me enganché. Los coaches son super atentos, escalan todo a tu nivel y la comunidad te empuja a dar lo mejor. Te sientes parte de algo.</p>
+        </div>
+        <!-- Resena 3 -->
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">RG</div>
+            <div class="review-info">
+              <div class="review-name">Roberto Garcia</div>
+              <div class="review-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Resena verificada de Google
+              </div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="review-text">Buen box, bien equipado y con variedad de horarios. Los coaches saben lo que hacen y se nota la programacion. El unico pero es que en las clases de las 19h a veces hay mucha gente, pero eso habla bien del sitio.</p>
+        </div>
+        <!-- Resena 4 -->
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">AS</div>
+            <div class="review-info">
+              <div class="review-name">Ana Sanchez</div>
+              <div class="review-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Resena verificada de Google
+              </div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Despues de probar varios gimnasios, encontre aqui lo que buscaba. Entrenamiento intenso, tecnica cuidada y un grupo de gente que se apoya mutuamente. Los resultados llegan solos cuando entrenas asi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== UBICACION + MAPA ===== -->
+  <section class="location" id="location">
+    <div class="container">
+      <div class="section-label">Donde estamos</div>
+      <h2 class="section-title" style="margin-bottom: 40px;">Encuentra<br>nuestro box</h2>
+      <div class="location-grid fade-in">
+        <div class="location-info">
+          <div class="location-address">
+            <div class="location-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Direccion</h4>
+              <p>{{DIRECCION}}<br>{{CIUDAD}}</p>
+            </div>
+          </div>
+          <div class="location-address">
+            <div class="location-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Contacto</h4>
+              <p>{{TELEFONO}}<br>{{EMAIL}}</p>
+            </div>
+          </div>
+          <h4 class="schedule-title">Horarios de clases</h4>
+          <ul class="schedule-list">
+            <li>
+              <span class="schedule-day">Lunes a Viernes</span>
+              <span class="schedule-hours open">{{HORARIO}}</span>
+            </li>
+            <li>
+              <span class="schedule-day">Sabados</span>
+              <span class="schedule-hours open">{{HORARIO}}</span>
+            </li>
+            <li>
+              <span class="schedule-day">Domingos</span>
+              <span class="schedule-hours">Cerrado</span>
+            </li>
+          </ul>
+        </div>
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q={{GOOGLE_MAPS_QUERY}}&zoom=16" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA PRUEBA GRATIS ===== -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2>Tu primera clase es <span class="accent-text">gratis</span></h2>
+      <p>No necesitas experiencia previa. Ven, conoce el box, prueba un WOD y descubre por que el CrossFit engancha. Sin compromiso.</p>
+      <div class="cta-btns">
+        <a href="tel:{{TELEFONO}}" class="btn-white">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Reservar clase gratis
+        </a>
+        <a href="#programs" class="btn-ghost">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Ver programas
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">{{NOMBRE_NEGOCIO}}</div>
+          <p class="footer-desc">Box de CrossFit en {{CIUDAD}}. Movimientos funcionales, comunidad real, coaches certificados. Tu primera clase es gratis.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Secciones</h4>
+          <ul>
+            <li><a href="#philosophy">Que es CrossFit</a></li>
+            <li><a href="#programs">Programas</a></li>
+            <li><a href="#coaches">Coaches</a></li>
+            <li><a href="#gallery">Nuestro box</a></li>
+            <li><a href="#reviews">Opiniones</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="tel:{{TELEFONO}}">{{TELEFONO}}</a></li>
+            <li><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
+            <li><a href="#location">{{DIRECCION}}</a></li>
+            <li><a href="#location">{{CIUDAD}}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 {{NOMBRE_NEGOCIO}}. Todos los derechos reservados.</span>
+        <span>Web diseñada profesionalmente</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP FLOTANTE ===== -->
+  <a href="https://wa.me/{{TELEFONO}}" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ===== SCROLL ANIMATION ===== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var els = document.querySelectorAll('.fade-in');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function(el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      els.forEach(function(el) { observer.observe(el); });
+    });
+  </script>
+
+
+<script>
+// Fallback for background images that fail to load
+document.addEventListener('DOMContentLoaded', function() {
+  var elements = document.querySelectorAll('[style*="background-image"], [style*="background"]');
+  var allBgElements = document.querySelectorAll('*');
+  allBgElements.forEach(function(el) {
+    var bg = window.getComputedStyle(el).backgroundImage;
+    if (bg && bg !== 'none' && bg.indexOf('url(') !== -1) {
+      var match = bg.match(/url\(["']?(https?:\/\/[^"')]+)["']?\)/);
+      if (match) {
+        var img = new Image();
+        img.onerror = function() {
+          el.style.backgroundImage = "none";
+          el.style.backgroundColor = "#333";
+          if (!el.querySelector('.img-fallback-text')) {
+            var span = document.createElement('span');
+            span.className = 'img-fallback-text';
+            span.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#999;font-size:14px;position:absolute;top:0;left:0;';
+            span.textContent = 'Imagen no disponible';
+            if (window.getComputedStyle(el).position === 'static') {
+              el.style.position = 'relative';
+            }
+            el.appendChild(span);
+          }
+        };
+        img.src = match[1];
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>

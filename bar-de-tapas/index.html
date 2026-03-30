@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{NOMBRE_NEGOCIO}} — Bar de tapas y pintxos en {{CIUDAD}}. Barra variada, cañas bien tiradas y ambiente auténtico. Ven a probar nuestras especialidades.">
+  <title>{{NOMBRE_NEGOCIO}} | Bar de Tapas en {{CIUDAD}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       RESET & BASE
+    ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --madera:     #1e120a;
+      --madera-md:  #3b2415;
+      --ambar:      #c8872a;
+      --ambar-lt:   #daa04a;
+      --dorado:     #d4a843;
+      --crema:      #fdf6ed;
+      --crema-dk:   #f0e4d0;
+      --barro:      #8a6340;
+      --gris:       #6b6b6b;
+      --blanco:     #ffffff;
+      --texto:      #2a1a0e;
+      --overlay:    rgba(30, 18, 10, 0.72);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--texto);
+      background: var(--crema);
+      line-height: 1.65;
+    }
+
+    h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    section { padding: 80px 20px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* =========================================================
+       ANIMACIONES FADE-IN
+    ========================================================= */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       HEADER / NAV
+    ========================================================= */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(30, 18, 10, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(200, 135, 42, 0.25);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--ambar), var(--dorado));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      color: var(--madera);
+      font-weight: 700;
+    }
+
+    .nav-logo span {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--crema);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(253, 246, 237, 0.8);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--ambar-lt); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--ambar), var(--dorado));
+      color: var(--madera) !important;
+      padding: 10px 22px;
+      border-radius: 25px;
+      font-weight: 600 !important;
+      font-size: 0.85rem !important;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(200, 135, 42, 0.4);
+    }
+
+    /* Hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--crema);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0; right: 0;
+      background: rgba(30, 18, 10, 0.98);
+      padding: 20px;
+      z-index: 999;
+      border-bottom: 1px solid rgba(200, 135, 42, 0.25);
+    }
+
+    .mobile-menu.active { display: block; }
+
+    .mobile-menu a {
+      display: block;
+      padding: 14px 0;
+      color: var(--crema);
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover { color: var(--ambar-lt); }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--madera) url('https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=1400&q=80') center/cover no-repeat;
+      padding: 140px 20px 100px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(30,18,10,0.6) 0%, rgba(30,18,10,0.75) 60%, rgba(30,18,10,0.9) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200, 135, 42, 0.15);
+      border: 1px solid rgba(200, 135, 42, 0.4);
+      color: var(--ambar-lt);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 25px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      color: var(--crema);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      color: var(--ambar-lt);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: rgba(253, 246, 237, 0.75);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 36px;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat .value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--ambar-lt);
+      display: block;
+    }
+
+    .hero-stat .label {
+      font-size: 0.78rem;
+      color: rgba(253,246,237,0.55);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--ambar), var(--dorado));
+      color: var(--madera);
+      padding: 15px 36px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(200, 135, 42, 0.35);
+    }
+
+    .btn-outline {
+      border: 2px solid rgba(253,246,237,0.3);
+      color: var(--crema);
+      padding: 13px 34px;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.3s, background 0.3s;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--ambar-lt);
+      background: rgba(200,135,42,0.1);
+    }
+
+    /* =========================================================
+       SECTION HEADINGS
+    ========================================================= */
+    .section-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ambar);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      color: var(--madera);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-title em {
+      color: var(--ambar);
+      font-style: italic;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--gris);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    /* =========================================================
+       SOBRE NOSOTROS
+    ========================================================= */
+    .about {
+      background: var(--madera);
+      color: var(--crema);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about .section-label { color: var(--ambar-lt); }
+    .about .section-title { color: var(--crema); }
+    .about .section-title em { color: var(--ambar-lt); }
+    .about .section-desc { color: rgba(253,246,237,0.7); }
+
+    .about-text p {
+      margin-top: 20px;
+      font-size: 0.98rem;
+      color: rgba(253,246,237,0.65);
+      line-height: 1.75;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 400px;
+      background: var(--madera-md) url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=700&q=80') center/cover no-repeat;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      border: 1px solid rgba(200,135,42,0.2);
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .about-feature {
+      background: rgba(200, 135, 42, 0.08);
+      border: 1px solid rgba(200, 135, 42, 0.15);
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+
+    .about-feature .feat-icon {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .about-feature .feat-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--ambar-lt);
+      margin-bottom: 2px;
+    }
+
+    .about-feature .feat-sub {
+      font-size: 0.78rem;
+      color: rgba(253,246,237,0.5);
+    }
+
+    /* =========================================================
+       ESPECIALIDADES
+    ========================================================= */
+    .specialties { background: var(--crema); }
+
+    .specialties-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .specialties-header .section-desc {
+      margin: 0 auto;
+    }
+
+    /* Tarjeta destacada — producto estrella */
+    .star-product {
+      background: linear-gradient(135deg, var(--madera), var(--madera-md));
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 40px;
+      min-height: 320px;
+    }
+
+    .star-product-img {
+      background: var(--madera-md) url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=700&q=80') center/cover no-repeat;
+      min-height: 320px;
+    }
+
+    .star-product-text {
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .star-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200,135,42,0.15);
+      border: 1px solid rgba(200,135,42,0.3);
+      color: var(--ambar-lt);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      width: fit-content;
+      margin-bottom: 16px;
+    }
+
+    .star-product-text h3 {
+      font-size: 1.9rem;
+      color: var(--crema);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .star-product-text p {
+      font-size: 0.95rem;
+      color: rgba(253,246,237,0.65);
+      line-height: 1.7;
+    }
+
+    /* Grid de especialidades */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .spec-card {
+      background: var(--blanco);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(30,18,10,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .spec-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(30,18,10,0.1);
+    }
+
+    .spec-card-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--crema-dk);
+      position: relative;
+    }
+
+    .spec-card-body {
+      padding: 24px;
+    }
+
+    .spec-card-body h4 {
+      font-size: 1.2rem;
+      color: var(--madera);
+      margin-bottom: 8px;
+    }
+
+    .spec-card-body p {
+      font-size: 0.88rem;
+      color: var(--gris);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .spec-card-body ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .spec-card-body ul li {
+      font-size: 0.82rem;
+      color: var(--barro);
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(30,18,10,0.05);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .spec-card-body ul li:last-child { border-bottom: none; }
+
+    .spec-card-body ul li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--ambar);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================
+       GALERIA
+    ========================================================= */
+    .gallery {
+      background: var(--madera);
+      padding: 80px 20px;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .gallery .section-label { color: var(--ambar-lt); }
+    .gallery .section-title { color: var(--crema); }
+    .gallery .section-desc { color: rgba(253,246,237,0.6); margin: 0 auto; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 260px 260px;
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--madera-md);
+      position: relative;
+      min-height: 200px;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover { transform: scale(1.02); }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(30,18,10,0.4) 100%);
+    }
+
+    .gallery-item.span-2 {
+      grid-column: span 2;
+    }
+
+    /* =========================================================
+       RESENAS
+    ========================================================= */
+    .reviews { background: var(--crema); }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .reviews-header .section-desc { margin: 0 auto; }
+
+    .rating-summary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--blanco);
+      border-radius: 30px;
+      padding: 12px 24px;
+      box-shadow: 0 2px 10px rgba(30,18,10,0.06);
+      margin-top: 20px;
+    }
+
+    .rating-summary .big-score {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--madera);
+    }
+
+    .rating-summary .stars {
+      color: #f5a623;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    .rating-summary .review-count {
+      font-size: 0.82rem;
+      color: var(--gris);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .review-card {
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(30,18,10,0.05);
+      border: 1px solid rgba(30,18,10,0.04);
+      transition: transform 0.3s;
+    }
+
+    .review-card:hover { transform: translateY(-3px); }
+
+    .review-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--ambar), var(--dorado));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--madera);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .reviewer-info .reviewer-name {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--madera);
+    }
+
+    .reviewer-info .reviewer-date {
+      font-size: 0.75rem;
+      color: var(--gris);
+    }
+
+    .review-platform {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f1f8f1;
+      border: 1px solid #d4edd4;
+      color: #2d7a2d;
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .review-platform.tripadvisor {
+      background: #f1f8f1;
+      border-color: #c4e5c4;
+      color: #34a853;
+    }
+
+    .review-stars {
+      color: #f5a623;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .review-text {
+      font-size: 0.9rem;
+      color: #4a4a4a;
+      line-height: 1.65;
+    }
+
+    /* =========================================================
+       HORARIO + MAPA
+    ========================================================= */
+    .location {
+      background: var(--madera);
+      color: var(--crema);
+    }
+
+    .location .section-label { color: var(--ambar-lt); }
+    .location .section-title { color: var(--crema); }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .location-info h3 {
+      font-size: 1.3rem;
+      color: var(--crema);
+      margin-bottom: 20px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(200,135,42,0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      color: var(--ambar-lt);
+    }
+
+    .info-text .info-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(253,246,237,0.45);
+      margin-bottom: 4px;
+    }
+
+    .info-text .info-value {
+      font-size: 0.95rem;
+      color: var(--crema);
+      font-weight: 500;
+    }
+
+    .info-text .info-value a {
+      color: var(--ambar-lt);
+      transition: color 0.2s;
+    }
+
+    .info-text .info-value a:hover { color: var(--dorado); }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+    }
+
+    .schedule-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(253,246,237,0.08);
+      font-size: 0.9rem;
+    }
+
+    .schedule-table td:first-child {
+      color: rgba(253,246,237,0.6);
+      width: 40%;
+    }
+
+    .schedule-table td:last-child {
+      color: var(--crema);
+      font-weight: 500;
+    }
+
+    .schedule-table tr:last-child td { border-bottom: none; }
+
+    .map-wrapper {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 420px;
+      border: none;
+    }
+
+    /* =========================================================
+       CTA CONTACTO
+    ========================================================= */
+    .cta-section {
+      background: linear-gradient(135deg, var(--ambar), var(--dorado));
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      color: var(--madera);
+      margin-bottom: 14px;
+    }
+
+    .cta-section p {
+      font-size: 1.05rem;
+      color: rgba(30, 18, 10, 0.65);
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-dark {
+      background: var(--madera);
+      color: var(--crema);
+      padding: 15px 36px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(30, 18, 10, 0.3);
+    }
+
+    .btn-white {
+      background: var(--blanco);
+      color: var(--madera);
+      padding: 15px 36px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    footer {
+      background: #0f0a06;
+      color: rgba(253,246,237,0.6);
+      padding: 50px 20px 30px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--crema);
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ambar);
+      margin-bottom: 18px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.88rem;
+      color: rgba(253,246,237,0.5);
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--ambar-lt); }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(253,246,237,0.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: rgba(253,246,237,0.35);
+    }
+
+    .footer-bottom a {
+      color: var(--ambar);
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       WHATSAPP FLOTANTE
+    ========================================================= */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 62px;
+      height: 62px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.3s;
+      animation: wa-pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      animation: none;
+    }
+
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+    }
+
+    @keyframes wa-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 12px rgba(37,211,102,0.12); }
+    }
+
+    /* =========================================================
+       RESPONSIVE — MOBILE FIRST
+    ========================================================= */
+    @media (max-width: 768px) {
+      /* Fade-in fallback mobile */
+      .fade-in { opacity: 1 !important; transform: none !important; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero { min-height: 90vh; padding: 120px 20px 70px; }
+      .hero h1 { font-size: 2rem; }
+      .hero-sub { font-size: 0.98rem; }
+      .hero-stats { gap: 24px; }
+      .hero-stat .value { font-size: 1.3rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .about-image { min-height: 280px; order: -1; }
+
+      .star-product { grid-template-columns: 1fr; }
+      .star-product-img { min-height: 220px; }
+      .star-product-text { padding: 30px 24px; }
+      .star-product-text h3 { font-size: 1.5rem; }
+
+      .spec-grid { grid-template-columns: 1fr; gap: 20px; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 180px 180px;
+      }
+      .gallery-item.span-2 { grid-column: span 2; }
+
+      .reviews-grid { grid-template-columns: 1fr; gap: 16px; }
+
+      .location-grid { grid-template-columns: 1fr; gap: 30px; }
+      .map-wrapper iframe { height: 300px; }
+
+      section { padding: 60px 16px; }
+      .section-title { font-size: 1.8rem; }
+
+      .footer-inner { grid-template-columns: 1fr; gap: 30px; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+
+      .cta-section h2 { font-size: 1.7rem; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+
+      .whatsapp-float { bottom: 20px; right: 20px; width: 56px; height: 56px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.7rem; }
+      .hero-stats { flex-direction: column; gap: 14px; }
+      .about-features { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 200px);
+      }
+      .gallery-item.span-2 { grid-column: span 1; }
+    }
+  
+    /* ══════════════════════════════════
+       MOBILE IMAGE FIX (universal)
+    ══════════════════════════════════ */
+    img {
+      max-width: 100%;
+    }
+    @media (max-width: 768px) {
+      .gallery-item {
+        min-height: 180px;
+        overflow: hidden;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        min-height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .about-img img,
+      .philosophy-image img,
+      .team-img img,
+      .intro-img img,
+      .studio-img img,
+      .space-img img {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .featured-dish-img,
+      .featured-item-img,
+      .highlight-img,
+      .featured-product-img {
+        width: 100%;
+        min-height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .menu-card-img,
+      .service-card-img,
+      .treatment-img,
+      .program-img,
+      .product-card-img,
+      .course-img,
+      .class-img {
+        width: 100%;
+        height: auto;
+        min-height: 140px;
+        object-fit: cover;
+        display: block;
+      }
+      [style*="background-image"],
+      .program-card-img,
+      .coach-img,
+      .team-member-img,
+      .trainer-img,
+      .specialist-img,
+      .staff-img {
+        background-size: cover !important;
+        background-position: center !important;
+        min-height: 180px;
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery-item {
+        min-height: 160px;
+      }
+      .gallery-item img {
+        min-height: 160px;
+      }
+      .about-img img,
+      .philosophy-image img,
+      .team-img img,
+      .intro-img img {
+        min-height: 160px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header>
+    <nav class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">T</div>
+        <span>{{NOMBRE_NEGOCIO}}</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">Nosotros</a></li>
+        <li><a href="#especialidades">Carta</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#resenas">Opiniones</a></li>
+        <li><a href="#ubicacion">Ubicacion</a></li>
+        <li><a href="tel:{{TELEFONO}}" class="nav-cta">Llamar</a></li>
+      </ul>
+      <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="#about" onclick="this.parentElement.classList.remove('active')">Nosotros</a>
+    <a href="#especialidades" onclick="this.parentElement.classList.remove('active')">Carta</a>
+    <a href="#galeria" onclick="this.parentElement.classList.remove('active')">Galeria</a>
+    <a href="#resenas" onclick="this.parentElement.classList.remove('active')">Opiniones</a>
+    <a href="#ubicacion" onclick="this.parentElement.classList.remove('active')">Ubicacion</a>
+    <a href="tel:{{TELEFONO}}" style="color: var(--ambar-lt); font-weight: 600;">Llamar ahora</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Bar de tapas en {{CIUDAD}}</div>
+      <h1>Donde cada tapa<br>cuenta una <em>historia</em></h1>
+      <p class="hero-sub">En {{NOMBRE_NEGOCIO}} servimos lo de siempre con el sabor de siempre. Barra variada, canas bien tiradas y el ambiente que solo un bar de barrio sabe dar.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="value">4.5/5</span>
+          <span class="label">Google</span>
+        </div>
+        <div class="hero-stat">
+          <span class="value">+50</span>
+          <span class="label">Resenas</span>
+        </div>
+        <div class="hero-stat">
+          <span class="value">Diario</span>
+          <span class="label">Pintxos frescos</span>
+        </div>
+      </div>
+      <div class="hero-buttons">
+        <a href="tel:{{TELEFONO}}" class="btn-primary">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+          Llamar ahora
+        </a>
+        <a href="#especialidades" class="btn-outline">Ver la carta</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE NOSOTROS ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid fade-in">
+        <div class="about-text">
+          <span class="section-label">Sobre nosotros</span>
+          <h2 class="section-title">Tradicion en barra,<br><em>sabor de verdad</em></h2>
+          <p class="section-desc">{{NOMBRE_NEGOCIO}} es ese bar de toda la vida donde entras a por una cana y te quedas a cenar. Un lugar donde la barra habla por si sola: pintxos recien hechos, raciones generosas y un trato cercano que te hace volver.</p>
+          <p>Aqui no hay modas pasajeras. Hay buen genero, manos que saben cocinarlo y una barra donde cada dia encuentras algo nuevo que probar. Eso si, las canas siempre estan igual de frias.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="feat-icon">&#127860;</div>
+              <div class="feat-title">Pintxos diarios</div>
+              <div class="feat-sub">Elaboracion propia</div>
+            </div>
+            <div class="about-feature">
+              <div class="feat-icon">&#127866;</div>
+              <div class="feat-title">Canas perfectas</div>
+              <div class="feat-sub">Siempre bien tiradas</div>
+            </div>
+            <div class="about-feature">
+              <div class="feat-icon">&#128293;</div>
+              <div class="feat-title">Buen genero</div>
+              <div class="feat-sub">Producto fresco</div>
+            </div>
+            <div class="about-feature">
+              <div class="feat-icon">&#129309;</div>
+              <div class="feat-title">Trato cercano</div>
+              <div class="feat-sub">Bar de barrio</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image" role="img" aria-label="Interior del bar con barra de pintxos"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ESPECIALIDADES ===== -->
+  <section class="specialties" id="especialidades">
+    <div class="container">
+      <div class="specialties-header fade-in">
+        <span class="section-label">Nuestra carta</span>
+        <h2 class="section-title">Lo que sale de <em>nuestra barra</em></h2>
+        <p class="section-desc">Una barra generosa con lo mejor de la cocina de siempre. Pintxos elaborados a diario, raciones para compartir y tostas que no dejan indiferente.</p>
+      </div>
+
+      <!-- Producto estrella -->
+      <div class="star-product fade-in">
+        <div class="star-product-img" role="img" aria-label="Pintxos variados en la barra"></div>
+        <div class="star-product-text">
+          <div class="star-badge">&#9733; Nuestra especialidad</div>
+          <h3>Barra de pintxos</h3>
+          <p>Cada dia renovamos nuestra barra con pintxos elaborados en el momento. Desde los clasicos de tortilla, anchoa y gilda hasta creaciones de temporada. Ven, elige con los ojos y disfruta con el paladar.</p>
+        </div>
+      </div>
+
+      <!-- Grid de categorias -->
+      <div class="spec-grid fade-in">
+        <div class="spec-card">
+          <div class="spec-card-img" style="background-image: url('https://images.unsplash.com/photo-1535400255456-984241443b29?w=500&q=80');" role="img" aria-label="Raciones"></div>
+          <div class="spec-card-body">
+            <h4>Raciones</h4>
+            <p>Para compartir y repetir. Producto fresco y porciones que no escatiman.</p>
+            <ul>
+              <li>Rabas caseras</li>
+              <li>Croquetas de jamon</li>
+              <li>Pimientos de padron</li>
+              <li>Pulpo a la gallega</li>
+              <li>Oreja a la plancha</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-card-img" style="background-image: url('https://images.unsplash.com/photo-1550507992-eb63ffee0847?w=500&q=80');" role="img" aria-label="Tostas y montaditos"></div>
+          <div class="spec-card-body">
+            <h4>Tostas y montaditos</h4>
+            <p>Sobre pan crujiente, combinaciones que siempre funcionan.</p>
+            <ul>
+              <li>Tosta de salmon ahumado</li>
+              <li>Montadito de anchoa</li>
+              <li>Tosta de txistorra con queso</li>
+              <li>Montadito de lomo con piquillo</li>
+              <li>Tosta de jamon con tomate</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="spec-card">
+          <div class="spec-card-img" style="background-image: url('https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=500&q=80');" role="img" aria-label="Bebidas"></div>
+          <div class="spec-card-body">
+            <h4>Para beber</h4>
+            <p>Canas bien tiradas, vinos de la tierra y vermut de grifo.</p>
+            <ul>
+              <li>Cana / Zurito</li>
+              <li>Vermut de grifo</li>
+              <li>Vino tinto Rioja</li>
+              <li>Txakoli</li>
+              <li>Refrescos y cafes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALERIA ===== -->
+  <section class="gallery" id="galeria">
+    <div class="container">
+      <div class="gallery-header fade-in">
+        <span class="section-label">Galeria</span>
+        <h2 class="section-title">Asi se vive <em>en nuestra barra</em></h2>
+        <p class="section-desc">El ambiente, los pintxos, la barra... imagenes que hablan mejor que las palabras.</p>
+      </div>
+      <div class="gallery-grid fade-in">
+        <div class="gallery-item span-2" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80');" role="img" aria-label="Ambiente del bar"></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80');" role="img" aria-label="Pintxos en la barra"></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1536935338788-846bb9981813?w=500&q=80');" role="img" aria-label="Canas de cerveza"></div>
+        <div class="gallery-item span-2" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80');" role="img" aria-label="Interior del bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESENAS ===== -->
+  <section class="reviews" id="resenas">
+    <div class="container">
+      <div class="reviews-header fade-in">
+        <span class="section-label">Opiniones</span>
+        <h2 class="section-title">Lo que dicen <em>nuestros clientes</em></h2>
+        <p class="section-desc">La mejor publicidad es la que hacen quienes ya nos han visitado.</p>
+        <div class="rating-summary">
+          <span class="big-score">4.5</span>
+          <div>
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <div class="review-count">+50 resenas en Google</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-grid fade-in">
+        <!-- Resena 1 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer">
+              <div class="reviewer-avatar">MG</div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Maria Garcia</div>
+                <div class="reviewer-date">Hace 2 semanas</div>
+              </div>
+            </div>
+            <span class="review-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Google
+            </span>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Fuimos a tomar unas canas y al final nos quedamos a cenar. La barra de pintxos estaba espectacular, todo fresco y recien hecho. Las croquetas de jamon son de las mejores que he probado. Volveremos seguro.</p>
+        </div>
+
+        <!-- Resena 2 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer">
+              <div class="reviewer-avatar">JL</div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Javier Lopez</div>
+                <div class="reviewer-date">Hace 1 mes</div>
+              </div>
+            </div>
+            <span class="review-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Google
+            </span>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Bar de tapas de verdad, sin pretensiones. Rabas brutales, cana perfecta y el camarero te atiende como si te conociera de toda la vida. Relacion calidad-precio inmejorable.</p>
+        </div>
+
+        <!-- Resena 3 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer">
+              <div class="reviewer-avatar">AL</div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Ana Larreategi</div>
+                <div class="reviewer-date">Hace 3 semanas</div>
+              </div>
+            </div>
+            <span class="review-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Google
+            </span>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Lo mejor del barrio para ir de pintxos. Tienen una barra increible con variedad cada dia. La tortilla de patata esta jugosita y las gildas picantes, como tienen que ser. Ambiente muy agradable.</p>
+        </div>
+
+        <!-- Resena 4 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer">
+              <div class="reviewer-avatar">PR</div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Pablo Ruiz</div>
+                <div class="reviewer-date">Hace 2 meses</div>
+              </div>
+            </div>
+            <span class="review-platform tripadvisor">
+              <svg width="14" height="14" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="none" stroke="#34a853" stroke-width="2"/><circle cx="8.5" cy="11" r="2" fill="#34a853"/><circle cx="15.5" cy="11" r="2" fill="#34a853"/><path d="M12 3 L12 6 M6 6 L8 8 M18 6 L16 8" stroke="#34a853" stroke-width="1.5" fill="none"/></svg>
+              TripAdvisor
+            </span>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="review-text">Entramos por casualidad y fue un acierto total. Muy buen surtido de pintxos, raciones abundantes y precios razonables. El pulpo a la gallega estaba buenisimo. Sitio recomendable al 100%.</p>
+        </div>
+
+        <!-- Resena 5 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer">
+              <div class="reviewer-avatar">LE</div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Laura Etxebarria</div>
+                <div class="reviewer-date">Hace 1 mes</div>
+              </div>
+            </div>
+            <span class="review-platform">
+              <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              Google
+            </span>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Nuestro bar de cabecera. Los viernes la barra es una locura de buena. El vermut de grifo esta increible y los champiñones a la plancha con ajillo son un vicio. Trato 10, muy majos.</p>
+        </div>
+
+        <!-- Resena 6 -->
+        <div class="review-card">
+          <div class="review-top">
+            <div class="reviewer">
+              <div class="reviewer-avatar">IM</div>
+              <div class="reviewer-info">
+                <div class="reviewer-name">Iñaki Mendoza</div>
+                <div class="reviewer-date">Hace 3 meses</div>
+              </div>
+            </div>
+            <span class="review-platform tripadvisor">
+              <svg width="14" height="14" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="none" stroke="#34a853" stroke-width="2"/><circle cx="8.5" cy="11" r="2" fill="#34a853"/><circle cx="15.5" cy="11" r="2" fill="#34a853"/><path d="M12 3 L12 6 M6 6 L8 8 M18 6 L16 8" stroke="#34a853" stroke-width="1.5" fill="none"/></svg>
+              TripAdvisor
+            </span>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">De lo mejor para ir de poteo. Pintxos variados y bien hechos, sobre todo la tortilla que esta de escandalo. El ambiente es muy autentico, bar de barrio de los de verdad. Precios muy correctos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== UBICACION + HORARIO ===== -->
+  <section class="location" id="ubicacion">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 50px;" class="fade-in">
+        <span class="section-label">Donde estamos</span>
+        <h2 class="section-title">Ven a <em>conocernos</em></h2>
+      </div>
+      <div class="location-grid fade-in">
+        <div class="location-info">
+          <div class="info-row">
+            <div class="info-icon">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="info-label">Direccion</div>
+              <div class="info-value">{{DIRECCION}}</div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="info-label">Telefono</div>
+              <div class="info-value"><a href="tel:{{TELEFONO}}">{{TELEFONO}}</a></div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="info-text">
+              <div class="info-label">Email</div>
+              <div class="info-value"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 32px;">Horario</h3>
+          <table class="schedule-table">
+            <tr><td>Horario</td><td>{{HORARIO}}</td></tr>
+          </table>
+        </div>
+
+        <div class="map-wrapper">
+          <iframe src="https://maps.google.com/maps?q={{GOOGLE_MAPS_QUERY}}&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA CONTACTO ===== -->
+  <section class="cta-section">
+    <div class="container fade-in">
+      <h2>Nos vemos en la barra</h2>
+      <p>Reserva tu mesa o acercate cuando quieras. Siempre hay sitio para uno mas.</p>
+      <div class="cta-buttons">
+        <a href="tel:{{TELEFONO}}" class="btn-dark">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+          Llamar para reservar
+        </a>
+        <a href="https://wa.me/34{{TELEFONO}}" class="btn-white" target="_blank">
+          <svg width="18" height="18" fill="#25d366" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.856L.057 23.988l6.272-1.426A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.964 0-3.832-.53-5.47-1.491l-.392-.233-4.065.924.966-3.955-.256-.406A9.78 9.78 0 012.18 12c0-5.422 4.398-9.82 9.82-9.82 5.422 0 9.82 4.398 9.82 9.82 0 5.422-4.398 9.82-9.82 9.82z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">{{NOMBRE_NEGOCIO}}</div>
+        <p>Bar de tapas y pintxos en {{CIUDAD}}. Barra variada, canas bien tiradas y el sabor de siempre. Te esperamos.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegacion</h4>
+        <a href="#about">Nosotros</a>
+        <a href="#especialidades">Carta</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#resenas">Opiniones</a>
+        <a href="#ubicacion">Donde estamos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="tel:{{TELEFONO}}">{{TELEFONO}}</a>
+        <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+        <a href="#">{{DIRECCION}}</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 {{NOMBRE_NEGOCIO}}. Todos los derechos reservados.</span>
+      <span>Web creada por <a href="#">G&amp;G Elcano</a></span>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP FLOTANTE ===== -->
+  <a href="https://wa.me/34{{TELEFONO}}" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.12 1.52 5.856L.057 23.988l6.272-1.426A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.82c-1.964 0-3.832-.53-5.47-1.491l-.392-.233-4.065.924.966-3.955-.256-.406A9.78 9.78 0 012.18 12c0-5.422 4.398-9.82 9.82-9.82 5.422 0 9.82 4.398 9.82 9.82 0 5.422-4.398 9.82-9.82 9.82z"/></svg>
+  </a>
+
+  <!-- ===== JS — FADE IN + HAMBURGUESA ===== -->
+  <script>
+    // Intersection Observer para fade-in
+    const faders = document.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      faders.forEach(f => obs.observe(f));
+    } else {
+      // Fallback: mostrar todo
+      faders.forEach(f => f.classList.add('visible'));
+    }
+
+    // Fallback timer para mobile (por si IntersectionObserver falla)
+    setTimeout(() => {
+      faders.forEach(f => f.classList.add('visible'));
+    }, 3000);
+  </script>
+
+
+<script>
+// Fallback for background images that fail to load
+document.addEventListener('DOMContentLoaded', function() {
+  var elements = document.querySelectorAll('[style*="background-image"], [style*="background"]');
+  var allBgElements = document.querySelectorAll('*');
+  allBgElements.forEach(function(el) {
+    var bg = window.getComputedStyle(el).backgroundImage;
+    if (bg && bg !== 'none' && bg.indexOf('url(') !== -1) {
+      var match = bg.match(/url\(["']?(https?:\/\/[^"')]+)["']?\)/);
+      if (match) {
+        var img = new Image();
+        img.onerror = function() {
+          el.style.backgroundImage = "none";
+          el.style.backgroundColor = "#333";
+          if (!el.querySelector('.img-fallback-text')) {
+            var span = document.createElement('span');
+            span.className = 'img-fallback-text';
+            span.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#999;font-size:14px;position:absolute;top:0;left:0;';
+            span.textContent = 'Imagen no disponible';
+            if (window.getComputedStyle(el).position === 'static') {
+              el.style.position = 'relative';
+            }
+            el.appendChild(span);
+          }
+        };
+        img.src = match[1];
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>

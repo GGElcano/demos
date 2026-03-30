@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{NOMBRE_NEGOCIO}} en {{CIUDAD}} — Tu autoescuela de confianza. Carné B, moto A2, teórico online, prácticas intensivas. Alta tasa de aprobados. Llámanos: {{TELEFONO}}">
+  <meta name="keywords" content="autoescuela {{CIUDAD}}, carné de conducir, permiso B, permiso A2, teórico online, prácticas intensivas, {{NOMBRE_NEGOCIO}}">
+  <meta property="og:title" content="{{NOMBRE_NEGOCIO}} — Autoescuela en {{CIUDAD}}">
+  <meta property="og:description" content="{{NOMBRE_NEGOCIO}} — Carné B, moto A2, teórico online y prácticas intensivas en {{CIUDAD}}. Alta tasa de aprobados. Llámanos: {{TELEFONO}}">
+  <meta property="og:type" content="website">
+  <title>{{NOMBRE_NEGOCIO}} — Autoescuela en {{CIUDAD}}</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DrivingSchool",
+    "name": "{{NOMBRE_NEGOCIO}}",
+    "telephone": "{{TELEFONO}}",
+    "email": "{{EMAIL}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{DIRECCION}}",
+      "addressLocality": "{{CIUDAD}}",
+      "addressCountry": "ES"
+    },
+    "priceRange": "€€"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===========================================
+       RESET & BASE
+    =========================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #334155;
+      background: #f8fafc;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===========================================
+       VARIABLES — PALETA AUTOESCUELA (VIAL)
+    =========================================== */
+    :root {
+      --blue:        #1e3a5f;
+      --blue-dark:   #0f2440;
+      --blue-light:  #2d5a8e;
+      --blue-bright: #3b82f6;
+      --blue-soft:   #dbeafe;
+      --red:         #dc2626;
+      --red-light:   #ef4444;
+      --red-dark:    #b91c1c;
+      --red-soft:    #fef2f2;
+      --white:       #ffffff;
+      --gray-50:     #f8fafc;
+      --gray-100:    #f1f5f9;
+      --gray-200:    #e2e8f0;
+      --gray-300:    #cbd5e1;
+      --gray-400:    #94a3b8;
+      --gray-500:    #64748b;
+      --gray-600:    #475569;
+      --gray-700:    #334155;
+      --gray-800:    #1e293b;
+      --gray-900:    #0f172a;
+      --asphalt:     #374151;
+      --success:     #16a34a;
+      --amber:       #f59e0b;
+      --shadow-soft:  0 4px 24px rgba(0,0,0,0.08);
+      --shadow-card:  0 2px 16px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 32px rgba(30,58,95,0.15);
+      --shadow-glow:  0 0 40px rgba(59,130,246,0.12);
+      --radius:      12px;
+      --radius-sm:   8px;
+      --radius-lg:   20px;
+      --transition:  all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ===========================================
+       TIPOGRAFIA
+    =========================================== */
+    h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; }
+    .section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--blue-dark);
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* ===========================================
+       LAYOUT
+    =========================================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section { padding: 80px 0; }
+
+    /* ===========================================
+       HEADER / NAV
+    =========================================== */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: var(--transition);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--red); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray-500);
+      transition: var(--transition);
+      letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { color: var(--blue-bright); }
+    .nav-cta {
+      background: var(--blue);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      font-size: 0.85rem !important;
+      transition: var(--transition);
+    }
+    .nav-cta:hover {
+      background: var(--blue-light);
+      box-shadow: 0 4px 20px rgba(30,58,95,0.3);
+    }
+
+    /* Hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 26px; height: 2.5px;
+      background: var(--blue-dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      transition: var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--blue-bright); }
+
+    /* ===========================================
+       HERO
+    =========================================== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 120px 0 80px;
+      background: var(--blue-dark);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1600&q=80') center/cover no-repeat;
+      background-color: var(--blue-dark);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15,36,64,0.93) 0%, rgba(30,58,95,0.78) 50%, rgba(15,36,64,0.90) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59,130,246,0.15);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: var(--blue-soft);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-badge svg { width: 16px; height: 16px; }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero h1 .accent-text {
+      background: linear-gradient(135deg, var(--blue-bright), #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-light));
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(59,130,246,0.4);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 2px solid rgba(255,255,255,0.25);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      border-color: var(--blue-bright);
+      color: var(--blue-soft);
+      background: rgba(59,130,246,0.08);
+    }
+    .btn-icon { width: 18px; height: 18px; }
+
+    /* Hero Stats */
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-stat .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat .stat-number span { color: var(--blue-bright); }
+    .hero-stat .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Decorative element */
+    .hero-deco {
+      position: absolute;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    /* ===========================================
+       ABOUT
+    =========================================== */
+    .about {
+      background: var(--white);
+      position: relative;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 420px;
+      background: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&q=80') center/cover no-repeat;
+      background-color: var(--gray-100);
+    }
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(15,36,64,0.4) 100%);
+    }
+    .about-image-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 2;
+      background: var(--blue);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .about-text .section-subtitle {
+      margin-bottom: 32px;
+    }
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .about-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--gray-50);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--gray-200);
+    }
+    .about-feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--blue-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .about-feature-icon svg { width: 20px; height: 20px; color: var(--blue-bright); }
+    .about-feature-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    /* ===========================================
+       PERMISOS / SERVICIOS
+    =========================================== */
+    .services {
+      background: var(--gray-50);
+      position: relative;
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .services-header .section-subtitle {
+      margin: 0 auto;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--blue-bright);
+      box-shadow: var(--shadow-hover);
+    }
+    .service-card-img {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--gray-100);
+      position: relative;
+    }
+    .service-card-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(transparent, var(--white));
+    }
+    .service-card-body {
+      padding: 20px 24px 24px;
+    }
+    .service-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      margin-top: -40px;
+      position: relative;
+      z-index: 2;
+      border: 2px solid var(--white);
+    }
+    .service-card-icon svg { width: 22px; height: 22px; color: var(--blue-bright); }
+    .service-card-icon.red-icon { background: var(--red-soft); }
+    .service-card-icon.red-icon svg { color: var(--red); }
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+    .service-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--blue);
+      color: var(--white);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    /* ===========================================
+       VENTAJAS
+    =========================================== */
+    .advantages {
+      background: var(--blue-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .advantages .section-label { color: #60a5fa; }
+    .advantages .section-title { color: var(--white); }
+    .advantages .section-subtitle { color: rgba(255,255,255,0.6); }
+    .advantages-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .advantages-header .section-subtitle { margin: 0 auto; }
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .advantage-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .advantage-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(59,130,246,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .advantage-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: rgba(59,130,246,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .advantage-icon svg { width: 28px; height: 28px; color: #60a5fa; }
+    .advantage-icon.red-glow { background: rgba(220,38,38,0.15); }
+    .advantage-icon.red-glow svg { color: var(--red-light); }
+    .advantage-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .advantage-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+    }
+    .advantage-stat {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--blue-bright);
+      margin-bottom: 6px;
+    }
+
+    /* ===========================================
+       PRICING / MATRICULA
+    =========================================== */
+    .pricing {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .pricing-header .section-subtitle { margin: 0 auto; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+    }
+    .pricing-card.featured {
+      border-color: var(--blue-bright);
+      background: linear-gradient(180deg, var(--blue-soft) 0%, var(--white) 40%);
+      box-shadow: var(--shadow-glow);
+      transform: scale(1.04);
+    }
+    .pricing-card.featured:hover {
+      transform: scale(1.04) translateY(-4px);
+    }
+    .pricing-popular {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-light));
+      color: var(--white);
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .pricing-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .pricing-period {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      margin-bottom: 20px;
+    }
+    .pricing-price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--blue-dark);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-price .currency { font-size: 1.6rem; vertical-align: super; }
+    .pricing-price .from {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gray-400);
+      margin-bottom: 4px;
+    }
+    .pricing-card.featured .pricing-price { color: var(--blue-bright); }
+    .pricing-subtitle {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      margin-bottom: 24px;
+    }
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .pricing-features li {
+      font-size: 0.88rem;
+      color: var(--gray-700);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--blue-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pricing-check svg { width: 11px; height: 11px; color: var(--blue-bright); }
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .pricing-btn-outline {
+      background: transparent;
+      color: var(--gray-600);
+      border: 2px solid var(--gray-300);
+    }
+    .pricing-btn-outline:hover {
+      border-color: var(--blue-bright);
+      color: var(--blue-bright);
+    }
+    .pricing-btn-fill {
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-light));
+      color: var(--white);
+    }
+    .pricing-btn-fill:hover {
+      box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+      transform: translateY(-1px);
+    }
+
+    /* ===========================================
+       RESENAS
+    =========================================== */
+    .reviews {
+      background: var(--gray-50);
+    }
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .reviews-header .section-subtitle { margin: 0 auto; }
+    .reviews-score {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .reviews-score-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--blue-dark);
+    }
+    .reviews-score-detail {
+      text-align: left;
+    }
+    .reviews-stars {
+      color: #f59e0b;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+    .reviews-count {
+      font-size: 0.85rem;
+      color: var(--gray-400);
+      margin-top: 2px;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: var(--transition);
+    }
+    .review-card:hover {
+      border-color: var(--blue-bright);
+      box-shadow: var(--shadow-card);
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .review-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-bright));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .review-info { flex: 1; }
+    .review-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--gray-800);
+    }
+    .review-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      color: var(--success);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .review-badge svg { width: 12px; height: 12px; }
+    .review-stars {
+      color: #f59e0b;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .review-text {
+      font-size: 0.88rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ===========================================
+       HORARIO + MAPA
+    =========================================== */
+    .location {
+      background: var(--white);
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .location-info { padding-right: 20px; }
+    .location-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .location-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .location-icon svg { width: 20px; height: 20px; color: var(--blue-bright); }
+    .location-address h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 4px;
+    }
+    .location-address p {
+      font-size: 0.88rem;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+    .schedule-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 16px;
+    }
+    .schedule-list { list-style: none; }
+    .schedule-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.9rem;
+    }
+    .schedule-list li:last-child { border-bottom: none; }
+    .schedule-day { color: var(--gray-700); font-weight: 500; }
+    .schedule-hours { color: var(--gray-400); }
+    .schedule-hours.open { color: var(--success); font-weight: 600; }
+    .location-map {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 420px;
+      border: 1px solid var(--gray-200);
+    }
+    .location-map iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+    }
+
+    /* ===========================================
+       CTA BANNER
+    =========================================== */
+    .cta-banner {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, var(--blue-dark) 100%);
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1400&q=60') center/cover no-repeat;
+      opacity: 0.08;
+    }
+    .cta-banner .container { position: relative; z-index: 2; }
+    .cta-banner h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .cta-banner p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--blue-dark);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255,255,255,0.25);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 2px solid rgba(255,255,255,0.4);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--white);
+    }
+
+    /* ===========================================
+       FOOTER
+    =========================================== */
+    .footer {
+      background: var(--gray-900);
+      padding: 48px 0 24px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 24px;
+    }
+    .footer-brand .logo {
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .footer-desc {
+      font-size: 0.88rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+      max-width: 320px;
+    }
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gray-200);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a {
+      font-size: 0.88rem;
+      color: var(--gray-500);
+      transition: var(--transition);
+    }
+    .footer-col a:hover { color: var(--blue-bright); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--gray-500);
+    }
+
+    /* ===========================================
+       WHATSAPP FLOTANTE
+    =========================================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 900;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: var(--transition);
+      animation: whatsapp-pulse 2s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+    }
+    .whatsapp-float svg { width: 32px; height: 32px; color: white; }
+
+    @keyframes whatsapp-pulse {
+      0% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 12px rgba(37,211,102,0.12); }
+      100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    }
+
+    /* ===========================================
+       ANIMACIONES SCROLL
+    =========================================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===========================================
+       RESPONSIVE
+    =========================================== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .advantages-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      /* Mobile fallback */
+      .fade-in { opacity: 1 !important; transform: none !important; }
+
+      section { padding: 56px 0; }
+      .container { padding: 0 18px; }
+      .section-title { font-size: 1.75rem; }
+
+      /* Nav */
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      /* Hero */
+      .hero { min-height: auto; padding: 110px 0 60px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-desc { font-size: 1rem; }
+      .hero-ctas { flex-direction: column; }
+      .btn-primary, .btn-secondary { justify-content: center; width: 100%; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .hero-stat .stat-number { font-size: 1.6rem; }
+      .hero-deco { display: none; }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-image { min-height: 280px; }
+      .about-features { grid-template-columns: 1fr; }
+
+      /* Services */
+      .services-grid { grid-template-columns: 1fr; }
+
+      /* Advantages */
+      .advantages-grid { grid-template-columns: 1fr; }
+
+      /* Pricing */
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .pricing-card.featured { transform: none; }
+      .pricing-card.featured:hover { transform: translateY(-4px); }
+
+      /* Reviews */
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-score-number { font-size: 2.2rem; }
+
+      /* Location */
+      .location-grid { grid-template-columns: 1fr; }
+      .location-map { min-height: 300px; }
+      .location-map iframe { height: 300px; }
+      .location-info { padding-right: 0; }
+
+      /* CTA */
+      .cta-banner h2 { font-size: 1.75rem; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .btn-white, .btn-ghost { width: 100%; justify-content: center; max-width: 320px; }
+
+      /* Footer */
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+      /* WhatsApp */
+      .whatsapp-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+      .whatsapp-float svg { width: 28px; height: 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.85rem; }
+      .hero-stats { gap: 16px; }
+      .hero-stat .stat-number { font-size: 1.4rem; }
+      .section-title { font-size: 1.5rem; }
+      .pricing-price { font-size: 2.4rem; }
+    }
+  
+    /* ══════════════════════════════════
+       MOBILE IMAGE FIX (universal)
+    ══════════════════════════════════ */
+    img {
+      max-width: 100%;
+    }
+    @media (max-width: 768px) {
+      .gallery-item {
+        min-height: 180px;
+        overflow: hidden;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        min-height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .about-img img,
+      .philosophy-image img,
+      .team-img img,
+      .intro-img img,
+      .studio-img img,
+      .space-img img {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .featured-dish-img,
+      .featured-item-img,
+      .highlight-img,
+      .featured-product-img {
+        width: 100%;
+        min-height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .menu-card-img,
+      .service-card-img,
+      .treatment-img,
+      .program-img,
+      .product-card-img,
+      .course-img,
+      .class-img {
+        width: 100%;
+        height: auto;
+        min-height: 140px;
+        object-fit: cover;
+        display: block;
+      }
+      [style*="background-image"],
+      .program-card-img,
+      .coach-img,
+      .team-member-img,
+      .trainer-img,
+      .specialist-img,
+      .staff-img {
+        background-size: cover !important;
+        background-position: center !important;
+        min-height: 180px;
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery-item {
+        min-height: 160px;
+      }
+      .gallery-item img {
+        min-height: 160px;
+      }
+      .about-img img,
+      .philosophy-image img,
+      .team-img img,
+      .intro-img img {
+        min-height: 160px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">{{NOMBRE_NEGOCIO}}</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">Nosotros</a></li>
+          <li><a href="#services">Permisos</a></li>
+          <li><a href="#advantages">Ventajas</a></li>
+          <li><a href="#pricing">Matricula</a></li>
+          <li><a href="#reviews">Opiniones</a></li>
+          <li><a href="#location">Ubicacion</a></li>
+          <li><a href="tel:{{TELEFONO}}" class="nav-cta">Llamar</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu">
+      <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Nosotros</a>
+      <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Permisos</a>
+      <a href="#advantages" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Ventajas</a>
+      <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Matricula</a>
+      <a href="#reviews" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Opiniones</a>
+      <a href="#location" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Ubicacion</a>
+      <a href="tel:{{TELEFONO}}" style="color: var(--blue-bright); font-weight: 700;">Llamar ahora</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-deco"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          AUTOESCUELA EN {{CIUDAD}}
+        </div>
+        <h1>Tu carnet de conducir<br>empieza <span class="accent-text">aqui</span></h1>
+        <p class="hero-desc">En {{NOMBRE_NEGOCIO}} te preparamos para aprobar a la primera. Profesores con experiencia, vehiculos modernos y la mejor formacion teorica y practica de {{CIUDAD}}.</p>
+        <div class="hero-ctas">
+          <a href="tel:{{TELEFONO}}" class="btn-primary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Informate sin compromiso
+          </a>
+          <a href="#pricing" class="btn-secondary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Ver precios
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="stat-number">+90<span>%</span></div>
+            <div class="stat-label">tasa de aprobados</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number">+20</div>
+            <div class="stat-label">anos de experiencia</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number">4.8<span>/5</span></div>
+            <div class="stat-label">en Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid fade-in">
+        <div class="about-image">
+          <div class="about-image-badge">Formando conductores en {{CIUDAD}}</div>
+        </div>
+        <div class="about-text">
+          <div class="section-label">Sobre nosotros</div>
+          <h2 class="section-title">Tu autoescuela<br>de confianza</h2>
+          <p class="section-subtitle">En {{NOMBRE_NEGOCIO}} llevamos anos formando conductores responsables y seguros. Nuestro equipo de profesores titulados combina experiencia docente con pasion por la ensenanza vial, para que obtengas tu permiso con la mejor preparacion posible.</p>
+          <div class="about-features" style="margin-top: 28px;">
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <span class="about-feature-text">Alta tasa de aprobados</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <span class="about-feature-text">Profesores con experiencia</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <span class="about-feature-text">Teorico online 24h</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <span class="about-feature-text">Horarios flexibles</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PERMISOS DISPONIBLES ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header fade-in">
+        <div class="section-label">Permisos disponibles</div>
+        <h2 class="section-title">Todos los permisos<br>que necesitas</h2>
+        <p class="section-subtitle">Desde el ciclomotor hasta el coche. Preparamos todos los permisos de conduccion con la formacion mas completa.</p>
+      </div>
+      <div class="services-grid">
+        <!-- Permiso B -->
+        <div class="service-card fade-in">
+          <div class="service-badge">MAS POPULAR</div>
+          <div class="service-card-img" style="background-image: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80');"></div>
+          <div class="service-card-body">
+            <div class="service-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <h3>Permiso B — Coche</h3>
+            <p>Formacion teorica y practica completa para el permiso de conducir turismos. Vehiculos de doble mando modernos y seguros.</p>
+          </div>
+        </div>
+        <!-- Permiso A2 -->
+        <div class="service-card fade-in">
+          <div class="service-card-img" style="background-image: url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80');"></div>
+          <div class="service-card-body">
+            <div class="service-card-icon red-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3>Permiso A2 — Moto</h3>
+            <p>Conduccion de motocicletas de hasta 35 kW. Practicas en circuito cerrado y en vias abiertas con profesor especializado.</p>
+          </div>
+        </div>
+        <!-- Permiso AM -->
+        <div class="service-card fade-in">
+          <div class="service-card-img" style="background-image: url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&q=80');"></div>
+          <div class="service-card-body">
+            <div class="service-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6l-4 8h6l-1 3"/><path d="M5.5 14L8 6h4"/></svg>
+            </div>
+            <h3>Permiso AM — Ciclomotor</h3>
+            <p>Para jovenes desde 15 anos. Formacion especifica para ciclomotores y cuadriciclos ligeros. Teorico y practico incluido.</p>
+          </div>
+        </div>
+        <!-- Teorico Online -->
+        <div class="service-card fade-in">
+          <div class="service-card-img" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80');"></div>
+          <div class="service-card-body">
+            <div class="service-card-icon red-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Teorico Online</h3>
+            <p>Plataforma de tests online disponible 24 horas. Estudia a tu ritmo desde cualquier dispositivo con tests actualizados de la DGT.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VENTAJAS ===== -->
+  <section class="advantages" id="advantages">
+    <div class="container">
+      <div class="advantages-header fade-in">
+        <div class="section-label">Por que elegirnos</div>
+        <h2 class="section-title">Ventajas de formarte<br>con nosotros</h2>
+        <p class="section-subtitle">Miles de alumnos ya han conseguido su permiso con nosotros. Estas son las razones por las que nos eligen.</p>
+      </div>
+      <div class="advantages-grid">
+        <!-- Tasa aprobados -->
+        <div class="advantage-card fade-in">
+          <div class="advantage-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="advantage-stat">+90%</div>
+          <h3>Tasa de aprobados</h3>
+          <p>Nuestros alumnos aprueban muy por encima de la media nacional gracias a una preparacion exhaustiva y personalizada.</p>
+        </div>
+        <!-- Horarios flexibles -->
+        <div class="advantage-card fade-in">
+          <div class="advantage-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Horarios flexibles</h3>
+          <p>Adapta tus clases practicas a tu horario. Manana, tarde o fines de semana. Tu eliges cuando practicar.</p>
+        </div>
+        <!-- Vehiculos modernos -->
+        <div class="advantage-card fade-in">
+          <div class="advantage-icon red-glow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Vehiculos modernos</h3>
+          <p>Flota de vehiculos nuevos con doble mando, aire acondicionado y las mismas caracteristicas que encontraras en el examen.</p>
+        </div>
+        <!-- Practicas intensivas -->
+        <div class="advantage-card fade-in">
+          <div class="advantage-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>Practicas intensivas</h3>
+          <p>Si tienes prisa, ofrecemos cursos intensivos para que consigas tu carnet en el menor tiempo posible sin perder calidad.</p>
+        </div>
+        <!-- Profesores titulados -->
+        <div class="advantage-card fade-in">
+          <div class="advantage-icon red-glow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Profesores titulados</h3>
+          <p>Todo nuestro equipo docente cuenta con titulo oficial y anos de experiencia. Paciencia, profesionalidad y cercania.</p>
+        </div>
+        <!-- Acompanamiento examen -->
+        <div class="advantage-card fade-in">
+          <div class="advantage-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Te acompanamos al examen</h3>
+          <p>No vas solo. Te acompanamos el dia del examen practico para que vayas tranquilo y con confianza. Estamos contigo hasta el final.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TARIFAS / MATRICULA ===== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing-header fade-in">
+        <div class="section-label">Matricula</div>
+        <h2 class="section-title">Precios claros,<br>sin sorpresas</h2>
+        <p class="section-subtitle">Elige el permiso que necesitas. Todos los packs incluyen matricula, tasas de la DGT, teoria y practicas.</p>
+      </div>
+      <div class="pricing-grid">
+        <!-- Permiso AM -->
+        <div class="pricing-card fade-in">
+          <h3>Permiso AM</h3>
+          <p class="pricing-period">Ciclomotor</p>
+          <div class="pricing-price">
+            <span class="from">desde</span>
+            199<span class="currency">&euro;</span>
+          </div>
+          <p class="pricing-subtitle">precio completo</p>
+          <ul class="pricing-features">
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Matricula incluida</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Teorico + tests online</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Practicas en circuito</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Tasas DGT incluidas</li>
+          </ul>
+          <a href="tel:{{TELEFONO}}" class="pricing-btn pricing-btn-outline">Informacion</a>
+        </div>
+        <!-- Permiso B — Featured -->
+        <div class="pricing-card featured fade-in">
+          <div class="pricing-popular">MAS POPULAR</div>
+          <h3>Permiso B</h3>
+          <p class="pricing-period">Coche</p>
+          <div class="pricing-price">
+            <span class="from">desde</span>
+            599<span class="currency">&euro;</span>
+          </div>
+          <p class="pricing-subtitle">precio completo</p>
+          <ul class="pricing-features">
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Matricula incluida</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Teorico online 24h</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Clases practicas incluidas</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Tasas DGT incluidas</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Acompanamiento a examen</li>
+          </ul>
+          <a href="tel:{{TELEFONO}}" class="pricing-btn pricing-btn-fill">Matriculate ahora</a>
+        </div>
+        <!-- Permiso A2 -->
+        <div class="pricing-card fade-in">
+          <h3>Permiso A2</h3>
+          <p class="pricing-period">Moto</p>
+          <div class="pricing-price">
+            <span class="from">desde</span>
+            449<span class="currency">&euro;</span>
+          </div>
+          <p class="pricing-subtitle">precio completo</p>
+          <ul class="pricing-features">
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Matricula incluida</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Teorico online 24h</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Practicas circuito + via</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Tasas DGT incluidas</li>
+            <li><span class="pricing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span> Moto de practicas incluida</li>
+          </ul>
+          <a href="tel:{{TELEFONO}}" class="pricing-btn pricing-btn-outline">Informacion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESENAS ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="reviews-header fade-in">
+        <div class="section-label">Opiniones</div>
+        <h2 class="section-title">Lo que dicen<br>nuestros alumnos</h2>
+      </div>
+      <div class="reviews-score fade-in">
+        <div class="reviews-score-number">4.8</div>
+        <div class="reviews-score-detail">
+          <div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="reviews-count">Basado en +150 resenas en Google</div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <!-- Resena 1 -->
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">MG</div>
+            <div class="review-info">
+              <div class="review-name">Maria Garcia</div>
+              <div class="review-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Resena verificada de Google
+              </div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Aprobe el teorico y el practico a la primera. Los profesores tienen mucha paciencia y te explican todo de forma clara. La plataforma de tests online es muy completa y me ayudo muchisimo a prepararme.</p>
+        </div>
+        <!-- Resena 2 -->
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">CR</div>
+            <div class="review-info">
+              <div class="review-name">Carlos Rodriguez</div>
+              <div class="review-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Resena verificada de Google
+              </div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Me saque el carnet de moto A2 aqui y fue una experiencia genial. El profesor de motos es un crack, te da mucha confianza en el circuito. Los horarios se adaptaron perfecto a mi trabajo.</p>
+        </div>
+        <!-- Resena 3 -->
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">LS</div>
+            <div class="review-info">
+              <div class="review-name">Laura Sanchez</div>
+              <div class="review-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Resena verificada de Google
+              </div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="review-text">Muy buena autoescuela. Lo mejor es que el precio es cerrado, sin sorpresas ni costes extra. Los coches estan nuevos y limpios. El unico pero es que a veces cuesta coger hora en las horas punta.</p>
+        </div>
+        <!-- Resena 4 -->
+        <div class="review-card fade-in">
+          <div class="review-header">
+            <div class="review-avatar">PF</div>
+            <div class="review-info">
+              <div class="review-name">Pablo Fernandez</div>
+              <div class="review-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Resena verificada de Google
+              </div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Hice el intensivo de verano para el B y en mes y medio tenia el carnet. Desde recepcion hasta los profes, un trato diez. Recomendado al cien por cien, sobre todo si quieres sacartelo rapido.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== UBICACION + HORARIO ===== -->
+  <section class="location" id="location">
+    <div class="container">
+      <div class="section-label fade-in">Encuentranos</div>
+      <h2 class="section-title fade-in" style="margin-bottom: 40px;">Donde estamos<br>y cuando abrimos</h2>
+      <div class="location-grid">
+        <div class="location-info fade-in">
+          <!-- Direccion -->
+          <div class="location-address">
+            <div class="location-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Direccion</h4>
+              <p>{{DIRECCION}}<br>{{CIUDAD}}</p>
+            </div>
+          </div>
+          <!-- Telefono -->
+          <div class="location-address">
+            <div class="location-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Telefono</h4>
+              <p><a href="tel:{{TELEFONO}}" style="color: var(--blue-bright);">{{TELEFONO}}</a></p>
+            </div>
+          </div>
+          <!-- Email -->
+          <div class="location-address">
+            <div class="location-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p><a href="mailto:{{EMAIL}}" style="color: var(--blue-bright);">{{EMAIL}}</a></p>
+            </div>
+          </div>
+          <!-- Horario -->
+          <h4 class="schedule-title">Horario</h4>
+          <ul class="schedule-list">
+            <li><span class="schedule-day">{{HORARIO}}</span></li>
+          </ul>
+        </div>
+        <div class="location-map fade-in">
+          <iframe src="https://maps.google.com/maps?q={{GOOGLE_MAPS_QUERY}}&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="cta-banner">
+    <div class="container">
+      <h2 class="fade-in">Empieza hoy.<br>Tu carnet te espera.</h2>
+      <p class="fade-in">Primera clase de teoria gratuita y sin compromiso. Ven a conocernos, resuelvemos tus dudas y empezamos cuando tu quieras.</p>
+      <div class="cta-btns fade-in">
+        <a href="tel:{{TELEFONO}}" class="btn-white">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Llamanos: {{TELEFONO}}
+        </a>
+        <a href="https://wa.me/34{{TELEFONO}}" class="btn-ghost" target="_blank">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">{{NOMBRE_NEGOCIO}}</div>
+          <p class="footer-desc">Tu autoescuela de confianza en {{CIUDAD}}. Formacion teorica y practica de calidad para todos los permisos de conduccion. Alta tasa de aprobados.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegacion</h4>
+          <ul>
+            <li><a href="#about">Nosotros</a></li>
+            <li><a href="#services">Permisos</a></li>
+            <li><a href="#advantages">Ventajas</a></li>
+            <li><a href="#pricing">Matricula</a></li>
+            <li><a href="#reviews">Opiniones</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="tel:{{TELEFONO}}">{{TELEFONO}}</a></li>
+            <li><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
+            <li>{{DIRECCION}}</li>
+            <li>{{CIUDAD}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 {{NOMBRE_NEGOCIO}} — Todos los derechos reservados</span>
+        <span>Autoescuela autorizada por la DGT</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== WHATSAPP FLOTANTE ===== -->
+  <a href="https://wa.me/34{{TELEFONO}}" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ===== SCROLL ANIMATION ===== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(function(el) {
+        observer.observe(el);
+      });
+    });
+  </script>
+
+
+<script>
+// Fallback for background images that fail to load
+document.addEventListener('DOMContentLoaded', function() {
+  var elements = document.querySelectorAll('[style*="background-image"], [style*="background"]');
+  var allBgElements = document.querySelectorAll('*');
+  allBgElements.forEach(function(el) {
+    var bg = window.getComputedStyle(el).backgroundImage;
+    if (bg && bg !== 'none' && bg.indexOf('url(') !== -1) {
+      var match = bg.match(/url\(["']?(https?:\/\/[^"')]+)["']?\)/);
+      if (match) {
+        var img = new Image();
+        img.onerror = function() {
+          el.style.backgroundImage = "none";
+          el.style.backgroundColor = "#333";
+          if (!el.querySelector('.img-fallback-text')) {
+            var span = document.createElement('span');
+            span.className = 'img-fallback-text';
+            span.style.cssText = 'display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#999;font-size:14px;position:absolute;top:0;left:0;';
+            span.textContent = 'Imagen no disponible';
+            if (window.getComputedStyle(el).position === 'static') {
+              el.style.position = 'relative';
+            }
+            el.appendChild(span);
+          }
+        };
+        img.src = match[1];
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>

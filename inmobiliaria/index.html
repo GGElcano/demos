@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{NOMBRE_NEGOCIO}} — Inmobiliaria en {{CIUDAD}}. Compra, venta y alquiler de pisos, casas y locales. Valoracion gratuita de tu inmueble. Asesoramiento personalizado.">
+  <title>{{NOMBRE_NEGOCIO}} — Inmobiliaria en {{CIUDAD}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:        #0c1a2e;
+      --dark-mid:    #132640;
+      --navy:        #1a3555;
+      --navy-l:      #245080;
+      --gold:        #c9a04c;
+      --gold-light:  #dab860;
+      --gold-dark:   #a07830;
+      --cream:       #f7f8fa;
+      --cream-dark:  #ebeef2;
+      --warm-gray:   #6b7a8d;
+      --text-dark:   #1a2235;
+      --text-light:  #e8ecf2;
+      --text-muted:  #8a96a8;
+      --white:       #ffffff;
+      --blue-accent: #2a6cb8;
+      --radius:      12px;
+      --shadow:      0 8px 32px rgba(0,0,0,0.18);
+      --shadow-sm:   0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ══════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(12,26,46,0.96);
+      backdrop-filter: blur(14px);
+      padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+      border-bottom: 1px solid rgba(201,160,76,0.12);
+      transition: box-shadow 0.3s;
+    }
+    .navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .nav-brand-text {
+      display: flex; flex-direction: column; line-height: 1.2;
+    }
+    .nav-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.5px;
+    }
+    .nav-brand-sub {
+      font-size: 10px; font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--dark) !important;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      letter-spacing: 0.3px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(201,160,76,0.4);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--gold-light);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 68px; left: 0; right: 0;
+      background: rgba(12,26,46,0.98);
+      backdrop-filter: blur(14px);
+      padding: 24px 32px;
+      flex-direction: column; gap: 20px;
+      border-bottom: 1px solid rgba(201,160,76,0.12);
+      z-index: 999;
+    }
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 16px; font-weight: 500;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold-light); }
+
+    /* ══════════════════════════════════
+       HERO
+    ══════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(180deg, rgba(12,26,46,0.55) 0%, rgba(12,26,46,0.72) 50%, rgba(12,26,46,0.92) 100%),
+                  url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80') center/cover no-repeat;
+      background-color: var(--dark);
+      padding: 120px 24px 80px;
+      text-align: center;
+    }
+    .hero-content { max-width: 820px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,160,76,0.1);
+      border: 1px solid rgba(201,160,76,0.22);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 12px; font-weight: 500;
+      color: var(--gold-light);
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-badge svg { width: 14px; height: 14px; fill: var(--gold-light); }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      display: block;
+      color: var(--gold-light);
+      font-style: italic;
+      font-size: 0.5em;
+      font-weight: 400;
+      margin-top: 10px;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex; gap: 16px;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--dark);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(201,160,76,0.4);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(201,160,76,0.3);
+      color: var(--gold-light);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover {
+      background: rgba(201,160,76,0.12);
+      transform: translateY(-2px);
+    }
+    .btn-icon { width: 18px; height: 18px; }
+
+    .hero-stats {
+      display: flex; justify-content: center; gap: 48px;
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--gold-light);
+    }
+    .hero-stat-label {
+      font-size: 12px; color: var(--text-muted);
+      letter-spacing: 1px; text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ══════════════════════════════════
+       SECTIONS BASE
+    ══════════════════════════════════ */
+    .section {
+      padding: 96px 24px;
+    }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 17px;
+      color: var(--warm-gray);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .section-dark {
+      background: var(--dark);
+      color: var(--text-light);
+    }
+    .section-dark .section-title { color: var(--white); }
+    .section-dark .section-desc { color: var(--text-muted); }
+
+    .section-navy {
+      background: linear-gradient(135deg, var(--navy), var(--dark-mid));
+      color: var(--text-light);
+    }
+    .section-navy .section-title { color: var(--white); }
+    .section-navy .section-desc { color: rgba(232,236,242,0.7); }
+
+    /* ══════════════════════════════════
+       ABOUT
+    ══════════════════════════════════ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .about-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+    .about-img img {
+      width: 100%; height: 420px;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--radius);
+    }
+    .about-img-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(12,26,46,0.85));
+      padding: 24px;
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    .about-img-overlay span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 15px;
+    }
+    .about-text p {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .about-features {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-top: 32px;
+    }
+    .about-feature {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(201,160,76,0.06);
+      border: 1px solid rgba(201,160,76,0.12);
+      padding: 14px 18px;
+      border-radius: 10px;
+    }
+    .about-feature-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .about-feature span {
+      font-size: 13px; font-weight: 500;
+      color: var(--text-light);
+      line-height: 1.3;
+    }
+
+    /* ══════════════════════════════════
+       SERVICIOS
+    ══════════════════════════════════ */
+    .services-intro {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .services-intro .section-desc {
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, rgba(26,53,85,0.08), rgba(201,160,76,0.1));
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .service-icon svg {
+      width: 28px; height: 28px;
+      fill: var(--navy);
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 14px;
+      color: var(--warm-gray);
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════
+       PROPIEDADES DESTACADAS
+    ══════════════════════════════════ */
+    .properties-intro {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .properties-intro .section-desc { margin: 0 auto; }
+
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .property-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .property-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .property-card-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .property-card-img {
+      width: 100%; height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+    .property-card:hover .property-card-img {
+      transform: scale(1.05);
+    }
+    .property-card-badge {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 6px;
+    }
+    .property-card-badge.alquiler { background: var(--blue-accent); }
+    .property-card-badge.vendido { background: #c0392b; }
+
+    .property-card-price {
+      position: absolute; bottom: 14px; right: 14px;
+      background: rgba(12,26,46,0.88);
+      backdrop-filter: blur(8px);
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 8px;
+    }
+
+    .property-card-body {
+      padding: 24px;
+    }
+    .property-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .property-card-location {
+      font-size: 13px;
+      color: var(--warm-gray);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .property-card-location svg {
+      width: 14px; height: 14px;
+      fill: var(--warm-gray);
+      flex-shrink: 0;
+    }
+
+    .property-card-features {
+      display: flex; gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .property-feature {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+    .property-feature svg {
+      width: 16px; height: 16px;
+      fill: var(--navy-l);
+    }
+
+    /* ══════════════════════════════════
+       VALORACION CTA
+    ══════════════════════════════════ */
+    .valuation-banner {
+      background: linear-gradient(135deg, var(--navy), var(--dark-mid));
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 64px;
+    }
+    .valuation-img {
+      width: 100%; height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+    .valuation-content {
+      padding: 56px 48px;
+      display: flex; flex-direction: column;
+      justify-content: center;
+    }
+    .valuation-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .valuation-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .valuation-desc {
+      font-size: 15px;
+      color: rgba(232,236,242,0.75);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .valuation-features-list {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .valuation-features-list li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px;
+      color: var(--text-light);
+      padding: 6px 0;
+    }
+    .valuation-features-list li svg {
+      width: 18px; height: 18px;
+      fill: var(--gold-light);
+      flex-shrink: 0;
+    }
+    .valuation-cta {
+      display: inline-flex;
+      align-self: flex-start;
+    }
+
+    /* ══════════════════════════════════
+       GALERIA
+    ══════════════════════════════════ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 240px 240px;
+      gap: 12px;
+      margin-top: 48px;
+    }
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item.span-2 { grid-column: span 2; }
+    .gallery-item.span-row { grid-row: span 2; }
+
+    /* ══════════════════════════════════
+       RESENAS
+    ══════════════════════════════════ */
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .reviews-overall {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: rgba(201,160,76,0.08);
+      border: 1px solid rgba(201,160,76,0.18);
+      padding: 14px 28px;
+      border-radius: 40px;
+      margin-top: 20px;
+    }
+    .reviews-overall-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700;
+      color: var(--gold);
+    }
+    .reviews-overall-stars {
+      color: var(--gold);
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+    .reviews-overall-count {
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.04);
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .review-card:hover { transform: translateY(-2px); }
+
+    .review-platform {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #4285f4;
+      background: rgba(66,133,244,0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .review-platform svg {
+      width: 14px; height: 14px;
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .review-text {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .review-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .review-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy-l), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      font-size: 14px; font-weight: 600;
+    }
+    .review-author-name {
+      font-size: 14px; font-weight: 600;
+      color: var(--text-dark);
+    }
+    .review-author-date {
+      font-size: 12px;
+      color: var(--warm-gray);
+    }
+
+    /* ══════════════════════════════════
+       HORARIO + MAPA
+    ══════════════════════════════════ */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+      align-items: start;
+    }
+    .info-card {
+      background: rgba(201,160,76,0.05);
+      border: 1px solid rgba(201,160,76,0.12);
+      border-radius: var(--radius);
+      padding: 36px;
+    }
+    .info-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .info-schedule-row {
+      display: flex; justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 14px;
+    }
+    .info-schedule-day { color: var(--text-muted); }
+    .info-schedule-time { color: var(--text-light); font-weight: 500; }
+
+    .info-contact-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .info-contact-icon {
+      width: 40px; height: 40px;
+      background: rgba(201,160,76,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-contact-icon svg {
+      width: 18px; height: 18px;
+      fill: var(--gold-light);
+    }
+    .info-contact-text {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+    .info-contact-text a {
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+    .info-contact-text a:hover { text-decoration: underline; }
+
+    .map-container {
+      margin-top: 48px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(201,160,76,0.12);
+    }
+    .map-container iframe {
+      width: 100%; height: 350px;
+      border: none; display: block;
+    }
+
+    /* ══════════════════════════════════
+       CTA BANNER CONTACTO
+    ══════════════════════════════════ */
+    .cta-banner {
+      text-align: center;
+      padding: 80px 24px;
+      background: linear-gradient(135deg, var(--navy), var(--dark-mid));
+    }
+    .cta-banner .section-title {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .cta-banner p {
+      color: rgba(232,236,242,0.7);
+      font-size: 17px;
+      max-width: 560px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .cta-banner-buttons {
+      display: flex; gap: 16px;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white);
+      color: var(--navy);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 600; font-size: 15px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(255,255,255,0.2);
+    }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    .footer {
+      background: var(--dark);
+      padding: 64px 24px 32px;
+      color: var(--text-muted);
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .footer-brand-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 320px;
+    }
+    .footer h4 {
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      max-width: 1100px; margin: 40px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12px;
+    }
+    .footer-credits {
+      color: var(--text-muted);
+    }
+    .footer-credits a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ══════════════════════════════════
+       WHATSAPP FLOTANTE
+    ══════════════════════════════════ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 999;
+      width: 60px; height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: transform 0.2s;
+      animation: wp-pulse 2.5s infinite;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .whatsapp-float svg {
+      width: 32px; height: 32px;
+      fill: white;
+    }
+    @keyframes wp-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 12px rgba(37,211,102,0.15); }
+    }
+
+    /* ══════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 768px) {
+      .fade-in { opacity: 1 !important; transform: none !important; }
+
+      .navbar { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero { min-height: 90vh; padding: 100px 20px 60px; }
+      .hero h1 { font-size: 32px; }
+      .hero-sub { font-size: 15px; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-secondary, .btn-white { width: 100%; max-width: 300px; justify-content: center; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .hero-stat-number { font-size: 22px; }
+
+      .section { padding: 64px 20px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-img img { height: 260px; }
+      .about-features { grid-template-columns: 1fr; }
+
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .properties-grid { grid-template-columns: 1fr; }
+
+      .valuation-banner { grid-template-columns: 1fr; }
+      .valuation-img { min-height: 220px; }
+      .valuation-content { padding: 36px 24px; }
+      .valuation-title { font-size: 24px; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 180px 180px;
+      }
+      .gallery-item.span-2 { grid-column: span 1; }
+      .gallery-item.span-row { grid-row: span 1; }
+
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      .info-grid { grid-template-columns: 1fr; gap: 24px; }
+
+      .cta-banner { padding: 60px 20px; }
+      .cta-banner-buttons { flex-direction: column; align-items: center; }
+
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+      .whatsapp-float { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+      .whatsapp-float svg { width: 28px; height: 28px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 28px; }
+      .hero-stats { gap: 16px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 200px);
+      }
+    }
+  
+    /* ══════════════════════════════════
+       MOBILE IMAGE FIX (universal)
+    ══════════════════════════════════ */
+    img {
+      max-width: 100%;
+    }
+    @media (max-width: 768px) {
+      .gallery-item {
+        min-height: 180px;
+        overflow: hidden;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        min-height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .about-img img,
+      .philosophy-image img,
+      .team-img img,
+      .intro-img img,
+      .studio-img img,
+      .space-img img {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .featured-dish-img,
+      .featured-item-img,
+      .highlight-img,
+      .featured-product-img {
+        width: 100%;
+        min-height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .menu-card-img,
+      .service-card-img,
+      .treatment-img,
+      .program-img,
+      .product-card-img,
+      .course-img,
+      .class-img {
+        width: 100%;
+        height: auto;
+        min-height: 140px;
+        object-fit: cover;
+        display: block;
+      }
+      [style*="background-image"],
+      .program-card-img,
+      .coach-img,
+      .team-member-img,
+      .trainer-img,
+      .specialist-img,
+      .staff-img {
+        background-size: cover !important;
+        background-position: center !important;
+        min-height: 180px;
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery-item {
+        min-height: 160px;
+      }
+      .gallery-item img {
+        min-height: 160px;
+      }
+      .about-img img,
+      .philosophy-image img,
+      .team-img img,
+      .intro-img img {
+        min-height: 160px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-brand">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="#0c1a2e"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      </div>
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">{{NOMBRE_NEGOCIO}}</span>
+        <span class="nav-brand-sub">Inmobiliaria &middot; {{CIUDAD}}</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#nosotros">La Agencia</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#propiedades">Propiedades</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="tel:{{TELEFONO}}" class="nav-cta">Llamar Ahora</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#inicio">Inicio</a>
+    <a href="#nosotros">La Agencia</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#propiedades">Propiedades</a>
+    <a href="#opiniones">Opiniones</a>
+    <a href="#contacto">Contacto</a>
+    <a href="tel:{{TELEFONO}}" class="btn-primary" style="text-align:center;">Llamar Ahora</a>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        Inmobiliaria en {{CIUDAD}}
+      </div>
+      <h1>
+        {{NOMBRE_NEGOCIO}}
+        <span>Tu hogar ideal, nuestra prioridad</span>
+      </h1>
+      <p class="hero-sub">
+        Especialistas en compra, venta y alquiler de inmuebles en {{CIUDAD}} y alrededores. Asesoramiento personalizado y gestion integral para que encuentres la propiedad perfecta.
+      </p>
+      <div class="hero-buttons">
+        <a href="tel:{{TELEFONO}}" class="btn-primary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Contactar Ahora
+        </a>
+        <a href="#propiedades" class="btn-secondary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          Ver Propiedades
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number">4.8/5</div>
+          <div class="hero-stat-label">Google Reviews</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">+500</div>
+          <div class="hero-stat-label">Operaciones cerradas</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">+20</div>
+          <div class="hero-stat-label">Anos en la zona</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SOBRE LA AGENCIA ═══ -->
+  <section class="section section-dark" id="nosotros">
+    <div class="section-inner">
+      <span class="section-label">Sobre la agencia</span>
+      <h2 class="section-title">Profesionales del sector inmobiliario</h2>
+      <div class="about-grid">
+        <div class="about-img">
+          <img onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Oficina de {{NOMBRE_NEGOCIO}}">
+          <div class="about-img-overlay">
+            <span>"Tu confianza, nuestro mejor aval"</span>
+          </div>
+        </div>
+        <div>
+          <div class="about-text">
+            <p>
+              En <strong style="color:var(--gold-light)">{{NOMBRE_NEGOCIO}}</strong> llevamos mas de dos decadas ayudando a familias y empresas a encontrar la propiedad ideal en {{CIUDAD}}. Nuestro conocimiento del mercado local y nuestro compromiso con cada cliente nos diferencian.
+            </p>
+            <p>
+              Ofrecemos un servicio integral: desde la valoracion de tu inmueble hasta la firma ante notario. Nos encargamos de toda la gestion para que tu solo tengas que preocuparte de disfrutar de tu nuevo hogar.
+            </p>
+          </div>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="#0c1a2e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <span>Valoracion gratuita de tu inmueble</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="#0c1a2e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <span>Gestion integral hasta la firma</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="#0c1a2e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <span>Pisos en exclusiva para clientes</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="#0c1a2e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <span>Asesoramiento hipotecario personalizado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICIOS ═══ -->
+  <section class="section" id="servicios">
+    <div class="section-inner">
+      <div class="services-intro">
+        <span class="section-label">Nuestros servicios</span>
+        <h2 class="section-title">Todo lo que necesitas en un solo lugar</h2>
+        <p class="section-desc">
+          Soluciones inmobiliarias completas para compradores, vendedores e inversores. Profesionalidad y transparencia en cada operacion.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Compra -->
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          </div>
+          <h3>Compra</h3>
+          <p>Encuentra tu vivienda ideal entre nuestra seleccion de pisos, casas, chalets y aticos. Te acompanamos en todo el proceso de compra.</p>
+        </div>
+
+        <!-- Venta -->
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </div>
+          <h3>Venta</h3>
+          <p>Vendemos tu propiedad al mejor precio. Fotografia profesional, difusion en portales y gestion completa hasta la escritura.</p>
+        </div>
+
+        <!-- Alquiler -->
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          </div>
+          <h3>Alquiler</h3>
+          <p>Gestionamos el alquiler de tu vivienda o local. Buscamos inquilinos solventes, redactamos contratos y nos encargamos de todo.</p>
+        </div>
+
+        <!-- Valoracion -->
+        <div class="service-card fade-in">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <h3>Valoracion Gratuita</h3>
+          <p>Conoce el valor real de tu inmueble sin compromiso. Analisis de mercado detallado basado en datos actuales de la zona.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROPIEDADES DESTACADAS ═══ -->
+  <section class="section section-dark" id="propiedades">
+    <div class="section-inner">
+      <div class="properties-intro">
+        <span class="section-label">Propiedades destacadas</span>
+        <h2 class="section-title">Inmuebles seleccionados para ti</h2>
+        <p class="section-desc">
+          Descubre nuestra seleccion de propiedades en {{CIUDAD}} y alrededores. Pisos, casas y locales adaptados a todos los presupuestos.
+        </p>
+      </div>
+
+      <div class="properties-grid">
+        <!-- Propiedad 1 -->
+        <div class="property-card fade-in">
+          <div class="property-card-img-wrap">
+            <img class="property-card-img" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80" alt="Piso reformado en el centro">
+            <span class="property-card-badge">Venta</span>
+            <span class="property-card-price">185.000 EUR</span>
+          </div>
+          <div class="property-card-body">
+            <h3 class="property-card-title">Piso reformado en el centro</h3>
+            <div class="property-card-location">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Centro, {{CIUDAD}}
+            </div>
+            <div class="property-card-features">
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                3 hab.
+              </div>
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+                2 banos
+              </div>
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+                95 m2
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Propiedad 2 -->
+        <div class="property-card fade-in">
+          <div class="property-card-img-wrap">
+            <img class="property-card-img" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" alt="Chalet con jardin y piscina">
+            <span class="property-card-badge">Venta</span>
+            <span class="property-card-price">345.000 EUR</span>
+          </div>
+          <div class="property-card-body">
+            <h3 class="property-card-title">Chalet con jardin y piscina</h3>
+            <div class="property-card-location">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Urbanizacion, {{CIUDAD}}
+            </div>
+            <div class="property-card-features">
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                4 hab.
+              </div>
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+                3 banos
+              </div>
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+                210 m2
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Propiedad 3 -->
+        <div class="property-card fade-in">
+          <div class="property-card-img-wrap">
+            <img class="property-card-img" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80" alt="Apartamento luminoso con terraza">
+            <span class="property-card-badge alquiler">Alquiler</span>
+            <span class="property-card-price">850 EUR/mes</span>
+          </div>
+          <div class="property-card-body">
+            <h3 class="property-card-title">Apartamento luminoso con terraza</h3>
+            <div class="property-card-location">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Ensanche, {{CIUDAD}}
+            </div>
+            <div class="property-card-features">
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+                2 hab.
+              </div>
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+                1 bano
+              </div>
+              <div class="property-feature">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+                65 m2
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Valoracion Banner -->
+      <div class="valuation-banner fade-in">
+        <img class="valuation-img" onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Valoracion gratuita de tu inmueble">
+        <div class="valuation-content">
+          <span class="valuation-label">Sin compromiso</span>
+          <h3 class="valuation-title">Valoracion Gratuita de tu Inmueble</h3>
+          <p class="valuation-desc">
+            Descubre cuanto vale tu propiedad en el mercado actual. Nuestros expertos realizan un analisis completo y personalizado.
+          </p>
+          <ul class="valuation-features-list">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Informe detallado del valor de mercado
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Comparativa con inmuebles similares vendidos
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              Asesoramiento sobre el mejor momento para vender
+            </li>
+          </ul>
+          <a href="tel:{{TELEFONO}}" class="btn-primary valuation-cta">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Solicitar Valoracion
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GALERIA ═══ -->
+  <section class="section" id="galeria">
+    <div class="section-inner">
+      <div style="text-align:center;">
+        <span class="section-label">Galeria</span>
+        <h2 class="section-title">Nuestras propiedades en imagenes</h2>
+        <p class="section-desc" style="margin:0 auto;">Interiores, exteriores y espacios que hacen de cada propiedad un lugar unico.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item span-2">
+          <img onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80" alt="Salon amplio y luminoso">
+        </div>
+        <div class="gallery-item">
+          <img onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=500&q=80" alt="Cocina moderna equipada">
+        </div>
+        <div class="gallery-item">
+          <img onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500&q=80" alt="Fachada de vivienda">
+        </div>
+        <div class="gallery-item">
+          <img onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=500&q=80" alt="Dormitorio principal">
+        </div>
+        <div class="gallery-item">
+          <img onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=500&q=80" alt="Terraza con vistas">
+        </div>
+        <div class="gallery-item span-2">
+          <img onerror="this.onerror=null;this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect fill=%22%23222%22 width=%22800%22 height=%22600%22/%3E%3Ctext fill=%22%23666%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2220%22%3EImagen no disponible%3C/text%3E%3C/svg%3E';" src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=900&q=80" alt="Zona exterior con piscina">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RESENAS ═══ -->
+  <section class="section section-navy" id="opiniones">
+    <div class="section-inner">
+      <div class="reviews-header">
+        <span class="section-label">Lo que dicen nuestros clientes</span>
+        <h2 class="section-title">Opiniones verificadas</h2>
+        <div class="reviews-overall">
+          <span class="reviews-overall-score">4.8</span>
+          <div>
+            <div class="reviews-overall-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="reviews-overall-count">Basado en +200 resenas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-grid">
+        <!-- Resena 1 -->
+        <div class="review-card fade-in">
+          <div class="review-platform">
+            <svg viewBox="0 0 24 24"><path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Google Review
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Vendimos nuestro piso en menos de un mes gracias a su gestion. Nos asesoraron en todo momento y consiguieron un precio por encima de lo que esperabamos. Totalmente recomendables."</p>
+          <div class="review-author">
+            <div class="review-avatar">M</div>
+            <div>
+              <div class="review-author-name">Maria G.</div>
+              <div class="review-author-date">Hace 2 semanas</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resena 2 -->
+        <div class="review-card fade-in">
+          <div class="review-platform">
+            <svg viewBox="0 0 24 24"><path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Google Review
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Buscabamos piso para nuestra familia y nos encontraron justo lo que necesitabamos. Muy profesionales, transparentes con toda la documentacion y siempre disponibles para resolver dudas."</p>
+          <div class="review-author">
+            <div class="review-avatar">C</div>
+            <div>
+              <div class="review-author-name">Carlos R.</div>
+              <div class="review-author-date">Hace 1 mes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resena 3 -->
+        <div class="review-card fade-in">
+          <div class="review-platform">
+            <svg viewBox="0 0 24 24"><path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Google Review
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+          <p class="review-text">"Alquilamos un local comercial a traves de ellos. El proceso fue rapido y sin complicaciones. Conocen muy bien el mercado de la zona y nos orientaron perfectamente."</p>
+          <div class="review-author">
+            <div class="review-avatar">L</div>
+            <div>
+              <div class="review-author-name">Laura P.</div>
+              <div class="review-author-date">Hace 3 semanas</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resena 4 -->
+        <div class="review-card fade-in">
+          <div class="review-platform">
+            <svg viewBox="0 0 24 24"><path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Google Review
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">"Compramos nuestra primera vivienda con su ayuda. Nos acompanaron a cada visita, nos explicaron todo el papeleo y nos consiguieron financiacion en excelentes condiciones. Un 10."</p>
+          <div class="review-author">
+            <div class="review-avatar">J</div>
+            <div>
+              <div class="review-author-name">Javier M.</div>
+              <div class="review-author-date">Hace 1 semana</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ UBICACION + CONTACTO ═══ -->
+  <section class="section section-dark" id="contacto">
+    <div class="section-inner">
+      <span class="section-label">Visitanos</span>
+      <h2 class="section-title">Donde encontrarnos</h2>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Horario de atencion</h3>
+          <div class="info-schedule-row">
+            <span class="info-schedule-day">Lunes - Viernes</span>
+            <span class="info-schedule-time">{{HORARIO}}</span>
+          </div>
+          <div class="info-schedule-row">
+            <span class="info-schedule-day">Sabados</span>
+            <span class="info-schedule-time">10:00 - 14:00</span>
+          </div>
+          <div class="info-schedule-row" style="border-bottom:none;">
+            <span class="info-schedule-day">Domingos y festivos</span>
+            <span class="info-schedule-time">Cerrado</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>Contacto</h3>
+          <div class="info-contact-item">
+            <div class="info-contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div class="info-contact-text">{{DIRECCION}}, {{CIUDAD}}</div>
+          </div>
+          <div class="info-contact-item">
+            <div class="info-contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div class="info-contact-text"><a href="tel:{{TELEFONO}}">{{TELEFONO}}</a></div>
+          </div>
+          <div class="info-contact-item" style="border-bottom:none;">
+            <div class="info-contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="info-contact-text"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps?q={{GOOGLE_MAPS_QUERY}}&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="cta-banner">
+    <h2 class="section-title">Encuentra tu proximo hogar con nosotros</h2>
+    <p>
+      Tanto si buscas comprar, vender o alquilar, nuestro equipo esta listo para ayudarte. Contacta sin compromiso y cuéntanos que necesitas.
+    </p>
+    <div class="cta-banner-buttons">
+      <a href="tel:{{TELEFONO}}" class="btn-white">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Llamar Ahora
+      </a>
+      <a href="mailto:{{EMAIL}}" class="btn-secondary">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Enviar Email
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">{{NOMBRE_NEGOCIO}}</div>
+        <p class="footer-brand-desc">
+          Tu inmobiliaria de confianza en {{CIUDAD}}. Mas de 20 anos ayudando a familias a encontrar el hogar perfecto. Gestion integral, transparencia y resultados.
+        </p>
+      </div>
+      <div>
+        <h4>Navegacion</h4>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">La Agencia</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#propiedades">Propiedades</a></li>
+          <li><a href="#opiniones">Opiniones</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul class="footer-links">
+          <li><a href="#servicios">Compraventa</a></li>
+          <li><a href="#servicios">Alquiler</a></li>
+          <li><a href="#servicios">Valoracion Gratuita</a></li>
+          <li><a href="#servicios">Asesoramiento Hipotecario</a></li>
+          <li><a href="#servicios">Gestion de Documentacion</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-credits">&copy; 2026 {{NOMBRE_NEGOCIO}}. Todos los derechos reservados. Web por <a href="#">G&G Elcano</a></span>
+      <span style="color:var(--text-muted);">{{DIRECCION}}, {{CIUDAD}} &middot; {{TELEFONO}}</span>
+    </div>
+  </footer>
+
+  <!-- ═══ WHATSAPP FLOTANTE ═══ -->
+  <a href="https://wa.me/{{TELEFONO}}" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16.004 0C7.165 0 .002 7.159.002 15.995c0 2.82.737 5.573 2.14 7.997L.06 32l8.236-2.16a15.95 15.95 0 007.708 1.965C24.84 31.805 32 24.65 32 15.995 32 7.16 24.84 0 16.004 0zm0 29.39a13.56 13.56 0 01-6.904-1.89l-.495-.294-5.13 1.345 1.37-5.003-.323-.514A13.52 13.52 0 012.42 15.995c0-7.49 6.098-13.585 13.584-13.585 7.49 0 13.586 6.095 13.586 13.585 0 7.488-6.096 13.395-13.586 13.395zm7.46-10.175c-.41-.204-2.42-1.193-2.795-1.33-.376-.136-.649-.204-.922.205-.273.41-1.058 1.33-1.296 1.603-.24.273-.478.307-.888.103-.41-.204-1.73-.637-3.296-2.032-1.218-1.086-2.04-2.427-2.278-2.837-.24-.41-.026-.63.18-.834.184-.183.41-.478.614-.716.205-.24.273-.41.41-.683.136-.273.068-.512-.034-.716-.103-.205-.922-2.222-1.262-3.042-.333-.798-.67-.69-.922-.703-.24-.01-.512-.014-.785-.014-.273 0-.716.103-1.09.512-.376.41-1.432 1.398-1.432 3.41 0 2.01 1.466 3.953 1.67 4.226.204.273 2.883 4.4 6.987 6.17.976.42 1.737.672 2.33.86.98.31 1.87.267 2.574.163.785-.116 2.42-.99 2.762-1.944.34-.956.34-1.773.238-1.944-.103-.17-.376-.273-.785-.478z"/></svg>
+  </a>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Navbar scroll shadow
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
