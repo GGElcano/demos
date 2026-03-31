@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bar Galdakanés — Taberna vasca en Galdakao con más de 40 años de historia. Pintxos artesanales, tortillas caseras y desayunos desde las 6:30. Juan Bautista Uriarte Kalea, 7.">
+  <title>Bar Galdakanés — Taberna Vasca · Galdakao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #FDF8F0;
+      color: #2C1810;
+      line-height: 1.6;
+    }
+
+    /* ===== PALETA ===== */
+    :root {
+      --granate:    #8B1A1A;
+      --granate-dk: #5C1010;
+      --granate-lt: #B03030;
+      --madera:     #3E2723;
+      --madera-lt:  #5D3E3E;
+      --crema:      #FDF8F0;
+      --crema-dk:   #F5EDD8;
+      --dorado:     #C8942A;
+      --dorado-lt:  #E0AC40;
+      --texto:      #2C1810;
+      --texto-suave:#5D3E3E;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(44, 24, 16, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--dorado);
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-brand .brand-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+    .nav-brand .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-brand .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FDF8F0;
+      letter-spacing: 0.01em;
+    }
+    .nav-brand .brand-sub {
+      font-size: 0.65rem;
+      font-weight: 300;
+      color: var(--dorado-lt);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(253,248,240,0.85);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--dorado-lt); }
+    .nav-cta {
+      background: var(--granate);
+      color: #FDF8F0 !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 3px;
+      font-weight: 700 !important;
+      border: 1px solid var(--granate-lt);
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--granate-lt) !important; }
+
+    /* Hamburguesa */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--dorado-lt);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: var(--madera);
+      z-index: 999;
+      padding: 1.5rem 2rem;
+      border-bottom: 2px solid var(--dorado);
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(253,248,240,0.9);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(200,148,42,0.2);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a.mobile-cta {
+      background: var(--granate);
+      text-align: center;
+      padding: 0.8rem;
+      border-radius: 4px;
+      font-weight: 700;
+      border-bottom: none;
+      color: #FDF8F0;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background-color: #5C1010;
+      background:
+        linear-gradient(160deg, rgba(92,16,16,0.82) 0%, rgba(44,24,16,0.72) 40%, rgba(62,39,35,0.65) 100%),
+        url('img/hero.jpg') center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Textura de fondo sutil */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 2px,
+          rgba(200,148,42,0.03) 2px,
+          rgba(200,148,42,0.03) 4px
+        );
+    }
+    /* Ornamento decorativo */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 200px; height: 120px;
+      background: var(--crema);
+      clip-path: ellipse(50% 50% at 50% 100%);
+      opacity: 0.04;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(200,148,42,0.15);
+      border: 1px solid rgba(200,148,42,0.45);
+      color: var(--dorado-lt);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.45rem 1.2rem;
+      border-radius: 30px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge span { font-size: 1rem; }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      color: #FDF8F0;
+      line-height: 1.05;
+      margin-bottom: 0.3rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--dorado-lt);
+    }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(253,248,240,0.75);
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+      margin: 1.5rem auto;
+    }
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(253,248,240,0.88);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--dorado-lt);
+      line-height: 1;
+    }
+    .hero-stat .label {
+      font-size: 0.7rem;
+      color: rgba(253,248,240,0.6);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+    .hero-stat-sep {
+      width: 1px;
+      height: 50px;
+      background: rgba(200,148,42,0.3);
+      align-self: center;
+    }
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--granate);
+      color: #FDF8F0;
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      border: 2px solid var(--granate-lt);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover {
+      background: var(--granate-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139,26,26,0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--dorado-lt);
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      border: 2px solid rgba(200,148,42,0.5);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-secondary:hover {
+      background: rgba(200,148,42,0.1);
+      border-color: var(--dorado);
+      transform: translateY(-2px);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(253,248,240,0.4);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid rgba(200,148,42,0.4);
+      border-bottom: 2px solid rgba(200,148,42,0.4);
+      transform: rotate(45deg);
+      animation: scrollBounce 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+      50% { transform: rotate(45deg) translateY(6px); opacity: 0.9; }
+    }
+
+    /* ===== HISTORIA / SOBRE NOSOTROS ===== */
+    .historia {
+      background: var(--madera);
+      padding: 6rem 2rem;
+    }
+    .historia-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .historia-visual {
+      position: relative;
+    }
+    .historia-frame {
+      background-color: #5C1010;
+      background: linear-gradient(135deg, rgba(92,16,16,0.88), rgba(139,58,26,0.82)),
+        url('img/interior-1.jpg') center center / cover no-repeat;
+      border-radius: 8px;
+      padding: 3.5rem 2.5rem;
+      min-height: 300px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .historia-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent, transparent 3px,
+        rgba(200,148,42,0.04) 3px, rgba(200,148,42,0.04) 6px
+      );
+    }
+    .historia-frame .big-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: rgba(200,148,42,0.25);
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+    .historia-frame .icon-main {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .historia-frame .frame-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #FDF8F0;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .historia-frame .frame-sub {
+      font-size: 0.85rem;
+      color: var(--dorado-lt);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+    .historia-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .hstat {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(200,148,42,0.2);
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .hstat .n {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dorado-lt);
+      line-height: 1;
+    }
+    .hstat .l {
+      font-size: 0.68rem;
+      color: rgba(253,248,240,0.55);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+    .historia-texto {
+      color: rgba(253,248,240,0.9);
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dorado);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(200,148,42,0.3);
+      max-width: 60px;
+    }
+    .historia-texto h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: #FDF8F0;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .historia-texto h2 em {
+      font-style: italic;
+      color: var(--dorado-lt);
+    }
+    .historia-texto p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(253,248,240,0.78);
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+    .historia-texto p strong {
+      color: var(--dorado-lt);
+      font-weight: 700;
+    }
+    .historia-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .badge-item {
+      background: rgba(200,148,42,0.12);
+      border: 1px solid rgba(200,148,42,0.3);
+      color: var(--dorado-lt);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.45rem 0.9rem;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ===== ESPECIALIDADES ===== */
+    .especialidades {
+      background: var(--crema);
+      padding: 6rem 2rem;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+    .section-header .section-label {
+      justify-content: center;
+    }
+    .section-header .section-label::after { display: none; }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--madera);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-header h2 em {
+      font-style: italic;
+      color: var(--granate);
+    }
+    .section-header p {
+      font-size: 1.05rem;
+      color: var(--texto-suave);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--dorado);
+      margin: 1.2rem auto;
+      border-radius: 2px;
+    }
+
+    /* Card estrella: Tortillas */
+    .tortillas-feature {
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+      background-color: var(--granate-dk);
+      background: linear-gradient(135deg, rgba(92,16,16,0.90) 0%, rgba(139,26,26,0.85) 50%, rgba(93,62,62,0.88) 100%),
+        url('img/comedor-1.jpg') center center / cover no-repeat;
+      border-radius: 12px;
+      padding: 3.5rem;
+      min-height: 300px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .tortillas-feature::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(200,148,42,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .tortillas-feature .tf-icon {
+      font-size: 6rem;
+      display: block;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .tortillas-feature .tf-left { position: relative; z-index: 1; }
+    .tortillas-feature .tf-right { position: relative; z-index: 1; }
+    .tortillas-feature .tf-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--dorado);
+      color: var(--madera);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .tortillas-feature h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #FDF8F0;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .tortillas-feature p {
+      font-size: 0.95rem;
+      color: rgba(253,248,240,0.82);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+    .tortilla-tipos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tortilla-tipo {
+      background: rgba(253,248,240,0.1);
+      border: 1px solid rgba(253,248,240,0.2);
+      color: #FDF8F0;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+    }
+    .tortillas-feature .tf-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .tortillas-feature .tf-right .big-emoji {
+      font-size: 7rem;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .tortillas-feature .tf-right .tf-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--dorado-lt);
+    }
+
+    /* Grid de especialidades restantes */
+    .espec-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .espec-card {
+      background: #FFF;
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(62,39,35,0.08);
+      border: 1px solid rgba(139,26,26,0.06);
+      transition: all 0.3s;
+    }
+    .espec-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(139,26,26,0.12);
+      border-color: rgba(139,26,26,0.15);
+    }
+    .espec-card .ec-icon {
+      font-size: 2.8rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .espec-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--madera);
+      margin-bottom: 0.6rem;
+    }
+    .espec-card p {
+      font-size: 0.88rem;
+      color: var(--texto-suave);
+      line-height: 1.7;
+    }
+    .espec-card .ec-hora {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--granate);
+      color: #FFF;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 12px;
+    }
+
+    /* ===== RESEÑAS ===== */
+    .resenas {
+      background: var(--madera);
+      padding: 6rem 2rem;
+    }
+    .resenas .section-header { margin-bottom: 1rem; }
+    .resenas .section-header h2 { color: #FDF8F0; }
+    .resenas .section-header p { color: rgba(253,248,240,0.65); }
+    .resenas .section-label { justify-content: center; }
+    .resenas .section-label::after { display: none; }
+
+    /* Rating global */
+    .rating-global {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 2.5rem auto 3.5rem;
+      max-width: 600px;
+      flex-wrap: wrap;
+    }
+    .rg-block {
+      text-align: center;
+    }
+    .rg-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--dorado-lt);
+      line-height: 1;
+    }
+    .rg-stars {
+      font-size: 1.3rem;
+      color: #FBBF24;
+      letter-spacing: 2px;
+      margin: 0.3rem 0;
+    }
+    .rg-label {
+      font-size: 0.7rem;
+      color: rgba(253,248,240,0.5);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .rg-sep {
+      width: 1px;
+      height: 60px;
+      background: rgba(200,148,42,0.25);
+    }
+    .rg-block2 {
+      text-align: center;
+    }
+    .rg-score2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: rgba(253,248,240,0.8);
+      line-height: 1;
+    }
+    .rg-label2 {
+      font-size: 0.68rem;
+      color: rgba(253,248,240,0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    .resenas-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .resena-card {
+      background: rgba(253,248,240,0.04);
+      border: 1px solid rgba(200,148,42,0.15);
+      border-radius: 10px;
+      padding: 1.6rem;
+      transition: all 0.3s;
+    }
+    .resena-card:hover {
+      background: rgba(253,248,240,0.07);
+      border-color: rgba(200,148,42,0.3);
+      transform: translateY(-3px);
+    }
+    .resena-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      gap: 0.5rem;
+    }
+    .resena-autor {
+      font-weight: 700;
+      color: #FDF8F0;
+      font-size: 0.9rem;
+    }
+    .resena-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(66,133,244,0.15);
+      border: 1px solid rgba(66,133,244,0.3);
+      color: #7BAEFB;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .resena-badge .g-dot {
+      width: 8px; height: 8px;
+      background: linear-gradient(135deg, #4285F4 0%, #EA4335 33%, #FBBC04 66%, #34A853 100%);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .resena-stars {
+      font-size: 0.9rem;
+      color: #FBBF24;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+    }
+    .resena-texto {
+      font-size: 0.88rem;
+      color: rgba(253,248,240,0.72);
+      line-height: 1.75;
+      font-style: italic;
+    }
+    .resena-texto::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--dorado);
+      line-height: 0;
+      vertical-align: -0.6rem;
+      margin-right: 0.2rem;
+    }
+
+    /* ===== HORARIO + MAPA ===== */
+    .ubicacion {
+      background: var(--crema-dk);
+      padding: 6rem 2rem;
+    }
+    .ubicacion-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .ubicacion-info .section-label { color: var(--dorado); }
+    .ubicacion-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--madera);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+    .horario-tabla {
+      background: #FFF;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(62,39,35,0.08);
+      margin-bottom: 2rem;
+    }
+    .horario-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid rgba(62,39,35,0.06);
+      transition: background 0.2s;
+    }
+    .horario-row:last-child { border-bottom: none; }
+    .horario-row:hover { background: rgba(139,26,26,0.03); }
+    .horario-row.cerrado { opacity: 0.5; }
+    .horario-dia {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--madera);
+    }
+    .horario-hora {
+      font-size: 0.88rem;
+      color: var(--texto-suave);
+      font-weight: 400;
+    }
+    .horario-hora.open { color: var(--granate); font-weight: 700; }
+    .horario-hora.closed { color: #999; }
+    .destacado-hora {
+      background: linear-gradient(90deg, rgba(139,26,26,0.08), transparent);
+      border-left: 3px solid var(--granate);
+    }
+    .ubicacion-contacto {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .uc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--texto-suave);
+    }
+    .uc-item .uc-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .uc-item a {
+      color: var(--granate);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .uc-item a:hover { text-decoration: underline; }
+
+    .ubicacion-mapa {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(62,39,35,0.12);
+      height: 100%;
+      min-height: 440px;
+    }
+    .ubicacion-mapa iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 440px;
+      border: none;
+      display: block;
+    }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner {
+      background-color: var(--granate-dk);
+      background: linear-gradient(135deg, rgba(92,16,16,0.88) 0%, rgba(139,26,26,0.80) 60%, rgba(93,62,62,0.85) 100%),
+        url('img/ambiente-1.jpg') center center / cover no-repeat;
+      padding: 5rem 2rem;
+      min-height: 200px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent, transparent 4px,
+        rgba(200,148,42,0.04) 4px, rgba(200,148,42,0.04) 8px
+      );
+    }
+    .cta-banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #FDF8F0;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .cta-banner h2 em {
+      font-style: italic;
+      color: var(--dorado-lt);
+    }
+    .cta-banner p {
+      font-size: 1.1rem;
+      color: rgba(253,248,240,0.78);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .cta-banner .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-gold {
+      background: var(--dorado);
+      color: var(--madera);
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      border: 2px solid var(--dorado-lt);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-gold:hover {
+      background: var(--dorado-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,148,42,0.35);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1A0D08;
+      padding: 3rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(200,148,42,0.15);
+    }
+    .footer-brand .fb-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #FDF8F0;
+      margin-bottom: 0.3rem;
+    }
+    .footer-brand .fb-sub {
+      font-size: 0.7rem;
+      color: var(--dorado);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+    .footer-brand .fb-desc {
+      font-size: 0.85rem;
+      color: rgba(253,248,240,0.45);
+      line-height: 1.75;
+    }
+    .footer-col h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dorado);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .footer-col ul li a {
+      color: rgba(253,248,240,0.5);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--dorado-lt); }
+    .footer-col .fc-info {
+      font-size: 0.85rem;
+      color: rgba(253,248,240,0.5);
+      line-height: 1.8;
+    }
+    .footer-col .fc-info a {
+      color: rgba(253,248,240,0.65);
+      text-decoration: none;
+    }
+    .footer-col .fc-info a:hover { color: var(--dorado-lt); }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .footer-bottom p {
+      font-size: 0.75rem;
+      color: rgba(253,248,240,0.28);
+    }
+    .footer-bottom a {
+      color: rgba(200,148,42,0.5);
+      text-decoration: none;
+    }
+
+    /* ===== ANIMACIONES ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .historia-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .historia-visual { max-width: 500px; margin: 0 auto; }
+      .tortillas-feature { grid-template-columns: 1fr; gap: 2rem; }
+      .espec-grid { grid-template-columns: repeat(2, 1fr); }
+      .resenas-grid { grid-template-columns: repeat(2, 1fr); }
+      .ubicacion-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      /* Navbar */
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      /* Hero */
+      .hero { min-height: 100svh; padding: 5.5rem 1.5rem 3.5rem; }
+      .hero-stats { gap: 1.2rem; }
+      .hero-stat .num { font-size: 1.7rem; }
+      .hero-stat-sep { height: 35px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .hero-ctas a { width: 100%; max-width: 300px; justify-content: center; }
+
+      /* Historia */
+      .historia { padding: 4rem 1.5rem; }
+      .historia-inner { gap: 2.5rem; }
+      .historia-frame { padding: 2.5rem 2rem; }
+      .historia-frame .big-year { font-size: 3.5rem; }
+
+      /* Especialidades */
+      .especialidades { padding: 4rem 1.5rem; }
+      .tortillas-feature { padding: 2.5rem 1.5rem; }
+      .espec-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+      /* Reseñas */
+      .resenas { padding: 4rem 1.5rem; }
+      .resenas-grid { grid-template-columns: 1fr; }
+      .rating-global { gap: 1.5rem; }
+      .rg-score { font-size: 2.8rem; }
+
+      /* Ubicación */
+      .ubicacion { padding: 4rem 1.5rem; }
+      .ubicacion-inner { gap: 2.5rem; }
+      .ubicacion-mapa, .ubicacion-mapa iframe { min-height: 300px; }
+
+      /* CTA */
+      .cta-banner { padding: 4rem 1.5rem; }
+      .cta-banner .cta-group { flex-direction: column; align-items: center; }
+      .cta-banner .cta-group a { width: 100%; max-width: 300px; justify-content: center; }
+
+      /* Footer */
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      /* Animaciones: fallback para móvil */
+      .fade-in { opacity: 1 !important; transform: translateY(0) !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="#inicio" class="nav-brand">
+      <span class="brand-icon">🍳</span>
+      <span class="brand-text">
+        <span class="brand-name">Bar Galdakanés</span>
+        <span class="brand-sub">Taberna Vasca · Galdakao</span>
+      </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#historia">Historia</a></li>
+      <li><a href="#especialidades">Especialidades</a></li>
+      <li><a href="#resenas">Reseñas</a></li>
+      <li><a href="#ubicacion">Horario</a></li>
+      <li><a href="tel:944562508" class="nav-cta">📞 Llamar</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Menú móvil -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#historia" onclick="closeMobileMenu()">Historia</a>
+    <a href="#especialidades" onclick="closeMobileMenu()">Especialidades</a>
+    <a href="#resenas" onclick="closeMobileMenu()">Reseñas</a>
+    <a href="#ubicacion" onclick="closeMobileMenu()">Horario & Ubicación</a>
+    <a href="tel:944562508" class="mobile-cta">📞 Llamar: 944 562 508</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>🏆</span>
+        Taberna Mítica · Galdakao · Desde los años 80
+      </div>
+      <h1 class="hero-title">
+        Bar<br><em>Galdakanés</em>
+      </h1>
+      <p class="hero-subtitle">Taberna vasca de toda la vida</p>
+      <div class="hero-divider"></div>
+      <p class="hero-desc">
+        Pintxos artesanales, tortillas caseras de variedad infinita<br>
+        y desayunos contundentes desde las 6:30 de la mañana.<br>
+        <strong style="color: var(--dorado-lt); font-weight: 700;">Más de 40 años siendo el bar de Galdakao.</strong>
+      </p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">4.4★</div>
+          <div class="label">Google · 671 reseñas</div>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat">
+          <div class="num">+40</div>
+          <div class="label">Años de historia</div>
+        </div>
+        <div class="hero-stat-sep"></div>
+        <div class="hero-stat">
+          <div class="num">6:30</div>
+          <div class="label">Abiertos desde</div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="tel:944562508" class="btn-primary">📞 944 562 508</a>
+        <a href="#especialidades" class="btn-secondary">🍳 Ver especialidades</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Descubrir</span>
+      <div class="hero-scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ===== HISTORIA ===== -->
+  <section class="historia" id="historia">
+    <div class="historia-inner">
+      <div class="historia-visual fade-in">
+        <div class="historia-frame">
+          <div class="big-year">40+</div>
+          <span class="icon-main">🏠</span>
+          <div class="frame-title">Una institución en Galdakao</div>
+          <div class="frame-sub">Juan Bautista Uriarte Kalea, 7</div>
+          <div class="historia-stats">
+            <div class="hstat">
+              <div class="n">671</div>
+              <div class="l">Reseñas Google</div>
+            </div>
+            <div class="hstat">
+              <div class="n">4.4</div>
+              <div class="l">Puntuación media</div>
+            </div>
+            <div class="hstat">
+              <div class="n">#10</div>
+              <div class="l">TripAdvisor Galdakao</div>
+            </div>
+            <div class="hstat">
+              <div class="n">1€</div>
+              <div class="l">Precio por pintxo</div>
+            </div>
+          </div>
+        </div>
+        <img src="img/servicios-1.jpg" alt="Servicios y ambiente del Bar Galdakanés" style="width:100%; border-radius:8px; object-fit:cover; max-height:200px; margin-top:1.2rem; display:block; box-shadow:0 4px 16px rgba(0,0,0,0.25);">
+      </div>
+
+      <div class="historia-texto fade-in">
+        <div class="section-label">Nuestra historia</div>
+        <h2>El bar de<br><em>toda la vida</em></h2>
+        <p>
+          En el corazón de Galdakao, el Bar Galdakanés lleva <strong>más de 40 años</strong> siendo mucho más que un bar. Es el lugar donde los vecinos del pueblo empiezan el día, se encuentran con los amigos y disfrutan de la mejor cocina de pintxos de la zona.
+        </p>
+        <p>
+          Fundado y llevado con pasión por Félix y su familia, el local se ha ganado una <strong>clientela fiel de generaciones</strong> gracias a su honestidad en los ingredientes, la variedad de su barra y el trato cercano y familiar que define a la auténtica taberna vasca.
+        </p>
+        <p>
+          Abrimos <strong>todos los días desde las 6:30 de la mañana</strong> para que el primer café y la primera tortilla del día sean siempre los mejores. Ingredientes de proximidad, recetas artesanales y el cariño de siempre.
+        </p>
+        <div class="historia-badges">
+          <div class="badge-item">🏡 Negocio familiar</div>
+          <div class="badge-item">🌾 Ingredientes de proximidad</div>
+          <div class="badge-item">⏰ Desde las 6:30h</div>
+          <div class="badge-item">🏆 +40 años de historia</div>
+          <div class="badge-item">💚 Clientela fiel</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ESPECIALIDADES ===== -->
+  <section class="especialidades" id="especialidades">
+    <div class="section-header fade-in">
+      <div class="section-label">Lo que nos hace únicos</div>
+      <h2>Nuestras<br><em>Especialidades</em></h2>
+      <div class="section-divider"></div>
+      <p>De la barra más surtida de Galdakao: pintxos recién hechos, tortillas artesanales y desayunos de los de verdad.</p>
+    </div>
+
+    <!-- Feature tortillas -->
+    <div class="tortillas-feature fade-in">
+      <div class="tf-left">
+        <div class="tf-badge">⭐ Especialidad de la casa</div>
+        <h3>Las Tortillas<br>Artesanales</h3>
+        <p>
+          Hechas al momento con los mejores ingredientes. Nuestra variedad de tortillas es lo que nos hace únicos en Galdakao: desde la clásica de patata hasta las más elaboradas, jugosas o bien cuajadas, siempre al gusto del cliente.
+        </p>
+        <div class="tortilla-tipos">
+          <span class="tortilla-tipo">🥔 Patata</span>
+          <span class="tortilla-tipo">🐟 Bonito</span>
+          <span class="tortilla-tipo">🌶️ Pimientos</span>
+          <span class="tortilla-tipo">🍄 Champiñones</span>
+          <span class="tortilla-tipo">🩸 Morcilla</span>
+          <span class="tortilla-tipo">🐟 Bacalao</span>
+          <span class="tortilla-tipo">🥩 Serrano</span>
+          <span class="tortilla-tipo">🍖 York</span>
+        </div>
+      </div>
+      <div class="tf-right">
+        <img src="img/pintxos-1.jpg" alt="Pintxos y tortilla del Bar Galdakanés" style="width:100%;max-width:340px;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,0.35);display:block;margin:0 auto 1rem;">
+        <p class="tf-tagline">"Jugosa o cuajada,<br>siempre perfecta"</p>
+      </div>
+    </div>
+
+    <!-- Grid resto de especialidades -->
+    <div class="espec-grid">
+      <div class="espec-card fade-in">
+        <span class="ec-icon">🍽️</span>
+        <h3>Pintxos Tradicionales</h3>
+        <p>La gilda, la txapela y los clásicos vascos que nunca fallan. Renovados cada día para mantener la barra siempre fresca y variada.</p>
+      </div>
+      <div class="espec-card fade-in">
+        <span class="ec-icon">✨</span>
+        <h3>Pintxos Creativos</h3>
+        <p>Creaciones propias del local que van más allá de lo tradicional. Combinaciones sorprendentes con ingredientes de temporada y mucha originalidad.</p>
+      </div>
+      <div class="espec-card fade-in">
+        <span class="ec-icon">☕</span>
+        <h3>Desayunos Contundentes</h3>
+        <p>Café, tostadas, pintxos y tortilla desde primera hora. El desayuno que te prepara para el día, en el mejor ambiente de Galdakao.</p>
+        <span class="ec-hora">🕡 Desde las 6:30h</span>
+      </div>
+      <div class="espec-card fade-in">
+        <span class="ec-icon">🥖</span>
+        <h3>Bocadillos y Montaditos</h3>
+        <p>Pan de calidad con rellenos generosos. Bocadillos que no te dejan con hambre, a precio de toda la vida.</p>
+      </div>
+      <div class="espec-card fade-in">
+        <span class="ec-icon">💰</span>
+        <h3>Relación Calidad-Precio</h3>
+        <p>Desde 1€ por pintxo. Comer bien en Galdakao sin que te cueste un ojo de la cara. Eso es el Galdakanés.</p>
+      </div>
+      <div class="espec-card fade-in">
+        <span class="ec-icon">🤝</span>
+        <h3>Trato Familiar</h3>
+        <p>Un local donde te conocen por tu nombre. El servicio rápido y amable que hace que vuelvas una y otra vez, durante años.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESEÑAS ===== -->
+  <section class="resenas" id="resenas">
+    <div class="section-header fade-in">
+      <div class="section-label">Lo que dicen nuestros clientes</div>
+      <h2>Reseñas verificadas</h2>
+      <p>Más de 40 años ganándonos la confianza de Galdakao, una reseña a la vez.</p>
+    </div>
+
+    <div class="rating-global fade-in">
+      <div class="rg-block">
+        <div class="rg-score">4.4</div>
+        <div class="rg-stars">★★★★★</div>
+        <div class="rg-label">Google · 671 reseñas</div>
+      </div>
+      <div class="rg-sep"></div>
+      <div class="rg-block2">
+        <div class="rg-score2">4.2 / 5</div>
+        <div class="rg-label2">TripAdvisor · 33 reseñas</div>
+        <div style="margin-top:0.4rem; font-size:0.68rem; color:rgba(253,248,240,0.35); letter-spacing:0.1em; text-transform:uppercase;">#10 de 43 en Galdakao</div>
+      </div>
+    </div>
+
+    <div class="resenas-grid">
+
+      <div class="resena-card fade-in">
+        <div class="resena-header">
+          <span class="resena-autor">Jose Luis I</span>
+          <span class="resena-badge"><span class="g-dot"></span>TripAdvisor</span>
+        </div>
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-texto">No defrauda, una parada dentro del Galdakanes y todo invita a saltarse la dieta, su gran surtido de pintxos en la barra su rapidez y su variedad en la reposicion, yo me inclino por las tortillas, pero cualquier otro merece un premio, que de hecho los tiene. Son ya más 12 años entrando en el local de felix, y siendo tratado con cariño.</p>
+      </div>
+
+      <div class="resena-card fade-in">
+        <div class="resena-header">
+          <span class="resena-autor">Marsantillana</span>
+          <span class="resena-badge"><span class="g-dot"></span>TripAdvisor</span>
+        </div>
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-texto">Los pintxos de este sitio son espectaculares. Desde primera hora de la mañana, la variedad de tortillas es impresionante. El personal muy amable y rápido a la hora de servir. Inmejorable lugar para desayunar!!!!</p>
+      </div>
+
+      <div class="resena-card fade-in">
+        <div class="resena-header">
+          <span class="resena-autor">Jon G</span>
+          <span class="resena-badge"><span class="g-dot"></span>TripAdvisor</span>
+        </div>
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-texto">La gente que te atiende es muy amable y familiar. Si quieres llevar a una persona especial a comer un pintxo especial, es el lugar a donde ir en Galdakao. Unos pintxos y unos traguitos y entre risas has comido lo mejor que puede haber por Galdakao en relacion calidad/precio.</p>
+      </div>
+
+      <div class="resena-card fade-in">
+        <div class="resena-header">
+          <span class="resena-autor">Biplax</span>
+          <span class="resena-badge"><span class="g-dot"></span>TripAdvisor</span>
+        </div>
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-texto">Bar con mucha solera en Galdakao, mantiene una fiel clientela por su variada oferta de pinchos, siendo famoso por sus tortillas, aunque ahora ha introducido una gran variedad de pinchos muy elaborados.</p>
+      </div>
+
+      <div class="resena-card fade-in">
+        <div class="resena-header">
+          <span class="resena-autor">Pablokueto</span>
+          <span class="resena-badge"><span class="g-dot"></span>TripAdvisor</span>
+        </div>
+        <div class="resena-stars">★★★★★</div>
+        <p class="resena-texto">Gran variedad de pintxos todos los dias, muy buena calidad, haciendo continuamente, y una gran variedad de tortillas. De lo mejor de Galdakao en pintxos vayas a la hora que vayas.</p>
+      </div>
+
+      <div class="resena-card fade-in">
+        <div class="resena-header">
+          <span class="resena-autor">Diegopuerto</span>
+          <span class="resena-badge"><span class="g-dot"></span>TripAdvisor</span>
+        </div>
+        <div class="resena-stars">★★★★☆</div>
+        <p class="resena-texto">El bar no esta en la zona mas centrica de Galdacano, pero siempre suele tener un gran ambiente. Amplia variedad de pintxos, tortillas, bocadillos y sandwiches con una relacion calidad-precio correcta. El servicio es rapido y la atencion muy amable.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== UBICACIÓN + HORARIO ===== -->
+  <section class="ubicacion" id="ubicacion">
+    <div class="ubicacion-inner">
+      <div class="fade-in">
+        <div class="section-label" style="color: var(--granate);">Encuéntranos</div>
+        <h2 class="ubicacion-info" style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--madera); margin-bottom:2rem; line-height:1.2;">Horario &amp;<br>Ubicación</h2>
+
+        <div class="horario-tabla">
+          <div class="horario-row destacado-hora">
+            <span class="horario-dia">Lunes — Viernes</span>
+            <span class="horario-hora open">6:30 – 22:00</span>
+          </div>
+          <div class="horario-row">
+            <span class="horario-dia">Sábados</span>
+            <span class="horario-hora open">9:00 – 15:30</span>
+          </div>
+          <div class="horario-row cerrado">
+            <span class="horario-dia">Domingos</span>
+            <span class="horario-hora closed">Cerrado</span>
+          </div>
+        </div>
+
+        <div class="ubicacion-contacto">
+          <div class="uc-item">
+            <span class="uc-icon">📍</span>
+            <span>Juan Bautista Uriarte Kalea, 7<br>48960 Galdakao, Bizkaia</span>
+          </div>
+          <div class="uc-item">
+            <span class="uc-icon">📞</span>
+            <span><a href="tel:944562508">944 562 508</a></span>
+          </div>
+          <div class="uc-item">
+            <span class="uc-icon">💶</span>
+            <span>Precios: 1€ – 10€ por persona</span>
+          </div>
+          <div class="uc-item">
+            <span class="uc-icon">⏰</span>
+            <span>Desayunos desde las <strong>6:30h</strong> — de lunes a viernes</span>
+          </div>
+        </div>
+        <img src="img/fachada.jpg" alt="Fachada del Bar Galdakanés en Galdakao" style="width:100%; border-radius:8px; object-fit:cover; max-height:220px; margin-top:1.8rem; display:block; box-shadow:0 4px 16px rgba(62,39,35,0.12);">
+      </div>
+
+      <div class="ubicacion-mapa fade-in">
+        <iframe
+          src="https://maps.google.com/maps?q=Bar+Galdakanes,+Juan+Bautista+Uriarte+Kalea+7,+Galdakao&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación Bar Galdakanés en Galdakao">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="cta-banner">
+    <div class="cta-banner-content">
+      <h2>¿Te apetece un pintxo<br><em>de los buenos?</em></h2>
+      <p>Ven al Galdakanés. Más de 40 años esperándote con la barra siempre llena y el café siempre caliente.</p>
+      <div class="cta-group">
+        <a href="tel:944562508" class="btn-gold">📞 Llamar: 944 562 508</a>
+        <a href="#ubicacion" class="btn-secondary">📍 Ver cómo llegar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BANNER DECORATIVO ===== -->
+  <img src="img/banner.jpg" alt="Bar Galdakanés" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:20px 0;">
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="fb-name">Bar Galdakanés</div>
+        <div class="fb-sub">Taberna Vasca · Galdakao</div>
+        <p class="fb-desc">Más de 40 años siendo el bar de Galdakao. Pintxos artesanales, tortillas caseras y desayunos contundentes desde las 6:30 de la mañana. Juan Bautista Uriarte Kalea, 7.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#historia">Historia</a></li>
+          <li><a href="#especialidades">Especialidades</a></li>
+          <li><a href="#resenas">Reseñas</a></li>
+          <li><a href="#ubicacion">Horario y ubicación</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="fc-info">
+          📍 Juan Bautista Uriarte Kalea, 7<br>
+          48960 Galdakao, Bizkaia<br><br>
+          📞 <a href="tel:944562508">944 562 508</a><br><br>
+          🕐 L–V: 6:30–22:00<br>
+          🕐 Sáb: 9:00–15:30<br>
+          🔴 Dom: Cerrado
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Bar Galdakanés · Todos los derechos reservados</p>
+      <p>Diseño web: <a href="#">G&amp;G Elcano</a></p>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Menú hamburguesa
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+    }
+    // Cerrar menú al hacer scroll
+    window.addEventListener('scroll', () => {
+      if (mobileMenu.classList.contains('open')) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+
+    // Intersection Observer para animaciones fade-in
+    // Solo desktop (> 768px): en móvil el CSS ya pone opacity:1
+    if (window.innerWidth > 768) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    // Fallback timer: si tras 1.5s algún elemento no se ha animado, forzarlo visible
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 1500);
+  </script>
+
+</body>
+</html>

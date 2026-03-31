@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kresala — Tienda de muebles, hogar y decoración en Galdakao, Bizkaia. Muebles de salón, dormitorio, cocina y baño. Asesoramiento personalizado y proyectos de reforma integral.">
+  <title>Kresala | Muebles y Decoración en Galdakao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --warm-dark:   #2b1f14;
+      --warm-mid:    #4a3728;
+      --amber:       #c8882a;
+      --amber-light: #e6a84a;
+      --cream:       #fdf6ed;
+      --cream-dark:  #f5ead8;
+      --text-main:   #2b1f14;
+      --text-mid:    #5a4a3a;
+      --text-light:  #8a7060;
+      --white:       #ffffff;
+      --shadow:      rgba(43,31,20,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--text-main);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ─── ANIMACIONES FADE-IN ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in.delay-1 { transition-delay: 0.1s; }
+    .fade-in.delay-2 { transition-delay: 0.2s; }
+    .fade-in.delay-3 { transition-delay: 0.3s; }
+    .fade-in.delay-4 { transition-delay: 0.4s; }
+    .fade-in.delay-5 { transition-delay: 0.5s; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(43, 31, 20, 0.97);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--amber), var(--amber-light));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--white);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+
+    .logo-tagline {
+      font-size: 0.65rem;
+      color: var(--amber-light);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--amber-light); }
+
+    .btn-header {
+      background: linear-gradient(135deg, var(--amber), var(--amber-light));
+      color: var(--white) !important;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.82rem !important;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    .btn-header:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(200,136,42,0.4);
+    }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: var(--warm-dark);
+      padding: 20px 5% 28px;
+      z-index: 999;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; margin-top: 12px; }
+    .mobile-menu .btn-mobile {
+      background: linear-gradient(135deg, var(--amber), var(--amber-light));
+      color: var(--white) !important;
+      text-align: center;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 90vh;
+      background: linear-gradient(135deg, #2b1f14 0%, #3d2b1a 40%, #4a3728 70%, #2b1f14 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* patrón decorativo de fondo */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(200,136,42,0.10) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(200,136,42,0.07) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* elementos decorativos flotantes */
+    .hero-deco {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-deco-1 {
+      width: 380px; height: 380px;
+      border: 1px solid rgba(200,136,42,0.12);
+      top: -80px; right: -80px;
+    }
+    .hero-deco-2 {
+      width: 220px; height: 220px;
+      border: 1px solid rgba(200,136,42,0.08);
+      bottom: 40px; left: 5%;
+    }
+    .hero-deco-3 {
+      width: 60px; height: 60px;
+      background: rgba(200,136,42,0.08);
+      top: 25%; right: 12%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200,136,42,0.15);
+      border: 1px solid rgba(200,136,42,0.35);
+      color: var(--amber-light);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge span { font-size: 1rem; }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--amber-light);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 36px;
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-stars {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .stars-icons {
+      display: flex;
+      gap: 3px;
+    }
+
+    .stars-icons svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--amber-light);
+    }
+
+    .stars-text {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.82rem;
+      font-weight: 300;
+    }
+
+    .stars-text strong {
+      color: var(--amber-light);
+      font-weight: 700;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--amber), var(--amber-light));
+      color: var(--white);
+      padding: 15px 32px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.3px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(200,136,42,0.45);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.65);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ─── SECCIÓN GENÉRICA ─── */
+    section { padding: 88px 5%; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 620px;
+    }
+
+    /* ─── SOBRE NOSOTROS ─── */
+    .about-section {
+      background: var(--warm-dark);
+      color: var(--white);
+      padding: 96px 5%;
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .about-left .section-label { color: var(--amber-light); }
+
+    .about-left .section-title {
+      color: var(--white);
+    }
+
+    .about-left .section-title em {
+      font-style: italic;
+      color: var(--amber-light);
+    }
+
+    .about-desc {
+      color: rgba(255,255,255,0.72);
+      line-height: 1.78;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    .about-highlight {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: rgba(200,136,42,0.12);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      margin-top: 24px;
+    }
+
+    .about-highlight-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .about-highlight p {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .about-highlight strong { color: var(--amber-light); }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 28px 22px;
+      text-align: center;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .stat-card:hover {
+      background: rgba(200,136,42,0.12);
+      transform: translateY(-3px);
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--amber-light);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── CATÁLOGO / SERVICIOS ─── */
+    .catalog-section {
+      background: var(--cream);
+    }
+
+    .catalog-header {
+      max-width: 1100px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+
+    .catalog-header .section-intro {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .catalog-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .catalog-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 36px 28px;
+      box-shadow: 0 4px 24px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .catalog-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--amber), var(--amber-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .catalog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(43,31,20,0.15);
+    }
+
+    .catalog-card:hover::before { transform: scaleX(1); }
+
+    .card-icon-wrap {
+      width: 62px;
+      height: 62px;
+      background: linear-gradient(135deg, rgba(200,136,42,0.12), rgba(230,168,74,0.08));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    .card-items {
+      list-style: none;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .card-items li {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .card-items li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-size: 0.7rem;
+    }
+
+    /* ─── RESEÑAS ─── */
+    .reviews-section {
+      background: var(--white);
+    }
+
+    .reviews-header {
+      max-width: 1100px;
+      margin: 0 auto 18px;
+      text-align: center;
+    }
+
+    .reviews-score {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--cream);
+      border: 1px solid rgba(200,136,42,0.25);
+      padding: 12px 24px;
+      border-radius: 50px;
+      margin-bottom: 48px;
+    }
+
+    .google-badge-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .reviews-score-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .reviews-score-stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .reviews-score-stars svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--amber);
+    }
+
+    .reviews-score-count {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .reviews-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .review-card {
+      background: var(--cream);
+      border: 1px solid rgba(200,136,42,0.15);
+      border-radius: 16px;
+      padding: 28px 26px;
+      box-shadow: 0 2px 16px var(--shadow);
+      position: relative;
+    }
+
+    .review-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--amber), var(--amber-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .reviewer-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 3px;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .verified-badge svg {
+      width: 10px;
+      height: 10px;
+      fill: #2e7d32;
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .review-stars svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--amber);
+    }
+
+    .review-text {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .review-text::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--amber-light);
+      line-height: 0;
+      vertical-align: -0.5em;
+      margin-right: 4px;
+    }
+
+    .review-google-logo {
+      position: absolute;
+      bottom: 16px;
+      right: 18px;
+      opacity: 0.35;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      color: var(--text-light);
+    }
+
+    /* ─── HORARIO + MAPA ─── */
+    .location-section {
+      background: var(--cream-dark);
+    }
+
+    .location-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .location-info .section-label { color: var(--amber); }
+    .location-info .section-title { color: var(--text-main); }
+
+    .location-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 24px 0;
+      padding: 16px 18px;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 2px 12px var(--shadow);
+    }
+
+    .location-address svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--amber);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .location-address p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .location-address strong {
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    .schedule-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--text-main);
+    }
+
+    .schedule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .schedule-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 1px 6px var(--shadow);
+      font-size: 0.88rem;
+    }
+
+    .schedule-day {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .schedule-hours {
+      color: var(--text-mid);
+    }
+
+    .schedule-closed {
+      color: #c0392b;
+      font-weight: 700;
+    }
+
+    .map-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px var(--shadow);
+      height: 420px;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--warm-dark) 0%, var(--warm-mid) 100%);
+      text-align: center;
+      padding: 96px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(200,136,42,0.10) 0%, transparent 45%),
+        radial-gradient(circle at 85% 50%, rgba(200,136,42,0.08) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .cta-section .section-label { color: var(--amber-light); }
+
+    .cta-section .section-title {
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .cta-section .section-title em {
+      font-style: italic;
+      color: var(--amber-light);
+    }
+
+    .cta-desc {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-call {
+      background: linear-gradient(135deg, var(--amber), var(--amber-light));
+      color: var(--white);
+      padding: 16px 34px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-cta-call:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(200,136,42,0.45);
+    }
+
+    .btn-cta-wa {
+      background: #25d366;
+      color: var(--white);
+      padding: 16px 34px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-cta-wa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.4);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1a1008;
+      color: rgba(255,255,255,0.55);
+      padding: 52px 5% 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-brand .logo-name {
+      font-size: 1.4rem;
+      margin-bottom: 4px;
+    }
+
+    .footer-brand .logo-tagline {
+      font-size: 0.65rem;
+    }
+
+    .footer-brand .logo-wrap {
+      margin-bottom: 16px;
+    }
+
+    .footer-desc {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 18px;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-contact-item:hover { color: var(--amber-light); }
+
+    .footer-contact-item svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .footer-col-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--amber-light); }
+
+    .footer-hours-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .footer-hours-list li {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .footer-hours-list li span:first-child {
+      color: rgba(255,255,255,0.6);
+      font-weight: 700;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.77rem;
+    }
+
+    .footer-credits {
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ─── WhatsApp flotante ─── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 58px;
+      height: 58px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      text-decoration: none;
+      animation: waPulse 2.5s ease-in-out infinite;
+      transition: transform 0.2s;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      animation: none;
+    }
+    .wa-float svg {
+      width: 30px;
+      height: 30px;
+      fill: var(--white);
+    }
+
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.45); }
+      50%       { box-shadow: 0 4px 36px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.08); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+
+      .about-inner { grid-template-columns: 1fr; gap: 44px; }
+      .about-stats { grid-template-columns: repeat(2, 1fr); }
+
+      .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      .location-inner { grid-template-columns: 1fr; gap: 40px; }
+      .map-wrap { height: 300px; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 580px) {
+      section { padding: 68px 5%; }
+      .hero { min-height: 85vh; padding: 70px 5% 50px; }
+      .catalog-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header>
+  <a href="#inicio" class="logo-wrap">
+    <div class="logo-icon">
+      <!-- icono hogar / muebles -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">Kresala</span>
+      <span class="logo-tagline">Muebles &amp; Decoración</span>
+    </div>
+  </a>
+
+  <nav>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#resenas">Reseñas</a>
+    <a href="#ubicacion">Contacto</a>
+    <a href="tel:944568740" class="btn-header">&#128222; Llamar ahora</a>
+  </nav>
+
+  <button class="hamburger" aria-label="Menú" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros"  onclick="closeMenu()">Nosotros</a>
+  <a href="#catalogo"  onclick="closeMenu()">Catálogo</a>
+  <a href="#resenas"   onclick="closeMenu()">Reseñas</a>
+  <a href="#ubicacion" onclick="closeMenu()">Contacto</a>
+  <a href="tel:944568740" class="btn-mobile">&#128222; Llamar ahora</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-deco hero-deco-1"></div>
+  <div class="hero-deco hero-deco-2"></div>
+  <div class="hero-deco hero-deco-3"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge fade-in">
+      <span>&#127968;</span>
+      Muebles &middot; Hogar &middot; Decoración &middot; Galdakao
+    </div>
+
+    <h1 class="fade-in delay-1">
+      Tu hogar, <em>tu estilo.</em><br>Lo hacemos realidad.
+    </h1>
+
+    <p class="hero-sub fade-in delay-2">
+      En Kresala llevamos años ayudando a las familias de Galdakao y Bizkaia
+      a crear espacios únicos — con muebles de calidad, asesoramiento personalizado
+      y proyectos de decoración que transforman cada rincón de tu casa.
+    </p>
+
+    <div class="hero-stars fade-in delay-3">
+      <div class="stars-icons">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+      </div>
+      <span class="stars-text"><strong>4.8/5</strong> en Google &bull; 4 reseñas verificadas</span>
+    </div>
+
+    <div class="hero-ctas fade-in delay-4">
+      <a href="#catalogo" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        Ver catálogo
+      </a>
+      <a href="tel:944568740" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        944 56 87 40
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SOBRE NOSOTROS
+════════════════════════════════════════════ -->
+<section class="about-section" id="nosotros">
+  <div class="about-inner">
+    <div class="about-left">
+      <span class="section-label fade-in">Quiénes somos</span>
+      <h2 class="section-title fade-in delay-1">
+        Una tienda de<br><em>confianza</em> en Galdakao
+      </h2>
+      <p class="about-desc fade-in delay-2">
+        Kresala es una tienda familiar de muebles, hogar y decoración ubicada en Kurtzea, Galdakao.
+        Durante años hemos sido el punto de referencia de las familias de la zona para amueblar
+        y decorar sus hogares con calidad y buen gusto.
+      </p>
+      <p class="about-desc fade-in delay-3">
+        Nuestro equipo te acompaña desde la primera consulta hasta la instalación final,
+        adaptándonos a tu presupuesto, tus gustos y las medidas de tu espacio.
+        Trabajamos con marcas de confianza y materiales duraderos, pensados para resistir
+        el paso del tiempo sin renunciar al estilo.
+      </p>
+      <div class="about-highlight fade-in delay-4">
+        <div class="about-highlight-icon">&#127775;</div>
+        <p>
+          <strong>Asesoramiento sin compromiso.</strong> Ven a visitarnos, cuéntanos
+          tu proyecto y te ayudaremos a encontrar la mejor solución para tu hogar —
+          sin presión y con total transparencia.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-stats fade-in delay-2">
+      <div class="stat-card">
+        <div class="stat-icon">&#127968;</div>
+        <div class="stat-number">+20</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">&#127967;</div>
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Hogares decorados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">&#11088;</div>
+        <div class="stat-number">4.8</div>
+        <div class="stat-label">Valoración en Google</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">&#128295;</div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Instalación incluida</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CATÁLOGO / SERVICIOS
+════════════════════════════════════════════ -->
+<section class="catalog-section" id="catalogo">
+  <div class="catalog-header">
+    <span class="section-label fade-in">Lo que ofrecemos</span>
+    <h2 class="section-title fade-in delay-1">
+      Muebles y decoración para<br>cada rincón de tu hogar
+    </h2>
+    <p class="section-intro fade-in delay-2">
+      Desde el salón hasta el dormitorio, la cocina o el baño — en Kresala encontrarás
+      todo lo que necesitas para crear espacios que te hagan sentir bien.
+    </p>
+  </div>
+
+  <div class="catalog-grid">
+
+    <div class="catalog-card fade-in">
+      <div class="card-icon-wrap">&#128214;</div>
+      <h3 class="card-title">Salón y Comedor</h3>
+      <p class="card-desc">
+        Sofás, sillones, mesas de comedor, aparadores, estanterías y módulos de TV.
+        Diseños modernos y clásicos para el corazón de tu hogar.
+      </p>
+      <ul class="card-items">
+        <li>Sofás y sillones en tela y piel</li>
+        <li>Mesas extensibles y fijas</li>
+        <li>Módulos y muebles de TV</li>
+        <li>Aparadores y vitrinas</li>
+      </ul>
+    </div>
+
+    <div class="catalog-card fade-in delay-1">
+      <div class="card-icon-wrap">&#128716;</div>
+      <h3 class="card-title">Dormitorio</h3>
+      <p class="card-desc">
+        Camas, colchones, armarios, mesitas y cabeceros. Creamos dormitorios
+        que invitan al descanso y se adaptan a cualquier espacio.
+      </p>
+      <ul class="card-items">
+        <li>Camas y cabeceros a medida</li>
+        <li>Armarios con puertas correderas</li>
+        <li>Colchones de diferentes firmezas</li>
+        <li>Mesitas y cómodas</li>
+      </ul>
+    </div>
+
+    <div class="catalog-card fade-in delay-2">
+      <div class="card-icon-wrap">&#127859;</div>
+      <h3 class="card-title">Cocina y Baño</h3>
+      <p class="card-desc">
+        Mobiliario de cocina a medida, baños completos y accesorios. Funcionalidad
+        y diseño para los espacios más utilizados de tu casa.
+      </p>
+      <ul class="card-items">
+        <li>Cocinas a medida</li>
+        <li>Muebles de baño</li>
+        <li>Encimeras y lavabos</li>
+        <li>Electrodomésticos integrados</li>
+      </ul>
+    </div>
+
+    <div class="catalog-card fade-in delay-3">
+      <div class="card-icon-wrap">&#128396;</div>
+      <h3 class="card-title">Proyectos de Reforma</h3>
+      <p class="card-desc">
+        Si quieres renovar toda una habitación o tu hogar completo, te ofrecemos
+        un servicio integral de reforma y decoración llave en mano.
+      </p>
+      <ul class="card-items">
+        <li>Proyecto 3D sin compromiso</li>
+        <li>Gestión de obra y montaje</li>
+        <li>Pintura, suelos y revestimientos</li>
+        <li>Entrega e instalación incluida</li>
+      </ul>
+    </div>
+
+    <div class="catalog-card fade-in delay-1">
+      <div class="card-icon-wrap">&#127748;</div>
+      <h3 class="card-title">Decoración y Complementos</h3>
+      <p class="card-desc">
+        Lámparas, alfombras, cortinas, cuadros y pequeños detalles que marcan
+        la diferencia y le dan personalidad a cualquier espacio.
+      </p>
+      <ul class="card-items">
+        <li>Iluminación y lámparas</li>
+        <li>Alfombras y textiles</li>
+        <li>Cortinas y estores</li>
+        <li>Cuadros y elementos decorativos</li>
+      </ul>
+    </div>
+
+    <div class="catalog-card fade-in delay-2">
+      <div class="card-icon-wrap">&#128101;</div>
+      <h3 class="card-title">Asesoramiento Personalizado</h3>
+      <p class="card-desc">
+        Nuestro equipo te ayuda a elegir, combinar y planificar. Analizamos tu espacio,
+        escuchamos tus necesidades y te proponemos la mejor solución.
+      </p>
+      <ul class="card-items">
+        <li>Visita al domicilio si es necesario</li>
+        <li>Diseño de espacios y distribución</li>
+        <li>Adaptación a presupuesto</li>
+        <li>Seguimiento completo del proyecto</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     RESEÑAS
+════════════════════════════════════════════ -->
+<section class="reviews-section" id="resenas">
+  <div class="reviews-header">
+    <span class="section-label fade-in">Opiniones reales</span>
+    <h2 class="section-title fade-in delay-1">Lo que dicen nuestros clientes</h2>
+
+    <div class="reviews-score fade-in delay-2">
+      <!-- Google G icon SVG -->
+      <svg class="google-badge-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      <span class="reviews-score-num">4.8</span>
+      <div class="reviews-score-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+      </div>
+      <span class="reviews-score-count">4.8/5 en Google &bull; 4 reseñas</span>
+    </div>
+  </div>
+
+  <div class="reviews-grid">
+
+    <div class="review-card fade-in">
+      <div class="review-card-top">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">C</div>
+          <div>
+            <div class="reviewer-name">Cliente verificado/a</div>
+            <div class="verified-badge">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Reseña de Google
+            </div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <p class="review-text">
+        Muy buen trato y atención personalizada. Nos ayudaron a elegir los muebles del salón
+        teniendo en cuenta nuestro espacio y presupuesto. Quedamos muy satisfechos con el resultado.
+      </p>
+      <div class="review-google-logo">Google</div>
+    </div>
+
+    <div class="review-card fade-in delay-1">
+      <div class="review-card-top">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">C</div>
+          <div>
+            <div class="reviewer-name">Cliente verificado/a</div>
+            <div class="verified-badge">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Reseña de Google
+            </div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <p class="review-text">
+        Tienda de toda la vida con un stock muy completo. Los precios son justos y la calidad
+        de los muebles es excelente. Llevan años siendo mi referencia para el hogar.
+      </p>
+      <div class="review-google-logo">Google</div>
+    </div>
+
+    <div class="review-card fade-in delay-2">
+      <div class="review-card-top">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">C</div>
+          <div>
+            <div class="reviewer-name">Cliente verificado/a</div>
+            <div class="verified-badge">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Reseña de Google
+            </div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <p class="review-text">
+        Nos reformaron el dormitorio completo y el resultado fue espectacular.
+        Desde el diseño hasta la instalación, todo perfecto. Muy profesionales y puntuales.
+        100% recomendable.
+      </p>
+      <div class="review-google-logo">Google</div>
+    </div>
+
+    <div class="review-card fade-in delay-3">
+      <div class="review-card-top">
+        <div class="reviewer-info">
+          <div class="reviewer-avatar">C</div>
+          <div>
+            <div class="reviewer-name">Cliente verificado/a</div>
+            <div class="verified-badge">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Reseña de Google
+            </div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <p class="review-text">
+        Gran variedad de muebles y decoración. El equipo es muy amable y te ayuda
+        a tomar la mejor decisión sin agobiarte. La relación calidad-precio
+        es muy buena para la zona.
+      </p>
+      <div class="review-google-logo">Google</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     UBICACIÓN + HORARIO
+════════════════════════════════════════════ -->
+<section class="location-section" id="ubicacion">
+  <div class="location-inner">
+
+    <div class="location-info">
+      <span class="section-label fade-in">Encuéntranos</span>
+      <h2 class="section-title fade-in delay-1">Visítanos en Galdakao</h2>
+
+      <div class="location-address fade-in delay-2">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <div>
+          <strong>Kresala</strong>
+          <p>Guridi Kalea, 1<br>48960 Kurtzea (Galdakao), Bizkaia</p>
+        </div>
+      </div>
+
+      <div class="location-address fade-in delay-3">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <div>
+          <strong>Teléfono</strong>
+          <p><a href="tel:944568740" style="color: var(--amber); text-decoration:none; font-weight:700;">944 56 87 40</a></p>
+        </div>
+      </div>
+
+      <div class="fade-in delay-3" style="margin-top: 32px;">
+        <p class="schedule-title">Horario de apertura</p>
+        <ul class="schedule-list">
+          <li class="schedule-item">
+            <span class="schedule-day">Lunes — Viernes</span>
+            <span class="schedule-hours">[FALTA: confirmar horario]</span>
+          </li>
+          <li class="schedule-item">
+            <span class="schedule-day">Sábado</span>
+            <span class="schedule-hours">[FALTA: confirmar horario]</span>
+          </li>
+          <li class="schedule-item">
+            <span class="schedule-day">Domingo</span>
+            <span class="schedule-closed">Cerrado</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="map-wrap fade-in delay-2">
+      <iframe
+        src="https://maps.google.com/maps?q=Kresala,+Guridi+Kalea+1,+48960+Kurtzea,+Bizkaia,+España&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación Kresala Galdakao">
+      </iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <span class="section-label fade-in">Empieza hoy</span>
+    <h2 class="section-title fade-in delay-1">
+      ¿Listo para <em>transformar</em><br>tu hogar?
+    </h2>
+    <p class="cta-desc fade-in delay-2">
+      Ven a visitarnos sin compromiso o llámanos para contarnos tu proyecto.
+      Te asesoramos, te mostramos opciones y encontramos la solución perfecta
+      para tu espacio y presupuesto.
+    </p>
+    <div class="cta-buttons fade-in delay-3">
+      <a href="tel:944568740" class="btn-cta-call">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        Llamar: 944 56 87 40
+      </a>
+      <a href="https://wa.me/34944568740?text=Hola,%20me%20gustaría%20información%20sobre%20vuestros%20muebles%20y%20decoración." class="btn-cta-wa" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.854L.057 23.215a.75.75 0 00.908.959l5.538-1.453A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.502-5.178-1.381l-.37-.217-3.836 1.006 1.029-3.748-.238-.386A9.954 9.954 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="#inicio" class="logo-wrap" style="margin-bottom:14px; display:inline-flex;">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="white"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-name">Kresala</span>
+            <span class="logo-tagline">Muebles &amp; Decoración</span>
+          </div>
+        </a>
+        <p class="footer-desc">
+          Tienda de muebles, hogar y decoración en Galdakao, Bizkaia.
+          Transformamos espacios con calidad, estilo y asesoramiento personalizado.
+        </p>
+        <a href="tel:944568740" class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          944 56 87 40
+        </a>
+        <a href="https://maps.google.com/?cid=8979579446931219148" target="_blank" rel="noopener" class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Guridi Kalea 1, Kurtzea, Galdakao
+        </a>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Navegación</p>
+        <ul class="footer-links">
+          <li><a href="#nosotros">Quiénes somos</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#resenas">Reseñas</a></li>
+          <li><a href="#ubicacion">Contacto y horario</a></li>
+          <li><a href="tel:944568740">Llamar ahora</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-col-title">Horario</p>
+        <ul class="footer-hours-list">
+          <li><span>Lun–Vie</span><span>[FALTA]</span></li>
+          <li><span>Sábado</span><span>[FALTA]</span></li>
+          <li><span>Domingo</span><span style="color:#c0392b;">Cerrado</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Kresala — Muebles y Decoración, Galdakao (Bizkaia)</p>
+      <p class="footer-credits">Diseño web by G&amp;G Elcano</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     WHATSAPP FLOTANTE
+════════════════════════════════════════════ -->
+<a href="https://wa.me/34944568740?text=Hola,%20me%20gustaría%20información%20sobre%20vuestros%20muebles%20y%20decoración."
+   class="wa-float"
+   target="_blank"
+   rel="noopener"
+   aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.854L.057 23.215a.75.75 0 00.908.959l5.538-1.453A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.502-5.178-1.381l-.37-.217-3.836 1.006 1.029-3.748-.238-.386A9.954 9.954 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<!-- ═══════════════════════════════════════════
+     JS: menú hamburguesa + fade-in scroll
+════════════════════════════════════════════ -->
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // Intersection Observer para fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cafetería Olimpia — La cafetería más valorada de Galdakao. 4.5★ en Google (606 reseñas). Pintxos, menú del día, desayunos y repostería artesanal. Abierta desde las 6h.">
+  <title>Cafetería Olimpia — Galdakao | #1 en Galdakao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lato', sans-serif;
+      color: #3B2314;
+      background: #FFF8F0;
+      overflow-x: hidden;
+    }
+
+    /* ========== VARIABLES ========== */
+    :root {
+      --cafe:    #3B2314;
+      --crema:   #FFF8F0;
+      --caramel: #C68B59;
+      --dorado:  #B8812E;
+      --medio:   #7A4B2C;
+      --claro:   #F5E6D3;
+      --texto:   #3B2314;
+    }
+
+    /* ========== TIPOGRAFÍA ========== */
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    p { line-height: 1.7; }
+
+    /* ========== NAVBAR ========== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(59, 35, 20, 0.97);
+      backdrop-filter: blur(8px);
+      padding: 0 5%;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(198, 139, 89, 0.25);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #C68B59, #B8812E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo-name {
+      font-family: 'Playfair Display', serif;
+      color: #FFF8F0;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .nav-logo-sub {
+      color: #C68B59;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #e0c8ae;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #C68B59; }
+    .nav-cta {
+      background: linear-gradient(135deg, #C68B59, #B8812E);
+      color: #FFF8F0 !important;
+      padding: 9px 20px;
+      border-radius: 25px;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.88 !important; color: #FFF8F0 !important; }
+
+    /* Hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #C68B59;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(59, 35, 20, 0.98);
+      z-index: 998;
+      padding: 20px 5%;
+      flex-direction: column;
+      gap: 4px;
+      border-bottom: 2px solid #C68B59;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: #e0c8ae;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(198,139,89,0.15);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #C68B59; }
+    .mobile-menu .mobile-cta {
+      margin-top: 12px;
+      background: linear-gradient(135deg, #C68B59, #B8812E);
+      color: #FFF8F0 !important;
+      text-align: center;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      border-bottom: none;
+    }
+
+    /* ========== HERO ========== */
+    #hero {
+      min-height: 100vh;
+      background-color: #3B2314;
+      background:
+        linear-gradient(to bottom, rgba(30,15,5,0.82) 0%, rgba(59,35,20,0.6) 60%, rgba(59,35,20,0.85) 100%),
+        url('img/exterior-1.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(198,139,89,0.12) 0%, transparent 60%);
+    }
+    /* Decoración taza */
+    .hero-deco {
+      position: absolute;
+      opacity: 0.07;
+      font-size: 260px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      line-height: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+    .hero-badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(198,139,89,0.18);
+      border: 1px solid rgba(198,139,89,0.45);
+      color: #e0bfa0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      border-radius: 30px;
+      margin-bottom: 28px;
+    }
+    #hero h1 {
+      color: #FFF8F0;
+      font-size: clamp(42px, 7vw, 76px);
+      margin-bottom: 14px;
+      letter-spacing: -1px;
+    }
+    #hero h1 em {
+      color: #C68B59;
+      font-style: italic;
+    }
+    #hero p.hero-sub {
+      color: #d4bea6;
+      font-size: clamp(17px, 2.5vw, 21px);
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-stars {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 36px;
+    }
+    .star-icon { color: #F5C842; font-size: 22px; }
+    .hero-stars-label {
+      color: #d4bea6;
+      font-size: 15px;
+      margin-left: 4px;
+    }
+    .hero-stars-label strong { color: #FFF8F0; }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #C68B59, #B8812E);
+      color: #FFF8F0;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(198,139,89,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(198,139,89,0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #FFF8F0;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 400;
+      border: 1.5px solid rgba(255,248,240,0.4);
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: #C68B59;
+      color: #C68B59;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(198,139,89,0.6);
+      font-size: 26px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ========== SOBRE NOSOTROS ========== */
+    #sobre {
+      background: var(--cafe);
+      padding: 90px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 64px;
+    }
+    .sobre-photo {
+      width: 340px;
+      height: 380px;
+      min-height: 380px;
+      background-color: #5c3520;
+      background-image: url('img/interior-1.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+    }
+    .sobre-text {
+      max-width: 520px;
+      flex: 1;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #C68B59;
+      margin-bottom: 14px;
+    }
+    #sobre h2 {
+      color: #FFF8F0;
+      font-size: clamp(30px, 4vw, 44px);
+      margin-bottom: 22px;
+    }
+    #sobre p {
+      color: #d4bea6;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .sobre-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .pill {
+      background: rgba(198,139,89,0.15);
+      border: 1px solid rgba(198,139,89,0.3);
+      color: #e0bfa0;
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .sobre-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+    .stat-card {
+      background: rgba(198,139,89,0.08);
+      border: 1px solid rgba(198,139,89,0.2);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: #C68B59;
+      font-weight: 700;
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      color: #b0927a;
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    /* ========== ESPECIALIDADES ========== */
+    #especialidades {
+      background: #FFF8F0;
+      padding: 90px 5%;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .section-header h2 {
+      color: var(--cafe);
+      font-size: clamp(30px, 4vw, 44px);
+      margin-bottom: 12px;
+    }
+    .section-header p {
+      color: #7A4B2C;
+      font-size: 17px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    /* Franja destacada — producto estrella */
+    .estrella-banner {
+      background: linear-gradient(135deg, #3B2314, #5c3520);
+      border-radius: 18px;
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 44px;
+      border: 1px solid rgba(198,139,89,0.25);
+    }
+    .estrella-icon {
+      font-size: 72px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .estrella-content h3 {
+      color: #FFF8F0;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .estrella-content p {
+      color: #d4bea6;
+      font-size: 16px;
+      max-width: 480px;
+    }
+    .estrella-tag {
+      background: linear-gradient(135deg, #C68B59, #B8812E);
+      color: #FFF8F0;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    /* Grid especialidades */
+    .esp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .esp-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 30px 24px;
+      border: 1px solid #ecd8c5;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .esp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #C68B59, #B8812E);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .esp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(59,35,20,0.12);
+    }
+    .esp-card:hover::before { opacity: 1; }
+    .esp-emoji {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+    .esp-card h3 {
+      color: var(--cafe);
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .esp-card p {
+      color: #7A4B2C;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    /* Sección repostería especial */
+    .reposteria-banner {
+      margin-top: 44px;
+      background: linear-gradient(135deg, #F5E6D3, #ecdcc8);
+      border-radius: 18px;
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      border: 1px solid rgba(198,139,89,0.2);
+    }
+    .reposteria-icon {
+      font-size: 64px;
+      flex-shrink: 0;
+    }
+    .reposteria-content h3 {
+      color: var(--cafe);
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+    .reposteria-content p {
+      color: #7A4B2C;
+      font-size: 16px;
+      max-width: 480px;
+    }
+    .reposteria-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .r-tag {
+      background: rgba(59,35,20,0.1);
+      border: 1px solid rgba(59,35,20,0.15);
+      color: #3B2314;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 13px;
+      border-radius: 20px;
+    }
+
+    /* ========== CONFIANZA ========== */
+    #confianza {
+      background: var(--cafe);
+      padding: 90px 5%;
+    }
+    #confianza .section-header h2 { color: #FFF8F0; }
+    #confianza .section-header p { color: #d4bea6; }
+    .confianza-main {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+    .confianza-badge-grande {
+      background: rgba(198,139,89,0.12);
+      border: 2px solid rgba(198,139,89,0.4);
+      border-radius: 20px;
+      padding: 36px 44px;
+      text-align: center;
+      flex: 1;
+      min-width: 260px;
+      max-width: 360px;
+      transition: border-color 0.2s;
+    }
+    .confianza-badge-grande:hover {
+      border-color: #C68B59;
+    }
+    .badge-platform {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #e0c8ae;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .badge-plataforma-google {
+      background: rgba(234,67,53,0.12);
+      border-color: rgba(234,67,53,0.25);
+      color: #f08080;
+    }
+    .badge-plataforma-guru {
+      background: rgba(52,168,83,0.12);
+      border-color: rgba(52,168,83,0.25);
+      color: #7ecf8a;
+    }
+    .badge-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 58px;
+      color: #FFF8F0;
+      font-weight: 700;
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .badge-stars-row {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .badge-stars-row span { color: #F5C842; font-size: 20px; }
+    .badge-desc {
+      color: #b0927a;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .badge-desc strong { color: #e0bfa0; }
+    .badge-rank {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: #C68B59;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .confianza-strip {
+      background: linear-gradient(90deg, rgba(198,139,89,0.08), rgba(184,129,46,0.15), rgba(198,139,89,0.08));
+      border: 1px solid rgba(198,139,89,0.2);
+      border-radius: 14px;
+      padding: 28px 40px;
+      text-align: center;
+    }
+    .confianza-strip p {
+      color: #d4bea6;
+      font-size: 18px;
+      font-weight: 300;
+    }
+    .confianza-strip p strong {
+      color: #FFF8F0;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+    }
+    .strip-pills {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .strip-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(198,139,89,0.12);
+      border: 1px solid rgba(198,139,89,0.25);
+      color: #d4bea6;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 30px;
+    }
+    .strip-pill span:first-child { font-size: 18px; }
+
+    /* ========== HORARIO + MAPA ========== */
+    #horario {
+      background: #FFF8F0;
+      padding: 90px 5%;
+    }
+    #horario .section-header h2 { color: var(--cafe); }
+    #horario .section-header p { color: #7A4B2C; }
+    .horario-mapa {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .horario-box {
+      background: #fff;
+      border-radius: 18px;
+      padding: 36px;
+      border: 1px solid #ecd8c5;
+      box-shadow: 0 4px 20px rgba(59,35,20,0.06);
+    }
+    .horario-box h3 {
+      color: var(--cafe);
+      font-size: 22px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #F5E6D3;
+    }
+    .horario-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #F5E6D3;
+    }
+    .horario-row:last-child { border-bottom: none; }
+    .horario-dia {
+      font-weight: 700;
+      color: var(--cafe);
+      font-size: 15px;
+    }
+    .horario-tiempo {
+      color: #7A4B2C;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .horario-tiempo.abierto {
+      color: #2a7a3a;
+      font-weight: 700;
+    }
+    .horario-amenities {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .amenity {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFF8F0;
+      border: 1px solid #ecd8c5;
+      color: #7A4B2C;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 20px;
+    }
+    .amenity span:first-child { font-size: 16px; }
+    .mapa-wrap {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(59,35,20,0.1);
+      border: 1px solid #ecd8c5;
+    }
+    .mapa-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 380px;
+      border: none;
+    }
+    .mapa-direccion {
+      background: var(--cafe);
+      color: #d4bea6;
+      padding: 18px 22px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mapa-direccion span:first-child { font-size: 20px; flex-shrink: 0; }
+    .mapa-direccion strong { color: #FFF8F0; display: block; font-size: 15px; }
+
+    /* ========== CTA BANNER ========== */
+    #cta {
+      background: linear-gradient(135deg, #3B2314 0%, #5c3520 50%, #3B2314 100%);
+      padding: 90px 5%;
+      text-align: center;
+    }
+    #cta h2 {
+      color: #FFF8F0;
+      font-size: clamp(30px, 5vw, 50px);
+      margin-bottom: 16px;
+    }
+    #cta p {
+      color: #d4bea6;
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-cta-tel {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #C68B59, #B8812E);
+      color: #FFF8F0;
+      text-decoration: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: 700;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(198,139,89,0.4);
+    }
+    .btn-cta-tel:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(198,139,89,0.55);
+    }
+    .btn-cta-insta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: #d4bea6;
+      text-decoration: none;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: 400;
+      border: 1.5px solid rgba(198,139,89,0.35);
+      transition: all 0.2s;
+    }
+    .btn-cta-insta:hover {
+      border-color: #C68B59;
+      color: #C68B59;
+    }
+    .cta-address {
+      margin-top: 36px;
+      color: rgba(198,139,89,0.7);
+      font-size: 14px;
+    }
+    .cta-address span { margin: 0 6px; }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: #1a0a03;
+      padding: 50px 5% 30px;
+      border-top: 1px solid rgba(198,139,89,0.15);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto 40px;
+    }
+    .footer-brand .nav-logo-name { font-size: 22px; }
+    .footer-brand p {
+      color: #8a6a55;
+      font-size: 14px;
+      margin-top: 12px;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      color: #FFF8F0;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col ul li {
+      color: #8a6a55;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .footer-col ul li a {
+      color: #8a6a55;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: #C68B59; }
+    .footer-bottom {
+      border-top: 1px solid rgba(198,139,89,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-bottom p {
+      color: #5a3d2e;
+      font-size: 13px;
+    }
+    .footer-bottom a {
+      color: #C68B59;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    /* ========== GALERÍA ========== */
+    #galeria {
+      background: var(--claro);
+      padding: 90px 5%;
+    }
+    #galeria .section-header h2 { color: var(--cafe); }
+    #galeria .section-header p { color: #7A4B2C; }
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .galeria-item {
+      border-radius: 14px;
+      overflow: hidden;
+      background-color: #C68B59;
+      background-size: cover;
+      background-position: center;
+      min-height: 220px;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 4px 16px rgba(59,35,20,0.12);
+    }
+    .galeria-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 36px rgba(59,35,20,0.22);
+    }
+    .galeria-item.tall {
+      grid-row: span 2;
+      min-height: 454px;
+    }
+    /* Fallback banner — foto hamburgesa y pintxos estrella */
+    .estrella-banner {
+      background: linear-gradient(135deg, #3B2314, #5c3520);
+      border-radius: 18px;
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 44px;
+      border: 1px solid rgba(198,139,89,0.25);
+    }
+    .estrella-photo {
+      width: 200px;
+      height: 160px;
+      min-height: 160px;
+      background-color: #5c3520;
+      background-image: url('img/hamburguesa.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    /* ========== ANIMACIONES ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      #hero { padding-top: 90px; min-height: 95vh; }
+      .hero-deco { font-size: 140px; }
+
+      #sobre {
+        flex-direction: column;
+        gap: 40px;
+        padding: 70px 5%;
+      }
+      .sobre-stats {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .estrella-banner {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 24px;
+        text-align: center;
+      }
+      .reposteria-banner {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 24px;
+        text-align: center;
+      }
+
+      .esp-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .confianza-main { flex-direction: column; align-items: center; }
+      .confianza-badge-grande { max-width: 100%; width: 100%; }
+
+      .horario-mapa {
+        grid-template-columns: 1fr;
+      }
+      .mapa-wrap iframe { height: 280px; }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      /* Fallback mobile para animaciones */
+      .fade-in {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn-primary, .btn-outline, .btn-cta-tel, .btn-cta-insta {
+        padding: 14px 24px;
+        font-size: 15px;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+      .hero-btns, .cta-btns { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; }
+      .confianza-strip { padding: 24px 20px; }
+      .strip-pills { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon">☕</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Cafetería Olimpia</span>
+        <span class="nav-logo-sub">Galdakao</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Nosotros</a></li>
+      <li><a href="#especialidades">Especialidades</a></li>
+      <li><a href="#confianza">Valoraciones</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="tel:+34944570882" class="nav-cta">Llamar ahora</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre" onclick="closeMobileMenu()">Nosotros</a>
+    <a href="#especialidades" onclick="closeMobileMenu()">Especialidades</a>
+    <a href="#confianza" onclick="closeMobileMenu()">Valoraciones</a>
+    <a href="#horario" onclick="closeMobileMenu()">Horario</a>
+    <a href="tel:+34944570882" class="mobile-cta">📞 Llamar ahora</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero">
+    <div class="hero-deco">☕</div>
+    <div class="hero-content">
+      <div class="hero-badge-top">
+        🏆 <span>#1 Cafetería en Galdakao</span>
+      </div>
+      <h1>Tu café de toda<br><em>la vida,</em> mejor que nunca</h1>
+      <p class="hero-sub">Pintxos, menú del día y repostería artesanal.<br>Abiertos desde las 6 de la mañana, todos los días.</p>
+      <div class="hero-stars">
+        <span class="star-icon">★</span>
+        <span class="star-icon">★</span>
+        <span class="star-icon">★</span>
+        <span class="star-icon">★</span>
+        <span class="star-icon" style="opacity:0.55">★</span>
+        <span class="hero-stars-label"><strong>4.5/5</strong> en Google · 606 reseñas</span>
+      </div>
+      <div class="hero-btns">
+        <a href="tel:+34944570882" class="btn-primary">📞 Llamar ahora</a>
+        <a href="#especialidades" class="btn-outline">Ver especialidades</a>
+      </div>
+    </div>
+    <div class="hero-scroll">↓</div>
+  </section>
+
+  <!-- ========== SOBRE NOSOTROS ========== -->
+  <section id="sobre">
+    <div class="sobre-photo fade-in" role="img" aria-label="Interior de Cafetería Olimpia" style="background-image:url('img/interior-1.jpg');"></div>
+    <div class="sobre-text fade-in">
+      <div class="section-label">Sobre nosotros</div>
+      <h2>El rincón de Galdakao donde empiezan los días buenos</h2>
+      <p>En Cafetería Olimpia llevamos años siendo parte del ritmo diario de Galdakao. Abrimos antes que nadie, a las 6 de la mañana, para que el primer café del día sea siempre el mejor.</p>
+      <p>Desde el desayuno hasta la comida, ofrecemos una propuesta completa: pintxos variados, menú del día, platos por encargo y una repostería artesanal que no encontrarás en otro sitio.</p>
+      <div class="sobre-pills">
+        <span class="pill">🐕 Dog-friendly</span>
+        <span class="pill">🌿 Terraza</span>
+        <span class="pill">👨‍👩‍👧 Apto familias</span>
+        <span class="pill">♿ Accesible</span>
+        <span class="pill">📸 @olimpia.cafeteria</span>
+      </div>
+    </div>
+    <div class="sobre-stats fade-in">
+      <div class="stat-card">
+        <span class="stat-num">4.5★</span>
+        <span class="stat-label">Valoración en Google</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">606</span>
+        <span class="stat-label">Reseñas verificadas</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">#1</span>
+        <span class="stat-label">Cafetería en Galdakao</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">6:00</span>
+        <span class="stat-label">Abrimos cada mañana</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ESPECIALIDADES ========== -->
+  <section id="especialidades">
+    <div class="section-header fade-in">
+      <div class="section-label">Lo que nos hace especiales</div>
+      <h2>Carta y especialidades</h2>
+      <p>Una propuesta amplia para cada momento del día, con productos de calidad y elaboración propia.</p>
+    </div>
+
+    <!-- Producto estrella -->
+    <div class="estrella-banner fade-in">
+      <div class="estrella-photo" role="img" aria-label="Hamburguesa de carne de etiqueta de Cafetería Olimpia"></div>
+      <div class="estrella-content">
+        <span class="estrella-tag">⭐ Plato estrella</span>
+        <h3>Hamburguesas de carne de etiqueta</h3>
+        <p>Elaboradas con carne seleccionada de máxima calidad, nuestras hamburguesas son uno de los platos más pedidos. Materia prima que marca la diferencia.</p>
+      </div>
+    </div>
+
+    <!-- Grid de especialidades -->
+    <div class="esp-grid">
+      <div class="esp-card fade-in">
+        <span class="esp-emoji">🥢</span>
+        <h3>Pintxos y porciones</h3>
+        <p>Una amplia selección de pintxos y raciones variadas disponibles durante todo el día. Siempre frescos, siempre sabrosos.</p>
+      </div>
+      <div class="esp-card fade-in">
+        <span class="esp-emoji">🍽️</span>
+        <h3>Menú del día</h3>
+        <p>Menú completo para la comida, elaborado con productos frescos. También preparamos comidas por encargo para grupos y eventos.</p>
+      </div>
+      <div class="esp-card fade-in">
+        <span class="esp-emoji">🍛</span>
+        <h3>Curry de pollo de corral</h3>
+        <p>Un clásico de la casa con un toque diferente. Pollo de corral con curry especiado, uno de los favoritos de los habituales.</p>
+      </div>
+      <div class="esp-card fade-in">
+        <span class="esp-emoji">🥚</span>
+        <h3>Tortilla de patata</h3>
+        <p>Hecha a mano, jugosa por dentro y dorada por fuera. Un clásico que nunca falla y que en Olimpia se cuida hasta el último detalle.</p>
+      </div>
+      <div class="esp-card fade-in">
+        <span class="esp-emoji">☕</span>
+        <h3>Café de especialidad</h3>
+        <p>Selección cuidada de cafés para empezar el día como se merece. Solo, con leche, cortado o como más te guste.</p>
+      </div>
+      <div class="esp-card fade-in">
+        <span class="esp-emoji">🥐</span>
+        <h3>Croissants y repostería</h3>
+        <p>Bollería y croissants frescos para el desayuno. El complemento perfecto para el primer café del día.</p>
+      </div>
+    </div>
+
+    <!-- Banner repostería -->
+    <div class="reposteria-banner fade-in">
+      <div class="reposteria-icon">🎂</div>
+      <div class="reposteria-content">
+        <h3>Tartas y pasteles artesanales</h3>
+        <p>Elaboración propia con recetas cuidadas. Nuestras tartas son uno de los grandes atractivos de Olimpia — prueba la cheesecake o el fruitcake y entiende por qué somos los favoritos de Galdakao.</p>
+        <div class="reposteria-tags">
+          <span class="r-tag">🍰 Cheesecake</span>
+          <span class="r-tag">🎂 Fruitcake</span>
+          <span class="r-tag">✨ Elaboración propia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONFIANZA ========== -->
+  <section id="confianza">
+    <div class="section-header fade-in">
+      <div class="section-label">Lo que dicen los datos</div>
+      <h2>La cafetería más valorada de Galdakao</h2>
+      <p>Los números hablan por sí solos: más de 600 clientes han compartido su experiencia en Olimpia.</p>
+    </div>
+
+    <div class="confianza-main">
+      <div class="confianza-badge-grande fade-in">
+        <div class="badge-platform badge-plataforma-google">
+          ⭐ Google Maps
+        </div>
+        <span class="badge-score">4.5</span>
+        <div class="badge-stars-row">
+          <span>★</span><span>★</span><span>★</span><span>★</span>
+          <span style="opacity:0.45">★</span>
+        </div>
+        <p class="badge-desc">
+          <strong>606 reseñas verificadas</strong><br>
+          en Google Maps
+        </p>
+      </div>
+
+      <div class="confianza-badge-grande fade-in">
+        <div class="badge-platform badge-plataforma-guru">
+          🏅 Restaurant Guru
+        </div>
+        <span class="badge-rank">#1</span>
+        <p class="badge-desc">
+          <strong>El primero de 48</strong><br>
+          cafeterías en Galdakao
+        </p>
+      </div>
+    </div>
+
+    <div class="confianza-strip fade-in">
+      <p><strong>Más de 600 clientes nos recomiendan en Google</strong></p>
+      <p style="margin-top:8px">Somos la referencia de Galdakao cuando se trata de un buen café, unos pintxos de calidad y un servicio que siempre responde.</p>
+      <div class="strip-pills">
+        <div class="strip-pill"><span>🐕</span><span>Dog-friendly</span></div>
+        <div class="strip-pill"><span>🌿</span><span>Con terraza</span></div>
+        <div class="strip-pill"><span>👨‍👩‍👧</span><span>Apto familias</span></div>
+        <div class="strip-pill"><span>♿</span><span>Accesible</span></div>
+        <div class="strip-pill"><span>⏰</span><span>Desde las 6:00h</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALERÍA ========== -->
+  <section id="galeria">
+    <div class="section-header fade-in">
+      <div class="section-label">Nuestros platos</div>
+      <h2>Galería de la cocina</h2>
+      <p>Pintxos, platos del día y especialidades que nos hacen únicos en Galdakao.</p>
+    </div>
+    <div class="galeria-grid">
+      <div class="galeria-item tall fade-in" style="background-image:url('img/interior-2.jpg');" role="img" aria-label="Interior de Cafetería Olimpia"></div>
+      <div class="galeria-item fade-in" style="background-image:url('img/pintxos-1.jpg');" role="img" aria-label="Pintxos de Cafetería Olimpia"></div>
+      <div class="galeria-item fade-in" style="background-image:url('img/pintxos-2.jpg');" role="img" aria-label="Pintxos variados de Cafetería Olimpia"></div>
+      <div class="galeria-item fade-in" style="background-image:url('img/club-sandwich.jpg');" role="img" aria-label="Club sandwich de Cafetería Olimpia"></div>
+      <div class="galeria-item fade-in" style="background-image:url('img/comida-1.jpg');" role="img" aria-label="Plato de Cafetería Olimpia"></div>
+      <div class="galeria-item fade-in" style="background-image:url('img/comida-2.jpg');" role="img" aria-label="Plato de Cafetería Olimpia"></div>
+      <div class="galeria-item fade-in" style="background-image:url('img/comida-3.jpg');" role="img" aria-label="Plato de Cafetería Olimpia"></div>
+      <div class="galeria-item fade-in" style="background-image:url('img/comida-4.jpg');" role="img" aria-label="Plato de Cafetería Olimpia"></div>
+      <div class="galeria-item fade-in" style="background-image:url('img/comida-5.jpg');" role="img" aria-label="Plato de Cafetería Olimpia"></div>
+    </div>
+  </section>
+
+  <!-- ========== HORARIO + MAPA ========== -->
+  <section id="horario">
+    <div class="section-header fade-in">
+      <div class="section-label">Visítanos</div>
+      <h2>Horario y ubicación</h2>
+      <p>Estamos en el corazón de Galdakao, fácil de aparcar y accesibles para todos.</p>
+    </div>
+
+    <div class="horario-mapa">
+      <div class="horario-box fade-in">
+        <h3>⏰ Horario de apertura</h3>
+        <div class="horario-row">
+          <span class="horario-dia">Lunes — Viernes</span>
+          <span class="horario-tiempo abierto">6:00 – 21:00</span>
+        </div>
+        <div class="horario-row">
+          <span class="horario-dia">Sábado</span>
+          <span class="horario-tiempo abierto">7:00 – 15:00</span>
+        </div>
+        <div class="horario-row">
+          <span class="horario-dia">Domingo</span>
+          <span class="horario-tiempo abierto">8:00 – 15:00</span>
+        </div>
+
+        <div class="horario-amenities">
+          <div class="amenity"><span>🐕</span><span>Dog-friendly</span></div>
+          <div class="amenity"><span>🌿</span><span>Terraza</span></div>
+          <div class="amenity"><span>♿</span><span>Accesible</span></div>
+          <div class="amenity"><span>👨‍👩‍👧</span><span>Familias</span></div>
+        </div>
+
+        <div style="margin-top:24px; padding-top:20px; border-top:2px solid #F5E6D3;">
+          <a href="tel:+34944570882" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;padding:13px 26px;">
+            📞 +34 944 57 08 82
+          </a>
+        </div>
+      </div>
+
+      <div class="mapa-wrap fade-in">
+        <iframe
+          src="https://maps.google.com/maps?q=Cafeteria+Olimpia,+Zamakoa+Kalea+9,+Galdakao,+Bizkaia&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación Cafetería Olimpia Galdakao">
+        </iframe>
+        <div class="mapa-direccion">
+          <span>📍</span>
+          <div>
+            <strong>Zamakoa Kalea, 9, 1</strong>
+            48960 Galdakao, Bizkaia
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BANNER ========== -->
+  <section id="cta">
+    <h2 class="fade-in">¿Nos visitas mañana?</h2>
+    <p class="fade-in">Estaremos aquí desde las 6 de la mañana, con el café listo y los pintxos recién hechos.</p>
+    <div class="cta-btns fade-in">
+      <a href="tel:+34944570882" class="btn-cta-tel">
+        📞 Llamar ahora
+      </a>
+      <a href="https://www.instagram.com/olimpia.cafeteria" target="_blank" rel="noopener" class="btn-cta-insta">
+        📸 @olimpia.cafeteria
+      </a>
+    </div>
+    <p class="cta-address fade-in">
+      <span>📍 Zamakoa Kalea, 9</span>
+      <span>·</span>
+      <span>Galdakao, Bizkaia</span>
+      <span>·</span>
+      <span>⏰ L-V 6:00–21:00</span>
+    </p>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="text-decoration:none;">
+          <div class="nav-logo-icon">☕</div>
+          <div class="nav-logo-text">
+            <span class="nav-logo-name">Cafetería Olimpia</span>
+            <span class="nav-logo-sub">Olimpia Kafetegia</span>
+          </div>
+        </div>
+        <p>La cafetería más valorada de Galdakao. Pintxos, menú del día y repostería artesanal desde las 6 de la mañana.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Horario</h4>
+        <ul>
+          <li>Lunes – Viernes: 6:00 – 21:00</li>
+          <li>Sábado: 7:00 – 15:00</li>
+          <li>Domingo: 8:00 – 15:00</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+34944570882">+34 944 57 08 82</a></li>
+          <li>Zamakoa Kalea, 9, 1</li>
+          <li>48960 Galdakao, Bizkaia</li>
+          <li><a href="https://www.instagram.com/olimpia.cafeteria" target="_blank">@olimpia.cafeteria</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Cafetería Olimpia · Galdakao</p>
+      <a href="#hero">Subir arriba ↑</a>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // Menú hamburguesa
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', closeMobileMenu);
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+
+    // Animaciones fade-in con Intersection Observer
+    const fadeEls = document.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      fadeEls.forEach(el => obs.observe(el));
+    } else {
+      // Fallback sin IntersectionObserver
+      fadeEls.forEach(el => el.classList.add('visible'));
+    }
+
+    // Fallback timer: forzar visible tras 1.5s (seguridad mobile)
+    setTimeout(() => {
+      fadeEls.forEach(el => el.classList.add('visible'));
+    }, 1500);
+  </script>
+
+</body>
+</html>
