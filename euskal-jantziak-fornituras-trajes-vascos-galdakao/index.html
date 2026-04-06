@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Euskal Jantziak — Trajes Vascos Tradicionales | Galdakao</title>
+  <meta name="description" content="Tienda especializada en trajes regionales vascos desde 1982. Trajes para mujer, hombre y niños. Abarkas, gerrikos, corpiños y accesorios tradicionales en Galdakao, Bizkaia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0a07;
+      --bg-card: #1a1208;
+      --bg-mid: #221809;
+      --bg-light: #2c200d;
+      --accent: #c8192c;
+      --accent-warm: #e63946;
+      --gold: #c9a84c;
+      --white: #f5f0e8;
+      --text-muted: #8a7a65;
+      --green-basque: #2d6a4f;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Jost', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ─── CUSTOM CURSOR ─── */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transition: transform 0.1s;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(200,25,44,0.4);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s var(--ease-smooth), height 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
+    }
+    .cursor-ring.expanded {
+      width: 70px; height: 70px;
+      border-color: rgba(200,25,44,0.7);
+      background: rgba(200,25,44,0.05);
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(15,10,7,0.92);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(200,25,44,0.12);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      color: var(--white);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo .logo-img {
+      height: 40px; width: auto;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(245,240,232,0.65);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent) !important;
+      color: var(--accent) !important;
+      padding: 10px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+    /* ─── HAMBURGER MOBILE ─── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center top;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(15,10,7,0.92) 0%, rgba(15,10,7,0.55) 50%, rgba(15,10,7,0.25) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+    /* Red stripe accent on left edge — ikurriña inspired */
+    .hero-stripe {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(to bottom, var(--accent) 0%, var(--green-basque) 50%, var(--accent) 100%);
+      z-index: 3;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,240,232,0.6);
+      max-width: 480px; line-height: 1.7; margin-bottom: 52px;
+      font-weight: 300;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 40px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--white);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: #a00f1f; transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-ghost {
+      color: rgba(245,240,232,0.6); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(245,240,232,0.2);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow { border-color: var(--accent); transform: rotate(45deg); }
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--text-muted); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 70px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-section {
+      border-top: 1px solid rgba(200,25,44,0.15);
+      border-bottom: 1px solid rgba(200,25,44,0.15);
+      overflow: hidden; padding: 20px 0; background: var(--bg-card);
+    }
+    .marquee-track {
+      display: flex; gap: 0; white-space: nowrap;
+      animation: marquee 25s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 30px;
+      padding: 0 40px;
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-style: italic; color: rgba(245,240,232,0.25);
+      letter-spacing: 0.05em;
+    }
+    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 130px 60px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 4.2rem);
+      font-weight: 300; line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* ─── STATS ─── */
+    .stats-section {
+      background: var(--bg-card);
+      padding: 100px 60px;
+      border-top: 1px solid rgba(200,25,44,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 60px 50px; background: var(--bg-card);
+      border: 1px solid rgba(200,25,44,0.08);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(200,25,44,0.3); }
+    .stat-number {
+      font-family: var(--font-serif); font-size: 4.5rem;
+      font-weight: 300; line-height: 1; color: var(--white);
+      margin-bottom: 12px; letter-spacing: -0.02em;
+    }
+    .stat-number .stat-suffix { color: var(--accent); }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 400;
+    }
+
+    /* ─── GALLERY / COLECCION ─── */
+    .projects-section { background: var(--bg); }
+    .projects-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .projects-header .section-title { max-width: 500px; }
+    .view-all {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--accent);
+      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      transition: gap 0.3s; padding-bottom: 4px;
+      border-bottom: 1px solid rgba(200,25,44,0.3);
+      white-space: nowrap;
+    }
+    .view-all:hover { gap: 20px; border-color: var(--accent); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: none;
+    }
+    .project-card:first-child {
+      grid-column: span 2; aspect-ratio: 21/8;
+    }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover;
+      background: var(--bg-mid);
+      transition: transform 0.8s var(--ease-out);
+    }
+    .project-card:hover .project-img { transform: scale(1.06); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,10,7,0.9) 0%, rgba(15,10,7,0.1) 60%, transparent 100%);
+      opacity: 0.6; transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 0.85; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 40px; transform: translateY(15px);
+      transition: transform 0.5s var(--ease-out);
+    }
+    .project-card:hover .project-info { transform: translateY(0); }
+    .project-cat {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px; font-weight: 400;
+    }
+    .project-name {
+      font-family: var(--font-serif); font-size: 1.9rem;
+      font-weight: 300; line-height: 1.15; margin-bottom: 14px;
+    }
+    .project-meta {
+      font-size: 0.73rem; color: rgba(245,240,232,0.45);
+      letter-spacing: 0.1em; opacity: 0;
+      transition: opacity 0.5s 0.1s;
+    }
+    .project-card:hover .project-meta { opacity: 1; }
+    .project-arrow {
+      position: absolute; top: 36px; right: 36px;
+      width: 50px; height: 50px;
+      border: 1px solid rgba(245,240,232,0.15);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translate(10px, -10px);
+      transition: all 0.4s var(--ease-out);
+    }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
+
+    /* ─── ABOUT ─── */
+    .about-section {
+      background: var(--bg-card);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 700px;
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-badge {
+      position: absolute; bottom: 48px; left: 48px;
+      background: var(--bg); border: 1px solid rgba(200,25,44,0.25);
+      padding: 24px 30px; max-width: 240px;
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 3rem;
+      color: var(--accent); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: rgba(245,240,232,0.5); margin-top: 6px;
+    }
+    .about-content {
+      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(245,240,232,0.65); margin: 32px 0 52px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--white); font-weight: 400; }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 20px; }
+    .about-value {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border: 1px solid rgba(200,25,44,0.06);
+      transition: border-color 0.4s;
+    }
+    .about-value:hover { border-color: rgba(200,25,44,0.2); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      color: var(--accent); opacity: 0.5; flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .value-text h4 {
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 400; margin-bottom: 4px;
+    }
+    .value-text p {
+      font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
+    }
+
+    /* ─── SERVICES / COLECCIONES ─── */
+    .services-section { background: var(--bg); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1400px; margin: 60px auto 0;
+    }
+    .service-card {
+      padding: 60px 48px; background: var(--bg);
+      border: 1px solid rgba(200,25,44,0.07);
+      position: relative; overflow: hidden;
+      transition: background 0.5s, border-color 0.5s;
+    }
+    .service-card:hover { background: var(--bg-mid); border-color: rgba(200,25,44,0.2); }
+    .service-icon {
+      width: 52px; height: 52px; margin-bottom: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(200,25,44,0.2); color: var(--accent);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.7rem;
+      font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+    }
+    .service-card p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.75;
+      font-weight: 300;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 32px; text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(200,25,44,0.5); transition: color 0.3s, gap 0.3s;
+    }
+    .service-link:hover { color: var(--accent); gap: 16px; }
+    .service-number {
+      position: absolute; top: 30px; right: 36px;
+      font-family: var(--font-serif); font-size: 5rem;
+      font-weight: 300; color: rgba(200,25,44,0.04);
+      line-height: 1; transition: color 0.5s;
+    }
+    .service-card:hover .service-number { color: rgba(200,25,44,0.08); }
+
+    /* ─── INFANTIL HIGHLIGHT ─── */
+    .infantil-section {
+      background: var(--bg-card);
+      padding: 100px 60px;
+    }
+    .infantil-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .infantil-images {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+    }
+    .infantil-img {
+      aspect-ratio: 3/4; overflow: hidden;
+    }
+    .infantil-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s var(--ease-out);
+    }
+    .infantil-img:hover img { transform: scale(1.05); }
+    .infantil-content {}
+    .infantil-tags {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px;
+    }
+    .tag {
+      padding: 8px 18px;
+      border: 1px solid rgba(200,25,44,0.2);
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(245,240,232,0.55);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-section {
+      background: var(--bg-mid); position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '"'; position: absolute; top: -60px; left: 40px;
+      font-family: var(--font-serif); font-size: 30rem;
+      color: rgba(200,25,44,0.03); line-height: 1; pointer-events: none;
+    }
+    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 70px;
+    }
+    .testimonial-card {
+      padding: 56px 44px; background: rgba(15,10,7,0.5);
+      border: 1px solid rgba(200,25,44,0.07);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .testimonial-card:hover { border-color: rgba(200,25,44,0.2); background: rgba(15,10,7,0.8); }
+    .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
+    .star {
+      width: 12px; height: 12px; background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif); font-size: 1.2rem;
+      font-style: italic; font-weight: 300;
+      line-height: 1.7; color: rgba(245,240,232,0.8);
+      margin-bottom: 36px;
+    }
+    .testimonial-divider {
+      width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4;
+    }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; margin-bottom: 4px;
+    }
+    .testimonial-author span {
+      font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
+    }
+
+    /* ─── UBICACION / MAPA ─── */
+    .location-section {
+      background: var(--bg);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .location-map {
+      min-height: 500px; position: relative; overflow: hidden;
+    }
+    .location-map iframe {
+      width: 100%; height: 100%; border: none; filter: grayscale(30%) contrast(1.1);
+    }
+    .location-info {
+      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+      background: var(--bg-card);
+    }
+    .location-details { margin-top: 48px; display: flex; flex-direction: column; gap: 28px; }
+    .location-detail {
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .detail-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid rgba(200,25,44,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .detail-content h5 {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 6px; font-weight: 400;
+    }
+    .detail-content p {
+      font-size: 0.9rem; color: rgba(245,240,232,0.65); font-weight: 300;
+      line-height: 1.6;
+    }
+    .detail-content a {
+      color: rgba(245,240,232,0.65); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .detail-content a:hover { color: var(--accent); }
+
+    /* ─── HORARIO TABLE ─── */
+    .horario-table {
+      margin-top: 20px; width: 100%;
+    }
+    .horario-row {
+      display: flex; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid rgba(200,25,44,0.06);
+      font-size: 0.85rem; color: rgba(245,240,232,0.55);
+    }
+    .horario-row:last-child { border-bottom: none; }
+    .horario-row .dia { font-weight: 400; color: rgba(245,240,232,0.7); }
+    .horario-row .hora { color: var(--text-muted); }
+
+    /* ─── CTA BANNER ─── */
+    .cta-section {
+      background: var(--accent); padding: 110px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
+      font-weight: 300; color: var(--white); line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(245,240,232,0.75); margin-top: 16px; font-weight: 300;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--bg); color: var(--white);
+      text-decoration: none; padding: 20px 48px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--bg-mid); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg); padding: 90px 60px 50px;
+      border-top: 1px solid rgba(200,25,44,0.08);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 70px;
+    }
+    .footer-brand .nav-logo { font-size: 1.8rem; margin-bottom: 22px; display: inline-flex; }
+    .footer-logo-img { height: 50px; width: auto; margin-bottom: 16px; }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.05rem; color: rgba(245,240,232,0.35);
+      line-height: 1.6; max-width: 280px; margin-bottom: 36px;
+    }
+    .footer-social { display: flex; gap: 14px; }
+    .social-link {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(245,240,232,0.1);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(245,240,232,0.4);
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-col h4 {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px; font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(245,240,232,0.4);
+      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,240,232,0.06);
+      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 0.75rem; color: rgba(245,240,232,0.25); letter-spacing: 0.05em; }
+    .footer-legal { display: flex; gap: 28px; }
+    .footer-legal a {
+      font-size: 0.72rem; color: rgba(245,240,232,0.2);
+      text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+    }
+    .footer-legal a:hover { color: var(--text-muted); }
+
+    /* ─── LAUBURU DECORATIVO ─── */
+    .lauburu-divider {
+      text-align: center; padding: 20px;
+      color: rgba(200,25,44,0.2); font-size: 2rem;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ─── LOADER ─── */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--bg); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2rem;
+      letter-spacing: 0.2em; color: var(--white); text-align: center;
+    }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(245,240,232,0.1);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .infantil-inner { grid-template-columns: 1fr; gap: 50px; }
+      .location-section { grid-template-columns: 1fr; }
+      .location-map { min-height: 350px; }
+    }
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none; }
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 300px; }
+      .about-content { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+      .infantil-section { padding: 80px 24px; }
+      .location-info { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-logo">Euskal <span>Jantziak</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="https://www.trajesvascos.com/img/logo-1773225705.jpg" alt="Euskal Jantziak logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+    <span style="display:none">Euskal <span style="color:var(--accent)">Jantziak</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#coleccion">Colección</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Productos</a></li>
+    <li><a href="#contacto" class="nav-cta">Visitar tienda</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#coleccion" onclick="closeMobile()">Colección</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#servicios" onclick="closeMobile()">Productos</a>
+  <a href="#contacto" onclick="closeMobile()">Visitar tienda</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-stripe"></div>
+  <div class="hero-bg" id="heroBg" style="background-image: url('https://www.trajesvascos.com/3329-home_default/traje-vasco-mujer-granate-completo-con-corpiño-falda-toquilla-y-pañuelo.jpg');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Tradición vasca · Desde 1982 · Galdakao, Bizkaia</p>
+    <h1 class="hero-title">
+      Trajes vascos<br><em>auténticos</em>
+    </h1>
+    <p class="hero-sub">
+      Especialistas en trajes regionales vascos para mujer, hombre y niños. Más de 40 años vistiendo la tradición del País Vasco con orgullo y maestría artesanal.
+    </p>
+    <div class="hero-actions">
+      <a href="#coleccion" class="btn-primary">
+        <span>Ver colección</span>
+        <span>→</span>
+      </a>
+      <a href="#nosotros" class="btn-ghost">
+        <span>Nuestra historia</span>
+        <div class="btn-ghost-arrow">↗</div>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Trajes Mujer</span>
+    <span class="marquee-item"><span class="dot"></span>Trajes Hombre</span>
+    <span class="marquee-item"><span class="dot"></span>Trajes Infantiles</span>
+    <span class="marquee-item"><span class="dot"></span>Abarkas Tradicionales</span>
+    <span class="marquee-item"><span class="dot"></span>Gerrikos y Fajas</span>
+    <span class="marquee-item"><span class="dot"></span>Corpiños Vascos</span>
+    <span class="marquee-item"><span class="dot"></span>Eguzkilore</span>
+    <span class="marquee-item"><span class="dot"></span>Txapelas</span>
+    <span class="marquee-item"><span class="dot"></span>Trajes Mujer</span>
+    <span class="marquee-item"><span class="dot"></span>Trajes Hombre</span>
+    <span class="marquee-item"><span class="dot"></span>Trajes Infantiles</span>
+    <span class="marquee-item"><span class="dot"></span>Abarkas Tradicionales</span>
+    <span class="marquee-item"><span class="dot"></span>Gerrikos y Fajas</span>
+    <span class="marquee-item"><span class="dot"></span>Corpiños Vascos</span>
+    <span class="marquee-item"><span class="dot"></span>Eguzkilore</span>
+    <span class="marquee-item"><span class="dot"></span>Txapelas</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="40">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Años de tradición</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="127">0</span></div>
+      <div class="stat-label">Reseñas en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">.9★</span></div>
+      <div class="stat-label">Valoración media</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div>
+      <div class="stat-label">Artesanía vasca</div>
+    </div>
+  </div>
+</div>
+
+<!-- COLECCION / GALLERY -->
+<section class="projects-section" id="coleccion">
+  <div class="projects-header reveal">
+    <div>
+      <p class="section-label">Nuestra colección</p>
+      <h2 class="section-title reveal reveal-delay-1">Trajes que<br><em>honran la tradición</em></h2>
+    </div>
+    <a href="https://www.trajesvascos.com" target="_blank" class="view-all reveal">Ver tienda online →</a>
+  </div>
+  <div class="projects-grid">
+    <!-- Hero card: mujer granate -->
+    <div class="project-card">
+      <img class="project-img" src="https://www.trajesvascos.com/3532-home_default/traje-vasco-mujer-granate-con-falda-bordada-de-eguzkilore-y-pañuelo-floral.jpg" alt="Traje vasco mujer granate con eguzkilore" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Colección Mujer · Granate</p>
+        <h3 class="project-name">Traje Vasco Granate con Eguzkilore</h3>
+        <p class="project-meta">Falda bordada · Corpiño · Pañuelo floral incluido</p>
+      </div>
+    </div>
+    <!-- Hombre azul -->
+    <div class="project-card">
+      <img class="project-img" src="https://www.trajesvascos.com/3671-home_default/traje-vasco-hombre-completo-chaleco-granate.jpg" alt="Traje vasco hombre completo chaleco granate" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Colección Hombre · Clásico</p>
+        <h3 class="project-name">Traje Hombre con Chaleco Granate</h3>
+        <p class="project-meta">Chaleco · Camisa · Gerriko · Txapela</p>
+      </div>
+    </div>
+    <!-- Mujer azul -->
+    <div class="project-card">
+      <img class="project-img" src="https://www.trajesvascos.com/3405-home_default/traje-vasco-mujer-azul-completo-con-falda-delantal-y-blusa-tradicional.jpg" alt="Traje vasco mujer azul completo" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Colección Mujer · Azul</p>
+        <h3 class="project-name">Traje Vasco Azul Completo</h3>
+        <p class="project-meta">Falda · Delantal · Blusa tradicional</p>
+      </div>
+    </div>
+    <!-- Hombre arrantzale -->
+    <div class="project-card">
+      <img class="project-img" src="https://www.trajesvascos.com/3690-home_default/traje-vasco-hombre-arrantzale-azul.jpg" alt="Traje vasco hombre arrantzale azul" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Colección Hombre · Arrantzale</p>
+        <h3 class="project-name">Traje Arrantzale Azul</h3>
+        <p class="project-meta">Estilo pescador tradicional vasco</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section" id="nosotros">
+  <div class="about-visual">
+    <img src="https://www.trajesvascos.com/3315-home_default/conjunto-de-traje-vasco-para-mujer-con-blusa-bordada-falda-delantal-y-pañuelo.jpg" alt="Conjunto traje vasco mujer con blusa bordada" loading="lazy">
+    <div class="about-badge">
+      <div class="about-badge-year">1982</div>
+      <div class="about-badge-text">Tradición vasca desde el primer día</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre nosotros</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Más de 40 años<br><em>vistiendo Euskal Herria</em>
+    </h2>
+    <div class="about-divider reveal"></div>
+    <p class="about-body reveal reveal-delay-2">
+      Euskal Jantziak Fornituras es la referencia en trajes regionales vascos en Bizkaia. Desde 1982, en el corazón de Galdakao, llevamos la tradición del pueblo vasco a cada festividad, romería y celebración.<br><br><strong>Cada traje es una pieza auténtica.</strong> Trabajamos con los mejores materiales y fornituras para que cada neski y mutil lleve con orgullo el traje vasco. Conocidos en toda Euskal Herria y hasta en EITB.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h4>Autenticidad vasca</h4>
+          <p>Trajes, accesorios y fornituras 100% fieles a la tradición de Euskal Herria</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h4>Asesoramiento experto</h4>
+          <p>Más de cuatro décadas de experiencia para guiarte en la elección perfecta</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h4>Envío en 24-48h</h4>
+          <p>Tienda física en Galdakao y tienda online con envío gratis desde 85€</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES / COLECCIONES -->
+<section class="services-section" id="servicios">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Lo que ofrecemos</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:560px">
+      Tradición vasca para <em>toda la familia</em>
+    </h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <h3>Trajes de Mujer</h3>
+        <p>Conjuntos completos para neska: blusa bordada, falda, delantal, corpiño, toquilla y pañuelo. También piezas sueltas para completar tu traje tradicional vasco.</p>
+        <a href="https://www.trajesvascos.com/mujer.html" target="_blank" class="service-link">Ver colección →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <h3>Trajes de Hombre</h3>
+        <p>Conjuntos para mutil: camisa de lorzas, chaleco, gerriko, pañuelo y txapela. Estilos como el arrantzale o el traje regional clásico. Kaikus y abarkas artesanales.</p>
+        <a href="https://www.trajesvascos.com/hombre.html" target="_blank" class="service-link">Ver colección →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3>Trajes Infantiles</h3>
+        <p>Conjuntos completos para los más pequeños: niñas y niños con piezas proporcionales y cómodas. Packs completos básicos o con camisa de lorzas, txapela y gerriko.</p>
+        <a href="https://www.trajesvascos.com/niña.html" target="_blank" class="service-link">Ver colección →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFANTIL HIGHLIGHT -->
+<section class="infantil-section">
+  <div class="infantil-inner">
+    <div class="infantil-images">
+      <div class="infantil-img">
+        <img src="https://www.trajesvascos.com/2778-home_default/traje-vasco-niño-con-camisa-de-lorzas-txapela-pañuelo-gerriko-y-mahón.jpg" alt="Traje vasco niño con camisa de lorzas y txapela" loading="lazy">
+      </div>
+      <div class="infantil-img" style="margin-top: 40px;">
+        <img src="https://www.trajesvascos.com/2662-home_default/pack-traje-vasco-infantil-completo-básico-pañuelo-camisa-faja-y-pantalón-o40.jpg" alt="Pack traje vasco infantil completo básico" loading="lazy">
+      </div>
+      <div class="infantil-img">
+        <img src="https://www.trajesvascos.com/2672-home_default/pack-traje-vasco-infantil-azul-vichy-completo-básico.jpg" alt="Pack traje vasco infantil azul vichy" loading="lazy">
+      </div>
+      <div class="infantil-img" style="margin-top: 40px;">
+        <img src="https://www.trajesvascos.com/2594-home_default/abarkas-vascas-de-cuero-de-becerro-hechas-a-mano-h281.jpg" alt="Abarkas vascas de cuero hechas a mano" loading="lazy">
+      </div>
+    </div>
+    <div class="infantil-content">
+      <p class="section-label reveal">Accesorios y calzado</p>
+      <h2 class="section-title reveal reveal-delay-1">
+        Abarkas, gerrikos<br>y <em>fornituras</em>
+      </h2>
+      <p class="about-body reveal reveal-delay-2" style="margin: 28px 0 36px;">
+        Completa tu traje vasco con los accesorios más auténticos. <strong>Abarkas de piel artesanales</strong>, gerrikos tradicionales, brochones eguzkilore, makilas y todo lo necesario para un traje regional completo y fiel a la tradición.
+      </p>
+      <div class="infantil-tags reveal reveal-delay-3">
+        <span class="tag">Abarkas de piel</span>
+        <span class="tag">Gerrikos y fajas</span>
+        <span class="tag">Txapelas</span>
+        <span class="tag">Eguzkilore</span>
+        <span class="tag">Makilas</span>
+        <span class="tag">Pañuelos</span>
+        <span class="tag">Delantales</span>
+        <span class="tag">Corpiños</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Reseñas en Google</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      4.9★ sobre 127<br><em>opiniones reales</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Compré el traje vasco completo para mi hija para las fiestas del pueblo. La calidad es increíble, los colores preciosos y el trato en la tienda fue muy cercano y profesional. Totalmente recomendable."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Maite A.</strong>
+          <span>Google · 5 estrellas</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Llevan años siendo nuestra tienda de referencia para los trajes de dantzaris. Siempre encuentras lo que necesitas, tanto en tienda física como en su web. El servicio y la variedad no tienen comparación."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Iñaki G.</strong>
+          <span>Google · 5 estrellas</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Las abarkas que compramos para toda la familia son de una calidad excelente. Atención muy amable y enviaron rápido. Sin duda la mejor tienda de fornituras vascas que conozco."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Amaia L.</strong>
+          <span>Google · 5 estrellas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACION -->
+<div class="location-section" id="contacto">
+  <div class="location-map">
+    <iframe
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Euskal+Jantziak,Galdakao&zoom=17"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Ubicación Euskal Jantziak Galdakao">
+    </iframe>
+  </div>
+  <div class="location-info">
+    <p class="section-label reveal">Dónde encontrarnos</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Visítanos en<br><em>Galdakao</em>
+    </h2>
+    <div class="location-details reveal reveal-delay-2">
+      <div class="location-detail">
+        <div class="detail-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="detail-content">
+          <h5>Dirección</h5>
+          <p>Santi Brouard Enparantza, 3<br>48960 Galdakao, Bizkaia</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="detail-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="detail-content">
+          <h5>Teléfono / WhatsApp</h5>
+          <p><a href="tel:+34629055538">629 05 55 38</a></p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="detail-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="detail-content">
+          <h5>Email</h5>
+          <p><a href="mailto:trajesvascos@gmail.com">trajesvascos@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="detail-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="detail-content">
+          <h5>Horario</h5>
+          <div class="horario-table">
+            <div class="horario-row">
+              <span class="dia">Lunes – Viernes</span>
+              <span class="hora">10:00 – 14:00 / 16:30 – 20:00</span>
+            </div>
+            <div class="horario-row">
+              <span class="dia">Sábado</span>
+              <span class="hora">10:00 – 14:00</span>
+            </div>
+            <div class="horario-row">
+              <span class="dia">Domingo</span>
+              <span class="hora">Cerrado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-text">
+    <h2>¿Listo para vestir<br>el traje vasco?</h2>
+    <p>Visítanos en Galdakao o compra online con envío en 24-48h. Atención personalizada para que tu traje sea perfecto.</p>
+  </div>
+  <a href="tel:+34629055538" class="btn-dark">
+    <span>Llamar ahora</span>
+    <span>↗</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://www.trajesvascos.com/img/logo-1773225705.jpg" alt="Euskal Jantziak logo" class="footer-logo-img" onerror="this.style.display='none'">
+      <p class="footer-tagline">"La tradición vasca, viva en cada festividad y celebración."</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/euskaljantziak/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/euskaljantziak/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.trajesvascos.com" target="_blank" rel="noopener" class="social-link" aria-label="Web oficial">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </a>
+        <a href="https://wa.me/34629055538" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Colecciones</h4>
+      <ul>
+        <li><a href="https://www.trajesvascos.com/mujer.html" target="_blank">Mujer</a></li>
+        <li><a href="https://www.trajesvascos.com/hombre.html" target="_blank">Hombre</a></li>
+        <li><a href="https://www.trajesvascos.com/niña.html" target="_blank">Niña</a></li>
+        <li><a href="https://www.trajesvascos.com/niño.html" target="_blank">Niño</a></li>
+        <li><a href="https://www.trajesvascos.com/accesorios.html" target="_blank">Accesorios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>La tienda</h4>
+      <ul>
+        <li><a href="#nosotros">Nuestra historia</a></li>
+        <li><a href="https://www.trajesvascos.com" target="_blank">Tienda online</a></li>
+        <li><a href="https://wa.me/34629055538" target="_blank">WhatsApp</a></li>
+        <li><a href="#contacto">Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="mailto:trajesvascos@gmail.com">trajesvascos@gmail.com</a></li>
+        <li><a href="tel:+34629055538">629 05 55 38</a></li>
+        <li><a href="#contacto">Santi Brouard Enparantza, 3<br>Galdakao, Bizkaia</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Euskal Jantziak Fornituras — Trajes Vascos. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Aviso Legal</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+      document.getElementById('heroBg').classList.add('loaded');
+    }, 1800);
+  });
+
+  // ── CUSTOM CURSOR
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.7;
+    ringY += (mouseY - ringY) * 0.7;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .project-card, .service-card, .stat-card').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
+  });
+
+  // ── NAVBAR SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── HAMBURGER MENU
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  // ── REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── COUNTER ANIMATION
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+
+  // ── HERO PARALLAX
+  window.addEventListener('scroll', () => {
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+      const scrolled = window.scrollY;
+      heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
+    }
+  });
+</script>
+</body>
+</html>
