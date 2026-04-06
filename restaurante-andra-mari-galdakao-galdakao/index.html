@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurante Andra Mari Galdakao — Restaurante</title>
+  <title>Andra Mari — Alta Cocina Vasca desde el Siglo XIII | Galdakao</title>
+  <meta name="description" content="Restaurante Andra Mari en Galdakao. Alta cocina vasca en un caserio del siglo XIII. Guia Michelin, 2 Soles Repsol. Reservas: 944 560 005.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -11,14 +12,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0c0806;
+      --black: #0a0a14;
       --white: #f5f3ef;
-      --accent: #B45309;
-      --accent-light: #d97706;
-      --carbon: #161210;
-      --carbon-mid: #201a16;
-      --carbon-light: #2e2620;
-      --text-muted: #9a8a7a;
+      --accent: #c9a96e;
+      --accent-light: #dfc08a;
+      --carbon: #12121e;
+      --carbon-mid: #1a1a2e;
+      --carbon-light: #242440;
+      --text-muted: #8a8a9a;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Source Sans 3', sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -37,7 +38,7 @@
       cursor: none;
     }
 
-    /* ─── CUSTOM CURSOR (DUAL COLOR) ─── */
+    /* CUSTOM CURSOR */
     .cursor-dot {
       width: 8px; height: 8px;
       background: var(--accent);
@@ -46,11 +47,11 @@
       pointer-events: none; z-index: 9999;
       transition: transform 0.1s;
       transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(255,255,255,0.3);
+      box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(201,169,110,0.3);
     }
     .cursor-ring {
       width: 40px; height: 40px;
-      border: 1px solid rgba(180,83,9,0.4);
+      border: 1px solid rgba(201,169,110,0.4);
       border-radius: 50%;
       position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9998;
@@ -59,11 +60,11 @@
     }
     .cursor-ring.expanded {
       width: 70px; height: 70px;
-      border-color: rgba(180,83,9,0.7);
-      background: rgba(180,83,9,0.05);
+      border-color: rgba(201,169,110,0.7);
+      background: rgba(201,169,110,0.05);
     }
 
-    /* ─── NAVBAR ─── */
+    /* NAVBAR */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
@@ -73,15 +74,15 @@
     }
     nav.scrolled {
       backdrop-filter: blur(20px);
-      background: rgba(8,8,8,0.85);
+      background: rgba(10,10,20,0.88);
       padding: 18px 60px;
-      border-bottom: 1px solid rgba(180,83,9,0.08);
+      border-bottom: 1px solid rgba(201,169,110,0.08);
     }
     .nav-logo {
       font-family: var(--font-serif);
       font-size: 1.6rem;
       font-weight: 400;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-decoration: none;
       color: var(--white);
       display: flex; align-items: center; gap: 10px;
@@ -105,7 +106,7 @@
     }
     .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
 
-    /* ─── HAMBURGER MOBILE ─── */
+    /* HAMBURGER MOBILE */
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
       background: none; border: none; cursor: pointer; padding: 8px;
@@ -129,7 +130,7 @@
     }
     .mobile-menu a:hover { color: var(--accent); }
 
-    /* ─── HERO ─── */
+    /* HERO */
     .hero {
       position: relative; height: 100vh; min-height: 700px;
       display: flex; align-items: flex-end; justify-content: flex-start;
@@ -137,15 +138,14 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, #0c0806 0%, #201a16 40%, #B4530922 100%);
-      background-size: cover; background-position: center;
+      background: url('https://images.unsplash.com/photo-1550966871-3ed3cdb51f3a?w=1400') center/cover no-repeat;
       transform: scale(1.08);
       transition: transform 8s var(--ease-out);
     }
     .hero-bg.loaded { transform: scale(1); }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.4) 50%, rgba(8,8,8,0.15) 100%);
+      background: linear-gradient(135deg, rgba(10,10,20,0.92) 0%, rgba(10,10,20,0.5) 50%, rgba(10,10,20,0.2) 100%);
     }
     .hero-overlay-bottom {
       position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
@@ -240,15 +240,32 @@
       50% { opacity: 1; transform: scaleY(1.1); }
     }
 
-    /* ─── MARQUEE ─── */
+    /* BADGES HERO */
+    .hero-badges {
+      position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+      z-index: 3; display: flex; flex-direction: column; gap: 16px;
+      opacity: 0; animation: fadeIn 1s 1.2s ease forwards;
+    }
+    .hero-badge {
+      background: rgba(10,10,20,0.7); backdrop-filter: blur(10px);
+      border: 1px solid rgba(201,169,110,0.2);
+      padding: 16px 22px; text-align: center; min-width: 120px;
+    }
+    .hero-badge-icon { font-size: 1.6rem; margin-bottom: 4px; }
+    .hero-badge-text {
+      font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500;
+    }
+
+    /* MARQUEE */
     .marquee-section {
-      border-top: 1px solid rgba(180,83,9,0.12);
-      border-bottom: 1px solid rgba(180,83,9,0.12);
+      border-top: 1px solid rgba(201,169,110,0.12);
+      border-bottom: 1px solid rgba(201,169,110,0.12);
       overflow: hidden; padding: 20px 0; background: var(--carbon);
     }
     .marquee-track {
       display: flex; gap: 0; white-space: nowrap;
-      animation: marquee 22s linear infinite;
+      animation: marquee 28s linear infinite;
     }
     .marquee-item {
       display: inline-flex; align-items: center; gap: 30px;
@@ -260,7 +277,7 @@
     .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ─── SECTION COMMONS ─── */
+    /* SECTION COMMONS */
     section { padding: 130px 60px; }
     .section-label {
       font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
@@ -276,11 +293,11 @@
     }
     .section-title em { font-style: italic; color: var(--accent); }
 
-    /* ─── STATS ─── */
+    /* STATS */
     .stats-section {
       background: var(--carbon);
       padding: 100px 60px;
-      border-top: 1px solid rgba(180,83,9,0.08);
+      border-top: 1px solid rgba(201,169,110,0.08);
     }
     .stats-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -288,7 +305,7 @@
     }
     .stat-card {
       padding: 60px 50px; background: var(--carbon);
-      border: 1px solid rgba(180,83,9,0.08);
+      border: 1px solid rgba(201,169,110,0.08);
       position: relative; overflow: hidden;
       transition: border-color 0.4s;
     }
@@ -298,7 +315,7 @@
       transition: transform 0.5s var(--ease-out); transform-origin: left;
     }
     .stat-card:hover::before { transform: scaleX(1); }
-    .stat-card:hover { border-color: rgba(180,83,9,0.3); }
+    .stat-card:hover { border-color: rgba(201,169,110,0.3); }
     .stat-number {
       font-family: var(--font-serif); font-size: 4.5rem;
       font-weight: 300; line-height: 1; color: var(--white);
@@ -310,7 +327,7 @@
       color: var(--text-muted); font-weight: 400;
     }
 
-    /* ─── GALLERY / PROJECTS ─── */
+    /* GALLERY */
     .projects-section { background: var(--black); }
     .projects-header {
       display: flex; justify-content: space-between; align-items: flex-end;
@@ -322,7 +339,7 @@
       text-decoration: none; color: var(--accent);
       font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
       transition: gap 0.3s; padding-bottom: 4px;
-      border-bottom: 1px solid rgba(180,83,9,0.3);
+      border-bottom: 1px solid rgba(201,169,110,0.3);
       white-space: nowrap;
     }
     .view-all:hover { gap: 20px; border-color: var(--accent); }
@@ -342,12 +359,12 @@
     }
     .project-img {
       width: 100%; height: 100%; object-fit: cover;
-      background: linear-gradient(135deg, var(--carbon-mid) 0%, var(--carbon-light) 100%);
+      transition: transform 0.8s var(--ease-out);
     }
-    .project-card:hover .project-img { transform: scale(1.06); transition: transform 0.8s var(--ease-out); }
+    .project-card:hover .project-img { transform: scale(1.06); }
     .project-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.1) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(10,10,20,0.9) 0%, rgba(10,10,20,0.1) 60%, transparent 100%);
       opacity: 0.6; transition: opacity 0.5s;
     }
     .project-card:hover .project-overlay { opacity: 0.85; }
@@ -381,7 +398,7 @@
     }
     .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
 
-    /* ─── ABOUT ─── */
+    /* ABOUT */
     .about-section {
       background: var(--carbon);
       display: grid; grid-template-columns: 1fr 1fr;
@@ -389,11 +406,12 @@
     }
     .about-visual {
       position: relative; overflow: hidden; min-height: 700px;
-      background: linear-gradient(180deg, var(--carbon-mid), var(--carbon-light));
+      background: url('https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800') center/cover no-repeat;
     }
     .about-badge {
       position: absolute; bottom: 48px; left: 48px;
-      background: var(--black); border: 1px solid rgba(180,83,9,0.25);
+      background: rgba(10,10,20,0.85); backdrop-filter: blur(10px);
+      border: 1px solid rgba(201,169,110,0.25);
       padding: 24px 30px; max-width: 240px;
     }
     .about-badge-year {
@@ -419,10 +437,10 @@
     .about-values { display: flex; flex-direction: column; gap: 20px; }
     .about-value {
       display: flex; gap: 20px; align-items: flex-start;
-      padding: 20px; border: 1px solid rgba(180,83,9,0.06);
+      padding: 20px; border: 1px solid rgba(201,169,110,0.06);
       transition: border-color 0.4s;
     }
-    .about-value:hover { border-color: rgba(180,83,9,0.2); }
+    .about-value:hover { border-color: rgba(201,169,110,0.2); }
     .value-num {
       font-family: var(--font-serif); font-size: 1.4rem;
       color: var(--accent); opacity: 0.5; flex-shrink: 0;
@@ -436,7 +454,7 @@
       font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
     }
 
-    /* ─── SERVICES ─── */
+    /* SERVICES */
     .services-section { background: var(--black); }
     .services-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -444,18 +462,18 @@
     }
     .service-card {
       padding: 60px 48px; background: var(--black);
-      border: 1px solid rgba(180,83,9,0.07);
+      border: 1px solid rgba(201,169,110,0.07);
       position: relative; overflow: hidden;
       transition: background 0.5s, border-color 0.5s;
     }
-    .service-card:hover { background: var(--carbon-mid); border-color: rgba(180,83,9,0.2); }
+    .service-card:hover { background: var(--carbon-mid); border-color: rgba(201,169,110,0.2); }
     .service-icon {
       width: 52px; height: 52px; margin-bottom: 36px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(180,83,9,0.2); color: var(--accent);
+      border: 1px solid rgba(201,169,110,0.2); color: var(--accent);
     }
     .service-card h3 {
-      font-family: var(--font-serif); font-size: 1.7rem;
+      font-family: var(--font-serif); font-size: 1.5rem;
       font-weight: 400; margin-bottom: 18px; line-height: 1.2;
     }
     .service-card p {
@@ -466,22 +484,22 @@
       display: inline-flex; align-items: center; gap: 10px;
       margin-top: 32px; text-decoration: none;
       font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(180,83,9,0.5); transition: color 0.3s, gap 0.3s;
+      color: rgba(201,169,110,0.5); transition: color 0.3s, gap 0.3s;
     }
     .service-link:hover { color: var(--accent); gap: 16px; }
     .service-number {
       position: absolute; top: 30px; right: 36px;
       font-family: var(--font-serif); font-size: 5rem;
-      font-weight: 300; color: rgba(180,83,9,0.05);
+      font-weight: 300; color: rgba(201,169,110,0.05);
       line-height: 1; transition: color 0.5s;
     }
-    .service-card:hover .service-number { color: rgba(180,83,9,0.1); }
+    .service-card:hover .service-number { color: rgba(201,169,110,0.1); }
 
-    /* ─── CARTA SECTIONS ─── */
+    /* CARTA */
     .carta-section {
       padding: 140px 60px;
       background: var(--carbon);
-      border-top: 1px solid rgba(180,83,9,0.08);
+      border-top: 1px solid rgba(201,169,110,0.08);
     }
     .carta-section:nth-child(even) { background: var(--black); }
     .carta-section .section-inner {
@@ -503,7 +521,7 @@
       font-family: var(--font-serif); font-size: 1.3rem;
       font-weight: 400; color: var(--white);
       padding-bottom: 16px; margin-bottom: 24px;
-      border-bottom: 1px solid rgba(180,83,9,0.15);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
     }
     .carta-item {
       display: flex; justify-content: space-between;
@@ -525,7 +543,7 @@
       margin-left: 20px; font-weight: 400;
     }
     .carta-highlight {
-      background: var(--carbon-mid); border: 1px solid rgba(180,83,9,0.1);
+      background: var(--carbon-mid); border: 1px solid rgba(201,169,110,0.1);
       padding: 40px; margin-top: 40px;
     }
     .carta-highlight h4 {
@@ -542,22 +560,18 @@
       padding: 18px 40px; border: 1px solid var(--accent);
       color: var(--white); font-size: 0.72rem;
       letter-spacing: 0.2em; text-transform: uppercase;
-      transition: background 0.4s, gap 0.3s;
+      transition: background 0.4s, color 0.4s, gap 0.3s;
     }
-    .carta-cta:hover { background: var(--accent); gap: 18px; }
-    @media (max-width: 768px) {
-      .carta-section { padding: 80px 24px; }
-      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
-    }
+    .carta-cta:hover { background: var(--accent); color: var(--black); gap: 18px; }
 
-    /* ─── TESTIMONIALS ─── */
+    /* TESTIMONIALS */
     .testimonials-section {
       background: var(--carbon); position: relative; overflow: hidden;
     }
     .testimonials-section::before {
-      content: '"'; position: absolute; top: -60px; left: 40px;
+      content: '\201C'; position: absolute; top: -60px; left: 40px;
       font-family: var(--font-serif); font-size: 30rem;
-      color: rgba(180,83,9,0.03); line-height: 1; pointer-events: none;
+      color: rgba(201,169,110,0.03); line-height: 1; pointer-events: none;
     }
     .testimonials-inner { max-width: 1400px; margin: 0 auto; }
     .testimonials-grid {
@@ -565,11 +579,11 @@
       gap: 2px; margin-top: 70px;
     }
     .testimonial-card {
-      padding: 56px 44px; background: rgba(8,8,8,0.4);
-      border: 1px solid rgba(180,83,9,0.07);
+      padding: 56px 44px; background: rgba(10,10,20,0.4);
+      border: 1px solid rgba(201,169,110,0.07);
       transition: border-color 0.4s, background 0.4s;
     }
-    .testimonial-card:hover { border-color: rgba(180,83,9,0.2); background: rgba(8,8,8,0.7); }
+    .testimonial-card:hover { border-color: rgba(201,169,110,0.2); background: rgba(10,10,20,0.7); }
     .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
     .star {
       width: 12px; height: 12px; background: var(--accent);
@@ -592,7 +606,14 @@
       font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
     }
 
-    /* ─── CTA BANNER ─── */
+    /* MAP */
+    .map-section {
+      padding: 0; background: var(--black);
+      border-top: 1px solid rgba(201,169,110,0.08);
+    }
+    .map-section iframe { display: block; width: 100%; height: 400px; border: 0; filter: grayscale(0.4) contrast(1.1); }
+
+    /* CTA BANNER */
     .cta-section {
       background: var(--accent); padding: 110px 60px;
       display: flex; align-items: center; justify-content: space-between;
@@ -604,7 +625,7 @@
       font-weight: 300; color: var(--black); line-height: 1.1;
     }
     .cta-text p {
-      font-size: 1rem; color: rgba(8,8,8,0.65); margin-top: 16px; font-weight: 300;
+      font-size: 1rem; color: rgba(10,10,20,0.65); margin-top: 16px; font-weight: 300;
     }
     .btn-dark {
       display: inline-flex; align-items: center; gap: 14px;
@@ -622,10 +643,10 @@
     .btn-dark:hover::before { transform: translateX(0); }
     .btn-dark span { position: relative; z-index: 1; }
 
-    /* ─── FOOTER ─── */
+    /* FOOTER */
     footer {
       background: var(--black); padding: 90px 60px 50px;
-      border-top: 1px solid rgba(180,83,9,0.08);
+      border-top: 1px solid rgba(201,169,110,0.08);
     }
     .footer-top {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -673,7 +694,7 @@
     }
     .footer-legal a:hover { color: var(--text-muted); }
 
-    /* ─── ANIMATIONS ─── */
+    /* ANIMATIONS */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
     .reveal {
@@ -685,7 +706,7 @@
     .reveal-delay-2 { transition-delay: 0.3s; }
     .reveal-delay-3 { transition-delay: 0.45s; }
 
-    /* ─── LOADER ─── */
+    /* LOADER */
     .loader {
       position: fixed; inset: 0; z-index: 10000;
       background: var(--black); display: flex;
@@ -710,13 +731,14 @@
     }
     @keyframes loadBar { to { transform: translateX(0); } }
 
-    /* ─── RESPONSIVE ─── */
+    /* RESPONSIVE */
     @media (max-width: 1024px) {
       nav { padding: 24px 36px; }
       nav.scrolled { padding: 16px 36px; }
       section { padding: 100px 36px; }
       .hero-content { padding: 0 36px 80px; }
       .hero-scroll { right: 36px; }
+      .hero-badges { right: 36px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
     }
@@ -730,6 +752,7 @@
       section { padding: 80px 24px; }
       .hero-content { padding: 0 24px 70px; }
       .hero-scroll { display: none; }
+      .hero-badges { display: none; }
       .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
       .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
       .projects-grid { grid-template-columns: 1fr; }
@@ -744,6 +767,8 @@
       .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stats-section { padding: 70px 24px; }
+      .carta-section { padding: 80px 24px; }
+      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
     }
   </style>
 </head>
@@ -751,7 +776,7 @@
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <div class="loader-logo">RESTAURANTE ANDRA MARI GALDAKAO <span>.</span></div>
+  <div class="loader-logo">Andra Mari<span>.</span></div>
   <div class="loader-bar"></div>
 </div>
 
@@ -761,24 +786,26 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">Restaurante Andra Mari Galdakao<span>.</span></a>
+  <a href="#" class="nav-logo">Andra Mari<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#galeria">Galeria</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+    <li><a href="#carta-degustacion">Carta</a></li>
+    <li><a href="#servicios">Experiencias</a></li>
+    <li><a href="tel:+34944560005" class="nav-cta">Reservar</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menú">
+  <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#galeria" onclick="closeMobile()">Galería</a>
+  <a href="#galeria" onclick="closeMobile()">Galeria</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
-  <a href="#servicios" onclick="closeMobile()">Servicios</a>
-  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="#carta-degustacion" onclick="closeMobile()">Carta</a>
+  <a href="#servicios" onclick="closeMobile()">Experiencias</a>
+  <a href="tel:+34944560005" onclick="closeMobile()">Reservar</a>
 </div>
 
 <!-- HERO -->
@@ -787,22 +814,32 @@
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Gastronomía · Producto · Excelencia</p>
+    <p class="hero-eyebrow">Guia Michelin &middot; 2 Soles Repsol &middot; Desde el s. XIII</p>
     <h1 class="hero-title">
-      Cocina de<br><em>mercado</em><br>con alma
+      Alta cocina<br><em>vasca</em> con<br>historia
     </h1>
     <p class="hero-sub">
-      Producto de temporada, técnica depurada y un servicio que hace sentir como en casa. Cocina de autor a precios honestos.
+      En un caserio del siglo XIII junto a la ermita de Andra Mari, la familia Asua lleva decadas honrando la tradicion gastronomica vasca con tecnica contemporanea y producto de temporada.
     </p>
     <div class="hero-actions">
-      <a href="#contacto" class="btn-primary">
+      <a href="tel:+34944560005" class="btn-primary">
         <span>Reservar mesa</span>
-        <span>→</span>
+        <span>&rarr;</span>
       </a>
-      <a href="#servicios" class="btn-ghost">
+      <a href="#carta-degustacion" class="btn-ghost">
         <span>Ver carta</span>
-        <div class="btn-ghost-arrow">↗</div>
+        <div class="btn-ghost-arrow">&nearr;</div>
       </a>
+    </div>
+  </div>
+  <div class="hero-badges">
+    <div class="hero-badge">
+      <div class="hero-badge-icon">&#9733;</div>
+      <div class="hero-badge-text">Guia Michelin</div>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-icon">&#9788;</div>
+      <div class="hero-badge-text">2 Soles Repsol</div>
     </div>
   </div>
   <div class="hero-scroll">
@@ -814,18 +851,18 @@
 <!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Cocina de Mercado</span>
-    <span class="marquee-item"><span class="dot"></span>Menú Degustación</span>
-    <span class="marquee-item"><span class="dot"></span>Carta de Vinos</span>
-    <span class="marquee-item"><span class="dot"></span>Eventos Privados</span>
-    <span class="marquee-item"><span class="dot"></span>Terraza</span>
-    <span class="marquee-item"><span class="dot"></span>Brunch Domingos</span>
-    <span class="marquee-item"><span class="dot"></span>Cocina de Mercado</span>
-    <span class="marquee-item"><span class="dot"></span>Menú Degustación</span>
-    <span class="marquee-item"><span class="dot"></span>Carta de Vinos</span>
-    <span class="marquee-item"><span class="dot"></span>Eventos Privados</span>
-    <span class="marquee-item"><span class="dot"></span>Terraza</span>
-    <span class="marquee-item"><span class="dot"></span>Brunch Domingos</span>
+    <span class="marquee-item"><span class="dot"></span>Alta Cocina Vasca</span>
+    <span class="marquee-item"><span class="dot"></span>Menu Degustacion</span>
+    <span class="marquee-item"><span class="dot"></span>Bodega Historica</span>
+    <span class="marquee-item"><span class="dot"></span>Caserio del s. XIII</span>
+    <span class="marquee-item"><span class="dot"></span>Producto de Temporada</span>
+    <span class="marquee-item"><span class="dot"></span>Eventos Exclusivos</span>
+    <span class="marquee-item"><span class="dot"></span>Alta Cocina Vasca</span>
+    <span class="marquee-item"><span class="dot"></span>Menu Degustacion</span>
+    <span class="marquee-item"><span class="dot"></span>Bodega Historica</span>
+    <span class="marquee-item"><span class="dot"></span>Caserio del s. XIII</span>
+    <span class="marquee-item"><span class="dot"></span>Producto de Temporada</span>
+    <span class="marquee-item"><span class="dot"></span>Eventos Exclusivos</span>
   </div>
 </div>
 
@@ -833,20 +870,20 @@
 <div class="stats-section">
   <div class="stats-grid">
     <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="18">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Años cocinando</div>
+      <div class="stat-number">+<span class="count" data-target="700">0</span></div>
+      <div class="stat-label">Anos de historia</div>
     </div>
     <div class="stat-card reveal reveal-delay-1">
-      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">.8</span></div>
-      <div class="stat-label">Nota en Google</div>
+      <div class="stat-number"><span class="count" data-target="986">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Opiniones Google</div>
     </div>
     <div class="stat-card reveal reveal-delay-2">
-      <div class="stat-number"><span class="count" data-target="1">0</span><span class="stat-suffix"></span></div>
-      <div class="stat-label">Sol Repsol</div>
+      <div class="stat-number"><span class="count" data-target="2">0</span><span class="stat-suffix"> Soles</span></div>
+      <div class="stat-label">Repsol</div>
     </div>
     <div class="stat-card reveal reveal-delay-3">
-      <div class="stat-number"><span class="count" data-target="120">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Vinos en carta</div>
+      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">.7&#9733;</span></div>
+      <div class="stat-label">Nota en Google</div>
     </div>
   </div>
 </div>
@@ -855,50 +892,82 @@
 <section class="projects-section" id="galeria">
   <div class="projects-header">
     <div>
-      <p class="section-label reveal">Nuestro trabajo</p>
-      <h2 class="section-title reveal reveal-delay-1">Resultados que<br><em>hablan por sí solos</em></h2>
+      <p class="section-label reveal">Nuestra cocina</p>
+      <h2 class="section-title reveal reveal-delay-1">Sabores que<br><em>cuentan historias</em></h2>
     </div>
-    <a href="#" class="view-all reveal">Ver todo →</a>
+    <a href="tel:+34944560005" class="view-all reveal">Reservar mesa &rarr;</a>
   </div>
   <div class="projects-grid">
+    <!-- Photo 2: plated dish (wide) -->
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(135deg, var(--carbon-mid), var(--carbon-light), rgba(180,83,9,0.15));"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800" alt="Plato de alta cocina vasca en Andra Mari" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow">&nearr;</div>
       <div class="project-info">
-        <p class="project-cat">Plato · Temporada</p>
-        <h3 class="project-name">Alcachofa confitada</h3>
-        <p class="project-meta">Tuétano · Trufa · 2024</p>
+        <p class="project-cat">Estrella &middot; Alta Cocina</p>
+        <h3 class="project-name">Merluza en salsa koxkera</h3>
+        <p class="project-meta">Plato emblematico &middot; Tradicion vasca</p>
       </div>
     </div>
+    <!-- Photo 3: wine cellar -->
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(165deg, var(--carbon-mid), var(--carbon-light), rgba(180,83,9,0.15));"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=800" alt="Bodega historica subterranea de Andra Mari" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow">&nearr;</div>
       <div class="project-info">
-        <p class="project-cat">Degustación · Chef</p>
-        <h3 class="project-name">Menú 7 Tiempos</h3>
-        <p class="project-meta">Experiencia completa · 85€</p>
+        <p class="project-cat">Bodega &middot; Visitable</p>
+        <h3 class="project-name">Cava subterranea</h3>
+        <p class="project-meta">Seleccion premium &middot; Txakoli y vinos</p>
       </div>
     </div>
+    <!-- Photo 4: meat dish -->
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(195deg, var(--carbon-mid), var(--carbon-light), rgba(180,83,9,0.15));"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800" alt="Carnes a la brasa en Andra Mari Galdakao" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow">&nearr;</div>
       <div class="project-info">
-        <p class="project-cat">Bodega · Selección</p>
-        <h3 class="project-name">Nuestra Bodega</h3>
-        <p class="project-meta">120+ referencias · Sumiller</p>
+        <p class="project-cat">Brasa &middot; Producto</p>
+        <h3 class="project-name">Carnes de caserio</h3>
+        <p class="project-meta">Ganaderos locales &middot; Cortes selectos</p>
       </div>
     </div>
+    <!-- Photo 5: elegant interior -->
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(225deg, var(--carbon-mid), var(--carbon-light), rgba(180,83,9,0.15));"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800" alt="Comedor elegante del restaurante Andra Mari" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow">&nearr;</div>
       <div class="project-info">
-        <p class="project-cat">Espacio · Interior</p>
-        <h3 class="project-name">Salón Principal</h3>
-        <p class="project-meta">50 comensales · Diseño cálido</p>
+        <p class="project-cat">Espacio &middot; Interior</p>
+        <h3 class="project-name">Comedores del caserio</h3>
+        <p class="project-meta">2 salones &middot; Decoracion rustico-regional</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRA GALLERY ROW -->
+<section class="projects-section" style="padding-top:0;">
+  <div class="projects-grid">
+    <!-- Photo 7: seafood dish -->
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800" alt="Vieira a la plancha con papada y zanahoria en Andra Mari" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">&nearr;</div>
+      <div class="project-info">
+        <p class="project-cat">Mar &middot; Temporada</p>
+        <h3 class="project-name">Vieira a la plancha</h3>
+        <p class="project-meta">Con papada y zanahoria &middot; Tecnica actual</p>
+      </div>
+    </div>
+    <!-- Photo 8: dessert -->
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1560053608-13721e0d69e5?w=800" alt="Postre de autor en Andra Mari Galdakao" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">&nearr;</div>
+      <div class="project-info">
+        <p class="project-cat">Dulce &middot; Autor</p>
+        <h3 class="project-name">Postres de temporada</h3>
+        <p class="project-meta">Creaciones del chef &middot; Producto local</p>
       </div>
     </div>
   </div>
@@ -908,39 +977,39 @@
 <div class="about-section" id="nosotros">
   <div class="about-visual">
     <div class="about-badge">
-      <div class="about-badge-year">2006</div>
-      <div class="about-badge-text">Cocina honesta con producto excepcional</div>
+      <div class="about-badge-year">s.XIII</div>
+      <div class="about-badge-text">Caserio historico junto a la ermita de Andra Mari</div>
     </div>
   </div>
   <div class="about-content">
-    <p class="section-label reveal">Sobre nosotros</p>
+    <p class="section-label reveal">Nuestra historia</p>
     <h2 class="section-title reveal reveal-delay-1">
-      Donde la cocina<br>es <em>pasión</em>
+      Donde la tradicion<br>se convierte en <em>arte</em>
     </h2>
     <div class="about-divider reveal"></div>
     <p class="about-body reveal reveal-delay-2">
-      Casa Lucía es un restaurante familiar donde la cocina es un acto de amor al producto y al comensal. No buscamos estrellas, buscamos sonrisas.<br><br><strong>Del mercado a la mesa.</strong> Compramos cada mañana en el Mercado de la Paz. Lo que hay ese día es lo que cocinamos. Así de simple, así de honesto.
+      El Restaurante Andra Mari ocupa un <strong>caserio del siglo XIII</strong> en el corazon de Galdakao, junto a la historica ermita que le da nombre. La <strong>familia Asua</strong> ha convertido este espacio centenario en una referencia de la alta cocina vasca.<br><br>Reconocido por la <strong>Guia Michelin</strong> y con <strong>2 Soles Repsol</strong>, Andra Mari ofrece una cocina que respeta la tradicion pero mira al futuro: producto de lonja y caserio, tecnica depurada y una bodega subterranea visitable que es joya del restaurante.
     </p>
     <div class="about-values reveal reveal-delay-3">
       <div class="about-value">
         <div class="value-num">01</div>
         <div class="value-text">
-          <h4>Producto de mercado</h4>
-          <p>Compra diaria en mercado local. Pescado de lonja, carne de ganaderos conocidos</p>
+          <h4>Producto de lonja y caserio</h4>
+          <p>Ingredientes locales, de mercado y temporada. Pescado del Cantabrico, carnes de ganaderos de confianza</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">02</div>
         <div class="value-text">
-          <h4>Cocina de temporada</h4>
-          <p>La carta cambia 4 veces al año siguiendo lo que la tierra y el mar ofrecen cada estación</p>
+          <h4>Tradicion con tecnica actual</h4>
+          <p>Recetas centenarias vascas elevadas con precision contemporanea y respeto absoluto al producto</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">03</div>
         <div class="value-text">
-          <h4>Bodega cuidada</h4>
-          <p>120+ referencias seleccionadas por nuestro sumiller. Maridaje sugerido en cada plato</p>
+          <h4>Bodega historica visitable</h4>
+          <p>Cava subterranea con seleccion premium de vinos, txakoli y referencias nacionales e internacionales</p>
         </div>
       </div>
     </div>
@@ -950,165 +1019,222 @@
 <!-- SERVICES -->
 <section class="services-section" id="servicios">
   <div style="max-width:1400px; margin:0 auto">
-    <p class="section-label reveal">Lo que ofrecemos</p>
+    <p class="section-label reveal">Experiencias</p>
     <h2 class="section-title reveal reveal-delay-1" style="max-width:560px">
-      Servicios diseñados para <em>resultados reales</em>
+      Mas que un restaurante, una <em>experiencia sensorial</em>
     </h2>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-number">01</div>
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/>
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
           </svg>
         </div>
-        <h3>[Servicio 1 — ej: Carta / Menú del Día / Pintxos]</h3>
-        <p>[Descripción del servicio principal con datos reales del negocio]</p>
-        <a href="#carta-principal" class="service-link">Ver carta →</a>
+        <h3>Alta Cocina Vasca</h3>
+        <p>Tradicion centenaria con tecnica actual. Platos como la merluza en salsa koxkera o el bacalao en sus texturas definen nuestra identidad culinaria.</p>
+        <a href="#carta-degustacion" class="service-link">Ver carta &rarr;</a>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-number">02</div>
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
           </svg>
         </div>
-        <h3>[Servicio 2 — ej: Especialidades / Menú Degustación]</h3>
-        <p>[Descripción con platos estrella reales]</p>
-        <a href="#carta-especialidades" class="service-link">Ver especialidades →</a>
+        <h3>Menu Degustacion</h3>
+        <p>Recorrido gastronomico del chef con los mejores productos de temporada. Menu Elexalde (~80 &euro;/pers.) o Menu Andra Mari premium (~100 &euro;/pers.).</p>
+        <a href="#carta-degustacion" class="service-link">Ver menus &rarr;</a>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-number">03</div>
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
+            <path d="M8 22V18M12 22V15M16 22V18"/><path d="M3 2h18l-2 13H5L3 2z"/><circle cx="12" cy="8" r="0"/>
+            <path d="M7.5 2C7.5 5 9 6 12 6s4.5-1 4.5-4"/>
           </svg>
         </div>
-        <h3>[Servicio 3 — ej: Eventos / Grupos / Celebraciones]</h3>
-        <p>[Info de espacios privados, menús cerrados, tipos de eventos]</p>
-        <a href="#carta-grupos" class="service-link">Más info →</a>
+        <h3>Bodega Historica</h3>
+        <p>Visita nuestra cava subterranea centenaria. Seleccion de vinos nacionales, internacionales y txakoli premium para un maridaje excepcional.</p>
+        <a href="tel:+34944560005" class="service-link">Reservar visita &rarr;</a>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-number">04</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>Eventos Exclusivos</h3>
+        <p>Celebraciones en un caserio del siglo XIII. Bodas, comuniones, comidas de empresa y eventos privados con menus personalizados.</p>
+        <a href="#carta-eventos" class="service-link">Mas info &rarr;</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">05</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+          </svg>
+        </div>
+        <h3>Producto de Temporada</h3>
+        <p>Ingredientes locales y de mercado. Cada estacion trae nuevos sabores: caza en otono, verduras de primavera, pescados de lonja cada dia.</p>
+        <a href="#carta-degustacion" class="service-link">Descubrir &rarr;</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">06</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M14.5 2H17.5L19 7L17 9.5L19 12L17.5 14.5L19 17L17.5 19.5L19 22H5L6.5 19.5L5 17L6.5 14.5L5 12L7 9.5L5 7L6.5 2H9.5"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3>Maridaje Experto</h3>
+        <p>Seleccion de vinos y txakoli premium para acompanar cada plato. Nuestro sumiller guia la experiencia para un maridaje perfecto.</p>
+        <a href="tel:+34944560005" class="service-link">Consultar &rarr;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CARTA: PRINCIPAL (adaptar según tipo de negocio) -->
-<section class="carta-section" id="carta-principal">
+<!-- CARTA: DEGUSTACION -->
+<section class="carta-section" id="carta-degustacion">
   <div class="section-inner">
-    <a href="#servicios" class="carta-back reveal">← Volver a carta</a>
-    <p class="section-label reveal">[Subtítulo — ej: Nuestras cazuelitas / Nuestra carta / Pintxos]</p>
+    <a href="#servicios" class="carta-back reveal">&larr; Volver a experiencias</a>
+    <p class="section-label reveal">Menus degustacion</p>
     <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      [Título con <em>énfasis</em>]
+      Un viaje por los <em>sabores vascos</em>
     </h2>
     <div class="carta-columns">
       <div>
         <div class="carta-category reveal">
-          <h4>[Categoría 1 — ej: Pescados y mariscos]</h4>
+          <h4>Menu Elexalde</h4>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">[Plato 1]</div>
-              <div class="carta-item-desc">[Descripción breve opcional]</div>
+              <div class="carta-item-name">Menu degustacion del chef</div>
+              <div class="carta-item-desc">Recorrido gastronomico con los mejores productos de temporada</div>
             </div>
-            <div class="carta-item-price">[Precio] €</div>
+            <div class="carta-item-price">~80 &euro;/pers.</div>
           </div>
-          <!-- Repetir .carta-item por cada plato -->
+        </div>
+        <div class="carta-category reveal">
+          <h4>Menu Andra Mari</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Menu degustacion premium</div>
+              <div class="carta-item-desc">La maxima expresion de nuestra cocina con los productos mas selectos</div>
+            </div>
+            <div class="carta-item-price">~100 &euro;/pers.</div>
+          </div>
         </div>
       </div>
       <div>
         <div class="carta-category reveal reveal-delay-1">
-          <h4>[Categoría 2 — ej: Carnes y guisos]</h4>
+          <h4>Platos estrella a la carta</h4>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">[Plato]</div>
+              <div class="carta-item-name">Merluza en salsa koxkera</div>
+              <div class="carta-item-desc">Receta clasica vasca, nuestra senal de identidad</div>
             </div>
-            <div class="carta-item-price">[Precio] €</div>
           </div>
-          <!-- Repetir .carta-item por cada plato -->
-        </div>
-      </div>
-    </div>
-    <a href="tel:[TELEFONO]" class="carta-cta reveal">
-      <span>Reservar mesa</span><span>→</span>
-    </a>
-  </div>
-</section>
-
-<!-- CARTA: ESPECIALIDADES -->
-<section class="carta-section" id="carta-especialidades">
-  <div class="section-inner">
-    <a href="#servicios" class="carta-back reveal">← Volver a carta</a>
-    <p class="section-label reveal">[Subtítulo — ej: Carta completa / Menú degustación]</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      [Título con <em>énfasis</em>]
-    </h2>
-    <div class="carta-columns">
-      <div>
-        <div class="carta-category reveal">
-          <h4>[Categoría — ej: Entrantes]</h4>
-          <!-- .carta-item por cada plato -->
-        </div>
-        <div class="carta-category reveal">
-          <h4>[Categoría — ej: Pescados]</h4>
-          <!-- .carta-item por cada plato -->
-        </div>
-      </div>
-      <div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>[Categoría — ej: Postres caseros]</h4>
-          <!-- .carta-item por cada plato -->
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Vieira a la plancha</div>
+              <div class="carta-item-desc">Con papada y zanahoria</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Bacalao en sus texturas</div>
+              <div class="carta-item-desc">Distintas elaboraciones del bacalao en un solo plato</div>
+            </div>
+          </div>
         </div>
         <div class="carta-highlight reveal reveal-delay-2">
-          <h4>[Nota destacada — ej: Precios orientativos]</h4>
-          <p>[Info de precios medios, vino, cubierto, etc.]</p>
+          <h4>Carta completa</h4>
+          <p>Precio medio a la carta: ~65 &euro;/persona (sin bebidas). Consulte disponibilidad de platos segun temporada y mercado. Maridaje de vinos y txakoli disponible bajo recomendacion del sumiller.</p>
         </div>
       </div>
     </div>
-    <a href="tel:[TELEFONO]" class="carta-cta reveal">
-      <span>Reservar mesa</span><span>→</span>
+    <a href="tel:+34944560005" class="carta-cta reveal">
+      <span>Reservar mesa</span><span>&rarr;</span>
     </a>
   </div>
 </section>
 
-<!-- CARTA: GRUPOS -->
-<section class="carta-section" id="carta-grupos">
+<!-- CARTA: EVENTOS -->
+<section class="carta-section" id="carta-eventos">
   <div class="section-inner">
-    <a href="#servicios" class="carta-back reveal">← Volver a carta</a>
-    <p class="section-label reveal">Eventos y grupos</p>
+    <a href="#servicios" class="carta-back reveal">&larr; Volver a experiencias</a>
+    <p class="section-label reveal">Eventos y celebraciones</p>
     <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      Celebra con <em>nosotros</em>
+      Celebra en un <em>caserio historico</em>
     </h2>
     <div class="carta-columns">
       <div>
         <div class="carta-category reveal">
-          <h4>Nuestro espacio</h4>
+          <h4>Nuestros espacios</h4>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">[Espacio 1 — ej: Comedor principal]</div>
-              <div class="carta-item-desc">[Descripción y capacidad]</div>
+              <div class="carta-item-name">Barra y zona de espera</div>
+              <div class="carta-item-desc">Aperitivos y copa de bienvenida en ambiente intimo</div>
             </div>
           </div>
-          <!-- Repetir por cada espacio -->
-        </div>
-        <div class="carta-highlight reveal reveal-delay-1">
-          <h4>Menús cerrados bajo petición</h4>
-          <p>[Precio desde X €/persona, tipos de evento, llamar para consultar]</p>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Comedor principal</div>
+              <div class="carta-item-desc">Decoracion rustico-regional con vistas al entorno</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Salon privado</div>
+              <div class="carta-item-desc">Espacio reservado para celebraciones exclusivas</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Bodega subterranea</div>
+              <div class="carta-item-desc">Visita guiada y cata privada</div>
+            </div>
+          </div>
         </div>
       </div>
       <div>
         <div class="carta-category reveal reveal-delay-1">
-          <h4>Tipo de eventos</h4>
+          <h4>Tipos de eventos</h4>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">[Evento — ej: Comidas de empresa]</div>
-              <div class="carta-item-desc">[Descripción breve]</div>
+              <div class="carta-item-name">Bodas y enlaces</div>
+              <div class="carta-item-desc">Menu personalizado en un entorno con siglos de historia</div>
             </div>
           </div>
-          <!-- Repetir por cada tipo -->
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Comidas de empresa</div>
+              <div class="carta-item-desc">Menus cerrados adaptados a grupos profesionales</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Comuniones y bautizos</div>
+              <div class="carta-item-desc">Celebraciones familiares en un espacio unico</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Cenas privadas</div>
+              <div class="carta-item-desc">Experiencia gastronomica exclusiva con maridaje</div>
+            </div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Menus cerrados bajo peticion</h4>
+          <p>Disenamos menus a medida para cada celebracion. Contactenos para una propuesta personalizada adaptada a sus necesidades y presupuesto.</p>
         </div>
       </div>
     </div>
-    <a href="tel:[TELEFONO]" class="carta-cta reveal">
-      <span>Llamar para reservar</span><span>→</span>
+    <a href="tel:+34944560005" class="carta-cta reveal">
+      <span>Llamar para reservar</span><span>&rarr;</span>
     </a>
   </div>
 </section>
@@ -1116,115 +1242,108 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials-section">
   <div class="testimonials-inner">
-    <p class="section-label reveal">Testimonios</p>
+    <p class="section-label reveal">Opiniones</p>
     <h2 class="section-title reveal reveal-delay-1">
-      Lo que dicen<br>nuestros <em>clientes</em>
+      Lo que dicen<br>nuestros <em>comensales</em>
     </h2>
     <div class="testimonials-grid">
       <div class="testimonial-card reveal">
         <div class="testimonial-stars">
           <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
         </div>
-        <p class="testimonial-quote">"La mejor experiencia gastronómica que hemos tenido en Madrid. El menú degustación con maridaje fue una obra de arte. Volveremos seguro."</p>
+        <p class="testimonial-quote">"Una experiencia gastronomica unica. El menu Andra Mari es un viaje por los sabores vascos mas autenticos."</p>
         <div class="testimonial-divider"></div>
         <div class="testimonial-author">
-          <strong>Elena y Marcos</strong>
-          <span>Menú degustación · Madrid</span>
+          <strong>Eneko R.</strong>
+          <span>Menu degustacion &middot; Google</span>
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-1">
         <div class="testimonial-stars">
           <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
         </div>
-        <p class="testimonial-quote">"Celebramos nuestra boda en el salón privado y fue perfecto. El menú personalizado, el servicio, los vinos... todo impecable."</p>
+        <p class="testimonial-quote">"El caserio es precioso y la merluza en salsa koxkera es la mejor que he probado."</p>
         <div class="testimonial-divider"></div>
         <div class="testimonial-author">
-          <strong>Carmen y Javier</strong>
-          <span>Boda · Madrid</span>
+          <strong>Itziar M.</strong>
+          <span>A la carta &middot; Google</span>
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-2">
         <div class="testimonial-stars">
           <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
         </div>
-        <p class="testimonial-quote">"Vengo una vez al mes y siempre me sorprenden. La carta cambia constantemente y todo está riquísimo. Relación calidad-precio inmejorable."</p>
+        <p class="testimonial-quote">"Nivel Michelin sin pretensiones. La bodega subterranea y el servicio son excepcionales."</p>
         <div class="testimonial-divider"></div>
         <div class="testimonial-author">
-          <strong>Ricardo Fernández</strong>
-          <span>Cliente habitual · Madrid</span>
+          <strong>Xabier L.</strong>
+          <span>Celebracion privada &middot; Google</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- MAP -->
+<div class="map-section">
+  <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Andra+Mari+Galdakao&zoom=17" width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+</div>
+
 <!-- CTA -->
 <div class="cta-section" id="contacto">
   <div class="cta-text">
-    <h2>¿Te apetece una<br>experiencia gastronómica?</h2>
-    <p>Reserva tu mesa y déjate sorprender.</p>
+    <h2>Reserve su mesa en<br>Andra Mari</h2>
+    <p>Alta cocina vasca en un caserio del siglo XIII. Llamenos o escribanos.</p>
   </div>
-  <a href="mailto:info@restaurante-andra-mari.com" class="btn-dark">
-    <span>Reservar mesa</span>
-    <span>↗</span>
+  <a href="tel:+34944560005" class="btn-dark">
+    <span>944 560 005</span>
+    <span>&nearr;</span>
   </a>
 </div>
 
-
-    <section id="ubicacion" class="reveal">
-        <div class="container">
-            <h2>Encuéntranos</h2>
-            <div style="width:100%;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);margin-top:2rem;">
-                <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Restaurante+Andra+Mari+Galdakao,Galdakao&zoom=17" width="100%" height="400" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </section>
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo">Restaurante Andra Mari Galdakao<span>.</span></a>
-      <p class="footer-tagline">"Cocinar es amar a los demás a través de la comida."<br>— Casa Lucía</p>
+      <a href="#" class="nav-logo">Andra Mari<span>.</span></a>
+      <p class="footer-tagline">"Alta cocina vasca con siglos de historia, junto a la ermita de Andra Mari."</p>
       <div class="footer-social">
-        <a href="#" class="social-link">Fb</a>
-        <a href="#" class="social-link">Ig</a>
-        <a href="#" class="social-link">Gm</a>
-        <a href="#" class="social-link">Wa</a>
+        <a href="https://www.facebook.com/RestauranteAndraMariGaldakao/" target="_blank" rel="noopener" class="social-link" title="Facebook">Fb</a>
+        <a href="https://www.instagram.com/restaurante_andra_mari/" target="_blank" rel="noopener" class="social-link" title="Instagram">Ig</a>
+        <a href="https://www.google.com/maps/place/Andra+Mari+Galdakao" target="_blank" rel="noopener" class="social-link" title="Google Maps">Gm</a>
       </div>
     </div>
     <div class="footer-col">
       <h4>Carta</h4>
       <ul>
-        <li><a href="#">Entrantes</a></li>
-        <li><a href="#">Principales</a></li>
-        <li><a href="#">Postres</a></li>
-        <li><a href="#">Degustación</a></li>
-        <li><a href="#">Bodega</a></li>
+        <li><a href="#carta-degustacion">Menu Elexalde</a></li>
+        <li><a href="#carta-degustacion">Menu Andra Mari</a></li>
+        <li><a href="#carta-degustacion">Platos estrella</a></li>
+        <li><a href="#carta-eventos">Eventos</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Restaurante</h4>
       <ul>
-        <li><a href="#">Sobre nosotros</a></li>
-        <li><a href="#">Chef</a></li>
-        <li><a href="#">Eventos</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Empleo</a></li>
+        <li><a href="#nosotros">Nuestra historia</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#servicios">Experiencias</a></li>
+        <li><a href="https://andra-mari.com" target="_blank" rel="noopener">Web oficial</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="mailto:info@restaurante-andra-mari.com">info@restaurante-andra-mari.com</a></li>
-        <li><a href="tel:[+34XXXXXXXXX]">944 56 00 05</a></li>
-        <li><a href="#">Barrio de, Cam. de Elexalde, 22, 48960 Elexalde Auzoa, Vizcaya, España</a></li>
+        <li><a href="mailto:andramari@andra-mari.com">andramari@andra-mari.com</a></li>
+        <li><a href="tel:+34944560005">944 560 005</a></li>
+        <li><a href="https://www.google.com/maps/place/Andra+Mari+Galdakao" target="_blank" rel="noopener">Cam. de Elexalde, 22<br>Galdakao, Bizkaia</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Restaurante Andra Mari Galdakao. Todos los derechos reservados.</p>
+    <p class="footer-copy">&copy; 2026 Restaurante Andra Mari. Todos los derechos reservados.</p>
     <div class="footer-legal">
-      <a href="#">Política de Privacidad</a>
+      <a href="#">Politica de Privacidad</a>
       <a href="#">Aviso Legal</a>
       <a href="#">Cookies</a>
     </div>
@@ -1232,7 +1351,7 @@
 </footer>
 
 <script>
-  // ── LOADER
+  // LOADER
   window.addEventListener('load', () => {
     setTimeout(() => {
       document.getElementById('loader').classList.add('hidden');
@@ -1240,7 +1359,7 @@
     }, 1800);
   });
 
-  // ── CUSTOM CURSOR
+  // CUSTOM CURSOR
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
@@ -1265,13 +1384,13 @@
     el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
   });
 
-  // ── NAVBAR SCROLL
+  // NAVBAR SCROLL
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // ── HAMBURGER MENU
+  // HAMBURGER MENU
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {
@@ -1283,14 +1402,14 @@
     mobileMenu.classList.remove('open');
   }
 
-  // ── REVEAL ON SCROLL
+  // REVEAL ON SCROLL
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   reveals.forEach(el => observer.observe(el));
 
-  // ── COUNTER ANIMATION
+  // COUNTER ANIMATION
   function animateCount(el) {
     const target = parseInt(el.dataset.target);
     const duration = 1800;
@@ -1314,12 +1433,12 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
 
-  // ── HERO PARALLAX
+  // HERO PARALLAX
   window.addEventListener('scroll', () => {
     const heroBg = document.getElementById('heroBg');
     if (heroBg) {
       const scrolled = window.scrollY;
-      heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
+      heroBg.style.transform = 'scale(1) translateY(' + (scrolled * 0.25) + 'px)';
     }
   });
 </script>
