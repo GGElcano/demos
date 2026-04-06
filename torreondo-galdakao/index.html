@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Restaurante Torreondo &mdash; Galdakao</title>
-  <meta name="description" content="Restaurante Torreondo en Galdakao. Cocina casera, menu del dia, hamburguesas, pizzas y alubiada los fines de semana. 4.7 en Google con 629 opiniones.">
+  <title>Torreondo &mdash; Asador y Restaurante en Galdakao</title>
+  <meta name="description" content="Torreondo, asador y restaurante tradicional en Galdakao. Chuleton a la brasa, pescado a la parrilla, bodega selecta. 4.7 en Google con 629 opiniones. Mas de 30 anos de tradicion vasca.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -12,15 +12,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0b0a08;
+      --black: #0a0606;
       --white: #f5f3ef;
-      --accent: #8B4513;
-      --accent-light: #A0522D;
-      --carbon: #141210;
-      --carbon-mid: #1c1916;
-      --carbon-light: #2a2420;
+      --accent: #8B0000;
+      --accent-light: #a01010;
+      --gold: #C8963E;
+      --carbon: #141010;
+      --carbon-mid: #1c1616;
+      --carbon-light: #2a2220;
       --text-muted: #9a8a7a;
-      --warm-deep: #3D1C02;
       --font-serif: 'Playfair Display', serif;
       --font-sans: 'Source Sans 3', sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -42,14 +42,14 @@
       box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(255,255,255,0.3);
     }
     .cursor-ring {
-      width: 40px; height: 40px; border: 1px solid rgba(139,69,19,0.4);
+      width: 40px; height: 40px; border: 1px solid rgba(139,0,0,0.4);
       border-radius: 50%; position: fixed; top: 0; left: 0;
       pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
       transition: width 0.35s var(--ease-smooth), height 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
     }
     .cursor-ring.expanded {
-      width: 70px; height: 70px; border-color: rgba(139,69,19,0.7);
-      background: rgba(139,69,19,0.05);
+      width: 70px; height: 70px; border-color: rgba(139,0,0,0.7);
+      background: rgba(139,0,0,0.05);
     }
 
     /* --- NAVBAR --- */
@@ -60,22 +60,22 @@
       transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
     }
     nav.scrolled {
-      backdrop-filter: blur(20px); background: rgba(11,10,8,0.88);
-      padding: 18px 60px; border-bottom: 1px solid rgba(139,69,19,0.08);
+      backdrop-filter: blur(20px); background: rgba(10,6,6,0.88);
+      padding: 18px 60px; border-bottom: 1px solid rgba(139,0,0,0.08);
     }
     .nav-logo {
-      font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400;
+      font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400;
       letter-spacing: 0.12em; text-decoration: none; color: var(--white);
       display: flex; align-items: center; gap: 10px;
     }
-    .nav-logo span { color: var(--accent); }
+    .nav-logo span { color: var(--gold); }
     .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
     .nav-links a {
       text-decoration: none; color: rgba(245,243,239,0.65);
       font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
       transition: color 0.3s; font-weight: 400;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--gold); }
     .nav-cta {
       background: transparent; border: 1px solid var(--accent);
       color: var(--accent) !important; padding: 10px 28px !important;
@@ -106,7 +106,7 @@
       text-decoration: none; color: var(--white); font-size: 1.2rem;
       letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
     }
-    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu a:hover { color: var(--gold); }
 
     /* --- HERO --- */
     .hero {
@@ -115,13 +115,13 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('https://www.restaurantetorreondo.com/img/galeria/1.jpg') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1400') center/cover no-repeat;
       transform: scale(1.08); transition: transform 8s var(--ease-out);
     }
     .hero-bg.loaded { transform: scale(1); }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(11,10,8,0.92) 0%, rgba(11,10,8,0.5) 50%, rgba(11,10,8,0.2) 100%);
+      background: linear-gradient(135deg, rgba(10,6,6,0.92) 0%, rgba(10,6,6,0.5) 50%, rgba(10,6,6,0.2) 100%);
     }
     .hero-overlay-bottom {
       position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
@@ -132,12 +132,12 @@
     }
     .hero-eyebrow {
       font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 28px;
+      color: var(--gold); margin-bottom: 28px;
       display: flex; align-items: center; gap: 16px;
       opacity: 0; transform: translateY(20px);
       animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
     }
-    .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
+    .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
     .hero-title {
       font-family: var(--font-serif); font-size: clamp(3.5rem, 7vw, 7rem);
       font-weight: 300; line-height: 1.05; letter-spacing: -0.02em;
@@ -176,13 +176,13 @@
       font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
       display: flex; align-items: center; gap: 10px; transition: color 0.3s;
     }
-    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost:hover { color: var(--gold); }
     .btn-ghost-arrow {
       width: 36px; height: 36px; border: 1px solid rgba(245,243,239,0.2);
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       transition: border-color 0.3s, transform 0.3s;
     }
-    .btn-ghost:hover .btn-ghost-arrow { border-color: var(--accent); transform: rotate(45deg); }
+    .btn-ghost:hover .btn-ghost-arrow { border-color: var(--gold); transform: rotate(45deg); }
     .hero-scroll {
       position: absolute; right: 60px; bottom: 100px; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: 16px;
@@ -204,8 +204,8 @@
 
     /* --- MARQUEE --- */
     .marquee-section {
-      border-top: 1px solid rgba(139,69,19,0.12);
-      border-bottom: 1px solid rgba(139,69,19,0.12);
+      border-top: 1px solid rgba(139,0,0,0.12);
+      border-bottom: 1px solid rgba(139,0,0,0.12);
       overflow: hidden; padding: 20px 0; background: var(--carbon);
     }
     .marquee-track {
@@ -224,10 +224,10 @@
     section { padding: 130px 60px; }
     .section-label {
       font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 20px;
+      color: var(--gold); margin-bottom: 20px;
       display: flex; align-items: center; gap: 14px;
     }
-    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
     .section-title {
       font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4.2rem);
       font-weight: 300; line-height: 1.1; letter-spacing: -0.01em;
@@ -235,11 +235,17 @@
     .section-title em { font-style: italic; color: var(--accent); }
 
     /* --- STATS --- */
-    .stats-section { background: var(--carbon); padding: 100px 60px; border-top: 1px solid rgba(139,69,19,0.08); }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; max-width: 1400px; margin: 0 auto; }
+    .stats-section {
+      background: var(--carbon); padding: 100px 60px;
+      border-top: 1px solid rgba(139,0,0,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; max-width: 1400px; margin: 0 auto;
+    }
     .stat-card {
       padding: 60px 50px; background: var(--carbon);
-      border: 1px solid rgba(139,69,19,0.08);
+      border: 1px solid rgba(139,0,0,0.08);
       position: relative; overflow: hidden; transition: border-color 0.4s;
     }
     .stat-card::before {
@@ -248,13 +254,16 @@
       transition: transform 0.5s var(--ease-out); transform-origin: left;
     }
     .stat-card:hover::before { transform: scaleX(1); }
-    .stat-card:hover { border-color: rgba(139,69,19,0.3); }
+    .stat-card:hover { border-color: rgba(139,0,0,0.3); }
     .stat-number {
       font-family: var(--font-serif); font-size: 4.5rem; font-weight: 300;
       line-height: 1; color: var(--white); margin-bottom: 12px; letter-spacing: -0.02em;
     }
-    .stat-number .stat-suffix { color: var(--accent); }
-    .stat-label { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); font-weight: 400; }
+    .stat-number .stat-suffix { color: var(--gold); }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 400;
+    }
 
     /* --- GALLERY --- */
     .projects-section { background: var(--black); }
@@ -265,13 +274,18 @@
     .projects-header .section-title { max-width: 500px; }
     .view-all {
       display: flex; align-items: center; gap: 12px; text-decoration: none;
-      color: var(--accent); font-size: 0.75rem; letter-spacing: 0.25em;
+      color: var(--gold); font-size: 0.75rem; letter-spacing: 0.25em;
       text-transform: uppercase; transition: gap 0.3s; padding-bottom: 4px;
-      border-bottom: 1px solid rgba(139,69,19,0.3); white-space: nowrap;
+      border-bottom: 1px solid rgba(200,150,62,0.3); white-space: nowrap;
     }
-    .view-all:hover { gap: 20px; border-color: var(--accent); }
-    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; max-width: 1400px; margin: 0 auto; }
-    .project-card { position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: none; }
+    .view-all:hover { gap: 20px; border-color: var(--gold); }
+    .projects-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3px; max-width: 1400px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: none;
+    }
     .project-card:first-child { grid-column: span 2; aspect-ratio: 21/8; }
     .project-img {
       width: 100%; height: 100%; object-fit: cover;
@@ -280,7 +294,7 @@
     .project-card:hover .project-img { transform: scale(1.06); }
     .project-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(11,10,8,0.9) 0%, rgba(11,10,8,0.1) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(10,6,6,0.9) 0%, rgba(10,6,6,0.1) 60%, transparent 100%);
       opacity: 0.6; transition: opacity 0.5s;
     }
     .project-card:hover .project-overlay { opacity: 0.85; }
@@ -289,200 +303,309 @@
       transform: translateY(15px); transition: transform 0.5s var(--ease-out);
     }
     .project-card:hover .project-info { transform: translateY(0); }
-    .project-cat { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-    .project-name { font-family: var(--font-serif); font-size: 1.9rem; font-weight: 300; line-height: 1.15; margin-bottom: 14px; }
-    .project-meta { font-size: 0.73rem; color: rgba(245,243,239,0.45); letter-spacing: 0.1em; opacity: 0; transition: opacity 0.5s 0.1s; }
+    .project-cat {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px; font-weight: 400;
+    }
+    .project-name {
+      font-family: var(--font-serif); font-size: 1.9rem;
+      font-weight: 300; line-height: 1.15; margin-bottom: 14px;
+    }
+    .project-meta {
+      font-size: 0.73rem; color: rgba(245,243,239,0.45);
+      letter-spacing: 0.1em; opacity: 0; transition: opacity 0.5s 0.1s;
+    }
     .project-card:hover .project-meta { opacity: 1; }
     .project-arrow {
       position: absolute; top: 36px; right: 36px; width: 50px; height: 50px;
       border: 1px solid rgba(245,243,239,0.15); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      opacity: 0; transform: translate(10px, -10px); transition: all 0.4s var(--ease-out);
+      opacity: 0; transform: translate(10px, -10px);
+      transition: all 0.4s var(--ease-out);
     }
-    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--gold); }
 
     /* --- ABOUT --- */
     .about-section {
-      background: var(--carbon); display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--carbon);
+      display: grid; grid-template-columns: 1fr 1fr;
       gap: 0; padding: 0; max-width: none;
     }
     .about-visual {
       position: relative; overflow: hidden; min-height: 700px;
-      background: url('https://www.restaurantetorreondo.com/img/galeria/3.jpg') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1550966871-3ed3cdb51f3a?w=800') center/cover no-repeat;
     }
     .about-badge {
       position: absolute; bottom: 48px; left: 48px;
-      background: var(--black); border: 1px solid rgba(139,69,19,0.25);
-      padding: 24px 30px; max-width: 260px;
+      background: var(--black); border: 1px solid rgba(200,150,62,0.25);
+      padding: 24px 30px; max-width: 240px;
     }
-    .about-badge-year { font-family: var(--font-serif); font-size: 2.2rem; color: var(--accent); line-height: 1; }
-    .about-badge-text { font-size: 0.72rem; letter-spacing: 0.1em; color: rgba(245,243,239,0.5); margin-top: 6px; }
-    .about-content { padding: 100px 80px; display: flex; flex-direction: column; justify-content: center; }
-    .about-body { font-size: 1.05rem; line-height: 1.8; color: rgba(245,243,239,0.65); margin: 32px 0 52px; font-weight: 300; }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 3rem;
+      color: var(--gold); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: rgba(245,243,239,0.5); margin-top: 6px;
+    }
+    .about-content {
+      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(245,243,239,0.65); margin: 32px 0 52px; font-weight: 300;
+    }
     .about-body strong { color: var(--white); font-weight: 400; }
     .about-divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
     .about-values { display: flex; flex-direction: column; gap: 20px; }
-    .about-value { display: flex; gap: 20px; align-items: flex-start; padding: 20px; border: 1px solid rgba(139,69,19,0.06); transition: border-color 0.4s; }
-    .about-value:hover { border-color: rgba(139,69,19,0.2); }
-    .value-num { font-family: var(--font-serif); font-size: 1.4rem; color: var(--accent); opacity: 0.5; flex-shrink: 0; line-height: 1.2; }
-    .value-text h4 { font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; margin-bottom: 4px; }
-    .value-text p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+    .about-value {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border: 1px solid rgba(139,0,0,0.06);
+      transition: border-color 0.4s;
+    }
+    .about-value:hover { border-color: rgba(139,0,0,0.2); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      color: var(--gold); opacity: 0.5; flex-shrink: 0; line-height: 1.2;
+    }
+    .value-text h4 {
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 400; margin-bottom: 4px;
+    }
+    .value-text p {
+      font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
+    }
 
-    /* --- SERVICES / CARTA --- */
+    /* --- SERVICES --- */
     .services-section { background: var(--black); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; max-width: 1400px; margin: 60px auto 0; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1400px; margin: 60px auto 0;
+    }
     .service-card {
       padding: 60px 48px; background: var(--black);
-      border: 1px solid rgba(139,69,19,0.07); position: relative; overflow: hidden;
+      border: 1px solid rgba(139,0,0,0.07);
+      position: relative; overflow: hidden;
       transition: background 0.5s, border-color 0.5s;
     }
-    .service-card:hover { background: var(--carbon-mid); border-color: rgba(139,69,19,0.2); }
+    .service-card:hover { background: var(--carbon-mid); border-color: rgba(139,0,0,0.2); }
     .service-icon {
       width: 52px; height: 52px; margin-bottom: 36px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(139,69,19,0.2); color: var(--accent);
+      border: 1px solid rgba(139,0,0,0.2); color: var(--accent);
     }
-    .service-card h3 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 400; margin-bottom: 18px; line-height: 1.2; }
-    .service-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.7rem;
+      font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+    }
+    .service-card p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; font-weight: 300;
+    }
     .service-link {
-      display: inline-flex; align-items: center; gap: 10px; margin-top: 32px;
-      text-decoration: none; font-size: 0.72rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: rgba(139,69,19,0.5); transition: color 0.3s, gap 0.3s;
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 32px; text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(139,0,0,0.5); transition: color 0.3s, gap 0.3s;
     }
     .service-link:hover { color: var(--accent); gap: 16px; }
     .service-number {
       position: absolute; top: 30px; right: 36px;
-      font-family: var(--font-serif); font-size: 5rem; font-weight: 300;
-      color: rgba(139,69,19,0.05); line-height: 1; transition: color 0.5s;
+      font-family: var(--font-serif); font-size: 5rem;
+      font-weight: 300; color: rgba(139,0,0,0.05);
+      line-height: 1; transition: color 0.5s;
     }
-    .service-card:hover .service-number { color: rgba(139,69,19,0.1); }
+    .service-card:hover .service-number { color: rgba(139,0,0,0.1); }
 
-    /* --- CARTA DETAIL --- */
-    .carta-section { padding: 140px 60px; background: var(--carbon); border-top: 1px solid rgba(139,69,19,0.08); }
+    /* --- CARTA SECTIONS --- */
+    .carta-section {
+      padding: 140px 60px;
+      background: var(--carbon);
+      border-top: 1px solid rgba(139,0,0,0.08);
+    }
     .carta-section:nth-child(even) { background: var(--black); }
     .carta-section .section-inner { max-width: 1200px; margin: 0 auto; }
     .carta-back {
-      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
-      color: var(--accent); font-size: 0.72rem; letter-spacing: 0.2em;
-      text-transform: uppercase; margin-bottom: 40px; transition: gap 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--gold);
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 40px; transition: gap 0.3s;
     }
     .carta-back:hover { gap: 14px; }
-    .carta-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; }
+    .carta-columns {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; margin-top: 60px;
+    }
     .carta-category { margin-bottom: 48px; }
     .carta-category h4 {
-      font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400;
-      color: var(--white); padding-bottom: 16px; margin-bottom: 24px;
-      border-bottom: 1px solid rgba(139,69,19,0.15);
+      font-family: var(--font-serif); font-size: 1.3rem;
+      font-weight: 400; color: var(--white);
+      padding-bottom: 16px; margin-bottom: 24px;
+      border-bottom: 1px solid rgba(139,0,0,0.15);
     }
-    .carta-item { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .carta-item {
+      display: flex; justify-content: space-between;
+      align-items: baseline; padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
     .carta-item:last-child { border-bottom: none; }
     .carta-item-name { font-size: 0.92rem; font-weight: 400; color: var(--white); flex: 1; }
     .carta-item-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
-    .carta-item-price { font-family: var(--font-serif); font-size: 1rem; color: var(--accent); white-space: nowrap; margin-left: 20px; font-weight: 400; }
-    .carta-highlight { background: var(--carbon-mid); border: 1px solid rgba(139,69,19,0.1); padding: 40px; margin-top: 40px; }
-    .carta-highlight h4 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; color: var(--accent); margin-bottom: 16px; }
-    .carta-highlight p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
+    .carta-item-price {
+      font-family: var(--font-serif); font-size: 1rem;
+      color: var(--gold); white-space: nowrap;
+      margin-left: 20px; font-weight: 400;
+    }
+    .carta-highlight {
+      background: var(--carbon-mid); border: 1px solid rgba(139,0,0,0.1);
+      padding: 40px; margin-top: 40px;
+    }
+    .carta-highlight h4 {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-weight: 400; color: var(--gold); margin-bottom: 16px;
+    }
+    .carta-highlight p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; font-weight: 300;
+    }
     .carta-cta {
-      display: inline-flex; align-items: center; gap: 12px; margin-top: 48px;
-      text-decoration: none; padding: 18px 40px; border: 1px solid var(--accent);
-      color: var(--white); font-size: 0.72rem; letter-spacing: 0.2em;
-      text-transform: uppercase; transition: background 0.4s, gap 0.3s;
+      display: inline-flex; align-items: center; gap: 12px;
+      margin-top: 48px; text-decoration: none;
+      padding: 18px 40px; border: 1px solid var(--accent);
+      color: var(--white); font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      transition: background 0.4s, gap 0.3s;
     }
     .carta-cta:hover { background: var(--accent); gap: 18px; }
 
     /* --- TESTIMONIALS --- */
-    .testimonials-section { background: var(--carbon); position: relative; overflow: hidden; }
+    .testimonials-section {
+      background: var(--carbon); position: relative; overflow: hidden;
+    }
     .testimonials-section::before {
-      content: '\201C'; position: absolute; top: -60px; left: 40px;
+      content: '"'; position: absolute; top: -60px; left: 40px;
       font-family: var(--font-serif); font-size: 30rem;
-      color: rgba(139,69,19,0.03); line-height: 1; pointer-events: none;
+      color: rgba(139,0,0,0.03); line-height: 1; pointer-events: none;
     }
     .testimonials-inner { max-width: 1400px; margin: 0 auto; }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 70px; }
-    .testimonial-card {
-      padding: 56px 44px; background: rgba(11,10,8,0.4);
-      border: 1px solid rgba(139,69,19,0.07); transition: border-color 0.4s, background 0.4s;
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 70px;
     }
-    .testimonial-card:hover { border-color: rgba(139,69,19,0.2); background: rgba(11,10,8,0.7); }
+    .testimonial-card {
+      padding: 56px 44px; background: rgba(10,6,6,0.4);
+      border: 1px solid rgba(139,0,0,0.07);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .testimonial-card:hover { border-color: rgba(139,0,0,0.2); background: rgba(10,6,6,0.7); }
     .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
-    .star { width: 12px; height: 12px; background: var(--accent); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
-    .star.empty { background: rgba(139,69,19,0.2); }
+    .star {
+      width: 12px; height: 12px; background: var(--gold);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
     .testimonial-quote {
-      font-family: var(--font-serif); font-size: 1.2rem; font-style: italic;
-      font-weight: 300; line-height: 1.7; color: rgba(245,243,239,0.8); margin-bottom: 36px;
+      font-family: var(--font-serif); font-size: 1.2rem;
+      font-style: italic; font-weight: 300;
+      line-height: 1.7; color: rgba(245,243,239,0.8); margin-bottom: 36px;
     }
     .testimonial-divider { width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4; }
-    .testimonial-author strong { display: block; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; margin-bottom: 4px; }
-    .testimonial-author span { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em; }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; margin-bottom: 4px;
+    }
+    .testimonial-author span {
+      font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
+    }
 
-    /* --- LOCATION --- */
-    .location-section { background: var(--black); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
-    .location-map { min-height: 500px; }
-    .location-map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.7) brightness(0.75) contrast(1.1); }
-    .location-info { padding: 100px 80px; display: flex; flex-direction: column; justify-content: center; }
-    .location-item { margin-bottom: 36px; }
-    .location-item h4 { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; font-weight: 500; }
-    .location-item p, .location-item a { font-size: 0.95rem; color: rgba(245,243,239,0.6); font-weight: 300; text-decoration: none; line-height: 1.7; }
-    .location-item a:hover { color: var(--accent); }
-    .horario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
-    .horario-dia { font-size: 0.85rem; color: rgba(245,243,239,0.4); }
-    .horario-hora { font-size: 0.85rem; color: rgba(245,243,239,0.7); }
+    /* --- MAP --- */
+    .map-section {
+      padding: 0; background: var(--black);
+      border-top: 1px solid rgba(139,0,0,0.08);
+    }
+    .map-section iframe { display: block; width: 100%; height: 400px; border: 0; filter: grayscale(0.3) contrast(1.1); }
 
-    /* --- CTA --- */
+    /* --- CTA BANNER --- */
     .cta-section {
       background: var(--accent); padding: 110px 60px;
-      display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
     }
     .cta-text { flex: 1; min-width: 300px; }
-    .cta-text h2 { font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 300; color: var(--white); line-height: 1.1; }
-    .cta-text p { font-size: 1rem; color: rgba(255,255,255,0.65); margin-top: 16px; font-weight: 300; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
+      font-weight: 300; color: var(--white); line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(245,243,239,0.65); margin-top: 16px; font-weight: 300;
+    }
     .btn-dark {
       display: inline-flex; align-items: center; gap: 14px;
-      background: var(--black); color: var(--white); text-decoration: none;
-      padding: 20px 48px; font-size: 0.78rem; letter-spacing: 0.2em;
-      text-transform: uppercase; font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      background: var(--black); color: var(--white);
+      text-decoration: none; padding: 20px 48px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
       white-space: nowrap; position: relative; overflow: hidden;
     }
-    .btn-dark::before { content: ''; position: absolute; inset: 0; background: var(--carbon-light); transform: translateX(-102%); transition: transform 0.4s var(--ease-out); }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--carbon-light); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
     .btn-dark:hover::before { transform: translateX(0); }
     .btn-dark span { position: relative; z-index: 1; }
 
     /* --- FOOTER --- */
-    footer { background: var(--black); padding: 90px 60px 50px; border-top: 1px solid rgba(139,69,19,0.08); }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 70px; }
+    footer {
+      background: var(--black); padding: 90px 60px 50px;
+      border-top: 1px solid rgba(139,0,0,0.08);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 70px;
+    }
     .footer-brand .nav-logo { font-size: 1.8rem; margin-bottom: 22px; display: inline-flex; }
-    .footer-tagline { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: rgba(245,243,239,0.35); line-height: 1.6; max-width: 280px; margin-bottom: 36px; }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.05rem; color: rgba(245,243,239,0.35);
+      line-height: 1.6; max-width: 280px; margin-bottom: 36px;
+    }
     .footer-social { display: flex; gap: 14px; }
     .social-link {
-      width: 40px; height: 40px; border: 1px solid rgba(245,243,239,0.1);
+      width: 40px; height: 40px;
+      border: 1px solid rgba(245,243,239,0.1);
       display: flex; align-items: center; justify-content: center;
-      text-decoration: none; color: rgba(245,243,239,0.4); font-size: 0.75rem;
-      letter-spacing: 0.1em; transition: border-color 0.3s, color 0.3s;
+      text-decoration: none; color: rgba(245,243,239,0.4);
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      transition: border-color 0.3s, color 0.3s;
     }
-    .social-link:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col h4 { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; font-weight: 500; }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col h4 {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 24px; font-weight: 500;
+    }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-col ul a { text-decoration: none; color: rgba(245,243,239,0.4); font-size: 0.85rem; transition: color 0.3s; font-weight: 300; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(245,243,239,0.4);
+      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+    }
     .footer-col ul a:hover { color: var(--white); }
-    .footer-bottom { border-top: 1px solid rgba(245,243,239,0.06); padding-top: 36px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,243,239,0.06);
+      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+    }
     .footer-copy { font-size: 0.75rem; color: rgba(245,243,239,0.25); letter-spacing: 0.05em; }
     .footer-legal { display: flex; gap: 28px; }
-    .footer-legal a { font-size: 0.72rem; color: rgba(245,243,239,0.2); text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s; }
-    .footer-legal a:hover { color: var(--text-muted); }
-
-    /* --- BADGE --- */
-    .badge-location {
-      position: fixed; bottom: 24px; left: 24px; z-index: 900;
-      background: var(--black); border: 1px solid rgba(139,69,19,0.2);
-      padding: 10px 18px; font-size: 0.68rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--accent); font-weight: 500;
-      backdrop-filter: blur(10px);
+    .footer-legal a {
+      font-size: 0.72rem; color: rgba(245,243,239,0.2);
+      text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
     }
+    .footer-legal a:hover { color: var(--text-muted); }
 
     /* --- ANIMATIONS --- */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
-    .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.15s; }
     .reveal-delay-2 { transition-delay: 0.3s; }
@@ -490,500 +613,661 @@
 
     /* --- LOADER --- */
     .loader {
-      position: fixed; inset: 0; z-index: 10000; background: var(--black);
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 28px; transition: opacity 0.8s, visibility 0.8s;
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--black); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
     }
     .loader.hidden { opacity: 0; visibility: hidden; }
-    .loader-logo { font-family: var(--font-serif); font-size: 2.5rem; letter-spacing: 0.3em; color: var(--white); }
-    .loader-logo span { color: var(--accent); }
-    .loader-bar { width: 200px; height: 1px; background: rgba(245,243,239,0.1); position: relative; overflow: hidden; }
-    .loader-bar::after { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-100%); animation: loadBar 1.5s var(--ease-out) 0.3s forwards; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2.5rem;
+      letter-spacing: 0.3em; color: var(--white);
+    }
+    .loader-logo span { color: var(--gold); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(245,243,239,0.1);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
     @keyframes loadBar { to { transform: translateX(0); } }
 
     /* --- RESPONSIVE --- */
     @media (max-width: 1024px) {
-      nav { padding: 24px 36px; } nav.scrolled { padding: 16px 36px; }
-      section { padding: 100px 36px; } .hero-content { padding: 0 36px 80px; }
-      .hero-scroll { right: 36px; } .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
-      .location-section { grid-template-columns: 1fr; } .location-info { padding: 60px 36px; }
     }
     @media (max-width: 768px) {
-      body { cursor: auto; } .cursor-dot, .cursor-ring { display: none; }
-      .hamburger { display: flex; } nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; }
-      .nav-links { display: none; } section { padding: 80px 24px; }
-      .hero-content { padding: 0 24px 70px; } .hero-scroll { display: none; }
+      body { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none; }
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-scroll { display: none; }
       .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
       .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
       .projects-grid { grid-template-columns: 1fr; }
       .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
-      .about-section { grid-template-columns: 1fr; } .about-visual { min-height: 300px; }
-      .about-content { padding: 60px 24px; } .services-grid { grid-template-columns: 1fr; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 300px; }
+      .about-content { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .cta-section { padding: 80px 24px; flex-direction: column; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
-      .stats-grid { grid-template-columns: 1fr 1fr; } .stats-section { padding: 70px 24px; }
-      .location-section { grid-template-columns: 1fr; }
-      .location-map { min-height: 300px; } .location-info { padding: 50px 24px; }
-      .carta-section { padding: 80px 24px; } .carta-columns { grid-template-columns: 1fr; gap: 40px; }
-      .badge-location { bottom: 16px; left: 16px; padding: 8px 14px; font-size: 0.62rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+      .carta-section { padding: 80px 24px; }
+      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
     }
   </style>
 </head>
 <body>
 
+<!-- LOADER -->
 <div class="loader" id="loader">
-  <div class="loader-logo">Torreondo <span>.</span></div>
+  <div class="loader-logo">TORREONDO<span>.</span></div>
   <div class="loader-bar"></div>
 </div>
 
+<!-- CURSOR -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<div class="badge-location">Galdakao</div>
-
+<!-- NAV -->
 <nav id="navbar">
   <a href="#" class="nav-logo">Torreondo<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#galeria">Galeria</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#servicios">Carta</a></li>
-    <li><a href="#ubicacion">Ubicacion</a></li>
-    <li><a href="tel:+34946042956" class="nav-cta">Reservar</a></li>
+    <li><a href="#carta">Carta</a></li>
+    <li><a href="tel:+34944560660" class="nav-cta">Reservar</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#galeria" onclick="closeMobile()">Galeria</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
-  <a href="#servicios" onclick="closeMobile()">Carta</a>
-  <a href="#ubicacion" onclick="closeMobile()">Ubicacion</a>
-  <a href="tel:+34946042956" onclick="closeMobile()">Reservar</a>
+  <a href="#carta" onclick="closeMobile()">Carta</a>
+  <a href="tel:+34944560660" onclick="closeMobile()">Reservar</a>
 </div>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Menu del Dia &middot; Hamburgueseria &middot; Alubiada</p>
-    <h1 class="hero-title">Donde comer<br>es volver a<br><em>casa</em></h1>
-    <p class="hero-sub">Restaurante familiar en Galdakao. Menu del dia casero, hamburguesas artesanas, pizzas al horno y la mejor alubiada los fines de semana.</p>
+    <p class="hero-eyebrow">Asador y Restaurante en Galdakao</p>
+    <h1 class="hero-title">
+      Brasa,<br><em>tradicion</em><br>y sabor
+    </h1>
+    <p class="hero-sub">
+      Mas de 30 anos elaborando las mejores carnes y pescados a la brasa en Galdakao. Cocina vasca de siempre con producto de primera calidad.
+    </p>
     <div class="hero-actions">
-      <a href="tel:+34946042956" class="btn-primary"><span>Reservar mesa</span><span>&rarr;</span></a>
-      <a href="#servicios" class="btn-ghost"><span>Ver nuestra carta</span><div class="btn-ghost-arrow">&nearr;</div></a>
+      <a href="tel:+34944560660" class="btn-primary">
+        <span>Reservar mesa</span>
+        <span>→</span>
+      </a>
+      <a href="#carta" class="btn-ghost">
+        <span>Ver carta</span>
+        <div class="btn-ghost-arrow">↗</div>
+      </a>
     </div>
   </div>
-  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
+<!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Menu del Dia</span>
-    <span class="marquee-item"><span class="dot"></span>Hamburguesas</span>
-    <span class="marquee-item"><span class="dot"></span>Txuleton</span>
-    <span class="marquee-item"><span class="dot"></span>Alubiada</span>
-    <span class="marquee-item"><span class="dot"></span>Croquetas Caseras</span>
-    <span class="marquee-item"><span class="dot"></span>Tarta de Queso</span>
-    <span class="marquee-item"><span class="dot"></span>Pizzas</span>
-    <span class="marquee-item"><span class="dot"></span>Rabo de Toro</span>
-    <span class="marquee-item"><span class="dot"></span>Menu del Dia</span>
-    <span class="marquee-item"><span class="dot"></span>Hamburguesas</span>
-    <span class="marquee-item"><span class="dot"></span>Txuleton</span>
-    <span class="marquee-item"><span class="dot"></span>Alubiada</span>
-    <span class="marquee-item"><span class="dot"></span>Croquetas Caseras</span>
-    <span class="marquee-item"><span class="dot"></span>Tarta de Queso</span>
-    <span class="marquee-item"><span class="dot"></span>Pizzas</span>
-    <span class="marquee-item"><span class="dot"></span>Rabo de Toro</span>
+    <span class="marquee-item"><span class="dot"></span>Chuleton a la Brasa</span>
+    <span class="marquee-item"><span class="dot"></span>Pescado a la Parrilla</span>
+    <span class="marquee-item"><span class="dot"></span>Menu Degustacion</span>
+    <span class="marquee-item"><span class="dot"></span>Bodega Selecta</span>
+    <span class="marquee-item"><span class="dot"></span>Eventos y Celebraciones</span>
+    <span class="marquee-item"><span class="dot"></span>Cocina de Mercado</span>
+    <span class="marquee-item"><span class="dot"></span>Chuleton a la Brasa</span>
+    <span class="marquee-item"><span class="dot"></span>Pescado a la Parrilla</span>
+    <span class="marquee-item"><span class="dot"></span>Menu Degustacion</span>
+    <span class="marquee-item"><span class="dot"></span>Bodega Selecta</span>
+    <span class="marquee-item"><span class="dot"></span>Eventos y Celebraciones</span>
+    <span class="marquee-item"><span class="dot"></span>Cocina de Mercado</span>
   </div>
 </div>
 
+<!-- STATS -->
 <div class="stats-section">
   <div class="stats-grid">
     <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="629">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Opiniones en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
       <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">.7</span></div>
       <div class="stat-label">Nota en Google</div>
     </div>
-    <div class="stat-card reveal reveal-delay-1">
-      <div class="stat-number"><span class="count" data-target="629">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Opiniones</div>
-    </div>
     <div class="stat-card reveal reveal-delay-2">
-      <div class="stat-number"><span class="count" data-target="14">0</span><span class="stat-suffix"> &euro;</span></div>
-      <div class="stat-label">Menu del Dia</div>
+      <div class="stat-number"><span class="count" data-target="30">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Anos de tradicion</div>
     </div>
     <div class="stat-card reveal reveal-delay-3">
-      <div class="stat-number">7<span class="stat-suffix"> dias</span></div>
-      <div class="stat-label">Abierto toda la semana</div>
+      <div class="stat-number"><span class="count" data-target="1">0</span><span class="stat-suffix"></span></div>
+      <div class="stat-label">Asador tradicional</div>
     </div>
   </div>
 </div>
 
+<!-- GALLERY -->
 <section class="projects-section" id="galeria">
   <div class="projects-header">
     <div>
-      <p class="section-label reveal">Nuestro espacio</p>
-      <h2 class="section-title reveal reveal-delay-1">Descubre<br><em>Torreondo</em></h2>
+      <p class="section-label reveal">Nuestra cocina</p>
+      <h2 class="section-title reveal reveal-delay-1">Sabores que<br><em>hablan por si solos</em></h2>
     </div>
-    <a href="https://www.instagram.com/restaurantetorreondo/" target="_blank" rel="noopener" class="view-all reveal">Siguenos en Instagram &rarr;</a>
+    <a href="tel:+34944560660" class="view-all reveal">Reservar mesa →</a>
   </div>
   <div class="projects-grid">
     <div class="project-card">
-      <div class="project-img" style="background: url('https://www.restaurantetorreondo.com/img/galeria/2.jpg') center/cover no-repeat;"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1558030006-450675393462?w=800" alt="Chuleton a la brasa en Torreondo Galdakao" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
+      <div class="project-arrow">↗</div>
       <div class="project-info">
-        <p class="project-cat">Gastronomia &middot; Platos</p>
-        <h3 class="project-name">Nuestra Cocina</h3>
-        <p class="project-meta">Cocina casera con producto fresco cada dia</p>
+        <p class="project-cat">Especialidad · Brasa</p>
+        <h3 class="project-name">Chuleton de Buey</h3>
+        <p class="project-meta">Madurado · Brasa de carbon · Punto perfecto</p>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: url('https://www.restaurantetorreondo.com/img/galeria/4.jpg') center/cover no-repeat;"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800" alt="Interior del restaurante Torreondo" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
+      <div class="project-arrow">↗</div>
       <div class="project-info">
-        <p class="project-cat">Especialidad &middot; Carnes</p>
-        <h3 class="project-name">Carnes a la Brasa</h3>
-        <p class="project-meta">Txuleton, chuleta y rabo de toro</p>
+        <p class="project-cat">Espacio · Interior</p>
+        <h3 class="project-name">Nuestro Comedor</h3>
+        <p class="project-meta">Ambiente acogedor · Tradicion vasca</p>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: url('https://www.restaurantetorreondo.com/img/galeria/5.jpg') center/cover no-repeat;"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1432139509613-5c4255a78e03?w=800" alt="Vinos y gastronomia en Torreondo" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
+      <div class="project-arrow">↗</div>
       <div class="project-info">
-        <p class="project-cat">Interior &middot; Ambiente</p>
-        <h3 class="project-name">Nuestro Salon</h3>
-        <p class="project-meta">Espacio amplio y acogedor para grupos</p>
+        <p class="project-cat">Bodega · Seleccion</p>
+        <h3 class="project-name">Nuestra Bodega</h3>
+        <p class="project-meta">Vinos de Rioja Alavesa · Txakoli · Ribera</p>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: url('https://www.restaurantetorreondo.com/img/galeria/6.jpg') center/cover no-repeat;"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="Platos de temporada en Torreondo" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
+      <div class="project-arrow">↗</div>
       <div class="project-info">
-        <p class="project-cat">Hamburguesas &middot; Artesanas</p>
-        <h3 class="project-name">Hamburgueseria</h3>
-        <p class="project-meta">Hamburguesas gourmet con ingredientes de calidad</p>
+        <p class="project-cat">Cocina · Mercado</p>
+        <h3 class="project-name">Producto de Temporada</h3>
+        <p class="project-meta">Verduras de la huerta · Setas · Temporada</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800" alt="Pescado a la brasa en Torreondo" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Parrilla · Pescado</p>
+        <h3 class="project-name">Pescado a la Brasa</h3>
+        <p class="project-meta">Rodaballo · Besugo · Lonja del dia</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800" alt="Chef en la parrilla de Torreondo" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Cocina · Tradicion</p>
+        <h3 class="project-name">El Arte de la Brasa</h3>
+        <p class="project-meta">Parrilla de carbon · Tecnica tradicional</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ABOUT -->
 <div class="about-section" id="nosotros">
   <div class="about-visual">
     <div class="about-badge">
-      <div class="about-badge-year">Galdakao</div>
-      <div class="about-badge-text">Restaurante familiar de referencia</div>
+      <div class="about-badge-year">+30</div>
+      <div class="about-badge-text">Anos de tradicion gastronomica en Galdakao</div>
     </div>
   </div>
   <div class="about-content">
     <p class="section-label reveal">Sobre nosotros</p>
-    <h2 class="section-title reveal reveal-delay-1">Cocina casera<br>con alma <em>familiar</em></h2>
+    <h2 class="section-title reveal reveal-delay-1">
+      Donde la brasa<br>es <em>tradicion</em>
+    </h2>
     <div class="about-divider reveal"></div>
     <p class="about-body reveal reveal-delay-2">
-      Torreondo es mucho mas que un restaurante en Galdakao. Es el lugar donde las familias se reunen, donde los amigos celebran y donde cada plato sabe a <strong>cocina de toda la vida</strong>.<br><br>Nuestro menu del dia a 14 &euro; ofrece cuatro primeros, cuatro segundos, postre y bebida. Los fines de semana, nuestra <strong>alubiada y menu especial</strong> atraen a comensales de toda la comarca. Hamburgueseria, pizzeria, bocateria y cocina tradicional bajo un mismo techo.
+      Torreondo es un asador con alma vasca en el corazon de Galdakao. Mas de tres decadas cocinando con fuego, respetando el producto y cuidando cada detalle para que cada visita sea una experiencia memorable.<br><br><strong>De la lonja y el mercado a tu mesa.</strong> Seleccionamos las mejores carnes maduradas y los pescados mas frescos de lonja para llevar a la brasa todo su sabor natural. Cocina honesta, sin artificios.
     </p>
     <div class="about-values reveal reveal-delay-3">
       <div class="about-value">
         <div class="value-num">01</div>
         <div class="value-text">
-          <h4>Cocina casera</h4>
-          <p>Platos elaborados con producto fresco y recetas tradicionales</p>
+          <h4>Brasa de carbon</h4>
+          <p>Chuletones, txuletas y pescados cocinados a la brasa con carbon de encina, como manda la tradicion</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">02</div>
         <div class="value-text">
-          <h4>Variedad total</h4>
-          <p>Menu del dia, hamburguesas, pizzas, bocatas y carta</p>
+          <h4>Producto de primera</h4>
+          <p>Carnes de ganaderias seleccionadas, pescados de lonja cantabrica y verduras de caserio</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">03</div>
         <div class="value-text">
-          <h4>Celebraciones</h4>
-          <p>Menu especial para grupos con cinco entrantes y cinco segundos</p>
+          <h4>Bodega cuidada</h4>
+          <p>Seleccion de vinos de Rioja Alavesa, Ribera del Duero, txakoli y referencias especiales para cada plato</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<section class="services-section" id="servicios">
+<!-- SERVICES -->
+<section class="services-section" id="carta">
   <div style="max-width:1400px; margin:0 auto">
-    <p class="section-label reveal">Nuestra carta</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:560px">Todo lo que necesitas para <em>disfrutar</em></h2>
+    <p class="section-label reveal">Nuestra oferta</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:560px">
+      Una experiencia <em>gastronomica completa</em>
+    </h2>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-number">01</div>
         <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
         </div>
-        <h3>Menu del Dia</h3>
-        <p>Menu casero completo por 14 &euro;. Cuatro primeros, cuatro segundos, postre y bebida. De lunes a viernes. Medio menu por 10 &euro;.</p>
-        <a href="#carta-menu" class="service-link">Ver menu &rarr;</a>
+        <h3>Chuleton a la Brasa</h3>
+        <p>Nuestra especialidad estrella. Chuletones de buey y vaca vieja madurados, cocinados a la brasa de carbon de encina. Corte generoso, punto perfecto, sabor inigualable.</p>
+        <a href="#carta-brasa" class="service-link">Ver carnes →</a>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-number">02</div>
         <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
         </div>
-        <h3>Hamburgueseria</h3>
-        <p>Hamburguesas artesanas con carne de calidad. Tambien pizzas al horno, bocateria y empanadas. Abierto 7 dias.</p>
-        <a href="#carta-hamburguesas" class="service-link">Ver hamburguesas &rarr;</a>
+        <h3>Pescado a la Parrilla</h3>
+        <p>Rodaballo, besugo, lubina y las mejores piezas de lonja cantabrica, cocinadas a la parrilla con la tecnica que solo da la experiencia de mas de 30 anos.</p>
+        <a href="#carta-pescado" class="service-link">Ver pescados →</a>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-number">03</div>
         <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 2v4M16 2v4"/><rect x="2" y="4" width="20" height="18" rx="2"/><path d="M2 10h20"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
+          </svg>
         </div>
-        <h3>Menu Especial</h3>
-        <p>Menu para grupos y celebraciones a 35 &euro; con cinco entrantes y cinco segundos a elegir. Perfecto para cumpleanos y eventos.</p>
-        <a href="#carta-especial" class="service-link">Ver menu especial &rarr;</a>
+        <h3>Eventos y Celebraciones</h3>
+        <p>Comidas de empresa, celebraciones familiares y eventos especiales. Menus cerrados a medida, atencion personalizada y el mejor ambiente de Galdakao para tu evento.</p>
+        <a href="#carta-eventos" class="service-link">Mas info →</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="carta-section" id="carta-menu">
+<!-- CARTA: BRASA -->
+<section class="carta-section" id="carta-brasa">
   <div class="section-inner">
-    <a href="#servicios" class="carta-back reveal">&larr; Volver a carta</a>
-    <p class="section-label reveal">Menu del dia</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">Casero, completo y a <em>buen precio</em></h2>
+    <a href="#carta" class="carta-back reveal">← Volver a carta</a>
+    <p class="section-label reveal">Nuestra parrilla</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Carnes y pescados<br>a la <em>brasa</em>
+    </h2>
     <div class="carta-columns">
       <div>
         <div class="carta-category reveal">
-          <h4>Primeros</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Alubias rojas</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Pasta del dia</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Crema de verduras</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Ensalada mixta</div></div><div class="carta-item-price">incl.</div></div>
-        </div>
-        <div class="carta-category reveal">
-          <h4>Segundos</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Chuleta a la brasa</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Merluza en salsa verde</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Pollo asado con patatas</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Cinta de lomo a la plancha</div></div><div class="carta-item-price">incl.</div></div>
+          <h4>Carnes a la Brasa</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Chuleton de Buey</div>
+              <div class="carta-item-desc">Madurado, corte de 800g-1kg, brasa de carbon</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Txuleta de Vaca Vieja</div>
+              <div class="carta-item-desc">Pieza seleccionada, punto al gusto</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Solomillo a la Brasa</div>
+              <div class="carta-item-desc">Ternera de caserio, guarnicion de pimientos</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Chuletas de Cordero</div>
+              <div class="carta-item-desc">Lechal, brasa suave</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
         </div>
       </div>
       <div>
         <div class="carta-category reveal reveal-delay-1">
-          <h4>Postres</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Tarta de queso casera</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Arroz con leche</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Helados</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Yogurt</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Flan casero</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Fruta del dia</div></div><div class="carta-item-price">incl.</div></div>
-        </div>
-        <div class="carta-highlight reveal reveal-delay-2">
-          <h4>Menu completo &mdash; 14 &euro;</h4>
-          <p>Incluye primero, segundo, postre, pan y bebida (agua, cerveza, refresco o copa de vino). De lunes a viernes. Medio menu: 10 &euro; (primero o segundo + postre + bebida).</p>
-        </div>
-      </div>
-    </div>
-    <a href="tel:+34946042956" class="carta-cta reveal"><span>Reservar mesa</span><span>&rarr;</span></a>
-  </div>
-</section>
-
-<section class="carta-section" id="carta-hamburguesas">
-  <div class="section-inner">
-    <a href="#servicios" class="carta-back reveal">&larr; Volver a carta</a>
-    <p class="section-label reveal">Hamburgueseria y mas</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">Hamburguesas artesanas y <em>pizzas al horno</em></h2>
-    <div class="carta-columns">
-      <div>
-        <div class="carta-category reveal">
-          <h4>Hamburguesas</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Clasica</div><div class="carta-item-desc">Carne de ternera, lechuga, tomate, cebolla</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Torreondo Especial</div><div class="carta-item-desc">Doble carne, queso, bacon, huevo</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Pollo crispy</div><div class="carta-item-desc">Pollo empanado, mayonesa de la casa</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Vegetal</div><div class="carta-item-desc">Hamburguesa vegetal con verduras de temporada</div></div><div class="carta-item-price">&mdash;</div></div>
-        </div>
-        <div class="carta-category reveal">
           <h4>Entrantes</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Croquetas caseras</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Empanadas</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Calamares a la romana</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Pulpo con orzo</div></div><div class="carta-item-price">&mdash;</div></div>
-        </div>
-      </div>
-      <div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Pizzas</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Margarita</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Jamon y queso</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">4 Quesos</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Barbacoa</div></div><div class="carta-item-price">&mdash;</div></div>
-        </div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Postres</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Tarta de queso casera</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Brownie con helado</div></div><div class="carta-item-price">&mdash;</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Coulant de chocolate</div></div><div class="carta-item-price">&mdash;</div></div>
-        </div>
-        <div class="carta-highlight reveal reveal-delay-2">
-          <h4>Consulta precios</h4>
-          <p>Los precios de la carta pueden variar. Consultanos sin compromiso llamando al 946 04 29 56. Alubiada todos los fines de semana de octubre a mayo.</p>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Pimientos de Gernika</div>
+              <div class="carta-item-desc">De caserio, con sal gorda</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Ensalada de Tomate</div>
+              <div class="carta-item-desc">Tomate de huerta, cebolleta, aceite de oliva</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Croquetas de la Casa</div>
+              <div class="carta-item-desc">Elaboracion artesanal, receta tradicional</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Cogollos a la Brasa</div>
+              <div class="carta-item-desc">Con anchoas y vinagreta</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
         </div>
       </div>
     </div>
-    <a href="tel:+34946042956" class="carta-cta reveal"><span>Llamar para consultar</span><span>&rarr;</span></a>
+    <a href="tel:+34944560660" class="carta-cta reveal">
+      <span>Reservar mesa</span><span>→</span>
+    </a>
   </div>
 </section>
 
-<section class="carta-section" id="carta-especial">
+<!-- CARTA: PESCADO -->
+<section class="carta-section" id="carta-pescado">
   <div class="section-inner">
-    <a href="#servicios" class="carta-back reveal">&larr; Volver a carta</a>
-    <p class="section-label reveal">Menu especial</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">Para grupos y <em>celebraciones</em></h2>
+    <a href="#carta" class="carta-back reveal">← Volver a carta</a>
+    <p class="section-label reveal">Del mar a la parrilla</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Pescados y mariscos<br>de <em>lonja</em>
+    </h2>
     <div class="carta-columns">
       <div>
         <div class="carta-category reveal">
-          <h4>Entrantes (cinco a compartir)</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Surtido de ibericos</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Croquetas caseras</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Ensalada templada</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Pulpo a la gallega</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Langostinos a la plancha</div></div><div class="carta-item-price">incl.</div></div>
+          <h4>Pescados a la Parrilla</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Rodaballo a la Brasa</div>
+              <div class="carta-item-desc">Pieza entera, lonja del dia</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Besugo a la Espalda</div>
+              <div class="carta-item-desc">Brasa suave con ajo y guindilla</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Lubina Salvaje</div>
+              <div class="carta-item-desc">A la parrilla, con aceite de oliva virgen</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Kokotxas de Merluza</div>
+              <div class="carta-item-desc">En salsa verde o a la plancha</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
         </div>
       </div>
       <div>
         <div class="carta-category reveal reveal-delay-1">
-          <h4>Segundos (elegir uno)</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Rabo de toro</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Txuleton a la brasa</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Merluza a la plancha</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Entrecot con patatas</div></div><div class="carta-item-price">incl.</div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Bacalao al pil-pil</div></div><div class="carta-item-price">incl.</div></div>
+          <h4>Postres Caseros</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Tarta de Queso</div>
+              <div class="carta-item-desc">Receta vasca, cremosa por dentro</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Arroz con Leche</div>
+              <div class="carta-item-desc">Receta de la abuela, caramelizado</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Pantxineta</div>
+              <div class="carta-item-desc">Hojaldre con crema pastelera y almendras</div>
+            </div>
+            <div class="carta-item-price">Consultar</div>
+          </div>
         </div>
         <div class="carta-highlight reveal reveal-delay-2">
-          <h4>Menu Especial &mdash; 35 &euro;</h4>
-          <p>Incluye cinco entrantes para compartir, segundo a elegir, postre, pan, bebida y vino. Ideal para cumpleanos, celebraciones y comidas de empresa. Minimo 8 personas.</p>
+          <h4>Precios segun mercado</h4>
+          <p>Los precios de carnes y pescados varian segun peso y disponibilidad del dia. Consulta nuestra carta actualizada al llegar al restaurante o llamanos al 944 560 660.</p>
         </div>
       </div>
     </div>
-    <a href="tel:+34946042956" class="carta-cta reveal"><span>Reservar para grupo</span><span>&rarr;</span></a>
+    <a href="tel:+34944560660" class="carta-cta reveal">
+      <span>Reservar mesa</span><span>→</span>
+    </a>
   </div>
 </section>
 
+<!-- CARTA: EVENTOS -->
+<section class="carta-section" id="carta-eventos">
+  <div class="section-inner">
+    <a href="#carta" class="carta-back reveal">← Volver a carta</a>
+    <p class="section-label reveal">Eventos y grupos</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Celebra con <em>nosotros</em>
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Nuestro espacio</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Comedor principal</div>
+              <div class="carta-item-desc">Ambiente tradicional, capacidad para grupos</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Salon para eventos</div>
+              <div class="carta-item-desc">Espacio reservado para celebraciones privadas</div>
+            </div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-1">
+          <h4>Menus cerrados bajo peticion</h4>
+          <p>Elaboramos menus a medida para tu evento. Carnes a la brasa, pescados de lonja y postres caseros. Llama al 944 560 660 y preparamos tu celebracion perfecta.</p>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Tipo de eventos</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Comidas de empresa</div>
+              <div class="carta-item-desc">Menus ejecutivos con servicio profesional</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Celebraciones familiares</div>
+              <div class="carta-item-desc">Cumpleanos, comuniones, aniversarios</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Cenas especiales</div>
+              <div class="carta-item-desc">Menu degustacion para ocasiones unicas</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Grupos grandes</div>
+              <div class="carta-item-desc">Organizamos menus para grupos numerosos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="tel:+34944560660" class="carta-cta reveal">
+      <span>Llamar para reservar</span><span>→</span>
+    </a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
 <section class="testimonials-section">
   <div class="testimonials-inner">
     <p class="section-label reveal">Opiniones reales</p>
-    <h2 class="section-title reveal reveal-delay-1">Lo que dicen<br>nuestros <em>clientes</em></h2>
+    <h2 class="section-title reveal reveal-delay-1">
+      Lo que dicen<br>nuestros <em>clientes</em>
+    </h2>
     <div class="testimonials-grid">
       <div class="testimonial-card reveal">
-        <div class="testimonial-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-        <p class="testimonial-quote">"Una comida super rica, sobre todo la chuleta. Siempre me gusta ir a este restaurante por su buena atencion y calidad."</p>
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"El chuleton es de los mejores de Bizkaia. Punto perfecto y sabor increible."</p>
         <div class="testimonial-divider"></div>
-        <div class="testimonial-author"><strong>Susana Caicedo</strong><span>Resena en Google</span></div>
+        <div class="testimonial-author">
+          <strong>Aitor M.</strong>
+          <span>Google Reviews · Galdakao</span>
+        </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-        <p class="testimonial-quote">"Menu fantastico de 35 euros con cinco entrantes y cinco segundos. Calidad increible, atencion de 10. Muy recomendable."</p>
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Ambiente acogedor y carnes de primera calidad. Siempre acertamos viniendo aqui."</p>
         <div class="testimonial-divider"></div>
-        <div class="testimonial-author"><strong>Mileydy Contreras</strong><span>Resena en Google</span></div>
+        <div class="testimonial-author">
+          <strong>Izaro B.</strong>
+          <span>Google Reviews · Galdakao</span>
+        </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-        <p class="testimonial-quote">"Celebramos un cumpleanos y todo fue espectacular: servicio, comida, ambiente. Un sitio de referencia en Galdakao."</p>
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Gran asador tradicional. El pescado a la brasa tambien es espectacular."</p>
         <div class="testimonial-divider"></div>
-        <div class="testimonial-author"><strong>Jose Luis Lopez</strong><span>Resena en Google</span></div>
+        <div class="testimonial-author">
+          <strong>Julen S.</strong>
+          <span>Google Reviews · Galdakao</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="location-section" id="ubicacion">
-  <div class="location-map">
-    <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Restaurante+Torreondo,Galdakao,Spain&zoom=17" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-  <div class="location-info">
-    <p class="section-label reveal">Donde estamos</p>
-    <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 48px;">Ven a <em>visitarnos</em></h2>
-    <div class="location-item reveal">
-      <h4>Direccion</h4>
-      <p>Pertxin Bidea, 7<br>48960 Usansolo &mdash; Galdakao, Bizkaia</p>
-    </div>
-    <div class="location-item reveal">
-      <h4>Telefono</h4>
-      <a href="tel:+34946042956">946 04 29 56</a>
-    </div>
-    <div class="location-item reveal">
-      <h4>Horario</h4>
-      <div class="horario-grid">
-        <span class="horario-dia">Lunes</span><span class="horario-hora">7:00 &mdash; 23:00</span>
-        <span class="horario-dia">Martes</span><span class="horario-hora">7:00 &mdash; 23:00</span>
-        <span class="horario-dia">Miercoles</span><span class="horario-hora">7:00 &mdash; 23:00</span>
-        <span class="horario-dia">Jueves</span><span class="horario-hora">7:00 &mdash; 23:00</span>
-        <span class="horario-dia">Viernes</span><span class="horario-hora">7:00 &mdash; 23:00</span>
-        <span class="horario-dia">Sabado</span><span class="horario-hora">8:00 &mdash; 24:00</span>
-        <span class="horario-dia">Domingo</span><span class="horario-hora">8:30 &mdash; 23:00</span>
-      </div>
-    </div>
-    <div class="location-item reveal">
-      <h4>Web</h4>
-      <a href="https://www.restaurantetorreondo.com" target="_blank" rel="noopener">www.restaurantetorreondo.com</a>
-    </div>
-  </div>
+<!-- MAP -->
+<div class="map-section">
+  <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Torreondo,Galdakao&zoom=17" width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
 </div>
 
-<div class="cta-section">
+<!-- CTA -->
+<div class="cta-section" id="contacto">
   <div class="cta-text">
-    <h2>Te esperamos<br>en la mesa</h2>
-    <p>Reserva tu mesa en Torreondo. Menu del dia, hamburguesas, alubiada y celebraciones en Galdakao.</p>
+    <h2>Reserva tu mesa<br>en Torreondo</h2>
+    <p>Llamanos y disfrutaras de la mejor brasa de Galdakao.</p>
   </div>
-  <a href="tel:+34946042956" class="btn-dark"><span>Reservar: 946 04 29 56</span><span>&nearr;</span></a>
+  <a href="tel:+34944560660" class="btn-dark">
+    <span>944 560 660</span>
+    <span>↗</span>
+  </a>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
       <a href="#" class="nav-logo">Torreondo<span>.</span></a>
-      <p class="footer-tagline">"Donde comer es volver a casa, en el corazon de Galdakao."</p>
+      <p class="footer-tagline">"Brasa, tradicion y producto de primera. Asi cocinamos en Galdakao desde hace mas de 30 anos."</p>
       <div class="footer-social">
-        <a href="https://www.instagram.com/restaurantetorreondo/" target="_blank" rel="noopener" class="social-link">Ig</a>
-        <a href="https://maps.google.com/?q=Restaurante+Torreondo+Galdakao" target="_blank" rel="noopener" class="social-link">Gm</a>
-        <a href="https://www.restaurantetorreondo.com" target="_blank" rel="noopener" class="social-link">Wb</a>
+        <a href="#" class="social-link">Fb</a>
+        <a href="#" class="social-link">Ig</a>
+        <a href="#" class="social-link">Gm</a>
       </div>
     </div>
     <div class="footer-col">
       <h4>Carta</h4>
       <ul>
-        <li><a href="#carta-menu">Menu del Dia</a></li>
-        <li><a href="#carta-hamburguesas">Hamburguesas</a></li>
-        <li><a href="#carta-especial">Menu Especial</a></li>
+        <li><a href="#carta-brasa">Carnes a la Brasa</a></li>
+        <li><a href="#carta-pescado">Pescados</a></li>
+        <li><a href="#carta-pescado">Postres</a></li>
+        <li><a href="#carta-eventos">Eventos</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Torreondo</h4>
+      <h4>Restaurante</h4>
       <ul>
         <li><a href="#nosotros">Sobre nosotros</a></li>
         <li><a href="#galeria">Galeria</a></li>
-        <li><a href="#ubicacion">Ubicacion</a></li>
-        <li><a href="https://www.instagram.com/restaurantetorreondo/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#carta-eventos">Eventos</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="tel:+34946042956">946 04 29 56</a></li>
-        <li><a href="https://www.restaurantetorreondo.com" target="_blank" rel="noopener">restaurantetorreondo.com</a></li>
-        <li><a href="#">Pertxin Bidea, 7</a></li>
-        <li><a href="#">48960 Galdakao, Bizkaia</a></li>
+        <li><a href="tel:+34944560660">944 560 660</a></li>
+        <li><a href="#">Galdakao, Bizkaia</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Restaurante Torreondo. Todos los derechos reservados.</p>
+    <p class="footer-copy">&copy; 2026 Torreondo. Todos los derechos reservados.</p>
     <div class="footer-legal">
       <a href="#">Politica de Privacidad</a>
       <a href="#">Aviso Legal</a>
@@ -993,6 +1277,7 @@
 </footer>
 
 <script>
+  // -- LOADER
   window.addEventListener('load', () => {
     setTimeout(() => {
       document.getElementById('loader').classList.add('hidden');
@@ -1000,43 +1285,61 @@
     }, 1800);
   });
 
+  // -- CUSTOM CURSOR
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX; mouseY = e.clientY;
-    dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+    dot.style.left = mouseX + 'px';
+    dot.style.top = mouseY + 'px';
   });
+
   function animateRing() {
-    ringX += (mouseX - ringX) * 0.7; ringY += (mouseY - ringY) * 0.7;
-    ring.style.left = ringX + 'px'; ring.style.top = ringY + 'px';
+    ringX += (mouseX - ringX) * 0.7;
+    ringY += (mouseY - ringY) * 0.7;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
     requestAnimationFrame(animateRing);
   }
   animateRing();
+
   document.querySelectorAll('a, button, .project-card, .service-card, .stat-card').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
     el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
   });
 
+  // -- NAVBAR SCROLL
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
 
+  // -- HAMBURGER MENU
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active'); mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
   });
-  function closeMobile() { hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); }
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
 
+  // -- REVEAL ON SCROLL
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   reveals.forEach(el => observer.observe(el));
 
+  // -- COUNTER ANIMATION
   function animateCount(el) {
     const target = parseInt(el.dataset.target);
-    const duration = 1800; const start = performance.now();
+    const duration = 1800;
+    const start = performance.now();
     function step(now) {
       const progress = Math.min((now - start) / duration, 1);
       const ease = 1 - Math.pow(1 - progress, 4);
@@ -1045,14 +1348,24 @@
     }
     requestAnimationFrame(step);
   }
+
   const countObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObserver.unobserve(e.target);
+      }
+    });
   }, { threshold: 0.5 });
   document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
 
+  // -- HERO PARALLAX
   window.addEventListener('scroll', () => {
     const heroBg = document.getElementById('heroBg');
-    if (heroBg) heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.25) + 'px)';
+    if (heroBg) {
+      const scrolled = window.scrollY;
+      heroBg.style.transform = 'scale(1) translateY(' + (scrolled * 0.25) + 'px)';
+    }
   });
 </script>
 </body>
