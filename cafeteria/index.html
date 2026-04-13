@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Café Molino — Cafetería</title>
+  <title>[Nombre del Negocio] — Cafetería</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -137,7 +137,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, #0e0a07 0%, #221b14 40%, #8B5E3C22 100%);
+      background: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1400&q=80') center/cover no-repeat, linear-gradient(135deg, #0e0a07 0%, #221b14 40%, #8B5E3C22 100%);
       background-size: cover; background-position: center;
       transform: scale(1.08);
       transition: transform 8s var(--ease-out);
@@ -389,7 +389,7 @@
     }
     .about-visual {
       position: relative; overflow: hidden; min-height: 700px;
-      background: linear-gradient(180deg, var(--carbon-mid), var(--carbon-light));
+      background: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1400&q=80') center/cover no-repeat, linear-gradient(180deg, var(--carbon-mid), var(--carbon-light));
     }
     .about-badge {
       position: absolute; bottom: 48px; left: 48px;
@@ -477,6 +477,79 @@
     }
     .service-card:hover .service-number { color: rgba(139,94,60,0.1); }
 
+
+    /* ─── CARTA SECTIONS ─── */
+    .carta-section {
+      padding: 140px 60px;
+      background: var(--carbon);
+      border-top: 1px solid rgba(139,94,60,0.08);
+    }
+    .carta-section:nth-child(even) { background: var(--black); }
+    .carta-section .section-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .carta-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--accent);
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 40px; transition: gap 0.3s;
+    }
+    .carta-back:hover { gap: 14px; }
+    .carta-columns {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; margin-top: 60px;
+    }
+    .carta-category { margin-bottom: 48px; }
+    .carta-category h4 {
+      font-family: var(--font-serif); font-size: 1.3rem;
+      font-weight: 400; color: var(--white);
+      padding-bottom: 16px; margin-bottom: 24px;
+      border-bottom: 1px solid rgba(139,94,60,0.15);
+    }
+    .carta-item {
+      display: flex; justify-content: space-between;
+      align-items: baseline; padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .carta-item:last-child { border-bottom: none; }
+    .carta-item-name {
+      font-size: 0.92rem; font-weight: 400; color: var(--white);
+      flex: 1;
+    }
+    .carta-item-desc {
+      font-size: 0.78rem; color: var(--text-muted);
+      font-weight: 300; margin-top: 2px;
+    }
+    .carta-item-price {
+      font-family: var(--font-serif); font-size: 1rem;
+      color: var(--accent); white-space: nowrap;
+      margin-left: 20px; font-weight: 400;
+    }
+    .carta-highlight {
+      background: var(--carbon-mid); border: 1px solid rgba(139,94,60,0.1);
+      padding: 40px; margin-top: 40px;
+    }
+    .carta-highlight h4 {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-weight: 400; color: var(--accent); margin-bottom: 16px;
+    }
+    .carta-highlight p {
+      font-size: 0.88rem; color: var(--text-muted);
+      line-height: 1.75; font-weight: 300;
+    }
+    .carta-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      margin-top: 48px; text-decoration: none;
+      padding: 18px 40px; border: 1px solid var(--accent);
+      color: var(--white); font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      transition: background 0.4s, gap 0.3s;
+    }
+    .carta-cta:hover { background: var(--accent); gap: 18px; }
+    @media (max-width: 768px) {
+      .carta-section { padding: 80px 24px; }
+      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
+    }
     /* ─── TESTIMONIALS ─── */
     .testimonials-section {
       background: var(--carbon); position: relative; overflow: hidden;
@@ -678,7 +751,7 @@
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-  <div class="loader-logo">CAFÉ <span>.</span></div>
+  <div class="loader-logo">[NOMBRE <span>.</span></div>
   <div class="loader-bar"></div>
 </div>
 
@@ -688,7 +761,7 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">Café<span>.</span></a>
+  <a href="#" class="nav-logo">[Nombre<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
@@ -789,7 +862,7 @@
   </div>
   <div class="projects-grid">
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(135deg, var(--carbon-mid), var(--carbon-light), rgba(139,94,60,0.15));"></div>
+      <div class="project-img" style="background: url('https://images.unsplash.com/photo-1534778101976-62847782c213?w=800&q=80') center/cover no-repeat, linear-gradient(135deg, var(--carbon-mid), var(--carbon-light), rgba(139,94,60,0.15));"></div>
       <div class="project-overlay"></div>
       <div class="project-arrow">↗</div>
       <div class="project-info">
@@ -799,7 +872,7 @@
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(165deg, var(--carbon-mid), var(--carbon-light), rgba(139,94,60,0.15));"></div>
+      <div class="project-img" style="background: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80') center/cover no-repeat, linear-gradient(165deg, var(--carbon-mid), var(--carbon-light), rgba(139,94,60,0.15));"></div>
       <div class="project-overlay"></div>
       <div class="project-arrow">↗</div>
       <div class="project-info">
@@ -809,7 +882,7 @@
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(195deg, var(--carbon-mid), var(--carbon-light), rgba(139,94,60,0.15));"></div>
+      <div class="project-img" style="background: url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=800&q=80') center/cover no-repeat, linear-gradient(195deg, var(--carbon-mid), var(--carbon-light), rgba(139,94,60,0.15));"></div>
       <div class="project-overlay"></div>
       <div class="project-arrow">↗</div>
       <div class="project-info">
@@ -819,7 +892,7 @@
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(225deg, var(--carbon-mid), var(--carbon-light), rgba(139,94,60,0.15));"></div>
+      <div class="project-img" style="background: url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80') center/cover no-repeat, linear-gradient(225deg, var(--carbon-mid), var(--carbon-light), rgba(139,94,60,0.15));"></div>
       <div class="project-overlay"></div>
       <div class="project-arrow">↗</div>
       <div class="project-info">
@@ -891,7 +964,7 @@
         </div>
         <h3>Café de Especialidad</h3>
         <p>Granos seleccionados de origen único. Espresso, V60, Chemex, AeroPress. Cada método resalta matices diferentes del café.</p>
-        <a href="#contacto" class="service-link">Más info →</a>
+        <a href="#carta-principal" class="service-link">Ver carta →</a>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-number">02</div>
@@ -902,7 +975,7 @@
         </div>
         <h3>Bollería y Brunch</h3>
         <p>Croissants, cookies, carrot cake, banana bread. Todo horneado cada mañana. Brunch los fines de semana de 10 a 14h.</p>
-        <a href="#contacto" class="service-link">Más info →</a>
+        <a href="#carta-especialidades" class="service-link">Ver especialidades →</a>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-number">03</div>
@@ -913,9 +986,131 @@
         </div>
         <h3>Espacio de Trabajo</h3>
         <p>WiFi de alta velocidad, enchufes en cada mesa, ambiente tranquilo. Tu oficina favorita con el mejor café de la ciudad.</p>
-        <a href="#contacto" class="service-link">Más info →</a>
+        <a href="#carta-grupos" class="service-link">Más info →</a>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- CARTA: PRINCIPAL (adaptar según tipo de negocio) -->
+<section class="carta-section" id="carta-principal">
+  <div class="section-inner">
+    <a href="#servicios" class="carta-back reveal">← Volver a carta</a>
+    <p class="section-label reveal">[Subtítulo — ej: Nuestras cazuelitas / Nuestra carta / Pintxos]</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      [Título con <em>énfasis</em>]
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>[Categoría 1 — ej: Pescados y mariscos]</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">[Plato 1]</div>
+              <div class="carta-item-desc">[Descripción breve opcional]</div>
+            </div>
+            <div class="carta-item-price">[Precio] €</div>
+          </div>
+          <!-- Repetir .carta-item por cada plato -->
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>[Categoría 2 — ej: Carnes y guisos]</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">[Plato]</div>
+            </div>
+            <div class="carta-item-price">[Precio] €</div>
+          </div>
+          <!-- Repetir .carta-item por cada plato -->
+        </div>
+      </div>
+    </div>
+    <a href="tel:[TELEFONO]" class="carta-cta reveal">
+      <span>Reservar mesa</span><span>→</span>
+    </a>
+  </div>
+</section>
+
+<!-- CARTA: ESPECIALIDADES -->
+<section class="carta-section" id="carta-especialidades">
+  <div class="section-inner">
+    <a href="#servicios" class="carta-back reveal">← Volver a carta</a>
+    <p class="section-label reveal">[Subtítulo — ej: Carta completa / Menú degustación]</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      [Título con <em>énfasis</em>]
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>[Categoría — ej: Entrantes]</h4>
+          <!-- .carta-item por cada plato -->
+        </div>
+        <div class="carta-category reveal">
+          <h4>[Categoría — ej: Pescados]</h4>
+          <!-- .carta-item por cada plato -->
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>[Categoría — ej: Postres caseros]</h4>
+          <!-- .carta-item por cada plato -->
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>[Nota destacada — ej: Precios orientativos]</h4>
+          <p>[Info de precios medios, vino, cubierto, etc.]</p>
+        </div>
+      </div>
+    </div>
+    <a href="tel:[TELEFONO]" class="carta-cta reveal">
+      <span>Reservar mesa</span><span>→</span>
+    </a>
+  </div>
+</section>
+
+<!-- CARTA: GRUPOS -->
+<section class="carta-section" id="carta-grupos">
+  <div class="section-inner">
+    <a href="#servicios" class="carta-back reveal">← Volver a carta</a>
+    <p class="section-label reveal">Eventos y grupos</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Celebra con <em>nosotros</em>
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Nuestro espacio</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">[Espacio 1 — ej: Comedor principal]</div>
+              <div class="carta-item-desc">[Descripción y capacidad]</div>
+            </div>
+          </div>
+          <!-- Repetir por cada espacio -->
+        </div>
+        <div class="carta-highlight reveal reveal-delay-1">
+          <h4>Menús cerrados bajo petición</h4>
+          <p>[Precio desde X €/persona, tipos de evento, llamar para consultar]</p>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Tipo de eventos</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">[Evento — ej: Comidas de empresa]</div>
+              <div class="carta-item-desc">[Descripción breve]</div>
+            </div>
+          </div>
+          <!-- Repetir por cada tipo -->
+        </div>
+      </div>
+    </div>
+    <a href="tel:[TELEFONO]" class="carta-cta reveal">
+      <span>Llamar para reservar</span><span>→</span>
+    </a>
   </div>
 </section>
 
@@ -970,7 +1165,7 @@
     <h2>¿Te apetece un<br>buen café?</h2>
     <p>Ven a conocernos. El primer café invita la casa.</p>
   </div>
-  <a href="mailto:hola@cafemolino.es" class="btn-dark">
+  <a href="mailto:[tu@email.com]" class="btn-dark">
     <span>Cómo llegar</span>
     <span>↗</span>
   </a>
@@ -980,7 +1175,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo">Café<span>.</span></a>
+      <a href="#" class="nav-logo">[Nombre<span>.</span></a>
       <p class="footer-tagline">"El café es un abrazo en forma de taza."<br>— Café Molino</p>
       <div class="footer-social">
         <a href="#" class="social-link">Fb</a>
@@ -1012,14 +1207,14 @@
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="mailto:hola@cafemolino.es">hola@cafemolino.es</a></li>
-        <li><a href="tel:+34910123456">+34 910 123 456</a></li>
-        <li><a href="#">Calle de Ponzano, 34<br>28003 Madrid</a></li>
+        <li><a href="mailto:[tu@email.com]">[tu@email.com]</a></li>
+        <li><a href="tel:[+34XXXXXXXXX]">[+34 XXX XXX XXX]</a></li>
+        <li><a href="#">[Tu Dirección Completa]</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Café Molino. Todos los derechos reservados.</p>
+    <p class="footer-copy">© 2026 [Nombre del Negocio]. Todos los derechos reservados.</p>
     <div class="footer-legal">
       <a href="#">Política de Privacidad</a>
       <a href="#">Aviso Legal</a>
