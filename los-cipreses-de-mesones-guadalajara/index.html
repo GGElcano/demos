@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Los Cipreses de Mesones &mdash; Casa Rural **** en Guadalajara, a menos de 1h de Madrid</title>
+  <meta name="description" content="Casa rural de 4 estrellas con piscina, 5 dormitorios, cine en casa y barbacoa. Más de 100 años de historia en Mesones, Guadalajara. Capacidad 13-15 personas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0806;
+      --white: #f5f3ef;
+      --accent: #8B6B3D;
+      --accent-light: #B89A5E;
+      --carbon: #141008;
+      --carbon-mid: #1c1610;
+      --carbon-light: #2a2218;
+      --text-muted: #9a8a7a;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Source Sans 3', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* CUSTOM CURSOR */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transition: transform 0.1s;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(255,255,255,0.3);
+    }
+    .cursor-ring {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(139,107,61,0.4);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.35s var(--ease-smooth), height 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
+    }
+    .cursor-ring.expanded {
+      width: 70px; height: 70px;
+      border-color: rgba(139,107,61,0.7);
+      background: rgba(139,107,61,0.05);
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(10,8,6,0.88);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(139,107,61,0.08);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(245,243,239,0.65);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      padding: 10px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-Piscina.jpg') center/cover no-repeat;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.5) 50%, rgba(10,8,6,0.25) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 6.5vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,243,239,0.6);
+      max-width: 540px; line-height: 1.7; margin-bottom: 52px;
+      font-weight: 300;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 40px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--white); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--black); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-ghost {
+      color: rgba(245,243,239,0.6); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(245,243,239,0.2);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow {
+      border-color: var(--accent); transform: rotate(45deg);
+    }
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--text-muted); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 70px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* MARQUEE */
+    .marquee-section {
+      border-top: 1px solid rgba(139,107,61,0.12);
+      border-bottom: 1px solid rgba(139,107,61,0.12);
+      overflow: hidden; padding: 20px 0; background: var(--carbon);
+    }
+    .marquee-track {
+      display: flex; gap: 0; white-space: nowrap;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 30px;
+      padding: 0 40px;
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-style: italic; color: rgba(245,243,239,0.25);
+      letter-spacing: 0.05em;
+    }
+    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTION COMMONS */
+    section { padding: 130px 60px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 4.2rem);
+      font-weight: 300; line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* STATS */
+    .stats-section {
+      background: var(--carbon);
+      padding: 100px 60px;
+      border-top: 1px solid rgba(139,107,61,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 60px 50px; background: var(--carbon);
+      border: 1px solid rgba(139,107,61,0.08);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(139,107,61,0.3); }
+    .stat-number {
+      font-family: var(--font-serif); font-size: 4.5rem;
+      font-weight: 300; line-height: 1; color: var(--white);
+      margin-bottom: 12px; letter-spacing: -0.02em;
+    }
+    .stat-number .stat-suffix { color: var(--accent); }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 400;
+    }
+
+    /* GALLERY */
+    .projects-section { background: var(--black); }
+    .projects-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .projects-header .section-title { max-width: 500px; }
+    .view-all {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--accent);
+      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      transition: gap 0.3s; padding-bottom: 4px;
+      border-bottom: 1px solid rgba(139,107,61,0.3);
+      white-space: nowrap;
+    }
+    .view-all:hover { gap: 20px; border-color: var(--accent); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: none;
+    }
+    .project-card:first-child {
+      grid-column: span 2; aspect-ratio: 21/8;
+    }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    img.project-img { display: block; }
+    .project-card:hover .project-img { transform: scale(1.06); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,8,6,0.9) 0%, rgba(10,8,6,0.1) 60%, transparent 100%);
+      opacity: 0.6; transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 0.85; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 40px; transform: translateY(15px);
+      transition: transform 0.5s var(--ease-out);
+    }
+    .project-card:hover .project-info { transform: translateY(0); }
+    .project-cat {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px; font-weight: 400;
+    }
+    .project-name {
+      font-family: var(--font-serif); font-size: 1.9rem;
+      font-weight: 300; line-height: 1.15; margin-bottom: 14px;
+    }
+    .project-meta {
+      font-size: 0.73rem; color: rgba(245,243,239,0.45);
+      letter-spacing: 0.1em; opacity: 0;
+      transition: opacity 0.5s 0.1s;
+    }
+    .project-card:hover .project-meta { opacity: 1; }
+    .project-arrow {
+      position: absolute; top: 36px; right: 36px;
+      width: 50px; height: 50px;
+      border: 1px solid rgba(245,243,239,0.15);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translate(10px, -10px);
+      transition: all 0.4s var(--ease-out);
+    }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
+
+    /* ABOUT */
+    .about-section {
+      background: var(--carbon);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 700px;
+      background: url('https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-Fachada-y-rincon-lectura-1.png') center/cover no-repeat;
+    }
+    .about-badge {
+      position: absolute; bottom: 48px; left: 48px;
+      background: var(--black); border: 1px solid rgba(139,107,61,0.25);
+      padding: 24px 30px; max-width: 240px;
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 3rem;
+      color: var(--accent); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: rgba(245,243,239,0.5); margin-top: 6px;
+    }
+    .about-content {
+      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(245,243,239,0.65); margin: 32px 0 52px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--white); font-weight: 400; }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 20px; }
+    .about-value {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border: 1px solid rgba(139,107,61,0.06);
+      transition: border-color 0.4s;
+    }
+    .about-value:hover { border-color: rgba(139,107,61,0.2); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      color: var(--accent); opacity: 0.5; flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .value-text h4 {
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 400; margin-bottom: 4px;
+    }
+    .value-text p {
+      font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
+    }
+
+    /* ROOMS */
+    .hotel-section { background: var(--black); }
+    .hotel-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 3px; max-width: 1400px; margin: 60px auto 0;
+    }
+    .hotel-card {
+      position: relative; overflow: hidden; aspect-ratio: 3/4;
+      cursor: none;
+    }
+    .hotel-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .hotel-card:hover img { transform: scale(1.06); }
+    .hotel-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,8,6,0.85) 0%, rgba(10,8,6,0) 60%);
+      opacity: 0.7; transition: opacity 0.5s;
+    }
+    .hotel-card:hover .hotel-card-overlay { opacity: 0.9; }
+    .hotel-card-info {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 36px;
+      transform: translateY(10px); transition: transform 0.5s var(--ease-out);
+    }
+    .hotel-card:hover .hotel-card-info { transform: translateY(0); }
+    .hotel-card-info h3 {
+      font-family: var(--font-serif); font-size: 1.5rem;
+      font-weight: 400; margin-bottom: 8px;
+    }
+    .hotel-card-info p {
+      font-size: 0.82rem; color: var(--text-muted); font-weight: 300; line-height: 1.6;
+    }
+    .hotel-card-tag {
+      position: absolute; top: 24px; left: 24px;
+      background: var(--accent); color: var(--black);
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 6px 16px; font-weight: 500;
+    }
+
+    /* SERVICES */
+    .services-section { background: var(--black); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1400px; margin: 60px auto 0;
+    }
+    .service-card {
+      padding: 60px 48px; background: var(--black);
+      border: 1px solid rgba(139,107,61,0.07);
+      position: relative; overflow: hidden;
+      transition: background 0.5s, border-color 0.5s;
+    }
+    .service-card:hover { background: var(--carbon-mid); border-color: rgba(139,107,61,0.2); }
+    .service-icon {
+      width: 52px; height: 52px; margin-bottom: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(139,107,61,0.2); color: var(--accent);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.7rem;
+      font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+    }
+    .service-card p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.75;
+      font-weight: 300;
+    }
+    .service-list {
+      list-style: none; margin-top: 24px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .service-list li {
+      font-size: 0.85rem; color: rgba(245,243,239,0.5);
+      padding-left: 16px; position: relative;
+    }
+    .service-list li::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+    }
+    .service-number {
+      position: absolute; top: 30px; right: 36px;
+      font-family: var(--font-serif); font-size: 5rem;
+      font-weight: 300; color: rgba(139,107,61,0.05);
+      line-height: 1; transition: color 0.5s;
+    }
+    .service-card:hover .service-number { color: rgba(139,107,61,0.1); }
+
+    /* TAPIAL SECTION */
+    .tapial-section {
+      position: relative; padding: 140px 60px;
+      background: url('https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-exterior2.jpg') center/cover no-repeat fixed;
+    }
+    .tapial-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,8,6,0.92) 0%, rgba(10,8,6,0.75) 100%);
+    }
+    .tapial-content {
+      position: relative; z-index: 2;
+      max-width: 900px; margin: 0 auto; text-align: center;
+    }
+    .tapial-content h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      font-weight: 300; line-height: 1.15;
+      margin-bottom: 40px;
+    }
+    .tapial-content h2 em { font-style: italic; color: var(--accent); }
+    .tapial-content p {
+      font-size: 1.05rem; line-height: 1.9;
+      color: rgba(245,243,239,0.6); font-weight: 300;
+      margin-bottom: 24px;
+    }
+    .tapial-content p strong { color: var(--white); font-weight: 400; }
+    .tapial-features {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 60px;
+    }
+    .tapial-feat {
+      padding: 28px; border: 1px solid rgba(139,107,61,0.15);
+      text-align: center; transition: border-color 0.4s;
+    }
+    .tapial-feat:hover { border-color: rgba(139,107,61,0.4); }
+    .tapial-feat h4 {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      color: var(--accent); margin-bottom: 8px; font-weight: 400;
+    }
+    .tapial-feat p {
+      font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background: var(--carbon); position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '\201C'; position: absolute; top: -60px; left: 40px;
+      font-family: var(--font-serif); font-size: 30rem;
+      color: rgba(139,107,61,0.03); line-height: 1; pointer-events: none;
+    }
+    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 70px;
+    }
+    .testimonial-card {
+      padding: 56px 44px; background: rgba(10,8,6,0.4);
+      border: 1px solid rgba(139,107,61,0.07);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .testimonial-card:hover { border-color: rgba(139,107,61,0.2); background: rgba(10,8,6,0.7); }
+    .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
+    .star {
+      width: 12px; height: 12px; background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif); font-size: 1.2rem;
+      font-style: italic; font-weight: 300;
+      line-height: 1.7; color: rgba(245,243,239,0.8);
+      margin-bottom: 36px;
+    }
+    .testimonial-divider {
+      width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4;
+    }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; margin-bottom: 4px;
+    }
+    .testimonial-author span {
+      font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
+    }
+    .testimonial-badges {
+      display: flex; gap: 40px; align-items: center; justify-content: center;
+      margin-top: 70px; flex-wrap: wrap;
+    }
+    .badge-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 32px; border: 1px solid rgba(139,107,61,0.12);
+      transition: border-color 0.4s;
+    }
+    .badge-item:hover { border-color: rgba(139,107,61,0.3); }
+    .badge-score {
+      font-family: var(--font-serif); font-size: 2.4rem;
+      color: var(--accent); font-weight: 300; line-height: 1;
+    }
+    .badge-info { display: flex; flex-direction: column; }
+    .badge-info strong { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; }
+    .badge-info span { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* SUSTAINABILITY */
+    .sustain-section { background: var(--black); }
+    .sustain-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; max-width: 1200px; margin: 60px auto 0;
+    }
+    .sustain-card {
+      padding: 44px 36px; border: 1px solid rgba(139,107,61,0.07);
+      transition: border-color 0.4s;
+    }
+    .sustain-card:hover { border-color: rgba(139,107,61,0.2); }
+    .sustain-icon {
+      font-size: 1.6rem; margin-bottom: 16px; display: block;
+    }
+    .sustain-card h4 {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-weight: 400; margin-bottom: 8px;
+    }
+    .sustain-card p {
+      font-size: 0.82rem; color: var(--text-muted); font-weight: 300; line-height: 1.6;
+    }
+
+    /* VIDEO */
+    .video-section {
+      padding: 0; background: var(--carbon);
+    }
+    .video-wrapper {
+      max-width: 1200px; margin: 0 auto; padding: 100px 60px;
+      text-align: center;
+    }
+    .video-wrapper iframe {
+      width: 100%; aspect-ratio: 16/9; border: 0;
+    }
+
+    /* MAP */
+    .map-section {
+      padding: 0; background: var(--black);
+    }
+    .map-section iframe {
+      width: 100%; height: 450px; border: 0;
+      filter: grayscale(0.3) contrast(1.1);
+    }
+
+    /* CTA BANNER */
+    .cta-section {
+      background: var(--accent); padding: 110px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
+      font-weight: 300; color: var(--black); line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(10,8,6,0.65); margin-top: 16px; font-weight: 300;
+    }
+    .cta-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--black); color: var(--white);
+      text-decoration: none; padding: 20px 48px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--carbon-light); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; }
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: transparent; color: var(--black);
+      text-decoration: none; padding: 20px 48px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; border: 1px solid rgba(10,8,6,0.3);
+    }
+    .btn-outline-dark:hover { background: rgba(10,8,6,0.08); border-color: var(--black); }
+
+    /* FOOTER */
+    footer {
+      background: var(--black); padding: 90px 60px 50px;
+      border-top: 1px solid rgba(139,107,61,0.08);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 70px;
+    }
+    .footer-brand .nav-logo {
+      font-size: 1.6rem; margin-bottom: 22px; display: inline-flex;
+    }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.05rem; color: rgba(245,243,239,0.35);
+      line-height: 1.6; max-width: 300px; margin-bottom: 36px;
+    }
+    .footer-social { display: flex; gap: 14px; }
+    .social-link {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(245,243,239,0.1);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(245,243,239,0.4);
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-col h4 {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px; font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(245,243,239,0.4);
+      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,243,239,0.06);
+      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(245,243,239,0.25); letter-spacing: 0.05em;
+    }
+    .footer-legal { display: flex; gap: 28px; }
+    .footer-legal a {
+      font-size: 0.72rem; color: rgba(245,243,239,0.2);
+      text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+    }
+    .footer-legal a:hover { color: var(--text-muted); }
+
+    /* POWERED BY */
+    .powered-by {
+      text-align: center; padding: 18px;
+      background: var(--carbon); border-top: 1px solid rgba(139,107,61,0.06);
+    }
+    .powered-by a {
+      color: var(--accent); text-decoration: none; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .powered-by a:hover { color: var(--accent-light); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+    .reveal-delay-4 { transition-delay: 0.6s; }
+
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--black); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2rem;
+      letter-spacing: 0.15em; color: var(--white);
+    }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(245,243,239,0.1);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .hotel-grid { grid-template-columns: repeat(2, 1fr); }
+      .tapial-features { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none; }
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 300px; }
+      .about-content { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .hotel-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+      .sustain-grid { grid-template-columns: 1fr; }
+      .tapial-section { padding: 80px 24px; background-attachment: scroll; }
+      .tapial-features { grid-template-columns: 1fr; }
+      .map-section iframe { height: 300px; }
+      .video-wrapper { padding: 60px 24px; }
+      .cta-links { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-logo">Los Cipreses<span>.</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Los Cipreses<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#lacasa">La Casa</a></li>
+    <li><a href="#dormitorios">Dormitorios</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="tel:+34639336289" class="nav-cta">Reservar</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#galeria" onclick="closeMobile()">Galeria</a>
+  <a href="#lacasa" onclick="closeMobile()">La Casa</a>
+  <a href="#dormitorios" onclick="closeMobile()">Dormitorios</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="tel:+34639336289" onclick="closeMobile()">Reservar</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Casa Rural &starf;&starf;&starf;&starf; &middot; N&ordm; registro 19012128199 &middot; Mesones, Guadalajara</p>
+    <h1 class="hero-title">
+      Tu refugio de<br><em>autenticidad</em> y tranquilidad
+    </h1>
+    <p class="hero-sub">
+      Si buscas un lugar donde relajarte con tu familia o amigos, donde respirar aire puro en un ambiente rural de autenticidad y tranquilidad, Los Cipreses de Mesones es tu destino. A menos de una hora de Madrid.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+34639336289" class="btn-primary">
+        <span>Reservar ahora</span>
+        <span>&rarr;</span>
+      </a>
+      <a href="#galeria" class="btn-ghost">
+        <span>Ver galeria</span>
+        <div class="btn-ghost-arrow">&nearr;</div>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Piscina privada</span>
+    <span class="marquee-item"><span class="dot"></span>5 dormitorios</span>
+    <span class="marquee-item"><span class="dot"></span>Cine en casa</span>
+    <span class="marquee-item"><span class="dot"></span>Barbacoa argentina</span>
+    <span class="marquee-item"><span class="dot"></span>Sala de juegos</span>
+    <span class="marquee-item"><span class="dot"></span>A menos de 1h de Madrid</span>
+    <span class="marquee-item"><span class="dot"></span>Piscina privada</span>
+    <span class="marquee-item"><span class="dot"></span>5 dormitorios</span>
+    <span class="marquee-item"><span class="dot"></span>Cine en casa</span>
+    <span class="marquee-item"><span class="dot"></span>Barbacoa argentina</span>
+    <span class="marquee-item"><span class="dot"></span>Sala de juegos</span>
+    <span class="marquee-item"><span class="dot"></span>A menos de 1h de Madrid</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">A&ntilde;os de historia</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="15">0</span><span class="stat-suffix"></span></div>
+      <div class="stat-label">Personas de capacidad</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="350">0</span><span class="stat-suffix"> m&sup2;</span></div>
+      <div class="stat-label">De vivienda</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="5">0</span><span class="stat-suffix"></span></div>
+      <div class="stat-label">Dormitorios &uacute;nicos</div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="projects-section" id="galeria">
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">Nuestros espacios</p>
+      <h2 class="section-title reveal reveal-delay-1">Un lugar que<br><em>enamora</em></h2>
+    </div>
+    <a href="tel:+34639336289" class="view-all reveal">Reservar &rarr;</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img class="project-img" src="https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-Fachada2.jpg" alt="Fachada de Los Cipreses de Mesones" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">&nearr;</div>
+      <div class="project-info">
+        <p class="project-cat">Exterior &middot; Fachada</p>
+        <h3 class="project-name">Casa centenaria</h3>
+        <p class="project-meta">Construida con tapial &middot; M&aacute;s de 100 a&ntilde;os</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://loscipresesdemesones.com/wp-content/uploads/2020/06/casa-rural-madrid-guadalajara-loscipresesdemesones-Piscina.jpg" alt="Piscina privada" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">&nearr;</div>
+      <div class="project-info">
+        <p class="project-cat">Exterior &middot; Piscina</p>
+        <h3 class="project-name">Piscina privada</h3>
+        <p class="project-meta">Con tumbonas y vestuario</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-Salon_principal_5.jpg" alt="Sal&oacute;n principal" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">&nearr;</div>
+      <div class="project-info">
+        <p class="project-cat">Interior &middot; Sal&oacute;n</p>
+        <h3 class="project-name">Sal&oacute;n principal</h3>
+        <p class="project-meta">Estufa de le&ntilde;a &middot; Ambiente acogedor</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://loscipresesdemesones.com/wp-content/uploads/2020/06/casa-rural-madrid-guadalajara-loscipresesdemesones-Cocina.jpg" alt="Cocina completa" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">&nearr;</div>
+      <div class="project-info">
+        <p class="project-cat">Interior &middot; Cocina</p>
+        <h3 class="project-name">Cocina completa</h3>
+        <p class="project-meta">Vitrocer&aacute;mica, horno, lavavajillas</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-Salon_cine3.jpg" alt="Sala de cine" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">&nearr;</div>
+      <div class="project-info">
+        <p class="project-cat">Interior &middot; Ocio</p>
+        <h3 class="project-name">Cine en casa</h3>
+        <p class="project-meta">Con buen n&uacute;mero de pel&iacute;culas</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://loscipresesdemesones.com/wp-content/uploads/2020/10/casa-rural-madrid-guadalajara-loscipresesdemesones-Patio_barbacoa.jpg" alt="Barbacoa argentina" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow">&nearr;</div>
+      <div class="project-info">
+        <p class="project-cat">Exterior &middot; Barbacoa</p>
+        <h3 class="project-name">Barbacoa argentina</h3>
+        <p class="project-meta">Con paellero &middot; Terraza para comer</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section" id="lacasa">
+  <div class="about-visual">
+    <div class="about-badge">
+      <div class="about-badge-year">S.XIX</div>
+      <div class="about-badge-text">Casa centenaria construida con tapial, tierra pisada</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre la casa</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      M&aacute;s de un siglo<br>de <em>historia</em>
+    </h2>
+    <div class="about-divider reveal"></div>
+    <p class="about-body reveal reveal-delay-2">
+      Situada en <strong>Mesones</strong>, un peque&ntilde;o y pintoresco pueblo castellano-manchego de poco m&aacute;s de 500 habitantes, rodeado de cerros calizos, encinas, aromales y campos de labranza, se respira la paz y tranquilidad de un t&iacute;pico pueblo castellano-manchego. Para tu comodidad, estamos <strong>a menos de una hora de Madrid</strong>.<br><br>Con una clasificaci&oacute;n de <strong>cuatro estrellas</strong>, la casa tiene dos plantas de altura y una capacidad para <strong>hasta 13 personas</strong> (ampliable a 15 con dos camas supletorias). Dispone de cinco dormitorios, cuatro ba&ntilde;os completos (m&aacute;s uno junto a la piscina), tres salones, un comedor y cocina completa. La vivienda, de 350 m2, se sit&uacute;a en una parcela que ocupa una superficie total de 675 m2.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h4>Tapial centenario</h4>
+          <p>Construida con tierra pisada, conserva una temperatura ideal todo el a&ntilde;o</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h4>Naturaleza y pueblo</h4>
+          <p>Rodeada de cerros calizos, encinas y aromales. Paz y tranquilidad</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h4>Trato directo y cercano</h4>
+          <p>Te ofrecemos un trato directo, claro y amigable para que te sientas como en casa</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DORMITORIOS -->
+<section class="hotel-section" id="dormitorios">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">5 dormitorios con car&aacute;cter</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:560px">
+      Cada uno con su <em>propia personalidad</em>
+    </h2>
+    <div class="hotel-grid">
+      <div class="hotel-card reveal">
+        <img src="https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-Dormitorio_La_Parra1.jpg" alt="Dormitorio La Parra" loading="lazy">
+        <div class="hotel-card-overlay"></div>
+        <div class="hotel-card-tag">Planta baja</div>
+        <div class="hotel-card-info">
+          <h3>La Parra</h3>
+          <p>Dos camas individuales (90&times;190 cm) en la antesala y una cama extra (90&times;180 cm). Ba&ntilde;o compartido en el pasillo.</p>
+        </div>
+      </div>
+      <div class="hotel-card reveal reveal-delay-1">
+        <img src="https://loscipresesdemesones.com/wp-content/uploads/2020/06/casa-rural-madrid-guadalajara-loscipresesdemesones-Dormitorio_Los_Cipreses.jpg" alt="Dormitorio Los Cipreses" loading="lazy">
+        <div class="hotel-card-overlay"></div>
+        <div class="hotel-card-tag">Planta alta</div>
+        <div class="hotel-card-info">
+          <h3>Los Cipreses</h3>
+          <p>Abuhardillado con cama de matrimonio (160&times;190 cm), peque&ntilde;o vest&iacute;bulo y ba&ntilde;o privado con ba&ntilde;era y claraboya.</p>
+        </div>
+      </div>
+      <div class="hotel-card reveal reveal-delay-2">
+        <img src="https://loscipresesdemesones.com/wp-content/uploads/2020/06/casa-rural-madrid-guadalajara-loscipresesdemesones-Dormitorio_El_Olivo.jpg" alt="Dormitorio El Olivo" loading="lazy">
+        <div class="hotel-card-overlay"></div>
+        <div class="hotel-card-tag">Planta alta</div>
+        <div class="hotel-card-info">
+          <h3>El Olivo</h3>
+          <p>Abuhardillado en madera con dos camas individuales (90&times;190 cm) y ba&ntilde;o exclusivo con amplia ducha.</p>
+        </div>
+      </div>
+      <div class="hotel-card reveal reveal-delay-1">
+        <img src="https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-Dormitorio_Los_Relojes_1.jpg" alt="Dormitorio Los Relojes" loading="lazy">
+        <div class="hotel-card-overlay"></div>
+        <div class="hotel-card-tag">+7 personas</div>
+        <div class="hotel-card-info">
+          <h3>Los Relojes</h3>
+          <p>Decorado con relojes de &eacute;poca. Una cama de 135 cm y dos camas supletorias de 90 cm en dos espacios. Ba&ntilde;o compartido con Las Encinas.</p>
+        </div>
+      </div>
+      <div class="hotel-card reveal reveal-delay-2">
+        <img src="https://loscipresesdemesones.com/wp-content/uploads/casa-rural-madrid-guadalajara-loscipresesdemesones-Dormitorio_Las_Encinas.jpg" alt="Dormitorio Las Encinas" loading="lazy">
+        <div class="hotel-card-overlay"></div>
+        <div class="hotel-card-tag">+7 personas</div>
+        <div class="hotel-card-info">
+          <h3>Las Encinas</h3>
+          <p>Habitaci&oacute;n doble con cama de 135&times;190 cm y chimenea decorativa de hierro fundido. Ubicada en el anexo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="servicios">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Todo lo que necesitas</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:560px">
+      Equipamiento<br><em>completo</em>
+    </h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3>En el exterior</h3>
+        <p>Todo para disfrutar del aire libre en total privacidad.</p>
+        <ul class="service-list">
+          <li>Piscina privada</li>
+          <li>Vestuario y aseo en la piscina</li>
+          <li>Tumbonas</li>
+          <li>Barbacoa argentina</li>
+          <li>Terraza para comer</li>
+          <li>Sala de juegos acristalada</li>
+          <li>Aparatos de gimnasia</li>
+          <li>Garaje cubierto para 2 coches</li>
+        </ul>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>En el interior</h3>
+        <p>Comodidad y ocio para todas las edades, en cualquier &eacute;poca del a&ntilde;o.</p>
+        <ul class="service-list">
+          <li>Calefacci&oacute;n central</li>
+          <li>Chimeneas y estufas de le&ntilde;a</li>
+          <li>Aire acondicionado</li>
+          <li>Cine en casa con pel&iacute;culas</li>
+          <li>Equipo de sonido</li>
+          <li>WiFi</li>
+          <li>TV</li>
+          <li>Juegos de mesa, cartas, dardos, v&iacute;deo y Wii</li>
+        </ul>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+          </svg>
+        </div>
+        <h3>En la cocina</h3>
+        <p>Cocina totalmente equipada para que no te falte de nada.</p>
+        <ul class="service-list">
+          <li>Vitrocer&aacute;mica de inducci&oacute;n</li>
+          <li>Horno el&eacute;ctrico y microondas</li>
+          <li>Lavavajillas</li>
+          <li>Exprimidor, tostadora, batidora</li>
+          <li>Paellera y aro de paella para barbacoa</li>
+          <li>Tostadora especial cel&iacute;acos</li>
+          <li>Cafetera de goteo e italiana</li>
+          <li>Ajuar completo de cocina</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAPIAL -->
+<div class="tapial-section">
+  <div class="tapial-overlay"></div>
+  <div class="tapial-content">
+    <p class="section-label reveal" style="justify-content: center;">Construcci&oacute;n tradicional</p>
+    <h2 class="reveal reveal-delay-1">Construida con <em>tapial</em>, tierra pisada</h2>
+    <p class="reveal reveal-delay-2">
+      El tapial, o tierra pisada, es una tradicional t&eacute;cnica de construcci&oacute;n con tierra cuyo origen se remonta al Neol&iacute;tico. Consiste en rellenar un encofrado con tierra arcillosa h&uacute;meda y compactarla a golpes con un pis&oacute;n, a&ntilde;adiendo paja o crines de caballo para darle consistencia.
+    </p>
+    <p class="reveal reveal-delay-3">
+      Lo utilizaron los romanos, los chinos en la <strong>Gran Muralla</strong> y los &aacute;rabes en la <strong>Alhambra de Granada</strong>. La planta baja, construida mediante tapial, <strong>conserva muy bien la temperatura</strong>. Sus habitaciones son muy frescas en verano y guardan muy bien el calor de la calefacci&oacute;n en invierno. La planta superior est&aacute; <strong>abuhardillada en madera</strong> y tiene aire acondicionado.
+    </p>
+    <div class="tapial-features reveal reveal-delay-3">
+      <div class="tapial-feat">
+        <h4>Aislamiento t&eacute;rmico</h4>
+        <p>Excelente inercia t&eacute;rmica, fresco en verano y c&aacute;lido en invierno</p>
+      </div>
+      <div class="tapial-feat">
+        <h4>Aislamiento ac&uacute;stico</h4>
+        <p>Los gruesos muros de tierra proporcionan silencio y tranquilidad</p>
+      </div>
+      <div class="tapial-feat">
+        <h4>Ecol&oacute;gico y saludable</h4>
+        <p>Material natural, transpirable, que evita condensaciones</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="opiniones">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Opiniones reales verificadas</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Lo que dicen<br>nuestros <em>hu&eacute;spedes</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">&ldquo;Una casa impresionante, muy limpia, cuidada hasta el &uacute;ltimo detalle. Reyes estuvo muy atenta a todo. Sin duda repetiremos.&rdquo;</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Laura S.</strong>
+          <span>VRBO &middot; Julio 2024</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">&ldquo;Fin de semana espectacular. Muy atentos a todo. La casa es una gozada, con todo lo que puedas necesitar. Repetiremos seguro.&rdquo;</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Jorge F.</strong>
+          <span>VRBO &middot; Marzo 2023</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">&ldquo;Lugar ideal. La casa, el equipamiento, la limpieza, los detalles, el trato... todo un 10. Sin duda la mejor casa rural en la que hemos estado.&rdquo;</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Juan R.</strong>
+          <span>VRBO &middot; Agosto 2022</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">&ldquo;Casa ideal para familias. Llena de detalles. Total privacidad. Piscina, juegos... los ni&ntilde;os lo pasaron genial. Muy recomendable.&rdquo;</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>David P.</strong>
+          <span>VRBO &middot; Mayo 2022</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">&ldquo;Casa preciosa, muy cuidada. Reyes es un encanto. El alojamiento en perfecto estado, las camas muy c&oacute;modas. Una experiencia familiar incre&iacute;ble.&rdquo;</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Carmen P.</strong>
+          <span>VRBO &middot; Junio 2021</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">&ldquo;Muy bien mantenido por dentro y por fuera. Genial y muy c&oacute;moda. La piscina genial y la barbacoa tambi&eacute;n. Perfecto para desconectar.&rdquo;</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Mario M.</strong>
+          <span>VRBO &middot; Septiembre 2022</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-badges reveal">
+      <div class="badge-item">
+        <div class="badge-score">9.8</div>
+        <div class="badge-info">
+          <strong>VRBO</strong>
+          <span>Excepcional &middot; 9 opiniones</span>
+        </div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-score">9.4</div>
+        <div class="badge-info">
+          <strong>Booking.com</strong>
+          <span>Fant&aacute;stico</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUSTAINABILITY -->
+<section class="sustain-section">
+  <div style="max-width:1200px; margin:0 auto">
+    <p class="section-label reveal" style="justify-content: center; text-align: center;">Compromiso medioambiental</p>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align: center;">Cuidamos el <em>medio ambiente</em></h2>
+    <div class="sustain-grid">
+      <div class="sustain-card reveal">
+        <span class="sustain-icon">&#128167;</span>
+        <h4>Reducci&oacute;n de agua</h4>
+        <p>Limitadores de caudal en grifos y duchas</p>
+      </div>
+      <div class="sustain-card reveal reveal-delay-1">
+        <span class="sustain-icon">&#128161;</span>
+        <h4>Ahorro energ&eacute;tico</h4>
+        <p>Bombillas de bajo consumo en toda la vivienda</p>
+      </div>
+      <div class="sustain-card reveal reveal-delay-2">
+        <span class="sustain-icon">&#127777;</span>
+        <h4>Calefacci&oacute;n eficiente</h4>
+        <p>V&aacute;lvulas termost&aacute;ticas en todos los radiadores</p>
+      </div>
+      <div class="sustain-card reveal">
+        <span class="sustain-icon">&#127807;</span>
+        <h4>Limpieza ecol&oacute;gica</h4>
+        <p>Productos de limpieza biodegradables</p>
+      </div>
+      <div class="sustain-card reveal reveal-delay-1">
+        <span class="sustain-icon">&#127795;</span>
+        <h4>Le&ntilde;a sostenible</h4>
+        <p>Le&ntilde;a de encina de nuestros propios montes</p>
+      </div>
+      <div class="sustain-card reveal reveal-delay-2">
+        <span class="sustain-icon">&#9851;</span>
+        <h4>Reciclaje</h4>
+        <p>Contenedores para la separaci&oacute;n de residuos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<div class="video-section">
+  <div class="video-wrapper">
+    <p class="section-label reveal" style="justify-content: center; text-align: center;">Descubre la casa</p>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align: center; margin-bottom: 50px;">V&iacute;deo de <em>Los Cipreses</em></h2>
+    <div class="reveal reveal-delay-2">
+      <iframe src="https://www.youtube.com/embed/n2A9s0duKsI" title="V&iacute;deo Los Cipreses de Mesones" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="map-section">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.6!2d-3.2386!3d40.7825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd425f4c94024673%3A0x1b5dce8bb8b6f7f7!2sCasa%20Rural%20Los%20Cipreses%20de%20Mesones!5e0!3m2!1ses!2ses!4v1" allowfullscreen loading="lazy" title="Ubicaci&oacute;n de Los Cipreses de Mesones"></iframe>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="contacto">
+  <div class="cta-text">
+    <h2>Reserva tu escapada<br>en Los Cipreses</h2>
+    <p>Ll&aacute;manos o escr&iacute;benos. Te atendemos personalmente.</p>
+  </div>
+  <div class="cta-links">
+    <a href="tel:+34639336289" class="btn-dark">
+      <span>639 336 289</span>
+      <span>&nearr;</span>
+    </a>
+    <a href="mailto:loscipresesdmesones@gmail.com" class="btn-outline-dark">
+      <span>Email</span>
+      <span>&rarr;</span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Los Cipreses<span>.</span></a>
+      <p class="footer-tagline">&ldquo;Donde la autenticidad, la naturaleza y la tranquilidad se encuentran.&rdquo;</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/LosCipresesdeMesones" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">Fb</a>
+        <a href="https://www.instagram.com/casarural_loscipresesdemesones/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">Ig</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>La Casa</h4>
+      <ul>
+        <li><a href="#galeria">Galer&iacute;a</a></li>
+        <li><a href="#lacasa">Sobre la casa</a></li>
+        <li><a href="#dormitorios">Dormitorios</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Reservas</h4>
+      <ul>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="https://loscipresesdemesones.com/casa-rural-mesones-guadalajara-madrid-tarifas-y-disponibilidad/" target="_blank">Tarifas</a></li>
+        <li><a href="tel:+34639336289">Reservar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+34639336289">+34 639 336 289</a></li>
+        <li><a href="mailto:loscipresesdmesones@gmail.com">loscipresesdmesones@gmail.com</a></li>
+        <li><a href="#">C/ Mirasol, 21</a></li>
+        <li><a href="#">19185 Mesones (Guadalajara)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Los Cipreses de Mesones. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="https://loscipresesdemesones.com/casa-rural-mesones-guadalajara-madrid-politica-privacidad/">Privacidad</a>
+      <a href="https://loscipresesdemesones.com/casa-rural-mesones-guadalajara-madrid-aviso-legal/">Aviso Legal</a>
+      <a href="https://loscipresesdemesones.com/casa-rural-mesones-guadalajara-madrid-aviso-de-cookies/">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- POWERED BY -->
+<div class="powered-by">
+  <a href="https://ggelcano.com" target="_blank" rel="noopener">Web creada por G&amp;G Elcano</a>
+</div>
+
+<script>
+  // LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+      document.getElementById('heroBg').classList.add('loaded');
+    }, 1800);
+  });
+
+  // CUSTOM CURSOR
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.7;
+    ringY += (mouseY - ringY) * 0.7;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .project-card, .service-card, .stat-card, .hotel-card').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
+  });
+
+  // NAVBAR SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // COUNTER ANIMATION
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+</script>
+</body>
+</html>
