@@ -1,0 +1,856 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hamburguesería Ziripot Berria — Las mejores hamburguesas de Galdakao</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"><style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--black: #0c0806;
+--white: #f5f3ef;
+--accent: #B45309;
+--accent-light: #d97706;
+--carbon: #161210;
+--carbon-mid: #201a16;
+--carbon-light: #2e2620;
+--text-muted: #9a8a7a;
+--font-serif: 'Playfair Display', serif;
+--font-sans: 'Source Sans 3', sans-serif;
+--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+--ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+html { scroll-behavior: smooth; }
+body {
+background: var(--black);
+color: var(--white);
+font-family: var(--font-sans);
+font-weight: 300;
+line-height: 1.6;
+overflow-x: hidden;
+cursor: none;
+}
+/* ─── CUSTOM CURSOR (DUAL COLOR) ─── */
+._d {
+width: 8px; height: 8px;
+background: var(--accent);
+border-radius: 50%;
+position: fixed; top: 0; left: 0;
+pointer-events: none; z-index: 9999;
+transition: transform 0.1s;
+transform: translate(-50%, -50%);
+box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(255,255,255,0.3);
+}
+._e {
+width: 40px; height: 40px;
+border: 1px solid rgba(180,83,9,0.4);
+border-radius: 50%;
+position: fixed; top: 0; left: 0;
+pointer-events: none; z-index: 9998;
+transform: translate(-50%, -50%);
+transition: width 0.35s var(--ease-smooth), height 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
+}
+._e.expanded {
+width: 70px; height: 70px;
+border-color: rgba(180,83,9,0.7);
+background: rgba(180,83,9,0.05);
+}
+/* ─── NAVBAR ─── */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+display: flex; align-items: center; justify-content: space-between;
+padding: 28px 60px;
+backdrop-filter: blur(0px);
+transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+}
+nav.scrolled {
+backdrop-filter: blur(20px);
+background: rgba(8,8,8,0.85);
+padding: 18px 60px;
+border-bottom: 1px solid rgba(180,83,9,0.08);
+}
+._f {
+font-family: var(--font-serif);
+font-size: 1.4rem;
+font-weight: 400;
+letter-spacing: 0.1em;
+text-decoration: none;
+color: var(--white);
+display: flex; align-items: center; gap: 10px;
+}
+._f span { color: var(--accent); }
+._g { display: flex; gap: 44px; list-style: none; align-items: center; }
+._g a {
+text-decoration: none; color: rgba(245,243,239,0.65);
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+transition: color 0.3s; font-weight: 400;
+}
+._g a:hover { color: var(--accent); }
+._h {
+background: transparent;
+border: 1px solid var(--accent);
+color: var(--accent) !important;
+padding: 10px 28px !important;
+font-size: 0.72rem !important;
+letter-spacing: 0.25em !important;
+transition: background 0.3s, color 0.3s !important;
+}
+._h:hover { background: var(--accent) !important; color: var(--black) !important; }
+/* ─── HAMBURGER MOBILE ─── */
+._i {
+display: none; flex-direction: column; gap: 5px;
+background: none; border: none; cursor: pointer; padding: 8px;
+}
+._i span {
+width: 24px; height: 2px; background: var(--white);
+transition: transform 0.3s, opacity 0.3s;
+}
+._i.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+._i.active span:nth-child(2) { opacity: 0; }
+._i.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+._j {
+display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+background: var(--black); z-index: 999;
+flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+}
+._j.open { display: flex; }
+._j a {
+text-decoration: none; color: var(--white); font-size: 1.2rem;
+letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+}
+._j a:hover { color: var(--accent); }
+/* ─── HERO ─── */
+._k {
+position: relative; height: 100vh; min-height: 700px;
+display: flex; align-items: flex-end; justify-content: flex-start;
+overflow: hidden;
+}
+._l {
+position: absolute; inset: 0;
+background: url('https://media-cdn.tripadvisor.com/media/photo-w/16/7d/b9/63/photo4jpg.jpg') center/cover no-repeat;
+transform: scale(1.08);
+transition: transform 8s var(--ease-out);
+}
+._l.loaded { transform: scale(1); }
+._m {
+position: absolute; inset: 0;
+background: linear-gradient(135deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.25) 100%);
+}
+._n {
+position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+background: linear-gradient(to top, var(--black), transparent);
+}
+._o {
+position: relative; z-index: 2;
+padding: 0 60px 100px;
+max-width: 900px;
+}
+._p {
+font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 28px;
+display: flex; align-items: center; gap: 16px;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+}
+._p::before {
+content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+}
+._q {
+font-family: var(--font-serif);
+font-size: clamp(3.2rem, 6.5vw, 6.5rem);
+font-weight: 300;
+line-height: 1.05;
+letter-spacing: -0.02em;
+margin-bottom: 32px;
+opacity: 0; transform: translateY(30px);
+animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+}
+._q em { font-style: italic; color: var(--accent); }
+._r {
+font-size: 1.05rem; color: rgba(245,243,239,0.6);
+max-width: 480px; line-height: 1.7; margin-bottom: 52px;
+font-weight: 300;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+}
+._s {
+display: flex; align-items: center; gap: 40px;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 1s 1s var(--ease-out) forwards;
+}
+._t {
+display: inline-flex; align-items: center; gap: 14px;
+background: var(--accent); color: var(--black);
+text-decoration: none; padding: 18px 40px;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+font-weight: 500; transition: all 0.35s var(--ease-smooth);
+position: relative; overflow: hidden;
+}
+._t::before {
+content: ''; position: absolute; inset: 0;
+background: var(--white); transform: translateX(-102%);
+transition: transform 0.4s var(--ease-out);
+}
+._t:hover::before { transform: translateX(0); }
+._t:hover { color: var(--black); }
+._t span { position: relative; z-index: 1; }
+._u {
+color: rgba(245,243,239,0.6); text-decoration: none;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+display: flex; align-items: center; gap: 10px;
+transition: color 0.3s;
+}
+._u:hover { color: var(--accent); }
+._v {
+width: 36px; height: 36px;
+border: 1px solid rgba(245,243,239,0.2);
+border-radius: 50%; display: flex; align-items: center; justify-content: center;
+transition: border-color 0.3s, transform 0.3s;
+}
+._u:hover ._v {
+border-color: var(--accent); transform: rotate(45deg);
+}
+._w {
+position: absolute; right: 60px; bottom: 100px; z-index: 2;
+display: flex; flex-direction: column; align-items: center; gap: 16px;
+opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+}
+._w span {
+font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+color: var(--text-muted); writing-mode: vertical-rl;
+}
+._x {
+width: 1px; height: 70px;
+background: linear-gradient(to bottom, var(--accent), transparent);
+animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse {
+0%, 100% { opacity: 0.4; transform: scaleY(1); }
+50% { opacity: 1; transform: scaleY(1.1); }
+}
+/* ─── MARQUEE ─── */
+._y {
+border-top: 1px solid rgba(180,83,9,0.12);
+border-bottom: 1px solid rgba(180,83,9,0.12);
+overflow: hidden; padding: 20px 0; background: var(--carbon);
+}
+._z {
+display: flex; gap: 0; white-space: nowrap;
+animation: marquee 22s linear infinite;
+}
+._ab {
+display: inline-flex; align-items: center; gap: 30px;
+padding: 0 40px;
+font-family: var(--font-serif); font-size: 1.1rem;
+font-style: italic; color: rgba(245,243,239,0.25);
+letter-spacing: 0.05em;
+}
+._ab ._bb { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* ─── SECTION COMMONS ─── */
+section { padding: 130px 60px; }
+._kb {
+font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 20px;
+display: flex; align-items: center; gap: 14px;
+}
+._kb::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+._lb {
+font-family: var(--font-serif);
+font-size: clamp(2.4rem, 4vw, 4.2rem);
+font-weight: 300; line-height: 1.1;
+letter-spacing: -0.01em;
+}
+._lb em { font-style: italic; color: var(--accent); }
+/* ─── STATS ─── */
+._cb {
+background: var(--carbon);
+padding: 100px 60px;
+border-top: 1px solid rgba(180,83,9,0.08);
+}
+._db {
+display: grid; grid-template-columns: repeat(4, 1fr);
+gap: 2px; max-width: 1400px; margin: 0 auto;
+}
+._eb {
+padding: 60px 50px; background: var(--carbon);
+border: 1px solid rgba(180,83,9,0.08);
+position: relative; overflow: hidden;
+transition: border-color 0.4s;
+}
+._eb::before {
+content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+height: 3px; background: var(--accent); transform: scaleX(0);
+transition: transform 0.5s var(--ease-out); transform-origin: left;
+}
+._eb:hover::before { transform: scaleX(1); }
+._eb:hover { border-color: rgba(180,83,9,0.3); }
+._fb {
+font-family: var(--font-serif); font-size: 4.5rem;
+font-weight: 300; line-height: 1; color: var(--white);
+margin-bottom: 12px; letter-spacing: -0.02em;
+}
+._fb ._gb { color: var(--accent); }
+._hb {
+font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+color: var(--text-muted); font-weight: 400;
+}
+/* ─── GALLERY / PROJECTS ─── */
+._ib { background: var(--black); }
+._jb {
+display: flex; justify-content: space-between; align-items: flex-end;
+margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+}
+._jb ._lb { max-width: 500px; }
+._mb {
+display: flex; align-items: center; gap: 12px;
+text-decoration: none; color: var(--accent);
+font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+transition: gap 0.3s; padding-bottom: 4px;
+border-bottom: 1px solid rgba(180,83,9,0.3);
+white-space: nowrap;
+}
+._mb:hover { gap: 20px; border-color: var(--accent); }
+._nb {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 3px;
+max-width: 1400px; margin: 0 auto;
+}
+._ob {
+position: relative; overflow: hidden;
+aspect-ratio: 4/3;
+cursor: none;
+}
+._ob:first-child {
+grid-column: span 2; aspect-ratio: 21/8;
+}
+._pb {
+width: 100%; height: 100%; object-fit: cover;
+transition: transform 0.8s var(--ease-out);
+}
+._ob:hover ._pb { transform: scale(1.06); }
+._qb {
+position: absolute; inset: 0;
+background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.1) 60%, transparent 100%);
+opacity: 0.6; transition: opacity 0.5s;
+}
+._ob:hover ._qb { opacity: 0.85; }
+._sb {
+position: absolute; bottom: 0; left: 0; right: 0;
+padding: 40px; transform: translateY(15px);
+transition: transform 0.5s var(--ease-out);
+}
+._ob:hover ._sb { transform: translateY(0); }
+._tb {
+font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 10px; font-weight: 400;
+}
+._ub {
+font-family: var(--font-serif); font-size: 1.9rem;
+font-weight: 300; line-height: 1.15; margin-bottom: 14px;
+}
+._vb {
+font-size: 0.73rem; color: rgba(245,243,239,0.45);
+letter-spacing: 0.1em; opacity: 0;
+transition: opacity 0.5s 0.1s;
+}
+._ob:hover ._vb { opacity: 1; }
+._rb {
+position: absolute; top: 36px; right: 36px;
+width: 50px; height: 50px;
+border: 1px solid rgba(245,243,239,0.15);
+border-radius: 50%; display: flex; align-items: center; justify-content: center;
+opacity: 0; transform: translate(10px, -10px);
+transition: all 0.4s var(--ease-out);
+}
+._ob:hover ._rb { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
+/* ─── ABOUT ─── */
+._wb {
+background: var(--carbon);
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 0; padding: 0; max-width: none;
+}
+._xb {
+position: relative; overflow: hidden; min-height: 700px;
+background: url('https://img.carta.menu/storage/media/company_gallery/24547715/conversions/contribution_gallery.jpg') center/cover no-repeat;
+}
+._yb {
+position: absolute; bottom: 48px; left: 48px;
+background: var(--black); border: 1px solid rgba(180,83,9,0.25);
+padding: 24px 30px; max-width: 240px;
+}
+._zb {
+font-family: var(--font-serif); font-size: 3rem;
+color: var(--accent); line-height: 1;
+}
+._ac {
+font-size: 0.72rem; letter-spacing: 0.1em;
+color: rgba(245,243,239,0.5); margin-top: 6px;
+}
+._bc {
+padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+}
+._dc {
+font-size: 1.05rem; line-height: 1.8;
+color: rgba(245,243,239,0.65); margin: 32px 0 52px;
+font-weight: 300;
+}
+._dc strong { color: var(--white); font-weight: 400; }
+._cc {
+width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
+}
+._ec { display: flex; flex-direction: column; gap: 20px; }
+._fc {
+display: flex; gap: 20px; align-items: flex-start;
+padding: 20px; border: 1px solid rgba(180,83,9,0.06);
+transition: border-color 0.4s;
+}
+._fc:hover { border-color: rgba(180,83,9,0.2); }
+._gc {
+font-family: var(--font-serif); font-size: 1.4rem;
+color: var(--accent); opacity: 0.5; flex-shrink: 0;
+line-height: 1.2;
+}
+._hc h4 {
+font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+font-weight: 400; margin-bottom: 4px;
+}
+._hc p {
+font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
+}
+/* ─── SERVICES ─── */
+._ic { background: var(--black); }
+._jc {
+display: grid; grid-template-columns: repeat(3, 1fr);
+gap: 1px; max-width: 1400px; margin: 60px auto 0;
+}
+._kc {
+padding: 60px 48px; background: var(--black);
+border: 1px solid rgba(180,83,9,0.07);
+position: relative; overflow: hidden;
+transition: background 0.5s, border-color 0.5s;
+}
+._kc:hover { background: var(--carbon-mid); border-color: rgba(180,83,9,0.2); }
+._mc {
+width: 52px; height: 52px; margin-bottom: 36px;
+display: flex; align-items: center; justify-content: center;
+border: 1px solid rgba(180,83,9,0.2); color: var(--accent);
+}
+._kc h3 {
+font-family: var(--font-serif); font-size: 1.7rem;
+font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+}
+._kc p {
+font-size: 0.88rem; color: var(--text-muted); line-height: 1.75;
+font-weight: 300;
+}
+._nc {
+display: inline-flex; align-items: center; gap: 10px;
+margin-top: 32px; text-decoration: none;
+font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+color: rgba(180,83,9,0.5); transition: color 0.3s, gap 0.3s;
+}
+._nc:hover { color: var(--accent); gap: 16px; }
+._lc {
+position: absolute; top: 30px; right: 36px;
+font-family: var(--font-serif); font-size: 5rem;
+font-weight: 300; color: rgba(180,83,9,0.05);
+line-height: 1; transition: color 0.5s;
+}
+._kc:hover ._lc { color: rgba(180,83,9,0.1); }
+/* ─── CARTA SECTIONS ─── */
+._oc {
+padding: 140px 60px;
+background: var(--carbon);
+border-top: 1px solid rgba(180,83,9,0.08);
+}
+._oc:nth-child(even) { background: var(--black); }
+._oc ._pc {
+max-width: 1200px; margin: 0 auto;
+}
+._qc {
+display: inline-flex; align-items: center; gap: 8px;
+text-decoration: none; color: var(--accent);
+font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+margin-bottom: 40px; transition: gap 0.3s;
+}
+._qc:hover { gap: 14px; }
+._rc {
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 80px; margin-top: 60px;
+}
+._sc { margin-bottom: 48px; }
+._sc h4 {
+font-family: var(--font-serif); font-size: 1.3rem;
+font-weight: 400; color: var(--white);
+padding-bottom: 16px; margin-bottom: 24px;
+border-bottom: 1px solid rgba(180,83,9,0.15);
+}
+._tc {
+display: flex; justify-content: space-between;
+align-items: baseline; padding: 12px 0;
+border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+._tc:last-child { border-bottom: none; }
+._uc {
+font-size: 0.92rem; font-weight: 400; color: var(--white);
+flex: 1;
+}
+._vc {
+font-size: 0.78rem; color: var(--text-muted);
+font-weight: 300; margin-top: 2px;
+}
+._wc {
+font-family: var(--font-serif); font-size: 1rem;
+color: var(--accent); white-space: nowrap;
+margin-left: 20px; font-weight: 400;
+}
+._xc {
+background: var(--carbon-mid); border: 1px solid rgba(180,83,9,0.1);
+padding: 40px; margin-top: 40px;
+}
+._xc h4 {
+font-family: var(--font-serif); font-size: 1.1rem;
+font-weight: 400; color: var(--accent); margin-bottom: 16px;
+}
+._xc p {
+font-size: 0.88rem; color: var(--text-muted);
+line-height: 1.75; font-weight: 300;
+}
+._yc {
+display: inline-flex; align-items: center; gap: 12px;
+margin-top: 48px; text-decoration: none;
+padding: 18px 40px; border: 1px solid var(--accent);
+color: var(--white); font-size: 0.72rem;
+letter-spacing: 0.2em; text-transform: uppercase;
+transition: background 0.4s, gap 0.3s;
+}
+._yc:hover { background: var(--accent); gap: 18px; }
+@media (max-width: 768px) {
+._oc { padding: 80px 24px; }
+._rc { grid-template-columns: 1fr; gap: 40px; }
+}
+/* ─── TESTIMONIALS ─── */
+._zc {
+background: var(--carbon); position: relative; overflow: hidden;
+}
+._zc::before {
+content: '\201C'; position: absolute; top: -60px; left: 40px;
+font-family: var(--font-serif); font-size: 30rem;
+color: rgba(180,83,9,0.03); line-height: 1; pointer-events: none;
+}
+._ad { max-width: 1400px; margin: 0 auto; }
+._bd {
+display: grid; grid-template-columns: repeat(3, 1fr);
+gap: 2px; margin-top: 70px;
+}
+._cd {
+padding: 56px 44px; background: rgba(8,8,8,0.4);
+border: 1px solid rgba(180,83,9,0.07);
+transition: border-color 0.4s, background 0.4s;
+}
+._cd:hover { border-color: rgba(180,83,9,0.2); background: rgba(8,8,8,0.7); }
+._dd { display: flex; gap: 5px; margin-bottom: 28px; }
+.star {
+width: 12px; height: 12px; background: var(--accent);
+clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+._ed {
+font-family: var(--font-serif); font-size: 1.2rem;
+font-style: italic; font-weight: 300;
+line-height: 1.7; color: rgba(245,243,239,0.8);
+margin-bottom: 36px;
+}
+._fd {
+width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4;
+}
+._gd strong {
+display: block; font-size: 0.82rem; font-weight: 500;
+letter-spacing: 0.08em; margin-bottom: 4px;
+}
+._gd span {
+font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
+}
+/* ─── CTA BANNER ─── */
+._hd {
+background: var(--accent); padding: 110px 60px;
+display: flex; align-items: center; justify-content: space-between;
+gap: 60px; flex-wrap: wrap;
+}
+._id { flex: 1; min-width: 300px; }
+._id h2 {
+font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
+font-weight: 300; color: var(--black); line-height: 1.1;
+}
+._id p {
+font-size: 1rem; color: rgba(8,8,8,0.65); margin-top: 16px; font-weight: 300;
+}
+._jd {
+display: inline-flex; align-items: center; gap: 14px;
+background: var(--black); color: var(--white);
+text-decoration: none; padding: 20px 48px;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+font-weight: 500; transition: all 0.35s var(--ease-smooth);
+white-space: nowrap; position: relative; overflow: hidden;
+}
+._jd::before {
+content: ''; position: absolute; inset: 0;
+background: var(--carbon-light); transform: translateX(-102%);
+transition: transform 0.4s var(--ease-out);
+}
+._jd:hover::before { transform: translateX(0); }
+._jd span { position: relative; z-index: 1; }
+/* ─── CONTACT SECTION ─── */
+._kd {
+padding: 100px 8%;
+background: var(--carbon);
+}
+._ld {
+max-width: 1200px; margin: 0 auto;
+}
+._md {
+display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;
+}
+._nd p {
+color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem;
+}
+._nd a {
+color: var(--accent); text-decoration: none; transition: color 0.3s;
+}
+._nd a:hover { color: var(--accent-light); }
+._od {
+border-radius: 16px; overflow: hidden; height: 300px;
+}
+/* ─── FOOTER ─── */
+footer {
+background: var(--black); padding: 90px 60px 50px;
+border-top: 1px solid rgba(180,83,9,0.08);
+}
+._pd {
+display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: 60px; margin-bottom: 70px;
+}
+._qd ._f {
+font-size: 1.4rem; margin-bottom: 22px; display: inline-flex;
+}
+._rd {
+font-family: var(--font-serif); font-style: italic;
+font-size: 1.05rem; color: rgba(245,243,239,0.35);
+line-height: 1.6; max-width: 280px; margin-bottom: 36px;
+}
+._sd { display: flex; gap: 14px; }
+._td {
+width: 40px; height: 40px;
+border: 1px solid rgba(245,243,239,0.1);
+display: flex; align-items: center; justify-content: center;
+text-decoration: none; color: rgba(245,243,239,0.4);
+font-size: 0.75rem; letter-spacing: 0.1em;
+transition: border-color 0.3s, color 0.3s;
+}
+._td:hover { border-color: var(--accent); color: var(--accent); }
+._ud h4 {
+font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 24px; font-weight: 500;
+}
+._ud ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+._ud ul a {
+text-decoration: none; color: rgba(245,243,239,0.4);
+font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+}
+._ud ul a:hover { color: var(--white); }
+._vd {
+border-top: 1px solid rgba(245,243,239,0.06);
+padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+}
+._wd {
+font-size: 0.75rem; color: rgba(245,243,239,0.25); letter-spacing: 0.05em;
+}
+._xd { display: flex; gap: 28px; }
+._xd a {
+font-size: 0.72rem; color: rgba(245,243,239,0.2);
+text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+}
+._xd a:hover { color: var(--text-muted); }
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
+.reveal {
+opacity: 0; transform: translateY(36px);
+transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+/* ─── LOADER ─── */
+._a {
+position: fixed; inset: 0; z-index: 10000;
+background: var(--black); display: flex;
+align-items: center; justify-content: center;
+flex-direction: column; gap: 28px;
+transition: opacity 0.8s, visibility 0.8s;
+}
+._a.hidden { opacity: 0; visibility: hidden; }
+._b {
+font-family: var(--font-serif); font-size: 2.2rem;
+letter-spacing: 0.2em; color: var(--white);
+}
+._b span { color: var(--accent); }
+._c {
+width: 200px; height: 1px; background: rgba(245,243,239,0.1);
+position: relative; overflow: hidden;
+}
+._c::after {
+content: ''; position: absolute; inset: 0;
+background: var(--accent); transform: translateX(-100%);
+animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+}
+@keyframes loadBar { to { transform: translateX(0); } }
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+nav { padding: 24px 36px; }
+nav.scrolled { padding: 16px 36px; }
+section { padding: 100px 36px; }
+._o { padding: 0 36px 80px; }
+._w { right: 36px; }
+._db { grid-template-columns: repeat(2, 1fr); }
+._pd { grid-template-columns: 1fr 1fr; gap: 48px; }
+}
+@media (max-width: 768px) {
+body { cursor: auto; }
+._d, ._e { display: none; }
+._i { display: flex; }
+nav { padding: 20px 24px; }
+nav.scrolled { padding: 14px 24px; }
+._g { display: none; }
+section { padding: 80px 24px; }
+._o { padding: 0 24px 70px; }
+._w { display: none; }
+._s { flex-direction: column; align-items: flex-start; gap: 24px; }
+._jb { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+._nb { grid-template-columns: 1fr; }
+._ob:first-child { grid-column: 1; aspect-ratio: 4/3; }
+._wb { grid-template-columns: 1fr; }
+._xb { min-height: 300px; }
+._bc { padding: 60px 24px; }
+._jc { grid-template-columns: 1fr; }
+._bd { grid-template-columns: 1fr; }
+._hd { padding: 80px 24px; flex-direction: column; }
+._pd { grid-template-columns: 1fr; }
+._vd { flex-direction: column; gap: 20px; text-align: center; }
+._db { grid-template-columns: 1fr 1fr; }
+._cb { padding: 70px 24px; }
+._md { grid-template-columns: 1fr; }
+}
+</style><style>*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;}</style></head><body><div class="_a" id="loader"><div class="_b">ZIRIPOT BERRIA <span>.</span></div><div class="_c"></div></div><div class="_d" id="cursorDot"></div><div class="_e" id="cursorRing"></div><nav id="navbar"><a href="#" class="_f">Ziripot Berria<span>.</span></a><ul class="_g"><li><a href="#galeria">Galeria</a></li><li><a href="#nosotros">Nosotros</a></li><li><a href="#carta-principal">Carta</a></li><li><a href="#contacto" class="_h">Contacto</a></li></ul><button class="_i" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="_j" id="mobileMenu"><a href="#galeria" onclick="closeMobile()">Galeria</a><a href="#nosotros" onclick="closeMobile()">Nosotros</a><a href="#carta-principal" onclick="closeMobile()">Carta</a><a href="#contacto" onclick="closeMobile()">Contacto</a></div><section class="_k"><div class="_l" id="heroBg"></div><div class="_m"></div><div class="_n"></div><div class="_o"><p class="_p">Hamburguesas &middot; Artesanales &middot; Galdakao</p><h1 class="_q">
+Las mejores<br><em>hamburguesas</em><br>de Galdakao
+</h1><p class="_r">
+Hamburguesas artesanales, ingredientes frescos y sabor casero desde nuestro corazon a tu mesa.
+</p><div class="_s"><a href="tel:+34946527173" class="_t"><span>Llamar para pedir</span><span>&rarr;</span></a><a href="#carta-principal" class="_u"><span>Ver carta</span><div class="_v">&nearr;</div></a></div></div><div class="_w"><span>Scroll</span><div class="_x"></div></div></section><div class="_y"><div class="_z"><span class="_ab"><span class="_bb"></span>Hamburguesas Artesanales</span><span class="_ab"><span class="_bb"></span>Ingredientes Frescos</span><span class="_ab"><span class="_bb"></span>Para Llevar</span><span class="_ab"><span class="_bb"></span>Menu Infantil</span><span class="_ab"><span class="_bb"></span>Cervezas Artesanas</span><span class="_ab"><span class="_bb"></span>Galdakao</span><span class="_ab"><span class="_bb"></span>Hamburguesas Artesanales</span><span class="_ab"><span class="_bb"></span>Ingredientes Frescos</span><span class="_ab"><span class="_bb"></span>Para Llevar</span><span class="_ab"><span class="_bb"></span>Menu Infantil</span><span class="_ab"><span class="_bb"></span>Cervezas Artesanas</span><span class="_ab"><span class="_bb"></span>Galdakao</span></div></div><div class="_cb"><div class="_db"><div class="_eb reveal"><div class="_fb"><span class="count" data-target="4">0</span><span class="_gb">.6</span></div><div class="_hb">Nota en Google</div></div><div class="_eb reveal reveal-delay-1"><div class="_fb"><span class="count" data-target="153">0</span><span class="_gb">+</span></div><div class="_hb">Opiniones de clientes</div></div><div class="_eb reveal reveal-delay-2"><div class="_fb"><span class="count" data-target="100">0</span><span class="_gb">%</span></div><div class="_hb">Ingredientes frescos</div></div><div class="_eb reveal reveal-delay-3"><div class="_fb"><span class="count" data-target="7">0</span></div><div class="_hb">Dias a la semana</div></div></div></div><section class="_ib" id="galeria"><div class="_jb"><div><p class="_kb reveal">Nuestras hamburguesas</p><h2 class="_lb reveal reveal-delay-1">Sabor que<br><em>habla por si solo</em></h2></div><a href="#carta-principal" class="_mb reveal">Ver carta &rarr;</a></div><div class="_nb"><div class="_ob"><img class="_pb" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80" alt="Hamburguesa gourmet Ziripot Berria" loading="lazy"><div class="_qb"></div><div class="_rb">&nearr;</div><div class="_sb"><p class="_tb">Clasica &middot; Favorita</p><h3 class="_ub">Burger clasica</h3><p class="_vb">Pan brioche &middot; Ternera 180g &middot; Cheddar</p></div></div><div class="_ob"><img class="_pb" src="https://foto1.sluurpy.com/locali/es/1929359/67346716.jpg" alt="Hamburguesa con bacon Ziripot Berria" loading="lazy"><div class="_qb"></div><div class="_rb">&nearr;</div><div class="_sb"><p class="_tb">Especial &middot; Premium</p><h3 class="_ub">Burger especial</h3><p class="_vb">Ingredientes premium &middot; Trufa &middot; Foie</p></div></div><div class="_ob"><img class="_pb" src="https://foto1.sluurpy.com/locali/es/1929359/47290175.jpg" alt="Bocapizza gratinada Ziripot Berria" loading="lazy"><div class="_qb"></div><div class="_rb">&nearr;</div><div class="_sb"><p class="_tb">Acompanamiento &middot; Casero</p><h3 class="_ub">Patatas caseras</h3><p class="_vb">Cortadas a mano &middot; Crujientes</p></div></div><div class="_ob"><img class="_pb" src="https://foto1.sluurpy.com/locali/es/1929359/67346720.jpg" alt="Terraza exterior Ziripot Berria" loading="lazy"><div class="_qb"></div><div class="_rb">&nearr;</div><div class="_sb"><p class="_tb">Espacio &middot; Ambiente</p><h3 class="_ub">Ambiente del local</h3><p class="_vb">Galdakao &middot; Gipuzkoa Kalea</p></div></div></div></section><div class="_wb" id="nosotros"><div class="_xb"><div class="_yb"><div class="_zb">4.6</div><div class="_ac">Valoracion media en Google con mas de 153 opiniones</div></div></div><div class="_bc"><p class="_kb reveal">Sobre nosotros</p><h2 class="_lb reveal reveal-delay-1">
+Donde la hamburguesa<br>es <em>artesanal</em></h2><div class="_cc reveal"></div><p class="_dc reveal reveal-delay-2">
+En Ziripot Berria creemos que una buena hamburguesa empieza por <strong>ingredientes de calidad</strong>. Carne de ternera seleccionada, pan brioche recien horneado y salsas caseras que marcan la diferencia.<br><br><strong>Un referente en Galdakao.</strong> Llevamos anos siendo el lugar favorito de los vecinos para disfrutar de hamburguesas generosas, con sabor casero y a precios honestos. Ven a comprobarlo.
+</p><div class="_ec reveal reveal-delay-3"><div class="_fc"><div class="_gc">01</div><div class="_hc"><h4>Carne de calidad</h4><p>Ternera seleccionada, smash burgers hechas al momento en plancha de alta temperatura</p></div></div><div class="_fc"><div class="_gc">02</div><div class="_hc"><h4>Todo casero</h4><p>Salsas, pan brioche y patatas cortadas a mano. Sin procesados, sin atajos</p></div></div><div class="_fc"><div class="_gc">03</div><div class="_hc"><h4>Para todos los gustos</h4><p>Desde la clasica hasta creaciones con trufa, foie o queso idiazabal. Menu infantil disponible</p></div></div></div></div></div><section class="_ic" id="servicios"><div style="max-width:1400px; margin:0 auto"><p class="_kb reveal">Lo que ofrecemos</p><h2 class="_lb reveal reveal-delay-1" style="max-width:560px">
+Hamburguesas para <em>todos los momentos</em></h2><div class="_jc"><div class="_kc reveal"><div class="_lc">01</div><div class="_mc"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 11h18M3 11c0 4.97 4.03 9 9 9s9-4.03 9-9M3 11c0-1 .5-2 1.5-2.5C5.5 8 7 7 12 7s6.5 1 7.5 1.5c1 .5 1.5 1.5 1.5 2.5M8 20v1M16 20v1M5 7V4M19 7V4"/></svg></div><h3>Hamburguesas Artesanales</h3><p>Carne de ternera seleccionada, pan brioche artesano y salsas caseras. Desde la clasica hasta creaciones gourmet con ingredientes premium.</p><a href="#carta-principal" class="_nc">Ver carta &rarr;</a></div><div class="_kc reveal reveal-delay-1"><div class="_lc">02</div><div class="_mc"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 10H3M21 10V18a2 2 0 01-2 2H5a2 2 0 01-2-2V10M21 10l-2-7H5L3 10"/><path d="M9 14h6"/></svg></div><h3>Para Llevar</h3><p>Preparamos tu pedido para que lo disfrutes donde quieras. Llama al 946 52 71 73 y lo tenemos listo cuando llegues. Rapido, fresco y con el mismo sabor.</p><a href="tel:+34946527173" class="_nc">Llamar ahora &rarr;</a></div><div class="_kc reveal reveal-delay-2"><div class="_lc">03</div><div class="_mc"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><h3>Menu Infantil</h3><p>Hamburguesa mini, patatas y bebida pensadas para los mas pequenos. Raciones generosas a un precio justo para que toda la familia disfrute.</p><a href="#carta-principal" class="_nc">Ver opciones &rarr;</a></div></div></div></section><section class="_oc" id="carta-principal"><div class="_pc"><a href="#servicios" class="_qc reveal">&larr; Volver a servicios</a><p class="_kb reveal">Nuestra carta</p><h2 class="_lb reveal reveal-delay-1" style="max-width:600px">
+Hamburguesas con <em>caracter</em></h2><div class="_rc"><div><div class="_sc reveal"><h4>Hamburguesas Clasicas</h4><div class="_tc"><div><div class="_uc">Ziripot Classic</div><div class="_vc">Pan brioche, ternera 180g, lechuga, tomate, queso cheddar</div></div><div class="_wc">9,50 &euro;</div></div><div class="_tc"><div><div class="_uc">Bacon Lover</div><div class="_vc">Doble bacon crujiente, queso, salsa BBQ</div></div><div class="_wc">10,50 &euro;</div></div></div><div class="_sc reveal"><h4>Hamburguesas Especiales</h4><div class="_tc"><div><div class="_uc">Ziripot Berria</div><div class="_vc">Ingredientes premium, trufa, foie</div></div><div class="_wc">13,90 &euro;</div></div><div class="_tc"><div><div class="_uc">Txuleta Burger</div><div class="_vc">Carne de txuleta, pimientos, queso idiazabal</div></div><div class="_wc">12,50 &euro;</div></div></div></div><div><div class="_sc reveal reveal-delay-1"><h4>Acompanamientos</h4><div class="_tc"><div><div class="_uc">Patatas caseras</div><div class="_vc">Cortadas a mano, crujientes por fuera</div></div><div class="_wc">3,50 &euro;</div></div><div class="_tc"><div><div class="_uc">Aros de cebolla</div><div class="_vc">Rebozados y crujientes</div></div><div class="_wc">4,00 &euro;</div></div><div class="_tc"><div><div class="_uc">Ensalada</div><div class="_vc">Mixta con vinagreta casera</div></div><div class="_wc">4,50 &euro;</div></div></div><div class="_sc reveal reveal-delay-2"><h4>Bebidas</h4><div class="_tc"><div><div class="_uc">Refrescos</div></div><div class="_wc">2,50 &euro;</div></div><div class="_tc"><div><div class="_uc">Cerveza tirador</div></div><div class="_wc">2,80 &euro;</div></div><div class="_tc"><div><div class="_uc">Agua</div></div><div class="_wc">1,50 &euro;</div></div></div><div class="_xc reveal reveal-delay-2"><h4>Precios orientativos</h4><p>Los precios pueden variar. Consulta en el local para confirmar las opciones del dia y promociones especiales. Pregunta por nuestras combinaciones y ofertas de menu completo.</p></div></div></div><a href="tel:+34946527173" class="_yc reveal"><span>Llamar para pedir</span><span>&rarr;</span></a></div></section><section class="_zc"><div class="_ad"><p class="_kb reveal">Opiniones</p><h2 class="_lb reveal reveal-delay-1">
+Lo que dicen<br>nuestros <em>clientes</em></h2><div class="_bd"><div class="_cd reveal"><div class="_dd"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><p class="_ed">"Las hamburguesas mas generosas y sabrosas de Galdakao. La Ziripot Berria con trufa es una pasada. Raciones enormes y precios muy buenos."</p><div class="_fd"></div><div class="_gd"><strong>Josin Ruiz</strong><span>Google &middot; Galdakao</span></div></div><div class="_cd reveal reveal-delay-1"><div class="_dd"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><p class="_ed">"Llevamos a los ninos y les encanto el menu infantil. El trato del personal es genial, muy cercano y amable. Repetiremos seguro."</p><div class="_fd"></div><div class="_gd"><strong>Carlos Martin Avellaneda</strong><span>Google &middot; Galdakao</span></div></div><div class="_cd reveal reveal-delay-2"><div class="_dd"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><p class="_ed">"La Txuleta Burger con idiazabal es de lo mejor que he probado. Las patatas caseras estan increibles. Siempre pido para llevar y llega perfecto."</p><div class="_fd"></div><div class="_gd"><strong>Judith Ruiz</strong><span>Google &middot; Galdakao</span></div></div></div></div></section><div class="_hd"><div class="_id"><h2>Te apetece una<br>buena hamburguesa?</h2><p>Llamanos y reserva tu mesa o haz tu pedido para llevar.</p></div><a href="tel:+34946527173" class="_jd"><span>Llamar ahora</span><span>&nearr;</span></a></div><section class="_kd" id="contacto"><div class="_ld"><p class="_kb reveal">Encuentranos</p><h2 class="_lb reveal" style="margin-bottom: 40px;">Visitanos en<br><em>Galdakao</em></h2><div class="_md"><div class="_nd reveal"><p><strong style="color: var(--white);">Direccion:</strong><br>Gipuzkoa Kalea, 9, Galdakao, Bizkaia</p><p><strong style="color: var(--white);">Telefono:</strong><br><a href="tel:+34946527173">946 52 71 73</a></p><p><strong style="color: var(--white);">Siguenos:</strong><br><a href="https://m.facebook.com/hamburgueseriaziripotberria" target="_blank" rel="noopener">Facebook</a></p><p style="margin-top: 16px;"><strong style="color: var(--white);">Horario:</strong><br>
+L-M: 17:00 - 23:00<br>
+X: Cerrado<br>
+J: 12:00 - 23:30<br>
+V-S: 12:00 - 1:00<br>
+D: 12:00 - 22:30</p></div><div class="_od reveal reveal-delay-1"><iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Hamburguesar%C3%ADa+Ziripot+Berria,Galdakao&zoom=17" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe></div></div></div></section><footer><div class="_pd"><div class="_qd"><a href="#" class="_f">Ziripot Berria<span>.</span></a><p class="_rd">"Hamburguesas artesanales con alma y sabor de Galdakao."</p><div class="_sd"><a href="https://m.facebook.com/hamburgueseriaziripotberria" target="_blank" rel="noopener" class="_td">Fb</a><a href="https://www.google.com/maps/place/Hamburguesar%C3%ADa+Ziripot+Berria" target="_blank" rel="noopener" class="_td">Gm</a></div></div><div class="_ud"><h4>Carta</h4><ul><li><a href="#carta-principal">Clasicas</a></li><li><a href="#carta-principal">Especiales</a></li><li><a href="#carta-principal">Acompanamientos</a></li><li><a href="#carta-principal">Bebidas</a></li></ul></div><div class="_ud"><h4>Restaurante</h4><ul><li><a href="#nosotros">Sobre nosotros</a></li><li><a href="#servicios">Servicios</a></li><li><a href="#galeria">Galeria</a></li></ul></div><div class="_ud"><h4>Contacto</h4><ul><li><a href="tel:+34946527173">946 52 71 73</a></li><li><a href="#contacto">Gipuzkoa Kalea, 9, Galdakao</a></li><li><a href="https://m.facebook.com/hamburgueseriaziripotberria" target="_blank" rel="noopener">Facebook</a></li></ul></div></div><div class="_vd"><p class="_wd">&copy; 2026 Hamburgueseria Ziripot Berria. Todos los derechos reservados.</p><div class="_xd"><a href="#">Politica de Privacidad</a><a href="#">Aviso Legal</a><a href="#">Cookies</a></div></div></footer><script>
+// ── LOADER
+window.addEventListener('load', () => {
+setTimeout(() => {
+document.getElementById('loader').classList.add('hidden');
+document.getElementById('heroBg').classList.add('loaded');
+}, 1800);
+});
+// ── CUSTOM CURSOR
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+document.addEventListener('mousemove', e => {
+mouseX = e.clientX; mouseY = e.clientY;
+dot.style.left = mouseX + 'px';
+dot.style.top = mouseY + 'px';
+});
+function animateRing() {
+ringX += (mouseX - ringX) * 0.7;
+ringY += (mouseY - ringY) * 0.7;
+ring.style.left = ringX + 'px';
+ring.style.top = ringY + 'px';
+requestAnimationFrame(animateRing);
+}
+animateRing();
+document.querySelectorAll('a, button, ._ob, ._kc, .stat-card').forEach(el => {
+el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
+el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
+});
+// ── NAVBAR SCROLL
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+// ── HAMBURGER MENU
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+hamburger.classList.toggle('active');
+mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+hamburger.classList.remove('active');
+mobileMenu.classList.remove('open');
+}
+// ── REVEAL ON SCROLL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach(el => observer.observe(el));
+// ── COUNTER ANIMATION
+function animateCount(el) {
+const target = parseInt(el.dataset.target);
+const duration = 1800;
+const start = performance.now();
+function step(now) {
+const progress = Math.min((now - start) / duration, 1);
+const ease = 1 - Math.pow(1 - progress, 4);
+el.textContent = Math.round(ease * target);
+if (progress < 1) requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+}
+const countObserver = new IntersectionObserver(entries => {
+entries.forEach(e => {
+if (e.isIntersecting) {
+animateCount(e.target);
+countObserver.unobserve(e.target);
+}
+});
+}, { threshold: 0.5 });
+document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+// ── HERO PARALLAX
+window.addEventListener('scroll', () => {
+const heroBg = document.getElementById('heroBg');
+if (heroBg) {
+const scrolled = window.scrollY;
+heroBg.style.transform = 'scale(1) translateY(' + (scrolled * 0.25) + 'px)';
+}
+});
+</script><script>
+(function(){
+// Disable right-click
+document.addEventListener('contextmenu',function(e){e.preventDefault();});
+// Disable text selection
+document.addEventListener('selectstart',function(e){e.preventDefault();});
+// Disable copy
+document.addEventListener('copy',function(e){e.preventDefault();});
+// Disable keyboard shortcuts (Ctrl+U, Ctrl+S, Ctrl+Shift+I, F12)
+document.addEventListener('keydown',function(e){
+if(e.key==='F12'||(e.ctrlKey&&e.key==='u')||(e.ctrlKey&&e.key==='s')||(e.ctrlKey&&e.shiftKey&&e.key==='I')){
+e.preventDefault();
+}
+});
+// Watermark
+var w=document.createElement('div');
+w.style.cssText='position:fixed;bottom:-100px;right:-100px;opacity:0.001;font-size:1px;pointer-events:none;z-index:-1;';
+w.textContent='hamburgueseria-ziripot-berria-galdakao';
+document.body.appendChild(w);
+})();
+</script></body></html>

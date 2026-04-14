@@ -544,9 +544,33 @@
       transition: background 0.4s, gap 0.3s;
     }
     .carta-cta:hover { background: var(--accent); gap: 18px; }
+    .carta-tabs {
+      display: flex; gap: 8px; margin-top: 40px; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(180,83,9,0.15); padding-bottom: 0;
+    }
+    .carta-tab {
+      padding: 12px 24px; cursor: pointer;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-muted); background: none; border: none;
+      border-bottom: 2px solid transparent;
+      font-family: var(--font-sans); font-weight: 400;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .carta-tab:hover { color: var(--white); }
+    .carta-tab.active {
+      color: var(--accent); border-bottom-color: var(--accent);
+    }
+    .carta-tab-content { display: none; margin-top: 40px; }
+    .carta-tab-content.active { display: block; }
+    .carta-subnote {
+      font-size: 0.78rem; color: var(--text-muted); font-weight: 300;
+      margin-top: 16px; font-style: italic;
+    }
     @media (max-width: 768px) {
       .carta-section { padding: 80px 24px; }
       .carta-columns { grid-template-columns: 1fr; gap: 40px; }
+      .carta-tabs { gap: 4px; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+      .carta-tab { padding: 10px 16px; white-space: nowrap; flex-shrink: 0; }
     }
 
     /* ─── TESTIMONIALS ─── */
@@ -1023,92 +1047,622 @@
     <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
       Hamburguesas con <em>caracter</em>
     </h2>
-    <div class="carta-columns">
-      <div>
-        <div class="carta-category reveal">
-          <h4>Hamburguesas Clasicas</h4>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Ziripot Classic</div>
-              <div class="carta-item-desc">Pan brioche, ternera 180g, lechuga, tomate, queso cheddar</div>
+    <!-- TABS -->
+    <div class="carta-tabs">
+      <button class="carta-tab active" data-tab="estrella">Estrella</button>
+      <button class="carta-tab" data-tab="hamburguesas">Hamburguesas</button>
+      <button class="carta-tab" data-tab="bocatas">Bocatas</button>
+      <button class="carta-tab" data-tab="sandwiches">Sandwiches</button>
+      <button class="carta-tab" data-tab="gourmet">Platos Gourmet</button>
+      <button class="carta-tab" data-tab="combinados">Combinados</button>
+      <button class="carta-tab" data-tab="raciones">Raciones</button>
+      <button class="carta-tab" data-tab="ensaladas">Ensaladas</button>
+      <button class="carta-tab" data-tab="paninis">Paninis</button>
+      <button class="carta-tab" data-tab="infantil">Infantil</button>
+      <button class="carta-tab" data-tab="postres">Postres</button>
+    </div>
+
+    <!-- TAB: ESTRELLA -->
+    <div class="carta-tab-content active" id="tab-estrella">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Hamburguesas Estrella</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Hamburguesa Ziripot</div>
+                <div class="carta-item-desc">Pan de potato, carne 100% vaca madurada, queso cheddar, bacon crujiente, pepinillos, salsa coreana con un toque de jalape&ntilde;o</div>
+              </div>
+              <div class="carta-item-price">14,00 &euro;</div>
             </div>
-            <div class="carta-item-price">9,50 &euro;</div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Bacon Lover</div>
-              <div class="carta-item-desc">Doble bacon crujiente, queso, salsa BBQ</div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Burger Baby</div>
+                <div class="carta-item-desc">Pan de potato, carne 100% vaca madurada, queso cheddar, cebolla a la soda, mermelada de bacon, nuestra salsa spicy mayo</div>
+              </div>
+              <div class="carta-item-price">14,00 &euro;</div>
             </div>
-            <div class="carta-item-price">10,50 &euro;</div>
           </div>
         </div>
-        <div class="carta-category reveal">
-          <h4>Hamburguesas Especiales</h4>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Ziripot Berria</div>
-              <div class="carta-item-desc">Ingredientes premium, trufa, foie</div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Hamburguesa de Txuleta</div>
+                <div class="carta-item-desc">La estrella de Ziripot. Pan de potato, carne de txuleta, rucula, pimientos confitados, queso cheddar, salsa alioli</div>
+              </div>
+              <div class="carta-item-price">16,00 &euro;</div>
             </div>
-            <div class="carta-item-price">13,90 &euro;</div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Txuleta Burger</div>
-              <div class="carta-item-desc">Carne de txuleta, pimientos, queso idiazabal</div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Golden Bacon</div>
+                <div class="carta-item-desc">Pan de potato, carne 100% vaca madurada, queso cheddar, bacon crujiente, mermelada de bacon, salsa burger</div>
+              </div>
+              <div class="carta-item-price">15,00 &euro;</div>
             </div>
-            <div class="carta-item-price">12,50 &euro;</div>
           </div>
         </div>
       </div>
-      <div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Acompanamientos</h4>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Patatas caseras</div>
-              <div class="carta-item-desc">Cortadas a mano, crujientes por fuera</div>
+    </div>
+
+    <!-- TAB: HAMBURGUESAS -->
+    <div class="carta-tab-content" id="tab-hamburguesas">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Hamburguesas de Carta</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;1</div>
+                <div class="carta-item-desc">Solo carne</div>
+              </div>
+              <div class="carta-item-price">7,50 &euro;</div>
             </div>
-            <div class="carta-item-price">3,50 &euro;</div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Aros de cebolla</div>
-              <div class="carta-item-desc">Rebozados y crujientes</div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;2</div>
+                <div class="carta-item-desc">Carne y queso fundido</div>
+              </div>
+              <div class="carta-item-price">8,00 &euro;</div>
             </div>
-            <div class="carta-item-price">4,00 &euro;</div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Ensalada</div>
-              <div class="carta-item-desc">Mixta con vinagreta casera</div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;3</div>
+                <div class="carta-item-desc">Carne, queso fundido, huevo a la plancha, bacon y cebolla caramelizada</div>
+              </div>
+              <div class="carta-item-price">9,50 &euro;</div>
             </div>
-            <div class="carta-item-price">4,50 &euro;</div>
-          </div>
-        </div>
-        <div class="carta-category reveal reveal-delay-2">
-          <h4>Bebidas</h4>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Refrescos</div>
-            </div>
-            <div class="carta-item-price">2,50 &euro;</div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Cerveza tirador</div>
-            </div>
-            <div class="carta-item-price">2,80 &euro;</div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Agua</div>
-            </div>
-            <div class="carta-item-price">1,50 &euro;</div>
           </div>
         </div>
-        <div class="carta-highlight reveal reveal-delay-2">
-          <h4>Precios orientativos</h4>
-          <p>Los precios pueden variar. Consulta en el local para confirmar las opciones del dia y promociones especiales. Pregunta por nuestras combinaciones y ofertas de menu completo.</p>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;4</div>
+                <div class="carta-item-desc">Carne, lechuga, tomate, cebolla y bacon</div>
+              </div>
+              <div class="carta-item-price">9,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;5</div>
+                <div class="carta-item-desc">Extra de carne, doble de queso, lechuga, tomate, cebolla, huevo a la plancha y pepinillo</div>
+              </div>
+              <div class="carta-item-price">10,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;6</div>
+                <div class="carta-item-desc">Carne, pimiento rojo, cebolla, york, queso fundido y setas</div>
+              </div>
+              <div class="carta-item-price">9,50 &euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="carta-subnote">A&ntilde;ade la salsa cesar de la casa por 1,00 &euro;</p>
+    </div>
+
+    <!-- TAB: BOCATAS -->
+    <div class="carta-tab-content" id="tab-bocatas">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Bocatas</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;1</div>
+                <div class="carta-item-desc">Pechuga de pollo, lechuga, tomate, york, cebolla, queso fundido y huevo a la plancha</div>
+              </div>
+              <div class="carta-item-price">8,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;2</div>
+                <div class="carta-item-desc">Bacon y queso</div>
+              </div>
+              <div class="carta-item-price">6,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;3</div>
+                <div class="carta-item-desc">Lomo, bacon, queso fundido y huevo a la plancha</div>
+              </div>
+              <div class="carta-item-price">7,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;4</div>
+                <div class="carta-item-desc">Queso de cabra, lechuga, huevo a la plancha y cebolla caramelizada</div>
+              </div>
+              <div class="carta-item-price">7,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;5</div>
+                <div class="carta-item-desc">Ternera, queso fundido y bacon</div>
+              </div>
+              <div class="carta-item-price">8,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;6</div>
+                <div class="carta-item-desc">Ternera, queso fundido, iberico y salsa alioli</div>
+              </div>
+              <div class="carta-item-price">8,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;7</div>
+                <div class="carta-item-desc">Salchicha, cebolla caramelizada, queso fundido y bacon</div>
+              </div>
+              <div class="carta-item-price">7,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;8</div>
+                <div class="carta-item-desc">Hamburguesa, lechuga, tomate y cebolla</div>
+              </div>
+              <div class="carta-item-price">9,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;9</div>
+                <div class="carta-item-desc">Jamon, con cama de tomate</div>
+              </div>
+              <div class="carta-item-price">7,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;10</div>
+                <div class="carta-item-desc">Ventresca sobre cama de tomate</div>
+              </div>
+              <div class="carta-item-price">8,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;11</div>
+                <div class="carta-item-desc">Pechuga de pollo, bacon, queso fundido, cebolla y salsa cesar</div>
+              </div>
+              <div class="carta-item-price">8,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="carta-subnote">Cada ingrediente a&ntilde;adido: 1,00 &euro; o 1,50 &euro; &middot; Suplemento de pan: 1,00 &euro;</p>
+    </div>
+
+    <!-- TAB: SANDWICHES -->
+    <div class="carta-tab-content" id="tab-sandwiches">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Sandwiches</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;1</div>
+                <div class="carta-item-desc">York, queso fundido</div>
+              </div>
+              <div class="carta-item-price">4,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;2</div>
+                <div class="carta-item-desc">York, queso fundido y huevo a la plancha</div>
+              </div>
+              <div class="carta-item-price">4,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;3</div>
+                <div class="carta-item-desc">Iberico, queso fundido, york y huevo a la plancha</div>
+              </div>
+              <div class="carta-item-price">6,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;4</div>
+                <div class="carta-item-desc">Pechuga, bacon, queso y huevo a la plancha</div>
+              </div>
+              <div class="carta-item-price">6,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;5</div>
+                <div class="carta-item-desc">Lechuga, tomate, esparragos, queso fundido, york y huevo a la plancha</div>
+              </div>
+              <div class="carta-item-price">5,50 &euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: PLATOS GOURMET -->
+    <div class="carta-tab-content" id="tab-gourmet">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Platos Gourmet</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;1</div>
+                <div class="carta-item-desc">Langostinos a la plancha</div>
+              </div>
+              <div class="carta-item-price">14,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;2</div>
+                <div class="carta-item-desc">Sepia a la plancha con patatas fritas caseras y salsa alioli</div>
+              </div>
+              <div class="carta-item-price">15,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;3</div>
+                <div class="carta-item-desc">Entrecot de ternera con patatas fritas caseras y pimientos confitados</div>
+              </div>
+              <div class="carta-item-price">16,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;4</div>
+                <div class="carta-item-desc">Secreto iberico con patatas fritas caseras y pimientos confitados</div>
+              </div>
+              <div class="carta-item-price">13,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: COMBINADOS -->
+    <div class="carta-tab-content" id="tab-combinados">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Platos Combinados</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;1</div>
+                <div class="carta-item-desc">Pechuga de pollo con patatas fritas caseras y ensalada</div>
+              </div>
+              <div class="carta-item-price">10,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;2</div>
+                <div class="carta-item-desc">Hamburguesa de ternera con patatas fritas caseras y ensalada</div>
+              </div>
+              <div class="carta-item-price">10,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;3</div>
+                <div class="carta-item-desc">Lomo adobado con patatas fritas caseras y ensalada</div>
+              </div>
+              <div class="carta-item-price">10,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;4</div>
+                <div class="carta-item-desc">Filete de ternera con patatas fritas caseras y ensalada</div>
+              </div>
+              <div class="carta-item-price">10,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;5</div>
+                <div class="carta-item-desc">Nuggets de pollo con huevos a la plancha, patatas fritas caseras y ensalada</div>
+              </div>
+              <div class="carta-item-price">10,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: RACIONES -->
+    <div class="carta-tab-content" id="tab-raciones">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Raciones</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Patatas fritas caseras</div>
+              </div>
+              <div class="carta-item-price">6,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Patatas fritas con 3 salsas</div>
+              </div>
+              <div class="carta-item-price">7,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Patatas fritas con bacon y queso mozzarella</div>
+              </div>
+              <div class="carta-item-price">9,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Nachos con bacon, queso mozzarella y salsa barbacoa</div>
+              </div>
+              <div class="carta-item-price">8,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Alitas de pollo (12 u.)</div>
+              </div>
+              <div class="carta-item-price">8,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Nuggets de pollo (12 u.)</div>
+              </div>
+              <div class="carta-item-price">8,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Tiras de pollo (8 u.)</div>
+              </div>
+              <div class="carta-item-price">9,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Croquetas (8 u.)</div>
+              </div>
+              <div class="carta-item-price">9,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Huevos rotos con 1 ingrediente</div>
+                <div class="carta-item-desc">Morcilla, bacon, txistorra o setas</div>
+              </div>
+              <div class="carta-item-price">9,50 &euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="carta-subnote">Ingredientes a&ntilde;adidos: 1,50 &euro;</p>
+    </div>
+
+    <!-- TAB: ENSALADAS -->
+    <div class="carta-tab-content" id="tab-ensaladas">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Ensaladas</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;1</div>
+                <div class="carta-item-desc">Ensalada de ventresca sobre cama de tomate</div>
+              </div>
+              <div class="carta-item-price">10,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;2</div>
+                <div class="carta-item-desc">Ensalada de queso de cabra, mix de lechuga, tomate, salsa agridulce y frutos secos</div>
+              </div>
+              <div class="carta-item-price">11,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;3</div>
+                <div class="carta-item-desc">Ensalada de la huerta, mix de lechuga, pimientos confitados, tomate, cebolleta y pollo a la plancha</div>
+              </div>
+              <div class="carta-item-price">11,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;4</div>
+                <div class="carta-item-desc">Ensalada cesar, lechuga, tomate, cebolleta, queso parmesano, picatostes y pechuga de pollo a la plancha</div>
+              </div>
+              <div class="carta-item-price">12,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;5</div>
+                <div class="carta-item-desc">Ensalada templada con gambas, mix de lechuga, frutos secos, tomate y pimientos confitados</div>
+              </div>
+              <div class="carta-item-price">13,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;6</div>
+                <div class="carta-item-desc">Ensalada tibia tierra y mar, lechuga, cebolleta, pimientos confitados, tomate, gambas flambeadas y vinagreta de miel</div>
+              </div>
+              <div class="carta-item-price">12,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: PANINIS -->
+    <div class="carta-tab-content" id="tab-paninis">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Paninis Caseros</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;1</div>
+                <div class="carta-item-desc">Pan crujiente, tomate frito, york, bacon, queso mozzarella y oregano</div>
+              </div>
+              <div class="carta-item-price">6,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;2</div>
+                <div class="carta-item-desc">Pan crujiente, tomate frito, pollo, bacon, queso mozzarella y oregano</div>
+              </div>
+              <div class="carta-item-price">6,50 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;3</div>
+                <div class="carta-item-desc">Pan crujiente, tomate frito, bacon, aceitunas negras, queso mozzarella y oregano</div>
+              </div>
+              <div class="carta-item-price">6,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;4</div>
+                <div class="carta-item-desc">Pan crujiente, tomate frito, carne de ternera, setas, queso mozzarella y oregano</div>
+              </div>
+              <div class="carta-item-price">7,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: INFANTIL -->
+    <div class="carta-tab-content" id="tab-infantil">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Platos Infantiles</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;1</div>
+                <div class="carta-item-desc">Salchicha de pollo, huevo a la plancha y patatas fritas caseras</div>
+              </div>
+              <div class="carta-item-price">7,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;2</div>
+                <div class="carta-item-desc">Hamburguesa, huevo a la plancha y patatas fritas caseras</div>
+              </div>
+              <div class="carta-item-price">7,50 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">N&ordm;3</div>
+                <div class="carta-item-desc">Nuggets de pollo, huevo a la plancha y patatas fritas caseras</div>
+              </div>
+              <div class="carta-item-price">6,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-highlight reveal reveal-delay-1">
+            <h4>No servimos comida rapida</h4>
+            <p>Servimos comida rica lo mas rapido posible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: POSTRES -->
+    <div class="carta-tab-content" id="tab-postres">
+      <div class="carta-columns">
+        <div>
+          <div class="carta-category reveal">
+            <h4>Postres</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Yogur natural azucarado</div>
+                <div class="carta-item-desc">Con dulce de leche y nueces</div>
+              </div>
+              <div class="carta-item-price">5,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Profiteroles</div>
+                <div class="carta-item-desc">Con chocolate caliente y nata</div>
+              </div>
+              <div class="carta-item-price">5,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Helado de vainilla</div>
+                <div class="carta-item-desc">Dos bolas con sirope de chocolate o fresa y barquilla</div>
+              </div>
+              <div class="carta-item-price">5,00 &euro;</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="carta-category reveal reveal-delay-1">
+            <h4>&nbsp;</h4>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Coulant de chocolate</div>
+                <div class="carta-item-desc">Caliente con nata y helado de vainilla</div>
+              </div>
+              <div class="carta-item-price">6,00 &euro;</div>
+            </div>
+            <div class="carta-item">
+              <div>
+                <div class="carta-item-name">Valenciano o Escoces</div>
+              </div>
+              <div class="carta-item-price">6,50 &euro;</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1297,6 +1851,16 @@
     hamburger.classList.remove('active');
     mobileMenu.classList.remove('open');
   }
+
+  // ── CARTA TABS
+  document.querySelectorAll('.carta-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.carta-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.carta-tab-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
 
   // ── REVEAL ON SCROLL
   const reveals = document.querySelectorAll('.reveal');
