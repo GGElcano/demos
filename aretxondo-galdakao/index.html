@@ -429,9 +429,9 @@
     .mosaic-item.m-half { grid-column: span 6; grid-row: span 2; }
     .mosaic-item.m-third { grid-column: span 4; grid-row: span 2; }
     .mosaic-item.m-quarter { grid-column: span 3; grid-row: span 2; }
-    @media (max-width: 900px) {
+    @media (max-width: 900px) and (min-width: 769px) {
       .mosaic-section { padding: 80px 20px 60px; }
-      .mosaic-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+      .mosaic-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
       .mosaic-item.m-wide, .mosaic-item.m-tall, .mosaic-item.m-half,
       .mosaic-item.m-third, .mosaic-item.m-quarter {
         grid-column: span 2; grid-row: span 1;
@@ -808,15 +808,27 @@
       nav.scrolled { padding: 14px 24px; }
       .nav-links { display: none; }
       section { padding: 80px 24px; }
-      .hero-content { padding: 0 24px 70px; }
+      /* Hero: subir padding-top para que el eyebrow no choque con el nav */
+      .hero { min-height: 620px; }
+      .hero-content { padding: 120px 24px 70px; }
+      .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.25em; line-height: 1.6; }
+      .hero-title { font-size: 3.2rem; line-height: 1.05; }
+      .hero-sub { font-size: 0.95rem; }
       .hero-scroll { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 18px; }
       .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
       .projects-grid { grid-template-columns: 1fr; }
+      .project-card { aspect-ratio: 4/3; }
       .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      /* Titulos de tarjeta mas pequenos para que no se corten */
+      .project-name { font-size: 1.35rem; line-height: 1.2; }
+      .project-info { padding: 24px; }
+      .project-meta { font-size: 0.65rem; }
       .about-section { grid-template-columns: 1fr; }
       .about-visual { min-height: 300px; }
       .about-content { padding: 60px 24px; }
+      .about-badge { padding: 18px 22px; left: 20px; bottom: 20px; max-width: 220px; }
+      .about-badge-year { font-size: 2.2rem; line-height: 1; }
       .services-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .cta-section { padding: 80px 24px; flex-direction: column; }
@@ -825,6 +837,20 @@
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stats-section { padding: 70px 24px; }
       .map-section iframe { height: 300px; }
+      /* Mosaicos: mayor altura en movil para que fotos landscape no se compriman */
+      .mosaic-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 10px; }
+      .mosaic-item { aspect-ratio: 16/10; }
+      .mosaic-item.m-tall { aspect-ratio: 3/4; }
+      .mosaic-item.m-wide, .mosaic-item.m-half,
+      .mosaic-item.m-third, .mosaic-item.m-quarter {
+        grid-column: span 1; grid-row: span 1;
+      }
+      /* Carta en movil a una columna */
+      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
+      .carta-section { padding: 80px 20px; }
+      .section-title { font-size: 2.2rem; }
+      /* Marquee mas contenido */
+      .marquee-item { font-size: 0.8rem; margin-right: 40px; }
     }
   </style>
 </head>
@@ -903,13 +929,13 @@
 <!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Gastronomia de Bizkaia</span>
+    <span class="marquee-item"><span class="dot"></span>Gastronomía de Bizkaia</span>
     <span class="marquee-item"><span class="dot"></span>Menú Gastronómico 70€</span>
     <span class="marquee-item"><span class="dot"></span>Chuleton a la Brasa</span>
     <span class="marquee-item"><span class="dot"></span>Kokotxas de Merluza</span>
     <span class="marquee-item"><span class="dot"></span>Bodas desde 109€</span>
     <span class="marquee-item"><span class="dot"></span>Terraza Cubierta</span>
-    <span class="marquee-item"><span class="dot"></span>Gastronomia de Bizkaia</span>
+    <span class="marquee-item"><span class="dot"></span>Gastronomía de Bizkaia</span>
     <span class="marquee-item"><span class="dot"></span>Menú Gastronómico 70€</span>
     <span class="marquee-item"><span class="dot"></span>Chuleton a la Brasa</span>
     <span class="marquee-item"><span class="dot"></span>Kokotxas de Merluza</span>
@@ -1043,8 +1069,8 @@
 <div class="about-section" id="nosotros">
   <div class="about-visual">
     <div class="about-badge">
-      <div class="about-badge-year">35<span style="font-size:1.2rem">años</span></div>
-      <div class="about-badge-text">Ricardo y Marian liderando Aretxondo</div>
+      <div class="about-badge-year">35<span style="font-size:1.1rem;letter-spacing:0.05em;color:var(--text-muted);display:block;margin-top:6px;font-weight:400;">años</span></div>
+      <div class="about-badge-text" style="margin-top:14px;">Ricardo y Marian liderando Aretxondo</div>
     </div>
   </div>
   <div class="about-content">
@@ -1054,7 +1080,7 @@
     </h2>
     <div class="about-divider reveal"></div>
     <p class="about-body reveal reveal-delay-2">
-      Nuestra cocina es devota de la gastronomia vasca y respetuosa con las nuevas tendencias de otras cocinas. Damos preferencia a la materia prima local y a las estaciones a la hora de configurar nuestra carta.<br><br><strong>Ricardo y Marian llevan 35 años liderando Aretxondo</strong>, acompañando a cada cliente desde el primer momento con trato amable y familiar. Su experiencia avala su saber y profesionalidad a la hora de planificar cualquier celebración.
+      Nuestra cocina es devota de la gastronomía vasca y respetuosa con las nuevas tendencias de otras cocinas. Damos preferencia a la materia prima local y a las estaciones a la hora de configurar nuestra carta.<br><br><strong>Ricardo y Marian llevan 35 años liderando Aretxondo</strong>, acompañando a cada cliente desde el primer momento con trato amable y familiar. Su experiencia avala su saber y profesionalidad a la hora de planificar cualquier celebración.
     </p>
     <div class="about-values reveal reveal-delay-3">
       <div class="about-value">
@@ -1461,7 +1487,7 @@
         </div>
         <div class="carta-highlight reveal reveal-delay-1" style="border-color:rgba(139,69,19,0.25);">
           <h4>Alergias e intolerancias</h4>
-          <p>Si padece alguna alergia o intolerancia a cualquier alimento, haganoslo saber a nuestro personal de sala. Ofrecemos alternativas adaptadas en todos los menús.</p>
+          <p>Si padece alguna alergia o intolerancia a cualquier alimento, háganoslo saber a nuestro personal de sala. Ofrecemos alternativas adaptadas en todos los menús.</p>
         </div>
       </div>
     </div>
