@@ -96,15 +96,21 @@
     }
     .nav-links a:hover { color: var(--accent); }
     .nav-cta {
-      background: transparent;
+      background: var(--accent);
       border: 1px solid var(--accent);
-      color: var(--accent) !important;
-      padding: 10px 28px !important;
+      color: #fff !important;
+      padding: 11px 28px !important;
       font-size: 0.72rem !important;
       letter-spacing: 0.25em !important;
-      transition: background 0.3s, color 0.3s !important;
+      font-weight: 500 !important;
+      box-shadow: 0 2px 14px rgba(139,69,19,0.35);
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s !important;
     }
-    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+    .nav-cta:hover {
+      background: var(--accent-light) !important; color: #fff !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(139,69,19,0.5);
+    }
 
     /* ─── HAMBURGER MOBILE ─── */
     .hamburger {
@@ -840,8 +846,8 @@
   <ul class="nav-links">
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#carta-principal">Carta</a></li>
+    <li><a href="#carta-especialidades">Menus</a></li>
     <li><a href="#carta-grupos">Bodas</a></li>
-    <li><a href="#espacio">Espacio</a></li>
     <li><a href="#opiniones">Opiniones</a></li>
     <li><a href="#contacto" class="nav-cta">Reservar</a></li>
   </ul>
@@ -854,8 +860,8 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#carta-principal" onclick="closeMobile()">Carta</a>
+  <a href="#carta-especialidades" onclick="closeMobile()">Menus</a>
   <a href="#carta-grupos" onclick="closeMobile()">Bodas</a>
-  <a href="#espacio" onclick="closeMobile()">Espacio</a>
   <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
   <a href="#contacto" onclick="closeMobile()">Reservar</a>
 </div>
@@ -987,24 +993,24 @@
   </div>
 </section>
 
-<!-- MOSAICO LOCAL -->
-<section class="mosaic-section" id="espacio">
+<!-- MOSAICO COCINA DE AUTOR -->
+<section class="mosaic-section" id="cocina-autor">
   <div class="mosaic-header">
-    <p class="section-label reveal">El caserio</p>
-    <h2 class="section-title reveal reveal-delay-1">Nuestro <em>espacio</em></h2>
+    <p class="section-label reveal">Cocina de autor</p>
+    <h2 class="section-title reveal reveal-delay-1">Sabores de <em>temporada</em></h2>
   </div>
   <div class="mosaic-grid">
     <div class="mosaic-item m-wide reveal">
-      <img src="images/foto1.jpg" alt="Comedor principal de Aretxondo" loading="lazy">
+      <img src="images/foto1.jpg" alt="Atun rojo con pure y flores de temporada" loading="lazy">
     </div>
     <div class="mosaic-item m-tall reveal reveal-delay-1">
-      <img src="images/foto2.jpg" alt="Detalle de mesa en Aretxondo" loading="lazy">
+      <img src="images/foto2.jpg" alt="Cocochas de merluza sobre crema" loading="lazy">
     </div>
     <div class="mosaic-item m-half reveal">
-      <img src="images/foto3.jpg" alt="Interior del caserio Aretxondo" loading="lazy">
+      <img src="images/foto3.jpg" alt="Salmon marinado con hierbas y caviar citrico" loading="lazy">
     </div>
     <div class="mosaic-item m-half reveal reveal-delay-1">
-      <img src="images/foto4.jpg" alt="Sala privada de Aretxondo" loading="lazy">
+      <img src="images/foto4.jpg" alt="Postre de mango con espuma y frutos rojos" loading="lazy">
     </div>
   </div>
 </section>
@@ -1055,10 +1061,11 @@
 <!-- SERVICES -->
 <section class="services-section" id="servicios">
   <div style="max-width:1400px; margin:0 auto">
-    <p class="section-label reveal">Lo que ofrecemos</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:560px">
-      Experiencias para <em>cada ocasion</em>
+    <p class="section-label reveal">Nuestra oferta</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:720px">
+      Tres formas de <em>disfrutar</em> Aretxondo
     </h2>
+    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-top:16px;">Cada oferta tiene su propio uso: la carta para elegir plato a plato, los menus cerrados para ocasiones concretas, y los menus de boda para celebraciones. Elige el que mejor encaje.</p>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-number">01</div>
@@ -1067,9 +1074,9 @@
             <rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/>
           </svg>
         </div>
-        <h3>Carta y Menu Ejecutivo</h3>
-        <p>Menu ejecutivo por 25 EUR (IVA incluido) con primer plato, segundo, postre y copa de Rioja. Carta Invierno 2026 con pescados de lonja, carnes a la brasa y especialidades vascas.</p>
-        <a href="#carta-principal" class="service-link">Ver carta →</a>
+        <h3>A la carta</h3>
+        <p>Carta Invierno 2026 con entrantes, pescados y carnes de temporada. Antxoas de Bermeo, kokotxas de merluza, chuleton a la brasa, solomillo de ciervo. 10% IVA incluido.</p>
+        <a href="#carta-principal" class="service-link">Ver carta completa →</a>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-number">02</div>
@@ -1078,9 +1085,9 @@
             <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
         </div>
-        <h3>Menus Degustacion</h3>
-        <p>Menu Gastronomico Invierno 2026 por 70 EUR y Menu Aretxondo por 48 EUR (IVA incluido). Sabores de temporada que condensan la mejor cocina vasca en cada plato.</p>
-        <a href="#carta-especialidades" class="service-link">Ver degustacion →</a>
+        <h3>Menus cerrados</h3>
+        <p>Menu Gastronomico 70 € · Menu Aretxondo 48 € · Menu Ejecutivo 25 € (con copa de Rioja). Tres opciones para cada ocasion, todas con IVA incluido.</p>
+        <a href="#carta-especialidades" class="service-link">Ver menus →</a>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-number">03</div>
@@ -1089,9 +1096,9 @@
             <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
           </svg>
         </div>
-        <h3>Bodas y Celebraciones</h3>
-        <p>5 menus de boda desde 109 EUR hasta 156 EUR (IVA incluido). Coctel de bienvenida, recena, musica en directo, orquesta, autocar y fotografo opcionales.</p>
-        <a href="#carta-grupos" class="service-link">Ver bodas →</a>
+        <h3>Menus de boda</h3>
+        <p>5 menus de boda desde 109 € hasta 156 € (IVA incluido). Con coctel de bienvenida, vinos, cafe, licores, cava y todos los extras a medida.</p>
+        <a href="#carta-grupos" class="service-link">Ver menus de boda →</a>
       </div>
     </div>
   </div>
@@ -1101,11 +1108,11 @@
 <section class="carta-section" id="carta-principal">
   <div class="section-inner">
     <a href="#servicios" class="carta-back reveal">← Volver</a>
-    <p class="section-label reveal">Nuestra carta</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      Producto de <em>temporada</em>, sabor autentico
+    <p class="section-label reveal">01 · A la carta</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:720px">
+      Carta Invierno <em>2026</em>
     </h2>
-    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-bottom:40px;">Carta Invierno 2026 · 10% IVA incluido</p>
+    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-bottom:40px;">Nuestra carta completa por platos: entrantes, pescados y carnes de temporada. 10% IVA incluido. Cambia con las estaciones.</p>
     <div class="carta-columns">
       <div>
         <div class="carta-category reveal">
@@ -1243,10 +1250,11 @@
 <section class="carta-section" id="carta-especialidades">
   <div class="section-inner">
     <a href="#servicios" class="carta-back reveal">← Volver</a>
-    <p class="section-label reveal">Menus degustacion</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      La experiencia <em>completa</em>
+    <p class="section-label reveal">02 · Menus cerrados</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:720px">
+      Menu Gastronomico, Aretxondo <em>y Ejecutivo</em>
     </h2>
+    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-bottom:40px;">Tres menus cerrados para cada ocasion. Desde el mediodia de trabajo (25 €) hasta la experiencia gastronomica completa (70 €). IVA incluido.</p>
     <div class="carta-columns">
       <div>
         <div class="carta-category reveal">
@@ -1391,8 +1399,8 @@
 <section class="carta-section" id="carta-grupos">
   <div class="section-inner">
     <a href="#servicios" class="carta-back reveal">← Volver</a>
-    <p class="section-label reveal">Bodas en Aretxondo</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+    <p class="section-label reveal">03 · Menus de boda</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:720px">
       Vuestro día, <em>hecho a medida</em>
     </h2>
     <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-bottom:40px;">Ricardo y Marian os acompañan desde el primer momento hasta el día de vuestra boda. Precios válidos para 2026, IVA incluido. Todos los menús incluyen cóctel de bienvenida, vino, café, licores y cava.</p>
