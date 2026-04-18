@@ -226,7 +226,7 @@
       display: inline-flex; align-items: center; gap: 30px;
       padding: 0 40px;
       font-family: var(--font-serif); font-size: 1.1rem;
-      font-style: italic; color: rgba(245,243,239,0.25);
+      font-style: italic; color: rgba(245,243,239,0.55);
       letter-spacing: 0.05em;
     }
     .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
@@ -401,7 +401,7 @@
       color: var(--accent); opacity: 0.5; flex-shrink: 0;
       line-height: 1.2;
     }
-    .value-text h4 {
+    .value-text h3 {
       font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
       font-weight: 400; margin-bottom: 4px;
     }
@@ -508,7 +508,7 @@
       font-weight: 300; color: var(--black); line-height: 1.1;
     }
     .cta-text p {
-      font-size: 1rem; color: rgba(8,8,8,0.65); margin-top: 16px; font-weight: 300;
+      font-size: 1rem; color: var(--black); margin-top: 16px; font-weight: 300;
     }
     .btn-dark {
       display: inline-flex; align-items: center; gap: 14px;
@@ -540,7 +540,7 @@
     }
     .footer-tagline {
       font-family: var(--font-serif); font-style: italic;
-      font-size: 1.05rem; color: rgba(245,243,239,0.35);
+      font-size: 1.05rem; color: rgba(245,243,239,0.6);
       line-height: 1.6; max-width: 280px; margin-bottom: 36px;
     }
     .footer-social { display: flex; gap: 14px; }
@@ -552,14 +552,14 @@
       font-size: 0.75rem; letter-spacing: 0.1em;
       transition: border-color 0.3s, color 0.3s;
     }
-    .social-link:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col h4 {
+    .social-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); transform: translateY(-2px); }
+    .footer-col h3 {
       font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 24px; font-weight: 500;
     }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
     .footer-col ul a {
-      text-decoration: none; color: rgba(245,243,239,0.4);
+      text-decoration: none; color: rgba(245,243,239,0.65);
       font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
     }
     .footer-col ul a:hover { color: var(--white); }
@@ -568,11 +568,11 @@
       padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
     }
     .footer-copy {
-      font-size: 0.75rem; color: rgba(245,243,239,0.25); letter-spacing: 0.05em;
+      font-size: 0.75rem; color: rgba(245,243,239,0.6); letter-spacing: 0.05em;
     }
     .footer-legal { display: flex; gap: 28px; }
     .footer-legal a {
-      font-size: 0.72rem; color: rgba(245,243,239,0.2);
+      font-size: 0.72rem; color: rgba(245,243,239,0.6);
       text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
     }
     .footer-legal a:hover { color: var(--text-muted); }
@@ -675,39 +675,54 @@
     .map-frame { min-height: 540px; border-radius: 12px; overflow: hidden; background: var(--carbon); }
     .map-frame iframe { width: 100%; height: 100%; border: none; display: block; min-height: 540px; }
     @media (max-width: 900px) { .map-inner { grid-template-columns: 1fr; } .map-frame { min-height: 400px; } }
+    /* WCAG 2.4.7 — Focus visible */
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: var(--black); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+    /* WCAG 2.3.3 — respetar preferencia reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .marquee-track { animation: none !important; }
+    }
+
+
 
   </style>
 </head>
 <body>
 
 <!-- LOADER -->
-<div class="loader" id="loader">
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
   <div class="loader-logo">Fabián<span>.</span></div>
   <div class="loader-bar"></div>
 </div>
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">Fabián<span>.</span></a>
+  <a href="#main-content" class="nav-logo">Fabián<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#contacto" class="nav-cta">Contacto</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
   <a href="#galeria" onclick="closeMobile()">Galería</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#servicios" onclick="closeMobile()">Servicios</a>
   <a href="#contacto" onclick="closeMobile()">Contacto</a>
 </div>
 
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg" id="heroBg" style="background-image: url('https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=1920&q=80'); background-size: cover; background-position: center;"></div>
@@ -720,11 +735,11 @@
     <div class="hero-actions">
       <a href="tel:958603946" class="btn-primary">
         <span>Llamar ahora</span>
-        <span>→</span>
+        <span aria-hidden="true">→</span>
       </a>
       <a href="#galeria" class="btn-ghost">
         <span>Ver catálogo</span>
-        <div class="btn-ghost-arrow">↗</div>
+        <div class="btn-ghost-arrow" aria-hidden="true">↗</div>
       </a>
     </div>
   </div>
@@ -753,7 +768,7 @@
 </div>
 
 <!-- STATS -->
-<div class="stats-section">
+<div class="stats-section" role="region" aria-label="Estadísticas del negocio">
   <div class="stats-grid">
     <div class="stat-card reveal">
       <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">,6★</span></div>
@@ -785,15 +800,15 @@
     <a href="#contacto" class="view-all reveal">Ver todo →</a>
   </div>
   <div class="projects-grid">
-    <div class="project-card"><img class="project-img" src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1400&q=80" alt="Herramientas profesionales Ferretería Fabián Motril" loading="lazy"><div class="project-overlay"></div><div class="project-arrow">↗</div><div class="project-info"><p class="project-cat">Herramientas · Eléctricas</p><h3 class="project-name">Herramientas profesionales</h3><p class="project-meta">Bosch · Makita · DeWalt</p></div></div>
-    <div class="project-card"><img class="project-img" src="https://images.unsplash.com/photo-1426927308491-6380b6a9936f?w=800&q=80" alt="Cerrajería y copia de llaves" loading="lazy"><div class="project-overlay"></div><div class="project-arrow">↗</div><div class="project-info"><p class="project-cat">Cerrajería · Llaves</p><h3 class="project-name">Cerrajería completa</h3><p class="project-meta">Copia de llaves · Cerraduras · Cajas fuertes</p></div></div>
-    <div class="project-card"><img class="project-img" src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=800&q=80" alt="Productos de jardín y exterior" loading="lazy"><div class="project-overlay"></div><div class="project-arrow">↗</div><div class="project-info"><p class="project-cat">Jardín · Exterior</p><h3 class="project-name">Jardín y tiempo libre</h3><p class="project-meta">Gardena · GRE · Mobiliario de exterior</p></div></div>
-    <div class="project-card"><img class="project-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Menaje de hogar y cocina" loading="lazy"><div class="project-overlay"></div><div class="project-arrow">↗</div><div class="project-info"><p class="project-cat">Hogar · Menaje</p><h3 class="project-name">Menaje y hogar</h3><p class="project-meta">Arcos · Orbegozo · Cata</p></div></div>
+    <div class="project-card"><img class="project-img" src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1400&q=80" alt="Herramientas profesionales Ferretería Fabián Motril" loading="lazy"><div class="project-overlay"></div><div class="project-arrow" aria-hidden="true">↗</div><div class="project-info"><p class="project-cat">Herramientas · Eléctricas</p><h3 class="project-name">Herramientas profesionales</h3><p class="project-meta">Bosch · Makita · DeWalt</p></div></div>
+    <div class="project-card"><img class="project-img" src="https://images.unsplash.com/photo-1426927308491-6380b6a9936f?w=800&q=80" alt="Cerrajería y copia de llaves" loading="lazy"><div class="project-overlay"></div><div class="project-arrow" aria-hidden="true">↗</div><div class="project-info"><p class="project-cat">Cerrajería · Llaves</p><h3 class="project-name">Cerrajería completa</h3><p class="project-meta">Copia de llaves · Cerraduras · Cajas fuertes</p></div></div>
+    <div class="project-card"><img class="project-img" src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=800&q=80" alt="Productos de jardín y exterior" loading="lazy"><div class="project-overlay"></div><div class="project-arrow" aria-hidden="true">↗</div><div class="project-info"><p class="project-cat">Jardín · Exterior</p><h3 class="project-name">Jardín y tiempo libre</h3><p class="project-meta">Gardena · GRE · Mobiliario de exterior</p></div></div>
+    <div class="project-card"><img class="project-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Menaje de hogar y cocina" loading="lazy"><div class="project-overlay"></div><div class="project-arrow" aria-hidden="true">↗</div><div class="project-info"><p class="project-cat">Hogar · Menaje</p><h3 class="project-name">Menaje y hogar</h3><p class="project-meta">Arcos · Orbegozo · Cata</p></div></div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<div class="about-section" id="nosotros">
+<div class="about-section" role="region" aria-label="Sobre nosotros" id="nosotros">
   <div class="about-visual">
     <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900&q=80" alt="Interior Ferretería Fabián Motril" loading="lazy">
     <div class="about-badge">
@@ -813,9 +828,9 @@
       En Ferretería Fabián trabajamos con más de 80 marcas de referencia (Bosch, Makita, DeWalt, Black&amp;Decker, Bellota, Gardena, GRE, Orbegozo, Arcos, Rubi, Cata) para que encuentres el producto correcto al precio justo.<br><br><strong>Tienda física y venta online.</strong> Atendemos personalmente en Calle Nueva 24 (Motril) o enviamos a toda España desde nuestra web. Llama al <a href="tel:958603946" style="color: var(--accent); text-decoration: none;">958 60 39 46</a> y preguntamos por ti antes de pedir.
     </p>
     <div class="about-values reveal reveal-delay-3">
-      <div class="about-value"><div class="value-num">01</div><div class="value-text"><h4>Más de 80 marcas</h4><p>Bosch, Makita, DeWalt, Bellota, Gardena, Rubi. Catálogo amplio sin pagar de más</p></div></div>
-      <div class="about-value"><div class="value-num">02</div><div class="value-text"><h4>Asesoramiento presencial</h4><p>Te ayudamos a elegir la herramienta correcta antes de comprarla. No vendemos por vender</p></div></div>
-      <div class="about-value"><div class="value-num">03</div><div class="value-text"><h4>Tienda y Online</h4><p>Compra en tienda en Motril o pide online con envío. Lo que necesites, cuando lo necesites</p></div></div>
+      <div class="about-value"><div class="value-num">01</div><div class="value-text"><h3>Más de 80 marcas</h3><p>Bosch, Makita, DeWalt, Bellota, Gardena, Rubi. Catálogo amplio sin pagar de más</p></div></div>
+      <div class="about-value"><div class="value-num">02</div><div class="value-text"><h3>Asesoramiento presencial</h3><p>Te ayudamos a elegir la herramienta correcta antes de comprarla. No vendemos por vender</p></div></div>
+      <div class="about-value"><div class="value-num">03</div><div class="value-text"><h3>Tienda y Online</h3><p>Compra en tienda en Motril o pide online con envío. Lo que necesites, cuando lo necesites</p></div></div>
     </div>
   </div>
 </div>
@@ -887,7 +902,7 @@
       <div class="map-info-item"><div class="map-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="map-info-text"><h4>Dirección</h4><p>Calle Nueva, 24 · 18600 Motril, Granada</p></div></div>
       <div class="map-info-item"><div class="map-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.0 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg></div><div class="map-info-text"><h4>Teléfono</h4><a href="tel:958603946">958 60 39 46</a></div></div>
       <div class="map-info-item"><div class="map-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="map-info-text"><h4>Horario</h4><p>Lunes a Viernes: 9:00 - 13:30 y 16:30 - 20:00<br>Sábados: 9:30 - 13:30<br>Domingos: cerrado<br><em style="color:var(--text-muted);font-size:0.85em">(Horarios orientativos, confirmar por teléfono)</em></p></div></div>
-      <div style="margin-top: 40px;"><a href="tel:958603946" class="btn-primary" style="display: inline-flex;"><span>Llamar: 958 60 39 46</span><span>→</span></a></div>
+      <div style="margin-top: 40px;"><a href="tel:958603946" class="btn-primary" style="display: inline-flex;"><span>Llamar: 958 60 39 46</span><span aria-hidden="true">→</span></a></div>
     </div>
     <div class="map-frame">
       <iframe src="https://maps.google.com/maps?q=Ferreter%C3%ADa+Fabi%C3%A1n+Motril+Calle+Nueva+24&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Ferretería Fabián Motril"></iframe>
@@ -896,22 +911,26 @@
 </div>
 
 <!-- CTA -->
-<div class="cta-section">
+<div class="cta-section" role="region" aria-label="Contacto">
   <div class="cta-text">
     <h2>¿Buscas algo<br>concreto?</h2>
     <p>Llámanos y te decimos si lo tenemos en tienda o en nuestra web.</p>
   </div>
   <a href="tel:958603946" class="btn-dark">
-    <span>Llamar ahora: 958 60 39 46</span><span>↗</span>
+    <span>Llamar ahora: 958 60 39 46</span><span aria-hidden="true">↗</span>
   </a>
 </div>
+
+
+</main>
+
 
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo">Ferretería Fabián<span>.</span></a>
+      <a href="#main-content" class="nav-logo">Ferretería Fabián<span>.</span></a>
       <p class="footer-tagline">"Ferretería de referencia en Motril. Más de 80 marcas y asesoramiento real."</p>
       <div class="footer-social">
         <a href="https://www.google.com/search?q=Ferretería+Fabián+Motril+Instagram" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
@@ -935,7 +954,7 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4>Catálogo</h4>
+      <h3>Catálogo</h3>
       <ul>
         <li><a href="#servicios">Herramientas</a></li>
         <li><a href="#servicios">Cerrajería</a></li>
@@ -944,7 +963,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Sobre nosotros</h4>
+      <h3>Sobre nosotros</h3>
       <ul>
         <li><a href="#nosotros">Nuestra historia</a></li>
         <li><a href="#nosotros">Equipo</a></li>
@@ -953,7 +972,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h3>Contacto</h3>
       <ul>
         <li><a href="tel:958603946">958 60 39 46</a></li>
         <li><a href="mailto:info@ferreteriafabian.com">info@ferreteriafabian.com</a></li>
@@ -990,9 +1009,21 @@
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
+    const isOpen = hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    if (isOpen) { const firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
   });
+  // WCAG 2.1.1 — ESC cierra mobile menu (ARIA dialog pattern)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.focus();
+    }
+  });
+
   function closeMobile() {
     hamburger.classList.remove('active');
     mobileMenu.classList.remove('open');

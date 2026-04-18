@@ -226,7 +226,7 @@
       display: inline-flex; align-items: center; gap: 30px;
       padding: 0 40px;
       font-family: var(--font-serif); font-size: 1.1rem;
-      font-style: italic; color: rgba(245,243,239,0.25);
+      font-style: italic; color: rgba(245,243,239,0.55);
       letter-spacing: 0.05em;
     }
     .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
@@ -401,7 +401,7 @@
       color: var(--accent); opacity: 0.5; flex-shrink: 0;
       line-height: 1.2;
     }
-    .value-text h4 {
+    .value-text h3 {
       font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
       font-weight: 400; margin-bottom: 4px;
     }
@@ -553,7 +553,7 @@
       font-weight: 300; color: var(--black); line-height: 1.1;
     }
     .cta-text p {
-      font-size: 1rem; color: rgba(8,8,8,0.65); margin-top: 16px; font-weight: 300;
+      font-size: 1rem; color: var(--black); margin-top: 16px; font-weight: 300;
     }
     .btn-dark {
       display: inline-flex; align-items: center; gap: 14px;
@@ -585,7 +585,7 @@
     }
     .footer-tagline {
       font-family: var(--font-serif); font-style: italic;
-      font-size: 1.05rem; color: rgba(245,243,239,0.35);
+      font-size: 1.05rem; color: rgba(245,243,239,0.6);
       line-height: 1.6; max-width: 280px; margin-bottom: 36px;
     }
     .footer-social { display: flex; gap: 14px; }
@@ -597,14 +597,14 @@
       font-size: 0.75rem; letter-spacing: 0.1em;
       transition: border-color 0.3s, color 0.3s;
     }
-    .social-link:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col h4 {
+    .social-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); transform: translateY(-2px); }
+    .footer-col h3 {
       font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 24px; font-weight: 500;
     }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
     .footer-col ul a {
-      text-decoration: none; color: rgba(245,243,239,0.4);
+      text-decoration: none; color: rgba(245,243,239,0.65);
       font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
     }
     .footer-col ul a:hover { color: var(--white); }
@@ -613,11 +613,11 @@
       padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
     }
     .footer-copy {
-      font-size: 0.75rem; color: rgba(245,243,239,0.25); letter-spacing: 0.05em;
+      font-size: 0.75rem; color: rgba(245,243,239,0.6); letter-spacing: 0.05em;
     }
     .footer-legal { display: flex; gap: 28px; }
     .footer-legal a {
-      font-size: 0.72rem; color: rgba(245,243,239,0.2);
+      font-size: 0.72rem; color: rgba(245,243,239,0.6);
       text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
     }
     .footer-legal a:hover { color: var(--text-muted); }
@@ -707,38 +707,53 @@
       .cta-section { padding: 60px 20px; }
       .btn-dark { padding: 16px 32px; }
     }
+    /* WCAG 2.4.7 — Focus visible */
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: var(--black); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+    /* WCAG 2.3.3 — respetar preferencia reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .marquee-track { animation: none !important; }
+    }
+
+
   </style>
 </head>
 <body>
 
 <!-- LOADER -->
-<div class="loader" id="loader">
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
   <div class="loader-logo">TropiPodio<span>.</span></div>
   <div class="loader-bar"></div>
 </div>
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">TropiPodio<span>.</span></a>
+  <a href="#main-content" class="nav-logo">TropiPodio<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#contacto" class="nav-cta">Pedir cita</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
   <a href="#galeria" onclick="closeMobile()">Galería</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#servicios" onclick="closeMobile()">Servicios</a>
   <a href="#contacto" onclick="closeMobile()">Pedir cita</a>
 </div>
 
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg" id="heroBg" style="background-image: url('https://images.unsplash.com/photo-1629909615957-be38d48fbbe4?w=1920&q=80'); background-size: cover; background-position: center;"></div>
@@ -751,11 +766,11 @@
     <div class="hero-actions">
       <a href="tel:958833921" class="btn-primary">
         <span>Llamar ahora</span>
-        <span>→</span>
+        <span aria-hidden="true">→</span>
       </a>
       <a href="#servicios" class="btn-ghost">
         <span>Ver permisos</span>
-        <div class="btn-ghost-arrow">↗</div>
+        <div class="btn-ghost-arrow" aria-hidden="true">↗</div>
       </a>
     </div>
   </div>
@@ -783,7 +798,7 @@
 </div>
 
 
-<div class="stats-section">
+<div class="stats-section" role="region" aria-label="Estadísticas del negocio">
   <div class="stats-grid">
     <div class="stat-card reveal">
       <div class="stat-number"><span style="color: var(--accent);">4,9</span><span class="stat-suffix">★</span></div>
@@ -817,7 +832,7 @@
     <div class="project-card">
       <img class="project-img" src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1400&q=80" alt="Clase teórica autoescuela" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow" aria-hidden="true">↗</div>
       <div class="project-info">
         <p class="project-cat">Teoría · Aula</p>
         <h3 class="project-name">Clases teóricas</h3>
@@ -827,7 +842,7 @@
     <div class="project-card">
       <img class="project-img" src="https://images.unsplash.com/photo-1486496572940-2bb2341fdbdf?w=800&q=80" alt="Clase práctica de conducción" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow" aria-hidden="true">↗</div>
       <div class="project-info">
         <p class="project-cat">Práctica · Vehículo</p>
         <h3 class="project-name">Clases prácticas</h3>
@@ -837,7 +852,7 @@
     <div class="project-card">
       <img class="project-img" src="https://images.unsplash.com/photo-1486496146582-9ffcd0b2b2b7?w=800&q=80" alt="Formación online" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow" aria-hidden="true">↗</div>
       <div class="project-info">
         <p class="project-cat">Online · Videoclases</p>
         <h3 class="project-name">Formación online</h3>
@@ -847,7 +862,7 @@
     <div class="project-card">
       <img class="project-img" src="https://images.unsplash.com/photo-1515524738708-327f6b0037a7?w=800&q=80" alt="Carga y estiba mercancías" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow" aria-hidden="true">↗</div>
       <div class="project-info">
         <p class="project-cat">Especialidad · CAP</p>
         <h3 class="project-name">Carga y estiba</h3>
@@ -858,7 +873,7 @@
 </section>
 
 
-<div class="about-section" id="nosotros">
+<div class="about-section" role="region" aria-label="Sobre nosotros" id="nosotros">
   <div class="about-visual">
     <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=900&q=80" alt="Equipo docente autoescuela TropiPodio" loading="lazy">
     <div class="about-badge">
@@ -879,21 +894,21 @@
       <div class="about-value">
         <div class="value-num">01</div>
         <div class="value-text">
-          <h4>Profesorado experto</h4>
+          <h3>Profesorado experto</h3>
           <p>19+ años formando conductores en la Costa Tropical. Método probado que prioriza la seguridad real al volante</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">02</div>
         <div class="value-text">
-          <h4>Flexibilidad total</h4>
+          <h3>Flexibilidad total</h3>
           <p>Presencial intensivo, online con videoclases o combinado. Tú eliges el ritmo y el formato que mejor encaje contigo</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">03</div>
         <div class="value-text">
-          <h4>Dos sedes operativas</h4>
+          <h3>Dos sedes operativas</h3>
           <p>Sede central en Motril (Calle Muralla 7) y sede en Salobreña (Avda. del Mediterráneo). Prácticas en zonas reales de examen</p>
         </div>
       </div>
@@ -978,8 +993,8 @@
     <h2 class="section-title reveal reveal-delay-1">Opiniones<br>de <em>alumnos reales</em></h2>
     <div class="testimonials-grid" style="grid-template-columns: minmax(0, 640px); justify-content: center;">
       <div class="testimonial-card reveal" style="text-align: center;">
-        <div class="testimonial-stars" style="justify-content: center;">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        <div class="testimonial-stars" style="justify-content: center;" aria-label="Valoración 5 estrellas" role="img">
+          <div class="star" aria-hidden="true"></div><div class="star" aria-hidden="true"></div><div class="star" aria-hidden="true"></div><div class="star" aria-hidden="true"></div><div class="star" aria-hidden="true"></div>
         </div>
         <p class="testimonial-quote" style="font-size: 1.5rem; text-align: center;">"136 reseñas verificadas en Google Maps con una valoración media de 4,9 sobre 5 estrellas."</p>
         <div class="testimonial-divider" style="margin: 28px auto;"></div>
@@ -1037,7 +1052,7 @@
       <div style="margin-top: 40px;">
         <a href="tel:958833921" class="btn-primary" style="display: inline-flex;">
           <span>Llamar: 958 83 39 21</span>
-          <span>→</span>
+          <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>
@@ -1055,23 +1070,27 @@
 
 
 <!-- CTA -->
-<div class="cta-section">
+<div class="cta-section" role="region" aria-label="Contacto">
   <div class="cta-text">
     <h2>¿Cuándo empezamos<br>tu carnet?</h2>
     <p>Llama para matricularte. Próximo curso intensivo: consulta fechas disponibles.</p>
   </div>
   <a href="tel:958833921" class="btn-dark">
     <span>Llamar ahora: 958 83 39 21</span>
-    <span>↗</span>
+    <span aria-hidden="true">↗</span>
   </a>
 </div>
+
+
+</main>
+
 
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo">TropiPodio<span>.</span></a>
+      <a href="#main-content" class="nav-logo">TropiPodio<span>.</span></a>
       <p class="footer-tagline">"Nuestro objetivo no es solo que obtengas tu carnet, sino que salgas capacitado."</p>
       <div class="footer-social">
         <a href="https://www.instagram.com/tropipodio_la_pole/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
@@ -1095,7 +1114,7 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4>Permisos</h4>
+      <h3>Permisos</h3>
       <ul>
         <li><a href="#servicios">Permiso B</a></li>
         <li><a href="#servicios">Carga y Estiba</a></li>
@@ -1104,7 +1123,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Sobre nosotros</h4>
+      <h3>Sobre nosotros</h3>
       <ul>
         <li><a href="#nosotros">Nuestra historia</a></li>
         <li><a href="#nosotros">Equipo</a></li>
@@ -1113,7 +1132,7 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h3>Contacto</h3>
       <ul>
         <li><a href="tel:958833921">958 83 39 21</a></li>
         <li><a href="mailto:tropipodio@gmail.com">tropipodio@gmail.com</a></li>
@@ -1150,9 +1169,21 @@
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
+    const isOpen = hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    if (isOpen) { const firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
   });
+  // WCAG 2.1.1 — ESC cierra mobile menu (ARIA dialog pattern)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.focus();
+    }
+  });
+
   function closeMobile() {
     hamburger.classList.remove('active');
     mobileMenu.classList.remove('open');
