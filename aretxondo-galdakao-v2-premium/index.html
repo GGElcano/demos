@@ -36,33 +36,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
-    /* ─── CUSTOM CURSOR ─── */
-    .cursor-dot {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      transition: transform 0.1s;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(255,255,255,0.3);
-    }
-    .cursor-ring {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(139,69,19,0.4);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width 0.35s var(--ease-smooth), height 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
-    }
-    .cursor-ring.expanded {
-      width: 70px; height: 70px;
-      border-color: rgba(139,69,19,0.7);
-      background: rgba(139,69,19,0.05);
-    }
-
     /* ─── NAVBAR ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -1546,32 +1519,6 @@
     // Safari / autoplay fallback
     heroVideo.play().catch(() => {});
   }
-
-  // ── CUSTOM CURSOR
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    dot.style.left = mouseX + 'px';
-    dot.style.top = mouseY + 'px';
-  });
-
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.7;
-    ringY += (mouseY - ringY) * 0.7;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  document.querySelectorAll('a, button, .project-card, .service-card, .stat-card').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
-  });
-
   // ── NAVBAR SCROLL
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
