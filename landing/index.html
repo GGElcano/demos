@@ -150,7 +150,43 @@ em.acc{color:var(--accent-soft);font-style:italic}
 .hero-trust .t svg{width:18px;height:18px;color:var(--accent-soft);flex-shrink:0}
 
 /* HERO VISUAL */
-.hero-visual{position:relative;height:640px;perspective:1800px}
+.hero-visual{position:relative;height:640px;perspective:2200px;perspective-origin:50% 50%}
+.cf-deck{position:absolute;inset:0;transform-style:preserve-3d;display:flex;align-items:center;justify-content:center}
+.cf-card{position:absolute;top:50%;left:50%;width:340px;height:460px;margin:-230px 0 0 -170px;border-radius:16px;overflow:hidden;background:#0a0e16;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.75),0 20px 50px -20px rgba(0,180,216,.18),inset 0 1px 0 rgba(255,255,255,.04);transform-style:preserve-3d;transition:transform .9s cubic-bezier(.22,.8,.2,1),opacity .7s ease,filter .7s ease;will-change:transform,opacity;cursor:pointer}
+.cf-card[data-pos="0"]{transform:translate3d(0,0,180px) rotateY(0) scale(1);opacity:1;z-index:10;filter:none}
+.cf-card[data-pos="-1"]{transform:translate3d(-260px,0,40px) rotateY(30deg) scale(.88);opacity:.78;z-index:8;filter:saturate(.7) brightness(.85)}
+.cf-card[data-pos="1"]{transform:translate3d(260px,0,40px) rotateY(-30deg) scale(.88);opacity:.78;z-index:8;filter:saturate(.7) brightness(.85)}
+.cf-card[data-pos="-2"]{transform:translate3d(-460px,0,-140px) rotateY(42deg) scale(.72);opacity:.4;z-index:5;filter:saturate(.4) brightness(.65) blur(.5px)}
+.cf-card[data-pos="2"]{transform:translate3d(460px,0,-140px) rotateY(-42deg) scale(.72);opacity:.4;z-index:5;filter:saturate(.4) brightness(.65) blur(.5px)}
+.cf-card[data-pos="-3"],.cf-card[data-pos="3"]{opacity:0;pointer-events:none;z-index:1}
+.cf-card[data-pos="-3"]{transform:translate3d(-600px,0,-260px) rotateY(50deg) scale(.6)}
+.cf-card[data-pos="3"]{transform:translate3d(600px,0,-260px) rotateY(-50deg) scale(.6)}
+.cf-bar{height:34px;display:flex;align-items:center;padding:0 12px;gap:6px;background:rgba(8,12,18,.85);border-bottom:1px solid var(--line)}
+.cf-dot{width:9px;height:9px;border-radius:50%}
+.cf-dot.r{background:#ff5f57}.cf-dot.y{background:#febc2e}.cf-dot.g{background:#28c840}
+.cf-url{margin-left:14px;flex:1;height:22px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:5px;display:flex;align-items:center;padding:0 10px;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cf-url::before{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid var(--accent-soft);border-right-color:transparent;animation:spin 2s linear infinite;flex-shrink:0}
+.cf-hero{height:calc(100% - 34px);position:relative;overflow:hidden;background:#0a0e16}
+.cf-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.cf-card[data-pos="0"] .cf-hero img{transform:scale(1.06)}
+.cf-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,9,15,.2) 0%,transparent 22%,transparent 48%,rgba(6,9,15,.85) 92%,rgba(6,9,15,.95) 100%)}
+.cf-top{position:absolute;top:14px;left:16px;right:16px;display:flex;align-items:center;justify-content:space-between;z-index:2}
+.cf-logo{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55);letter-spacing:-.01em}
+.cf-chip{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-soft);padding:3px 8px;border-radius:4px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);border:1px solid rgba(72,202,228,.3)}
+.cf-body{position:absolute;left:16px;right:16px;bottom:16px;z-index:2}
+.cf-title{font-family:'Fraunces',serif;font-size:22px;line-height:1.08;letter-spacing:-.015em;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.7);margin-bottom:10px}
+.cf-title em{color:var(--accent-soft);font-style:italic}
+.cf-sub{font-size:11px;color:rgba(255,255,255,.75);margin-bottom:12px;letter-spacing:.02em}
+.cf-cta{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#04080e;padding:7px 14px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.02em;box-shadow:0 6px 18px -6px rgba(0,180,216,.6)}
+.cf-cta::after{content:"→"}
+.cf-stars{position:absolute;top:14px;right:16px;display:flex;align-items:center;gap:4px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:10px;color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:3px 8px;border-radius:4px}
+.cf-stars::before{content:"★";color:var(--warm);font-size:11px}
+.cf-dots{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:15}
+.cf-dots button{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);border:0;cursor:pointer;padding:0;transition:all .3s var(--ease)}
+.cf-dots button.active{background:var(--accent);width:24px;border-radius:4px;box-shadow:0 0 10px rgba(0,180,216,.6)}
+.cf-dots button:hover{background:rgba(255,255,255,.4)}
+@media(max-width:1024px){.cf-card{width:300px;height:410px;margin:-205px 0 0 -150px}.cf-card[data-pos="-1"]{transform:translate3d(-220px,0,40px) rotateY(28deg) scale(.88)}.cf-card[data-pos="1"]{transform:translate3d(220px,0,40px) rotateY(-28deg) scale(.88)}.cf-card[data-pos="-2"]{transform:translate3d(-390px,0,-140px) rotateY(40deg) scale(.72)}.cf-card[data-pos="2"]{transform:translate3d(390px,0,-140px) rotateY(-40deg) scale(.72)}}
+@media(max-width:640px){.cf-card{width:260px;height:360px;margin:-180px 0 0 -130px}.cf-card[data-pos="-1"]{transform:translate3d(-160px,0,30px) rotateY(25deg) scale(.85);opacity:.5}.cf-card[data-pos="1"]{transform:translate3d(160px,0,30px) rotateY(-25deg) scale(.85);opacity:.5}.cf-card[data-pos="-2"],.cf-card[data-pos="2"]{opacity:0}}
 .browser{position:absolute;inset:0;background:linear-gradient(180deg,#1a2230,#0e131c);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 50px 120px -30px rgba(0,0,0,.75),0 30px 60px -30px rgba(0,180,216,.25),inset 0 1px 0 rgba(255,255,255,.04);transform:rotateY(-8deg) rotateX(4deg) translateZ(0);transform-style:preserve-3d;transition:transform .6s var(--ease)}
 .browser-bar{height:40px;display:flex;align-items:center;padding:0 16px;gap:8px;background:rgba(8,12,18,.8);border-bottom:1px solid var(--line)}
 .browser-dot{width:11px;height:11px;border-radius:50%}
@@ -419,39 +455,10 @@ footer{padding:70px 0 40px;border-top:1px solid var(--line);background:rgba(6,9,
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="browser" id="browser">
-          <div class="browser-bar">
-            <span class="browser-dot r"></span>
-            <span class="browser-dot y"></span>
-            <span class="browser-dot g"></span>
-            <div class="browser-url" id="mockUrl">tu-negocio.es</div>
-          </div>
-          <div class="mock" id="mockContent">
-            <div class="mock-nav">
-              <div class="mock-logo" id="mockLogo">Errota Berri</div>
-              <div class="mock-nav-links" id="mockNav"><span>Inicio</span><span>Carta</span><span>Reservas</span><span>Contacto</span></div>
-            </div>
-            <div class="mock-hero">
-              <div class="mock-h" id="mockTitle">Cocina de <em>autor</em><br>en el centro</div>
-              <div class="mock-p" id="mockSub">Bilbao · Abierto hoy hasta las 23:00</div>
-              <div class="mock-btns">
-                <div class="mock-btn p" id="mockCta1">Reservar mesa</div>
-                <div class="mock-btn g" id="mockCta2">Ver carta</div>
-              </div>
-            </div>
-            <div class="mock-meta" id="mockMeta">
-              <div class="mock-cell"><div class="n">4,8</div><div class="l">Valoración</div></div>
-              <div class="mock-cell"><div class="n">120+</div><div class="l">Reseñas</div></div>
-              <div class="mock-cell"><div class="n">5 min</div><div class="l">Del centro</div></div>
-            </div>
-            <div class="mock-gallery" id="mockGallery">
-              <div class="mock-photo"></div>
-              <div class="mock-photo"></div>
-              <div class="mock-photo"></div>
-              <div class="mock-photo"></div>
-            </div>
-          </div>
+        <div class="cf-deck" id="cfDeck" role="list">
+          <!-- cards are generated by JS -->
         </div>
+        <div class="cf-dots" id="cfDots" aria-hidden="true"></div>
 
         <div class="float-card f1">
           <div class="f-icon"><svg><use href="#i-star"/></svg></div>
@@ -977,94 +984,88 @@ footer{padding:70px 0 40px;border-top:1px solid var(--line);background:rgba(6,9,
     start();
   })();
 
-  // Hero browser mockup — cycle through 3 business verticals
+  // Hero coverflow — 3D stack of 6 business cards rotating
   (() => {
-    const mock = document.getElementById('mockContent');
-    const url = document.getElementById('mockUrl');
-    const logo = document.getElementById('mockLogo');
-    const nav = document.getElementById('mockNav');
-    const title = document.getElementById('mockTitle');
-    const sub = document.getElementById('mockSub');
-    const cta1 = document.getElementById('mockCta1');
-    const cta2 = document.getElementById('mockCta2');
-    const meta = document.getElementById('mockMeta');
-    const gallery = document.getElementById('mockGallery');
-    if (!mock || !gallery) return;
-    if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const deck = document.getElementById('cfDeck');
+    const dotsEl = document.getElementById('cfDots');
+    if (!deck || !dotsEl) return;
 
-    const variants = [
-      {
-        url:'errota-berri.es',
-        logo:'Errota Berri',
-        nav:['Inicio','Carta','Reservas','Contacto'],
-        title:'Cocina de <em>autor</em><br>en el centro',
-        sub:'Bilbao · Abierto hoy hasta las 23:00',
-        cta1:'Reservar mesa', cta2:'Ver carta',
-        meta:[['4,8','Valoración'],['120+','Reseñas'],['5 min','Del centro']],
-        photos:[
-          'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=240&q=70',
-          'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=240&q=70',
-          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=240&q=70',
-          'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=240&q=70',
-        ],
-      },
-      {
-        url:'barberia-aldama.es',
-        logo:'Barbería Aldama',
-        nav:['Inicio','Servicios','Galería','Reserva'],
-        title:'Estilo <em>clásico</em><br>precisión moderna',
-        sub:'Galdakao · Abierto hoy hasta las 20:00',
-        cta1:'Reservar corte', cta2:'Ver servicios',
-        meta:[['4,9','Valoración'],['85+','Reseñas'],['3 gen.','De oficio']],
-        photos:[
-          'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=240&q=70',
-          'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=240&q=70',
-          'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=240&q=70',
-          'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=240&q=70',
-        ],
-      },
-      {
-        url:'dental-urkiola.es',
-        logo:'Dental Urkiola',
-        nav:['Inicio','Tratamientos','Equipo','Cita'],
-        title:'Tu sonrisa,<br><em>en buenas manos</em>',
-        sub:'Bilbao · Cita previa online',
-        cta1:'Pedir cita', cta2:'Tratamientos',
-        meta:[['4,9','Valoración'],['210+','Pacientes'],['24h','Respuesta']],
-        photos:[
-          'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=240&q=70',
-          'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=240&q=70',
-          'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=240&q=70',
-          'https://images.unsplash.com/photo-1522849696084-818b29dfe210?w=240&q=70',
-        ],
-      },
+    const CARDS = [
+      {v:'Restaurante', logo:'Errota Berri', url:'errota-berri.es', title:'Cocina de <em>autor</em>', sub:'Bilbao · 4,8 ★', cta:'Reservar mesa', rating:'4,8', img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=560&q=75'},
+      {v:'Barbería',    logo:'Barbería Aldama', url:'barberia-aldama.es', title:'Estilo <em>clásico</em>', sub:'Galdakao · 4,9 ★', cta:'Reservar corte', rating:'4,9', img:'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=560&q=75'},
+      {v:'Clínica dental', logo:'Dental Urkiola', url:'dental-urkiola.es', title:'Tu sonrisa, <em>en buenas manos</em>', sub:'Bilbao · 4,9 ★', cta:'Pedir cita', rating:'4,9', img:'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=560&q=75'},
+      {v:'Gimnasio',    logo:'Basabe Training', url:'basabe-training.es', title:'Tu cuerpo, <em>tu ritmo</em>', sub:'Bilbao · 24/7', cta:'Prueba gratis', rating:'4,7', img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=560&q=75'},
+      {v:'Gestoría',    logo:'Elcano & Asociados', url:'elcano-asociados.es', title:'Asesoramiento <em>con oficio</em>', sub:'Bilbao · 30 años', cta:'Consultar', rating:'5,0', img:'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=560&q=75'},
+      {v:'Taller',      logo:'Talleres Arratia', url:'talleres-arratia.es', title:'Taller <em>de confianza</em>', sub:'Galdakao · ITV', cta:'Pedir cita', rating:'4,8', img:'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=560&q=75'},
     ];
 
-    // Pre-load all photos
-    variants.forEach(v => v.photos.forEach(p => { const i=new Image(); i.src=p; }));
+    // Build cards
+    CARDS.forEach((c, i) => {
+      const card = document.createElement('div');
+      card.className = 'cf-card'; card.dataset.idx = i; card.setAttribute('role','listitem');
+      card.innerHTML = `
+        <div class="cf-bar"><span class="cf-dot r"></span><span class="cf-dot y"></span><span class="cf-dot g"></span><div class="cf-url">${c.url}</div></div>
+        <div class="cf-hero">
+          <img src="${c.img}" alt="" loading="lazy">
+          <div class="cf-top"><span class="cf-logo">${c.logo}</span><span class="cf-chip">${c.v}</span></div>
+          <div class="cf-stars">${c.rating}</div>
+          <div class="cf-body">
+            <h4 class="cf-title">${c.title}</h4>
+            <div class="cf-sub">${c.sub}</div>
+            <span class="cf-cta">${c.cta}</span>
+          </div>
+        </div>`;
+      deck.appendChild(card);
+      // Dot
+      const d = document.createElement('button');
+      d.type = 'button'; d.setAttribute('aria-label', `Ir a tarjeta ${i+1}`);
+      d.addEventListener('click', () => { active = i; render(); restart(); });
+      dotsEl.appendChild(d);
+    });
 
-    const photos = gallery.querySelectorAll('.mock-photo');
-    function render(v){
-      url.textContent = v.url;
-      logo.textContent = v.logo;
-      nav.innerHTML = v.nav.map(n=>`<span>${n}</span>`).join('');
-      title.innerHTML = v.title;
-      sub.textContent = v.sub;
-      cta1.textContent = v.cta1;
-      cta2.textContent = v.cta2;
-      meta.innerHTML = v.meta.map(([n,l])=>`<div class="mock-cell"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
-      photos.forEach((el,i)=>{ el.style.backgroundImage = `url('${v.photos[i]}')`; });
+    const cards = [...deck.querySelectorAll('.cf-card')];
+    const dots = [...dotsEl.querySelectorAll('button')];
+    const N = cards.length;
+    let active = 0;
+
+    function render(){
+      cards.forEach((el, i) => {
+        let diff = i - active;
+        // shortest distance on circle
+        if (diff > N/2) diff -= N;
+        if (diff < -N/2) diff += N;
+        el.dataset.pos = diff;
+      });
+      dots.forEach((d, i) => d.classList.toggle('active', i === active));
     }
-    render(variants[0]);
-    let idx = 0;
-    setInterval(()=>{
-      mock.classList.add('fading');
-      setTimeout(()=>{
-        idx = (idx+1) % variants.length;
-        render(variants[idx]);
-        mock.classList.remove('fading');
-      }, 450);
-    }, 5000);
+
+    function advance(dir){
+      active = (active + dir + N) % N;
+      render();
+    }
+
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => {
+        const diff = i - active;
+        const step = diff > N/2 ? diff - N : diff < -N/2 ? diff + N : diff;
+        if (step === 0) return;
+        active = (active + step + N) % N;
+        render(); restart();
+      });
+    });
+
+    // Auto-advance
+    let timer = null;
+    const reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function start(){ if (!timer && !reduced) timer = setInterval(() => advance(1), 4000); }
+    function stop(){ clearInterval(timer); timer = null; }
+    function restart(){ stop(); start(); }
+    deck.addEventListener('mouseenter', stop);
+    deck.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+
+    render();
+    start();
   })();
 
   const form = document.querySelector('.cta-form');
