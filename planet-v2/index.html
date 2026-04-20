@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Planet — G&G Elcano</title>
+<style>
+  :root{
+    --bg-0:#06090f;
+    --accent:#00b4d8;
+    --accent-soft:#48cae4;
+    --accent-deep:#0077a6;
+    --text:#f0f2f5;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg-0);min-height:100vh;overflow:hidden;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(circle at 62% 50%, rgba(0,180,216,.22), transparent 45%),
+      radial-gradient(circle at 20% 80%, rgba(0,119,166,.15), transparent 55%);
+    filter:blur(40px);
+  }
+  #globe-wrap{
+    position:fixed;top:50%;left:62%;
+    transform:translate(-50%,-50%);
+    width:min(82vh,820px);height:min(82vh,820px);
+    z-index:1;pointer-events:none;
+  }
+  #globe-wrap canvas{width:100%!important;height:100%!important;display:block}
+  #hub-hit-layer{ position:absolute;inset:0;pointer-events:auto;z-index:2; }
+  .hub-label{
+    position:absolute;transform:translate(-50%,-140%);
+    padding:4px 9px;border:1px solid rgba(72,202,228,.45);
+    background:rgba(6,9,15,.78);backdrop-filter:blur(6px);
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:#cfeeff;white-space:nowrap;border-radius:2px;
+    opacity:0;transition:opacity .2s ease;pointer-events:none;
+    box-shadow:0 0 20px rgba(0,180,216,.25);
+  }
+  .hub-label::after{
+    content:"";position:absolute;left:50%;top:100%;
+    width:1px;height:18px;background:rgba(72,202,228,.45);
+    transform:translateX(-.5px);
+  }
+  .hub-label.on{opacity:1}
+
+  .hero-copy{
+    position:fixed;left:6vw;top:50%;transform:translateY(-50%);
+    z-index:2;max-width:32ch;pointer-events:none;
+  }
+  .hero-copy .eyebrow{
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent-soft);opacity:.8;margin-bottom:18px;
+  }
+  .hero-copy h1{
+    font-size:clamp(34px,4.6vw,62px);line-height:1.04;
+    font-weight:600;letter-spacing:-0.02em;
+  }
+  .hero-copy h1 em{font-style:italic;color:var(--accent-soft);font-weight:500}
+  .hero-copy p{
+    margin-top:20px;font-size:15px;line-height:1.55;
+    color:#9fb4c3;max-width:38ch;
+  }
+
+  #tweaks{
+    position:fixed;right:18px;bottom:18px;z-index:10;
+    width:260px;background:rgba(6,9,15,.88);backdrop-filter:blur(10px);
+    border:1px solid rgba(72,202,228,.22);
+    color:var(--text);font-size:12px;
+    border-radius:4px;padding:14px;display:none;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+  }
+  #tweaks.show{display:block}
+  #tweaks h3{
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent-soft);margin-bottom:12px;font-weight:600;
+  }
+  #tweaks .row{display:flex;justify-content:space-between;align-items:center;margin:10px 0;gap:10px}
+  #tweaks label{font-size:11px;color:#c7d2dd;flex:1}
+  #tweaks input[type=range]{flex:1;accent-color:var(--accent)}
+  #tweaks input[type=checkbox]{accent-color:var(--accent);width:14px;height:14px}
+  #tweaks .val{color:var(--accent-soft);font-variant-numeric:tabular-nums;min-width:34px;text-align:right}
+  #tweaks .divider{height:1px;background:rgba(72,202,228,.15);margin:12px 0}
+
+.__vbadge{position:fixed;left:20px;top:20px;z-index:9999;font:500 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#48cae4;background:rgba(10,14,22,.7);backdrop-filter:blur(8px);padding:6px 12px;border-radius:999px;border:1px solid rgba(0,180,216,.3)}
+</style>
+</head>
+<body>
+
+<div class="__vbadge">Planet v2 · Claude Design</div>
+
+<div class="hero-copy">
+  <div class="eyebrow">Webs para negocios locales</div>
+  <h1>Una web que <em>trabaja</em> mientras duermes</h1>
+  <p>Tu negocio, visible para quien te busca. Diseñada, alojada y mantenida — entregada en 48 horas.</p>
+</div>
+
+<div id="globe-wrap">
+  <canvas id="globe-canvas"></canvas>
+  <div id="hub-hit-layer"></div>
+</div>
+
+<div id="tweaks">
+  <h3>Tweaks</h3>
+  <div class="row"><label><input type="checkbox" id="tw-dots" /> Continentes punteados</label></div>
+  <div class="row"><label><input type="checkbox" id="tw-ring" checked /> Anillo orbital</label></div>
+  <div class="row"><label><input type="checkbox" id="tw-labels" checked /> Etiquetas en hubs</label></div>
+  <div class="divider"></div>
+  <div class="row">
+    <label>Rotación (s/vuelta)</label>
+    <input type="range" id="tw-speed" min="40" max="300" step="10" />
+    <span class="val" id="tw-speed-v"></span>
+  </div>
+  <div class="row">
+    <label>Paquetes/s</label>
+    <input type="range" id="tw-packets" min="0" max="25" step="0.5" />
+    <span class="val" id="tw-packets-v"></span>
+  </div>
+  <div class="row">
+    <label>Halo</label>
+    <input type="range" id="tw-halo" min="0" max="200" step="5" />
+    <span class="val" id="tw-halo-v"></span>
+  </div>
+</div>
+
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "dottedContinents": true,
+  "orbitalRing": true,
+  "hubLabels": true,
+  "rotationSeconds": 160,
+  "packetsPerSecond": 13,
+  "haloIntensity": 100
+}/*EDITMODE-END*/;
+const TW = Object.assign({}, TWEAK_DEFAULTS);
+</script>
+
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script>
+(() => {
+  const wrap = document.getElementById('globe-wrap');
+  const canvas = document.getElementById('globe-canvas');
+  const hitLayer = document.getElementById('hub-hit-layer');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+  camera.position.set(0, 0, 4.2);
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias:true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5));
+  renderer.setClearColor(0x000000, 0);
+
+  const resize = () => {
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  };
+  resize();
+  new ResizeObserver(resize).observe(wrap);
+
+  // Lights (for MeshPhongMaterial earth)
+  const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+  sun.position.set(2, 0.8, 2.5);
+  scene.add(sun);
+  scene.add(new THREE.AmbientLight(0x103040, 0.35));
+
+  const globe = new THREE.Group();
+  globe.rotation.z = -0.35;
+  globe.rotation.x = 0.12;
+  scene.add(globe);
+
+  const spin = new THREE.Group();
+  globe.add(spin);
+
+  /* ---------- real-geography earth textures from Natural Earth GeoJSON ---------- */
+  const TEX_W = 2048, TEX_H = 1024;
+  const GEOJSON_URLS = [
+    'https://cdn.jsdelivr.net/gh/nvkelso/natural-earth-vector/geojson/ne_50m_land.geojson',
+    'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_land.geojson',
+    'https://cdn.jsdelivr.net/gh/nvkelso/natural-earth-vector/geojson/ne_110m_land.geojson',
+  ];
+
+  // Project lon/lat → pixel (equirectangular)
+  function lonLatToXY(lon, lat){
+    return [ (lon + 180) / 360 * TEX_W, (90 - lat) / 180 * TEX_H ];
+  }
+
+  // Trace a ring (array of [lon,lat]) onto ctx as a path
+  function tracePolygon(ctx, ring){
+    if (!ring.length) return;
+    ctx.beginPath();
+    const [x0,y0] = lonLatToXY(ring[0][0], ring[0][1]);
+    ctx.moveTo(x0, y0);
+    for (let i=1;i<ring.length;i++){
+      const [x,y] = lonLatToXY(ring[i][0], ring[i][1]);
+      ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+  }
+
+  // Iterate every polygon ring in a GeoJSON FeatureCollection
+  function forEachPolygon(geojson, cb){
+    const feats = geojson.features || [];
+    for (const f of feats){
+      const g = f.geometry; if (!g) continue;
+      if (g.type === 'Polygon'){
+        cb(g.coordinates);
+      } else if (g.type === 'MultiPolygon'){
+        for (const poly of g.coordinates) cb(poly);
+      }
+    }
+  }
+
+  function buildTexturesFromGeoJSON(geo){
+    // --- FILL texture: solid land with lat-based shading + bright coastline ---
+    const fillC = document.createElement('canvas'); fillC.width=TEX_W; fillC.height=TEX_H;
+    const fctx = fillC.getContext('2d');
+    // Ocean gradient
+    const og = fctx.createLinearGradient(0,0,0,TEX_H);
+    og.addColorStop(0,'#021a26'); og.addColorStop(0.5,'#063146'); og.addColorStop(1,'#021825');
+    fctx.fillStyle = og; fctx.fillRect(0,0,TEX_W,TEX_H);
+
+    // Render land polygons (outer ring filled, inner rings punch holes via evenodd)
+    fctx.fillStyle = '#127698';
+    for (let pass=0; pass<1; pass++){
+      for (const feature of geo.features){
+        const g = feature.geometry; if (!g) continue;
+        const polys = g.type === 'Polygon' ? [g.coordinates] : (g.type === 'MultiPolygon' ? g.coordinates : []);
+        for (const poly of polys){
+          fctx.beginPath();
+          for (const ring of poly){
+            if (!ring.length) continue;
+            const [x0,y0] = lonLatToXY(ring[0][0], ring[0][1]);
+            fctx.moveTo(x0, y0);
+            for (let i=1;i<ring.length;i++){
+              const [x,y] = lonLatToXY(ring[i][0], ring[i][1]);
+              fctx.lineTo(x, y);
+            }
+            fctx.closePath();
+          }
+          fctx.fill('evenodd');
+        }
+      }
+    }
+
+    // Apply latitude-based shading to land pixels (darker toward poles)
+    {
+      const id = fctx.getImageData(0,0,TEX_W,TEX_H);
+      const d = id.data;
+      for (let y=0;y<TEX_H;y++){
+        const lat = Math.sin((y/TEX_H)*Math.PI);
+        const shade = 0.58 + 0.42*lat;
+        for (let x=0;x<TEX_W;x++){
+          const i = (y*TEX_W+x)*4;
+          // Only shade if pixel is land-colored (roughly our #127698)
+          if (d[i+1] > 60 && d[i+2] > 90 && d[i] < 80){
+            d[i]   = Math.round(d[i]   * shade);
+            d[i+1] = Math.round(d[i+1] * shade);
+            d[i+2] = Math.round(d[i+2] * shade);
+          }
+        }
+      }
+      fctx.putImageData(id,0,0);
+    }
+
+    // Coastline stroke (bright cyan), drawn after shading
+    fctx.strokeStyle = '#48cae4';
+    fctx.lineWidth = 1.2;
+    fctx.lineJoin = 'round';
+    fctx.lineCap = 'round';
+    for (const feature of geo.features){
+      const g = feature.geometry; if (!g) continue;
+      const polys = g.type === 'Polygon' ? [g.coordinates] : (g.type === 'MultiPolygon' ? g.coordinates : []);
+      for (const poly of polys){
+        for (const ring of poly){
+          tracePolygon(fctx, ring);
+          fctx.stroke();
+        }
+      }
+    }
+
+    // Bloomy coastline glow pass (additive)
+    const glowC = document.createElement('canvas'); glowC.width=TEX_W; glowC.height=TEX_H;
+    const gctx = glowC.getContext('2d');
+    gctx.strokeStyle = 'rgba(72,202,228,0.75)';
+    gctx.lineWidth = 3.2;
+    gctx.lineJoin = 'round';
+    gctx.filter = 'blur(2px)';
+    for (const feature of geo.features){
+      const g = feature.geometry; if (!g) continue;
+      const polys = g.type === 'Polygon' ? [g.coordinates] : (g.type === 'MultiPolygon' ? g.coordinates : []);
+      for (const poly of polys){
+        for (const ring of poly){
+          tracePolygon(gctx, ring);
+          gctx.stroke();
+        }
+      }
+    }
+    fctx.globalCompositeOperation = 'lighter';
+    fctx.drawImage(glowC, 0, 0);
+    fctx.globalCompositeOperation = 'source-over';
+
+    // --- DOTS texture: dotted continents on dark ocean ---
+    const dotsC = document.createElement('canvas'); dotsC.width=TEX_W; dotsC.height=TEX_H;
+    const dctx = dotsC.getContext('2d');
+    const og2 = dctx.createLinearGradient(0,0,0,TEX_H);
+    og2.addColorStop(0,'#05222e'); og2.addColorStop(0.5,'#083349'); og2.addColorStop(1,'#04202c');
+    dctx.fillStyle = og2; dctx.fillRect(0,0,TEX_W,TEX_H);
+
+    // Build a mask canvas at full res: 1 = land
+    const maskC = document.createElement('canvas'); maskC.width=TEX_W; maskC.height=TEX_H;
+    const mctx = maskC.getContext('2d');
+    mctx.fillStyle = '#fff';
+    for (const feature of geo.features){
+      const g = feature.geometry; if (!g) continue;
+      const polys = g.type === 'Polygon' ? [g.coordinates] : (g.type === 'MultiPolygon' ? g.coordinates : []);
+      for (const poly of polys){
+        mctx.beginPath();
+        for (const ring of poly){
+          if (!ring.length) continue;
+          const [x0,y0] = lonLatToXY(ring[0][0], ring[0][1]);
+          mctx.moveTo(x0, y0);
+          for (let i=1;i<ring.length;i++){
+            const [x,y] = lonLatToXY(ring[i][0], ring[i][1]);
+            mctx.lineTo(x, y);
+          }
+          mctx.closePath();
+        }
+        mctx.fill('evenodd');
+      }
+    }
+    const maskData = mctx.getImageData(0,0,TEX_W,TEX_H).data;
+    // Coastline mask (stroke only, used to highlight edge dots)
+    const coastC = document.createElement('canvas'); coastC.width=TEX_W; coastC.height=TEX_H;
+    const cctx = coastC.getContext('2d');
+    cctx.strokeStyle = '#fff'; cctx.lineWidth = 5;
+    for (const feature of geo.features){
+      const g = feature.geometry; if (!g) continue;
+      const polys = g.type === 'Polygon' ? [g.coordinates] : (g.type === 'MultiPolygon' ? g.coordinates : []);
+      for (const poly of polys){
+        for (const ring of poly){
+          tracePolygon(cctx, ring);
+          cctx.stroke();
+        }
+      }
+    }
+    const coastData = cctx.getImageData(0,0,TEX_W,TEX_H).data;
+
+    const step = 9;
+    for (let y=step; y<TEX_H-step; y+=step){
+      const latFactor = Math.sin((y/TEX_H)*Math.PI);
+      const xstep = Math.max(step, Math.round(step / Math.max(0.18, latFactor)));
+      for (let x=0; x<TEX_W; x+=xstep){
+        const mi = (y*TEX_W+x)*4;
+        if (maskData[mi+3] === 0) continue; // not land
+        const isCoast = coastData[mi+3] > 0;
+        dctx.fillStyle = isCoast ? '#5ed5f2' : '#2c94ba';
+        dctx.beginPath();
+        dctx.arc(x, y, isCoast ? 2.6 : 2.0, 0, Math.PI*2);
+        dctx.fill();
+      }
+    }
+
+    const fillTex = new THREE.CanvasTexture(fillC);
+    const dotsTex = new THREE.CanvasTexture(dotsC);
+    fillTex.colorSpace = dotsTex.colorSpace = THREE.SRGBColorSpace;
+    fillTex.anisotropy = dotsTex.anisotropy = 8;
+    return { fillTex, dotsTex };
+  }
+
+  /* ---------- Earth mesh (MeshPhongMaterial — reliable) ---------- */
+  // Start with a simple cyan texture so the sphere shows immediately
+  const initC = document.createElement('canvas'); initC.width = 64; initC.height = 32;
+  const ictx = initC.getContext('2d');
+  const igr = ictx.createLinearGradient(0,0,0,32);
+  igr.addColorStop(0,'#05222e'); igr.addColorStop(1,'#04202c');
+  ictx.fillStyle = igr; ictx.fillRect(0,0,64,32);
+  const initTex = new THREE.CanvasTexture(initC);
+  initTex.colorSpace = THREE.SRGBColorSpace;
+
+  const earthMat = new THREE.MeshPhongMaterial({
+    map: initTex,
+    specular: new THREE.Color(0x4dc4de),
+    shininess: 32,
+    emissive: new THREE.Color(0x072436),
+    emissiveIntensity: 0.55
+  });
+  const earth = new THREE.Mesh(new THREE.SphereGeometry(1, 72, 48), earthMat);
+  spin.add(earth);
+
+  // store both textures here once loaded
+  const TEX = { fill: null, dots: null };
+
+  /* ---------- Atmosphere: 2-band fresnel halo ---------- */
+  const atmoUniforms = {
+    uColorInner: { value: new THREE.Color(0x48cae4) },
+    uColorOuter: { value: new THREE.Color(0x00b4d8) },
+    uIntensity: { value: 1.0 }
+  };
+  const atmo = new THREE.Mesh(
+    new THREE.SphereGeometry(1.18, 64, 40),
+    new THREE.ShaderMaterial({
+      uniforms: atmoUniforms,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true,
+      depthWrite: false,
+      vertexShader:`
+        varying vec3 vN;
+        void main(){
+          vN = normalize(normalMatrix * normal);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.);
+        }`,
+      fragmentShader:`
+        uniform vec3 uColorInner; uniform vec3 uColorOuter; uniform float uIntensity;
+        varying vec3 vN;
+        void main(){
+          float edge = 1.0 - abs(vN.z);
+          float inner = pow(edge, 4.0);
+          float outer = pow(edge, 1.8) * 0.55;
+          vec3 col = uColorInner * inner + uColorOuter * outer;
+          float a = (inner + outer*0.7) * uIntensity;
+          gl_FragColor = vec4(col, a);
+        }`
+    })
+  );
+  globe.add(atmo);
+
+  /* ---------- Starfield (very subtle) ---------- */
+  const starGeo = new THREE.BufferGeometry();
+  const STAR_N = 600;
+  const starPos = new Float32Array(STAR_N*3);
+  for (let i=0;i<STAR_N;i++){
+    const v = new THREE.Vector3(
+      (Math.random()-0.5), (Math.random()-0.5), (Math.random()-0.5)
+    ).normalize().multiplyScalar(12 + Math.random()*6);
+    starPos[i*3]=v.x; starPos[i*3+1]=v.y; starPos[i*3+2]=v.z;
+  }
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos,3));
+  const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({
+    color: 0x48cae4, size: 0.04, sizeAttenuation: true,
+    transparent: true, opacity: 0.45, depthWrite: false, blending: THREE.AdditiveBlending
+  }));
+  scene.add(stars);
+
+  /* ---------- Orbital rings ---------- */
+  function makeRing(inner, outer, color, tiltX, tiltZ){
+    const geo = new THREE.RingGeometry(inner, outer, 160);
+    const mat = new THREE.MeshBasicMaterial({
+      color, side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending, transparent: true,
+      depthWrite:false, opacity: 0.6
+    });
+    const m = new THREE.Mesh(geo, mat);
+    m.rotation.x = tiltX; m.rotation.z = tiltZ;
+    return m;
+  }
+  const ring  = makeRing(1.35, 1.355, 0x0077a6, Math.PI/2 - 0.32,  0.12);
+  const ring2 = makeRing(1.165,1.168, 0x48cae4, Math.PI/2 - 0.24, -0.18);
+  globe.add(ring); globe.add(ring2);
+
+  /* ---------- cities ---------- */
+  const HUBS = [
+    {n:'Madrid', lat:40.4168, lon:-3.7038},
+    {n:'Londres', lat:51.5072, lon:-0.1276},
+    {n:'Nueva York', lat:40.7128, lon:-74.0060},
+    {n:'Los Angeles', lat:34.0522, lon:-118.2437},
+    {n:'Tokio', lat:35.6895, lon:139.6917},
+    {n:'Dubái', lat:25.2048, lon:55.2708},
+    {n:'Sídney', lat:-33.8688, lon:151.2093},
+    {n:'São Paulo', lat:-23.5505, lon:-46.6333},
+    {n:'Bombay', lat:19.0760, lon:72.8777},
+    {n:'Bilbao', lat:43.2630, lon:-2.9350},
+    {n:'Singapur', lat:1.3521, lon:103.8198},
+    {n:'Ciudad del Cabo', lat:-33.9249, lon:18.4241},
+  ];
+  const SECONDARY = [
+    [48.8566,2.3522],[52.5200,13.4050],[41.9028,12.4964],[55.7558,37.6173],[50.0755,14.4378],
+    [59.3293,18.0686],[60.1699,24.9384],[53.3498,-6.2603],[38.7223,-9.1393],[37.9838,23.7275],
+    [41.0082,28.9784],[30.0444,31.2357],[33.5731,-7.5898],[-1.2921,36.8219],[6.5244,3.3792],
+    [-26.2041,28.0473],[19.4326,-99.1332],[14.6349,-90.5069],[10.4806,-66.9036],[4.7110,-74.0721],
+    [-12.0464,-77.0428],[-34.6037,-58.3816],[-33.4489,-70.6693],[45.5017,-73.5673],[49.2827,-123.1207],
+    [41.8781,-87.6298],[29.7604,-95.3698],[25.7617,-80.1918],[47.6062,-122.3321],[37.7749,-122.4194],
+    [32.7767,-96.7970],[39.7392,-104.9903],[31.2304,121.4737],[39.9042,116.4074],[22.3193,114.1694],
+    [37.5665,126.9780],[13.7563,100.5018],[21.0285,105.8542],[-6.2088,106.8456],[14.5995,120.9842],
+    [23.1291,113.2644],[26.9124,50.6500],[24.4539,54.3773],[32.0853,34.7818],[35.6892,51.3890],
+    [31.5497,74.3436],[23.8103,90.4125],[6.9271,79.8612],[12.9716,77.5946],[13.0827,80.2707],
+    [-22.9068,-43.1729],[-15.7801,-47.9292],[-34.9011,-56.1645],[-36.8485,174.7633],[-37.8136,144.9631],
+    // --- extra 55 to double density ---
+    [51.2093,3.2247],[45.4642,9.1900],[48.2082,16.3738],[47.4979,19.0402],[44.4268,26.1025],
+    [46.0569,14.5058],[45.8150,15.9819],[42.6977,23.3219],[44.7866,20.4489],[47.0105,28.8638],
+    [54.6872,25.2797],[56.9496,24.1052],[59.4370,24.7536],[40.4168,49.8670],[41.7151,44.8271],
+    [40.1792,44.4991],[43.2220,76.8512],[41.2995,69.2401],[42.8746,74.5698],[35.6762,139.6503],
+    [34.6937,135.5023],[1.3521,103.8198],[3.1390,101.6869],[-33.8688,151.2093],[-27.4698,153.0251],
+    [-31.9505,115.8605],[-12.4634,130.8456],[-41.2865,174.7762],[9.9281,-84.0907],[8.9824,-79.5199],
+    [17.5101,-88.1962],[18.1096,-77.2975],[18.4861,-69.9312],[40.7128,-74.0060],[38.9072,-77.0369],
+    [42.3601,-71.0589],[33.7490,-84.3880],[36.1699,-115.1398],[44.9778,-93.2650],[33.4484,-112.0740],
+    [35.2271,-80.8431],[43.6532,-79.3832],[51.0447,-114.0719],[53.5461,-113.4938],[46.8139,-71.2080],
+    [40.4406,-79.9959],[19.0760,72.8777],[28.6139,77.2090],[17.3850,78.4867],[22.5726,88.3639],
+    [11.5564,104.9282],[27.7172,85.3240],[33.6844,73.0479],[34.0209,-6.8417],[30.0626,31.2497],
+    [15.5007,32.5599],[-4.4419,15.2663],[-1.9441,30.0619],[0.3476,32.5825],[-8.8383,13.2344],
+    [-25.7479,28.2293],[-17.8252,31.0335],[-18.8792,47.5079],[14.7167,-17.4677],[12.6392,-8.0029]
+  ].map((c,i)=>({n:'N'+i, lat:c[0], lon:c[1]}));
+
+  function ll2v(lat, lon, r=1){
+    const φ = (90-lat)*Math.PI/180;
+    const θ = (lon+180)*Math.PI/180;
+    return new THREE.Vector3(
+      -r*Math.sin(φ)*Math.cos(θ),
+       r*Math.cos(φ),
+       r*Math.sin(φ)*Math.sin(θ)
+    );
+  }
+
+  /* ----- secondary nodes as Points ----- */
+  const secPositions = new Float32Array(SECONDARY.length*3);
+  SECONDARY.forEach((c,i)=>{
+    const v = ll2v(c.lat,c.lon,1.008);
+    secPositions[i*3]=v.x; secPositions[i*3+1]=v.y; secPositions[i*3+2]=v.z;
+  });
+  const secGeo = new THREE.BufferGeometry();
+  secGeo.setAttribute('position', new THREE.BufferAttribute(secPositions,3));
+  const secMat = new THREE.PointsMaterial({
+    color: 0x48cae4, size: 0.022, sizeAttenuation: true,
+    transparent:true, opacity: 0.85, depthWrite:false, blending: THREE.AdditiveBlending
+  });
+  const secPoints = new THREE.Points(secGeo, secMat);
+  spin.add(secPoints);
+
+  /* ----- edges between nearest neighbors ----- */
+  function buildEdges(){
+    const edges = [];
+    const seen = new Set();
+    const ps = SECONDARY.map(c=>ll2v(c.lat,c.lon,1.003));
+    ps.forEach((p,i)=>{
+      const dists = ps.map((q,j)=>({j, d: p.distanceTo(q)})).filter(x=>x.j!==i).sort((a,b)=>a.d-b.d);
+      const k = 2 + (i%2);
+      for (let m=0;m<k;m++){
+        const j = dists[m].j;
+        const key = i<j? `${i}-${j}` : `${j}-${i}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        edges.push([i,j]);
+      }
+    });
+    const positions = [];
+    edges.forEach(([i,j])=>{
+      const a = ps[i], b = ps[j];
+      positions.push(a.x,a.y,a.z, b.x,b.y,b.z);
+    });
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(positions,3));
+    const m = new THREE.LineBasicMaterial({
+      color: 0x00b4d8, transparent:true, opacity: 0.3,
+      blending: THREE.AdditiveBlending, depthWrite:false
+    });
+    return new THREE.LineSegments(g, m);
+  }
+  spin.add(buildEdges());
+
+  /* ----- hubs ----- */
+  const hubsGroup = new THREE.Group();
+  spin.add(hubsGroup);
+  const hubDots = [];
+  const hubHalos = [];
+  HUBS.forEach((h)=>{
+    const pos = ll2v(h.lat, h.lon, 1.012);
+    const dot = new THREE.Mesh(
+      new THREE.SphereGeometry(0.014, 16, 16),
+      new THREE.MeshBasicMaterial({ color: 0xcfeeff })
+    );
+    dot.position.copy(pos);
+    dot.userData.hub = h;
+    hubsGroup.add(dot);
+    hubDots.push(dot);
+
+    // breathing halo as sprite-like plane
+    const halo = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.075, 0.075),
+      new THREE.MeshBasicMaterial({
+        color: 0x48cae4, transparent:true, opacity: 0.6,
+        blending: THREE.AdditiveBlending, depthWrite:false
+      })
+    );
+    halo.position.copy(pos).multiplyScalar(1.001);
+    halo.lookAt(pos.clone().multiplyScalar(2));
+    halo.userData.phase = Math.random()*Math.PI*2;
+    hubsGroup.add(halo);
+    hubHalos.push(halo);
+  });
+
+  // Replace halos with shader material that actually looks like a halo ring
+  hubHalos.forEach(halo=>{
+    halo.material.dispose();
+    halo.material = new THREE.ShaderMaterial({
+      transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+      side: THREE.DoubleSide,
+      uniforms:{
+        uTime:{value:0}, uPhase:{value: halo.userData.phase},
+        uColor:{value: new THREE.Color(0x48cae4)}
+      },
+      vertexShader:`varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+      fragmentShader:`
+        uniform float uTime; uniform float uPhase; uniform vec3 uColor;
+        varying vec2 vUv;
+        void main(){
+          float d = length(vUv - 0.5) * 2.0;
+          float breath = 0.45 + 0.55*sin(uTime * (2.0*3.14159/1.4) + uPhase);
+          float ring = smoothstep(0.95, 0.78, d) - smoothstep(0.75, 0.55, d);
+          float outerRing = smoothstep(0.99, 0.92, d) * 0.3;
+          float core = smoothstep(0.30, 0.0, d) * 0.55;
+          float a = (ring*breath + outerRing*breath + core) * 1.0;
+          gl_FragColor = vec4(uColor, a);
+        }`
+    });
+  });
+
+  /* ---------- data packets ---------- */
+  const packets = [];
+  const PACKET_MAX = 90;
+  const PACKET_SEG = 48;
+  function newPacket(){
+    if (packets.length >= PACKET_MAX) return;
+    const a = HUBS[(Math.random()*HUBS.length)|0];
+    let b = a; while (b===a) b = HUBS[(Math.random()*HUBS.length)|0];
+    const pa = ll2v(a.lat,a.lon,1), pb = ll2v(b.lat,b.lon,1);
+    const dist = pa.distanceTo(pb);
+    const mid = pa.clone().add(pb).multiplyScalar(0.5).normalize().multiplyScalar(1 + dist*0.5);
+    const curve = new THREE.QuadraticBezierCurve3(pa, mid, pb);
+    const pts = curve.getPoints(PACKET_SEG-1);
+    const positions = new Float32Array(pts.length*3);
+    const ts = new Float32Array(pts.length);
+    pts.forEach((p,i)=>{ positions[i*3]=p.x; positions[i*3+1]=p.y; positions[i*3+2]=p.z; ts[i]=i/(pts.length-1); });
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(positions,3));
+    g.setAttribute('aT', new THREE.BufferAttribute(ts,1));
+    const m = new THREE.ShaderMaterial({
+      transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+      uniforms:{
+        uHead:{value:0},
+        uColorA:{value: new THREE.Color(0x00b4d8)},
+        uColorB:{value: new THREE.Color(0xcfeeff)},
+      },
+      vertexShader:`
+        attribute float aT; varying float vT;
+        void main(){ vT=aT; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+      fragmentShader:`
+        uniform float uHead; uniform vec3 uColorA; uniform vec3 uColorB; varying float vT;
+        void main(){
+          float d = uHead - vT;
+          float trail = smoothstep(0.28, 0.0, d) * step(0.0, d);
+          float head = smoothstep(0.04, 0.0, abs(d));
+          vec3 col = mix(uColorA, uColorB, head);
+          gl_FragColor = vec4(col, trail * 0.95 + head * 0.8);
+        }`
+    });
+    const line = new THREE.Line(g, m);
+    spin.add(line);
+    const dur = 2200 + Math.random()*1800;
+    packets.push({ line, m, start: performance.now(), dur });
+  }
+  function updatePackets(now){
+    for (let i=packets.length-1;i>=0;i--){
+      const p = packets[i];
+      const t = (now - p.start) / p.dur;
+      if (t >= 1.15){
+        spin.remove(p.line); p.line.geometry.dispose(); p.m.dispose();
+        packets.splice(i,1); continue;
+      }
+      p.m.uniforms.uHead.value = t;
+    }
+  }
+
+  /* ---------- load real Natural Earth GeoJSON with fallback chain ---------- */
+  async function loadGeoJSON(urls, idx){
+    idx = idx || 0;
+    if (idx >= urls.length){
+      console.warn('All GeoJSON sources failed; leaving placeholder texture.');
+      return;
+    }
+    try {
+      const r = await fetch(urls[idx]);
+      if (!r.ok) throw new Error('status ' + r.status);
+      const geo = await r.json();
+      const { fillTex, dotsTex } = buildTexturesFromGeoJSON(geo);
+      TEX.fill = fillTex; TEX.dots = dotsTex;
+      applyTweaks();
+    } catch (e) {
+      console.warn('GeoJSON load failed at', urls[idx], e.message);
+      loadGeoJSON(urls, idx+1);
+    }
+  }
+  loadGeoJSON(GEOJSON_URLS);
+
+  /* ---------- animation loop with pause guards ---------- */
+  let inView = true, visible = !document.hidden;
+  const io = new IntersectionObserver(es => { inView = es[0].isIntersecting; }, { threshold: 0 });
+  io.observe(wrap);
+  document.addEventListener('visibilitychange', ()=> visible = !document.hidden);
+
+  let lastTime = performance.now();
+  let totalTime = 0;
+  let packetAcc = 0;
+  function shouldAnimate(){ return inView && visible && !reducedMotion; }
+
+  renderer.setAnimationLoop((now)=>{
+    const dt = Math.min(64, now - lastTime) / 1000;
+    lastTime = now;
+    if (shouldAnimate()){
+      totalTime += dt;
+      const omega = (2*Math.PI) / Math.max(10, TW.rotationSeconds);
+      spin.rotation.y += omega * dt;
+      ring.rotation.y += (2*Math.PI)/60 * dt;
+      ring2.rotation.y -= (2*Math.PI)/90 * dt;
+      hubHalos.forEach(h => { if (h.material.uniforms) h.material.uniforms.uTime.value = totalTime; });
+      packetAcc += dt * TW.packetsPerSecond;
+      while (packetAcc > 1){ newPacket(); packetAcc -= 1; }
+      updatePackets(now);
+      if (TW.hubLabels) updateHubLabels();
+    }
+    renderer.render(scene, camera);
+  });
+
+  /* ---------- Hub labels ---------- */
+  const hubLabelEls = HUBS.map(h=>{
+    const el = document.createElement('div');
+    el.className = 'hub-label';
+    el.textContent = h.n;
+    hitLayer.appendChild(el);
+    return el;
+  });
+  const hubHitEls = HUBS.map((h,i)=>{
+    const el = document.createElement('div');
+    el.style.cssText='position:absolute;width:26px;height:26px;transform:translate(-50%,-50%);border-radius:50%;cursor:pointer';
+    hitLayer.appendChild(el);
+    el.addEventListener('mouseenter', ()=>{ if(TW.hubLabels) hubLabelEls[i].classList.add('on'); });
+    el.addEventListener('mouseleave', ()=> hubLabelEls[i].classList.remove('on'));
+    return el;
+  });
+  const tmpV = new THREE.Vector3();
+  function updateHubLabels(){
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    hubDots.forEach((dot, i)=>{
+      tmpV.setFromMatrixPosition(dot.matrixWorld);
+      const worldPos = tmpV.clone();
+      const camDir = new THREE.Vector3().subVectors(camera.position, worldPos).normalize();
+      const nrm = worldPos.clone().normalize();
+      const visibleFace = nrm.dot(camDir) > 0.15;
+      tmpV.project(camera);
+      const x = (tmpV.x * 0.5 + 0.5) * w;
+      const y = (-tmpV.y * 0.5 + 0.5) * h;
+      hubHitEls[i].style.left = x+'px';
+      hubHitEls[i].style.top = y+'px';
+      hubHitEls[i].style.display = visibleFace ? 'block' : 'none';
+      hubLabelEls[i].style.left = x+'px';
+      hubLabelEls[i].style.top = y+'px';
+      if (!visibleFace) hubLabelEls[i].classList.remove('on');
+    });
+  }
+
+  /* ---------- apply tweaks ---------- */
+  function applyTweaks(){
+    if (TEX.fill){
+      earthMat.map = TW.dottedContinents ? TEX.dots : TEX.fill;
+      earthMat.needsUpdate = true;
+    }
+    ring.visible = TW.orbitalRing;
+    ring2.visible = TW.orbitalRing;
+    atmoUniforms.uIntensity.value = TW.haloIntensity / 100;
+    hitLayer.style.display = TW.hubLabels ? 'block' : 'none';
+  }
+  applyTweaks();
+
+  /* ---------- Tweaks UI ---------- */
+  const $ = id => document.getElementById(id);
+  $('tw-dots').checked = TW.dottedContinents;
+  $('tw-ring').checked = TW.orbitalRing;
+  $('tw-labels').checked = TW.hubLabels;
+  $('tw-speed').value = TW.rotationSeconds; $('tw-speed-v').textContent = TW.rotationSeconds;
+  $('tw-packets').value = TW.packetsPerSecond; $('tw-packets-v').textContent = TW.packetsPerSecond;
+  $('tw-halo').value = TW.haloIntensity; $('tw-halo-v').textContent = TW.haloIntensity;
+
+  const push = (edits)=> window.parent && window.parent.postMessage({type:'__edit_mode_set_keys', edits},'*');
+  $('tw-dots').addEventListener('change', e=>{ TW.dottedContinents=e.target.checked; applyTweaks(); push({dottedContinents:TW.dottedContinents}); });
+  $('tw-ring').addEventListener('change', e=>{ TW.orbitalRing=e.target.checked; applyTweaks(); push({orbitalRing:TW.orbitalRing}); });
+  $('tw-labels').addEventListener('change', e=>{ TW.hubLabels=e.target.checked; applyTweaks(); push({hubLabels:TW.hubLabels}); });
+  $('tw-speed').addEventListener('input', e=>{ TW.rotationSeconds=+e.target.value; $('tw-speed-v').textContent=TW.rotationSeconds; push({rotationSeconds:TW.rotationSeconds}); });
+  $('tw-packets').addEventListener('input', e=>{ TW.packetsPerSecond=+e.target.value; $('tw-packets-v').textContent=TW.packetsPerSecond; push({packetsPerSecond:TW.packetsPerSecond}); });
+  $('tw-halo').addEventListener('input', e=>{ TW.haloIntensity=+e.target.value; $('tw-halo-v').textContent=TW.haloIntensity; applyTweaks(); push({haloIntensity:TW.haloIntensity}); });
+
+  /* ---------- Edit-mode protocol ---------- */
+  const tweaksPanel = document.getElementById('tweaks');
+  window.addEventListener('message', (e)=>{
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') tweaksPanel.classList.add('show');
+    else if (d.type === '__deactivate_edit_mode') tweaksPanel.classList.remove('show');
+  });
+  window.parent && window.parent.postMessage({type:'__edit_mode_available'}, '*');
+})();
+</script>
+</body>
+</html>
