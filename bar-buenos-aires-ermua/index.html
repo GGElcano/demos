@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bar Buenos Aires · Tapas, pintxos y alubias en Ermua</title><meta name="description" content="Bar Buenos Aires en Ermua (Calle San Roke, 1). Pintxos, raciones, alubias caseras y ambiente de barrio. 4,5 estrellas en Google con 66 reseñas."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"><style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--black: #100c08;
+--white: #f5f3ef;
+--accent: #C0623A;
+--accent-light: #d88860;
+--carbon: #1a1510;
+--carbon-mid: #241e16;
+--carbon-light: #332a1e;
+--text-muted: #9a8a78;
+--font-serif: 'Libre Baskerville', serif;
+--font-sans: 'Source Sans 3', sans-serif;
+--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+--ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+html { scroll-behavior: smooth; }
+body {
+background: var(--black);
+color: var(--white);
+font-family: var(--font-sans);
+font-weight: 300;
+line-height: 1.6;
+overflow-x: hidden;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible {
+outline: 2px solid var(--accent);
+outline-offset: 3px;
+}
+/* NAVBAR */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+display: flex; align-items: center; justify-content: space-between;
+padding: 28px 60px;
+backdrop-filter: blur(0px);
+transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+}
+nav.scrolled {
+backdrop-filter: blur(20px);
+background: rgba(8,8,8,0.85);
+padding: 18px 60px;
+border-bottom: 1px solid rgba(192,98,58,0.08);
+}
+._d {
+font-family: var(--font-serif);
+font-size: 1.6rem;
+font-weight: 400;
+letter-spacing: 0.15em;
+text-decoration: none;
+color: var(--white);
+display: flex; align-items: center; gap: 10px;
+}
+._d span { color: var(--accent); }
+._e { display: flex; gap: 44px; list-style: none; align-items: center; }
+._e a {
+text-decoration: none; color: rgba(245,243,239,0.65);
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+transition: color 0.3s; font-weight: 400;
+}
+._e a:hover { color: var(--accent); }
+._f {
+background: transparent;
+border: 1px solid var(--accent);
+color: var(--accent) !important;
+padding: 10px 28px !important;
+font-size: 0.72rem !important;
+letter-spacing: 0.25em !important;
+transition: background 0.3s, color 0.3s !important;
+}
+._f:hover { background: var(--accent) !important; color: var(--black) !important; }
+._g {
+display: none; flex-direction: column; gap: 5px;
+background: none; border: none; cursor: pointer; padding: 8px;
+}
+._g span {
+width: 24px; height: 2px; background: var(--white);
+transition: transform 0.3s, opacity 0.3s;
+}
+._g.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+._g.active span:nth-child(2) { opacity: 0; }
+._g.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+._h {
+display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+background: var(--black); z-index: 999;
+flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+}
+._h.open { display: flex; }
+._h a {
+text-decoration: none; color: var(--white); font-size: 1.2rem;
+letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+}
+._h a:hover { color: var(--accent); }
+/* HERO */
+._i {
+position: relative; height: 100vh; min-height: 700px;
+display: flex; align-items: flex-end; justify-content: flex-start;
+overflow: hidden;
+}
+._j {
+position: absolute; inset: 0;
+background: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1600&q=80') center/cover no-repeat, linear-gradient(135deg, #100c08 0%, #241e16 40%, #C0623A22 100%);
+background-size: cover; background-position: center;
+transform: scale(1.08);
+transition: transform 8s var(--ease-out);
+}
+._j.loaded { transform: scale(1); }
+._k {
+position: absolute; inset: 0;
+background: linear-gradient(135deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.4) 50%, rgba(8,8,8,0.15) 100%);
+}
+._l {
+position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+background: linear-gradient(to top, var(--black), transparent);
+}
+._m {
+position: relative; z-index: 2;
+padding: 0 60px 100px;
+max-width: 900px;
+}
+._n {
+font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 28px;
+display: flex; align-items: center; gap: 16px;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+}
+._n::before {
+content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+}
+._o {
+font-family: var(--font-serif);
+font-size: clamp(3.5rem, 7vw, 7rem);
+font-weight: 300;
+line-height: 1.05;
+letter-spacing: -0.02em;
+margin-bottom: 32px;
+opacity: 0; transform: translateY(30px);
+animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+text-shadow: 0 4px 24px rgba(0,0,0,0.75);
+}
+._o em { font-style: italic; color: var(--accent); }
+._p {
+font-size: 1.05rem; color: rgba(245,243,239,0.85);
+max-width: 520px; line-height: 1.7; margin-bottom: 52px;
+font-weight: 300;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+text-shadow: 0 2px 16px rgba(0,0,0,0.75);
+}
+._q {
+display: flex; align-items: center; gap: 40px;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 1s 1s var(--ease-out) forwards;
+}
+._r {
+display: inline-flex; align-items: center; gap: 14px;
+background: var(--accent); color: var(--black);
+text-decoration: none; padding: 18px 40px;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+font-weight: 500; transition: all 0.35s var(--ease-smooth);
+position: relative; overflow: hidden;
+}
+._r::before {
+content: ''; position: absolute; inset: 0;
+background: var(--white); transform: translateX(-102%);
+transition: transform 0.4s var(--ease-out);
+}
+._r:hover::before { transform: translateX(0); }
+._r:hover { color: var(--black); }
+._r span { position: relative; z-index: 1; }
+._s {
+color: rgba(245,243,239,0.75); text-decoration: none;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+display: flex; align-items: center; gap: 10px;
+transition: color 0.3s;
+}
+._s:hover { color: var(--accent); }
+._t {
+width: 36px; height: 36px;
+border: 1px solid rgba(245,243,239,0.3);
+border-radius: 50%; display: flex; align-items: center; justify-content: center;
+transition: border-color 0.3s, transform 0.3s;
+}
+._s:hover ._t {
+border-color: var(--accent); transform: rotate(45deg);
+}
+._u {
+position: absolute; right: 60px; bottom: 100px; z-index: 2;
+display: flex; flex-direction: column; align-items: center; gap: 16px;
+opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+}
+._u span {
+font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+color: var(--text-muted); writing-mode: vertical-rl;
+}
+._v {
+width: 1px; height: 70px;
+background: linear-gradient(to bottom, var(--accent), transparent);
+animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse {
+0%, 100% { opacity: 0.4; transform: scaleY(1); }
+50% { opacity: 1; transform: scaleY(1.1); }
+}
+/* MARQUEE */
+._w {
+border-top: 1px solid rgba(192,98,58,0.12);
+border-bottom: 1px solid rgba(192,98,58,0.12);
+overflow: hidden; padding: 20px 0; background: var(--carbon);
+}
+._x {
+display: flex; gap: 0; white-space: nowrap;
+animation: marquee 22s linear infinite;
+}
+._y {
+display: inline-flex; align-items: center; gap: 30px;
+padding: 0 40px;
+font-family: var(--font-serif); font-size: 1.1rem;
+font-style: italic; color: rgba(245,243,239,0.25);
+letter-spacing: 0.05em;
+}
+._y ._z { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* SECTION COMMONS */
+section { padding: 130px 60px; }
+._ib {
+font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 20px;
+display: flex; align-items: center; gap: 14px;
+}
+._ib::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+._jb {
+font-family: var(--font-serif);
+font-size: clamp(2.4rem, 4vw, 4.2rem);
+font-weight: 300; line-height: 1.1;
+letter-spacing: -0.01em;
+}
+._jb em { font-style: italic; color: var(--accent); }
+/* STATS */
+._ab {
+background: var(--carbon);
+padding: 100px 60px;
+border-top: 1px solid rgba(192,98,58,0.08);
+}
+._bb {
+display: grid; grid-template-columns: repeat(4, 1fr);
+gap: 2px; max-width: 1400px; margin: 0 auto;
+}
+._cb {
+padding: 60px 50px; background: var(--carbon);
+border: 1px solid rgba(192,98,58,0.08);
+position: relative; overflow: hidden;
+transition: border-color 0.4s;
+min-width: 0;
+}
+._cb::before {
+content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+height: 3px; background: var(--accent); transform: scaleX(0);
+transition: transform 0.5s var(--ease-out); transform-origin: left;
+}
+._cb:hover::before { transform: scaleX(1); }
+._cb:hover { border-color: rgba(192,98,58,0.3); }
+._db {
+font-family: var(--font-serif); font-size: clamp(2.75rem, 7vw, 4.5rem);
+font-weight: 300; line-height: 1; color: var(--white);
+margin-bottom: 12px; letter-spacing: -0.02em;
+overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+}
+._db ._eb { color: var(--accent); }
+._fb {
+font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+color: var(--text-muted); font-weight: 400;
+overflow-wrap: break-word; word-break: break-word;
+}
+/* GALLERY */
+._gb { background: var(--black); }
+._hb {
+display: flex; justify-content: space-between; align-items: flex-end;
+margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+}
+._hb ._jb { max-width: 560px; }
+._kb {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 3px;
+max-width: 1400px; margin: 0 auto;
+}
+._lb {
+position: relative; overflow: hidden;
+aspect-ratio: 4/3;
+}
+._lb:first-child {
+grid-column: span 2; aspect-ratio: 21/8;
+}
+._mb {
+width: 100%; height: 100%; object-fit: cover;
+background: linear-gradient(135deg, var(--carbon-mid) 0%, var(--carbon-light) 100%);
+transition: transform 0.8s var(--ease-out);
+}
+._lb:hover ._mb { transform: scale(1.06); }
+._nb {
+position: absolute; inset: 0;
+background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.1) 60%, transparent 100%);
+opacity: 0.6; transition: opacity 0.5s;
+}
+._lb:hover ._nb { opacity: 0.85; }
+._ob {
+position: absolute; bottom: 0; left: 0; right: 0;
+padding: 40px; transform: translateY(15px);
+transition: transform 0.5s var(--ease-out);
+}
+._lb:hover ._ob { transform: translateY(0); }
+._pb {
+font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 10px; font-weight: 400;
+}
+._qb {
+font-family: var(--font-serif); font-size: 1.9rem;
+font-weight: 300; line-height: 1.15; margin-bottom: 14px;
+}
+._rb {
+font-size: 0.73rem; color: rgba(245,243,239,0.45);
+letter-spacing: 0.1em; opacity: 0;
+transition: opacity 0.5s 0.1s;
+}
+._lb:hover ._rb { opacity: 1; }
+/* ABOUT */
+._sb {
+background: var(--carbon);
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 0; padding: 0; max-width: none;
+}
+._tb {
+position: relative; overflow: hidden; min-height: 700px;
+background: url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1400&q=80') center/cover no-repeat, linear-gradient(180deg, var(--carbon-mid), var(--carbon-light));
+}
+._ub {
+position: absolute; bottom: 48px; left: 48px;
+background: var(--black); border: 1px solid rgba(192,98,58,0.25);
+padding: 24px 30px; max-width: 260px;
+}
+._vb {
+font-family: var(--font-serif); font-size: 2.4rem;
+color: var(--accent); line-height: 1;
+}
+._wb {
+font-size: 0.72rem; letter-spacing: 0.1em;
+color: rgba(245,243,239,0.5); margin-top: 6px;
+}
+._xb {
+padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+}
+._zb {
+font-size: 1.05rem; line-height: 1.8;
+color: rgba(245,243,239,0.7); margin: 32px 0 40px;
+font-weight: 300;
+}
+._zb strong { color: var(--white); font-weight: 400; }
+._yb { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
+._ac { display: flex; flex-direction: column; gap: 20px; }
+._bc {
+display: flex; gap: 20px; align-items: flex-start;
+padding: 20px; border: 1px solid rgba(192,98,58,0.06);
+transition: border-color 0.4s;
+}
+._bc:hover { border-color: rgba(192,98,58,0.2); }
+._cc {
+font-family: var(--font-serif); font-size: 1.4rem;
+color: var(--accent); opacity: 0.5; flex-shrink: 0;
+line-height: 1.2;
+}
+._dc h4 {
+font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+font-weight: 400; margin-bottom: 4px;
+}
+._dc p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+/* SERVICES */
+._ec { background: var(--black); }
+._fc {
+display: grid; grid-template-columns: repeat(3, 1fr);
+gap: 1px; max-width: 1400px; margin: 60px auto 0;
+}
+._gc {
+padding: 60px 48px; background: var(--black);
+border: 1px solid rgba(192,98,58,0.07);
+position: relative; overflow: hidden;
+transition: background 0.5s, border-color 0.5s;
+}
+._gc:hover { background: var(--carbon-mid); border-color: rgba(192,98,58,0.2); }
+._ic {
+width: 52px; height: 52px; margin-bottom: 36px;
+display: flex; align-items: center; justify-content: center;
+border: 1px solid rgba(192,98,58,0.2); color: var(--accent);
+}
+._gc h3 {
+font-family: var(--font-serif); font-size: 1.7rem;
+font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+}
+._gc p {
+font-size: 0.88rem; color: var(--text-muted); line-height: 1.75;
+font-weight: 300;
+}
+._hc {
+position: absolute; top: 30px; right: 36px;
+font-family: var(--font-serif); font-size: 5rem;
+font-weight: 300; color: rgba(192,98,58,0.05);
+line-height: 1; transition: color 0.5s;
+}
+._gc:hover ._hc { color: rgba(192,98,58,0.1); }
+/* CARTA */
+._jc {
+padding: 140px 60px;
+background: var(--carbon);
+border-top: 1px solid rgba(192,98,58,0.08);
+}
+._jc ._kc { max-width: 1200px; margin: 0 auto; }
+._lc {
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 80px; margin-top: 60px;
+}
+._mc { margin-bottom: 48px; }
+._mc h4 {
+font-family: var(--font-serif); font-size: 1.3rem;
+font-weight: 400; color: var(--white);
+padding-bottom: 16px; margin-bottom: 24px;
+border-bottom: 1px solid rgba(192,98,58,0.15);
+}
+._nc {
+display: flex; justify-content: space-between;
+align-items: baseline; padding: 12px 0;
+border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+._nc:last-child { border-bottom: none; }
+._oc {
+font-size: 0.92rem; font-weight: 400; color: var(--white);
+flex: 1;
+}
+._pc {
+font-size: 0.78rem; color: var(--text-muted);
+font-weight: 300; margin-top: 2px;
+}
+._qc {
+background: var(--carbon-mid); border: 1px solid rgba(192,98,58,0.1);
+padding: 40px; margin-top: 40px;
+}
+._qc h4 {
+font-family: var(--font-serif); font-size: 1.1rem;
+font-weight: 400; color: var(--accent); margin-bottom: 16px;
+}
+._qc p {
+font-size: 0.9rem; color: var(--text-muted);
+line-height: 1.75; font-weight: 300;
+}
+._rc {
+display: inline-flex; align-items: center; gap: 12px;
+margin-top: 48px; text-decoration: none;
+padding: 18px 40px; border: 1px solid var(--accent);
+color: var(--white); font-size: 0.72rem;
+letter-spacing: 0.2em; text-transform: uppercase;
+transition: background 0.4s, gap 0.3s;
+}
+._rc:hover { background: var(--accent); gap: 18px; }
+/* SOCIAL PROOF (sin verbatim) */
+._sc {
+background: var(--carbon); position: relative; overflow: hidden;
+padding: 140px 60px;
+}
+._sc::before {
+content: '★'; position: absolute; top: -80px; left: 40px;
+font-family: var(--font-serif); font-size: 28rem;
+color: rgba(192,98,58,0.04); line-height: 1; pointer-events: none;
+}
+._tc {
+max-width: 900px; margin: 0 auto; text-align: center; position: relative;
+}
+._vc {
+font-family: var(--font-serif);
+font-size: clamp(4rem, 10vw, 7rem);
+color: var(--accent); line-height: 1; margin: 40px 0 20px;
+letter-spacing: -0.02em;
+}
+._uc {
+display: inline-flex; gap: 6px; margin-bottom: 30px;
+}
+._uc .star {
+width: 20px; height: 20px; background: var(--accent);
+clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+._wc {
+font-size: 1.15rem; color: rgba(245,243,239,0.75);
+margin-bottom: 40px; line-height: 1.7; font-weight: 300;
+max-width: 620px; margin-left: auto; margin-right: auto;
+}
+._xc {
+display: inline-flex; align-items: center; gap: 12px;
+text-decoration: none; padding: 16px 36px;
+border: 1px solid var(--accent); color: var(--white);
+font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+transition: background 0.4s, gap 0.3s;
+}
+._xc:hover { background: var(--accent); gap: 18px; }
+/* LOCATION */
+._yc { background: var(--black); padding: 130px 60px; }
+._zc {
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 60px; max-width: 1400px; margin: 60px auto 0;
+align-items: stretch;
+}
+._ad {
+background: var(--carbon); border: 1px solid rgba(192,98,58,0.08);
+padding: 56px 48px;
+}
+._bd { margin-bottom: 36px; }
+._bd h4 {
+font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 14px; font-weight: 500;
+}
+._bd p, ._bd a {
+font-size: 0.98rem; color: rgba(245,243,239,0.8);
+line-height: 1.7; font-weight: 300; text-decoration: none;
+}
+._bd a:hover { color: var(--accent); }
+._cd { width: 100%; border-collapse: collapse; }
+._cd td {
+padding: 8px 0; font-size: 0.9rem;
+color: rgba(245,243,239,0.75); font-weight: 300;
+}
+._cd td:first-child {
+color: var(--text-muted); letter-spacing: 0.1em;
+text-transform: uppercase; font-size: 0.75rem; width: 40%;
+}
+._dd {
+min-height: 500px; border: 1px solid rgba(192,98,58,0.1);
+overflow: hidden;
+}
+._dd iframe { width: 100%; height: 100%; border: 0; min-height: 500px; }
+/* CTA */
+._ed {
+background: var(--accent); padding: 110px 60px;
+display: flex; align-items: center; justify-content: space-between;
+gap: 60px; flex-wrap: wrap;
+}
+._fd { flex: 1; min-width: 300px; }
+._fd h2 {
+font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
+font-weight: 300; color: var(--black); line-height: 1.1;
+}
+._fd p {
+font-size: 1rem; color: rgba(8,8,8,0.7); margin-top: 16px; font-weight: 300;
+}
+._gd {
+display: inline-flex; align-items: center; gap: 14px;
+background: var(--black); color: var(--white);
+text-decoration: none; padding: 20px 48px;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+font-weight: 500; transition: all 0.35s var(--ease-smooth);
+white-space: nowrap; position: relative; overflow: hidden;
+}
+._gd::before {
+content: ''; position: absolute; inset: 0;
+background: var(--carbon-light); transform: translateX(-102%);
+transition: transform 0.4s var(--ease-out);
+}
+._gd:hover::before { transform: translateX(0); }
+._gd span { position: relative; z-index: 1; }
+/* FOOTER */
+footer {
+background: var(--black); padding: 90px 60px 50px;
+border-top: 1px solid rgba(192,98,58,0.08);
+}
+._hd {
+display: grid; grid-template-columns: 2fr 1fr 1fr;
+gap: 60px; margin-bottom: 70px;
+}
+._id ._d {
+font-size: 1.8rem; margin-bottom: 22px; display: inline-flex;
+}
+._jd {
+font-family: var(--font-serif); font-style: italic;
+font-size: 1.05rem; color: rgba(245,243,239,0.4);
+line-height: 1.6; max-width: 320px; margin-bottom: 36px;
+}
+._kd { display: flex; gap: 14px; }
+._ld {
+width: 44px; height: 44px;
+border: 1px solid rgba(245,243,239,0.1);
+display: flex; align-items: center; justify-content: center;
+text-decoration: none; color: rgba(245,243,239,0.55);
+transition: border-color 0.3s, color 0.3s;
+}
+._ld:hover { border-color: var(--accent); color: var(--accent); }
+._ld svg { width: 18px; height: 18px; }
+._md h4 {
+font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 24px; font-weight: 500;
+}
+._md ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+._md ul a, ._md ul li {
+text-decoration: none; color: rgba(245,243,239,0.5);
+font-size: 0.88rem; transition: color 0.3s; font-weight: 300;
+}
+._md ul a:hover { color: var(--white); }
+._nd {
+border-top: 1px solid rgba(245,243,239,0.06);
+padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+}
+._od {
+font-size: 0.75rem; color: rgba(245,243,239,0.3); letter-spacing: 0.05em;
+}
+/* ANIMATIONS */
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
+.reveal {
+opacity: 0; transform: translateY(36px);
+transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+/* LOADER */
+._a {
+position: fixed; inset: 0; z-index: 10000;
+background: var(--black); display: flex;
+align-items: center; justify-content: center;
+flex-direction: column; gap: 28px;
+transition: opacity 0.8s, visibility 0.8s;
+}
+._a.hidden { opacity: 0; visibility: hidden; }
+._b {
+font-family: var(--font-serif); font-size: 2.5rem;
+letter-spacing: 0.3em; color: var(--white);
+}
+._b span { color: var(--accent); }
+._c {
+width: 200px; height: 1px; background: rgba(245,243,239,0.1);
+position: relative; overflow: hidden;
+}
+._c::after {
+content: ''; position: absolute; inset: 0;
+background: var(--accent); transform: translateX(-100%);
+animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+}
+@keyframes loadBar { to { transform: translateX(0); } }
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+nav { padding: 24px 36px; }
+nav.scrolled { padding: 16px 36px; }
+section { padding: 100px 36px; }
+._m { padding: 0 36px 80px; }
+._u { right: 36px; }
+._bb { grid-template-columns: repeat(2, 1fr); }
+._hd { grid-template-columns: 1fr 1fr; gap: 48px; }
+._zc { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+._g { display: flex; }
+nav { padding: 20px 24px; }
+nav.scrolled { padding: 14px 24px; }
+._e { display: none; }
+section { padding: 80px 24px; }
+._jc { padding: 80px 24px; }
+._yc { padding: 80px 24px; }
+._sc { padding: 80px 24px; }
+._m { padding: 0 24px 70px; }
+._u { display: none; }
+._q { flex-direction: column; align-items: flex-start; gap: 24px; }
+._hb { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+._kb { grid-template-columns: 1fr; }
+._lb:first-child { grid-column: 1; aspect-ratio: 4/3; }
+._sb { grid-template-columns: 1fr; }
+._tb { min-height: 300px; }
+._xb { padding: 60px 24px; }
+._fc { grid-template-columns: 1fr; }
+._lc { grid-template-columns: 1fr; gap: 40px; }
+._ed { padding: 80px 24px; flex-direction: column; }
+._hd { grid-template-columns: 1fr; }
+._nd { flex-direction: column; gap: 20px; text-align: center; }
+._bb { grid-template-columns: 1fr 1fr; }
+._ab { padding: 70px 24px; }
+._ad { padding: 40px 28px; }
+}
+</style><style>*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;}</style></head><body><div class="_a" id="loader"><div class="_b">BUENOS AIRES<span>.</span></div><div class="_c"></div></div><nav id="navbar"><a href="#" class="_d">Buenos Aires<span>.</span></a><ul class="_e"><li><a href="#galeria">Galería</a></li><li><a href="#nosotros">Nosotros</a></li><li><a href="#carta">Carta</a></li><li><a href="#ubicacion">Ubicación</a></li><li><a href="#contacto" class="_f">Reservar</a></li></ul><button class="_g" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button></nav><div class="_h" id="mobileMenu"><a href="#galeria" onclick="closeMobile()">Galería</a><a href="#nosotros" onclick="closeMobile()">Nosotros</a><a href="#carta" onclick="closeMobile()">Carta</a><a href="#ubicacion" onclick="closeMobile()">Ubicación</a><a href="#contacto" onclick="closeMobile()">Reservar</a></div><section class="_i"><div class="_j" id="heroBg"></div><div class="_k"></div><div class="_l"></div><div class="_m"><p class="_n">Bar de Tapas · Ermua · Bizkaia</p><h1 class="_o">
+Bar Buenos Aires<br><em>pintxos, raciones</em><br>y cocina de barrio
+</h1><p class="_p">
+En Calle San Roke, 1, junto a la estación de Ermua. Pintxos recién hechos, alubias caseras, tortilla, bocadillos y un local con ambiente familiar abierto todos los días de 10:30 a 00:00.
+</p><div class="_q"><a href="tel:+34619591806" class="_r"><span>Llamar al bar</span><span>→</span></a><a href="#carta" class="_s"><span>Ver la carta</span><div class="_t">↗</div></a></div></div><div class="_u"><span>Scroll</span><div class="_v"></div></div></section><div class="_w"><div class="_x"><span class="_y"><span class="_z"></span>Pintxos</span><span class="_y"><span class="_z"></span>Alubias caseras</span><span class="_y"><span class="_z"></span>Raciones</span><span class="_y"><span class="_z"></span>Tortilla</span><span class="_y"><span class="_z"></span>Bocadillos</span><span class="_y"><span class="_z"></span>Ambiente de barrio</span><span class="_y"><span class="_z"></span>Pintxos</span><span class="_y"><span class="_z"></span>Alubias caseras</span><span class="_y"><span class="_z"></span>Raciones</span><span class="_y"><span class="_z"></span>Tortilla</span><span class="_y"><span class="_z"></span>Bocadillos</span><span class="_y"><span class="_z"></span>Ambiente de barrio</span></div></div><div class="_ab"><div class="_bb"><div class="_cb reveal"><div class="_db"><span class="count" data-target="66">0</span><span class="_eb">+</span></div><div class="_fb">Reseñas en Google</div></div><div class="_cb reveal reveal-delay-1"><div class="_db"><span class="count" data-target="4">0</span><span class="_eb">,5</span></div><div class="_fb">Nota media Google</div></div><div class="_cb reveal reveal-delay-2"><div class="_db"><span class="count" data-target="13">0</span><span class="_eb">h</span></div><div class="_fb">Horas al día</div></div><div class="_cb reveal reveal-delay-3"><div class="_db"><span class="count" data-target="7">0</span><span class="_eb">d</span></div><div class="_fb">Días a la semana</div></div></div></div><section class="_gb" id="galeria"><div class="_hb"><div><p class="_ib reveal">La casa</p><h2 class="_jb reveal reveal-delay-1">Pintxos, alubias<br>y <em>raciones de siempre</em></h2></div></div><div class="_kb"><div class="_lb"><div class="_mb" style="background: url('https://images.unsplash.com/photo-1515443961218-a51367888e4b?w=1600&q=80') center/cover no-repeat, linear-gradient(135deg, var(--carbon-mid), var(--carbon-light));"></div><div class="_nb"></div><div class="_ob"><p class="_pb">La barra</p><h3 class="_qb">Pintxos y tostas</h3><p class="_rb">Tortilla jugosa, gildas, tostas vascas</p></div></div><div class="_lb"><div class="_mb" style="background: url('https://images.unsplash.com/photo-1518492104633-130d0cc84637?w=900&q=80') center/cover no-repeat, linear-gradient(165deg, var(--carbon-mid), var(--carbon-light));"></div><div class="_nb"></div><div class="_ob"><p class="_pb">La casa</p><h3 class="_qb">Alubias caseras</h3><p class="_rb">Receta tradicional, guisadas a fuego lento</p></div></div><div class="_lb"><div class="_mb" style="background: url('https://images.unsplash.com/photo-1599458448510-59aecaea4752?w=900&q=80') center/cover no-repeat, linear-gradient(195deg, var(--carbon-mid), var(--carbon-light));"></div><div class="_nb"></div><div class="_ob"><p class="_pb">Raciones</p><h3 class="_qb">Para compartir</h3><p class="_rb">Bravas, calamares, tabla de ibéricos</p></div></div><div class="_lb"><div class="_mb" style="background: url('https://images.unsplash.com/photo-1551218372-a8789b81b253?w=900&q=80') center/cover no-repeat, linear-gradient(225deg, var(--carbon-mid), var(--carbon-light));"></div><div class="_nb"></div><div class="_ob"><p class="_pb">Cocina</p><h3 class="_qb">Cebolada</h3><p class="_rb">Tortilla de cebolla al estilo de la casa</p></div></div><div class="_lb"><div class="_mb" style="background: url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=900&q=80') center/cover no-repeat, linear-gradient(135deg, var(--carbon-mid), var(--carbon-light));"></div><div class="_nb"></div><div class="_ob"><p class="_pb">Barra</p><h3 class="_qb">Caña, vino y café</h3><p class="_rb">Del aperitivo al poteo de la tarde</p></div></div><div class="_lb"><div class="_mb" style="background: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=900&q=80') center/cover no-repeat, linear-gradient(165deg, var(--carbon-mid), var(--carbon-light));"></div><div class="_nb"></div><div class="_ob"><p class="_pb">El local</p><h3 class="_qb">Ambiente de barrio</h3><p class="_rb">Centro de Ermua, junto a la estación</p></div></div></div></section><div class="_sb" id="nosotros"><div class="_tb"><div class="_ub"><div class="_vb">Ermua</div><div class="_wb">Calle San Roke, 1 · centro del pueblo</div></div></div><div class="_xb"><p class="_ib reveal">Sobre Buenos Aires</p><h2 class="_jb reveal reveal-delay-1">
+Un bar de los<br>de <em>toda la vida</em></h2><div class="_yb reveal"></div><p class="_zb reveal reveal-delay-2">
+Bar Buenos Aires está en Calle San Roke, 1, en pleno centro de Ermua. <strong>Pintxos hechos en casa, alubias de cuchara, tortilla, raciones y bocadillos</strong>, con producto de mercado y trato cercano de los de siempre.
+<br><br>
+Abrimos todos los días, de 10:30 a 00:00. El sitio para el café de la mañana, el pintxo del mediodía, la comida del día o la caña con los amigos al salir del trabajo.
+</p><div class="_ac reveal reveal-delay-3"><div class="_bc"><div class="_cc">01</div><div class="_dc"><h4>Cocina casera</h4><p>Alubias, tortilla, guisos y pintxos hechos cada día en la cocina del bar</p></div></div><div class="_bc"><div class="_cc">02</div><div class="_dc"><h4>Abiertos los siete días</h4><p>De 10:30 a 00:00, sin días de descanso, para cuando a ti te venga bien</p></div></div><div class="_bc"><div class="_cc">03</div><div class="_dc"><h4>En el centro de Ermua</h4><p>Calle San Roke, 1, a un paso de la estación y de la plaza del pueblo</p></div></div></div></div></div><section class="_ec"><div style="max-width:1400px; margin:0 auto"><p class="_ib reveal">Qué ofrecemos</p><h2 class="_jb reveal reveal-delay-1" style="max-width:620px">
+Pintxos, alubias y <em>cocina de mercado</em></h2><div class="_fc"><div class="_gc reveal"><div class="_hc">01</div><div class="_ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l2.4 6.4L21 9l-5 4.4L17.4 20 12 16.8 6.6 20 8 13.4 3 9l6.6-.6z"/></svg></div><h3>Pintxos y tostas</h3><p>Barra con pintxos recién hechos, tortilla de patata jugosa, gildas, tostas vascas y tapas calientes del día. Producto fresco y preparado en casa.</p></div><div class="_gc reveal reveal-delay-1"><div class="_hc">02</div><div class="_ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 11h18M4 11v5a3 3 0 003 3h10a3 3 0 003-3v-5M8 11V8a4 4 0 018 0v3"/></svg></div><h3>Alubias y guisos</h3><p>Alubias caseras guisadas a fuego lento, platos de cuchara y cocina tradicional. Pregunta por el plato del día, la carta cambia según temporada.</p></div><div class="_gc reveal reveal-delay-2"><div class="_hc">03</div><div class="_ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 8h1a4 4 0 010 8h-1M3 8h14v9a4 4 0 01-4 4H7a4 4 0 01-4-4zM6 1v3M10 1v3M14 1v3"/></svg></div><h3>Raciones y bocadillos</h3><p>Raciones para compartir, bocadillos calientes y fríos, cañas, vinos y café. De 10:30 a 00:00, todos los días de la semana.</p></div></div></div></section><section class="_jc" id="carta"><div class="_kc"><p class="_ib reveal">La carta</p><h2 class="_jb reveal reveal-delay-1" style="max-width:600px">
+Pintxos, <em>alubias</em> y raciones
+</h2><div class="_lc"><div><div class="_mc reveal"><h4>Pintxos y tostas</h4><div class="_nc"><div><div class="_oc">Tortilla de patata</div><div class="_pc">Jugosa, hecha en casa</div></div></div><div class="_nc"><div><div class="_oc">Cebolada</div><div class="_pc">Tortilla de cebolla al estilo de la casa</div></div></div><div class="_nc"><div><div class="_oc">Gilda</div><div class="_pc">Anchoa, aceituna y guindilla</div></div></div><div class="_nc"><div><div class="_oc">Croqueta casera</div></div></div><div class="_nc"><div><div class="_oc">Tosta del día</div><div class="_pc">Pregunta en la barra</div></div></div></div><div class="_mc reveal reveal-delay-1"><h4>Cocina de cuchara</h4><div class="_nc"><div><div class="_oc">Alubias de la casa</div><div class="_pc">Guisadas a fuego lento, con sus sacramentos</div></div></div><div class="_nc"><div><div class="_oc">Guiso del día</div><div class="_pc">Según temporada, pregunta en la barra</div></div></div><div class="_nc"><div><div class="_oc">Sopa caliente</div></div></div></div></div><div><div class="_mc reveal"><h4>Raciones</h4><div class="_nc"><div><div class="_oc">Patatas bravas</div></div></div><div class="_nc"><div><div class="_oc">Calamares</div></div></div><div class="_nc"><div><div class="_oc">Tabla de ibéricos</div></div></div><div class="_nc"><div><div class="_oc">Tabla de quesos</div></div></div></div><div class="_mc reveal reveal-delay-1"><h4>Bocadillos y barra</h4><div class="_nc"><div><div class="_oc">Bocadillo de tortilla</div></div></div><div class="_nc"><div><div class="_oc">Bocadillo de jamón</div></div></div><div class="_nc"><div><div class="_oc">Bocadillo de lomo</div></div></div><div class="_nc"><div><div class="_oc">Café, caña o vino</div></div></div></div><div class="_qc reveal reveal-delay-2"><h4>Precios de barrio</h4><p>Pintxos, raciones y bocadillos con precios de toda la vida. Pregunta por el plato del día, la carta cambia según producto de mercado y temporada.</p></div></div></div><a href="tel:+34619591806" class="_rc reveal"><span>Reservar mesa</span><span>→</span></a></div></section><section class="_sc"><div class="_tc"><p class="_ib reveal" style="justify-content:center">Opiniones reales</p><div class="_uc reveal reveal-delay-1" aria-label="4,5 estrellas sobre 5"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><div class="_vc reveal reveal-delay-1">4,5 <span style="font-size:0.5em;color:var(--text-muted)">/ 5</span></div><p class="_wc reveal reveal-delay-2"><strong style="color:var(--white);font-weight:400">66 reseñas verificadas en Google</strong> avalan la cocina casera, el trato cercano y el ambiente familiar de Bar Buenos Aires en Ermua.
+</p><a href="https://maps.google.com/?cid=1274516910328050339" target="_blank" rel="noopener" class="_xc reveal reveal-delay-3"><span>Ver reseñas en Google</span><span>↗</span></a></div></section><section class="_yc" id="ubicacion"><p class="_ib reveal">Dónde estamos</p><h2 class="_jb reveal reveal-delay-1" style="max-width:700px">
+En el centro de <em>Ermua</em></h2><div class="_zc"><div class="_ad reveal"><div class="_bd"><h4>Dirección</h4><p>Calle San Roke, 1<br>48260 Ermua, Bizkaia<br>Centro del pueblo</p></div><div class="_bd"><h4>Teléfono</h4><p><a href="tel:+34619591806">619 59 18 06</a></p></div><div class="_bd"><h4>Horario</h4><table class="_cd" aria-label="Horario de apertura"><caption style="position:absolute;left:-9999px">Horario de Bar Buenos Aires por día de la semana</caption><tr><td>Lunes</td><td>10:30 – 00:00</td></tr><tr><td>Martes</td><td>10:30 – 00:00</td></tr><tr><td>Miércoles</td><td>10:30 – 00:00</td></tr><tr><td>Jueves</td><td>10:30 – 00:00</td></tr><tr><td>Viernes</td><td>10:30 – 00:00</td></tr><tr><td>Sábado</td><td>10:30 – 00:00</td></tr><tr><td>Domingo</td><td>10:30 – 00:00</td></tr></table></div></div><div class="_dd reveal reveal-delay-1"><iframe
+src="https://www.google.com/maps?q=Calle+San+Roke+1,+48260+Ermua,+Bizkaia&output=embed"
+loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+title="Ubicación de Bar Buenos Aires en Ermua" allowfullscreen></iframe></div></div></section><div class="_ed" id="contacto"><div class="_fd"><h2>¿Nos vemos en<br>Buenos Aires?</h2><p>Llama para reservar o pásate sin avisar. Pintxos, alubias y barra de toda la vida en el centro de Ermua.</p></div><a href="tel:+34619591806" class="_gd"><span>Llamar ahora</span><span>↗</span></a></div><footer><div class="_hd"><div class="_id"><a href="#" class="_d">Buenos Aires<span>.</span></a><p class="_jd">"Pintxos, alubias y ambiente de barrio en el centro de Ermua."</p><div class="_kd"><a href="https://maps.google.com/?cid=1274516910328050339" class="_ld" aria-label="Google Maps" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg></a><a href="https://wa.me/34619591806" class="_ld" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.7 1.1 2.9.1.2 2 3 4.8 4.2 2.8 1.2 2.8.8 3.3.7.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.3A10 10 0 1 0 12 2z"/></svg></a></div></div><div class="_md"><h4>Buenos Aires</h4><ul><li><a href="#galeria">Galería</a></li><li><a href="#nosotros">Sobre nosotros</a></li><li><a href="#carta">Carta</a></li><li><a href="#ubicacion">Ubicación y horario</a></li></ul></div><div class="_md"><h4>Contacto</h4><ul><li>Calle San Roke, 1</li><li>48260 Ermua, Bizkaia</li><li><a href="tel:+34619591806">619 59 18 06</a></li></ul></div></div><div class="_nd"><p class="_od">© 2026 Bar Buenos Aires · Ermua. Todos los derechos reservados.</p></div></footer><script>
+window.addEventListener('load', () => {
+setTimeout(() => {
+document.getElementById('loader').classList.add('hidden');
+document.getElementById('heroBg').classList.add('loaded');
+}, 1600);
+});
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+hamburger.classList.toggle('active');
+mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+hamburger.classList.remove('active');
+mobileMenu.classList.remove('open');
+}
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach(el => observer.observe(el));
+function animateCount(el) {
+const targetText = el.dataset.target;
+const target = parseInt(targetText);
+const duration = 1800;
+const start = performance.now();
+function step(now) {
+const progress = Math.min((now - start) / duration, 1);
+const ease = 1 - Math.pow(1 - progress, 4);
+el.textContent = Math.round(ease * target);
+if (progress < 1) requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+}
+const countObserver = new IntersectionObserver(entries => {
+entries.forEach(e => {
+if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+});
+}, { threshold: 0.5 });
+document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+window.addEventListener('scroll', () => {
+const heroBg = document.getElementById('heroBg');
+if (heroBg && window.scrollY < window.innerHeight) {
+heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.25}px)`;
+}
+});
+</script><script>
+(function(){
+// Disable right-click
+document.addEventListener('contextmenu',function(e){e.preventDefault();});
+// Disable text selection
+document.addEventListener('selectstart',function(e){e.preventDefault();});
+// Disable copy
+document.addEventListener('copy',function(e){e.preventDefault();});
+// Disable keyboard shortcuts (Ctrl+U, Ctrl+S, Ctrl+Shift+I, F12)
+document.addEventListener('keydown',function(e){
+if(e.key==='F12'||(e.ctrlKey&&e.key==='u')||(e.ctrlKey&&e.key==='s')||(e.ctrlKey&&e.shiftKey&&e.key==='I')){
+e.preventDefault();
+}
+});
+// Watermark
+var w=document.createElement('div');
+w.style.cssText='position:fixed;bottom:-100px;right:-100px;opacity:0.001;font-size:1px;pointer-events:none;z-index:-1;';
+w.textContent='bar-buenos-aires-ermua';
+document.body.appendChild(w);
+})();
+</script></body></html>
