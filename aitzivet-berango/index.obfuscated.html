@@ -1,0 +1,787 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Clínica Veterinaria AitziVet — Berango (Bizkaia)</title><meta name="description" content="Clínica Veterinaria AitziVet en Berango (Bizkaia). Medicina general, cirugía, esterilización, vacunación y atención con mimo. 4,8★ en Google con 65 reseñas."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"><style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--black: #080c0a;
+--white: #f5f3ef;
+--accent: #0ea5e9;
+--accent-light: #38bdf8;
+--carbon: #0d1419;
+--carbon-mid: #14202a;
+--carbon-light: #1c2b36;
+--text-muted: #7a909c;
+--font-serif: 'DM Serif Display', serif;
+--font-sans: 'DM Sans', sans-serif;
+--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+--ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+html { scroll-behavior: smooth; }
+body {
+background: var(--black);
+color: var(--white);
+font-family: var(--font-sans);
+font-weight: 300;
+line-height: 1.6;
+overflow-x: hidden;
+}
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* --- NAVBAR --- */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+display: flex; align-items: center; justify-content: space-between;
+padding: 28px 60px;
+backdrop-filter: blur(0px);
+transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+}
+nav.scrolled {
+backdrop-filter: blur(20px);
+background: rgba(8,12,10,0.85);
+padding: 18px 60px;
+border-bottom: 1px solid rgba(14,165,233,0.08);
+}
+._d {
+font-family: var(--font-serif);
+font-size: 1.6rem;
+font-weight: 400;
+letter-spacing: 0.15em;
+text-decoration: none;
+color: var(--white);
+display: flex; align-items: center; gap: 10px;
+}
+._d span { color: var(--accent); }
+._e { display: flex; gap: 44px; list-style: none; align-items: center; }
+._e a {
+text-decoration: none; color: rgba(245,243,239,0.65);
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+transition: color 0.3s; font-weight: 400;
+}
+._e a:hover { color: var(--accent); }
+._f {
+background: transparent;
+border: 1px solid var(--accent);
+color: var(--accent) !important;
+padding: 10px 28px !important;
+font-size: 0.72rem !important;
+letter-spacing: 0.25em !important;
+transition: background 0.3s, color 0.3s !important;
+}
+._f:hover { background: var(--accent) !important; color: var(--black) !important; }
+/* --- HAMBURGER --- */
+._g {
+display: none; flex-direction: column; gap: 5px;
+background: none; border: none; cursor: pointer; padding: 8px;
+}
+._g span {
+width: 24px; height: 2px; background: var(--white);
+transition: transform 0.3s, opacity 0.3s;
+}
+._g.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+._g.active span:nth-child(2) { opacity: 0; }
+._g.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+._h {
+display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+background: var(--black); z-index: 999;
+flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+}
+._h.open { display: flex; }
+._h a {
+text-decoration: none; color: var(--white); font-size: 1.2rem;
+letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+}
+._h a:hover { color: var(--accent); }
+/* --- HERO --- */
+._i {
+position: relative; height: 100vh; min-height: 700px;
+display: flex; align-items: flex-end; justify-content: flex-start;
+overflow: hidden;
+}
+._j {
+position: absolute; inset: 0;
+background-size: cover; background-position: center;
+transform: scale(1.08);
+transition: transform 8s var(--ease-out);
+}
+._j.loaded { transform: scale(1); }
+._k {
+position: absolute; inset: 0;
+background: linear-gradient(135deg, rgba(8,12,10,0.88) 0%, rgba(8,12,10,0.45) 50%, rgba(8,12,10,0.2) 100%);
+}
+._l {
+position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+background: linear-gradient(to top, var(--black), transparent);
+}
+._m {
+position: relative; z-index: 2;
+padding: 0 60px 100px;
+max-width: 900px;
+}
+._n {
+font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 28px;
+display: flex; align-items: center; gap: 16px;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+}
+._n::before {
+content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+}
+._o {
+font-family: var(--font-serif);
+font-size: clamp(3.5rem, 7vw, 7rem);
+font-weight: 300;
+line-height: 1.05;
+letter-spacing: -0.02em;
+margin-bottom: 32px;
+opacity: 0; transform: translateY(30px);
+animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+text-shadow: 0 4px 28px rgba(0,0,0,0.55);
+}
+._o em { font-style: italic; color: var(--accent); }
+._p {
+font-size: 1.05rem; color: rgba(245,243,239,0.72);
+max-width: 520px; line-height: 1.7; margin-bottom: 52px;
+font-weight: 300;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+}
+._q {
+display: flex; align-items: center; gap: 40px;
+opacity: 0; transform: translateY(20px);
+animation: fadeUp 1s 1s var(--ease-out) forwards;
+}
+._r {
+display: inline-flex; align-items: center; gap: 14px;
+background: var(--accent); color: var(--black);
+text-decoration: none; padding: 18px 40px;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+font-weight: 500; transition: all 0.35s var(--ease-smooth);
+position: relative; overflow: hidden;
+}
+._r::before {
+content: ''; position: absolute; inset: 0;
+background: var(--white); transform: translateX(-102%);
+transition: transform 0.4s var(--ease-out);
+}
+._r:hover::before { transform: translateX(0); }
+._r:hover { color: var(--black); }
+._r span { position: relative; z-index: 1; }
+._s {
+color: rgba(245,243,239,0.8); text-decoration: none;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+display: flex; align-items: center; gap: 10px;
+transition: color 0.3s;
+}
+._s:hover { color: var(--accent); }
+._t {
+width: 36px; height: 36px;
+border: 1px solid rgba(245,243,239,0.25);
+border-radius: 50%; display: flex; align-items: center; justify-content: center;
+transition: border-color 0.3s, transform 0.3s;
+}
+._s:hover ._t {
+border-color: var(--accent); transform: rotate(45deg);
+}
+._u {
+position: absolute; right: 60px; bottom: 100px; z-index: 2;
+display: flex; flex-direction: column; align-items: center; gap: 16px;
+opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+}
+._u span {
+font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+color: var(--text-muted); writing-mode: vertical-rl;
+}
+._v {
+width: 1px; height: 70px;
+background: linear-gradient(to bottom, var(--accent), transparent);
+animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse {
+0%, 100% { opacity: 0.4; transform: scaleY(1); }
+50% { opacity: 1; transform: scaleY(1.1); }
+}
+/* --- MARQUEE --- */
+._w {
+border-top: 1px solid rgba(14,165,233,0.12);
+border-bottom: 1px solid rgba(14,165,233,0.12);
+overflow: hidden; padding: 20px 0; background: var(--carbon);
+}
+._x {
+display: flex; gap: 0; white-space: nowrap;
+animation: marquee 24s linear infinite;
+}
+._y {
+display: inline-flex; align-items: center; gap: 30px;
+padding: 0 40px;
+font-family: var(--font-serif); font-size: 1.1rem;
+font-style: italic; color: rgba(245,243,239,0.3);
+letter-spacing: 0.05em;
+}
+._y ._z { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* --- SECTION COMMONS --- */
+section { padding: 130px 60px; }
+._jb {
+font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 20px;
+display: flex; align-items: center; gap: 14px;
+}
+._jb::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+._kb {
+font-family: var(--font-serif);
+font-size: clamp(2.4rem, 4vw, 4.2rem);
+font-weight: 300; line-height: 1.1;
+letter-spacing: -0.01em;
+}
+._kb em { font-style: italic; color: var(--accent); }
+/* --- STATS --- */
+._ab {
+background: var(--carbon);
+padding: 100px 60px;
+border-top: 1px solid rgba(14,165,233,0.08);
+}
+._bb {
+display: grid; grid-template-columns: repeat(4, 1fr);
+gap: 2px; max-width: 1400px; margin: 0 auto;
+}
+._cb {
+padding: 60px 50px; background: var(--carbon);
+border: 1px solid rgba(14,165,233,0.08);
+position: relative; overflow: hidden;
+transition: border-color 0.4s;
+}
+._cb::before {
+content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+height: 3px; background: var(--accent); transform: scaleX(0);
+transition: transform 0.5s var(--ease-out); transform-origin: left;
+}
+._cb:hover::before { transform: scaleX(1); }
+._cb:hover { border-color: rgba(14,165,233,0.3); }
+._db {
+font-family: var(--font-serif);
+font-size: clamp(2.5rem, 7vw, 4.5rem);
+font-weight: 300; line-height: 1; color: var(--white);
+margin-bottom: 12px; letter-spacing: -0.02em;
+}
+._db ._gb { color: var(--accent); }
+._fb {
+font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+color: var(--text-muted); font-weight: 400;
+}
+/* --- GALLERY --- */
+._hb { background: var(--black); }
+._ib {
+display: flex; justify-content: space-between; align-items: flex-end;
+margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+gap: 40px;
+}
+._ib ._kb { max-width: 540px; }
+._lb {
+display: flex; align-items: center; gap: 12px;
+text-decoration: none; color: var(--accent);
+font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+transition: gap 0.3s; padding-bottom: 4px;
+border-bottom: 1px solid rgba(14,165,233,0.3);
+white-space: nowrap;
+}
+._lb:hover { gap: 20px; border-color: var(--accent); }
+._mb {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 3px;
+max-width: 1400px; margin: 0 auto;
+}
+._nb {
+position: relative; overflow: hidden;
+aspect-ratio: 4/3;
+}
+._nb:first-child {
+grid-column: span 2; aspect-ratio: 21/8;
+}
+._ob {
+width: 100%; height: 100%; object-fit: cover;
+transition: transform 0.8s var(--ease-out);
+background: var(--carbon-mid);
+}
+._nb:hover ._ob { transform: scale(1.06); }
+._pb {
+position: absolute; inset: 0;
+background: linear-gradient(to top, rgba(8,12,10,0.88) 0%, rgba(8,12,10,0.1) 60%, transparent 100%);
+opacity: 0.6; transition: opacity 0.5s;
+}
+._nb:hover ._pb { opacity: 0.85; }
+._rb {
+position: absolute; bottom: 0; left: 0; right: 0;
+padding: 40px; transform: translateY(15px);
+transition: transform 0.5s var(--ease-out);
+}
+._nb:hover ._rb { transform: translateY(0); }
+._sb {
+font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 10px; font-weight: 400;
+}
+._tb {
+font-family: var(--font-serif); font-size: 1.9rem;
+font-weight: 300; line-height: 1.15; margin-bottom: 14px;
+}
+._ub {
+font-size: 0.73rem; color: rgba(245,243,239,0.55);
+letter-spacing: 0.1em; opacity: 0;
+transition: opacity 0.5s 0.1s;
+}
+._nb:hover ._ub { opacity: 1; }
+._qb {
+position: absolute; top: 36px; right: 36px;
+width: 50px; height: 50px;
+border: 1px solid rgba(245,243,239,0.25);
+border-radius: 50%; display: flex; align-items: center; justify-content: center;
+opacity: 0; transform: translate(10px, -10px);
+transition: all 0.4s var(--ease-out);
+}
+._nb:hover ._qb { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
+/* --- ABOUT --- */
+._vb {
+background: var(--carbon);
+display: grid; grid-template-columns: 1fr 1fr;
+gap: 0; padding: 0; max-width: none;
+}
+._wb {
+position: relative; overflow: hidden; min-height: 700px;
+}
+._wb img {
+width: 100%; height: 100%; object-fit: cover;
+}
+._xb {
+position: absolute; bottom: 48px; left: 48px;
+background: var(--black); border: 1px solid rgba(14,165,233,0.3);
+padding: 24px 30px; max-width: 260px;
+}
+._yb {
+font-family: var(--font-serif); font-size: 3rem;
+color: var(--accent); line-height: 1;
+}
+._zb {
+font-size: 0.72rem; letter-spacing: 0.1em;
+color: rgba(245,243,239,0.6); margin-top: 6px;
+}
+._ac {
+padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+}
+._cc {
+font-size: 1.05rem; line-height: 1.8;
+color: rgba(245,243,239,0.72); margin: 32px 0 52px;
+font-weight: 300;
+}
+._cc strong { color: var(--white); font-weight: 500; }
+._bc {
+width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
+}
+._dc { display: flex; flex-direction: column; gap: 20px; }
+._ec {
+display: flex; gap: 20px; align-items: flex-start;
+padding: 20px; border: 1px solid rgba(14,165,233,0.08);
+transition: border-color 0.4s;
+}
+._ec:hover { border-color: rgba(14,165,233,0.28); }
+._fc {
+font-family: var(--font-serif); font-size: 1.4rem;
+color: var(--accent); opacity: 0.55; flex-shrink: 0;
+line-height: 1.2;
+}
+._gc h3 {
+font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+font-weight: 500; margin-bottom: 6px;
+}
+._gc p {
+font-size: 0.88rem; color: rgba(245,243,239,0.65); font-weight: 300;
+}
+/* --- SERVICES --- */
+._ic { background: var(--black); }
+._jc {
+display: grid; grid-template-columns: repeat(2, 1fr);
+gap: 1px; max-width: 1400px; margin: 60px auto 0;
+}
+._kc {
+padding: 60px 48px; background: var(--black);
+border: 1px solid rgba(14,165,233,0.08);
+position: relative; overflow: hidden;
+transition: background 0.5s, border-color 0.5s;
+}
+._kc:hover { background: var(--carbon-mid); border-color: rgba(14,165,233,0.25); }
+._mc {
+width: 52px; height: 52px; margin-bottom: 36px;
+display: flex; align-items: center; justify-content: center;
+border: 1px solid rgba(14,165,233,0.3); color: var(--accent);
+}
+._kc h3 {
+font-family: var(--font-serif); font-size: 1.7rem;
+font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+}
+._kc p {
+font-size: 0.92rem; color: rgba(245,243,239,0.68); line-height: 1.75;
+font-weight: 300;
+}
+._nc {
+display: inline-flex; align-items: center; gap: 10px;
+margin-top: 32px; text-decoration: none;
+font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+color: rgba(14,165,233,0.65); transition: color 0.3s, gap 0.3s;
+}
+._nc:hover { color: var(--accent); gap: 16px; }
+._lc {
+position: absolute; top: 30px; right: 36px;
+font-family: var(--font-serif); font-size: 5rem;
+font-weight: 300; color: rgba(14,165,233,0.07);
+line-height: 1; transition: color 0.5s;
+}
+._kc:hover ._lc { color: rgba(14,165,233,0.14); }
+/* --- TESTIMONIALS --- */
+._oc {
+background: var(--carbon); position: relative; overflow: hidden;
+}
+._oc::before {
+content: '"'; position: absolute; top: -60px; left: 40px;
+font-family: var(--font-serif); font-size: 30rem;
+color: rgba(14,165,233,0.04); line-height: 1; pointer-events: none;
+}
+._pc { max-width: 1400px; margin: 0 auto; position: relative; }
+._qc {
+display: grid; grid-template-columns: repeat(3, 1fr);
+gap: 2px; margin-top: 70px;
+}
+._rc {
+padding: 56px 44px; background: rgba(8,12,10,0.45);
+border: 1px solid rgba(14,165,233,0.08);
+transition: border-color 0.4s, background 0.4s;
+display: flex; flex-direction: column;
+}
+._rc:hover { border-color: rgba(14,165,233,0.25); background: rgba(8,12,10,0.75); }
+._sc { display: flex; gap: 5px; margin-bottom: 28px; }
+.star {
+width: 12px; height: 12px; background: var(--accent);
+clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+._tc {
+font-family: var(--font-serif); font-size: 1.15rem;
+font-style: italic; font-weight: 300;
+line-height: 1.7; color: rgba(245,243,239,0.88);
+margin-bottom: 36px; flex: 1;
+}
+._uc {
+width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4;
+}
+._vc strong {
+display: block; font-size: 0.82rem; font-weight: 500;
+letter-spacing: 0.08em; margin-bottom: 4px;
+}
+._vc span {
+font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
+}
+/* --- MAPS --- */
+._wc {
+background: var(--black); padding: 0;
+}
+._xc {
+display: grid; grid-template-columns: 1fr 1fr;
+max-width: none;
+}
+._yc {
+width: 100%; height: 560px; border: none; filter: grayscale(20%) contrast(1.08);
+}
+._zc {
+background: var(--carbon); padding: 80px;
+display: flex; flex-direction: column; justify-content: center;
+}
+._zc ._jb { margin-bottom: 28px; }
+._zc h2 {
+font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 3.2rem);
+font-weight: 300; line-height: 1.15; margin-bottom: 48px;
+}
+._zc h2 em { font-style: italic; color: var(--accent); }
+._ad { display: flex; flex-direction: column; gap: 28px; }
+._bd {
+display: flex; align-items: flex-start; gap: 20px;
+padding-bottom: 28px; border-bottom: 1px solid rgba(14,165,233,0.1);
+}
+._bd:last-child { border-bottom: none; padding-bottom: 0; }
+._cd {
+width: 44px; height: 44px; flex-shrink: 0;
+border: 1px solid rgba(14,165,233,0.3);
+display: flex; align-items: center; justify-content: center;
+color: var(--accent);
+}
+._dd {
+font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--text-muted); margin-bottom: 6px;
+}
+._ed {
+font-size: 0.95rem; color: var(--white); font-weight: 300;
+text-decoration: none; transition: color 0.3s;
+}
+a._ed:hover { color: var(--accent); }
+/* --- CTA --- */
+._fd {
+background: var(--accent); padding: 110px 60px;
+display: flex; align-items: center; justify-content: space-between;
+gap: 60px; flex-wrap: wrap;
+}
+._gd { flex: 1; min-width: 300px; }
+._gd h2 {
+font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
+font-weight: 300; color: var(--black); line-height: 1.1;
+}
+._gd p {
+font-size: 1rem; color: rgba(8,12,10,0.75); margin-top: 16px; font-weight: 400;
+}
+._hd {
+display: inline-flex; align-items: center; gap: 14px;
+background: var(--black); color: var(--white);
+text-decoration: none; padding: 20px 48px;
+font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+font-weight: 500; transition: all 0.35s var(--ease-smooth);
+white-space: nowrap; position: relative; overflow: hidden;
+}
+._hd::before {
+content: ''; position: absolute; inset: 0;
+background: var(--carbon-light); transform: translateX(-102%);
+transition: transform 0.4s var(--ease-out);
+}
+._hd:hover::before { transform: translateX(0); }
+._hd span { position: relative; z-index: 1; }
+/* --- FOOTER --- */
+footer {
+background: var(--black); padding: 90px 60px 50px;
+border-top: 1px solid rgba(14,165,233,0.08);
+}
+._id {
+display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: 60px; margin-bottom: 70px;
+}
+._jd ._d {
+font-size: 1.8rem; margin-bottom: 22px; display: inline-flex;
+}
+._kd {
+font-family: var(--font-serif); font-style: italic;
+font-size: 1.05rem; color: rgba(245,243,239,0.45);
+line-height: 1.6; max-width: 300px; margin-bottom: 36px;
+}
+._ld { display: flex; gap: 14px; }
+._md {
+width: 42px; height: 42px;
+border: 1px solid rgba(245,243,239,0.15);
+display: flex; align-items: center; justify-content: center;
+text-decoration: none; color: rgba(245,243,239,0.5);
+transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+._md:hover { border-color: var(--accent); color: var(--accent); background: rgba(14,165,233,0.05); }
+._md svg { width: 17px; height: 17px; }
+._nd h4 {
+font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+color: var(--accent); margin-bottom: 24px; font-weight: 500;
+}
+._nd ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+._nd ul a {
+text-decoration: none; color: rgba(245,243,239,0.5);
+font-size: 0.88rem; transition: color 0.3s; font-weight: 300;
+}
+._nd ul a:hover { color: var(--white); }
+._od {
+border-top: 1px solid rgba(245,243,239,0.08);
+padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+}
+._pd {
+font-size: 0.75rem; color: rgba(245,243,239,0.3); letter-spacing: 0.05em;
+}
+._qd { display: flex; gap: 28px; }
+._qd a {
+font-size: 0.72rem; color: rgba(245,243,239,0.25);
+text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+}
+._qd a:hover { color: var(--text-muted); }
+/* --- ANIMATIONS --- */
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
+.reveal {
+opacity: 0; transform: translateY(36px);
+transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+/* --- LOADER --- */
+._a {
+position: fixed; inset: 0; z-index: 10000;
+background: var(--black); display: flex;
+align-items: center; justify-content: center;
+flex-direction: column; gap: 28px;
+transition: opacity 0.8s, visibility 0.8s;
+}
+._a.hidden { opacity: 0; visibility: hidden; }
+._b {
+font-family: var(--font-serif); font-size: 2.5rem;
+letter-spacing: 0.3em; color: var(--white);
+}
+._b span { color: var(--accent); }
+._c {
+width: 200px; height: 1px; background: rgba(245,243,239,0.12);
+position: relative; overflow: hidden;
+}
+._c::after {
+content: ''; position: absolute; inset: 0;
+background: var(--accent); transform: translateX(-100%);
+animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+}
+@keyframes loadBar { to { transform: translateX(0); } }
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+nav { padding: 24px 36px; }
+nav.scrolled { padding: 16px 36px; }
+section { padding: 100px 36px; }
+._m { padding: 0 36px 80px; }
+._u { right: 36px; }
+._bb { grid-template-columns: repeat(2, 1fr); }
+._id { grid-template-columns: 1fr 1fr; gap: 48px; }
+._xc { grid-template-columns: 1fr; }
+._yc { height: 360px; }
+._zc { padding: 60px 48px; }
+}
+@media (max-width: 768px) {
+._g { display: flex; }
+nav { padding: 20px 24px; }
+nav.scrolled { padding: 14px 24px; }
+._e { display: none; }
+section { padding: 80px 24px; }
+._m { padding: 0 24px 70px; }
+._u { display: none; }
+._q { flex-direction: column; align-items: flex-start; gap: 24px; }
+._ib { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+._mb { grid-template-columns: 1fr; }
+._nb:first-child { grid-column: 1; aspect-ratio: 4/3; }
+._vb { grid-template-columns: 1fr; }
+._wb { min-height: 300px; }
+._ac { padding: 60px 24px; }
+._jc { grid-template-columns: 1fr; }
+._qc { grid-template-columns: 1fr; }
+._fd { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
+._id { grid-template-columns: 1fr; }
+._od { flex-direction: column; gap: 20px; text-align: center; }
+._bb { grid-template-columns: 1fr 1fr; }
+._ab { padding: 70px 24px; }
+._zc { padding: 48px 24px; }
+}
+</style><style>*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;}</style></head><body><div class="_a" id="loader"><div class="_b">AITZIVET<span>.</span></div><div class="_c"></div></div><nav id="navbar"><a href="#" class="_d">AitziVet<span>.</span></a><ul class="_e"><li><a href="#galeria">Galería</a></li><li><a href="#nosotros">Nosotros</a></li><li><a href="#servicios">Servicios</a></li><li><a href="#opiniones">Opiniones</a></li><li><a href="#contacto" class="_f">Pedir cita</a></li></ul><button class="_g" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button></nav><div class="_h" id="mobileMenu"><a href="#galeria" onclick="closeMobile()">Galería</a><a href="#nosotros" onclick="closeMobile()">Nosotros</a><a href="#servicios" onclick="closeMobile()">Servicios</a><a href="#opiniones" onclick="closeMobile()">Opiniones</a><a href="#contacto" onclick="closeMobile()">Pedir cita</a></div><section class="_i"><div class="_j" id="heroBg" style="background-image: url('img/foto-1.jpg');"></div><div class="_k"></div><div class="_l"></div><div class="_m"><p class="_n">Veterinaria &middot; Berango &middot; Bizkaia</p><h1 class="_o">
+Cuidamos de quien<br>más <em>te quiere</em></h1><p class="_p">
+Clínica veterinaria en Berango con trato cercano y medicina de calidad. Consulta general, cirugía, esterilización, vacunación y seguimiento personalizado para perros, gatos y pequeños animales.
+</p><div class="_q"><a href="tel:+34686068431" class="_r"><span>Llamar ahora</span><span>&rarr;</span></a><a href="#servicios" class="_s"><span>Nuestros servicios</span><div class="_t">&nearr;</div></a></div></div><div class="_u"><span>Scroll</span><div class="_v"></div></div></section><div class="_w"><div class="_x"><span class="_y"><span class="_z"></span>Consulta General</span><span class="_y"><span class="_z"></span>Cirugía</span><span class="_y"><span class="_z"></span>Esterilización</span><span class="_y"><span class="_z"></span>Vacunación</span><span class="_y"><span class="_z"></span>Analíticas</span><span class="_y"><span class="_z"></span>Seguimiento personalizado</span><span class="_y"><span class="_z"></span>Consulta General</span><span class="_y"><span class="_z"></span>Cirugía</span><span class="_y"><span class="_z"></span>Esterilización</span><span class="_y"><span class="_z"></span>Vacunación</span><span class="_y"><span class="_z"></span>Analíticas</span><span class="_y"><span class="_z"></span>Seguimiento personalizado</span></div></div><div class="_ab"><div class="_bb"><div class="_cb reveal"><div class="_db"><span class="_eb" data-target="4.8">0</span></div><div class="_fb">Estrellas · valoración Google</div></div><div class="_cb reveal reveal-delay-1"><div class="_db"><span class="count" data-target="65">0</span><span class="_gb">+</span></div><div class="_fb">Reseñas verificadas</div></div><div class="_cb reveal reveal-delay-2"><div class="_db"><span class="count" data-target="100">0</span><span class="_gb">%</span></div><div class="_fb">Reseñas de 5 estrellas</div></div><div class="_cb reveal reveal-delay-3"><div class="_db"><span class="count" data-target="5">0</span><span class="_gb">d</span></div><div class="_fb">Días de atención a la semana</div></div></div></div><section class="_hb" id="galeria"><div class="_ib reveal"><div><p class="_jb">Un vistazo a la clínica</p><h2 class="_kb">Nuestro día a día<br>en <em>Berango</em></h2></div><a href="https://maps.google.com/?cid=1714309273116248826" target="_blank" rel="noopener" class="_lb">Ver en Google Maps &rarr;</a></div><div class="_mb"><div class="_nb"><img class="_ob" src="img/foto-2.jpg" alt="Instalaciones de Clínica Veterinaria AitziVet en Berango" loading="lazy" /><div class="_pb"></div><div class="_qb">&nearr;</div><div class="_rb"><p class="_sb">Clínica &middot; Berango</p><h3 class="_tb">Consulta tranquila</h3><p class="_ub">Tiempo y paciencia para cada paciente</p></div></div><div class="_nb"><img class="_ob" src="img/foto-3.jpg" alt="Sala de trabajo de AitziVet" loading="lazy" /><div class="_pb"></div><div class="_qb">&nearr;</div><div class="_rb"><p class="_sb">Espacios</p><h3 class="_tb">Entorno cuidado</h3><p class="_ub">Diseñado para reducir el estrés del animal</p></div></div><div class="_nb"><img class="_ob" src="img/foto-4.jpg" alt="Instalaciones AitziVet — zona clínica" loading="lazy" /><div class="_pb"></div><div class="_qb">&nearr;</div><div class="_rb"><p class="_sb">Equipamiento</p><h3 class="_tb">Material adecuado</h3><p class="_ub">Diagnóstico y cirugía con garantías</p></div></div><div class="_nb"><img class="_ob" src="img/foto-5.jpg" alt="Interior de la clínica AitziVet en Berango" loading="lazy" /><div class="_pb"></div><div class="_qb">&nearr;</div><div class="_rb"><p class="_sb">Trato cercano</p><h3 class="_tb">Acompañamiento</h3><p class="_ub">Explicaciones claras, sin prisas</p></div></div></div></section><div class="_vb" id="nosotros"><div class="_wb"><img src="img/foto-6.jpg" alt="Clínica Veterinaria AitziVet — Berango" /><div class="_xb"><div class="_yb">4,8<span style="font-size:1.4rem">★</span></div><div class="_zb">65 reseñas en Google — 100% de 5 estrellas</div></div></div><div class="_ac"><p class="_jb reveal">Sobre AitziVet</p><h2 class="_kb reveal reveal-delay-1">
+Veterinaria<br>con <em>vocación</em></h2><div class="_bc reveal"></div><p class="_cc reveal reveal-delay-2">
+En AitziVet no tratamos solo al paciente: acompañamos a la familia. Atendemos con el tiempo que cada caso necesita, explicamos con claridad el diagnóstico y recomendamos siempre lo mejor para tu animal, no lo más rápido.<br><br><strong>Aitziber</strong> lidera la clínica con un enfoque cercano que los dueños agradecen en cada reseña: paciencia con el animal, paciencia con la persona que lo acompaña y disponibilidad incluso fuera de horario cuando hace falta.
+</p><div class="_dc reveal reveal-delay-3"><div class="_ec"><div class="_fc">01</div><div class="_gc"><h3 class="_hc">Consulta sin prisas</h3><p>Escuchamos, exploramos y explicamos. Cada caso recibe el tiempo que necesita.</p></div></div><div class="_ec"><div class="_fc">02</div><div class="_gc"><h3 class="_hc">Cirugía con seguimiento</h3><p>Esterilizaciones y cirugía de tejidos blandos con valoración previa y control posoperatorio.</p></div></div><div class="_ec"><div class="_fc">03</div><div class="_gc"><h3 class="_hc">Disponibilidad real</h3><p>Respondemos rápido y damos cita en días, no en semanas. También para dudas puntuales.</p></div></div></div></div></div><section class="_ic" id="servicios"><div style="max-width:1400px; margin:0 auto"><p class="_jb reveal">Lo que ofrecemos</p><h2 class="_kb reveal reveal-delay-1" style="max-width:580px">
+Servicios pensados para el <em>bienestar animal</em></h2><div class="_jc"><div class="_kc reveal"><div class="_lc">01</div><div class="_mc"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3>Consulta general</h3><p>Revisión completa, vacunación, desparasitación, analíticas y chequeos preventivos. Cuidamos la salud de tu animal en cada etapa de su vida.</p><a href="tel:+34686068431" class="_nc">Pedir cita &rarr;</a></div><div class="_kc reveal reveal-delay-1"><div class="_lc">02</div><div class="_mc"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div><h3>Cirugía y esterilización</h3><p>Esterilización de perros y gatos, cirugía de tejidos blandos y pequeñas intervenciones con valoración previa y seguimiento posoperatorio cercano.</p><a href="tel:+34686068431" class="_nc">Consultar &rarr;</a></div><div class="_kc reveal reveal-delay-2"><div class="_lc">03</div><div class="_mc"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l1.8 5.5H20l-5 3.6 2 5.9-5-3.6-5 3.6 2-5.9-5-3.6h6.2L12 2z"/></svg></div><h3>Vacunación y prevención</h3><p>Calendarios de vacunación adaptados, desparasitación interna y externa, control de enfermedades y planes de salud preventiva a medida.</p><a href="tel:+34686068431" class="_nc">Más información &rarr;</a></div><div class="_kc reveal reveal-delay-3"><div class="_lc">04</div><div class="_mc"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><h3>Acompañamiento integral</h3><p>Atención cercana a dueños primerizos, seguimiento de animales mayores, apoyo en momentos difíciles y disponibilidad real para resolver dudas.</p><a href="tel:+34686068431" class="_nc">Hablar con AitziVet &rarr;</a></div></div></div></section><section class="_oc" id="opiniones"><div class="_pc"><p class="_jb reveal">Opiniones en Google</p><h2 class="_kb reveal reveal-delay-1">
+Lo que dicen<br>las <em>familias</em></h2><div class="_qc"><div class="_rc reveal"><div class="_sc"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><p class="_tc">"Tengo una gatita y un gatito, Gau y Lua. Acudí a ella con agobio por la esterilización de ambos. Me atendió con mucho cariño y paciencia y me dio cita súper rápido. Ha esterilizado a los dos y ha ido todo de maravilla, sin ninguna complicación. Me di cuenta que era una veterinaria maravillosa que recomienda siempre lo mejor para los peluditos."</p><div class="_uc"></div><div class="_vc"><strong>Rocío I.</strong><span>Reseña Google &middot; Berango</span></div></div><div class="_rc reveal reveal-delay-1"><div class="_sc"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><p class="_tc">"Llevé a mi gata con el abdomen hinchado y tras una valoración complicada dieron con el problema. Estaba casi desahuciada y gracias a vuestra atención y trato todavía la tengo a mi lado. No es un milagro, es una atención maravillosa y todo el cariño y paciencia que ponéis. Gracias por salvarle la vida."</p><div class="_uc"></div><div class="_vc"><strong>Irene A.</strong><span>Reseña Google &middot; Berango</span></div></div><div class="_rc reveal reveal-delay-2"><div class="_sc"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div><p class="_tc">"Trajimos un gatito de unas 5 semanas medio moribundo y Aitziar nos ayudó a sacarlo adelante con muchísima empatía. Profesionalidad, explicaciones claras y atención incluso a deshoras ante cualquier problema. Muchas gracias."</p><div class="_uc"></div><div class="_vc"><strong>Eva F.</strong><span>Reseña Google &middot; Berango</span></div></div></div></div></section><div class="_wc" id="contacto"><div class="_xc"><iframe
+class="_yc"
+src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:ChIJB3PccZlbTg0R-opAezNzyhc&zoom=17"
+allowfullscreen
+loading="lazy"
+referrerpolicy="no-referrer-when-downgrade"
+title="Mapa Clínica Veterinaria AitziVet Berango"
+></iframe><div class="_zc"><p class="_jb reveal">Cómo llegar</p><h2 class="reveal reveal-delay-1">Estamos en<br><em>Berango</em></h2><div class="_ad reveal reveal-delay-2"><div class="_bd"><div class="_cd"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><p class="_dd">Dirección</p><p class="_ed">C. Sabino Arana Kalea, Zeharbidea, 2<br>48640 Berango, Bizkaia</p></div></div><div class="_bd"><div class="_cd"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.79 19.79 19.79 0 01.17 1.2 2 2 0 012.16 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.08 7.9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div><p class="_dd">Teléfono</p><a href="tel:+34686068431" class="_ed">686 06 84 31</a></div></div><div class="_bd"><div class="_cd"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><p class="_dd">Horario</p><p class="_ed">Lunes, martes, jueves y viernes: 10:00 - 18:00<br>Miércoles: 10:00 - 16:00<br>Sábado y domingo: cerrado</p></div></div><div class="_bd"><div class="_cd"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.46 0 .08 5.37.08 11.96a11.9 11.9 0 001.6 5.98L0 24l6.24-1.63a11.94 11.94 0 005.8 1.48h.01c6.58 0 11.96-5.37 11.96-11.96a11.87 11.87 0 00-3.49-8.41z"/></svg></div><div><p class="_dd">WhatsApp</p><a href="https://wa.me/34686068431" target="_blank" rel="noopener" class="_ed">686 06 84 31</a></div></div></div></div></div></div><div class="_fd"><div class="_gd"><h2>¿Tu mascota necesita una<br>revisión?</h2><p>Llámanos o escríbenos por WhatsApp. Damos cita rápida y te atendemos con el tiempo que tu animal necesita.</p></div><a href="tel:+34686068431" class="_hd"><span>686 06 84 31</span><span>&nearr;</span></a></div><footer><div class="_id"><div class="_jd"><a href="#" class="_d">AitziVet<span>.</span></a><p class="_kd">"Una atención maravillosa y todo el cariño y paciencia que ponéis."<br>Reseña de una familia en Google</p><div class="_ld"><a href="https://wa.me/34686068431" target="_blank" rel="noopener" class="_md" title="WhatsApp" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0012.04 0C5.46 0 .08 5.37.08 11.96a11.9 11.9 0 001.6 5.98L0 24l6.24-1.63a11.94 11.94 0 005.8 1.48h.01c6.58 0 11.96-5.37 11.96-11.96a11.87 11.87 0 00-3.49-8.41zM12.05 21.82h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.7.97.99-3.6-.23-.37a9.87 9.87 0 01-1.51-5.27c0-5.46 4.45-9.9 9.92-9.9 2.65 0 5.14 1.03 7.01 2.91a9.84 9.84 0 012.9 7 9.91 9.91 0 01-9.98 9.85zm5.43-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.21-.24-.58-.48-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.11 3.22 5.1 4.51.71.31 1.27.5 1.7.64.72.23 1.37.2 1.88.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35z"/></svg></a><a href="https://maps.google.com/?cid=1714309273116248826" target="_blank" rel="noopener" class="_md" title="Google Maps" aria-label="Google Maps"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.58 2 4 5.58 4 10c0 5.25 7 12 7.33 12.29a1 1 0 001.34 0C13 22 20 15.25 20 10c0-4.42-3.58-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg></a><a href="tel:+34686068431" class="_md" title="Teléfono" aria-label="Teléfono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.79 19.79 19.79 0 01.17 1.2 2 2 0 012.16 0h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.08 7.9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></a></div></div><div class="_nd"><h4>Servicios</h4><ul><li><a href="#servicios">Consulta general</a></li><li><a href="#servicios">Cirugía</a></li><li><a href="#servicios">Vacunación</a></li><li><a href="#servicios">Seguimiento</a></li></ul></div><div class="_nd"><h4>Clínica</h4><ul><li><a href="#nosotros">Sobre nosotros</a></li><li><a href="#galeria">Instalaciones</a></li><li><a href="#opiniones">Opiniones</a></li><li><a href="#contacto">Cómo llegar</a></li></ul></div><div class="_nd"><h4>Contacto</h4><ul><li><a href="tel:+34686068431">686 06 84 31</a></li><li><a href="https://wa.me/34686068431" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="https://maps.google.com/?cid=1714309273116248826" target="_blank" rel="noopener">C. Sabino Arana, 2 — Berango</a></li></ul></div></div><div class="_od"><p class="_pd">&copy; 2026 Clínica Veterinaria AitziVet &middot; Berango. Todos los derechos reservados.</p><div class="_qd"><a href="#">Política de privacidad</a><a href="#">Aviso legal</a><a href="#">Cookies</a></div></div></footer><script>
+// -- LOADER
+window.addEventListener('load', () => {
+setTimeout(() => {
+document.getElementById('loader').classList.add('hidden');
+document.getElementById('heroBg').classList.add('loaded');
+}, 1400);
+});
+// -- NAVBAR SCROLL
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+// -- HAMBURGER MENU
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+hamburger.classList.toggle('active');
+mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+hamburger.classList.remove('active');
+mobileMenu.classList.remove('open');
+}
+// -- REVEAL ON SCROLL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+entries.forEach(e => {
+if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+});
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach(el => observer.observe(el));
+// -- COUNTER ANIMATION (integer)
+function animateCount(el) {
+const target = parseInt(el.dataset.target);
+const duration = 1800;
+const start = performance.now();
+function step(now) {
+const progress = Math.min((now - start) / duration, 1);
+const ease = 1 - Math.pow(1 - progress, 4);
+el.textContent = Math.round(ease * target);
+if (progress < 1) requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+}
+// -- COUNTER ANIMATION (decimal)
+function animateDecimal(el) {
+const target = parseFloat(el.dataset.target);
+const duration = 1800;
+const start = performance.now();
+function step(now) {
+const progress = Math.min((now - start) / duration, 1);
+const ease = 1 - Math.pow(1 - progress, 4);
+el.textContent = (ease * target).toFixed(1).replace('.', ',');
+if (progress < 1) requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+}
+const countObserver = new IntersectionObserver(entries => {
+entries.forEach(e => {
+if (e.isIntersecting) {
+if (e.target.classList.contains('count-decimal')) {
+animateDecimal(e.target);
+} else {
+animateCount(e.target);
+}
+countObserver.unobserve(e.target);
+}
+});
+}, { threshold: 0.5 });
+document.querySelectorAll('.count, .count-decimal').forEach(el => countObserver.observe(el));
+// -- HERO PARALLAX
+window.addEventListener('scroll', () => {
+const heroBg = document.getElementById('heroBg');
+if (heroBg) {
+const scrolled = window.scrollY;
+heroBg.style.transform = 'scale(1) translateY(' + (scrolled * 0.25) + 'px)';
+}
+});
+</script><script>
+(function(){
+// Disable right-click
+document.addEventListener('contextmenu',function(e){e.preventDefault();});
+// Disable text selection
+document.addEventListener('selectstart',function(e){e.preventDefault();});
+// Disable copy
+document.addEventListener('copy',function(e){e.preventDefault();});
+// Disable keyboard shortcuts (Ctrl+U, Ctrl+S, Ctrl+Shift+I, F12)
+document.addEventListener('keydown',function(e){
+if(e.key==='F12'||(e.ctrlKey&&e.key==='u')||(e.ctrlKey&&e.key==='s')||(e.ctrlKey&&e.shiftKey&&e.key==='I')){
+e.preventDefault();
+}
+});
+// Watermark
+var w=document.createElement('div');
+w.style.cssText='position:fixed;bottom:-100px;right:-100px;opacity:0.001;font-size:1px;pointer-events:none;z-index:-1;';
+w.textContent='aitzivet-berango';
+document.body.appendChild(w);
+})();
+</script></body></html>
