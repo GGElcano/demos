@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee-gin Plan B · Cafetería y gin bar en Ermua</title>
+  <meta name="description" content="Cafetería de especialidad y gin bar en Ermua. Café por la mañana, tu Plan B perfecto por la tarde. Probaleku Kalea 16, Ermua (Bizkaia).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0e0a07;
+      --white: #f5f3ef;
+      --accent: #8B5E3C;
+      --accent-light: #b8845c;
+      --carbon: #18130e;
+      --carbon-mid: #221b14;
+      --carbon-light: #302518;
+      --text-muted: #9a8878;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Nunito Sans', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(8,8,8,0.85);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(139,94,60,0.08);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(245,243,239,0.65);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      padding: 10px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+
+    /* ─── HAMBURGER MOBILE ─── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=85') center/cover no-repeat, linear-gradient(135deg, #0e0a07 0%, #221b14 40%, #8B5E3C22 100%);
+      background-size: cover; background-position: center;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.4) 50%, rgba(8,8,8,0.15) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.7);
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,243,239,0.85);
+      max-width: 520px; line-height: 1.7; margin-bottom: 52px;
+      font-weight: 300;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 40px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--white); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--black); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-ghost {
+      color: rgba(245,243,239,0.75); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(245,243,239,0.2);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow {
+      border-color: var(--accent); transform: rotate(45deg);
+    }
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--text-muted); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 70px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee-section {
+      border-top: 1px solid rgba(139,94,60,0.12);
+      border-bottom: 1px solid rgba(139,94,60,0.12);
+      overflow: hidden; padding: 20px 0; background: var(--carbon);
+    }
+    .marquee-track {
+      display: flex; gap: 0; white-space: nowrap;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 30px;
+      padding: 0 40px;
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-style: italic; color: rgba(245,243,239,0.25);
+      letter-spacing: 0.05em;
+    }
+    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 130px 60px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 4.2rem);
+      font-weight: 300; line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* ─── STATS ─── */
+    .stats-section {
+      background: var(--carbon);
+      padding: 100px 60px;
+      border-top: 1px solid rgba(139,94,60,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 60px 50px; background: var(--carbon);
+      border: 1px solid rgba(139,94,60,0.08);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+      min-width: 0;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(139,94,60,0.3); }
+    .stat-number {
+      font-family: var(--font-serif); font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 300; line-height: 1; color: var(--white);
+      margin-bottom: 12px; letter-spacing: -0.02em;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .stat-number .stat-suffix { color: var(--accent); }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 400;
+    }
+
+    /* ─── GALLERY ─── */
+    .projects-section { background: var(--black); }
+    .projects-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .projects-header .section-title { max-width: 500px; }
+    .view-all {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--accent);
+      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      transition: gap 0.3s; padding-bottom: 4px;
+      border-bottom: 1px solid rgba(139,94,60,0.3);
+      white-space: nowrap;
+    }
+    .view-all:hover { gap: 20px; border-color: var(--accent); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .project-card:first-child {
+      grid-column: span 2; aspect-ratio: 21/8;
+    }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover;
+      background: linear-gradient(135deg, var(--carbon-mid) 0%, var(--carbon-light) 100%);
+    }
+    .project-card:hover .project-img { transform: scale(1.06); transition: transform 0.8s var(--ease-out); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.1) 60%, transparent 100%);
+      opacity: 0.6; transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 0.85; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 40px; transform: translateY(15px);
+      transition: transform 0.5s var(--ease-out);
+    }
+    .project-card:hover .project-info { transform: translateY(0); }
+    .project-cat {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px; font-weight: 400;
+    }
+    .project-name {
+      font-family: var(--font-serif); font-size: 1.9rem;
+      font-weight: 300; line-height: 1.15; margin-bottom: 14px;
+    }
+    .project-meta {
+      font-size: 0.73rem; color: rgba(245,243,239,0.45);
+      letter-spacing: 0.1em; opacity: 0;
+      transition: opacity 0.5s 0.1s;
+    }
+    .project-card:hover .project-meta { opacity: 1; }
+    .project-arrow {
+      position: absolute; top: 36px; right: 36px;
+      width: 50px; height: 50px;
+      border: 1px solid rgba(245,243,239,0.15);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translate(10px, -10px);
+      transition: all 0.4s var(--ease-out);
+    }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
+
+    /* ─── ABOUT ─── */
+    .about-section {
+      background: var(--carbon);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 700px;
+      background-image: url('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=1400&q=85') center/cover no-repeat, linear-gradient(180deg, var(--carbon-mid), var(--carbon-light));
+    }
+    .about-badge {
+      position: absolute; bottom: 48px; left: 48px;
+      background: var(--black); border: 1px solid rgba(139,94,60,0.25);
+      padding: 24px 30px; max-width: 260px;
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 2.4rem;
+      color: var(--accent); line-height: 1.1;
+    }
+    .about-badge-text {
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: rgba(245,243,239,0.5); margin-top: 6px;
+    }
+    .about-content {
+      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(245,243,239,0.75); margin: 32px 0 52px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--white); font-weight: 400; }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 20px; }
+    .about-value {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border: 1px solid rgba(139,94,60,0.06);
+      transition: border-color 0.4s;
+    }
+    .about-value:hover { border-color: rgba(139,94,60,0.2); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      color: var(--accent); opacity: 0.5; flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .value-text h4 {
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 400; margin-bottom: 4px;
+    }
+    .value-text p {
+      font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
+    }
+
+    /* ─── SERVICES ─── */
+    .services-section { background: var(--black); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1400px; margin: 60px auto 0;
+    }
+    .service-card {
+      padding: 60px 48px; background: var(--black);
+      border: 1px solid rgba(139,94,60,0.07);
+      position: relative; overflow: hidden;
+      transition: background 0.5s, border-color 0.5s;
+    }
+    .service-card:hover { background: var(--carbon-mid); border-color: rgba(139,94,60,0.2); }
+    .service-icon {
+      width: 52px; height: 52px; margin-bottom: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(139,94,60,0.2); color: var(--accent);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.7rem;
+      font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+    }
+    .service-card p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.75;
+      font-weight: 300;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 32px; text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(139,94,60,0.6); transition: color 0.3s, gap 0.3s;
+    }
+    .service-link:hover { color: var(--accent); gap: 16px; }
+    .service-number {
+      position: absolute; top: 30px; right: 36px;
+      font-family: var(--font-serif); font-size: 5rem;
+      font-weight: 300; color: rgba(139,94,60,0.05);
+      line-height: 1; transition: color 0.5s;
+    }
+    .service-card:hover .service-number { color: rgba(139,94,60,0.1); }
+
+    /* ─── CARTA ─── */
+    .carta-section {
+      padding: 140px 60px;
+      background: var(--carbon);
+      border-top: 1px solid rgba(139,94,60,0.08);
+    }
+    .carta-section:nth-of-type(even) { background: var(--black); }
+    .carta-section .section-inner { max-width: 1200px; margin: 0 auto; }
+    .carta-columns {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; margin-top: 60px;
+    }
+    .carta-category { margin-bottom: 48px; }
+    .carta-category h4 {
+      font-family: var(--font-serif); font-size: 1.3rem;
+      font-weight: 400; color: var(--white);
+      padding-bottom: 16px; margin-bottom: 24px;
+      border-bottom: 1px solid rgba(139,94,60,0.15);
+    }
+    .carta-item {
+      display: flex; justify-content: space-between;
+      align-items: baseline; padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .carta-item:last-child { border-bottom: none; }
+    .carta-item-name { font-size: 0.92rem; font-weight: 400; color: var(--white); flex: 1; }
+    .carta-item-desc { font-size: 0.78rem; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
+    .carta-item-price {
+      font-family: var(--font-serif); font-size: 1rem;
+      color: var(--accent); white-space: nowrap;
+      margin-left: 20px; font-weight: 400;
+    }
+    .carta-highlight {
+      background: var(--carbon-mid); border: 1px solid rgba(139,94,60,0.1);
+      padding: 40px; margin-top: 40px;
+    }
+    .carta-highlight h4 {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-weight: 400; color: var(--accent); margin-bottom: 16px;
+    }
+    .carta-highlight p {
+      font-size: 0.88rem; color: var(--text-muted);
+      line-height: 1.75; font-weight: 300;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-section { background: var(--carbon); position: relative; overflow: hidden; }
+    .testimonials-section::before {
+      content: '"'; position: absolute; top: -60px; left: 40px;
+      font-family: var(--font-serif); font-size: 30rem;
+      color: rgba(139,94,60,0.03); line-height: 1; pointer-events: none;
+    }
+    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 70px;
+    }
+    .testimonial-card {
+      padding: 56px 44px; background: rgba(8,8,8,0.4);
+      border: 1px solid rgba(139,94,60,0.07);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .testimonial-card:hover { border-color: rgba(139,94,60,0.2); background: rgba(8,8,8,0.7); }
+    .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
+    .star {
+      width: 12px; height: 12px; background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif); font-size: 1.2rem;
+      font-style: italic; font-weight: 300;
+      line-height: 1.7; color: rgba(245,243,239,0.85);
+      margin-bottom: 36px;
+    }
+    .testimonial-divider { width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4; }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; margin-bottom: 4px;
+    }
+    .testimonial-author span { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em; }
+
+    /* ─── CONTACT / MAP ─── */
+    .contact-section {
+      background: var(--black);
+      padding: 130px 60px;
+    }
+    .contact-inner { max-width: 1400px; margin: 0 auto; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      margin-top: 60px;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 32px; }
+    .contact-block h4 {
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px; font-weight: 500;
+    }
+    .contact-block p, .contact-block a {
+      font-size: 1rem; color: rgba(245,243,239,0.8);
+      text-decoration: none; line-height: 1.7; font-weight: 300;
+      transition: color 0.3s;
+    }
+    .contact-block a:hover { color: var(--accent); }
+    .contact-block ul { list-style: none; }
+    .contact-block ul li {
+      display: flex; justify-content: space-between;
+      padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.92rem; color: rgba(245,243,239,0.75);
+    }
+    .contact-block ul li:last-child { border-bottom: none; }
+    .contact-block ul li span { color: var(--accent); font-weight: 400; }
+    .map-wrap {
+      width: 100%; height: 100%; min-height: 440px;
+      border: 1px solid rgba(139,94,60,0.2);
+      filter: grayscale(30%) contrast(1.05);
+    }
+    .map-wrap iframe { width: 100%; height: 100%; min-height: 440px; border: 0; display: block; }
+
+    /* ─── CTA BANNER ─── */
+    .cta-section {
+      background: var(--accent); padding: 110px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
+      font-weight: 300; color: var(--black); line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(8,8,8,0.75); margin-top: 16px; font-weight: 300;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--black); color: var(--white);
+      text-decoration: none; padding: 20px 48px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--carbon-light); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black); padding: 90px 60px 50px;
+      border-top: 1px solid rgba(139,94,60,0.08);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 70px;
+    }
+    .footer-brand .nav-logo { font-size: 1.8rem; margin-bottom: 22px; display: inline-flex; }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.05rem; color: rgba(245,243,239,0.4);
+      line-height: 1.6; max-width: 280px; margin-bottom: 36px;
+    }
+    .footer-social { display: flex; gap: 14px; }
+    .social-link {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(245,243,239,0.1);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(245,243,239,0.5);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h4 {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px; font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(245,243,239,0.5);
+      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,243,239,0.06);
+      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 0.75rem; color: rgba(245,243,239,0.3); letter-spacing: 0.05em; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ─── LOADER ─── */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--black); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2.5rem;
+      letter-spacing: 0.2em; color: var(--white);
+    }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(245,243,239,0.1);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .carta-section { padding: 80px 24px; }
+      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 300px; }
+      .about-content { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-section { padding: 80px 24px; }
+      .cta-section { padding: 80px 24px; flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-logo">Coffee-gin <span>·</span> Plan B</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Coffee-gin<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#carta-cafes">Cafés</a></li>
+    <li><a href="#carta-gins">Gins</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#contacto" class="nav-cta">Visítanos</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#carta-cafes" onclick="closeMobile()">Cafés</a>
+  <a href="#carta-gins" onclick="closeMobile()">Gins</a>
+  <a href="#galeria" onclick="closeMobile()">Galería</a>
+  <a href="#contacto" onclick="closeMobile()">Visítanos</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Café de día · Gin bar de tarde · Ermua</p>
+    <h1 class="hero-title">
+      Cuando no hay<br>plan, <em>hay Plan B</em>
+    </h1>
+    <p class="hero-sub">
+      Café de especialidad por la mañana, la mejor carta de gin tonics por la tarde. Un sitio, dos planes, cero complicaciones. Tu rincón en el corazón de Ermua.
+    </p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">
+        <span>Cómo llegar</span>
+        <span>→</span>
+      </a>
+      <a href="#carta-cafes" class="btn-ghost">
+        <span>Ver nuestra carta</span>
+        <div class="btn-ghost-arrow">↗</div>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Café de Especialidad</span>
+    <span class="marquee-item"><span class="dot"></span>Gin Tonics Premium</span>
+    <span class="marquee-item"><span class="dot"></span>Desayunos en Ermua</span>
+    <span class="marquee-item"><span class="dot"></span>Meriendas Caseras</span>
+    <span class="marquee-item"><span class="dot"></span>Terraza</span>
+    <span class="marquee-item"><span class="dot"></span>Tu Plan B Perfecto</span>
+    <span class="marquee-item"><span class="dot"></span>Café de Especialidad</span>
+    <span class="marquee-item"><span class="dot"></span>Gin Tonics Premium</span>
+    <span class="marquee-item"><span class="dot"></span>Desayunos en Ermua</span>
+    <span class="marquee-item"><span class="dot"></span>Meriendas Caseras</span>
+    <span class="marquee-item"><span class="dot"></span>Terraza</span>
+    <span class="marquee-item"><span class="dot"></span>Tu Plan B Perfecto</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">,7</span></div>
+      <div class="stat-label">Nota en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="95">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas reales</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="25">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Ginebras premium</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="2">0</span></div>
+      <div class="stat-label">Planes en un sitio</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-section" id="nosotros">
+  <div class="about-visual">
+    <div class="about-badge">
+      <div class="about-badge-year">4,7 ★</div>
+      <div class="about-badge-text">Valoración media en Google · 95 reseñas</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre nosotros</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Un café, un gin tonic,<br><em>tu Plan B</em>
+    </h2>
+    <div class="about-divider reveal"></div>
+    <p class="about-body reveal reveal-delay-2">
+      En Coffee-gin Plan B creemos que el mejor plan es el que sale por casualidad. Por la mañana somos la cafetería que necesitas para arrancar el día: cafés bien tirados, bollería casera y un ambiente que invita a quedarse.<br><br>
+      Por la tarde cambiamos de registro. La barra se llena de ginebras premium, tónicas y aromáticos. <strong>Mismo sitio, dos planes distintos</strong>, y la garantía de que aquí siempre hay algo que te apetece.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h4>Café bien hecho</h4>
+          <p>Grano de tueste natural, leche fresca y baristas que cuidan cada extracción.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h4>Gin tonics con criterio</h4>
+          <p>Más de 25 ginebras premium, tónicas seleccionadas y combinaciones estudiadas.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h4>En el centro de Ermua</h4>
+          <p>Probaleku Kalea, 16. Sitio de paso, terraza y ambiente de barrio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="servicios">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Qué ofrecemos</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:620px">
+      Dos cartas pensadas para <em>cada momento del día</em>
+    </h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M4 11h14a4 4 0 010 8h-1M4 11v8a2 2 0 002 2h10a2 2 0 002-2M6 3v3M10 3v3M14 3v3"/>
+          </svg>
+        </div>
+        <h3>Cafés de especialidad</h3>
+        <p>Desde el espresso corto hasta el flat white bien cremoso. Cafés con leche, cappuccinos, americanos y opciones con leches vegetales.</p>
+        <a href="#carta-cafes" class="service-link">Ver cafés →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M8 2h8l-1 6a4 4 0 01-3 4 4 4 0 01-3-4zM12 12v8M8 22h8"/>
+          </svg>
+        </div>
+        <h3>Gin tonics premium</h3>
+        <p>Más de 25 ginebras seleccionadas, tónicas artesanas y botánicos frescos. Pídenos recomendación, nos gusta acertar.</p>
+        <a href="#carta-gins" class="service-link">Ver gins →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>Desayunos y meriendas</h3>
+        <p>Tostadas, bollería del día, zumos naturales y dulces caseros. El combustible ideal antes o después del trabajo.</p>
+        <a href="#carta-otros" class="service-link">Ver carta →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA: CAFÉS -->
+<section class="carta-section" id="carta-cafes">
+  <div class="section-inner">
+    <p class="section-label reveal">Carta de cafés</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Todo empieza con una <em>buena taza</em>
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Clásicos</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Espresso</div>
+              <div class="carta-item-desc">Corto, intenso, como debe ser</div>
+            </div>
+            <div class="carta-item-price">1,40 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Café con leche</div>
+              <div class="carta-item-desc">Leche fresca, bien templado</div>
+            </div>
+            <div class="carta-item-price">1,70 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Cortado</div>
+            </div>
+            <div class="carta-item-price">1,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Americano</div>
+            </div>
+            <div class="carta-item-price">1,80 €</div>
+          </div>
+        </div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>De autor</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Flat white</div>
+              <div class="carta-item-desc">Doble espresso y microespuma sedosa</div>
+            </div>
+            <div class="carta-item-price">2,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Cappuccino</div>
+              <div class="carta-item-desc">Con cacao por encima</div>
+            </div>
+            <div class="carta-item-price">2,30 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Latte macchiato</div>
+            </div>
+            <div class="carta-item-price">2,50 €</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal">
+          <h4>Fríos</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Iced latte</div>
+              <div class="carta-item-desc">Espresso doble sobre hielo y leche</div>
+            </div>
+            <div class="carta-item-price">2,80 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Café con hielo</div>
+            </div>
+            <div class="carta-item-price">1,70 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Frappé de café</div>
+            </div>
+            <div class="carta-item-price">3,50 €</div>
+          </div>
+        </div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Extras</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Leche de avena, soja o almendra</div>
+            </div>
+            <div class="carta-item-price">+0,30 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Sirope (vainilla, caramelo, avellana)</div>
+            </div>
+            <div class="carta-item-price">+0,40 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Tés e infusiones</div>
+            </div>
+            <div class="carta-item-price">1,80 €</div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Desde por la mañana</h4>
+          <p>Abrimos temprano para que entres a desayunar antes del trabajo. Café recién hecho, bollería del día y prensa a tu disposición.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA: GINS -->
+<section class="carta-section" id="carta-gins">
+  <div class="section-inner">
+    <p class="section-label reveal">Carta de gin tonics</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      La hora del <em>Plan B</em>
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Ginebras clásicas</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Beefeater</div>
+              <div class="carta-item-desc">Tónica Schweppes, limón, enebro</div>
+            </div>
+            <div class="carta-item-price">6,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Tanqueray</div>
+              <div class="carta-item-desc">Tónica premium, pomelo, cardamomo</div>
+            </div>
+            <div class="carta-item-price">7,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Bombay Sapphire</div>
+              <div class="carta-item-desc">Tónica original, lima, pepino</div>
+            </div>
+            <div class="carta-item-price">7,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Hendrick's</div>
+              <div class="carta-item-desc">Pepino, pétalos de rosa</div>
+            </div>
+            <div class="carta-item-price">9,00 €</div>
+          </div>
+        </div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Premium</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Gin Mare</div>
+              <div class="carta-item-desc">Romero, aceituna, albahaca</div>
+            </div>
+            <div class="carta-item-price">9,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Monkey 47</div>
+              <div class="carta-item-desc">Arándanos, bayas y 47 botánicos</div>
+            </div>
+            <div class="carta-item-price">11,00 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">The Botanist</div>
+              <div class="carta-item-desc">22 botánicos de Islay</div>
+            </div>
+            <div class="carta-item-price">10,00 €</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal">
+          <h4>Autóctonas y de autor</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Larios 12</div>
+              <div class="carta-item-desc">Flor de naranjo, cítricos</div>
+            </div>
+            <div class="carta-item-price">7,00 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Nordés</div>
+              <div class="carta-item-desc">Uva albariño, laurel, eucalipto</div>
+            </div>
+            <div class="carta-item-price">8,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Puerto de Indias (fresa)</div>
+              <div class="carta-item-desc">Tónica neutra, fresa fresca</div>
+            </div>
+            <div class="carta-item-price">7,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Seagram's</div>
+            </div>
+            <div class="carta-item-price">7,00 €</div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-1">
+          <h4>¿No sabes cuál elegir?</h4>
+          <p>Cuéntanos qué te apetece y te recomendamos la combinación ideal. Tenemos más de 25 ginebras y trabajamos con las mejores tónicas del mercado. Acertamos casi siempre.</p>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Otros combinados</h4>
+          <p>También tenemos cervezas de barril y botella, vinos por copa, vermut y combinados clásicos. Todo con la misma atención al detalle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA: DESAYUNOS Y MERIENDAS -->
+<section class="carta-section" id="carta-otros">
+  <div class="section-inner">
+    <p class="section-label reveal">Desayunos y meriendas</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Para <em>acompañar</em> la taza
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Tostadas</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Tostada con tomate y aceite</div>
+              <div class="carta-item-desc">Pan de horno, aceite de oliva virgen extra</div>
+            </div>
+            <div class="carta-item-price">2,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Tostada con mantequilla y mermelada</div>
+            </div>
+            <div class="carta-item-price">2,30 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Tostada con jamón ibérico</div>
+            </div>
+            <div class="carta-item-price">4,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Tostada con aguacate y huevo</div>
+            </div>
+            <div class="carta-item-price">5,50 €</div>
+          </div>
+        </div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Bollería del día</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Croissant de mantequilla</div>
+            </div>
+            <div class="carta-item-price">1,80 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Napolitana de chocolate</div>
+            </div>
+            <div class="carta-item-price">1,80 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Palmera</div>
+            </div>
+            <div class="carta-item-price">2,00 €</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal">
+          <h4>Dulces caseros</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Tarta de queso</div>
+              <div class="carta-item-desc">Horneada al estilo vasco</div>
+            </div>
+            <div class="carta-item-price">3,80 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Carrot cake</div>
+            </div>
+            <div class="carta-item-price">3,50 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Brownie de chocolate</div>
+            </div>
+            <div class="carta-item-price">3,00 €</div>
+          </div>
+        </div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Zumos y batidos</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Zumo de naranja natural</div>
+            </div>
+            <div class="carta-item-price">2,80 €</div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Batido de frutas del día</div>
+            </div>
+            <div class="carta-item-price">3,50 €</div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Menú desayuno</h4>
+          <p>Café o infusión a elegir, zumo natural y tostada con tomate. Desde 4,50 €. Pregunta por el menú del día completo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen nuestros clientes</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      4,7 estrellas en Google<br>por <em>algo será</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Café estupendo por la mañana y mejores gin tonics por la tarde. El trato del personal es impecable y el ambiente siempre agradable."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Rosa G.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Un sitio de esos a los que no vas por casualidad. Los desayunos están muy bien y la carta de ginebras es enorme. Nuestro Plan B siempre que bajamos al centro."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Iker M.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Local muy cuidado, precios justos y gin tonics bien preparados. Si no sabes cuál pedir te recomiendan y aciertan. Repetiremos seguro."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Miren B.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="projects-section" id="galeria">
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">Galería</p>
+      <h2 class="section-title reveal reveal-delay-1">El local,<br>por <em>dentro</em></h2>
+    </div>
+    <a href="https://maps.google.com/?cid=80935938713231257" target="_blank" rel="noopener" class="view-all reveal">Ver en Google Maps →</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=1400&q=85') center/cover no-repeat, linear-gradient(135deg, var(--carbon-mid), var(--carbon-light));"></div>
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Barra · Interior</p>
+        <h3 class="project-name">Nuestra barra</h3>
+        <p class="project-meta">Café por la mañana · Gins por la tarde</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=85') center/cover no-repeat, linear-gradient(165deg, var(--carbon-mid), var(--carbon-light));"></div>
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Café · Especialidad</p>
+        <h3 class="project-name">Flat white del día</h3>
+        <p class="project-meta">Tuestes cuidados, extracción al punto</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1544145945-f90425340c7e?w=900&q=85') center/cover no-repeat, linear-gradient(195deg, var(--carbon-mid), var(--carbon-light));"></div>
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Gin · Premium</p>
+        <h3 class="project-name">Gin tonic de autor</h3>
+        <p class="project-meta">Botánicos frescos y tónica seleccionada</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1481833761820-0509d3217039?w=900&q=85') center/cover no-repeat, linear-gradient(225deg, var(--carbon-mid), var(--carbon-light));"></div>
+      <div class="project-overlay"></div>
+      <div class="project-arrow">↗</div>
+      <div class="project-info">
+        <p class="project-cat">Dulces · Caseros</p>
+        <h3 class="project-name">Tarta de queso vasca</h3>
+        <p class="project-meta">Horneada a diario</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / MAP -->
+<section class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <p class="section-label reveal">Contacto</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Nos tienes en el <em>centro de Ermua</em>
+    </h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-block reveal">
+          <h4>Dirección</h4>
+          <p>Probaleku Kalea, 16<br>48260 Ermua, Bizkaia</p>
+        </div>
+        <div class="contact-block reveal">
+          <h4>Teléfono</h4>
+          <a href="tel:+34681633370">681 63 33 70</a>
+        </div>
+        <div class="contact-block reveal">
+          <h4>Horario</h4>
+          <ul>
+            <li>Lunes a viernes <span>07:30 – 22:00</span></li>
+            <li>Sábados <span>09:00 – 23:00</span></li>
+            <li>Domingos <span>09:00 – 15:00</span></li>
+          </ul>
+        </div>
+        <div class="contact-block reveal">
+          <h4>Cómo llegar</h4>
+          <p><a href="https://maps.google.com/?cid=80935938713231257" target="_blank" rel="noopener">Abrir en Google Maps →</a></p>
+        </div>
+      </div>
+      <div class="map-wrap reveal reveal-delay-1">
+        <iframe
+          src="https://www.google.com/maps?q=Probaleku+Kalea+16+Ermua+Bizkaia&hl=es&output=embed"
+          loading="lazy"
+          title="Ubicación de Coffee-gin Plan B en Ermua"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-text">
+    <h2>¿Sin plan?<br>Ya sabes dónde vamos.</h2>
+    <p>Te esperamos en Probaleku Kalea 16. Con café o con gin tonic, tú decides.</p>
+  </div>
+  <a href="tel:+34681633370" class="btn-dark">
+    <span>Llámanos</span>
+    <span>↗</span>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Coffee-gin<span>.</span></a>
+      <p class="footer-tagline">"Cuando no hay plan, hay Plan B."<br>Coffee-gin Plan B · Ermua</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/coffeginplanb.ermua.1/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V7c0-1.1.4-2 2-2h2V1.1C16.6 1 15.3 1 14.4 1 11.6 1 10 2.6 10 5.3V10H6v4h4v8h3z"/></svg>
+        </a>
+        <a href="https://maps.google.com/?cid=80935938713231257" target="_blank" rel="noopener" class="social-link" aria-label="Google Maps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </a>
+        <a href="https://wa.me/34681633370" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 3.5A10 10 0 003.8 17.2L2 22l4.9-1.7A10 10 0 0020 3.5zM12 20a8 8 0 01-4.3-1.2l-.3-.2-3 1 1-2.9-.2-.3A8 8 0 1112 20zm4.4-5.5c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.1-.5 0a6.5 6.5 0 01-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.5-1.3-.7-1.8c-.2-.4-.4-.4-.5-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2c0 1.3.9 2.5 1.1 2.7s1.9 2.9 4.6 4c1.6.7 2.3.7 3.1.6a2.7 2.7 0 001.8-1.3 2.2 2.2 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Carta</h4>
+      <ul>
+        <li><a href="#carta-cafes">Cafés</a></li>
+        <li><a href="#carta-gins">Gin tonics</a></li>
+        <li><a href="#carta-otros">Desayunos</a></li>
+        <li><a href="#carta-otros">Meriendas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Local</h4>
+      <ul>
+        <li><a href="#nosotros">Sobre nosotros</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Horario</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+34681633370">681 63 33 70</a></li>
+        <li><a href="https://maps.google.com/?cid=80935938713231257" target="_blank" rel="noopener">Probaleku Kalea, 16</a></li>
+        <li><a href="#">48260 Ermua, Bizkaia</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Coffee-gin Plan B. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // ── LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+      document.getElementById('heroBg').classList.add('loaded');
+    }, 1800);
+  });
+
+  // ── NAVBAR SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── HAMBURGER MENU
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  // ── REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── COUNTER ANIMATION
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+
+  // ── HERO PARALLAX
+  window.addEventListener('scroll', () => {
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+      const scrolled = window.scrollY;
+      heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
+    }
+  });
+</script>
+</body>
+</html>
