@@ -283,6 +283,22 @@ em.acc{color:var(--accent-soft);font-style:italic}
 .step p{color:var(--text-mute);font-size:14.5px;max-width:300px;margin:0 auto;line-height:1.6}
 @media(max-width:900px){.process-grid{grid-template-columns:1fr;gap:44px}.process-grid::before{display:none}}
 
+/* COMPARE (vs other agencies) */
+.compare-grid{max-width:940px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;background:linear-gradient(135deg,rgba(22,28,40,.6),rgba(22,28,40,.3));border:1px solid var(--line);border-radius:16px;padding:22px 28px;transition:transform .25s var(--ease),border-color .25s}
+.compare-row:hover{border-color:var(--line-hover);transform:translateY(-2px)}
+.compare-bad,.compare-good{display:flex;gap:14px;font-size:15px;line-height:1.5;align-items:flex-start}
+.compare-bad{color:var(--text-mute)}
+.compare-bad::before{content:"";width:22px;height:22px;border-radius:50%;background:rgba(239,107,107,.12);border:1px solid rgba(239,107,107,.4);color:#ef6b6b;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;line-height:1}
+.compare-bad::before{content:"✕"}
+.compare-good{color:var(--text);font-weight:500}
+.compare-good::before{content:"";width:22px;height:22px;border-radius:50%;background:var(--accent-glow);border:1px solid rgba(0,180,216,.4);color:var(--accent-soft);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;line-height:1}
+.compare-good::before{content:"✓"}
+.compare-heads{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:940px;margin:0 auto 16px;padding:0 28px}
+.compare-heads span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim)}
+.compare-heads span:last-child{color:var(--accent-soft)}
+@media(max-width:720px){.compare-row{grid-template-columns:1fr;gap:14px;padding:20px 22px}.compare-heads{grid-template-columns:1fr;gap:0;padding:0 22px}.compare-heads span:first-child{display:none}}
+
 /* SERVICES */
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .svc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;transition:transform .25s var(--ease),border-color .25s,background .25s;position:relative;overflow:hidden}
@@ -590,6 +606,39 @@ footer{padding:70px 0 40px;border-top:1px solid var(--line);background:rgba(6,9,
   </div>
 </section>
 
+<section id="diferencia">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Sin humo, sin sorpresas</span>
+      <h2 class="h-lg">No te gastes <em class="acc">600 ni 3.000 €</em><br>en una web</h2>
+      <p class="lead">Así trabajan muchas agencias. Así trabajamos nosotros. Tú decides con cuál te quedas.</p>
+    </div>
+    <div class="compare-heads reveal"><span>Otras agencias</span><span>Nosotros</span></div>
+    <div class="compare-grid">
+      <div class="compare-row reveal">
+        <div class="compare-bad">Setup de 600 € a 3.000 € antes de enseñarte nada.</div>
+        <div class="compare-good">0 € hasta que la web esté hecha y te convenza. Si no te gusta, no pagas.</div>
+      </div>
+      <div class="compare-row reveal d1">
+        <div class="compare-bad">Contratos de 12 o 24 meses que no puedes cancelar.</div>
+        <div class="compare-good">Sin permanencia. Cancelas cuando quieras, en un mensaje de WhatsApp.</div>
+      </div>
+      <div class="compare-row reveal d2">
+        <div class="compare-bad">Seis semanas para ver un primer diseño. Y otras cuatro para cambios.</div>
+        <div class="compare-good">Web completa en menos de 48 horas. Los cambios que quieras, sin esperas extra.</div>
+      </div>
+      <div class="compare-row reveal d3">
+        <div class="compare-bad">Promesas vacías de "salir el primero en Google" con SEO mágico.</div>
+        <div class="compare-good">Web rápida, bien estructurada y fácil de indexar. El resto no lo promete nadie serio.</div>
+      </div>
+      <div class="compare-row reveal d4">
+        <div class="compare-bad">Cada foto, texto o ajuste se factura aparte como "horas extra".</div>
+        <div class="compare-good">Cambios de fotos, textos o carta incluidos en el plan mensual. Sin contador.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="incluye">
   <div class="wrap">
     <div class="section-head reveal">
@@ -815,14 +864,14 @@ footer{padding:70px 0 40px;border-top:1px solid var(--line);background:rgba(6,9,
 <section class="cta-final" id="demo">
   <div class="cta-inner reveal">
     <span class="eyebrow" style="justify-content:center">Empieza gratis</span>
-    <h2 class="h-xl" style="font-size:clamp(2.4rem,5vw,4rem)">¿Quieres ver cómo<br>quedaría <em class="acc">tu web</em>?</h2>
-    <p class="lead">Gratis. Sin compromiso. Solo dinos el nombre de tu negocio y un contacto. Te enviamos la demo en 48 horas.</p>
+    <h2 class="h-xl" style="font-size:clamp(2.4rem,5vw,4rem)">Dinos el nombre de tu negocio.<br><em class="acc">Mañana lo ves.</em></h2>
+    <p class="lead">Sin compromiso. Sin pagar nada hasta que te convenza. La miras, decides, y si no va — aquí no ha pasado nada.</p>
     <form class="cta-form" action="#" method="post" aria-label="Solicitar demo gratuita">
       <label for="negocio" class="sr-only">Nombre de tu negocio</label>
       <input type="text" id="negocio" name="negocio" placeholder="Nombre de tu negocio" required autocomplete="organization">
       <label for="contacto" class="sr-only">Email o WhatsApp</label>
       <input type="text" id="contacto" name="contacto" placeholder="Email o WhatsApp" required>
-      <button type="submit" class="btn btn-primary">Quiero mi demo<svg aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
+      <button type="submit" class="btn btn-primary">Ver mi web<svg aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
     </form>
     <p class="cta-small"><svg aria-hidden="true"><use href="#i-lock"/></svg>Tus datos no se comparten. Respuesta en menos de 24 horas.</p>
   </div>
