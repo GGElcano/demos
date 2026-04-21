@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OGIFT Center Basauri · Regalo, hogar, decoración, juguetes y ferretería</title>
+  <meta name="description" content="OGIFT Center, 2.000 m² en Basauri dedicados a regalo, decoración, hogar, textil, juguetes, floristería, menaje, fiesta y ferretería. Polígono Artunduaga, Urbi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0c0e10;
+      --white: #f5f3ef;
+      --accent: #EA580C;
+      --accent-light: #f97316;
+      --carbon: #141820;
+      --carbon-mid: #1c2230;
+      --carbon-light: #242e3e;
+      --text-muted: #7a8899;
+      --font-serif: 'Roboto Slab', serif;
+      --font-sans: 'Roboto', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(8,8,8,0.85);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(234,88,12,0.08);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(245,243,239,0.65);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      padding: 10px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1604176354204-9268737828e4?w=1600&q=80') center/cover no-repeat;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.45) 50%, rgba(8,8,8,0.2) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 960px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.2rem, 6.6vw, 6.4rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.6);
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,243,239,0.85);
+      max-width: 560px; line-height: 1.7; margin-bottom: 52px;
+      font-weight: 300;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--white); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--black); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-ghost {
+      color: rgba(245,243,239,0.75); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(245,243,239,0.3);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow {
+      border-color: var(--accent); transform: rotate(45deg);
+    }
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--text-muted); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 70px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* MARQUEE */
+    .marquee-section {
+      border-top: 1px solid rgba(234,88,12,0.12);
+      border-bottom: 1px solid rgba(234,88,12,0.12);
+      overflow: hidden; padding: 20px 0; background: var(--carbon);
+    }
+    .marquee-track {
+      display: flex; gap: 0; white-space: nowrap;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 30px;
+      padding: 0 40px;
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-style: italic; color: rgba(245,243,239,0.28);
+      letter-spacing: 0.05em;
+    }
+    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTION COMMONS */
+    section { padding: 130px 60px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 4.2rem);
+      font-weight: 300; line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* STATS */
+    .stats-section {
+      background: var(--carbon);
+      padding: 100px 60px;
+      border-top: 1px solid rgba(234,88,12,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 60px 50px; background: var(--carbon);
+      border: 1px solid rgba(234,88,12,0.08);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(234,88,12,0.3); }
+    .stat-number {
+      font-family: var(--font-serif); font-size: 4.2rem;
+      font-weight: 300; line-height: 1; color: var(--white);
+      margin-bottom: 12px; letter-spacing: -0.02em;
+    }
+    .stat-number .stat-suffix { color: var(--accent); }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 400;
+    }
+
+    /* GALLERY */
+    .projects-section { background: var(--black); }
+    .projects-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+      gap: 40px;
+    }
+    .projects-header .section-title { max-width: 640px; }
+    .view-all {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--accent);
+      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      transition: gap 0.3s; padding-bottom: 4px;
+      border-bottom: 1px solid rgba(234,88,12,0.3);
+      white-space: nowrap;
+    }
+    .view-all:hover { gap: 20px; border-color: var(--accent); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .project-card.wide {
+      grid-column: span 2; aspect-ratio: 16/9;
+    }
+    .project-img {
+      width: 100%; height: 100%; background-size: cover; background-position: center;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .project-card:hover .project-img { transform: scale(1.06); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.1) 60%, transparent 100%);
+      opacity: 0.6; transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 0.85; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 36px; transform: translateY(15px);
+      transition: transform 0.5s var(--ease-out);
+    }
+    .project-card:hover .project-info { transform: translateY(0); }
+    .project-cat {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px; font-weight: 400;
+    }
+    .project-name {
+      font-family: var(--font-serif); font-size: 1.6rem;
+      font-weight: 300; line-height: 1.15; margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+    .project-meta {
+      font-size: 0.73rem; color: rgba(245,243,239,0.55);
+      letter-spacing: 0.1em; opacity: 0;
+      transition: opacity 0.5s 0.1s;
+    }
+    .project-card:hover .project-meta { opacity: 1; }
+
+    /* ABOUT */
+    .about-section {
+      background: var(--carbon);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 700px;
+      background: url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1400&q=80') center/cover no-repeat;
+    }
+    .about-badge {
+      position: absolute; bottom: 48px; left: 48px;
+      background: var(--black); border: 1px solid rgba(234,88,12,0.25);
+      padding: 24px 30px; max-width: 260px;
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 3rem;
+      color: var(--accent); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: rgba(245,243,239,0.55); margin-top: 6px;
+    }
+    .about-content {
+      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(245,243,239,0.75); margin: 32px 0 52px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--white); font-weight: 400; }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 20px; }
+    .about-value {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border: 1px solid rgba(234,88,12,0.06);
+      transition: border-color 0.4s;
+    }
+    .about-value:hover { border-color: rgba(234,88,12,0.2); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      color: var(--accent); opacity: 0.6; flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .value-text h4 {
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 400; margin-bottom: 4px;
+    }
+    .value-text p {
+      font-size: 0.88rem; color: var(--text-muted); font-weight: 300;
+    }
+
+    /* SERVICES */
+    .services-section { background: var(--black); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1400px; margin: 60px auto 0;
+    }
+    .service-card {
+      padding: 56px 42px; background: var(--black);
+      border: 1px solid rgba(234,88,12,0.07);
+      position: relative; overflow: hidden;
+      transition: background 0.5s, border-color 0.5s;
+    }
+    .service-card:hover { background: var(--carbon-mid); border-color: rgba(234,88,12,0.2); }
+    .service-icon {
+      width: 52px; height: 52px; margin-bottom: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(234,88,12,0.2); color: var(--accent);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.55rem;
+      font-weight: 400; margin-bottom: 16px; line-height: 1.2;
+    }
+    .service-card p {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.75;
+      font-weight: 300;
+    }
+    .service-number {
+      position: absolute; top: 26px; right: 32px;
+      font-family: var(--font-serif); font-size: 4.4rem;
+      font-weight: 300; color: rgba(234,88,12,0.06);
+      line-height: 1; transition: color 0.5s;
+    }
+    .service-card:hover .service-number { color: rgba(234,88,12,0.12); }
+
+    /* SOCIAL PROOF BLOCK (sustituye testimoniales inventados) */
+    .proof-section {
+      background: var(--carbon);
+      padding: 120px 60px;
+      position: relative; overflow: hidden;
+    }
+    .proof-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center;
+    }
+    .proof-score {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
+    }
+    .proof-stars {
+      display: flex; gap: 8px;
+    }
+    .proof-stars .star {
+      width: 22px; height: 22px; background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .proof-rating {
+      font-family: var(--font-serif); font-size: 5.5rem; line-height: 1;
+      font-weight: 300; letter-spacing: -0.02em;
+    }
+    .proof-rating span { color: var(--accent); }
+    .proof-meta {
+      font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .proof-text p {
+      font-size: 1.05rem; color: rgba(245,243,239,0.75);
+      line-height: 1.8; margin-bottom: 28px; font-weight: 300;
+    }
+    .proof-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--accent);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      border-bottom: 1px solid rgba(234,88,12,0.3);
+      padding-bottom: 6px; transition: gap 0.3s, border-color 0.3s;
+    }
+    .proof-cta:hover { gap: 18px; border-color: var(--accent); }
+
+    /* MAP */
+    .map-section {
+      background: var(--black); padding: 120px 60px;
+    }
+    .map-inner { max-width: 1400px; margin: 0 auto; }
+    .map-header { margin-bottom: 60px; max-width: 640px; }
+    .map-grid {
+      display: grid; grid-template-columns: 1fr 1.3fr; gap: 2px;
+      border: 1px solid rgba(234,88,12,0.08);
+    }
+    .map-info { padding: 60px 50px; background: var(--carbon); }
+    .map-info h3 {
+      font-family: var(--font-serif); font-size: 1.6rem;
+      font-weight: 400; margin-bottom: 28px;
+    }
+    .map-info-row {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 1px solid rgba(245,243,239,0.06);
+    }
+    .map-info-row:last-child { border-bottom: none; }
+    .map-info-row .label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); min-width: 110px; padding-top: 3px;
+    }
+    .map-info-row .value {
+      font-size: 0.95rem; color: rgba(245,243,239,0.85); line-height: 1.6;
+    }
+    .map-info-row .value a {
+      color: rgba(245,243,239,0.85); text-decoration: none;
+      border-bottom: 1px solid rgba(234,88,12,0.3); transition: color 0.3s;
+    }
+    .map-info-row .value a:hover { color: var(--accent); }
+    .map-embed { min-height: 480px; }
+    .map-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--accent); padding: 110px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 300; color: var(--black); line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(8,8,8,0.72); margin-top: 16px; font-weight: 300;
+    }
+    .cta-actions { display: flex; gap: 18px; flex-wrap: wrap; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--black); color: var(--white);
+      text-decoration: none; padding: 20px 38px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--carbon-light); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; }
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: transparent; color: var(--black);
+      border: 1px solid var(--black);
+      text-decoration: none; padding: 19px 36px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.3s;
+    }
+    .btn-outline-dark:hover { background: var(--black); color: var(--white); }
+
+    /* FOOTER */
+    footer {
+      background: var(--black); padding: 90px 60px 50px;
+      border-top: 1px solid rgba(234,88,12,0.08);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 70px;
+    }
+    .footer-brand .nav-logo {
+      font-size: 1.8rem; margin-bottom: 22px; display: inline-flex;
+    }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1rem; color: rgba(245,243,239,0.5);
+      line-height: 1.6; max-width: 320px; margin-bottom: 36px;
+    }
+    .footer-social { display: flex; gap: 12px; }
+    .social-link {
+      width: 42px; height: 42px;
+      border: 1px solid rgba(245,243,239,0.15);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(245,243,239,0.5);
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(234,88,12,0.05); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-col h4 {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px; font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a, .footer-col ul li {
+      text-decoration: none; color: rgba(245,243,239,0.5);
+      font-size: 0.88rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,243,239,0.06);
+      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(245,243,239,0.3); letter-spacing: 0.05em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--black); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2.5rem;
+      letter-spacing: 0.3em; color: var(--white);
+    }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(245,243,239,0.1);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card.wide { grid-column: span 2; aspect-ratio: 16/7; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .proof-inner { grid-template-columns: 1fr; gap: 40px; }
+      .map-grid { grid-template-columns: 1fr; }
+      .map-embed { min-height: 360px; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.wide { grid-column: 1; aspect-ratio: 4/3; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 340px; }
+      .about-content { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; flex-direction: column; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+      .proof-section, .map-section { padding: 80px 24px; }
+      .map-info { padding: 40px 30px; }
+      .proof-rating { font-size: 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-logo">OGIFT<span>.</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#" class="nav-logo" aria-label="OGIFT Center, inicio">OGIFT<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#secciones">Secciones</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#visitanos" class="nav-cta">Cómo llegar</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#secciones" onclick="closeMobile()">Secciones</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="#visitanos" onclick="closeMobile()">Cómo llegar</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" aria-label="Presentación">
+  <div class="hero-bg" id="heroBg" role="img" aria-label="Tienda OGIFT Center con amplios pasillos"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Regalo · Hogar · Decoración · Juguetes</p>
+    <h1 class="hero-title">
+      2.000 m² de <em>ideas</em><br>para tu casa, tu mesa<br>y tu gente
+    </h1>
+    <p class="hero-sub">
+      En el polígono Artunduaga de Basauri encontrarás el mayor centro de Bizkaia dedicado al regalo y al hogar. Pasillos amplios, secciones claras y precio ajustado. Sin agobios, sin colas.
+    </p>
+    <div class="hero-actions">
+      <a href="https://maps.google.com/?cid=12480865485535397542" class="btn-primary" target="_blank" rel="noopener noreferrer">
+        <span>Cómo llegar</span>
+        <span aria-hidden="true">→</span>
+      </a>
+      <a href="https://wa.me/34624132547" class="btn-ghost" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp">
+        <span>WhatsApp</span>
+        <div class="btn-ghost-arrow" aria-hidden="true">↗</div>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Regalo</span>
+    <span class="marquee-item"><span class="dot"></span>Decoración</span>
+    <span class="marquee-item"><span class="dot"></span>Juguetes</span>
+    <span class="marquee-item"><span class="dot"></span>Menaje</span>
+    <span class="marquee-item"><span class="dot"></span>Textil hogar</span>
+    <span class="marquee-item"><span class="dot"></span>Floristería</span>
+    <span class="marquee-item"><span class="dot"></span>Ferretería</span>
+    <span class="marquee-item"><span class="dot"></span>Fiesta y disfraces</span>
+    <span class="marquee-item"><span class="dot"></span>Navidad</span>
+    <span class="marquee-item"><span class="dot"></span>Regalo</span>
+    <span class="marquee-item"><span class="dot"></span>Decoración</span>
+    <span class="marquee-item"><span class="dot"></span>Juguetes</span>
+    <span class="marquee-item"><span class="dot"></span>Menaje</span>
+    <span class="marquee-item"><span class="dot"></span>Textil hogar</span>
+    <span class="marquee-item"><span class="dot"></span>Floristería</span>
+    <span class="marquee-item"><span class="dot"></span>Ferretería</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section" aria-label="Cifras del negocio">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="2000">0</span><span class="stat-suffix"> m²</span></div>
+      <div class="stat-label">Superficie expositiva</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="10">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Secciones temáticas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="365">0</span><span class="stat-suffix"></span></div>
+      <div class="stat-label">Reseñas en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">,3★</span></div>
+      <div class="stat-label">Valoración Google</div>
+    </div>
+  </div>
+</div>
+
+<!-- GALERÍA -->
+<section class="projects-section" id="secciones" aria-labelledby="secciones-title">
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">La tienda</p>
+      <h2 id="secciones-title" class="section-title reveal reveal-delay-1">Un recorrido por nuestros<br><em>pasillos</em></h2>
+    </div>
+    <a href="https://www.instagram.com/basauriogift/" class="view-all reveal" target="_blank" rel="noopener noreferrer">Ver más en Instagram →</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card wide">
+      <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1604176354204-9268737828e4?w=1400&q=80');" role="img" aria-label="Pasillos amplios de OGIFT Center"></div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">La tienda</p>
+        <h3 class="project-name">2.000 m² para perderte sin perderte</h3>
+        <p class="project-meta">Pasillos anchos · Secciones claras · Parking propio</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=900&q=80');" role="img" aria-label="Sección regalo y decoración"></div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Regalo · Decoración</p>
+        <h3 class="project-name">Detalles para cualquier ocasión</h3>
+        <p class="project-meta">Cumpleaños · Cenas · Aniversarios</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=900&q=80');" role="img" aria-label="Sección juguetes"></div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Juguetes</p>
+        <h3 class="project-name">Para peques y no tan peques</h3>
+        <p class="project-meta">Educativos · Exterior · Clásicos</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=900&q=80');" role="img" aria-label="Sección menaje y cocina"></div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Menaje · Cocina</p>
+        <h3 class="project-name">Equipa tu cocina</h3>
+        <p class="project-meta">Vajilla · Cristalería · Utensilios</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1519961655809-34fa156820d9?w=900&q=80');" role="img" aria-label="Sección textil hogar"></div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Textil hogar</p>
+        <h3 class="project-name">Viste tu casa</h3>
+        <p class="project-meta">Sábanas · Toallas · Cortinas</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=900&q=80');" role="img" aria-label="Sección ferretería y bricolaje"></div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Ferretería</p>
+        <h3 class="project-name">Lo básico para el día a día</h3>
+        <p class="project-meta">Herramienta · Menaje técnico · Hogar</p>
+      </div>
+    </div>
+    <div class="project-card wide">
+      <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1543589077-47d81606c1bf?w=1400&q=80');" role="img" aria-label="Sección fiesta y disfraces"></div>
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Fiesta · Navidad · Disfraces</p>
+        <h3 class="project-name">Cada temporada, un rincón distinto</h3>
+        <p class="project-meta">Navidad · Halloween · Carnaval · Cumpleaños</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section" id="nosotros">
+  <div class="about-visual" role="img" aria-label="Interior de OGIFT Center en Basauri">
+    <div class="about-badge">
+      <div class="about-badge-year">2019</div>
+      <div class="about-badge-text">Abrimos en Basauri para darle otra vuelta al bazar de barrio</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre OGIFT</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      El bazar <em>que no es</em><br>un bazar
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-delay-2">
+      Abrimos en el antiguo Día del polígono Artunduaga con una idea clara: ofrecer la variedad de un bazar grande pero con pasillos amplios y secciones ordenadas, para que comprar no sea un agobio.<br><br>
+      <strong>Regalo, decoración, hogar, textil, menaje, juguetes, fiesta, floristería, ferretería básica y temporada.</strong> Todo en un mismo sitio, con aparcamiento propio y a 5 minutos en coche desde cualquier punto de Basauri.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h4>Pasillos amplios</h4>
+          <p>Sin sensación de abigarramiento. Puedes ver lo que compras con comodidad, también con el carro lleno.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h4>10+ secciones temáticas</h4>
+          <p>Desde el regalo para un cumpleaños hasta lo que falta para montar una cena en casa.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h4>Parking propio</h4>
+          <p>Dentro del recinto, el mismo del antiguo supermercado. Para compras grandes y sin prisas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" aria-labelledby="servicios-title">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Qué vas a encontrar</p>
+    <h2 id="servicios-title" class="section-title reveal reveal-delay-1" style="max-width:640px">
+      Todas las secciones bajo <em>el mismo techo</em>
+    </h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number" aria-hidden="true">01</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M20 12v9H4v-9"/><path d="M22 7H2v5h20z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/>
+          </svg>
+        </div>
+        <h3>Regalo y detalle</h3>
+        <p>Cumpleaños, aniversarios, bodas, bautizos, amigo invisible. Una sección pensada para salir con el regalo resuelto sin dar vueltas.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number" aria-hidden="true">02</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>Hogar y decoración</h3>
+        <p>Textil, menaje, cristalería, vajilla, cuadros, velas, plantas artificiales y piezas de temporada. Cambiar un rincón sin cambiar la casa.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number" aria-hidden="true">03</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
+          </svg>
+        </div>
+        <h3>Juguetes</h3>
+        <p>Educativos, clásicos, de exterior, juegos de mesa, manualidades y primera infancia. Con rotación constante según temporada.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-number" aria-hidden="true">04</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M12 2l2 4 4 .6-3 2.9.7 4.2L12 11.8l-3.7 1.9.7-4.2-3-2.9 4-.6z"/><path d="M12 14v8"/>
+          </svg>
+        </div>
+        <h3>Fiesta, Navidad y disfraces</h3>
+        <p>La temporada marca la sección. Árboles y adornos en Navidad, disfraces en Carnaval y Halloween, decoración de cumpleaños todo el año.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number" aria-hidden="true">05</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/>
+          </svg>
+        </div>
+        <h3>Ferretería y básicos</h3>
+        <p>Lo que necesitas en casa: herramienta sencilla, bombillas, pilas, cerraduras, menaje técnico y bricolaje del día a día.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number" aria-hidden="true">06</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M12 2C9 6 6 9 6 13a6 6 0 0012 0c0-4-3-7-6-11z"/>
+          </svg>
+        </div>
+        <h3>Floristería y temporada</h3>
+        <p>Flor artificial de calidad, centros, jarrones y piezas estacionales. Para casa, para regalo o para ese evento que estás montando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof-section" id="opiniones" aria-labelledby="opiniones-title">
+  <div class="proof-inner">
+    <div class="proof-score">
+      <div class="proof-stars" aria-hidden="true">
+        <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+      </div>
+      <div class="proof-rating"><span>4,3</span> / 5</div>
+      <div class="proof-meta">365 reseñas en Google</div>
+    </div>
+    <div class="proof-text">
+      <p class="section-label" style="margin-bottom:14px">Lo que dicen</p>
+      <h2 id="opiniones-title" class="section-title" style="font-size:clamp(1.8rem,3vw,2.6rem); margin-bottom:28px">
+        Más de <em>365 vecinos</em> de Basauri y alrededores nos han puntuado
+      </h2>
+      <p>Más de tres años abiertos en el polígono Artunduaga con la misma vocación: que entres, encuentres y salgas contento. Las opiniones están ahí para que las leas sin filtros.</p>
+      <a href="https://maps.google.com/?cid=12480865485535397542" class="proof-cta" target="_blank" rel="noopener noreferrer">
+        <span>Leer reseñas en Google</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="visitanos" aria-labelledby="visitanos-title">
+  <div class="map-inner">
+    <div class="map-header">
+      <p class="section-label reveal">Cómo llegar</p>
+      <h2 id="visitanos-title" class="section-title reveal reveal-delay-1">Polígono Artunduaga,<br><em>Urbi</em></h2>
+    </div>
+    <div class="map-grid">
+      <div class="map-info">
+        <h3>Información</h3>
+        <div class="map-info-row">
+          <div class="label">Dirección</div>
+          <div class="value">C. Presagana, 1<br>Polígono Artunduaga, Urbi<br>48970 Basauri (Bizkaia)</div>
+        </div>
+        <div class="map-info-row">
+          <div class="label">Teléfono</div>
+          <div class="value"><a href="tel:+34624132547">624 13 25 47</a></div>
+        </div>
+        <div class="map-info-row">
+          <div class="label">WhatsApp</div>
+          <div class="value"><a href="https://wa.me/34624132547" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a></div>
+        </div>
+        <div class="map-info-row">
+          <div class="label">Horario</div>
+          <div class="value">Lunes a sábado: 09:00 - 21:00<br>Domingo: 10:30 - 14:00 / 16:00 - 20:00</div>
+        </div>
+        <div class="map-info-row">
+          <div class="label">Parking</div>
+          <div class="value">Propio, dentro del recinto</div>
+        </div>
+      </div>
+      <div class="map-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2899.7!2d-2.8838!3d43.2333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0d4e4f90b20e41c7%3A0xad34f1085ac546a6!2sOGIFT%20CENTER!5e0!3m2!1ses!2ses!4v1713700000000"
+          title="Mapa de OGIFT Center, polígono Artunduaga, Basauri"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-text">
+    <h2>¿Te pasas<br>esta semana?</h2>
+    <p>Polígono Artunduaga, 5 minutos desde el centro de Basauri. Parking propio.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="https://maps.google.com/?cid=12480865485535397542" class="btn-dark" target="_blank" rel="noopener noreferrer">
+      <span>Cómo llegar</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a href="https://wa.me/34624132547" class="btn-outline-dark" target="_blank" rel="noopener noreferrer">
+      <span>WhatsApp</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">OGIFT<span>.</span></a>
+      <p class="footer-tagline">"2.000 m² de ideas para tu casa, tu mesa y tu gente."</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/ogiftcenter/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook de OGIFT Center">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.3H7.7V14h2.7v8h3.1z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/basauriogift/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram de OGIFT Basauri">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="https://maps.google.com/?cid=12480865485535397542" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="OGIFT Center en Google Maps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s-8-7-8-13a8 8 0 1116 0c0 6-8 13-8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+        </a>
+        <a href="https://wa.me/34624132547" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de OGIFT Center">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3 2.9 1.1 2.9.7 3.4.7s1.7-.7 2-1.4c.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15.2L2 22l4.9-1.3A10 10 0 1012 2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="#nosotros">Sobre OGIFT</a></li>
+        <li><a href="#secciones">Secciones</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#visitanos">Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Horario</h4>
+      <ul>
+        <li>Lun - Sáb: 09:00 - 21:00</li>
+        <li>Domingo: 10:30 - 14:00</li>
+        <li>Domingo: 16:00 - 20:00</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+34624132547">624 13 25 47</a></li>
+        <li><a href="https://wa.me/34624132547" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a href="https://maps.google.com/?cid=12480865485535397542" target="_blank" rel="noopener noreferrer">C. Presagana, 1 · Basauri</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 OGIFT Center. Polígono Artunduaga, Basauri (Bizkaia).</p>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+      document.getElementById('heroBg').classList.add('loaded');
+    }, 1400);
+  });
+
+  // NAVBAR SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMobile();
+  });
+
+  // REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // COUNTER
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      const val = Math.round(ease * target);
+      el.textContent = target >= 1000 ? val.toLocaleString('es-ES') : val;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+
+  // HERO PARALLAX
+  window.addEventListener('scroll', () => {
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+      const scrolled = window.scrollY;
+      heroBg.style.transform = `scale(1) translateY(${scrolled * 0.22}px)`;
+    }
+  });
+</script>
+</body>
+</html>
