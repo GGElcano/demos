@@ -53,9 +53,9 @@ a{color:inherit;text-decoration:none}
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:none;box-shadow:var(--focus);border-radius:8px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}html{scroll-behavior:auto}}
 
-/* A — Entrada suave de toda la página */
-body{animation:bodyIn .75s cubic-bezier(.2,.8,.2,1) both}
-@keyframes bodyIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* A — Entrada suave de toda la página (solo opacidad; transform rompe position:fixed del globo) */
+body{animation:bodyIn .7s ease-out both}
+@keyframes bodyIn{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){body{animation:none}}
 
 /* B — Skeleton del globo mientras three.js descarga la textura */
