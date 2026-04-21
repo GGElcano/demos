@@ -298,7 +298,14 @@ em.acc{color:var(--accent-soft);font-style:italic}
 .compare-heads{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:940px;margin:0 auto 16px;padding:0 28px}
 .compare-heads span{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim)}
 .compare-heads span:last-child{color:var(--accent-soft)}
-@media(max-width:720px){.compare-row{grid-template-columns:1fr;gap:14px;padding:20px 22px}.compare-heads{grid-template-columns:1fr;gap:0;padding:0 22px}.compare-heads span:first-child{display:none}}
+@media(max-width:720px){
+  .compare-row{grid-template-columns:1fr;gap:20px;padding:22px}
+  .compare-heads{display:none}
+  .compare-bad,.compare-good{position:relative;padding-top:24px;align-items:flex-start}
+  .compare-bad::after,.compare-good::after{content:attr(data-role);position:absolute;top:0;left:0;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);font-weight:500}
+  .compare-good::after{color:var(--accent-soft)}
+  .compare-bad+.compare-good{border-top:1px solid var(--line);padding-top:32px}
+}
 
 /* SERVICES */
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -706,32 +713,32 @@ footer{padding:70px 0 40px;border-top:1px solid var(--line);background:rgba(6,9,
     <div class="compare-heads reveal"><span>Otras agencias</span><span>Nosotros</span></div>
     <div class="compare-grid">
       <div class="compare-row reveal">
-        <div class="compare-bad">Setup de 600 € a 3.000 € antes de enseñarte nada.</div>
-        <div class="compare-good">0 € hasta que la web esté hecha y te convenza. Si no te gusta, no pagas.</div>
+        <div class="compare-bad" data-role="Otras agencias">Setup de 600 € a 3.000 € antes de enseñarte nada.</div>
+        <div class="compare-good" data-role="Nosotros">0 € hasta que la web esté hecha y te convenza. Si no te gusta, no pagas.</div>
       </div>
       <div class="compare-row reveal d1">
-        <div class="compare-bad">Contratos de 12 o 24 meses que no puedes cancelar.</div>
-        <div class="compare-good">Sin permanencia. Cancelas cuando quieras.</div>
+        <div class="compare-bad" data-role="Otras agencias">Contratos de 12 o 24 meses que no puedes cancelar.</div>
+        <div class="compare-good" data-role="Nosotros">Sin permanencia. Cancelas cuando quieras.</div>
       </div>
       <div class="compare-row reveal d2">
-        <div class="compare-bad">Seis semanas para ver un primer diseño. Y otras cuatro para cambios.</div>
-        <div class="compare-good">Web completa en menos de 48 horas. Los cambios que necesites, sin costes añadidos.</div>
+        <div class="compare-bad" data-role="Otras agencias">Seis semanas para ver un primer diseño. Y otras cuatro para cambios.</div>
+        <div class="compare-good" data-role="Nosotros">Web completa en menos de 48 horas. Los cambios que necesites, sin costes añadidos.</div>
       </div>
       <div class="compare-row reveal d3">
-        <div class="compare-bad">Promesas vacías de "salir el primero en Google" con SEO mágico.</div>
-        <div class="compare-good">Web rápida, bien estructurada y fácil de indexar. El resto no lo promete nadie serio.</div>
+        <div class="compare-bad" data-role="Otras agencias">Promesas vacías de "salir el primero en Google" con SEO mágico.</div>
+        <div class="compare-good" data-role="Nosotros">Web rápida, bien estructurada y fácil de indexar. El resto no lo promete nadie serio.</div>
       </div>
       <div class="compare-row reveal d4">
-        <div class="compare-bad">Cada foto, texto o ajuste se factura aparte como "horas extra".</div>
-        <div class="compare-good">Cambios incluidos según el plan: anuales, trimestrales o semanales ilimitados. Sin factura por cada retoque.</div>
+        <div class="compare-bad" data-role="Otras agencias">Cada foto, texto o ajuste se factura aparte como "horas extra".</div>
+        <div class="compare-good" data-role="Nosotros">Cambios incluidos según el plan: anuales, trimestrales o semanales ilimitados. Sin factura por cada retoque.</div>
       </div>
       <div class="compare-row reveal d4">
-        <div class="compare-bad">Un único paquete cerrado que pagas aunque te sobren funciones.</div>
-        <div class="compare-good">Distintos planes según lo que necesita tu negocio: desde la web base con dominio y correo profesional hasta mantenimiento activo con gestión de Google y cambios semanales ilimitados.</div>
+        <div class="compare-bad" data-role="Otras agencias">Un único paquete cerrado que pagas aunque te sobren funciones.</div>
+        <div class="compare-good" data-role="Nosotros">Distintos planes según lo que necesita tu negocio: desde la web base con dominio y correo profesional hasta mantenimiento activo con gestión de Google y cambios semanales ilimitados.</div>
       </div>
       <div class="compare-row reveal d4">
-        <div class="compare-bad">El cumplimiento legal (RGPD, cookies, accesibilidad) queda de tu cuenta — o te lo cobran aparte.</div>
-        <div class="compare-good">Aviso legal, privacidad, cookies y accesibilidad WCAG 2.2 AA incluidos y mantenidos. Cumples con la Ley Europea de Accesibilidad (obligatoria desde 2025) sin mover un dedo.</div>
+        <div class="compare-bad" data-role="Otras agencias">El cumplimiento legal (RGPD, cookies, accesibilidad) queda de tu cuenta — o te lo cobran aparte.</div>
+        <div class="compare-good" data-role="Nosotros">Aviso legal, privacidad, cookies y accesibilidad WCAG 2.2 AA incluidos y mantenidos. Cumples con la Ley Europea de Accesibilidad (obligatoria desde 2025) sin mover un dedo.</div>
       </div>
     </div>
     <p class="lead" style="max-width:720px;margin:36px auto 0;text-align:center">Adaptamos el plan a tu ritmo: si tu web casi no cambia, hay un plan sencillo; si cambias carta, servicios o colecciones cada semana, hay uno con cambios ilimitados e informes mensuales. El precio exacto lo decidimos contigo en la demo.</p>
@@ -991,12 +998,12 @@ footer{padding:70px 0 40px;border-top:1px solid var(--line);background:rgba(6,9,
     </div>
     <div class="pqn-grid">
       <div class="pqn-card reveal">
-        <h3>Buscas que te gestionemos Instagram, TikTok, anuncios y producción de vídeo</h3>
-        <p>Nosotros hacemos una cosa muy bien hecha: la web — diseñarla, alojarla y mantenerla. No vendemos paquetes "todo-en-uno" que luego no podemos cumplir. Para redes, campañas o contenido en vídeo hay profesionales especializados que lo hacen mucho mejor que cualquier agencia generalista. Si lo quieres todo bajo un mismo techo, te estaríamos dando peor servicio del que te mereces.</p>
+        <h3>Piensas que una web bonita te va a arreglar un bajón de ventas</h3>
+        <p>La web te da presencia, captación y un canal directo con tu cliente — pero no sustituye al producto, al trato ni al trabajo diario. Si la parte offline de tu negocio no funciona, la web solo acelera que más gente vea el problema. Primero cura el núcleo; después la web multiplica lo bueno que tienes.</p>
       </div>
       <div class="pqn-card reveal d1">
-        <h3>Solo quieres descargar una plantilla y olvidarte</h3>
-        <p>Una web sin mantenimiento envejece rápido: a los seis meses posiciona peor, se rompe algún formulario y acaba dando peor imagen que no tener nada. Nuestro modelo se basa en cuidarla mes a mes. Si buscas algo que montas y abandonas, hay plantillas gratis por Internet.</p>
+        <h3>Esperas que la web "esté hecha" y ya está</h3>
+        <p>Google cambia criterios cada pocos meses, la normativa europea se actualiza cada año, los navegadores evolucionan, los formularios se rompen, la seguridad necesita parches. Una web sin mantenimiento activo envejece mal: baja en posicionamiento, se queda anticuada en el móvil y arrastra errores que tu cliente nota antes que tú. Nuestro trabajo empieza al entregarla, no termina.</p>
       </div>
       <div class="pqn-card reveal d2">
         <h3>No vas a atender a los clientes que te escriban</h3>
