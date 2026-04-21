@@ -1118,7 +1118,7 @@ window.__initGlobe = function(){
   if (!wrap || typeof THREE === 'undefined') return;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const CFG = { radius:1, rotationSpeed:150, nodeCount:55, packetsPerSec:4, haloStrength:0.55, pulseCities:true, showMesh:true };
+  const CFG = { radius:1, rotationSpeed:150, nodeCount:55, packetsPerSec:10, haloStrength:0.55, pulseCities:true, showMesh:true };
   const COL = {
     accent: new THREE.Color('#00b4d8'),
     accentSoft: new THREE.Color('#48cae4'),
@@ -1325,9 +1325,9 @@ window.__initGlobe = function(){
     });
     const line = new THREE.Line(geom,mat);
     packetGroup.add(line);
-    packets.push({mat, line, start:performance.now()/1000, duration:2.2+Math.random()*1.8});
+    packets.push({mat, line, start:performance.now()/1000, duration:1.6+Math.random()*1.6});
   }
-  for (let i=0;i<8;i++) spawnPacket();
+  for (let i=0;i<16;i++) spawnPacket();
 
   const loader = new THREE.TextureLoader();
   loader.setCrossOrigin('anonymous');
@@ -1367,7 +1367,7 @@ window.__initGlobe = function(){
       if (CFG.packetsPerSec>0){
         if (now-lastSpawn > 1/CFG.packetsPerSec){
           lastSpawn=now; spawnPacket();
-          if (packets.length>40){ const o=packets.shift(); packetGroup.remove(o.line); o.line.geometry.dispose(); o.mat.dispose(); }
+          if (packets.length>70){ const o=packets.shift(); packetGroup.remove(o.line); o.line.geometry.dispose(); o.mat.dispose(); }
         }
         for (let i=packets.length-1;i>=0;i--){
           const p=packets[i]; const age=now-p.start; const head=age/p.duration;
