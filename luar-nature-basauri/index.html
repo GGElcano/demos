@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peluquería Luar Nature — Peluquería en Basauri · Leire</title>
+  <meta name="description" content="Peluquería Luar Nature en Basauri. Corte, color, mechas, tratamientos y peinados con un asesoramiento cercano. Leire te escucha antes de cortar. Frente a la estación de Renfe, Bidebieta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0b0d0a;
+      --white: #f3f1ea;
+      --accent: #8FA68E;
+      --accent-light: #b3c4b0;
+      --accent-dim: #8FA68E33;
+      --carbon: #12140f;
+      --carbon-mid: #191c15;
+      --carbon-light: #242820;
+      --text-muted: #85897c;
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Jost', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: var(--font-sans); font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 28px 60px; backdrop-filter: blur(0px); transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s; }
+    nav.scrolled { backdrop-filter: blur(20px); background: rgba(11,13,10,0.88); padding: 18px 60px; border-bottom: 1px solid #8FA68E20; }
+    .nav-logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; letter-spacing: 0.08em; text-decoration: none; color: var(--white); display: flex; align-items: center; gap: 6px; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: rgba(243,241,234,0.65); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; font-weight: 400; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { background: transparent; border: 1px solid var(--accent); color: var(--accent) !important; padding: 10px 26px !important; font-size: 0.72rem !important; letter-spacing: 0.25em !important; transition: background 0.3s, color 0.3s !important; }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--black); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { text-decoration: none; color: var(--white); font-size: 1.2rem; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    .hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: flex-end; justify-content: flex-start; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: url('fotos/foto-01.jpg') center/cover no-repeat; transform: scale(1.08); transition: transform 8s var(--ease-out); }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(11,13,10,0.82) 0%, rgba(11,13,10,0.45) 50%, rgba(11,13,10,0.2) 100%); }
+    .hero-overlay-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, var(--black), transparent); }
+    .hero-content { position: relative; z-index: 2; padding: 0 60px 110px; max-width: 900px; }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; text-shadow: 0 2px 12px rgba(0,0,0,0.6); opacity: 0; transform: translateY(20px); animation: fadeUp 0.9s 0.3s var(--ease-out) forwards; }
+    .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
+    .hero-title { font-family: var(--font-serif); font-size: clamp(3.2rem, 6.5vw, 6.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 32px; text-shadow: 0 4px 24px rgba(0,0,0,0.7); opacity: 0; transform: translateY(30px); animation: fadeUp 1.1s 0.5s var(--ease-out) forwards; }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-size: 1.05rem; color: rgba(243,241,234,0.8); max-width: 520px; line-height: 1.7; font-weight: 300; text-shadow: 0 2px 12px rgba(0,0,0,0.6); opacity: 0; transform: translateY(20px); animation: fadeUp 1s 0.8s var(--ease-out) forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    .marquee-bar { overflow: hidden; white-space: nowrap; padding: 22px 0; background: var(--carbon); border-top: 1px solid rgba(143,166,142,0.12); border-bottom: 1px solid rgba(143,166,142,0.12); }
+    .marquee-inner { display: inline-flex; gap: 60px; animation: marquee 28s linear infinite; }
+    .marquee-inner span { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(243,241,234,0.3); }
+    .marquee-inner span::after { content: '✦'; margin-left: 60px; color: var(--accent); opacity: 0.45; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    .stats-section { padding: 100px 60px; display: flex; flex-wrap: wrap; justify-content: center; gap: 60px; background: var(--carbon); }
+    .stat-item { text-align: center; min-width: 160px; }
+    .stat-number { font-family: var(--font-serif); font-size: clamp(2.5rem, 7vw, 3.8rem); font-weight: 300; color: var(--accent); line-height: 1; }
+    .stat-suffix { font-size: 2rem; }
+    .stat-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 12px; }
+
+    .about-section { padding: 160px 60px; position: relative; overflow: hidden; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; max-width: 1400px; margin: 0 auto; align-items: start; }
+    .about-left { position: relative; }
+    .about-year { font-family: var(--font-serif); font-size: 12rem; font-weight: 300; color: rgba(243,241,234,0.03); line-height: 1; position: absolute; top: -40px; left: -20px; pointer-events: none; }
+    .about-badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 20px; border: 1px solid var(--accent-dim); border-radius: 100px; margin-bottom: 32px; position: relative; z-index: 1; }
+    .about-badge span { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+    .about-title { font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; margin-bottom: 36px; position: relative; z-index: 1; }
+    .about-title em { font-style: italic; color: var(--accent); }
+    .about-body { color: rgba(243,241,234,0.65); line-height: 1.85; font-size: 0.98rem; position: relative; z-index: 1; }
+    .about-body strong { color: var(--white); font-weight: 400; }
+    .about-values { display: flex; flex-direction: column; gap: 40px; padding-top: 40px; }
+    .about-value { display: flex; gap: 20px; }
+    .value-num { font-family: var(--font-serif); font-size: 2rem; color: var(--accent); opacity: 0.35; line-height: 1; min-width: 36px; }
+    .value-text h3 { font-family: var(--font-serif); font-weight: 400; font-size: 1.15rem; margin-bottom: 8px; }
+    .value-text p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+
+    .section-label { font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.2; margin-bottom: 60px; }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    .services-section { padding: 160px 60px; background: var(--carbon); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1400px; margin: 0 auto; }
+    .service-card { background: var(--carbon-mid); padding: 52px 40px; transition: background 0.5s, transform 0.4s; position: relative; overflow: hidden; }
+    .service-card:hover { background: var(--carbon-light); transform: translateY(-4px); }
+    .service-number { font-family: var(--font-serif); font-size: 4rem; font-weight: 300; color: var(--accent); opacity: 0.1; position: absolute; top: 20px; right: 30px; }
+    .service-icon { width: 48px; height: 48px; border: 1px solid var(--accent-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 28px; color: var(--accent); }
+    .service-card h3 { font-family: var(--font-serif); font-weight: 400; font-size: 1.35rem; margin-bottom: 16px; }
+    .service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 0; }
+
+    .gallery-section { padding: 160px 60px; background: var(--black); }
+    .gallery-header { max-width: 1400px; margin: 0 auto 60px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 240px; gap: 12px; max-width: 1400px; margin: 0 auto; }
+    .gallery-item { overflow: hidden; position: relative; background: var(--carbon-mid); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); display: block; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item.span-2-col { grid-column: span 2; }
+    .gallery-item.span-2-row { grid-row: span 2; }
+
+    .testimonials-section { padding: 160px 60px; background: var(--carbon); }
+    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 60px; }
+    .testimonial-card { background: var(--carbon-mid); padding: 48px 36px; border: 1px solid rgba(243,241,234,0.04); transition: border-color 0.4s; }
+    .testimonial-card:hover { border-color: var(--accent-dim); }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 24px; }
+    .star { width: 16px; height: 16px; background: var(--accent); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+    .testimonial-quote { font-size: 0.96rem; line-height: 1.8; color: rgba(243,241,234,0.82); margin-bottom: 24px; font-style: italic; }
+    .testimonial-divider { width: 40px; height: 1px; background: var(--accent-dim); margin-bottom: 20px; }
+    .testimonial-author strong { display: block; font-size: 0.82rem; font-weight: 500; }
+    .testimonial-author span { font-size: 0.72rem; color: var(--text-muted); }
+    .testimonials-footer { text-align: center; margin-top: 60px; }
+    .testimonials-footer a { display: inline-block; padding: 16px 32px; border: 1px solid var(--accent); color: var(--accent); font-size: 0.8rem; letter-spacing: 0.2em; text-decoration: none; text-transform: uppercase; transition: background 0.3s, color 0.3s; }
+    .testimonials-footer a:hover { background: var(--accent); color: var(--black); }
+
+    .location-section { padding: 140px 60px; background: var(--black); }
+    .location-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; max-width: 1400px; margin: 0 auto; align-items: stretch; }
+    .location-info { display: flex; flex-direction: column; justify-content: center; }
+    .location-title { font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.15; margin-bottom: 28px; }
+    .location-title em { font-style: italic; color: var(--accent); }
+    .location-block { margin-bottom: 28px; }
+    .location-block h3 { font-family: var(--font-serif); font-weight: 400; font-size: 1rem; color: var(--accent); margin-bottom: 10px; letter-spacing: 0.08em; }
+    .location-block p, .location-block a { font-size: 0.94rem; color: rgba(243,241,234,0.75); line-height: 1.7; text-decoration: none; display: block; transition: color 0.3s; }
+    .location-block a:hover { color: var(--accent); }
+    .hours-list { list-style: none; }
+    .hours-list li { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; color: rgba(243,241,234,0.72); border-bottom: 1px dashed rgba(243,241,234,0.06); }
+    .hours-list li:last-child { border-bottom: none; }
+    .hours-list li.closed span:last-child { color: var(--text-muted); font-style: italic; }
+    .map-wrap { min-height: 520px; border: 1px solid rgba(143,166,142,0.18); overflow: hidden; }
+    .map-wrap iframe { width: 100%; height: 100%; min-height: 520px; border: 0; filter: grayscale(0.35) contrast(1.05) brightness(0.88); }
+
+    .cta-section { padding: 140px 60px; display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; gap: 40px; }
+    .cta-text h2 { font-family: var(--font-serif); font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 300; line-height: 1.1; }
+    .cta-text p { color: var(--text-muted); margin-top: 16px; font-size: 0.95rem; }
+    .btn-dark { display: inline-flex; align-items: center; gap: 16px; background: var(--accent); color: var(--black); padding: 22px 48px; text-decoration: none; font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; transition: gap 0.4s, background 0.3s; }
+    .btn-dark:hover { gap: 24px; background: var(--accent-light); }
+
+    footer { background: var(--carbon); padding: 80px 60px 40px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; max-width: 1400px; margin: 0 auto 60px; }
+    .footer-tagline { color: var(--text-muted); font-style: italic; margin-top: 12px; font-size: 0.92rem; max-width: 360px; }
+    .footer-social { display: flex; gap: 12px; margin-top: 20px; }
+    .social-link { width: 40px; height: 40px; border: 1px solid rgba(243,241,234,0.1); display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--white); transition: border-color 0.3s, color 0.3s; }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-col h3 { font-family: var(--font-serif); font-weight: 400; margin-bottom: 24px; font-size: 1.05rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a { text-decoration: none; color: var(--text-muted); font-size: 0.88rem; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 40px; border-top: 1px solid rgba(243,241,234,0.06); max-width: 1400px; margin: 0 auto; flex-wrap: wrap; gap: 16px; }
+    .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+    .footer-legal { display: flex; gap: 28px; }
+    .footer-legal a { font-size: 0.72rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+    .footer-legal a:hover { color: var(--accent); }
+
+    .loader { position: fixed; inset: 0; background: var(--black); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.6s, visibility 0.6s; }
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-bar { width: 60px; height: 2px; background: var(--accent-dim); position: relative; overflow: hidden; }
+    .loader-bar::after { content: ''; position: absolute; top: 0; left: -60px; width: 60px; height: 100%; background: var(--accent); animation: loading 1s ease-in-out infinite; }
+    @keyframes loading { to { left: 60px; } }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    @media (max-width: 980px) {
+      .about-grid { grid-template-columns: 1fr; gap: 60px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+      .gallery-item.span-2-col { grid-column: span 2; }
+      .gallery-item.span-2-row { grid-row: span 1; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .location-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-content { padding: 0 24px 60px; }
+      .stats-section { padding: 60px 24px; gap: 36px; }
+      .about-section { padding: 90px 24px; }
+      .about-year { font-size: 6rem; }
+      .services-section { padding: 90px 24px; }
+      .gallery-section { padding: 90px 24px; }
+      .testimonials-section { padding: 90px 24px; }
+      .location-section { padding: 90px 24px; }
+      .map-wrap, .map-wrap iframe { min-height: 360px; }
+      .cta-section { padding: 80px 24px; }
+      footer { padding: 60px 24px 30px; }
+    }
+  </style>
+</head>
+<body>
+<div class="loader" id="loader"><div class="loader-bar"></div></div>
+
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#inicio" class="nav-logo">Luar Nature<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Luar</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="tel:+34623964259" class="nav-cta">Pedir cita</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros" onclick="closeMobile()">Luar</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#galeria" onclick="closeMobile()">Galería</a>
+  <a href="#ubicacion" onclick="closeMobile()">Ubicación</a>
+  <a href="tel:+34623964259" onclick="closeMobile()">Pedir cita</a>
+</div>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg" id="heroBg" role="img" aria-label="Interior de Peluquería Luar Nature en Basauri"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Peluquería · Basauri · Bizkaia</div>
+    <h1 class="hero-title">Tu pelo,<br>tratado con<br><em>calma</em></h1>
+    <p class="hero-sub">Peluquería Luar Nature. Corte, color, mechas, tratamientos y peinados con un asesoramiento cercano. Leire escucha lo que quieres antes de cortar, para que salgas contenta de verdad.</p>
+  </div>
+</section>
+
+<div class="marquee-bar" aria-hidden="true"><div class="marquee-inner">
+  <span>Corte y peinado</span>
+  <span>Color y mechas</span>
+  <span>Tratamientos capilares</span>
+  <span>Recogidos</span>
+  <span>Asesoramiento personalizado</span>
+  <span>Trato cercano</span>
+  <span>Corte y peinado</span>
+  <span>Color y mechas</span>
+  <span>Tratamientos capilares</span>
+  <span>Recogidos</span>
+  <span>Asesoramiento personalizado</span>
+  <span>Trato cercano</span>
+</div></div>
+
+<section class="stats-section" aria-label="Reputación y trato">
+  <div class="stat-item"><div class="stat-number">4<span class="stat-suffix">,9</span></div><div class="stat-label">Valoración Google</div></div>
+  <div class="stat-item"><div class="stat-number"><span class="count" data-target="53">0</span><span class="stat-suffix">+</span></div><div class="stat-label">Reseñas verificadas</div></div>
+  <div class="stat-item"><div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div><div class="stat-label">Asesoramiento personalizado</div></div>
+  <div class="stat-item"><div class="stat-number">1<span class="stat-suffix"></span></div><div class="stat-label">Trato cercano y directo</div></div>
+</section>
+
+<section class="about-section" id="nosotros">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="about-year">L</div>
+      <div class="about-badge"><span>Peluquería con alma</span></div>
+      <h2 class="about-title">Leire, tu peluquera de <em>confianza</em></h2>
+      <p class="about-body">Peluquería Luar Nature está frente a la estación de Renfe de Bidebieta, en Basauri. Un espacio cuidado, tranquilo, donde el protagonista eres tú y lo que quieres conseguir con tu pelo.<br><br>Leire no trabaja con prisa. Escucha, pregunta, mira tu cabello y te propone lo que mejor te va a sentar, explicando cada paso. Nada de resultados que no encajen contigo: el objetivo es que al salir te mires al espejo y sonrías.<br><br><strong>Un asesoramiento real. Un trato de verdad.</strong></p>
+    </div>
+    <div class="about-values">
+      <h3 style="font-family:var(--font-serif);font-weight:400;font-size:1.6rem;margin-bottom:12px;color:var(--accent);">Por qué Luar Nature</h3>
+      <div class="about-value"><div class="value-num">01</div><div class="value-text"><h3>Escucha antes de cortar</h3><p>Preguntamos qué buscas, cómo te gusta peinarte cada día y qué resultado quieres. Ese es el punto de partida, no al revés.</p></div></div>
+      <div class="about-value"><div class="value-num">02</div><div class="value-text"><h3>Asesoramiento real</h3><p>Si una técnica no te conviene, te lo decimos. Preferimos un corte que te siente bien a uno que te salga mal por probar.</p></div></div>
+      <div class="about-value"><div class="value-num">03</div><div class="value-text"><h3>Color con criterio</h3><p>Tintes, mechas y balayage trabajados con cuidado. Miramos tu tipo de cabello y tu tono de piel antes de decidir contigo.</p></div></div>
+      <div class="about-value"><div class="value-num">04</div><div class="value-text"><h3>Sin prisa</h3><p>Cada clienta tiene su rato. Aquí no se encadenan citas a contrarreloj: vienes, te tratamos con calma y sales a gusto.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" id="servicios">
+  <div style="max-width:1400px; margin:0 auto;">
+    <p class="section-label reveal">Lo que ofrecemos</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:560px;">Servicios pensados para <em>cada cabello</em></h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div class="service-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 4l6 8 6-8"/><path d="M12 12v8"/></svg></div>
+        <h3>Corte y peinado</h3>
+        <p>Cortes actuales, clásicos y personalizados. Estudiamos la forma de tu rostro y el tipo de pelo para que el resultado te acompañe cada día.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <div class="service-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <h3>Color y tinte</h3>
+        <p>Color global, retoques de raíz, cambios de tono. Trabajamos con marcas profesionales y asesoramos sobre el mantenimiento en casa.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <div class="service-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 18c3-4 5-10 8-14"/><path d="M10 18c3-4 5-10 8-14"/></svg></div>
+        <h3>Mechas y balayage</h3>
+        <p>Mechas clásicas, babylights, balayage. Técnicas de iluminación trabajadas a medida para un resultado natural y luminoso.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-number">04</div>
+        <div class="service-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2c3 4 3 8 0 14-3-6-3-10 0-14z"/><path d="M12 20c2 1 4 1 6 2M12 20c-2 1-4 1-6 2"/></svg></div>
+        <h3>Tratamientos capilares</h3>
+        <p>Hidratación, reconstrucción, brillo y cuidado del cuero cabelludo. Para pelos dañados, secos o que necesiten recuperar fuerza.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">05</div>
+        <div class="service-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="5"/><path d="M7 14c1 5 9 5 10 0"/></svg></div>
+        <h3>Recogidos y peinados</h3>
+        <p>Recogidos para bodas, bautizos, comuniones y eventos. Prueba previa incluida para que el día importante salga como te imaginas.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">06</div>
+        <div class="service-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12c2-4 12-4 14 0"/><path d="M5 12c2 4 12 4 14 0"/><circle cx="12" cy="12" r="1.5"/></svg></div>
+        <h3>Asesoramiento de imagen</h3>
+        <p>¿No sabes qué cambio te conviene? Te acompañamos a decidir. Vemos juntos referencias y te damos opciones realistas para tu pelo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="galeria">
+  <div class="gallery-header">
+    <p class="section-label reveal">Nuestro trabajo</p>
+    <h2 class="section-title reveal reveal-delay-1">Resultados <em>reales</em> del salón</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item span-2-row reveal"><img src="fotos/foto-02.jpg" alt="Trabajo de color realizado en Peluquería Luar Nature" loading="lazy"></div>
+    <div class="gallery-item reveal reveal-delay-1"><img src="fotos/foto-03.jpg" alt="Resultado de corte y peinado en Luar Nature" loading="lazy"></div>
+    <div class="gallery-item reveal reveal-delay-2"><img src="fotos/foto-04.jpg" alt="Mechas trabajadas en Peluquería Luar Nature" loading="lazy"></div>
+    <div class="gallery-item span-2-col reveal"><img src="fotos/foto-05.jpg" alt="Detalle del salón Luar Nature en Basauri" loading="lazy"></div>
+    <div class="gallery-item reveal reveal-delay-1"><img src="fotos/foto-06.jpg" alt="Color y acabado en Luar Nature" loading="lazy"></div>
+    <div class="gallery-item reveal reveal-delay-2"><img src="fotos/foto-07.jpg" alt="Cambio de look realizado en Luar Nature" loading="lazy"></div>
+    <div class="gallery-item reveal"><img src="fotos/foto-08.jpg" alt="Trabajo de peluquería en Luar Nature" loading="lazy"></div>
+    <div class="gallery-item reveal reveal-delay-1"><img src="fotos/foto-09.jpg" alt="Acabado profesional en Luar Nature" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="testimonials-section" aria-label="Reseñas de clientas">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen las clientas</p>
+    <h2 class="section-title reveal reveal-delay-1">Opiniones <em>verificadas</em> en Google</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"He tenido el gusto de conocer la peluquería Luar Nature y muy chulo el local. Leire es encantadora, te trata genial, es muy amable y simpática. Me encanta el trabajo que hace y la recomiendo 100%."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author"><strong>Inma D.</strong><span>Reseña Google · 5 ★</span></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Si estás buscando una peluquera en la que poder confiar, esa es Leire. Trabaja muy bien los tintes, te entiende perfectamente y te escucha en todo momento para conseguir el mejor resultado. Nunca he salido tan contenta de una peluquería."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author"><strong>Iraide A.</strong><span>Reseña Google · 5 ★</span></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Siempre un acierto. El corte de pelo que quería, el sitio es muy chulo y el trato genial."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author"><strong>Nerea S.</strong><span>Reseña Google · 5 ★</span></div>
+      </div>
+    </div>
+    <div class="testimonials-footer reveal">
+      <a href="https://maps.google.com/?cid=15618371325500127191" target="_blank" rel="noopener">Ver las 53 reseñas en Google →</a>
+    </div>
+  </div>
+</section>
+
+<section class="location-section" id="ubicacion">
+  <div class="location-grid">
+    <div class="location-info">
+      <p class="section-label">Dónde encontrarnos</p>
+      <h2 class="location-title">Frente a la estación<br>de <em>Bidebieta</em></h2>
+      <div class="location-block">
+        <h3>Dirección</h3>
+        <p>Agirre Lehendakaria Kalea, 26<br>Frente a la estación de Renfe (Bidebieta)<br>48970 Basauri · Bizkaia</p>
+      </div>
+      <div class="location-block">
+        <h3>Teléfono</h3>
+        <a href="tel:+34623964259">623 96 42 59</a>
+      </div>
+      <div class="location-block">
+        <h3>Horario</h3>
+        <ul class="hours-list">
+          <li class="closed"><span>Lunes</span><span>Cerrado</span></li>
+          <li><span>Martes a viernes</span><span>9:00 – 19:00</span></li>
+          <li><span>Sábado</span><span>9:00 – 13:00</span></li>
+          <li class="closed"><span>Domingo</span><span>Cerrado</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:ChIJX6uBbndPTg0R1_eUiviZv9g" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Peluquería Luar Nature en Basauri"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contacto">
+  <div class="cta-text">
+    <h2>¿Pedimos<br>tu cita?</h2>
+    <p>Llámanos o escríbenos por WhatsApp. Te buscamos el hueco que mejor te encaje y nos ponemos manos a la obra.</p>
+  </div>
+  <a href="tel:+34623964259" class="btn-dark"><span>Pedir cita</span><span>&nearr;</span></a>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#inicio" class="nav-logo">Luar Nature<span>.</span></a>
+      <p class="footer-tagline">"Un rato tranquilo, un asesoramiento honesto y un resultado con el que salir contenta."</p>
+      <div class="footer-social">
+        <a href="https://maps.google.com/?cid=15618371325500127191" class="social-link" aria-label="Google Maps" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s7-7.5 7-13a7 7 0 10-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </a>
+        <a href="https://wa.me/34623964259" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4A10 10 0 003.3 17.3L2 22l4.8-1.3A10 10 0 1020 4zm-8 17c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-2.8.8.8-2.8-.2-.3A8 8 0 1120 12a8 8 0 01-8 9zm4.5-6c-.3-.2-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.2-.2.3-.7.8-.8.9-.1.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.7-3.3-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.2-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 1.9 2.9 4.7 4 2 .8 2.4.6 2.8.6.4 0 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.3-.2-.6-.3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Servicios</h3>
+      <ul>
+        <li><a href="#servicios">Corte y peinado</a></li>
+        <li><a href="#servicios">Color y tinte</a></li>
+        <li><a href="#servicios">Mechas y balayage</a></li>
+        <li><a href="#servicios">Tratamientos</a></li>
+        <li><a href="#servicios">Recogidos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34623964259">623 96 42 59</a></li>
+        <li><a href="https://wa.me/34623964259" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="https://maps.google.com/?cid=15618371325500127191" target="_blank" rel="noopener">Agirre Lehendakaria, 26 · Basauri</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Peluquería Luar Nature. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+      document.getElementById('heroBg').classList.add('loaded');
+    }, 1200);
+  });
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+  });
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+  function animateCount(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const duration = 1600;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+</script>
+</body>
+</html>
