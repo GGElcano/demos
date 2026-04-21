@@ -500,41 +500,42 @@
       line-height: 1.75; font-weight: 300;
     }
 
-    /* ─── TESTIMONIALS ─── */
-    .testimonials-section { background: var(--carbon); position: relative; overflow: hidden; }
-    .testimonials-section::before {
+    /* ─── SOCIAL PROOF ─── */
+    .social-proof { background: var(--carbon); position: relative; overflow: hidden; }
+    .social-proof::before {
       content: '"'; position: absolute; top: -60px; left: 40px;
       font-family: var(--font-serif); font-size: 30rem;
       color: rgba(139,94,60,0.03); line-height: 1; pointer-events: none;
     }
-    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 70px;
+    .proof-inner {
+      max-width: 860px; margin: 0 auto; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 22px;
+      position: relative;
     }
-    .testimonial-card {
-      padding: 56px 44px; background: rgba(8,8,8,0.4);
-      border: 1px solid rgba(139,94,60,0.07);
-      transition: border-color 0.4s, background 0.4s;
+    .proof-stars {
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      color: var(--accent); letter-spacing: 0.25em;
     }
-    .testimonial-card:hover { border-color: rgba(139,94,60,0.2); background: rgba(8,8,8,0.7); }
-    .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
-    .star {
-      width: 12px; height: 12px; background: var(--accent);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    .proof-rating {
+      font-family: var(--font-serif); font-weight: 300;
+      font-size: clamp(5rem, 12vw, 8.5rem); line-height: 1;
+      letter-spacing: -0.02em; color: var(--accent);
+      display: inline-flex; align-items: baseline;
     }
-    .testimonial-quote {
-      font-family: var(--font-serif); font-size: 1.2rem;
-      font-style: italic; font-weight: 300;
-      line-height: 1.7; color: rgba(245,243,239,0.85);
-      margin-bottom: 36px;
+    .proof-rating .proof-dec { font-size: 0.55em; color: var(--accent); }
+    .proof-label {
+      font-size: 0.88rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 300;
     }
-    .testimonial-divider { width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4; }
-    .testimonial-author strong {
-      display: block; font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.08em; margin-bottom: 4px;
+    .proof-label strong { color: rgba(245,243,239,0.92); font-weight: 500; letter-spacing: 0.12em; }
+    .proof-cta {
+      margin-top: 18px; display: inline-block;
+      padding: 16px 36px; border: 1px solid var(--accent);
+      color: var(--accent); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
+      transition: background 0.3s, color 0.3s;
     }
-    .testimonial-author span { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em; }
+    .proof-cta:hover { background: var(--accent); color: var(--black); }
 
     /* ─── CONTACT / MAP ─── */
     .contact-section {
@@ -709,7 +710,6 @@
       .about-visual { min-height: 300px; }
       .about-content { padding: 60px 24px; }
       .services-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
       .contact-section { padding: 80px 24px; }
       .cta-section { padding: 80px 24px; flex-direction: column; }
       .footer-top { grid-template-columns: 1fr; }
@@ -1240,48 +1240,14 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials-section">
-  <div class="testimonials-inner">
-    <p class="section-label reveal">Lo que dicen nuestros clientes</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      4,7 estrellas en Google<br>por <em>algo será</em>
-    </h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-        </div>
-        <p class="testimonial-quote">"Café estupendo por la mañana y mejores gin tonics por la tarde. El trato del personal es impecable y el ambiente siempre agradable."</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <strong>Rosa G.</strong>
-          <span>Reseña en Google</span>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-        </div>
-        <p class="testimonial-quote">"Un sitio de esos a los que no vas por casualidad. Los desayunos están muy bien y la carta de ginebras es enorme. Nuestro Plan B siempre que bajamos al centro."</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <strong>Iker M.</strong>
-          <span>Reseña en Google</span>
-        </div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-        </div>
-        <p class="testimonial-quote">"Local muy cuidado, precios justos y gin tonics bien preparados. Si no sabes cuál pedir te recomiendan y aciertan. Repetiremos seguro."</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <strong>Miren B.</strong>
-          <span>Reseña en Google</span>
-        </div>
-      </div>
-    </div>
+<!-- SOCIAL PROOF -->
+<section class="social-proof" id="opiniones" aria-label="Valoración en Google">
+  <div class="proof-inner">
+    <p class="section-label reveal">La nota dice mucho</p>
+    <div class="proof-stars reveal" aria-hidden="true">★★★★★</div>
+    <div class="proof-rating reveal reveal-delay-1"><span>4</span><span class="proof-dec">,7</span></div>
+    <p class="proof-label reveal reveal-delay-1">Media en Google · <strong>95 reseñas</strong></p>
+    <a class="proof-cta reveal reveal-delay-2" href="https://maps.google.com/?cid=80935938713231257" target="_blank" rel="noopener noreferrer">Leer todas las reseñas en Google →</a>
   </div>
 </section>
 
