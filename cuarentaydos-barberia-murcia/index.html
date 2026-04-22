@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>42m² Barbería · Corte clásico y fade en el centro de Murcia</title>
+<meta name="description" content="Barbería de autor en la calle Simón García de Murcia. Corte, barba, afeitado clásico, tinte y combo. Atención sin prisas, cita en Booksy. 4,7 estrellas con 144 reseñas en Google." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EEE3;
+    --paper-2:#E9E3D3;
+    --ink:#0B0B0B;
+    --ink-2:#2A2A28;
+    --muted:#6B685F;
+    --rule:#1A1A1A;
+    --acid:#D8FF3D;
+    --signal:#E3412B;
+    --null:#8C8C8C;
+    --maxw:1320px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;min-width:0}
+  html,body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;font-family:'Inter',system-ui,sans-serif}
+  body{
+    background-image:
+      radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;letter-spacing:.02em}
+
+  .skip-link{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:12px 20px;z-index:9999;font-family:'JetBrains Mono',monospace;font-size:12px}
+  .skip-link:focus{left:16px;top:16px;outline:3px solid var(--acid)}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+
+  /* TICKER */
+  .ticker{
+    background:var(--ink);color:var(--paper);
+    border-bottom:1px solid #000;
+    overflow:hidden;white-space:nowrap;
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    padding:10px 0;
+  }
+  .ticker span{display:inline-block;padding-right:56px}
+  .ticker em{color:var(--acid);font-style:normal;margin-right:8px}
+  .ticker-track{display:inline-block;animation:scroll 60s linear infinite}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* NAV */
+  nav.top{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 0;border-bottom:1px solid var(--rule);gap:16px;
+  }
+  .logo{display:flex;align-items:center;gap:14px}
+  .logo-mark{
+    width:44px;height:44px;border:1.5px solid var(--ink);
+    display:grid;place-items:center;position:relative;
+    background:var(--paper);flex-shrink:0;
+  }
+  .logo-mark::before{
+    content:"";position:absolute;inset:5px;border:1px dashed var(--ink);
+  }
+  .logo-mark span{
+    font-family:'Fraunces',serif;font-weight:900;font-size:19px;line-height:1;
+    font-style:italic;
+  }
+  .logo-word{display:flex;flex-direction:column;line-height:1}
+  .logo-word b{font-family:'Fraunces',serif;font-weight:900;font-size:20px;letter-spacing:-.01em}
+  .logo-word small{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.18em;text-transform:uppercase}
+
+  nav.top ul{display:flex;gap:28px;list-style:none}
+  nav.top a{font-size:14px;font-weight:500;position:relative;padding:4px 0}
+  nav.top a:hover::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--ink)}
+  .sub-btn{
+    background:var(--ink);color:var(--paper);padding:12px 20px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;border:none;
+    transition:transform .15s ease, background .15s ease;
+    display:inline-block;
+  }
+  .sub-btn:hover,.sub-btn:focus-visible{background:var(--acid);color:var(--ink);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+
+  /* MASTHEAD */
+  .masthead{padding:56px 0 28px;border-bottom:1px solid var(--rule);position:relative}
+  .masthead-meta{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:18px;flex-wrap:wrap;gap:12px;
+  }
+  .masthead-meta .pill{
+    display:inline-block;padding:4px 10px;background:var(--acid);color:var(--ink);
+    border:1px solid var(--ink);margin-right:10px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif;
+    font-weight:900;
+    font-size:clamp(56px,12vw,180px);
+    line-height:.86;
+    letter-spacing:-.035em;
+    font-variation-settings:"opsz" 144;
+    overflow-wrap:break-word;word-break:break-word;hyphens:auto;
+  }
+  h1.title i{font-style:italic;font-weight:300;color:var(--signal)}
+  h1.title sup{
+    font-family:'Fraunces',serif;font-weight:300;font-style:italic;
+    font-size:.42em;color:var(--muted);vertical-align:super;margin-left:6px;
+  }
+  .masthead-kicker{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;
+    margin-top:40px;align-items:end;
+  }
+  .masthead-kicker p{
+    font-family:'Fraunces',serif;font-size:clamp(18px,2vw,22px);line-height:1.35;
+    font-weight:400;max-width:52ch;
+  }
+  .masthead-kicker p b{font-weight:600;background:var(--acid);padding:0 4px}
+  .masthead-stats{
+    display:flex;gap:clamp(20px,3vw,32px);justify-content:flex-end;flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .masthead-stats div{min-width:0}
+  .masthead-stats div b{
+    display:block;font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(32px,4vw,42px);line-height:1;
+  }
+  .masthead-stats div span{
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  }
+
+  /* HERO */
+  .shop-hero{
+    display:grid;grid-template-columns:1.1fr 1fr;gap:0;
+    border-bottom:1px solid var(--rule);
+  }
+  .sh-left{
+    padding:48px 28px 48px 0;border-right:1px solid var(--rule);
+    position:relative;
+  }
+  .sh-right{
+    padding:48px 0 48px 40px;display:flex;flex-direction:column;gap:24px;
+  }
+  .sh-tag{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:20px;
+  }
+  .sh-tag::before{
+    content:"";width:8px;height:8px;background:var(--signal);border-radius:50%;
+    animation:pulse 1.6s ease-in-out infinite;flex-shrink:0;
+  }
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+
+  .sh-title{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(32px,5vw,62px);line-height:1.02;
+    letter-spacing:-.02em;margin-bottom:24px;
+    overflow-wrap:break-word;
+  }
+  .sh-title span{font-style:italic;font-weight:300}
+  .sh-dek{
+    font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:var(--ink-2);max-width:56ch;
+    margin-bottom:28px;
+  }
+
+  .action-box{
+    border:1.5px solid var(--ink);background:var(--paper);
+    padding:20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+    box-shadow:6px 6px 0 var(--ink);
+    margin-bottom:24px;
+  }
+  .action-btn{
+    width:56px;height:56px;border:1.5px solid var(--ink);background:var(--acid);
+    display:grid;place-items:center;flex-shrink:0;
+    transition:all .15s ease;color:var(--ink);
+  }
+  .action-btn:hover,.action-btn:focus-visible{background:var(--ink);color:var(--acid)}
+  .action-btn svg{width:24px;height:24px}
+  .action-info{flex:1;min-width:180px}
+  .action-info b{font-family:'Fraunces',serif;font-weight:600;font-size:20px;display:block;line-height:1.1;margin-bottom:4px}
+  .action-info small{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.05em}
+  .action-tel{
+    font-family:'Fraunces',serif;font-weight:600;font-size:clamp(22px,2.4vw,28px);
+    letter-spacing:-.01em;
+  }
+
+  .quick-row{display:flex;flex-wrap:wrap;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px}
+  .quick-row a{
+    border:1px solid var(--ink);padding:10px 14px;
+    text-transform:uppercase;letter-spacing:.12em;
+    transition:all .15s ease;
+  }
+  .quick-row a:hover,.quick-row a:focus-visible{background:var(--ink);color:var(--paper)}
+
+  .sh-img{
+    border:1.5px solid var(--ink);
+    aspect-ratio:4/5;
+    background-size:cover;background-position:center center;
+    box-shadow:8px 8px 0 var(--ink);
+    position:relative;
+  }
+  .sh-img-caption{
+    position:absolute;bottom:12px;left:12px;
+    background:var(--ink);color:var(--paper);
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    padding:6px 10px;letter-spacing:.15em;text-transform:uppercase;
+  }
+
+  /* TRIPTYCH */
+  .triptych-section{
+    padding:64px 0;border-bottom:1px solid var(--rule);
+  }
+  .triptych-section .sec-meta{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:16px;
+  }
+  .triptych-section h2{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(36px,5.5vw,78px);line-height:.95;letter-spacing:-.025em;
+    margin-bottom:40px;overflow-wrap:break-word;
+  }
+  .triptych-section h2 i{font-style:italic;font-weight:300;color:var(--signal)}
+  .triptych{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
+    border:1.5px solid var(--ink);background:var(--paper);
+  }
+  .trip-item{
+    padding:28px 26px;border-right:1px solid var(--ink);
+    display:flex;flex-direction:column;gap:14px;
+    transition:background .15s ease;min-width:0;
+  }
+  .trip-item:last-child{border-right:none}
+  .trip-item:hover{background:var(--paper-2)}
+  .trip-label{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:.22em;text-transform:uppercase;
+  }
+  .trip-label.a{color:var(--signal)}
+  .trip-label.b{color:var(--ink-2)}
+  .trip-label.c{color:var(--muted)}
+  .trip-body h3{
+    font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,2vw,24px);
+    line-height:1.2;margin-bottom:4px;
+  }
+  .trip-body p{font-size:14px;line-height:1.55;color:var(--ink-2)}
+
+  /* DIVIDER */
+  .divider{padding:64px 0 32px;border-bottom:1px solid var(--rule)}
+  .divider h2{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(40px,6vw,88px);line-height:.95;letter-spacing:-.025em;
+    overflow-wrap:break-word;
+  }
+  .divider h2 i{font-style:italic;font-weight:300}
+  .divider .sub{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    margin-top:14px;display:block;
+  }
+
+  /* SERVICIOS */
+  .services{padding:48px 0 72px;border-bottom:1px solid var(--rule)}
+  .svc-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border-top:1px solid var(--rule);
+  }
+  .svc-card{
+    padding:32px 28px;border-right:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    position:relative;
+    min-height:420px;display:flex;flex-direction:column;
+    min-width:0;
+  }
+  .svc-card:nth-child(3n){border-right:none}
+  .svc-photo{
+    width:100%;aspect-ratio:4/3;
+    background-size:cover;background-position:center center;
+    border:1px solid var(--rule);margin-bottom:22px;
+  }
+  .svc-num{
+    font-family:'Fraunces',serif;font-weight:900;font-style:italic;
+    font-size:clamp(48px,5vw,64px);line-height:.9;color:var(--ink);
+    margin-bottom:10px;
+  }
+  .svc-num sup{font-size:14px;font-style:normal;font-weight:400;color:var(--muted);margin-left:4px}
+  .svc-card h3{
+    font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,2vw,24px);
+    line-height:1.2;margin-bottom:10px;overflow-wrap:break-word;
+  }
+  .svc-card p{
+    font-size:14px;line-height:1.55;color:var(--ink-2);margin-bottom:14px;
+  }
+  .svc-meta{
+    margin-top:auto;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+    display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  }
+
+  /* GALERÍA */
+  .gallery{padding:72px 0;border-bottom:1px solid var(--rule)}
+  .gallery-grid{
+    display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;
+    gap:16px;margin-top:32px;
+  }
+  .gal-tile{
+    background-size:cover;background-position:center;
+    border:1px solid var(--rule);
+    aspect-ratio:4/3;position:relative;overflow:hidden;
+  }
+  .gal-tile.tall{grid-row:span 2;aspect-ratio:3/4}
+  .gal-tile::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.35));
+    pointer-events:none;
+  }
+  .gal-cap{
+    position:absolute;bottom:12px;left:12px;z-index:1;
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:.18em;text-transform:uppercase;color:#fff;
+    text-shadow:0 1px 4px rgba(0,0,0,.8);
+  }
+
+  /* PRUEBA SOCIAL */
+  .proof{padding:80px 0;border-bottom:1px solid var(--rule);text-align:center;background:var(--paper-2)}
+  .proof-inner{max-width:640px;margin:0 auto;padding:0 20px}
+  .proof-stars{
+    font-size:clamp(28px,3vw,36px);color:var(--signal);letter-spacing:.15em;margin-bottom:16px;
+  }
+  .proof-rating{
+    font-family:'Fraunces',serif;font-weight:900;font-style:italic;
+    font-size:clamp(72px,10vw,128px);line-height:.9;letter-spacing:-.03em;
+  }
+  .proof-rating sup{font-size:.3em;font-style:normal;font-weight:400;color:var(--muted);margin-left:8px;vertical-align:super}
+  .proof-label{
+    font-family:'Fraunces',serif;font-size:clamp(18px,2vw,22px);
+    margin:18px 0 28px;color:var(--ink-2);
+  }
+  .proof-label b{background:var(--acid);padding:0 6px;font-weight:600}
+  .proof-cta{
+    display:inline-block;border-bottom:1.5px solid var(--ink);
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;padding-bottom:4px;
+  }
+  .proof-cta:hover{color:var(--signal);border-color:var(--signal)}
+
+  /* CTA NEGRO */
+  .cta-black{
+    padding:80px 0;background:var(--ink);color:var(--paper);
+    position:relative;overflow:hidden;
+  }
+  .cta-black::before{
+    content:"✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂ ✂";
+    position:absolute;top:20px;left:0;right:0;
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    color:rgba(242,238,227,.18);white-space:nowrap;letter-spacing:2em;
+    pointer-events:none;
+  }
+  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative}
+  .cta-black h2{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(36px,5vw,72px);line-height:1;letter-spacing:-.02em;
+    overflow-wrap:break-word;
+  }
+  .cta-black h2 i{font-style:italic;font-weight:300;color:var(--acid)}
+  .cta-black p{
+    font-family:'Fraunces',serif;font-size:clamp(16px,1.6vw,18px);line-height:1.5;
+    margin-top:20px;color:rgba(242,238,227,.78);max-width:46ch;
+  }
+  .cta-actions{display:flex;flex-direction:column;gap:16px}
+  .cta-primary{
+    display:inline-flex;align-items:center;justify-content:space-between;gap:20px;
+    background:var(--acid);color:var(--ink);padding:24px 28px;
+    font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,2.2vw,26px);
+    border:1.5px solid var(--acid);
+    transition:transform .15s ease;
+  }
+  .cta-primary:hover,.cta-primary:focus-visible{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--paper)}
+  .cta-primary small{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);font-weight:500}
+  .cta-secondary{
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+    border:1.5px solid var(--paper);color:var(--paper);padding:22px 28px;
+    font-family:'Fraunces',serif;font-size:clamp(18px,2vw,22px);
+    transition:all .15s ease;
+  }
+  .cta-secondary:hover,.cta-secondary:focus-visible{background:var(--paper);color:var(--ink)}
+  .cta-secondary small{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:inherit;opacity:.7}
+
+  /* CONTACTO */
+  .contact{padding:72px 0}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;margin-top:24px}
+  .contact-info{display:flex;flex-direction:column;gap:28px}
+  .contact-block h3{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:10px;
+  }
+  .contact-block p, .contact-block a{
+    font-family:'Fraunces',serif;font-size:clamp(17px,1.8vw,20px);line-height:1.4;
+    color:var(--ink);
+  }
+  .contact-block a:hover{color:var(--signal)}
+  .schedule-list{list-style:none;font-family:'JetBrains Mono',monospace;font-size:13px;display:grid;gap:6px}
+  .schedule-list li{display:flex;justify-content:space-between;gap:20px;padding:6px 0;border-bottom:1px dashed var(--rule)}
+  .schedule-list li:last-child{border-bottom:none}
+  .schedule-list .day{text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+  .schedule-list .hr{color:var(--ink)}
+  .schedule-list .closed{color:var(--muted);font-style:italic}
+  .status-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--signal);
+    margin-bottom:12px;
+  }
+  .status-badge::before{
+    content:"";width:8px;height:8px;border-radius:50%;background:var(--signal);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  .map-box{
+    border:1.5px solid var(--ink);background:var(--paper-2);
+    aspect-ratio:4/3;overflow:hidden;box-shadow:8px 8px 0 var(--ink);
+  }
+  .map-box iframe{width:100%;height:100%;border:none;display:block;filter:grayscale(.3) contrast(1.05)}
+
+  /* FOOTER */
+  footer{padding:48px 0 32px;border-top:1px solid var(--rule)}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+  .foot-grid h4{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:16px;
+  }
+  .foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .foot-grid a{font-size:14px}
+  .foot-grid a:hover{text-decoration:underline;text-underline-offset:4px}
+  .foot-bottom{
+    margin-top:48px;padding-top:24px;border-top:1px solid var(--rule);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+  }
+  .foot-bottom .open-badge{color:var(--signal)}
+  .foot-bottom .blink{
+    display:inline-block;width:8px;height:14px;background:var(--signal);
+    margin-left:6px;animation:blink 1s step-end infinite;vertical-align:middle;
+  }
+  @keyframes blink{50%{opacity:0}}
+
+  /* RESPONSIVE */
+  @media (max-width:900px){
+    .shop-hero{grid-template-columns:1fr}
+    .sh-left{border-right:none;border-bottom:1px solid var(--rule);padding-right:0}
+    .sh-right{padding-left:0;padding-top:32px}
+    .masthead-kicker{grid-template-columns:1fr;gap:24px}
+    .masthead-stats{justify-content:flex-start}
+    .triptych{grid-template-columns:1fr}
+    .trip-item{border-right:none;border-bottom:1px solid var(--ink)}
+    .trip-item:last-child{border-bottom:none}
+    .svc-grid{grid-template-columns:1fr}
+    .svc-card{border-right:none !important}
+    .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+    .gal-tile.tall{grid-row:span 1;aspect-ratio:4/3}
+    .cta-grid{grid-template-columns:1fr;gap:32px}
+    .contact-grid{grid-template-columns:1fr;gap:32px}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
+    nav.top ul{display:none}
+  }
+  @media (max-width:520px){
+    .foot-grid{grid-template-columns:1fr}
+    .wrap{padding:0 20px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    .ticker-track{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+<!-- TICKER -->
+<div class="ticker" aria-label="Novedades de la barbería">
+  <div class="ticker-track" aria-hidden="true">
+    <span><em>◉ HOY</em> Cita en el día según hueco, llama y preguntamos &nbsp;·&nbsp;</span>
+    <span><em>◉ CITA</em> Reserva directa en Booksy las 24 horas &nbsp;·&nbsp;</span>
+    <span><em>◉ CLÁSICO</em> Afeitado con navaja, toalla caliente y masaje &nbsp;·&nbsp;</span>
+    <span><em>◉ PRODUCTO</em> Uppercut Deluxe y American Crew en tienda &nbsp;·&nbsp;</span>
+    <span><em>◉ AQUÍ</em> Calle Simón García, 6 · Centro de Murcia &nbsp;·&nbsp;</span>
+    <span><em>◉ HOY</em> Cita en el día según hueco, llama y preguntamos &nbsp;·&nbsp;</span>
+    <span><em>◉ CITA</em> Reserva directa en Booksy las 24 horas &nbsp;·&nbsp;</span>
+    <span><em>◉ CLÁSICO</em> Afeitado con navaja, toalla caliente y masaje &nbsp;·&nbsp;</span>
+    <span><em>◉ PRODUCTO</em> Uppercut Deluxe y American Crew en tienda &nbsp;·&nbsp;</span>
+    <span><em>◉ AQUÍ</em> Calle Simón García, 6 · Centro de Murcia &nbsp;·&nbsp;</span>
+  </div>
+</div>
+
+<main id="main-content">
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="top" aria-label="Navegación principal">
+    <a href="#inicio" class="logo" aria-label="42m² Barbería · Inicio">
+      <span class="logo-mark" aria-hidden="true"><span>42</span></span>
+      <span class="logo-word">
+        <b>42m² Barbería</b>
+        <small>Simón García · Murcia</small>
+      </span>
+    </a>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#filosofia">Filosofía</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="https://booksy.com/es-es/4329_42m2-barberia_barberia_81317_murcia" target="_blank" rel="noopener" class="sub-btn" aria-label="Reservar cita en Booksy">Reservar ↗</a>
+  </nav>
+
+  <!-- MASTHEAD -->
+  <section class="masthead" id="inicio" aria-label="Presentación">
+    <div class="masthead-meta">
+      <div><span class="pill">ABIERTO</span> LU–VI 10:00–19:00 · SÁ–DO CERRADO</div>
+      <div>CALLE SIMÓN GARCÍA · CENTRO DE MURCIA</div>
+    </div>
+
+    <h1 class="title">42<sup>m²</sup><br>de <i>barbería.</i></h1>
+
+    <div class="masthead-kicker">
+      <p>Barbería pequeña, cuidada y sin prisa en pleno centro de Murcia. <b>Un solo sillón, un solo turno.</b> Corte, barba, afeitado clásico con toalla caliente, tinte y combo. Se atiende con cita, se trabaja sin mirar el reloj.</p>
+      <div class="masthead-stats" role="list" aria-label="Datos de la barbería">
+        <div role="listitem"><b>4,7</b><span>Google · 144 reseñas</span></div>
+        <div role="listitem"><b>42</b><span>Metros cuadrados</span></div>
+        <div role="listitem"><b>24 h</b><span>Reserva en Booksy</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO -->
+  <section class="shop-hero" aria-label="Destacado del día">
+    <div class="sh-left">
+      <div class="sh-tag">Reserva online · Booksy 24 horas</div>
+      <h2 class="sh-title">Cita por <span>Booksy,</span> café al llegar y un trabajo que se hace con <span>calma.</span></h2>
+      <p class="sh-dek">La agenda está abierta en Booksy para que cojas el hueco que mejor te venga. Corte, arreglo de barba, afeitado clásico, tinte o el combo completo. Se trabaja con máquina, tijera y navaja, con toalla caliente cuando toca. Si prefieres llamar, responde el teléfono durante el horario de tienda.</p>
+
+      <div class="action-box" role="group" aria-label="Contacto directo">
+        <a href="tel:+34630116638" class="action-btn" aria-label="Llamar al 630 11 66 38">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.05 15.05 0 0 1-6.59-6.58l2.2-2.21a1 1 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1 17 17 0 0 0 17 17 1 1 0 0 0 1-1v-3.5a1 1 0 0 0-1-1Z"/></svg>
+        </a>
+        <div class="action-info">
+          <b class="action-tel">630 11 66 38</b>
+          <small>Llamadas y WhatsApp · Se responde en horario de tienda</small>
+        </div>
+      </div>
+
+      <div class="quick-row">
+        <a href="https://booksy.com/es-es/4329_42m2-barberia_barberia_81317_murcia" target="_blank" rel="noopener" aria-label="Reservar en Booksy">Booksy ↗</a>
+        <a href="https://wa.me/34630116638" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">WhatsApp ↗</a>
+        <a href="https://maps.google.com/?cid=10943035649914033512" target="_blank" rel="noopener">Cómo llegar ↗</a>
+        <a href="#servicios">Ver servicios →</a>
+      </div>
+    </div>
+
+    <div class="sh-right">
+      <div class="sh-img" role="img" aria-label="Escaparate de 42m² Barbería en la calle Simón García de Murcia con poste de barbero y logotipo vinilado en el cristal" style="background-image:url('img/real-1.jpg')">
+        <span class="sh-img-caption">Simón García, 6 · Murcia</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIPTYCH -->
+  <section class="triptych-section" id="filosofia" aria-label="Cómo se trabaja">
+    <div class="sec-meta">// Tres maneras de entender el oficio</div>
+    <h2>Máquina, <i>tijera,</i> navaja. Y tiempo para hacerlo bien.</h2>
+
+    <div class="triptych">
+      <div class="trip-item">
+        <div class="trip-label a">◉ Un sillón · un turno</div>
+        <div class="trip-body">
+          <h3>Sin solaparse con nadie.</h3>
+          <p>Se atiende a un cliente cada vez. Ni prisas, ni esperas incómodas, ni cortes a medias. El tiempo que te reserva Booksy es el tiempo que tienes el sillón para ti.</p>
+        </div>
+      </div>
+      <div class="trip-item">
+        <div class="trip-label b">● Herramienta clásica</div>
+        <div class="trip-body">
+          <h3>Tijera, máquina y navaja.</h3>
+          <p>Degradados con máquina y acabado a tijera. Barba perfilada con navaja. Afeitado clásico con toalla caliente, preshave y masaje final. Producto profesional en tienda.</p>
+        </div>
+      </div>
+      <div class="trip-item">
+        <div class="trip-label c">◌ Se escucha primero</div>
+        <div class="trip-body">
+          <h3>Hablamos antes de cortar.</h3>
+          <p>Qué te funciona, qué has probado y qué quieres mantener. El corte se plantea en voz alta antes de encender la máquina: si hay dudas, se habla, no se improvisa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER SERVICIOS -->
+  <section class="divider" id="servicios">
+    <h2>Los <i>servicios.</i></h2>
+    <span class="sub">Lo que se hace a diario en el sillón de Simón García</span>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services" aria-label="Servicios de la barbería">
+    <div class="svc-grid">
+      <article class="svc-card">
+        <div class="svc-photo" role="img" aria-label="Interior de la barbería con baldosa hidráulica, sillón clásico y barbero atendiendo a un cliente" style="background-image:url('img/real-2.jpg')"></div>
+        <div class="svc-num">01</div>
+        <h3>Corte de pelo.</h3>
+        <p>Máquina, tijera o combinación, según lo que lleves y lo que pidas. Degradado, fade clásico, corte ejecutivo, estilo texturizado o tijera larga. Se lava antes y se peina al terminar.</p>
+        <div class="svc-meta"><span>Reserva en Booksy</span><span>Cita por WhatsApp</span></div>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-photo" role="img" aria-label="Detalle de máquinaria profesional de barbero: cortapelos, peines y tijeras dispuestos en el tocador" style="background-image:url('https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?w=1600&q=80')"></div>
+        <div class="svc-num">02</div>
+        <h3>Arreglo de barba.</h3>
+        <p>Perfilado a navaja, recorte a máquina y acabado. Se habla primero la forma: cerrada, media o completa. Producto hidratante al terminar para que la piel no tire.</p>
+        <div class="svc-meta"><span>30 minutos aprox.</span><span>Con toalla caliente</span></div>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-photo" role="img" aria-label="Afeitado clásico con navaja y jabón en espuma aplicado con brocha sobre toalla blanca" style="background-image:url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1600&q=80')"></div>
+        <div class="svc-num">03</div>
+        <h3>Afeitado clásico.</h3>
+        <p>Toalla caliente, preshave, jabón con brocha, dos pasadas de navaja y masaje con bálsamo. El ritual completo a la antigua, sin atajos. Media hora larga, solo para ti.</p>
+        <div class="svc-meta"><span>Navaja y toalla</span><span>45 minutos</span></div>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-photo" role="img" aria-label="Pomada Uppercut Deluxe Easy Hold sostenida en la mano delante del suelo de la barbería" style="background-image:url('img/real-3.jpg')"></div>
+        <div class="svc-num">04</div>
+        <h3>Tinte de pelo y barba.</h3>
+        <p>Coloración para cubrir canas o cambiar tono, en pelo o barba. Se aplica con tiempo de reposo y se peina al final. Producto profesional, sin olor agresivo, resultado natural.</p>
+        <div class="svc-meta"><span>Cita previa</span><span>Producto profesional</span></div>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-photo" role="img" aria-label="Barbero aplicando acabado con peine y secador a un cliente en el sillón" style="background-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80')"></div>
+        <div class="svc-num">05</div>
+        <h3>Combo corte y barba.</h3>
+        <p>Corte completo más arreglo de barba, en la misma cita. Un solo hueco en la agenda, precio cerrado y la cara lista de una vez. Ideal para evento, sesión de fotos o fin de semana largo.</p>
+        <div class="svc-meta"><span>Reserva online</span><span>Hora cerrada</span></div>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-photo" role="img" aria-label="Botes de producto profesional de barbería: ceras, pomadas y aceites en estantería de madera" style="background-image:url('https://images.unsplash.com/photo-1634302086738-b0c4cb2f9a77?w=1600&q=80')"></div>
+        <div class="svc-num">06</div>
+        <h3>Tienda de producto.</h3>
+        <p>Pomadas, ceras, aceites y aftershave de marcas de barbería. Uppercut Deluxe, American Crew y similares. Para mantener el peinado en casa con lo mismo que se usa en el sillón.</p>
+        <div class="svc-meta"><span>Asesoramiento</span><span>Stock en tienda</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="gallery" id="galeria" aria-label="Galería del local y trabajos">
+    <div class="divider" style="padding:0 0 24px;border:none">
+      <h2>La <i>galería.</i></h2>
+      <span class="sub">El local, el sillón, el producto y los trabajos que salen de Simón García</span>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-tile tall" role="img" aria-label="Interior industrial de barbería moderna con espejo, sillón de cuero y luces cálidas" style="background-image:url('https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=1600&q=80')">
+        <span class="gal-cap">Interior · ambiente</span>
+      </div>
+      <div class="gal-tile" role="img" aria-label="Primer plano de fade clásico trabajado con máquina en la nuca" style="background-image:url('https://images.unsplash.com/photo-1521490878406-d7efbdebbb3d?w=1200&q=80')">
+        <span class="gal-cap">Fade · acabado</span>
+      </div>
+      <div class="gal-tile" role="img" aria-label="Recorte de barba con cortapelos profesional en mano de barbero" style="background-image:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1200&q=80')">
+        <span class="gal-cap">Barba · perfilado</span>
+      </div>
+      <div class="gal-tile" role="img" aria-label="Peine y tijeras clásicas sobre toalla blanca en tocador de barbero" style="background-image:url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=1200&q=80')">
+        <span class="gal-cap">Herramienta · tijera</span>
+      </div>
+      <div class="gal-tile" role="img" aria-label="Navaja clásica de afeitado abierta junto a brocha y jabón" style="background-image:url('https://images.unsplash.com/photo-1517837125937-53bd402f49d6?w=1200&q=80')">
+        <span class="gal-cap">Afeitado · ritual</span>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /.wrap -->
+
+<!-- PRUEBA SOCIAL -->
+<section class="proof" aria-label="Valoración en Google">
+  <div class="proof-inner">
+    <div class="proof-stars" aria-hidden="true">★★★★★</div>
+    <div class="proof-rating">4,7<sup>/5</sup></div>
+    <p class="proof-label">Media en Google Maps · <b>144 reseñas verificadas</b></p>
+    <a class="proof-cta" href="https://maps.google.com/?cid=10943035649914033512" target="_blank" rel="noopener">Leer las reseñas en Google →</a>
+  </div>
+</section>
+
+<!-- CTA NEGRO -->
+<section class="cta-black" aria-label="Reserva de cita">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div>
+        <h2>Coge tu <i>hueco</i> en la agenda.</h2>
+        <p>La reserva más cómoda es por Booksy: ves los huecos disponibles del día y cierras la cita en un minuto, sin esperar respuesta. Si prefieres WhatsApp o teléfono, también vale. Lo importante es que llegues al sillón sin hacer cola.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="https://booksy.com/es-es/4329_42m2-barberia_barberia_81317_murcia" target="_blank" rel="noopener" class="cta-primary">
+          <span>Reservar en Booksy</span>
+          <small>Agenda abierta →</small>
+        </a>
+        <a href="https://wa.me/34630116638?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20para..." target="_blank" rel="noopener" class="cta-secondary">
+          <span>Escribir por WhatsApp</span>
+          <small>Mensaje directo ↗</small>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- CONTACTO -->
+  <section class="contact" id="contacto" aria-label="Ubicación y horarios">
+    <div class="divider" style="padding:0 0 16px;border:none">
+      <h2>Pasa <i>a vernos.</i></h2>
+      <span class="sub">En el centro de Murcia, a dos minutos andando de la Gran Vía</span>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-block">
+          <span class="status-badge" aria-label="Estado actual">Con cita previa</span>
+          <h3>Dirección</h3>
+          <p>Calle Simón García, 6<br>Centro · 30003 Murcia</p>
+        </div>
+        <div class="contact-block">
+          <h3>Teléfono y WhatsApp</h3>
+          <p><a href="tel:+34630116638">630 11 66 38</a></p>
+        </div>
+        <div class="contact-block">
+          <h3>Horario de atención</h3>
+          <ul class="schedule-list" aria-label="Horario semanal">
+            <li><span class="day">Lunes</span><span class="hr">10:00 – 19:00</span></li>
+            <li><span class="day">Martes</span><span class="hr">10:00 – 19:00</span></li>
+            <li><span class="day">Miércoles</span><span class="hr">10:00 – 19:00</span></li>
+            <li><span class="day">Jueves</span><span class="hr">10:00 – 19:00</span></li>
+            <li><span class="day">Viernes</span><span class="hr">10:00 – 19:00</span></li>
+            <li><span class="day">Sábado</span><span class="hr closed">Cerrado</span></li>
+            <li><span class="day">Domingo</span><span class="hr closed">Cerrado</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="map-box">
+        <iframe
+          title="Mapa de 42m² Barbería en calle Simón García 6, Murcia"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Calle+Sim%C3%B3n+Garc%C3%ADa+6+Murcia&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <a href="#inicio" class="logo" style="margin-bottom:16px" aria-label="42m² Barbería Murcia">
+          <span class="logo-mark" aria-hidden="true"><span>42</span></span>
+          <span class="logo-word">
+            <b>42m² Barbería</b>
+            <small>Centro de Murcia</small>
+          </span>
+        </a>
+        <p style="max-width:40ch;color:var(--muted);font-size:14px;line-height:1.55;margin-top:20px">Barbería pequeña en el centro de Murcia. Un sillón, un turno, herramienta clásica y producto profesional. Corte, barba, afeitado, tinte y combo con cita previa.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Corte</a></li>
+          <li><a href="#servicios">Arreglo de barba</a></li>
+          <li><a href="#servicios">Afeitado clásico</a></li>
+          <li><a href="#servicios">Tinte</a></li>
+          <li><a href="#servicios">Combo corte y barba</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Reservar</h4>
+        <ul>
+          <li><a href="https://booksy.com/es-es/4329_42m2-barberia_barberia_81317_murcia" target="_blank" rel="noopener">Booksy</a></li>
+          <li><a href="https://wa.me/34630116638" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="tel:+34630116638">Teléfono</a></li>
+          <li><a href="https://maps.google.com/?cid=10943035649914033512" target="_blank" rel="noopener">Cómo llegar</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#galeria">Galería</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 42m² Barbería · Murcia · Todos los derechos reservados</div>
+      <div class="open-badge">Agenda abierta en Booksy<span class="blink" aria-hidden="true"></span></div>
+    </div>
+  </footer>
+</div>
+</main>
+
+</body>
+</html>
