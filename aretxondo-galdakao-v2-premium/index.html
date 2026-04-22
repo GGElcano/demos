@@ -124,11 +124,11 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      opacity: 0;
-      transform: scale(1.06);
-      transition: opacity 1.6s var(--ease-smooth), transform 10s var(--ease-out);
+      opacity: 1;
+      transform: scale(1.02);
+      transition: transform 10s var(--ease-out);
     }
-    .hero-video.ready { opacity: 1; transform: scale(1); }
+    .hero-video.ready { transform: scale(1); }
     .hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(135deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.4) 50%, rgba(8,8,8,0.15) 100%);
@@ -1539,10 +1539,19 @@
   const heroVideo = document.getElementById('heroVideo');
   if (heroVideo) {
     const showVideo = () => heroVideo.classList.add('ready');
-    if (heroVideo.readyState >= 2) showVideo();
-    else heroVideo.addEventListener('loadeddata', showVideo, { once: true });
-    // Safari / autoplay fallback
-    heroVideo.play().catch(() => {});
+    ['loadedmetadata','loadeddata','canplay','playing'].forEach(ev =>
+      heroVideo.addEventListener(ev, showVideo, { once: false })
+    );
+    if (heroVideo.readyState >= 1) showVideo();
+    const tryPlay = () => heroVideo.play().catch(() => {});
+    tryPlay();
+    // iOS Low Power Mode / autoplay bloqueado: reintentar en 1a interaccion
+    const retry = () => { tryPlay(); showVideo(); };
+    ['touchstart','click','scroll'].forEach(ev =>
+      window.addEventListener(ev, retry, { once: true, passive: true })
+    );
+    // Safety: mostrar pase lo que pase tras 2s
+    setTimeout(showVideo, 2000);
   }
   // ── NAVBAR SCROLL
   const navbar = document.getElementById('navbar');
