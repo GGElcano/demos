@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferretería Neira | Ferretería de barrio en San Vicente de Barakaldo</title>
+  <meta name="description" content="Ferretería Neira en San Vicente de Barakaldo (Bizkaia). Familia Neira al frente desde hace más de veinte años. Cerrajería, fontanería, jardín, menaje y despacho de lotería. 4,5 sobre 5 con más de 178 reseñas en Google. Elizateko Plaza, 7.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a1929;
+      --paper: #f4f1ea;
+      --primary: #1f3a5f;
+      --primary-soft: #2c4f7c;
+      --primary-deep: #142844;
+      --accent: #e3a847;
+      --accent-soft: #ecbb6a;
+      --steel: #506b8a;
+      --text-muted: #8a98a8;
+      --line: rgba(31,58,95,0.18);
+      --line-strong: rgba(31,58,95,0.4);
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Manrope', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 60px;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(244,241,234,0.92);
+      padding: 16px 60px;
+      border-bottom: 1px solid rgba(31,58,95,0.18);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--primary);
+      display: flex; align-items: center; gap: 10px;
+      font-style: italic;
+    }
+    .nav-logo strong { font-style: normal; font-weight: 600; letter-spacing: 0.08em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(10,25,41,0.78);
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: var(--primary);
+      color: var(--paper) !important;
+      padding: 11px 26px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.22em !important;
+      transition: background 0.3s, color 0.3s !important;
+      border-radius: 2px;
+    }
+    .nav-cta:hover { background: var(--accent); color: var(--ink) !important; }
+
+    /* HAMBURGER MOBILE */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--primary);
+      transition: transform 0.3s, opacity 0.3s, background 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--paper); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 30px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--primary); font-size: 1.2rem;
+      letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.3s;
+      font-weight: 500;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+      background: var(--ink);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(115deg, rgba(10,25,41,0.94) 0%, rgba(10,25,41,0.6) 50%, rgba(31,58,95,0.32) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+      background: linear-gradient(to top, var(--ink), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 940px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.85), 0 2px 24px rgba(0,0,0,0.6);
+      font-weight: 500;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 6.8vw, 6.4rem);
+      font-weight: 400;
+      line-height: 1.06;
+      letter-spacing: -0.015em;
+      color: var(--paper);
+      margin-bottom: 28px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); font-weight: 500; }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(244,241,234,0.92);
+      max-width: 600px; line-height: 1.7; margin-bottom: 50px;
+      font-weight: 400;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.85), 0 2px 16px rgba(0,0,0,0.6);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 36px; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--ink);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+      border-radius: 2px;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--paper); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--ink); }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
+    .btn-ghost {
+      color: rgba(244,241,234,0.88); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(244,241,234,0.32);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow {
+      border-color: var(--accent); transform: rotate(45deg);
+    }
+    .icon-arrow { width: 14px; height: 14px; }
+    .icon-arrow-up { width: 14px; height: 14px; }
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(244,241,234,0.72); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 70px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* RATING BADGE */
+    .hero-rating {
+      position: absolute; top: 28px; right: 60px; z-index: 3;
+      background: rgba(10,25,41,0.85); border: 1px solid rgba(227,168,71,0.45);
+      padding: 18px 24px; backdrop-filter: blur(8px);
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(-12px);
+      animation: fadeUp 0.9s 0.4s var(--ease-out) forwards;
+      border-radius: 2px;
+    }
+    .hero-rating-stars {
+      display: flex; gap: 3px;
+    }
+    .hero-rating-stars .star { width: 12px; height: 12px; background: var(--accent); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+    .hero-rating-text strong {
+      display: block; font-family: var(--font-serif); font-size: 1.15rem;
+      color: var(--paper); line-height: 1; font-weight: 500;
+    }
+    .hero-rating-text span {
+      font-size: 0.66rem; color: rgba(244,241,234,0.7); letter-spacing: 0.12em; text-transform: uppercase;
+    }
+
+    /* MARQUEE — seamless infinite loop */
+    .marquee-section {
+      border-top: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden; padding: 22px 0; background: var(--primary-deep);
+      position: relative;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: marquee 18s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 32px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-style: italic; color: rgba(244,241,234,0.88);
+      letter-spacing: 0.02em;
+      font-weight: 400;
+    }
+    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* SECTION COMMONS */
+    section { padding: 130px 60px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+      font-weight: 600;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 4.2rem);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .section-title em { font-style: italic; color: var(--primary); font-weight: 500; }
+
+    /* STATS */
+    .stats-section {
+      background: var(--paper);
+      padding: 100px 60px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; max-width: 1400px; margin: 0 auto;
+      border-left: 1px solid var(--line);
+    }
+    .stat-card {
+      padding: 56px 44px;
+      border-right: 1px solid var(--line);
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+      min-width: 0;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { background: rgba(31,58,95,0.04); }
+    .stat-number {
+      font-family: var(--font-serif); font-size: clamp(2.5rem, 6.5vw, 4.4rem);
+      font-weight: 500; line-height: 1; color: var(--primary);
+      margin-bottom: 14px; letter-spacing: -0.02em;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .stat-number .stat-suffix { color: var(--accent); }
+    .stat-label {
+      font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--steel); font-weight: 500;
+      overflow-wrap: break-word;
+    }
+
+    /* GALLERY (Productos) */
+    .projects-section { background: var(--paper); }
+    .projects-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .projects-header .section-title { max-width: 600px; }
+    .view-all {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--primary);
+      font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
+      transition: gap 0.3s; padding-bottom: 4px;
+      border-bottom: 1px solid rgba(31,58,95,0.5);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+    .view-all:hover { gap: 20px; border-color: var(--accent); color: var(--accent); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/5;
+      background: var(--primary-deep);
+    }
+    .project-card:first-child {
+      grid-column: span 2; aspect-ratio: 8/5;
+    }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .project-card:hover .project-img { transform: scale(1.06); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,25,41,0.92) 0%, rgba(10,25,41,0.18) 60%, transparent 100%);
+      opacity: 0.78; transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 0.95; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 36px; transform: translateY(15px);
+      transition: transform 0.5s var(--ease-out);
+      color: var(--paper);
+    }
+    .project-card:hover .project-info { transform: translateY(0); }
+    .project-cat {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px; font-weight: 600;
+    }
+    .project-name {
+      font-family: var(--font-serif); font-size: 1.7rem;
+      font-weight: 500; line-height: 1.2; margin-bottom: 12px;
+    }
+    .project-meta {
+      font-size: 0.82rem; color: rgba(244,241,234,0.85);
+      letter-spacing: 0.02em; opacity: 0;
+      line-height: 1.6;
+      transition: opacity 0.5s 0.1s;
+    }
+    .project-card:hover .project-meta { opacity: 1; }
+    .project-arrow {
+      position: absolute; top: 30px; right: 30px;
+      width: 46px; height: 46px;
+      border: 1px solid rgba(244,241,234,0.4);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translate(10px, -10px);
+      transition: all 0.4s var(--ease-out);
+      color: rgba(244,241,234,0.85);
+    }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); color: var(--accent); }
+
+    /* ABOUT (La familia Neira) */
+    .about-section {
+      background: var(--primary-deep);
+      color: var(--paper);
+      display: grid; grid-template-columns: 1fr 1.05fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-content {
+      padding: 110px 80px; display: flex; flex-direction: column; justify-content: center;
+      order: 1;
+    }
+    .about-content .section-label { color: var(--accent); }
+    .about-content .section-title { color: var(--paper); }
+    .about-content .section-title em { color: var(--accent); }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.85;
+      color: rgba(244,241,234,0.86); margin: 28px 0 36px;
+      font-weight: 400;
+    }
+    .about-body strong { color: var(--paper); font-weight: 600; }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--accent); margin: 28px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 18px; }
+    .about-value {
+      display: flex; gap: 22px; align-items: flex-start;
+      padding: 22px;
+      border: 1px solid rgba(227,168,71,0.2);
+      transition: border-color 0.4s, background 0.4s;
+      background: rgba(20,40,68,0.45);
+    }
+    .about-value:hover { border-color: rgba(227,168,71,0.55); background: rgba(20,40,68,0.85); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.5rem;
+      color: var(--accent); flex-shrink: 0;
+      line-height: 1.1;
+      font-weight: 500;
+      font-style: italic;
+    }
+    .value-text h3 {
+      font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 8px; color: var(--paper);
+    }
+    .value-text p {
+      font-size: 0.9rem; color: rgba(244,241,234,0.78); font-weight: 400; line-height: 1.65;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 700px;
+      order: 2;
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-badge {
+      position: absolute; top: 24px; right: 24px;
+      background: var(--paper); border: 1px solid rgba(31,58,95,0.45);
+      padding: 22px 26px; max-width: 240px;
+      border-radius: 2px;
+    }
+    .about-badge-kicker {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 8px; font-weight: 600;
+    }
+    .about-badge-title {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      color: var(--ink); line-height: 1.15; font-weight: 500;
+    }
+    .about-badge-title em { color: var(--accent); font-style: italic; font-weight: 600; }
+
+    /* SERVICES */
+    .services-section { background: var(--paper); border-top: 1px solid var(--line); }
+    .services-section .section-title { color: var(--ink); }
+    .services-section .section-title em { color: var(--primary); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; max-width: 1400px; margin: 60px auto 0;
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+    }
+    .service-card {
+      padding: 56px 42px; background: var(--paper);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative; overflow: hidden;
+      transition: background 0.5s;
+    }
+    .service-card:hover { background: rgba(31,58,95,0.05); }
+    .service-icon {
+      width: 54px; height: 54px; margin-bottom: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(31,58,95,0.4); color: var(--primary);
+      background: rgba(31,58,95,0.04);
+      border-radius: 2px;
+    }
+    .service-card:hover .service-icon {
+      background: var(--primary); color: var(--accent); border-color: var(--primary);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.55rem;
+      font-weight: 500; margin-bottom: 12px; line-height: 1.25; color: var(--ink);
+    }
+    .service-card p {
+      font-size: 0.94rem; color: rgba(10,25,41,0.74); line-height: 1.7;
+      font-weight: 400;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 30px; text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--primary); transition: color 0.3s, gap 0.3s;
+      font-weight: 600;
+    }
+    .service-link:hover { color: var(--accent); gap: 16px; }
+    .service-number {
+      position: absolute; top: 26px; right: 32px;
+      font-family: var(--font-serif); font-size: 4.5rem;
+      font-weight: 500; color: rgba(31,58,95,0.08);
+      line-height: 1; transition: color 0.5s;
+      font-style: italic;
+    }
+    .service-card:hover .service-number { color: rgba(227,168,71,0.32); }
+
+    /* TESTIMONIALS — verbatim verificados */
+    .testimonials-section {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 130px 60px;
+      position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '"'; position: absolute; top: -90px; left: 30px;
+      font-size: 32rem;
+      color: rgba(227,168,71,0.05); line-height: 1; pointer-events: none;
+      font-family: var(--font-serif);
+    }
+    .testimonials-inner { max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; }
+    .testimonials-section .section-label { color: var(--accent); }
+    .testimonials-section .section-title { color: var(--paper); max-width: 720px; }
+    .testimonials-section .section-title em { color: var(--accent); }
+    .testimonials-rating-row {
+      display: flex; align-items: center; gap: 28px; margin-top: 40px; flex-wrap: wrap;
+    }
+    .testimonials-score {
+      font-family: var(--font-serif); font-size: clamp(3.5rem, 7vw, 5.5rem);
+      font-weight: 500; color: var(--accent); line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .testimonials-stars { display: flex; gap: 5px; }
+    .testimonials-stars .star {
+      width: 20px; height: 20px; background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonials-meta {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .testimonials-meta strong {
+      font-size: 1.05rem; font-weight: 500; color: var(--paper); letter-spacing: 0.02em;
+    }
+    .testimonials-meta span {
+      font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 4px; margin-top: 64px;
+    }
+    .testimonial-card {
+      padding: 44px 36px; background: rgba(31,58,95,0.32);
+      border: 1px solid rgba(227,168,71,0.18);
+      transition: border-color 0.4s, background 0.4s, transform 0.4s;
+      display: flex; flex-direction: column;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(227,168,71,0.5);
+      background: rgba(31,58,95,0.55);
+      transform: translateY(-4px);
+    }
+    .testimonial-stars {
+      display: flex; gap: 4px; margin-bottom: 22px;
+    }
+    .testimonial-stars .star {
+      width: 14px; height: 14px; background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: 1.08rem; line-height: 1.65;
+      color: rgba(244,241,234,0.96); font-style: italic;
+      margin-bottom: 28px; flex-grow: 1;
+      font-weight: 400;
+    }
+    .testimonial-quote::before { content: '"'; color: var(--accent); margin-right: 2px; }
+    .testimonial-quote::after { content: '"'; color: var(--accent); margin-left: 2px; }
+    .testimonial-author {
+      font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
+      padding-top: 20px;
+      border-top: 1px solid rgba(227,168,71,0.18);
+    }
+    .testimonial-source {
+      font-size: 0.7rem; color: var(--text-muted);
+      letter-spacing: 0.04em; margin-top: 4px;
+      font-weight: 400;
+    }
+
+    /* MAP SECTION */
+    .map-section { background: var(--paper); padding: 0; border-top: 1px solid var(--line); }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      max-width: none;
+    }
+    .map-info {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--paper);
+    }
+    .map-info .section-title { color: var(--ink); margin-bottom: 0; }
+    .map-info .section-title em { color: var(--primary); }
+    .map-info-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 26px 0; border-bottom: 1px solid var(--line);
+    }
+    .map-info-item:first-of-type { padding-top: 40px; }
+    .map-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border: 1px solid rgba(31,58,95,0.4);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--primary);
+      background: rgba(31,58,95,0.04);
+      border-radius: 2px;
+    }
+    .map-info-text h3 {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 6px; font-weight: 600;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.95rem; color: rgba(10,25,41,0.85);
+      text-decoration: none; transition: color 0.3s; line-height: 1.65;
+    }
+    .map-info-text a:hover { color: var(--accent); }
+    .map-frame { min-height: 540px; position: relative; background: var(--primary-deep); }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 540px;
+      border: none; display: block;
+    }
+
+    /* CTA BANNER */
+    .cta-section {
+      background: var(--primary); padding: 110px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+      color: var(--paper);
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 500; color: var(--paper); line-height: 1.12;
+    }
+    .cta-text h2 em { color: var(--accent); font-style: italic; }
+    .cta-text p {
+      font-size: 1rem; color: rgba(244,241,234,0.88); margin-top: 16px; font-weight: 400;
+      max-width: 600px;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--ink);
+      text-decoration: none; padding: 20px 46px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+      border-radius: 2px;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--paper); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink); padding: 90px 60px 50px;
+      border-top: 1px solid rgba(227,168,71,0.18);
+      color: var(--paper);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 70px;
+    }
+    .footer-brand .nav-logo {
+      font-size: 1.55rem; margin-bottom: 22px; display: inline-flex;
+      color: var(--paper);
+    }
+    .footer-brand .nav-logo strong { color: var(--paper); }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.05rem; color: rgba(244,241,234,0.78);
+      line-height: 1.6; max-width: 320px; margin-bottom: 36px;
+      font-weight: 400;
+    }
+    .footer-social { display: flex; gap: 14px; flex-wrap: wrap; }
+    .social-link {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(244,241,234,0.25);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(244,241,234,0.78);
+      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+      border-radius: 2px;
+    }
+    .social-link:hover { background: var(--accent); color: var(--ink); border-color: var(--accent); transform: translateY(-2px); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-col h3 {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px; font-weight: 600;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(244,241,234,0.78);
+      font-size: 0.88rem; transition: color 0.3s; font-weight: 400;
+    }
+    .footer-col ul a:hover { color: var(--paper); }
+    .footer-bottom {
+      border-top: 1px solid rgba(244,241,234,0.1);
+      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.78rem; color: rgba(244,241,234,0.7); letter-spacing: 0.05em;
+    }
+    .footer-legal { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.75rem; color: rgba(244,241,234,0.78);
+      text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--paper); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--ink); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2.2rem;
+      letter-spacing: 0.04em; color: var(--paper);
+      font-style: italic; font-weight: 500;
+    }
+    .loader-logo strong { font-style: normal; font-weight: 600; letter-spacing: 0.16em; }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(244,241,234,0.18);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 22px 36px; }
+      nav.scrolled { padding: 14px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .hero-rating { right: 36px; top: 24px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid .stat-card:nth-child(1), .stats-grid .stat-card:nth-child(2) { border-bottom: 1px solid var(--line); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 36px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonials-section { padding: 100px 36px; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid .project-card:first-child { grid-column: span 2; aspect-ratio: 16/9; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 420px; order: 2; }
+      .about-content { padding: 70px 36px; order: 1; }
+      .cta-section { padding: 90px 36px; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav { padding: 18px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-scroll { display: none; }
+      .hero-rating { right: 16px; top: 70px; padding: 12px 16px; gap: 10px; }
+      .hero-rating-text strong { font-size: 0.95rem; }
+      .hero-rating-text span { font-size: 0.6rem; }
+      .hero-rating-stars .star { width: 9px; height: 9px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 22px; }
+      .hero-sub { margin-top: 2em; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .projects-grid .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .testimonials-section { padding: 80px 24px; }
+      .cta-section { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; align-items: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+      .map-info { padding: 60px 24px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 11vw, 2.8rem); margin-bottom: 22px; }
+      .hero-eyebrow {
+        font-size: 0.66rem; letter-spacing: 0.26em;
+        margin-bottom: 36px; line-height: 1.6;
+        flex-wrap: wrap; gap: 10px;
+      }
+      .hero-eyebrow::before { width: 24px; }
+      .hero-sub { font-size: 0.95rem; margin-bottom: 36px; }
+      .hero-content { padding: 0 24px 60px; }
+      .section-title { font-size: clamp(1.85rem, 8vw, 2.4rem); }
+      .stat-number { font-size: clamp(2.2rem, 12vw, 3.2rem); }
+      .stat-card { padding: 36px 22px; }
+      .service-card { padding: 40px 26px; }
+      .testimonial-card { padding: 32px 22px; }
+      .testimonials-section { padding: 70px 20px; }
+      .cta-section { padding: 60px 20px; }
+      .btn-dark { padding: 16px 32px; }
+      .btn-primary { padding: 16px 32px; }
+      .about-badge {
+        top: 16px; right: 16px;
+        padding: 16px 18px; max-width: 200px;
+      }
+      .about-badge-title { font-size: 1.05rem; }
+      .about-badge-kicker { font-size: 0.6rem; }
+    }
+    /* WCAG 2.4.7 — Focus visible */
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: var(--ink); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+    /* WCAG 2.3.3 — respetar preferencia reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .marquee-track { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-logo"><strong>NEIRA</strong></div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main-content" class="nav-logo"><strong>NEIRA</strong></a>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#nosotros">La familia</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-cta">Cómo llegar</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú de navegación">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <a href="#productos" onclick="closeMobile()">Productos</a>
+  <a href="#nosotros" onclick="closeMobile()">La familia</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="#contacto" onclick="closeMobile()">Cómo llegar</a>
+</div>
+
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" id="heroBg" style="background-image: url('https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-size: cover; background-position: center;" role="img" aria-label="Persona con guantes de trabajo usando un taladro profesional sobre suelo de madera, ejemplificando atención de la ferretería"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+
+  <div class="hero-rating" aria-label="Valoración 4,5 sobre 5 con más de 178 reseñas en Google">
+    <div class="hero-rating-stars" aria-hidden="true">
+      <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+    </div>
+    <div class="hero-rating-text">
+      <strong>4,5 / 5</strong>
+      <span>178+ reseñas Google</span>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Ferretería · Cerrajería · San Vicente · Barakaldo</p>
+    <h1 class="hero-title" id="hero-title">La ferretería de la <em>familia Neira,</em><br>desde hace más de veinte años.</h1>
+    <p class="hero-sub">Cerrajería, fontanería, jardín, menaje y despacho de lotería en pleno San Vicente de Barakaldo. La ferretería de toda la vida, donde te aconsejan antes de venderte y te resuelven la papeleta sin dar tres vueltas.</p>
+    <div class="hero-actions">
+      <a href="tel:+34944383689" class="btn-primary" aria-label="Llamar a Ferretería Neira al 944 38 36 89">
+        <span>Llamar al 944 38 36 89
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a href="#servicios" class="btn-ghost">
+        <span>Ver servicios</span>
+        <span class="btn-ghost-arrow" aria-hidden="true">
+          <svg class="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Cerrajería y duplicado de llaves</span>
+    <span class="marquee-item"><span class="dot"></span>Mandos de garaje</span>
+    <span class="marquee-item"><span class="dot"></span>Fontanería</span>
+    <span class="marquee-item"><span class="dot"></span>Jardín y huerta</span>
+    <span class="marquee-item"><span class="dot"></span>Menaje y hogar</span>
+    <span class="marquee-item"><span class="dot"></span>Pintura y bricolaje</span>
+    <span class="marquee-item"><span class="dot"></span>Lotería del Estado</span>
+    <span class="marquee-item"><span class="dot"></span>Entrega a domicilio</span>
+    <span class="marquee-item"><span class="dot"></span>Cerrajería y duplicado de llaves</span>
+    <span class="marquee-item"><span class="dot"></span>Mandos de garaje</span>
+    <span class="marquee-item"><span class="dot"></span>Fontanería</span>
+    <span class="marquee-item"><span class="dot"></span>Jardín y huerta</span>
+    <span class="marquee-item"><span class="dot"></span>Menaje y hogar</span>
+    <span class="marquee-item"><span class="dot"></span>Pintura y bricolaje</span>
+    <span class="marquee-item"><span class="dot"></span>Lotería del Estado</span>
+    <span class="marquee-item"><span class="dot"></span>Entrega a domicilio</span>
+  </div>
+</div>
+
+
+<div class="stats-section" role="region" aria-label="Cifras de la ferretería">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="45">0</span></div>
+      <div class="stat-label">Sobre 5 en Google Maps</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="178">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="20">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Años en San Vicente</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="88">0</span></div>
+      <div class="stat-label">Cooperativa Cadena 88</div>
+    </div>
+  </div>
+</div>
+
+
+<section class="projects-section" id="productos" aria-labelledby="productos-title">
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">El catálogo</p>
+      <h2 class="section-title reveal reveal-delay-1" id="productos-title">Lo que encuentras<br>en <em>Elizateko Plaza.</em></h2>
+    </div>
+    <a href="tel:+34944383689" class="view-all reveal" aria-label="Llamar para preguntar por un producto">
+      Preguntar por teléfono
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1631856954655-966f97d809de?w=1600&q=80" alt="Pasillo interior de ferretería con estanterías altas llenas de productos y carteles de sección" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Tienda</p>
+        <h3 class="project-name">Catálogo amplio bajo un techo</h3>
+        <p class="project-meta">Cerrajería, fontanería, jardín, menaje, pintura, tornillería y bricolaje. Para no dar tres vueltas a tres tiendas.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img class="project-img" src="https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Pared con colección ordenada de llaves fijas y de combinación sobre fondo azul" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Cerrajería</p>
+        <h3 class="project-name">Llaves y mandos al momento</h3>
+        <p class="project-meta">Duplicado de llaves, copias de mandos de garaje y coche, cerraduras y bombines.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1200&q=80" alt="Taladro inalámbrico Milwaukee M18 con batería sobre tablero de madera" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Herramienta</p>
+        <h3 class="project-name">Eléctrica y de mano</h3>
+        <p class="project-meta">Taladros, atornilladores, lijadoras, sierras y herramienta manual de marcas reconocidas.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img class="project-img" src="https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Plano arquitectónico con taladro, tornillos y tacos de plástico ordenados sobre mesa de madera" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Tornillería</p>
+        <h3 class="project-name">Tacos, tornillos, anclajes</h3>
+        <p class="project-meta">Toda la fijación a granel: tornillos, tuercas, tacos, anclajes y herraje de medidas.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=1200&q=80" alt="Set de puntas de destornillador en estuche de cuero negro" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Bricolaje</p>
+        <h3 class="project-name">Accesorios y consumibles</h3>
+        <p class="project-meta">Puntas de atornillar, brocas, discos, lijas, cinta y consumibles de uso diario.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img class="project-img" src="https://images.pexels.com/photos/210881/pexels-photo-210881.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Dos llaves fijas cromadas cruzadas sobre fondo blanco" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Reparación</p>
+        <h3 class="project-name">Llaves fijas y herramienta de taller</h3>
+        <p class="project-meta">Llaves fijas, combinadas, allen, alicates, cizallas y todo el surtido de mantenimiento.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
+  <div class="about-content">
+    <p class="section-label reveal">La familia Neira</p>
+    <h2 class="section-title reveal reveal-delay-1" id="nosotros-title">
+      Más de veinte años atendiendo<br>en <em>Elizateko Plaza.</em>
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-delay-2">
+      <strong>Ferretería Neira</strong> es la ferretería de barrio de San Vicente de Barakaldo. La familia Neira lleva más de veinte años al frente del mismo local en Elizateko Plaza, atendiendo a vecinos, profesionales y obras de la zona. Ferretería <strong>asociada a Cadena 88</strong>, la cooperativa profesional de ferreterías independientes, lo que garantiza catálogo amplio y precio competitivo manteniendo el trato cercano de la tienda de toda la vida.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h3>Negocio familiar con nombre propio</h3>
+          <p>Atiende la familia Neira. La misma cara detrás del mostrador desde hace más de veinte años.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h3>Cadena 88, cooperativa profesional</h3>
+          <p>Asociados a una de las grandes cooperativas de compras del sector. Catálogo de tienda grande con criterio de tienda de barrio.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h3>Asesoramiento antes que venta</h3>
+          <p>Te explican qué pieza necesitas, qué bombín te encaja y qué cerradura aguanta. Salir con la solución, no con el primer producto del estante.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual">
+    <img src="https://images.unsplash.com/photo-1602052793312-b99c2a9ee797?w=1400&q=80" alt="Tablero perforado con martillo, guantes de cuero, alicates y destornilladores ordenados en taller" loading="lazy">
+    <div class="about-badge" aria-label="San Vicente de Barakaldo desde hace más de veinte años">
+      <p class="about-badge-kicker">Desde hace</p>
+      <p class="about-badge-title"><em>+20 años</em><br>en San Vicente</p>
+    </div>
+  </div>
+</div>
+
+
+<section class="services-section" id="servicios" aria-labelledby="servicios-title">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Lo que hacemos</p>
+    <h2 class="section-title reveal reveal-delay-1" id="servicios-title" style="max-width:720px">Servicios y especialidades <em>de la tienda.</em></h2>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-number" aria-hidden="true">01</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M14.7 6.3a4 4 0 1 0 5 5L21 13l-1.5 1.5L8 3l1.5-1.5L13.7 5.5a4 4 0 0 0 1 .8z"/><path d="M3 21l6-6"/>
+          </svg>
+        </div>
+        <h3>Cerrajería y duplicado de llaves</h3>
+        <p>Duplicado de llaves al momento, cerraduras de seguridad, bombines, cajas fuertes y consejo profesional para reforzar puertas.</p>
+        <a href="tel:+34944383689" class="service-link" aria-label="Llamar para preguntar por cerrajería">
+          Llamar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number" aria-hidden="true">02</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="4" y="9" width="16" height="11" rx="1.5"/><path d="M7 9V6a5 5 0 0 1 10 0v3"/>
+          </svg>
+        </div>
+        <h3>Copia de mandos de garaje</h3>
+        <p>Duplicamos mandos a distancia de garaje y de coche. Llama antes para confirmar el modelo y traer el original.</p>
+        <a href="tel:+34944383689" class="service-link" aria-label="Llamar para copia de mandos">
+          Llamar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number" aria-hidden="true">03</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 2v6M8 6h8M5 12c0 4 3 8 7 8s7-4 7-8H5z"/>
+          </svg>
+        </div>
+        <h3>Fontanería</h3>
+        <p>Tubería, accesorios, válvulas, grifería, repuestos y todo lo necesario para una reparación o reforma pequeña en casa.</p>
+        <a href="tel:+34944383689" class="service-link" aria-label="Llamar para fontanería">
+          Llamar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number" aria-hidden="true">04</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 22V8M12 8c0-3 2-5 5-5 0 3-2 5-5 5zM12 8c0-3-2-5-5-5 0 3 2 5 5 5z"/>
+          </svg>
+        </div>
+        <h3>Jardín y huerta</h3>
+        <p>Tijeras, mangueras, semillas, abonos, sustratos y todo el material para jardín y pequeña huerta urbana.</p>
+        <a href="tel:+34944383689" class="service-link" aria-label="Llamar para jardín">
+          Llamar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number" aria-hidden="true">05</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="3" y="6" width="18" height="13" rx="1.5"/><path d="M3 10h18M8 6V3M16 6V3"/>
+          </svg>
+        </div>
+        <h3>Lotería del Estado</h3>
+        <p>Despacho de Lotería Nacional y Loterías del Estado en el mismo local. La doble visita habitual del barrio.</p>
+        <a href="tel:+34944383689" class="service-link" aria-label="Llamar para lotería">
+          Llamar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number" aria-hidden="true">06</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M3 12L12 3l9 9M5 10v10h14V10"/><path d="M9 20v-6h6v6"/>
+          </svg>
+        </div>
+        <h3>Instalación y entrega a domicilio</h3>
+        <p>Instalación de buzones, pequeñas reparaciones y entrega a domicilio en San Vicente y barrios cercanos. Llama y te organizamos la logística.</p>
+        <a href="tel:+34944383689" class="service-link" aria-label="Llamar para instalación a domicilio">
+          Llamar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="testimonials-section" id="opiniones" aria-labelledby="testimonials-title">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen quienes vienen</p>
+    <h2 class="section-title reveal reveal-delay-1" id="testimonials-title">
+      Reseñas reales de clientes<br>en <em>Google Maps.</em>
+    </h2>
+    <div class="testimonials-rating-row reveal reveal-delay-2">
+      <div class="testimonials-score">4,5</div>
+      <div class="testimonials-stars" role="img" aria-label="Valoración media de 4,5 sobre 5">
+        <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+      </div>
+      <div class="testimonials-meta">
+        <strong>Más de 178 reseñas en Google</strong>
+        <span>De vecinos, profesionales y clientes habituales</span>
+      </div>
+    </div>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 sobre 5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
+        <p class="testimonial-quote">Es una ferretería de toda la vida en San Vicente Barakaldo, son una familia muy amable.</p>
+        <p class="testimonial-author">Santiago S.</p>
+        <p class="testimonial-source">Reseña Google Maps</p>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" aria-label="5 sobre 5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
+        <p class="testimonial-quote">Es un ejemplo de comercio, con calidad, conocimiento, buen servicio. Dan vida al barrio.</p>
+        <p class="testimonial-author">Diego R.</p>
+        <p class="testimonial-source">Reseña Google Maps</p>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" aria-label="5 sobre 5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
+        <p class="testimonial-quote">Muy agradables, te aconsejan y dan ideas del producto que buscaba.</p>
+        <p class="testimonial-author">Yoli G.</p>
+        <p class="testimonial-source">Reseña Google Maps</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Dónde estamos</p>
+      <h2 class="section-title reveal reveal-delay-1">
+        En San Vicente,<br><em>en Elizateko Plaza.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>Elizateko Plaza, 7<br>48902 San Vicente de Barakaldo<br>Bizkaia</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfono</h3>
+          <a href="tel:+34944383689">944 38 36 89</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Horario</h3>
+          <p>Lunes a viernes: 9:30&ndash;13:30 y 17:00&ndash;20:00<br>Sábados: consultar<br>Domingos y festivos cerrado</p>
+        </div>
+      </div>
+      <div style="margin-top: 40px;">
+        <a href="tel:+34944383689" class="btn-primary" style="display: inline-flex; background: var(--primary); color: var(--paper);">
+          <span>Llamar al 944 38 36 89
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación de Ferretería Neira en Elizateko Plaza, San Vicente de Barakaldo (Bizkaia)"
+        src="https://www.google.com/maps?q=Ferreter%C3%ADa+Neira+Elizateko+Plaza+7+Barakaldo&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+
+<div class="cta-section" role="region" aria-label="Llamada a la acción de contacto">
+  <div class="cta-text">
+    <h2>¿Buscas una pieza?<br><em>Llámanos y la encontramos.</em></h2>
+    <p>Si no la tenemos, te la pedimos. Si necesitas asesoramiento, te lo damos por teléfono. Si te queda lejos, te la llevamos a casa en San Vicente y barrios cercanos.</p>
+  </div>
+  <a href="tel:+34944383689" class="btn-dark">
+    <span>Llamar ahora
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
+  </a>
+</div>
+
+
+</main>
+
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#main-content" class="nav-logo"><strong>NEIRA</strong></a>
+      <p class="footer-tagline">"La ferretería de toda la vida de San Vicente de Barakaldo: cerrajería, fontanería, jardín, menaje y lotería bajo un mismo techo."</p>
+      <div class="footer-social">
+        <a href="https://maps.google.com/?cid=11673226138743960383" target="_blank" rel="noopener" class="social-link" aria-label="Ver Ferretería Neira en Google Maps">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.3 7 11.2 7.3 11.5.2.1.4.2.7.2s.5-.1.7-.2C13 21.2 20 15.3 20 10c0-4.4-3.6-8-8-8m0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+        </a>
+        <a href="tel:+34944383689" class="social-link" aria-label="Llamar a Ferretería Neira al 944 38 36 89">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.58-6.6l2.2-2.2a1 1 0 0 0 .25-1.02A11.4 11.4 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 0 0-1-1"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Productos</h3>
+      <ul>
+        <li><a href="#productos">Cerrajería</a></li>
+        <li><a href="#productos">Herramienta</a></li>
+        <li><a href="#productos">Fontanería</a></li>
+        <li><a href="#productos">Jardín y huerta</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Servicios</h3>
+      <ul>
+        <li><a href="#servicios">Duplicado de llaves</a></li>
+        <li><a href="#servicios">Copia de mandos</a></li>
+        <li><a href="#servicios">Lotería del Estado</a></li>
+        <li><a href="#servicios">Entrega a domicilio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34944383689">944 38 36 89</a></li>
+        <li><a href="#contacto">Elizateko Plaza, 7</a></li>
+        <li><a href="#contacto">48902 Barakaldo (Bizkaia)</a></li>
+        <li><a href="#contacto">L-V 9:30-13:30 / 17-20</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Ferretería Neira. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      const heroBg = document.getElementById('heroBg');
+      if (loader) loader.classList.add('hidden');
+      if (heroBg) heroBg.classList.add('loaded');
+    }, 1800);
+  });
+
+  // NAVBAR SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER MENU
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) { const firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+
+  function closeMobile() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobileMenu');
+    if (h) h.classList.remove('active');
+    if (m) m.classList.remove('open');
+  }
+
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+
+  // COUNTER ANIMATION (incluye decimales: 4,5)
+  function animateCount(el) {
+    const targetRaw = el.dataset.target;
+    const isDecimal = targetRaw === '45';
+    const target = parseInt(targetRaw, 10);
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      const value = ease * target;
+      if (isDecimal) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const countObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCount(e.target);
+          countObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+  } else {
+    document.querySelectorAll('.count').forEach(el => animateCount(el));
+  }
+
+  // HERO PARALLAX
+  window.addEventListener('scroll', () => {
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+      const scrolled = window.scrollY;
+      heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
+    }
+  });
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
