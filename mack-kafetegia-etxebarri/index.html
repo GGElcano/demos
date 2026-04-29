@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mack kafetegia | Cafetería en Etxebarri (Bizkaia)</title>
+  <meta name="description" content="Mack kafetegia, cafetería en Etxebarri. Abrimos a las 6:30. Cafés, desayunos, pintxos, tortillas, hamburguesas, raciones de jamón ibérico y la mejor terraza del barrio. Forua Kalea 10.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0d0a06;
+      --white: #f5f3ee;
+      --accent: #C9962F;
+      --accent-light: #e0b14a;
+      --accent-dim: rgba(201,150,47,0.18);
+      --carbon: #181410;
+      --carbon-mid: #221c16;
+      --carbon-light: #2c2520;
+      --text-muted: #9a8a78;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Nunito Sans', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(13,10,6,0.88);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(201,150,47,0.10);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; font-weight: 400;
+      letter-spacing: 0.12em;
+      text-decoration: none; color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(245,243,238,0.65);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      padding: 10px 26px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-nav-panel {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-nav-panel.open { display: flex; }
+    .mobile-nav-panel a {
+      text-decoration: none; color: var(--white); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-nav-panel a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1800&q=85');
+      background-size: cover; background-position: center;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(13,10,6,0.85) 0%, rgba(13,10,6,0.45) 50%, rgba(13,10,6,0.2) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 920px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw, 6.6rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,243,238,0.85);
+      max-width: 540px; line-height: 1.7; margin-bottom: 52px;
+      font-weight: 300;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.85);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 36px; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 18px 38px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+    }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 14px;
+      color: var(--white); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 400; transition: color 0.3s;
+      border-bottom: 1px solid rgba(245,243,238,0.2); padding-bottom: 10px;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-arrow { font-size: 1rem; }
+
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* MARQUEE — width:max-content + flex-shrink:0 + translate3d, 16 items, 14s */
+    .marquee-section {
+      background: var(--carbon);
+      padding: 26px 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(201,150,47,0.10);
+      border-bottom: 1px solid rgba(201,150,47,0.10);
+    }
+    .marquee-track {
+      display: flex; gap: 56px;
+      width: max-content;
+      animation: marquee 14s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: 18px;
+      flex-shrink: 0;
+      font-family: var(--font-serif); font-size: 1.05rem; font-style: italic;
+      color: rgba(245,243,238,0.62);
+    }
+    .marquee-item .dot {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* STATS */
+    .stats-section {
+      background: var(--carbon);
+      padding: 90px 60px 110px;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 36px; max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 50px 26px;
+      border: 1px solid rgba(201,150,47,0.14);
+      background: var(--carbon-mid);
+      transition: border-color 0.4s, transform 0.4s;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .stat-card:hover { border-color: rgba(201,150,47,0.42); transform: translateY(-4px); }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 7vw, 4.4rem);
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 16px;
+      display: inline-flex; align-items: baseline;
+      overflow-wrap: break-word;
+    }
+    .stat-suffix { font-size: 0.55em; margin-left: 2px; }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(245,243,238,0.62);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+
+    /* GENERIC */
+    section { padding: 140px 60px; }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .section-label::before {
+      content: ''; width: 32px; height: 1px; background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 60px;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* GALLERY */
+    .projects-section { background: var(--black); }
+    .projects-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 60px; max-width: 1400px; margin-left: auto; margin-right: auto;
+      gap: 28px; flex-wrap: wrap;
+    }
+    .view-all {
+      text-decoration: none; color: var(--accent);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      border-bottom: 1px solid var(--accent); padding-bottom: 6px;
+      transition: color 0.3s;
+    }
+    .view-all:hover { color: var(--accent-light); }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1400px; margin: 0 auto;
+    }
+    .project-card:first-child { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: 16/11; }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 1s var(--ease-out);
+    }
+    .project-card:hover .project-img { transform: scale(1.06); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,10,6,0.92) 0%, rgba(13,10,6,0.2) 60%, transparent 100%);
+    }
+    .project-arrow {
+      position: absolute; top: 20px; right: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(13,10,6,0.8); backdrop-filter: blur(10px);
+      color: var(--white); display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; transition: background 0.3s;
+      border: 1px solid rgba(245,243,238,0.25);
+    }
+    .project-card:hover .project-arrow { background: var(--accent); color: var(--black); }
+    .project-info {
+      position: absolute; left: 28px; bottom: 26px; right: 28px; z-index: 2;
+    }
+    .project-cat {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .project-name {
+      font-family: var(--font-serif);
+      font-size: 1.55rem; font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .project-meta {
+      font-size: 0.86rem; color: rgba(245,243,238,0.7);
+    }
+
+    /* ABOUT */
+    .about-section {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--carbon);
+    }
+    .about-visual {
+      position: relative;
+      min-height: 640px;
+      background-image: url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1400&q=85');
+      background-size: cover; background-position: center;
+    }
+    .about-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(13,10,6,0.25), rgba(13,10,6,0.55));
+    }
+    .about-badge {
+      position: absolute; top: 28px; right: 28px; z-index: 2;
+      background: var(--black); padding: 24px 30px;
+      border: 1px solid rgba(201,150,47,0.32);
+      max-width: 240px;
+    }
+    .about-badge-year {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .about-badge-text {
+      font-size: 0.78rem; color: rgba(245,243,238,0.78); line-height: 1.5;
+    }
+    .about-content {
+      padding: 120px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--accent);
+      margin: 8px 0 40px;
+    }
+    .about-body {
+      font-size: 1rem; color: rgba(245,243,238,0.78);
+      margin-bottom: 50px; line-height: 1.85;
+    }
+    .about-body strong { color: var(--white); font-weight: 500; }
+    .about-values {
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .about-value {
+      display: flex; gap: 22px; align-items: flex-start;
+    }
+    .value-num {
+      font-family: var(--font-serif);
+      font-size: 1.6rem; font-weight: 500;
+      color: var(--accent);
+      flex-shrink: 0; line-height: 1;
+      min-width: 38px;
+    }
+    .value-text h4 {
+      font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500;
+      margin-bottom: 6px; color: var(--white);
+    }
+    .value-text p {
+      font-size: 0.9rem; color: rgba(245,243,238,0.65); line-height: 1.6;
+    }
+
+    /* SERVICES */
+    .services-section { background: var(--black); padding: 140px 60px; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 30px;
+    }
+    .service-card {
+      background: var(--carbon);
+      border: 1px solid rgba(201,150,47,0.10);
+      padding: 56px 40px;
+      transition: border-color 0.4s, transform 0.4s, background 0.4s;
+      position: relative;
+    }
+    .service-card:hover {
+      border-color: rgba(201,150,47,0.38);
+      transform: translateY(-6px);
+      background: var(--carbon-mid);
+    }
+    .service-number {
+      position: absolute; top: 24px; right: 28px;
+      font-family: var(--font-serif);
+      font-size: 0.95rem; color: var(--accent); opacity: 0.6;
+    }
+    .service-icon {
+      width: 56px; height: 56px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.45rem; font-weight: 500;
+      margin-bottom: 18px;
+    }
+    .service-card > p {
+      font-size: 0.95rem; color: rgba(245,243,238,0.75);
+      margin-bottom: 28px; line-height: 1.7;
+    }
+    .service-link {
+      text-decoration: none; color: var(--accent);
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .service-link:hover { color: var(--accent-light); }
+
+    /* CARTA */
+    .carta-section { background: var(--carbon); padding: 140px 60px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .carta-back {
+      display: inline-block; margin-bottom: 32px;
+      text-decoration: none; color: rgba(245,243,238,0.6);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .carta-back:hover { color: var(--accent); }
+    .carta-columns {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      margin-top: 30px;
+    }
+    .carta-category { margin-bottom: 48px; }
+    .carta-category h4 {
+      font-family: var(--font-serif);
+      font-size: 1.18rem; font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 26px; padding-bottom: 14px;
+      border-bottom: 1px solid rgba(201,150,47,0.22);
+      letter-spacing: 0.05em;
+    }
+    .carta-item {
+      display: flex; justify-content: space-between; gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px dashed rgba(245,243,238,0.08);
+    }
+    .carta-item:last-child { border-bottom: none; }
+    .carta-item-left { flex: 1; min-width: 0; }
+    .carta-item-name {
+      font-size: 1rem; font-weight: 500; color: var(--white);
+      margin-bottom: 4px;
+    }
+    .carta-item-desc {
+      font-size: 0.86rem; color: rgba(245,243,238,0.6); line-height: 1.5;
+    }
+    .carta-item-price {
+      font-family: var(--font-serif);
+      font-size: 1.05rem; color: var(--accent); white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .carta-highlight {
+      background: var(--carbon-mid);
+      border-left: 2px solid var(--accent);
+      padding: 30px;
+      margin-top: 18px;
+    }
+    .carta-highlight h4 {
+      font-family: var(--font-serif); font-size: 1.05rem;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .carta-highlight p {
+      font-size: 0.9rem; color: rgba(245,243,238,0.75); line-height: 1.6;
+    }
+    .carta-cta {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 18px 36px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; margin-top: 38px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .carta-cta:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+    /* TESTIMONIOS */
+    .testimonials-section { background: var(--black); padding: 140px 60px; }
+    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 26px; margin-top: 30px;
+    }
+    .testimonial-card {
+      background: var(--carbon);
+      border: 1px solid rgba(201,150,47,0.12);
+      padding: 46px 38px;
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(201,150,47,0.34); transform: translateY(-4px);
+    }
+    .testimonial-stars {
+      display: flex; gap: 6px; margin-bottom: 24px;
+    }
+    .star {
+      width: 14px; height: 14px;
+      background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: 1.08rem; font-style: italic;
+      color: rgba(245,243,238,0.88); line-height: 1.7;
+      margin-bottom: 30px;
+    }
+    .testimonial-divider {
+      width: 32px; height: 1px; background: var(--accent);
+      margin-bottom: 18px;
+    }
+    .testimonial-author {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .testimonial-author strong {
+      font-weight: 500; color: var(--white); font-size: 0.95rem;
+    }
+    .testimonial-author span {
+      font-size: 0.76rem; color: rgba(245,243,238,0.55); letter-spacing: 0.1em;
+    }
+    .testimonials-footer {
+      text-align: center; margin-top: 56px;
+    }
+    .testimonials-footer a {
+      display: inline-block; padding: 16px 30px;
+      border: 1px solid var(--accent); color: var(--accent);
+      font-size: 0.76rem; letter-spacing: 0.22em;
+      text-decoration: none; text-transform: uppercase;
+      transition: background 0.3s, color 0.3s;
+    }
+    .testimonials-footer a:hover { background: var(--accent); color: var(--black); }
+
+    /* CTA + LOCATION */
+    .cta-section {
+      background: var(--carbon-mid);
+      padding: 110px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 280px; }
+    .cta-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 400; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(245,243,238,0.7); max-width: 480px;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 16px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 22px 38px;
+      font-size: 1rem; font-weight: 600; letter-spacing: 0.05em;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-dark:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+    .location-section { background: var(--black); padding: 0; }
+    .location-grid {
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      max-width: 100%;
+    }
+    .location-info {
+      padding: 110px 60px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--carbon);
+    }
+    .location-info h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 400; line-height: 1.15;
+      margin-bottom: 28px;
+    }
+    .location-info h2 em { font-style: italic; color: var(--accent); }
+    .location-block { margin-bottom: 26px; }
+    .location-block-label {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px;
+    }
+    .location-block p, .location-block a {
+      font-size: 0.98rem; color: rgba(245,243,238,0.82);
+      text-decoration: none; line-height: 1.6;
+    }
+    .location-block a:hover { color: var(--accent); }
+    .location-map {
+      min-height: 540px;
+      background: var(--carbon-mid);
+    }
+    .location-map iframe { width: 100%; height: 100%; min-height: 540px; border: 0; display: block; }
+
+    /* FOOTER */
+    footer {
+      background: var(--carbon);
+      padding: 100px 60px 40px;
+      border-top: 1px solid rgba(201,150,47,0.10);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 60px;
+      max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .footer-tagline {
+      font-size: 0.9rem; color: rgba(245,243,238,0.6);
+      margin-top: 20px; max-width: 380px; line-height: 1.6;
+    }
+    .footer-social {
+      display: flex; gap: 14px; margin-top: 28px;
+    }
+    .social-link {
+      width: 42px; height: 42px;
+      border: 1px solid rgba(201,150,47,0.28);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); text-decoration: none;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .social-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-col h4 {
+      font-family: var(--font-serif);
+      font-size: 0.95rem; font-weight: 500;
+      color: var(--white); margin-bottom: 22px;
+      letter-spacing: 0.08em;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a, .footer-col li {
+      text-decoration: none; color: rgba(245,243,238,0.6);
+      font-size: 0.88rem; transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid rgba(201,150,47,0.10);
+      padding-top: 30px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+      max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .footer-copy { font-size: 0.8rem; color: rgba(245,243,238,0.5); }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a { font-size: 0.8rem; color: rgba(245,243,238,0.5); text-decoration: none; transition: color 0.3s; }
+    .footer-legal a:hover { color: var(--accent); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0;
+      background: var(--black);
+      z-index: 10000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 24px;
+      transition: opacity 0.6s, visibility 0.6s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif);
+      font-size: 1.7rem; font-weight: 500;
+      letter-spacing: 0.28em; color: var(--white);
+    }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(245,243,238,0.1);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card:first-child { grid-column: 1 / 3; }
+      .location-grid { grid-template-columns: 1fr; }
+      .location-info { padding: 80px 36px; }
+      .location-map { min-height: 420px; }
+      .location-map iframe { min-height: 420px; }
+      .about-content { padding: 100px 60px; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero { min-height: 620px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-sub { margin-top: 2em; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 360px; }
+      .about-content { padding: 60px 24px; }
+      .about-badge { top: 18px; right: 18px; padding: 18px 22px; max-width: 200px; }
+      .about-badge-year { font-size: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+      .location-info { padding: 60px 24px; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-card { padding: 36px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-logo">Mack<span>.</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Mack<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#carta">Carta</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Abrir navegación">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav-panel" id="mobileMenu">
+  <a href="#galeria" onclick="closeMobile()">Galería</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#carta" onclick="closeMobile()">Carta</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+</div>
+
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Kafetegia · Etxebarri · Desde las 6:30</p>
+    <h1 class="hero-title">
+      Café, pintxos y la mejor <em>terraza del barrio</em>
+    </h1>
+    <p class="hero-sub">
+      Cafetería de toda la vida en Forua Kalea. Abrimos pronto cada mañana con cafés, desayunos, tortilla y pintxos, y por la tarde echamos hamburguesas, bocatas y raciones bien servidas.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+34946568854" class="btn-primary">
+        <span>Llamar al bar</span>
+        <span class="btn-arrow">&#8594;</span>
+      </a>
+      <a href="#carta" class="btn-ghost">
+        <span>Ver la carta</span>
+        <span class="btn-arrow">&#8599;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Café de barra</span>
+    <span class="marquee-item"><span class="dot"></span>Desayunos desde las 6:30</span>
+    <span class="marquee-item"><span class="dot"></span>Tortilla del día</span>
+    <span class="marquee-item"><span class="dot"></span>Pintxos variados</span>
+    <span class="marquee-item"><span class="dot"></span>Hamburguesa Supermack</span>
+    <span class="marquee-item"><span class="dot"></span>Bocata Casa Lucio</span>
+    <span class="marquee-item"><span class="dot"></span>Jamón ibérico</span>
+    <span class="marquee-item"><span class="dot"></span>Terraza al aire libre</span>
+    <span class="marquee-item"><span class="dot"></span>Café de barra</span>
+    <span class="marquee-item"><span class="dot"></span>Desayunos desde las 6:30</span>
+    <span class="marquee-item"><span class="dot"></span>Tortilla del día</span>
+    <span class="marquee-item"><span class="dot"></span>Pintxos variados</span>
+    <span class="marquee-item"><span class="dot"></span>Hamburguesa Supermack</span>
+    <span class="marquee-item"><span class="dot"></span>Bocata Casa Lucio</span>
+    <span class="marquee-item"><span class="dot"></span>Jamón ibérico</span>
+    <span class="marquee-item"><span class="dot"></span>Terraza al aire libre</span>
+  </div>
+</div>
+
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">,5</span></div>
+      <div class="stat-label">Nota en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="337">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="6">0</span><span class="stat-suffix">:30</span></div>
+      <div class="stat-label">Apertura de lunes a jueves</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="7">0</span><span class="stat-suffix">/7</span></div>
+      <div class="stat-label">Días abiertos a la semana</div>
+    </div>
+  </div>
+</div>
+
+<section class="projects-section" id="galeria">
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">Galería</p>
+      <h2 class="section-title reveal reveal-delay-1">Lo que servimos<br><em>cada día</em></h2>
+    </div>
+    <a href="https://maps.google.com/?cid=16517289159469647061" target="_blank" rel="noopener" class="view-all reveal">Ver fotos en Google Maps &#8594;</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1400&q=85" alt="Café recién servido en una taza sobre la barra de la cafetería" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Café · Barra</p>
+        <h3 class="project-name">Cafés y desayunos</h3>
+        <p class="project-meta">Abrimos a las 6:30</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=85" alt="Selección de pintxos variados sobre la barra" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Pintxos</p>
+        <h3 class="project-name">Pintxos del día</h3>
+        <p class="project-meta">Variedad rotativa</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=900&q=85" alt="Tortilla de patata recién hecha cortada en porciones" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Cocina</p>
+        <h3 class="project-name">Tortilla del día</h3>
+        <p class="project-meta">Pincho o ración</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=85" alt="Hamburguesa con queso, lechuga y patatas servida en plato" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Tarde-noche</p>
+        <h3 class="project-name">Hamburguesa Supermack</h3>
+        <p class="project-meta">La favorita de la casa</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1515669097368-22e68427d265?w=900&q=85" alt="Terraza exterior con mesas de madera y sillas en zona peatonal" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Espacio</p>
+        <h3 class="project-name">La terraza del barrio</h3>
+        <p class="project-meta">A pie de calle, en Forua</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="about-section" id="nosotros">
+  <div class="about-visual">
+    <div class="about-badge">
+      <div class="about-badge-year">4,5</div>
+      <div class="about-badge-text">Valoración media en Google con 337 reseñas verificadas</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre Mack</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Bar de barrio,<br><em>de los de siempre</em>
+    </h2>
+    <div class="about-divider reveal"></div>
+    <p class="about-body reveal reveal-delay-2">
+      Mack kafetegia es una <strong>cafetería de barrio en Etxebarri</strong>, en pleno Forua Kalea. Abrimos a las 6:30 para los que madrugan y cerramos tarde para los que quieren quedarse un rato más en la terraza.<br><br>Servimos <strong>cafés bien hechos, desayunos completos, pintxos variados, tortillas, hamburguesas y bocatas calientes</strong>. Como dicen los clientes: precios razonables, trato directo y un sitio tranquilo donde la gente se conoce.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h4>Cafetería desde las 6:30</h4>
+          <p>Abrimos pronto. Café, tostada, zumo y a empezar el día sin prisas</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h4>Pintxos y raciones</h4>
+          <p>Tortilla, pintxos variados, jamón ibérico, queso, cecina y patatas para picar</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h4>Terraza amplia</h4>
+          <p>Una de las terrazas más grandes del barrio, a pie de calle peatonal</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="services-section" id="que-encontraras">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Qué encontrarás</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:640px">
+      De la mañana <em>a la noche</em>
+    </h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11h14a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3h-1"/>
+            <path d="M3 11v6a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-6"/>
+            <path d="M7 3v2M11 3v2M15 3v2"/>
+          </svg>
+        </div>
+        <h3>Cafés y desayunos</h3>
+        <p>Cafés bien hechos, tostadas, zumos, bollería y el desayuno completo. Si trabajas pronto, aquí ya está la cafetera caliente a las 6:30.</p>
+        <a href="#carta-desayuno" class="service-link">Ver desayunos &#8594;</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12c0-2 1.5-4 4-4s4 2 4 4"/>
+            <circle cx="12" cy="13" r="1.4" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Pintxos y tortillas</h3>
+        <p>Tortilla del día, pintxos variados de barra y raciones para picar. Lo que la gente del barrio pide a media mañana o de aperitivo.</p>
+        <a href="#carta-pintxos" class="service-link">Ver pintxos &#8594;</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12c0-3 4-6 9-6s9 3 9 6"/>
+            <path d="M3 12h18"/>
+            <path d="M5 16h14"/>
+            <path d="M7 19h10"/>
+          </svg>
+        </div>
+        <h3>Hamburguesas y bocatas</h3>
+        <p>Hamburguesa Supermack, bocata Casa Lucio, sandwiches, bocatas calientes y raciones de jamón ibérico, cecina y queso. Todo bien servido.</p>
+        <a href="#carta-cocina" class="service-link">Ver cocina &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="carta-section" id="carta">
+  <div class="section-inner">
+    <p class="section-label reveal">Carta</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Lo que tomamos <em>aquí</em>
+    </h2>
+
+    <div class="carta-columns" id="carta-desayuno">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Desayunos y café</h4>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Café solo, cortado o con leche</div>
+              <div class="carta-item-desc">De la cafetera, como toda la vida</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Tostada con tomate o mantequilla</div>
+              <div class="carta-item-desc">Pan tostado y aceite de oliva</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Pincho de tortilla</div>
+              <div class="carta-item-desc">Recién hecha cada mañana</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Zumo natural</div>
+              <div class="carta-item-desc">Naranja recién exprimida</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Bollería del día</div>
+              <div class="carta-item-desc">Croissants, napolitanas, sobaos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1" id="carta-pintxos">
+          <h4>Pintxos y raciones</h4>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Tortilla de patata</div>
+              <div class="carta-item-desc">Pincho o ración entera</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Pintxos variados de barra</div>
+              <div class="carta-item-desc">Lo que tengamos cada día</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Ración de jamón de bellota</div>
+              <div class="carta-item-desc">Cortado a cuchillo</div>
+            </div>
+            <div class="carta-item-price">11 EUR</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Ración de cecina</div>
+              <div class="carta-item-desc">Curada, con un toque de aceite</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Patatas y nachos</div>
+              <div class="carta-item-desc">Para picar entre amigos</div>
+            </div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Aperitivo de fin de semana</h4>
+          <p>Sábados y domingos al mediodía la barra se llena. Es la hora de la cuadrilla, los pintxos y la caña en la terraza si hace bueno.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="carta-columns" id="carta-cocina" style="margin-top:80px">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Hamburguesas y sándwiches</h4>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Hamburguesa Supermack</div>
+              <div class="carta-item-desc">Lechuga, tomate, cebolla, queso, huevo y jamón ibérico</div>
+            </div>
+            <div class="carta-item-price">6 EUR</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Hamburguesa clásica</div>
+              <div class="carta-item-desc">Pan, carne, lechuga, tomate y queso</div>
+            </div>
+            <div class="carta-item-price">3 EUR</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Bocata Casa Lucio</div>
+              <div class="carta-item-desc">Jamón ibérico, huevo frito y patatas</div>
+            </div>
+            <div class="carta-item-price">6 EUR</div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Sándwich mixto</div>
+              <div class="carta-item-desc">Jamón cocido y queso</div>
+            </div>
+            <div class="carta-item-price">3 EUR</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Bocatas calientes y fríos</h4>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Bocata caliente del día</div>
+              <div class="carta-item-desc">Calamares, lomo, panceta o mixto</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Bocata frío</div>
+              <div class="carta-item-desc">Jamón, queso, atún, mortadela</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div class="carta-item-left">
+              <div class="carta-item-name">Plato combinado</div>
+              <div class="carta-item-desc">Carne, huevo, ensalada y patatas</div>
+            </div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Cocina ininterrumpida</h4>
+          <p>Servimos comida desde la mañana hasta el cierre. Si llegas a horas raras, llama y te lo preparamos.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="tel:+34946568854" class="carta-cta reveal">
+      <span>Llamar para reservar</span>
+      <span class="btn-arrow">&#8594;</span>
+    </a>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Reseñas reales en Google</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      4,5 estrellas con<br>337 <em>reseñas verificadas</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Desayunos buenísimos y las tortillas de 10."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Reseña en Google</strong>
+          <span>Mack kafetegia</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Café excelente, personal trabajador y siempre con buen humor. Servicio profesional y precios razonables."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>David R.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Ambiente tranquilo, buena terraza y los pintxos siempre recién hechos. Sitio para repetir."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Regina</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials-footer reveal">
+      <a href="https://maps.google.com/?cid=16517289159469647061" target="_blank" rel="noopener">Ver las 337 reseñas en Google &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section" id="contacto">
+  <div class="cta-text">
+    <h2>Pásate a tomar<br>algo cuando quieras</h2>
+    <p>Abrimos cada día desde las 6:30. Si quieres reservar terraza para una cuadrilla o encargar bocatas, llámanos.</p>
+  </div>
+  <a href="tel:+34946568854" class="btn-dark">
+    <span>946 56 88 54</span>
+    <span class="btn-arrow">&#8599;</span>
+  </a>
+</div>
+
+<section class="location-section" aria-labelledby="ubicacion-titulo">
+  <div class="location-grid">
+    <div class="location-info">
+      <h2 id="ubicacion-titulo">Cómo <em>llegar</em></h2>
+      <div class="location-block">
+        <p class="location-block-label">Dirección</p>
+        <p>Forua Kalea, 10<br>48450 Etxebarri (Bizkaia)</p>
+      </div>
+      <div class="location-block">
+        <p class="location-block-label">Teléfono</p>
+        <p><a href="tel:+34946568854">946 56 88 54</a></p>
+      </div>
+      <div class="location-block">
+        <p class="location-block-label">Horario</p>
+        <p>Lunes a jueves: 6:30 - 22:00<br>Viernes: 6:30 - 00:00<br>Sábado: 8:30 - 00:00<br>Domingo: 8:30 - 22:00</p>
+      </div>
+      <div class="location-block">
+        <p class="location-block-label">Cómo llegar</p>
+        <p><a href="https://maps.google.com/?cid=16517289159469647061" target="_blank" rel="noopener">Abrir en Google Maps &#8599;</a></p>
+      </div>
+    </div>
+    <div class="location-map">
+      <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:ChIJ1SEx5vtOTg0R1USZavoyOeU&zoom=16" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Mack kafetegia en Etxebarri"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Mack<span>.</span></a>
+      <p class="footer-tagline">Cafetería de barrio en Etxebarri (Bizkaia). Cafés, desayunos, pintxos, tortilla, hamburguesas y la mejor terraza del barrio.</p>
+      <div class="footer-social">
+        <a href="https://maps.google.com/?cid=16517289159469647061" target="_blank" rel="noopener" class="social-link" aria-label="Ver ficha en Google Maps">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.5 7.1 11.4 7.4 11.6.2.1.4.2.6.2s.4-.1.6-.2C12.9 21.4 20 15.5 20 10c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+        </a>
+        <a href="https://wa.me/34946568854" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4A9.9 9.9 0 0012 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        </a>
+        <a href="tel:+34946568854" class="social-link" aria-label="Llamar por teléfono">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.2 0-2.5-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1C8.7 6.5 8.5 5.2 8.5 4c0-.5-.5-1-1-1H4c-.5 0-1 .5-1 1 0 9.4 7.6 17 17 17 .5 0 1-.5 1-1v-3.5c0-.5-.5-1-1-1z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Carta</h4>
+      <ul>
+        <li><a href="#carta-desayuno">Desayunos y café</a></li>
+        <li><a href="#carta-pintxos">Pintxos y raciones</a></li>
+        <li><a href="#carta-cocina">Hamburguesas y bocatas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Horario</h4>
+      <ul>
+        <li>Lunes a jueves: 6:30 - 22:00</li>
+        <li>Viernes: 6:30 - 00:00</li>
+        <li>Sábado: 8:30 - 00:00</li>
+        <li>Domingo: 8:30 - 22:00</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+34946568854">946 56 88 54</a></li>
+        <li><a href="https://maps.google.com/?cid=16517289159469647061" target="_blank" rel="noopener">Forua Kalea, 10</a></li>
+        <li><a href="https://maps.google.com/?cid=16517289159469647061" target="_blank" rel="noopener">48450 Etxebarri (Bizkaia)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Mack kafetegia. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Política de privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+      document.getElementById('heroBg').classList.add('loaded');
+    }, 1200);
+  });
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.target);
+    const duration = 1600;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+      const scrolled = window.scrollY;
+      heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
+    }
+  });
+</script>
+</body>
+</html>
