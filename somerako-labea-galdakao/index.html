@@ -3,375 +3,972 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Somerako Labea — Restaurante · Horno de Leña · Galdakao</title>
+  <title>Somerako Labea — Pizzería de horno de leña en Galdakao</title>
+  <meta name="description" content="Somerako Labea, pizzería artesanal en Kurtzea (Galdakao). Pizzas de horno de leña, masa fina, ingredientes frescos. Premio a la mejor pizza de Euskadi. Pedidos al 946 05 57 62.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --black: #0c0806; --white: #f5f3ef; --accent: #e8742c; --accent-light: #f09050;
-      --carbon: #161210; --carbon-mid: #201a16; --carbon-light: #2C1810;
-      --text-muted: #9a8878; --font-serif: 'Playfair Display', serif;
+      --black: #0e0805;
+      --white: #f6f3ee;
+      --accent: #C72A1C;
+      --accent-light: #E04A3A;
+      --accent-text: #E89A6F;
+      --carbon: #181210;
+      --carbon-mid: #221915;
+      --carbon-light: #30231e;
+      --text-muted: #9c8979;
+      --font-serif: 'Playfair Display', serif;
       --font-sans: 'Source Sans 3', sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
     }
+
     html { scroll-behavior: smooth; }
-    body { background: var(--black); color: var(--white); font-family: var(--font-sans); font-weight: 300; line-height: 1.6; overflow-x: hidden; cursor: none; }
 
-    /* CURSOR */
-    .cursor-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: transform 0.1s; transform: translate(-50%,-50%); box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(255,255,255,0.3); }
-    .cursor-ring { width: 40px; height: 40px; border: 1px solid rgba(232,116,44,0.4); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .35s var(--ease-smooth), height .35s var(--ease-smooth), border-color .35s var(--ease-smooth); }
-    .cursor-ring.expanded { width: 70px; height: 70px; border-color: rgba(232,116,44,0.7); background: rgba(232,116,44,0.05); }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 28px 60px; backdrop-filter: blur(0px); transition: backdrop-filter .5s, background .5s, padding .4s; }
-    nav.scrolled { backdrop-filter: blur(20px); background: rgba(8,8,8,0.85); padding: 18px 60px; border-bottom: 1px solid rgba(232,116,44,0.08); }
-    .nav-logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; letter-spacing: .12em; text-decoration: none; color: var(--white); display: flex; align-items: center; gap: 8px; }
+    /* Defensiva texto nunca cortado */
+    h1, h2, h3, p, span, a, li {
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(8,6,4,0.85);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(199,42,28,0.08);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
-    .nav-links a { text-decoration: none; color: rgba(245,243,239,0.65); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; transition: color .3s; font-weight: 400; }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-cta { background: transparent; border: 1px solid var(--accent); color: var(--accent) !important; padding: 10px 28px !important; font-size: .72rem !important; letter-spacing: .25em !important; transition: background .3s, color .3s !important; }
-    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+    .nav-links a {
+      text-decoration: none; color: rgba(246,243,238,0.65);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent-text); }
+    .nav-cta {
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: #fff !important;
+      padding: 11px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.25em !important;
+      font-weight: 500 !important;
+      box-shadow: 0 2px 14px rgba(199,42,28,0.35);
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s !important;
+    }
+    .nav-cta:hover {
+      background: var(--accent-light) !important; color: #fff !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(199,42,28,0.5);
+    }
 
-    /* HAMBURGER */
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
-    .hamburger span { width: 24px; height: 2px; background: var(--white); transition: transform .3s, opacity .3s; }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--black); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
     .mobile-menu.open { display: flex; }
-    .mobile-menu a { text-decoration: none; color: var(--white); font-size: 1.2rem; letter-spacing: .15em; text-transform: uppercase; transition: color .3s; }
-    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent-text); }
 
     /* HERO */
-    .hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: flex-end; justify-content: flex-start; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=1400'); background-size: cover; background-position: center; transform: scale(1.08); transition: transform 8s var(--ease-out); }
-    .hero-bg.loaded { transform: scale(1); }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(8,8,8,0.90) 0%, rgba(8,8,8,0.45) 50%, rgba(8,8,8,0.2) 100%); }
-    .hero-overlay-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, var(--black), transparent); }
-    .hero-content { position: relative; z-index: 2; padding: 0 60px 100px; max-width: 900px; }
-    .hero-eyebrow { font-size: .72rem; letter-spacing: .35em; text-transform: uppercase; color: var(--accent); margin-bottom: 28px; display: flex; align-items: center; gap: 16px; opacity: 0; transform: translateY(20px); animation: fadeUp .9s .3s var(--ease-out) forwards; }
-    .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
-    .hero-title { font-family: var(--font-serif); font-size: clamp(3.5rem,7vw,7rem); font-weight: 300; line-height: 1.05; letter-spacing: -.02em; margin-bottom: 32px; opacity: 0; transform: translateY(30px); animation: fadeUp 1.1s .5s var(--ease-out) forwards; }
-    .hero-title em { font-style: italic; color: var(--accent); }
-    .hero-sub { font-size: 1.05rem; color: rgba(245,243,239,0.6); max-width: 480px; line-height: 1.7; margin-bottom: 52px; font-weight: 300; opacity: 0; transform: translateY(20px); animation: fadeUp 1s .8s var(--ease-out) forwards; }
-    .hero-actions { display: flex; align-items: center; gap: 40px; opacity: 0; transform: translateY(20px); animation: fadeUp 1s 1s var(--ease-out) forwards; }
-    .btn-primary { display: inline-flex; align-items: center; gap: 14px; background: var(--accent); color: var(--black); text-decoration: none; padding: 18px 40px; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; transition: all .35s var(--ease-smooth); position: relative; overflow: hidden; }
-    .btn-primary::before { content: ''; position: absolute; inset: 0; background: var(--white); transform: translateX(-102%); transition: transform .4s var(--ease-out); }
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      overflow: hidden;
+      background: #0e0805 url('images/hero.jpg') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,6,4,0.88) 0%, rgba(8,6,4,0.4) 50%, rgba(8,6,4,0.15) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent-text); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.85), 0 2px 24px rgba(0,0,0,0.6);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+    }
+    .hero-title em { font-style: italic; color: var(--accent-text); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(246,243,238,0.85);
+      max-width: 480px; line-height: 1.7; margin-bottom: 52px;
+      font-weight: 300;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.85), 0 2px 16px rgba(0,0,0,0.6);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 40px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--white);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--white); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
     .btn-primary:hover::before { transform: translateX(0); }
     .btn-primary:hover { color: var(--black); }
     .btn-primary span { position: relative; z-index: 1; }
-    .btn-ghost { color: rgba(245,243,239,0.6); text-decoration: none; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; transition: color .3s; }
-    .btn-ghost:hover { color: var(--accent); }
-    .btn-ghost-arrow { width: 36px; height: 36px; border: 1px solid rgba(245,243,239,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color .3s, transform .3s; }
-    .btn-ghost:hover .btn-ghost-arrow { border-color: var(--accent); transform: rotate(45deg); }
-    .hero-scroll { position: absolute; right: 60px; bottom: 100px; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 16px; opacity: 0; animation: fadeIn 1s 1.5s ease forwards; }
-    .hero-scroll span { font-size: .65rem; letter-spacing: .3em; text-transform: uppercase; color: var(--text-muted); writing-mode: vertical-rl; }
-    .scroll-line { width: 1px; height: 70px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2s infinite; }
-    @keyframes scrollPulse { 0%,100% { opacity: .4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.1); } }
+    .btn-primary svg { position: relative; z-index: 1; }
+    .btn-ghost {
+      color: rgba(246,243,238,0.7); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--accent-text); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(246,243,238,0.2);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow {
+      border-color: var(--accent); transform: rotate(45deg);
+    }
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--text-muted); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 70px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
 
-    /* MARQUEE */
-    .marquee-section { border-top: 1px solid rgba(232,116,44,0.12); border-bottom: 1px solid rgba(232,116,44,0.12); overflow: hidden; padding: 20px 0; background: var(--carbon); }
-    .marquee-track { display: flex; gap: 0; white-space: nowrap; animation: marquee 22s linear infinite; }
-    .marquee-item { display: inline-flex; align-items: center; gap: 30px; padding: 0 40px; font-family: var(--font-serif); font-size: 1.1rem; font-style: italic; color: rgba(245,243,239,0.25); letter-spacing: .05em; }
+    /* MARQUEE — seamless según reglas obligatorias */
+    .marquee-section {
+      border-top: 1px solid rgba(199,42,28,0.12);
+      border-bottom: 1px solid rgba(199,42,28,0.12);
+      overflow: hidden; padding: 20px 0; background: var(--carbon);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 0; white-space: nowrap;
+      animation: marquee 18s linear infinite;
+      will-change: transform;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 30px;
+      padding: 0 40px;
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-style: italic; color: rgba(246,243,238,0.62);
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
     .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes marquee {
+      from { transform: translate3d(0,0,0); }
+      to { transform: translate3d(-50%, 0, 0); }
+    }
+    @media (max-width: 768px) {
+      .marquee-track { animation-duration: 14s; }
+      .marquee-item { font-size: 0.85rem; }
+    }
 
     /* SECTION COMMONS */
     section { padding: 130px 60px; }
-    .section-label { font-size: .68rem; letter-spacing: .35em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 14px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent-text); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
     .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
-    .section-title { font-family: var(--font-serif); font-size: clamp(2.4rem,4vw,4.2rem); font-weight: 300; line-height: 1.1; letter-spacing: -.01em; }
-    .section-title em { font-style: italic; color: var(--accent); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      font-weight: 300; line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--accent-text); }
 
     /* STATS */
-    .stats-section { background: var(--carbon); padding: 100px 60px; border-top: 1px solid rgba(232,116,44,0.08); }
-    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; max-width: 1400px; margin: 0 auto; }
-    .stat-card { padding: 60px 50px; background: var(--carbon); border: 1px solid rgba(232,116,44,0.08); position: relative; overflow: hidden; transition: border-color .4s; }
-    .stat-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transition: transform .5s var(--ease-out); transform-origin: left; }
+    .stats-section {
+      background: var(--carbon);
+      padding: 100px 60px;
+      border-top: 1px solid rgba(199,42,28,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 60px 50px; background: var(--carbon);
+      border: 1px solid rgba(199,42,28,0.08);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
     .stat-card:hover::before { transform: scaleX(1); }
-    .stat-card:hover { border-color: rgba(232,116,44,0.3); }
-    .stat-number { font-family: var(--font-serif); font-size: 4.5rem; font-weight: 300; line-height: 1; color: var(--white); margin-bottom: 12px; letter-spacing: -.02em; }
-    .stat-number .stat-suffix { color: var(--accent); }
-    .stat-label { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); font-weight: 400; }
+    .stat-card:hover { border-color: rgba(199,42,28,0.3); }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.5vw, 4.5rem);
+      font-weight: 300; line-height: 1; color: var(--white);
+      margin-bottom: 12px; letter-spacing: -0.02em;
+    }
+    .stat-number .stat-suffix { color: var(--accent-text); }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 400;
+    }
 
     /* GALLERY */
     .projects-section { background: var(--black); }
-    .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto; }
-    .projects-header .section-title { max-width: 500px; }
-    .view-all { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--accent); font-size: .75rem; letter-spacing: .25em; text-transform: uppercase; transition: gap .3s; padding-bottom: 4px; border-bottom: 1px solid rgba(232,116,44,0.3); white-space: nowrap; }
+    .projects-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .projects-header .section-title { max-width: 600px; }
+    .view-all {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--accent-text);
+      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      transition: gap 0.3s; padding-bottom: 4px;
+      border-bottom: 1px solid rgba(199,42,28,0.3);
+      white-space: nowrap;
+    }
     .view-all:hover { gap: 20px; border-color: var(--accent); }
-    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; max-width: 1400px; margin: 0 auto; }
-    .project-card { position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: none; }
-    .project-card:first-child { grid-column: span 2; aspect-ratio: 21/8; }
-    .project-img { width: 100%; height: 100%; object-fit: cover; background: linear-gradient(135deg,var(--carbon-mid),var(--carbon-light)); transition: transform .8s var(--ease-out); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .project-card:first-child {
+      grid-column: span 2; aspect-ratio: 21/8;
+    }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
     .project-card:hover .project-img { transform: scale(1.06); }
-    .project-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.1) 60%, transparent 100%); opacity: .6; transition: opacity .5s; }
-    .project-card:hover .project-overlay { opacity: .85; }
-    .project-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; transform: translateY(15px); transition: transform .5s var(--ease-out); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,6,4,0.9) 0%, rgba(8,6,4,0.1) 60%, transparent 100%);
+      opacity: 0.85; transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 0.95; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 40px; transform: translateY(15px);
+      transition: transform 0.5s var(--ease-out);
+    }
     .project-card:hover .project-info { transform: translateY(0); }
-    .project-cat { font-size: .65rem; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; font-weight: 400; }
-    .project-name { font-family: var(--font-serif); font-size: 1.9rem; font-weight: 300; line-height: 1.15; margin-bottom: 14px; }
-    .project-meta { font-size: .73rem; color: rgba(245,243,239,0.45); letter-spacing: .1em; opacity: 0; transition: opacity .5s .1s; }
-    .project-card:hover .project-meta { opacity: 1; }
-    .project-arrow { position: absolute; top: 36px; right: 36px; width: 50px; height: 50px; border: 1px solid rgba(245,243,239,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translate(10px,-10px); transition: all .4s var(--ease-out); }
-    .project-card:hover .project-arrow { opacity: 1; transform: translate(0,0); border-color: var(--accent); }
+    .project-cat {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: #f1b693; margin-bottom: 10px; font-weight: 500;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    }
+    .project-name {
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      font-family: var(--font-serif); font-size: 1.9rem;
+      font-weight: 300; line-height: 1.15; margin-bottom: 14px;
+    }
+
+    /* MOSAICO */
+    .mosaic-section {
+      padding: 120px 60px 80px;
+      background: var(--black);
+    }
+    .mosaic-header {
+      max-width: 1400px; margin: 0 auto 56px;
+    }
+    .mosaic-grid {
+      max-width: 1400px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 180px;
+      gap: 12px;
+    }
+    .mosaic-item {
+      position: relative; overflow: hidden;
+      border: 1px solid rgba(199,42,28,0.08);
+    }
+    .mosaic-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 1.1s var(--ease-out), filter 0.6s;
+      filter: saturate(0.95) contrast(1.02);
+    }
+    .mosaic-item:hover img { transform: scale(1.07); filter: saturate(1.08) contrast(1.05); }
+    .mosaic-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,6,4,0.45), transparent 40%);
+      pointer-events: none;
+    }
+    .mosaic-item.m-wide { grid-column: span 8; grid-row: span 2; }
+    .mosaic-item.m-tall { grid-column: span 4; grid-row: span 2; }
+    .mosaic-item.m-half { grid-column: span 6; grid-row: span 2; }
+    .mosaic-item.m-third { grid-column: span 4; grid-row: span 2; }
+    .mosaic-item.m-quarter { grid-column: span 3; grid-row: span 2; }
 
     /* ABOUT */
-    .about-section { background: var(--carbon); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; max-width: none; }
-    .about-visual { position: relative; overflow: hidden; min-height: 700px; }
-    .about-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .about-badge { position: absolute; bottom: 48px; left: 48px; background: var(--black); border: 1px solid rgba(232,116,44,0.25); padding: 24px 30px; max-width: 240px; }
-    .about-badge-icon { font-size: 2.8rem; line-height: 1; }
-    .about-badge-text { font-size: .72rem; letter-spacing: .1em; color: rgba(245,243,239,0.5); margin-top: 6px; }
-    .about-content { padding: 100px 80px; display: flex; flex-direction: column; justify-content: center; }
-    .about-body { font-size: 1.05rem; line-height: 1.8; color: rgba(245,243,239,0.65); margin: 32px 0 52px; font-weight: 300; }
+    .about-section {
+      background: var(--carbon);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 700px;
+      background: url('images/horno-3.jpg') center/cover no-repeat;
+    }
+    .about-badge {
+      position: absolute; top: 40px; right: 40px;
+      background: rgba(14,8,5,0.9); backdrop-filter: blur(8px);
+      border: 1px solid rgba(199,42,28,0.35);
+      padding: 22px 28px; max-width: 230px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 2.6rem;
+      color: var(--accent-text); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: rgba(246,243,238,0.6); margin-top: 10px;
+    }
+    .about-content {
+      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.8;
+      color: rgba(246,243,238,0.72); margin: 32px 0 52px;
+      font-weight: 300;
+    }
     .about-body strong { color: var(--white); font-weight: 400; }
-    .about-divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
+    }
     .about-values { display: flex; flex-direction: column; gap: 20px; }
-    .about-value { display: flex; gap: 20px; align-items: flex-start; padding: 20px; border: 1px solid rgba(232,116,44,0.06); transition: border-color .4s; }
-    .about-value:hover { border-color: rgba(232,116,44,0.2); }
-    .value-num { font-family: var(--font-serif); font-size: 1.4rem; color: var(--accent); opacity: .5; flex-shrink: 0; line-height: 1.2; }
-    .value-text h4 { font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 400; margin-bottom: 4px; }
-    .value-text p { font-size: .85rem; color: var(--text-muted); font-weight: 300; }
+    .about-value {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border: 1px solid rgba(199,42,28,0.06);
+      transition: border-color 0.4s;
+    }
+    .about-value:hover { border-color: rgba(199,42,28,0.2); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      color: var(--accent-text); flex-shrink: 0;
+      line-height: 1.2;
+    }
+    .value-text h3 {
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 400; margin-bottom: 4px;
+    }
+    .value-text p {
+      font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
+    }
 
     /* SERVICES */
     .services-section { background: var(--black); }
-    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; max-width: 1400px; margin: 60px auto 0; }
-    .service-card { padding: 60px 48px; background: var(--black); border: 1px solid rgba(232,116,44,0.07); position: relative; overflow: hidden; transition: background .5s, border-color .5s; }
-    .service-card:hover { background: var(--carbon-mid); border-color: rgba(232,116,44,0.2); }
-    .service-icon { width: 52px; height: 52px; margin-bottom: 36px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(232,116,44,0.2); color: var(--accent); }
-    .service-card h3 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 400; margin-bottom: 18px; line-height: 1.2; }
-    .service-card p { font-size: .88rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
-    .service-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 32px; text-decoration: none; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(232,116,44,0.5); transition: color .3s, gap .3s; }
-    .service-link:hover { color: var(--accent); gap: 16px; }
-    .service-number { position: absolute; top: 30px; right: 36px; font-family: var(--font-serif); font-size: 5rem; font-weight: 300; color: rgba(232,116,44,0.05); line-height: 1; transition: color .5s; }
-    .service-card:hover .service-number { color: rgba(232,116,44,0.1); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1400px; margin: 60px auto 0;
+    }
+    .service-card {
+      padding: 60px 48px;
+      background: var(--black);
+      border: 1px solid rgba(199,42,28,0.07);
+      position: relative; overflow: hidden;
+      transition: border-color 0.5s, transform 0.5s;
+      min-height: 460px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .service-card-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0.32;
+      transition: opacity 0.6s, transform 0.8s var(--ease-out);
+      z-index: 0;
+    }
+    .service-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,6,4,0.96) 0%, rgba(8,6,4,0.78) 45%, rgba(8,6,4,0.4) 100%);
+      z-index: 1;
+    }
+    .service-card > * { position: relative; z-index: 2; }
+    .service-card:hover { border-color: rgba(199,42,28,0.3); }
+    .service-card:hover .service-card-bg { opacity: 0.55; transform: scale(1.05); }
+    .service-icon {
+      width: 52px; height: 52px; margin-bottom: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(199,42,28,0.25); color: var(--accent-text);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.7rem;
+      font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+    }
+    .service-card p {
+      font-size: 0.92rem; color: rgba(246,243,238,0.78); line-height: 1.75;
+      font-weight: 300;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 32px; text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent-text); transition: color 0.3s, gap 0.3s;
+    }
+    .service-link:hover { color: var(--white); gap: 16px; }
+    .service-number {
+      position: absolute; top: 30px; right: 36px;
+      font-family: var(--font-serif); font-size: 5rem;
+      font-weight: 300; color: rgba(199,42,28,0.06);
+      line-height: 1;
+    }
 
     /* CARTA */
-    .carta-section { padding: 140px 60px; background: var(--carbon); border-top: 1px solid rgba(232,116,44,0.08); }
+    .carta-section {
+      padding: 140px 60px;
+      background: var(--carbon);
+      border-top: 1px solid rgba(199,42,28,0.08);
+    }
     .carta-section:nth-child(even) { background: var(--black); }
-    .carta-section .section-inner { max-width: 1200px; margin: 0 auto; }
-    .carta-back { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--accent); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 40px; transition: gap .3s; }
+    .carta-section .section-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .carta-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--accent-text);
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 40px; transition: gap 0.3s;
+    }
     .carta-back:hover { gap: 14px; }
-    .carta-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; }
+    .carta-columns {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; margin-top: 60px;
+    }
     .carta-category { margin-bottom: 48px; }
-    .carta-category h4 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; color: var(--white); padding-bottom: 16px; margin-bottom: 24px; border-bottom: 1px solid rgba(232,116,44,0.15); }
-    .carta-item { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .carta-category h3 {
+      font-family: var(--font-serif); font-size: 1.3rem;
+      font-weight: 400; color: var(--white);
+      padding-bottom: 16px; margin-bottom: 24px;
+      border-bottom: 1px solid rgba(199,42,28,0.18);
+    }
+    .carta-item {
+      display: flex; justify-content: space-between;
+      align-items: baseline; padding: 12px 0; gap: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
     .carta-item:last-child { border-bottom: none; }
-    .carta-item-name { font-size: .92rem; font-weight: 400; color: var(--white); flex: 1; }
-    .carta-item-desc { font-size: .78rem; color: var(--text-muted); font-weight: 300; margin-top: 2px; }
-    .carta-item-price { font-family: var(--font-serif); font-size: 1rem; color: var(--accent); white-space: nowrap; margin-left: 20px; font-weight: 400; }
-    .carta-highlight { background: var(--carbon-mid); border: 1px solid rgba(232,116,44,0.1); padding: 40px; margin-top: 40px; }
-    .carta-highlight h4 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; color: var(--accent); margin-bottom: 16px; }
-    .carta-highlight p { font-size: .88rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
-    .carta-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 48px; text-decoration: none; padding: 18px 40px; border: 1px solid var(--accent); color: var(--white); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; transition: background .4s, gap .3s; }
+    .carta-item-name {
+      font-size: 0.92rem; font-weight: 400; color: var(--white);
+      flex: 1;
+    }
+    .carta-item-desc {
+      font-size: 0.78rem; color: var(--text-muted);
+      font-weight: 300; margin-top: 2px;
+    }
+    .carta-item-price {
+      font-family: var(--font-serif); font-size: 1rem;
+      color: var(--accent-text); white-space: nowrap;
+      font-weight: 400;
+    }
+    .carta-highlight {
+      background: var(--carbon-mid); border: 1px solid rgba(199,42,28,0.12);
+      padding: 40px; margin-top: 40px;
+    }
+    .carta-highlight h4 {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-weight: 400; color: var(--accent-text); margin-bottom: 16px;
+    }
+    .carta-highlight p {
+      font-size: 0.9rem; color: rgba(246,243,238,0.78);
+      line-height: 1.75; font-weight: 300;
+    }
+    .carta-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      margin-top: 48px; text-decoration: none;
+      padding: 18px 40px; border: 1px solid var(--accent);
+      color: var(--white); font-size: 0.72rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      transition: background 0.4s, gap 0.3s;
+    }
     .carta-cta:hover { background: var(--accent); gap: 18px; }
 
-    /* MAP */
-    .map-section { background: var(--black); padding: 0; border-top: 1px solid rgba(232,116,44,0.08); }
-    .map-inner { display: grid; grid-template-columns: 1fr 1.4fr; min-height: 500px; }
-    .map-info { padding: 90px 70px; background: var(--carbon); display: flex; flex-direction: column; justify-content: center; }
-    .map-info .section-label { margin-bottom: 28px; }
-    .map-info h2 { font-family: var(--font-serif); font-size: 2.6rem; font-weight: 300; line-height: 1.15; margin-bottom: 40px; }
-    .map-info h2 em { font-style: italic; color: var(--accent); }
-    .map-details { display: flex; flex-direction: column; gap: 24px; }
-    .map-detail { display: flex; gap: 20px; align-items: flex-start; }
-    .map-detail-icon { width: 40px; height: 40px; flex-shrink: 0; border: 1px solid rgba(232,116,44,0.2); display: flex; align-items: center; justify-content: center; color: var(--accent); }
-    .map-detail-text h4 { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; font-weight: 400; }
-    .map-detail-text p { font-size: .92rem; color: var(--white); font-weight: 300; }
-    .map-detail-text a { color: var(--accent); text-decoration: none; transition: opacity .3s; }
-    .map-detail-text a:hover { opacity: .7; }
-    .map-embed { width: 100%; height: 100%; min-height: 500px; filter: grayscale(60%) invert(90%) hue-rotate(180deg); border: none; display: block; }
-
     /* TESTIMONIALS */
-    .testimonials-section { background: var(--carbon); position: relative; overflow: hidden; }
-    .testimonials-section::before { content: '"'; position: absolute; top: -60px; left: 40px; font-family: var(--font-serif); font-size: 30rem; color: rgba(232,116,44,0.03); line-height: 1; pointer-events: none; }
+    .testimonials-section {
+      background: var(--carbon); position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '"'; position: absolute; top: -60px; left: 40px;
+      font-family: var(--font-serif); font-size: 30rem;
+      color: rgba(199,42,28,0.03); line-height: 1; pointer-events: none;
+    }
     .testimonials-inner { max-width: 1400px; margin: 0 auto; }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 70px; }
-    .testimonial-card { padding: 56px 44px; background: rgba(8,8,8,0.4); border: 1px solid rgba(232,116,44,0.07); transition: border-color .4s, background .4s; }
-    .testimonial-card:hover { border-color: rgba(232,116,44,0.2); background: rgba(8,8,8,0.7); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 70px;
+    }
+    .testimonial-card {
+      padding: 56px 44px; background: rgba(8,6,4,0.4);
+      border: 1px solid rgba(199,42,28,0.07);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .testimonial-card:hover { border-color: rgba(199,42,28,0.25); background: rgba(8,6,4,0.7); }
     .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
-    .star { width: 12px; height: 12px; background: var(--accent); clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
-    .testimonial-quote { font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; font-weight: 300; line-height: 1.7; color: rgba(245,243,239,0.8); margin-bottom: 36px; }
-    .testimonial-divider { width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: .4; }
-    .testimonial-author strong { display: block; font-size: .82rem; font-weight: 500; letter-spacing: .08em; margin-bottom: 4px; }
-    .testimonial-author span { font-size: .75rem; color: var(--text-muted); letter-spacing: .05em; }
+    .star {
+      width: 12px; height: 12px; background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif); font-size: 1.15rem;
+      font-style: italic; font-weight: 300;
+      line-height: 1.7; color: rgba(246,243,238,0.85);
+      margin-bottom: 36px;
+    }
+    .testimonial-divider {
+      width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.5;
+    }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; margin-bottom: 4px;
+    }
+    .testimonial-author span {
+      font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
+    }
 
-    /* CTA */
-    .cta-section { background: var(--accent); padding: 110px 60px; display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; }
+    /* MAP */
+    .map-section {
+      padding: 0; background: var(--black);
+      border-top: 1px solid rgba(199,42,28,0.08);
+    }
+    .map-section iframe {
+      width: 100%; height: 450px; border: 0;
+      filter: grayscale(0.3) contrast(1.1);
+    }
+
+    /* CTA BANNER */
+    .cta-section {
+      background: var(--accent); padding: 110px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
     .cta-text { flex: 1; min-width: 300px; }
-    .cta-text h2 { font-family: var(--font-serif); font-size: clamp(2.4rem,4vw,4rem); font-weight: 300; color: var(--black); line-height: 1.1; }
-    .cta-text p { font-size: 1rem; color: rgba(8,8,8,0.65); margin-top: 16px; font-weight: 300; }
-    .btn-dark { display: inline-flex; align-items: center; gap: 14px; background: var(--black); color: var(--white); text-decoration: none; padding: 20px 48px; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; transition: all .35s var(--ease-smooth); white-space: nowrap; position: relative; overflow: hidden; }
-    .btn-dark::before { content: ''; position: absolute; inset: 0; background: var(--carbon-light); transform: translateX(-102%); transition: transform .4s var(--ease-out); }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 300; color: var(--white); line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(246,243,238,0.92); margin-top: 16px; font-weight: 300;
+      line-height: 1.7;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--black); color: var(--white);
+      text-decoration: none; padding: 20px 48px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--carbon-light); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
     .btn-dark:hover::before { transform: translateX(0); }
     .btn-dark span { position: relative; z-index: 1; }
 
     /* FOOTER */
-    footer { background: var(--black); padding: 90px 60px 50px; border-top: 1px solid rgba(232,116,44,0.08); }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 70px; }
-    .footer-brand .nav-logo { font-size: 1.8rem; margin-bottom: 22px; display: inline-flex; }
-    .footer-tagline { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: rgba(245,243,239,0.35); line-height: 1.6; max-width: 280px; margin-bottom: 36px; }
-    .footer-social { display: flex; gap: 14px; }
-    .social-link { width: 40px; height: 40px; border: 1px solid rgba(245,243,239,0.1); display: flex; align-items: center; justify-content: center; text-decoration: none; color: rgba(245,243,239,0.4); font-size: .75rem; letter-spacing: .1em; transition: border-color .3s, color .3s; }
-    .social-link:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col h4 { font-size: .7rem; letter-spacing: .25em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; font-weight: 500; }
+    footer {
+      background: var(--black); padding: 90px 60px 50px;
+      border-top: 1px solid rgba(199,42,28,0.08);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 70px;
+    }
+    .footer-brand .nav-logo {
+      font-size: 1.8rem; margin-bottom: 22px; display: inline-flex;
+    }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.05rem; color: rgba(246,243,238,0.65);
+      line-height: 1.6; max-width: 280px; margin-bottom: 36px;
+    }
+    .footer-social { display: flex; gap: 14px; flex-wrap: wrap; }
+    .social-link {
+      width: 42px; height: 42px;
+      border: 1px solid rgba(246,243,238,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(246,243,238,0.65);
+      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .social-link:hover { background: var(--accent); color: var(--white); border-color: var(--accent); transform: translateY(-2px); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-col h3 {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent-text); margin-bottom: 24px; font-weight: 500;
+    }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-col ul a { text-decoration: none; color: rgba(245,243,239,0.4); font-size: .85rem; transition: color .3s; font-weight: 300; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(246,243,238,0.7);
+      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+    }
     .footer-col ul a:hover { color: var(--white); }
-    .footer-bottom { border-top: 1px solid rgba(245,243,239,0.06); padding-top: 36px; display: flex; justify-content: space-between; align-items: center; }
-    .footer-copy { font-size: .75rem; color: rgba(245,243,239,0.25); letter-spacing: .05em; }
-    .footer-legal { display: flex; gap: 28px; }
-    .footer-legal a { font-size: .72rem; color: rgba(245,243,239,0.2); text-decoration: none; letter-spacing: .05em; transition: color .3s; }
-    .footer-legal a:hover { color: var(--text-muted); }
+    .footer-bottom {
+      border-top: 1px solid rgba(246,243,238,0.06);
+      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(246,243,238,0.65); letter-spacing: 0.05em;
+    }
+    .footer-legal { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-legal a {
+      font-size: 0.72rem; color: rgba(246,243,238,0.65);
+      text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+    }
+    .footer-legal a:hover { color: var(--white); }
+
+    .powered-by {
+      text-align: center; padding: 18px;
+      background: var(--carbon);
+      border-top: 1px solid rgba(199,42,28,0.06);
+    }
+    .powered-by a {
+      font-size: 0.7rem; color: rgba(246,243,238,0.65);
+      text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .powered-by a:hover { color: var(--accent-text); }
 
     /* ANIMATIONS */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
-    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: .15s; }
-    .reveal-delay-2 { transition-delay: .3s; }
-    .reveal-delay-3 { transition-delay: .45s; }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
 
     /* LOADER */
-    .loader { position: fixed; inset: 0; z-index: 10000; background: var(--black); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 28px; transition: opacity .8s, visibility .8s; }
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--black); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
     .loader.hidden { opacity: 0; visibility: hidden; }
-    .loader-logo { font-family: var(--font-serif); font-size: 2.2rem; letter-spacing: .25em; color: var(--white); }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2.5rem;
+      letter-spacing: 0.3em; color: var(--white);
+    }
     .loader-logo span { color: var(--accent); }
-    .loader-bar { width: 200px; height: 1px; background: rgba(245,243,239,0.1); position: relative; overflow: hidden; }
-    .loader-bar::after { content: ''; position: absolute; inset: 0; background: var(--accent); transform: translateX(-100%); animation: loadBar 1.5s var(--ease-out) .3s forwards; }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(246,243,238,0.1);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
     @keyframes loadBar { to { transform: translateX(0); } }
 
+    /* ARROW SVG */
+    .arrow-inline { width: 18px; height: 12px; flex-shrink: 0; }
+
     /* RESPONSIVE */
-    @media (max-width:1024px) {
-      nav { padding: 24px 36px; } nav.scrolled { padding: 16px 36px; }
-      section { padding: 100px 36px; } .hero-content { padding: 0 36px 80px; } .hero-scroll { right: 36px; }
-      .stats-grid { grid-template-columns: repeat(2,1fr); }
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
-      .map-inner { grid-template-columns: 1fr; } .map-embed { min-height: 350px; }
+      .about-content { padding: 80px 48px; }
     }
-    @media (max-width:768px) {
-      body { cursor: auto; } .cursor-dot,.cursor-ring { display: none; }
-      .hamburger { display: flex; } nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; } .nav-links { display: none; }
-      section { padding: 80px 24px; } .hero-content { padding: 0 24px 70px; } .hero-scroll { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
+    @media (max-width: 900px) and (min-width: 769px) {
+      .mosaic-section { padding: 80px 20px 60px; }
+      .mosaic-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
+      .mosaic-item.m-wide, .mosaic-item.m-tall, .mosaic-item.m-half,
+      .mosaic-item.m-third, .mosaic-item.m-quarter {
+        grid-column: span 2; grid-row: span 1;
+      }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero { min-height: 620px; }
+      .hero-content { padding: 120px 24px 70px; }
+      .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.25em; line-height: 1.6; }
+      .hero-title { font-size: clamp(2.4rem, 9vw, 3.4rem); line-height: 1.1; }
+      .hero-sub { font-size: 0.95rem; margin-top: 2em; margin-bottom: 36px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 18px; }
       .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
-      .projects-grid { grid-template-columns: 1fr; } .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
-      .about-section { grid-template-columns: 1fr; } .about-visual { min-height: 300px; } .about-content { padding: 60px 24px; }
-      .services-grid { grid-template-columns: 1fr; } .testimonials-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card { aspect-ratio: 4/3; }
+      .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .project-name { font-size: 1.35rem; line-height: 1.2; }
+      .project-info { padding: 24px; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 300px; }
+      .about-content { padding: 60px 24px; }
+      .about-badge { padding: 14px 18px; top: 20px; right: 20px; max-width: 180px; }
+      .about-badge-year { font-size: 1.9rem; line-height: 1; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .cta-section { padding: 80px 24px; flex-direction: column; }
-      .footer-top { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
-      .stats-grid { grid-template-columns: 1fr; } .stats-section { padding: 70px 24px; }
-      .carta-section { padding: 80px 24px; } .carta-columns { grid-template-columns: 1fr; gap: 40px; }
-      .map-info { padding: 60px 24px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .stats-section { padding: 70px 18px; }
+      .stat-card { padding: 36px 22px; }
+      .stat-label { font-size: 0.65rem; letter-spacing: 0.15em; }
+      .map-section iframe { height: 300px; }
+      .mosaic-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 10px; }
+      .mosaic-item,
+      .mosaic-item.m-wide, .mosaic-item.m-tall, .mosaic-item.m-half,
+      .mosaic-item.m-third, .mosaic-item.m-quarter {
+        grid-column: span 1; grid-row: auto;
+        aspect-ratio: 4/3;
+        height: auto;
+      }
+      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
+      .carta-section { padding: 80px 20px; }
+      .section-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    }
+
+    /* WCAG 2.4.7 — Focus visible */
+    :focus-visible { outline: 3px solid var(--accent-text); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent-text); outline-offset: 3px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: var(--white); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+
+    /* WCAG 2.3.3 — respeta reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .marquee-track { animation: none !important; }
     }
   </style>
 </head>
 <body>
 
 <!-- LOADER -->
-<div class="loader" id="loader">
-  <div class="loader-logo">Somerako <span>Labea</span></div>
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-logo">Somerako<span>.</span></div>
   <div class="loader-bar"></div>
 </div>
 
-<!-- CURSOR -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">Somerako <span>Labea</span></a>
+  <a href="#main-content" class="nav-logo">Somerako<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#espacio">Local</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#carta-principal">Carta</a></li>
-    <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+    <li><a href="#carta-extras">Extras</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="tel:+34946055762" class="nav-cta">Pedir</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#galeria" onclick="closeMobile()">Galeria</a>
+<!-- MOBILE NAV -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <a href="#espacio" onclick="closeMobile()">Local</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#carta-principal" onclick="closeMobile()">Carta</a>
-  <a href="#contacto" onclick="closeMobile()">Reservar</a>
+  <a href="#carta-extras" onclick="closeMobile()">Extras</a>
+  <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="tel:+34946055762" onclick="closeMobile()">Pedir</a>
 </div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg" id="heroBg" role="img" aria-label="Pizza dentro del horno de leña con llamas a ambos lados durante la cocción"></div>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Horno de Lena · Galdakao</p>
+    <p class="hero-eyebrow">Pizzería de horno de leña · Kurtzea, Galdakao</p>
     <h1 class="hero-title">
-      Cocina de<br><em>lena y brasa</em><br>en Galdakao
+      La <em>mejor pizza</em><br>de Euskadi,<br>al horno de leña
     </h1>
     <p class="hero-sub">
-      Horno de lena tradicional, pizzas artesanales, pan recién horneado y carnes a la brasa. Todo el sabor del fuego en el corazon de Galdakao.
+      Somerako Labea, en Gipuzkoa Kalea 1 (Kurtzea). Pizza artesanal de masa fina, hecha al momento en horno de leña. Solo para llevar. Llama, te la preparamos y la recoges caliente.
     </p>
     <div class="hero-actions">
       <a href="tel:+34946055762" class="btn-primary">
-        <span>Llamar y reservar</span>
-        <span>&rarr;</span>
+        <span>Llamar y encargar</span>
+        <svg class="arrow-inline" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M0 6h16M11 1l5 5-5 5"/>
+        </svg>
       </a>
       <a href="#carta-principal" class="btn-ghost">
         <span>Ver carta</span>
-        <div class="btn-ghost-arrow">&nearr;</div>
+        <div class="btn-ghost-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M3 11L11 3M5 3h6v6"/>
+          </svg>
+        </div>
       </a>
     </div>
   </div>
-  <div class="hero-scroll">
+  <div class="hero-scroll" aria-hidden="true">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
+<!-- MARQUEE — 16 items (8+8 duplicados) seamless -->
+<div class="marquee-section" aria-hidden="true">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Horno de Lena</span>
-    <span class="marquee-item"><span class="dot"></span>Pizzas Artesanales</span>
-    <span class="marquee-item"><span class="dot"></span>Pan Artesano</span>
-    <span class="marquee-item"><span class="dot"></span>Carnes a la Brasa</span>
-    <span class="marquee-item"><span class="dot"></span>Menu del Dia</span>
-    <span class="marquee-item"><span class="dot"></span>Eventos</span>
-    <span class="marquee-item"><span class="dot"></span>Horno de Lena</span>
-    <span class="marquee-item"><span class="dot"></span>Pizzas Artesanales</span>
-    <span class="marquee-item"><span class="dot"></span>Pan Artesano</span>
-    <span class="marquee-item"><span class="dot"></span>Carnes a la Brasa</span>
-    <span class="marquee-item"><span class="dot"></span>Menu del Dia</span>
-    <span class="marquee-item"><span class="dot"></span>Eventos</span>
+    <span class="marquee-item"><span class="dot"></span>Pizza de horno de leña</span>
+    <span class="marquee-item"><span class="dot"></span>Masa fina artesanal</span>
+    <span class="marquee-item"><span class="dot"></span>Premio mejor pizza de Euskadi</span>
+    <span class="marquee-item"><span class="dot"></span>Solo para llevar</span>
+    <span class="marquee-item"><span class="dot"></span>Ingredientes frescos</span>
+    <span class="marquee-item"><span class="dot"></span>4,9 estrellas en Google</span>
+    <span class="marquee-item"><span class="dot"></span>Kurtzea, Galdakao</span>
+    <span class="marquee-item"><span class="dot"></span>Opciones vegetarianas y veganas</span>
+    <span class="marquee-item"><span class="dot"></span>Pizza de horno de leña</span>
+    <span class="marquee-item"><span class="dot"></span>Masa fina artesanal</span>
+    <span class="marquee-item"><span class="dot"></span>Premio mejor pizza de Euskadi</span>
+    <span class="marquee-item"><span class="dot"></span>Solo para llevar</span>
+    <span class="marquee-item"><span class="dot"></span>Ingredientes frescos</span>
+    <span class="marquee-item"><span class="dot"></span>4,9 estrellas en Google</span>
+    <span class="marquee-item"><span class="dot"></span>Kurtzea, Galdakao</span>
+    <span class="marquee-item"><span class="dot"></span>Opciones vegetarianas y veganas</span>
   </div>
 </div>
 
 <!-- STATS -->
-<div class="stats-section">
+<div class="stats-section" role="region" aria-label="Cifras de la pizzería">
   <div class="stats-grid">
     <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="455">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Opiniones en Google</div>
+      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">.9</span></div>
+      <div class="stat-label">Estrellas en Google</div>
     </div>
     <div class="stat-card reveal reveal-delay-1">
-      <div class="stat-number"><span class="count-decimal" data-target="4.9">0</span><span class="stat-suffix">&starf;</span></div>
-      <div class="stat-label">Valoración media</div>
+      <div class="stat-number"><span class="count" data-target="458">0</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
     </div>
     <div class="stat-card reveal reveal-delay-2">
-      <div class="stat-number" style="font-size:2.8rem;line-height:1.2">Horno<span class="stat-suffix" style="font-size:1.4rem"> de Lena</span></div>
-      <div class="stat-label">Coccion tradicional</div>
+      <div class="stat-number"><span class="count" data-target="1">0</span></div>
+      <div class="stat-label">Premio mejor pizza Euskadi</div>
     </div>
     <div class="stat-card reveal reveal-delay-3">
-      <div class="stat-number" style="font-size:2.8rem;line-height:1.2">Galdakao</div>
-      <div class="stat-label">Bizkaia</div>
+      <div class="stat-number"><span class="count" data-target="3">0</span></div>
+      <div class="stat-label">Top restaurantes Galdakao</div>
     </div>
   </div>
 </div>
@@ -380,113 +977,118 @@
 <section class="projects-section" id="galeria">
   <div class="projects-header">
     <div>
-      <p class="section-label reveal">Nuestra galeria</p>
-      <h2 class="section-title reveal reveal-delay-1">Sabor que<br><em>enamora</em></h2>
+      <p class="section-label reveal">Lo que sale de nuestro horno</p>
+      <h2 class="section-title reveal reveal-delay-1">Pizza artesanal<br><em>masa fina, sabor único</em></h2>
     </div>
-    <a href="#contacto" class="view-all reveal">Reservar mesa &rarr;</a>
+    <a href="tel:+34946055762" class="view-all reveal" aria-label="Llamar para encargar pizza">Pedir
+      <svg class="arrow-inline" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M0 6h16M11 1l5 5-5 5"/>
+      </svg>
+    </a>
   </div>
   <div class="projects-grid">
     <div class="project-card">
-      <img class="project-img" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800" alt="Pizza artesanal de Somerako Labea" loading="lazy">
+      <img class="project-img" src="images/pizza-margarita.jpg" alt="Pizza margarita napolitana con bordes carbonizados, mozzarella derretida, tomate y albahaca fresca" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
       <div class="project-info">
-        <p class="project-cat">Especialidad · Artesanal</p>
-        <h3 class="project-name">Pizzas del Horno de Lena</h3>
-        <p class="project-meta">Masa artesanal · Coccion tradicional</p>
+        <p class="project-cat">Clásica · La más pedida</p>
+        <h3 class="project-name">Pizza Margarita</h3>
       </div>
     </div>
     <div class="project-card">
-      <img class="project-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800" alt="Pan artesano de Somerako Labea" loading="lazy">
+      <img class="project-img" src="images/pizza-rucula.jpg" alt="Pizza con rúcula fresca y trozos de mozzarella sobre base de tomate en plato de madera" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
       <div class="project-info">
-        <p class="project-cat">Panaderia · Artesana</p>
-        <h3 class="project-name">Pan Artesano</h3>
-        <p class="project-meta">Hecho cada dia · Horno de lena</p>
+        <p class="project-cat">Verde · Frescura</p>
+        <h3 class="project-name">Pizza con rúcula</h3>
       </div>
     </div>
     <div class="project-card">
-      <img class="project-img" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800" alt="Interior de Somerako Labea" loading="lazy">
+      <img class="project-img" src="images/pizza-pina.jpg" alt="Pizza artesanal con pollo, cebolla roja y piña sobre tabla de madera" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
       <div class="project-info">
-        <p class="project-cat">Interior · Ambiente</p>
-        <h3 class="project-name">Un Espacio con Caracter</h3>
-        <p class="project-meta">Ambiente calido · Galdakao</p>
+        <p class="project-cat">Tropical · Diferente</p>
+        <h3 class="project-name">Pizza Hawaiana</h3>
       </div>
     </div>
     <div class="project-card">
-      <img class="project-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="Platos de Somerako Labea" loading="lazy">
+      <img class="project-img" src="images/pizza-takeaway.jpg" alt="Pizza con rúcula y reducción balsámica recién servida en caja de cartón para llevar" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
       <div class="project-info">
-        <p class="project-cat">Cocina · De Brasa</p>
-        <h3 class="project-name">Platos del Dia</h3>
-        <p class="project-meta">Producto fresco · Sabor auténtico</p>
-      </div>
-    </div>
-    <div class="project-card">
-      <img class="project-img" src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=800" alt="Cocina rustica Somerako Labea" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
-      <div class="project-info">
-        <p class="project-cat">Tradición · Rustica</p>
-        <h3 class="project-name">Recetas con Alma</h3>
-        <p class="project-meta">Ingredientes seleccionados · Cada dia</p>
-      </div>
-    </div>
-    <div class="project-card">
-      <img class="project-img" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800" alt="Plato elaborado en Somerako Labea" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
-      <div class="project-info">
-        <p class="project-cat">Elaboracion · Propia</p>
-        <h3 class="project-name">Cocina de Temporada</h3>
-        <p class="project-meta">Del mercado a la mesa</p>
+        <p class="project-cat">Para llevar · Calentita</p>
+        <h3 class="project-name">Pizza para llevar</h3>
       </div>
     </div>
   </div>
 </section>
 
+<!-- MOSAICO ESPACIO -->
+<section class="mosaic-section" id="espacio">
+  <div class="mosaic-header">
+    <p class="section-label reveal">El sitio</p>
+    <h2 class="section-title reveal reveal-delay-1">Local pequeño<br><em>pizza grande</em></h2>
+    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-top:18px;">Estamos en Gipuzkoa Kalea 1, en el barrio de Kurtzea. Un local sencillo donde lo importante es la masa, el horno y los ingredientes. No tenemos comedor: aquí se viene a recoger la pizza recién hecha y a comerla en casa, con familia o amigos.</p>
+  </div>
+  <div class="mosaic-grid">
+    <div class="mosaic-item m-wide reveal"><img src="images/horno-1.jpg" alt="Pizza recién metida en el horno de leña con llamas y brasas a la vista" loading="lazy"></div>
+    <div class="mosaic-item m-tall reveal reveal-delay-1"><img src="images/exterior.jpg" alt="Fachada del local con cartel de pizzería y guirnalda de luces" loading="lazy"></div>
+    <div class="mosaic-item m-half reveal"><img src="images/horno-2.jpg" alt="Pizza recién hecha sacándose del horno con pala junto a brasas encendidas" loading="lazy"></div>
+    <div class="mosaic-item m-half reveal reveal-delay-1"><img src="images/cajas.jpg" alt="Dos cajas de pizza para llevar apiladas sobre mesa de madera del local" loading="lazy"></div>
+  </div>
+</section>
+
+<!-- MOSAICO COCINA -->
+<section class="mosaic-section" id="cocina" style="background:var(--carbon);">
+  <div class="mosaic-header">
+    <p class="section-label reveal">El obrador</p>
+    <h2 class="section-title reveal reveal-delay-1">Masa fermentada<br><em>cocinada al momento</em></h2>
+    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-top:18px;">Cada pizza se estira a mano y se mete al horno cuando llega tu pedido. Masa fina, fermentación lenta, ingredientes que se ven que son frescos. La cocción al fuego de leña deja ese sabor que no se consigue de otra manera.</p>
+  </div>
+  <div class="mosaic-grid">
+    <div class="mosaic-item m-wide reveal"><img src="images/masa.jpg" alt="Manos del pizzaiolo amasando una bola de masa fresca espolvoreada con harina" loading="lazy"></div>
+    <div class="mosaic-item m-tall reveal reveal-delay-1"><img src="images/pizza-quesos.jpg" alt="Pizza de cuatro quesos con romero y tomatitos cherry sobre tabla de madera" loading="lazy"></div>
+    <div class="mosaic-item m-half reveal"><img src="images/obrador.jpg" alt="Pizzaiolo emplatando pizza recién hecha en el obrador con cajas para llevar a punto" loading="lazy"></div>
+    <div class="mosaic-item m-half reveal reveal-delay-1"><img src="images/pizza-trozos.jpg" alt="Manos cogiendo dos trozos de pizza recién cortada sobre tabla de madera" loading="lazy"></div>
+  </div>
+</section>
+
 <!-- ABOUT -->
-<div class="about-section" id="nosotros">
-  <div class="about-visual">
-    <img class="about-img" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800" alt="Cocina de Somerako Labea" loading="lazy">
+<div class="about-section" role="region" aria-label="Sobre Somerako Labea" id="nosotros">
+  <div class="about-visual" role="img" aria-label="Horno de leña de Somerako Labea con pizza dentro durante la cocción">
     <div class="about-badge">
-      <div class="about-badge-icon">&#128293;</div>
-      <div class="about-badge-text">Horno de lena en el corazon de Galdakao</div>
+      <div class="about-badge-year">4,9<span style="font-size:0.9rem;letter-spacing:0.05em;color:var(--text-muted);display:block;margin-top:6px;font-weight:400;">estrellas en Google</span></div>
+      <div class="about-badge-text" style="margin-top:14px;">Con 458 reseñas verificadas</div>
     </div>
   </div>
   <div class="about-content">
     <p class="section-label reveal">Sobre nosotros</p>
     <h2 class="section-title reveal reveal-delay-1">
-      Tradición y<br><em>fuego</em> en cada plato
+      El horno que cambió<br>la pizza <em>en Galdakao</em>
     </h2>
     <div class="about-divider reveal"></div>
     <p class="about-body reveal reveal-delay-2">
-      Somerako Labea es el restaurante de horno de lena de referencia en Galdakao. Aqui cada plato lleva el sello del fuego: pizzas artesanales, pan recién horneado y carnes a la brasa con la dedicacion de siempre.<br><br><strong>455 reseñas con una valoración de 4.9 sobre 5 en Google</strong> avalan lo que dicen nuestros clientes: en Somerako Labea, el sabor tiene un nivel diferente.
+      Somerako Labea, en euskera, significa "el horno de Somera". Estamos en Gipuzkoa Kalea 1, barrio de Kurtzea, Galdakao. Llevamos años haciendo pizza artesanal en horno de leña, con masa fina y los ingredientes que cualquiera querría en su pizza.<br><br><strong>Premio a la mejor pizza de Euskadi y top 3 de Galdakao en Tripadvisor.</strong> No tenemos comedor, no servimos a domicilio. Solo para llevar. Si te apetece pizza de verdad, llamas, en un rato la tienes lista, la recoges y te la llevas calentita.
     </p>
     <div class="about-values reveal reveal-delay-3">
       <div class="about-value">
         <div class="value-num">01</div>
         <div class="value-text">
-          <h4>Horno de lena</h4>
-          <p>Coccion tradicional a lena que aporta un sabor inconfundible a cada plato, pizza y pan</p>
+          <h3>Horno de leña a la vista</h3>
+          <p>El horno está en el local. Mientras esperas, ves cómo metemos las pizzas al fuego. Eso le da su sabor único.</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">02</div>
         <div class="value-text">
-          <h4>Masa artesanal</h4>
-          <p>Elaborada a mano con harinas seleccionadas y fermentacion lenta para una textura perfecta</p>
+          <h3>Masa fina e ingredientes generosos</h3>
+          <p>Masa fermentada y estirada a mano. Ingredientes frescos sin escatimar, como nos piden los clientes.</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">03</div>
         <div class="value-text">
-          <h4>Producto fresco</h4>
-          <p>Ingredientes de calidad seleccionados cada dia para que cada visita sea una experiencia</p>
+          <h3>Solo para llevar, siempre puntuales</h3>
+          <p>No servimos en mesa ni a domicilio. Encargas por teléfono, te decimos a qué hora pasar y la pizza está lista.</p>
         </div>
       </div>
     </div>
@@ -495,475 +1097,486 @@
 
 <!-- SERVICES -->
 <section class="services-section" id="servicios">
-  <div style="max-width:1400px;margin:0 auto">
-    <p class="section-label reveal">Lo que ofrecemos</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:560px">
-      Nuestra cocina, hecha con <em>fuego y alma</em>
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Tres maneras de pedir</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:720px">
+      Llamas, recoges <em>y a casa</em>
     </h2>
+    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-top:16px;">Aquí no hay reservas, ni mesas, ni reparto. Solo pizza para llevar. Encargas por teléfono, te damos hora de recogida y vienes a por ella cuando esté lista.</p>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-number">01</div>
-        <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <path d="M12 2c-4 4-7 7-7 11a7 7 0 1014 0c0-4-3-7-7-11z"/>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
           </svg>
         </div>
-        <h3>Horno de Lena</h3>
-        <p>Nuestro horno de lena es el corazon del restaurante. Coccion tradicional que da a cada plato un sabor unico e irrepetible.</p>
-        <a href="#carta-principal" class="service-link">Ver carta &rarr;</a>
+        <h3>Encargo por teléfono</h3>
+        <p>Llama al 946 05 57 62 y elige tu pizza. Te decimos a qué hora pasar a recogerla. Cuanto antes llames, antes la tienes lista, sobre todo viernes y sábados.</p>
+        <a href="tel:+34946055762" class="service-link">Llamar ahora
+          <svg class="arrow-inline" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M0 6h16M11 1l5 5-5 5"/>
+          </svg>
+        </a>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-number">02</div>
-        <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
           </svg>
         </div>
-        <h3>Pizzas Artesanales</h3>
-        <p>Masa elaborada a mano, ingredientes frescos y coccion en horno de lena. Margherita, Diavola, Quattro Formaggi y muchas mas.</p>
-        <a href="#carta-principal" class="service-link">Ver pizzas &rarr;</a>
+        <h3>Cocción al momento</h3>
+        <p>Cuando llegas, la pizza acaba de salir del horno. Masa fina, queso fundido, bordes ligeramente carbonizados. Si vives cerca, la comes en casa todavía caliente.</p>
+        <a href="#carta-principal" class="service-link">Ver carta
+          <svg class="arrow-inline" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M0 6h16M11 1l5 5-5 5"/>
+          </svg>
+        </a>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-number">03</div>
-        <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9zM3 9V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4M9 14h6"/>
           </svg>
         </div>
-        <h3>Pan Artesano</h3>
-        <p>Horneado cada dia con harinas seleccionadas y fermentacion natural. El pan de Somerako tiene personalidad propia.</p>
-        <a href="#carta-especialidades" class="service-link">Ver mas &rarr;</a>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-number">04</div>
-        <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
-            <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+        <h3>Pedidos de grupo</h3>
+        <p>Cumpleaños, partidos, cenas en casa con amigos. Si pides varias pizzas, mejor con un par de horas de aviso. Te las preparamos juntas para que las recojas calientes a la vez.</p>
+        <a href="tel:+34946055762" class="service-link">Llamar y encargar
+          <svg class="arrow-inline" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M0 6h16M11 1l5 5-5 5"/>
           </svg>
-        </div>
-        <h3>Carnes a la Brasa</h3>
-        <p>Selección de cortes de calidad cocinados a la brasa con lena natural. El punto justo, el sabor de siempre.</p>
-        <a href="#carta-especialidades" class="service-link">Ver carnes &rarr;</a>
-      </div>
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-number">05</div>
-        <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/>
-          </svg>
-        </div>
-        <h3>Menu del Dia</h3>
-        <p>De martes a viernes, menu completo con primero, segundo, postre y bebida. Cocina casera a precio honesto.</p>
-        <a href="#carta-especialidades" class="service-link">Ver menu &rarr;</a>
-      </div>
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-number">06</div>
-        <div class="service-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
-          </svg>
-        </div>
-        <h3>Eventos</h3>
-        <p>Celebraciones, comidas de empresa y grupos. Menus especiales adaptados a cada ocasion en un ambiente unico.</p>
-        <a href="#contacto" class="service-link">Consultar &rarr;</a>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CARTA: HORNO Y PIZZAS -->
+<!-- CARTA PRINCIPAL -->
 <section class="carta-section" id="carta-principal">
   <div class="section-inner">
-    <a href="#servicios" class="carta-back reveal">&larr; Volver a servicios</a>
-    <p class="section-label reveal">Del horno de lena</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      Nuestras <em>pizzas y especialidades</em>
+    <a href="#servicios" class="carta-back reveal">
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 5H1M5 1L1 5l4 4"/></svg>
+      Volver
+    </a>
+    <p class="section-label reveal">01 · Pizzas</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:720px">
+      Carta de <em>pizzas</em>
     </h2>
+    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-bottom:40px;">Todas nuestras pizzas son de masa fina, hechas en horno de leña al momento. Tamaño de pizza individual generosa. Precios orientativos, IVA incluido.</p>
     <div class="carta-columns">
       <div>
         <div class="carta-category reveal">
-          <h4>Pizzas Clasicas</h4>
+          <h3>Clásicas</h3>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Margherita</div>
-              <div class="carta-item-desc">Tomate, mozzarella y albahaca fresca</div>
+              <p class="carta-item-name">Margarita</p>
+              <p class="carta-item-desc">Tomate, mozzarella y albahaca fresca. La pizza de toda la vida.</p>
             </div>
-            <div class="carta-item-price">10 &euro;</div>
+            <p class="carta-item-price">12 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Napolitana</div>
-              <div class="carta-item-desc">Tomate, mozzarella, anchoas y alcaparras</div>
+              <p class="carta-item-name">Pepperoni</p>
+              <p class="carta-item-desc">Tomate, mozzarella y rodajas de pepperoni picante.</p>
             </div>
-            <div class="carta-item-price">12 &euro;</div>
+            <p class="carta-item-price">12,50 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Diavola</div>
-              <div class="carta-item-desc">Tomate, mozzarella y salami picante</div>
+              <p class="carta-item-name">Cuatro quesos</p>
+              <p class="carta-item-desc">Mozzarella, queso azul, parmesano y queso de cabra.</p>
             </div>
-            <div class="carta-item-price">12 &euro;</div>
+            <p class="carta-item-price">13 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Quattro Formaggi</div>
-              <div class="carta-item-desc">Mozzarella, gorgonzola, parmesano y queso de cabra</div>
+              <p class="carta-item-name">Prosciutto</p>
+              <p class="carta-item-desc">Mozzarella, jamón cocido y champiñones laminados.</p>
             </div>
-            <div class="carta-item-price">13 &euro;</div>
+            <p class="carta-item-price">12,50 €</p>
+          </div>
+          <div class="carta-item">
+            <div>
+              <p class="carta-item-name">Hawaiana</p>
+              <p class="carta-item-desc">Mozzarella, jamón cocido y piña natural.</p>
+            </div>
+            <p class="carta-item-price">12,50 €</p>
           </div>
         </div>
         <div class="carta-category reveal">
-          <h4>Especiales de la Casa</h4>
+          <h3>Especiales de la casa</h3>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Somerako Especial</div>
-              <div class="carta-item-desc">Combinacion propia de la casa con ingredientes seleccionados</div>
+              <p class="carta-item-name">Queso azul y pera</p>
+              <p class="carta-item-desc">Combinación dulce-salado de la casa. Cliente recurrente garantizado.</p>
             </div>
-            <div class="carta-item-price">14 &euro;</div>
+            <p class="carta-item-price">13 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Calzone de Lena</div>
-              <div class="carta-item-desc">Pizza cerrada con mozzarella, jamón y champiñones</div>
+              <p class="carta-item-name">Pepperoni con cebolla caramelizada</p>
+              <p class="carta-item-desc">Pepperoni, cebolla caramelizada lenta y pimiento verde.</p>
             </div>
-            <div class="carta-item-price">13 &euro;</div>
+            <p class="carta-item-price">13 €</p>
+          </div>
+          <div class="carta-item">
+            <div>
+              <p class="carta-item-name">Carne y pimientos</p>
+              <p class="carta-item-desc">Carne picada, pimiento verde y rojo, cebolla y mozzarella.</p>
+            </div>
+            <p class="carta-item-price">12,50 €</p>
+          </div>
+          <div class="carta-item">
+            <div>
+              <p class="carta-item-name">Rúcula y mozzarella fresca</p>
+              <p class="carta-item-desc">Mozzarella en bolas, rúcula fresca y reducción balsámica.</p>
+            </div>
+            <p class="carta-item-price">13 €</p>
           </div>
         </div>
       </div>
       <div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Pan Artesano</h4>
+        <div class="carta-category reveal">
+          <h3>Vegetarianas y veganas</h3>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Hogaza de Lena</div>
-              <div class="carta-item-desc">Pan rustico horneado con masa madre y corteza crujiente</div>
+              <p class="carta-item-name">Vegetariana</p>
+              <p class="carta-item-desc">Tomate, mozzarella, pimiento, champiñón, cebolla y aceitunas.</p>
             </div>
-            <div class="carta-item-price">4 &euro;</div>
+            <p class="carta-item-price">12 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Pan de Ajo</div>
-              <div class="carta-item-desc">Pan artesanal con mantequilla de ajo y perejil</div>
+              <p class="carta-item-name">Verduras asadas</p>
+              <p class="carta-item-desc">Berenjena, calabacín y pimiento asado al horno con mozzarella.</p>
             </div>
-            <div class="carta-item-price">5 &euro;</div>
+            <p class="carta-item-price">12,50 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Focaccia de Romero</div>
-              <div class="carta-item-desc">Focaccia esponjosa con romero fresco y aceite de oliva</div>
+              <p class="carta-item-name">Vegana del día</p>
+              <p class="carta-item-desc">Sin queso o con queso vegetal. Combinación según mercado.</p>
             </div>
-            <div class="carta-item-price">5 &euro;</div>
+            <p class="carta-item-price">12 €</p>
           </div>
         </div>
-        <div class="carta-highlight reveal reveal-delay-2">
-          <h4>Nota sobre precios</h4>
-          <p>Precios orientativos. Para la carta actual y disponibilidad llama al 946 055 762 o visítanos en Galdakao.</p>
+        <div class="carta-category reveal">
+          <h3>Para dos</h3>
+          <div class="carta-item">
+            <div>
+              <p class="carta-item-name">Pizza para dos</p>
+              <p class="carta-item-desc">Tamaño grande para compartir, ingredientes a elegir. La más pedida.</p>
+            </div>
+            <p class="carta-item-price">18 €</p>
+          </div>
+          <div class="carta-item">
+            <div>
+              <p class="carta-item-name">Mitad y mitad</p>
+              <p class="carta-item-desc">Una pizza, dos sabores diferentes a elegir.</p>
+            </div>
+            <p class="carta-item-price">19 €</p>
+          </div>
+        </div>
+        <div class="carta-highlight reveal">
+          <h4>Personaliza tu pizza</h4>
+          <p>Puedes añadir o quitar ingredientes según gusto. Cada extra añadido a una pizza base suma entre 1 € y 2 €. Pregúntanos al hacer el encargo.</p>
         </div>
       </div>
     </div>
-    <a href="tel:+34946055762" class="carta-cta reveal">
-      <span>Llamar para reservar</span><span>&rarr;</span>
+    <a href="tel:+34946055762" class="carta-cta">
+      <span>Llamar para pedir</span>
+      <svg class="arrow-inline" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M0 6h16M11 1l5 5-5 5"/>
+      </svg>
     </a>
   </div>
 </section>
 
-<!-- CARTA: CARNES Y MENU -->
-<section class="carta-section" id="carta-especialidades">
+<!-- CARTA EXTRAS -->
+<section class="carta-section" id="carta-extras">
   <div class="section-inner">
-    <a href="#servicios" class="carta-back reveal">&larr; Volver a servicios</a>
-    <p class="section-label reveal">Brasa y menu del dia</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      Carnes, entrantes y <em>menu del dia</em>
+    <a href="#servicios" class="carta-back reveal">
+      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 5H1M5 1L1 5l4 4"/></svg>
+      Volver
+    </a>
+    <p class="section-label reveal">02 · Extras</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:720px">
+      Para acompañar <em>la pizza</em>
     </h2>
+    <p class="reveal reveal-delay-2" style="max-width:760px;color:var(--text-muted);margin-bottom:40px;">Pequeñas cosas para redondear el pedido: ensalada fresca, salsas, bebida y postre sencillo. Todo para llevar.</p>
     <div class="carta-columns">
       <div>
         <div class="carta-category reveal">
-          <h4>Carnes a la Brasa</h4>
+          <h3>Ensaladas y entrantes</h3>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Chuleton de Vaca</div>
-              <div class="carta-item-desc">Carne madurada a la brasa de lena, punto al gusto</div>
+              <p class="carta-item-name">Ensalada mixta</p>
+              <p class="carta-item-desc">Lechuga, tomate, cebolla, atún y aceitunas. Para una persona.</p>
             </div>
-            <div class="carta-item-price">22 &euro;</div>
+            <p class="carta-item-price">5,50 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Costillas BBQ</div>
-              <div class="carta-item-desc">Costillas glaseadas con salsa barbacoa casera</div>
+              <p class="carta-item-name">Ensalada italiana</p>
+              <p class="carta-item-desc">Rúcula, tomatitos cherry, mozzarella y vinagreta balsámica.</p>
             </div>
-            <div class="carta-item-price">16 &euro;</div>
+            <p class="carta-item-price">6,50 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Brocheta de Pollo</div>
-              <div class="carta-item-desc">Pollo marinado a la brasa con verduras de temporada</div>
+              <p class="carta-item-name">Pan de ajo casero</p>
+              <p class="carta-item-desc">Tostado en el mismo horno de leña, con aceite y ajo.</p>
             </div>
-            <div class="carta-item-price">13 &euro;</div>
+            <p class="carta-item-price">3,50 €</p>
           </div>
         </div>
         <div class="carta-category reveal">
-          <h4>Ensaladas y Entrantes</h4>
+          <h3>Salsas y aceites</h3>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Ensalada Caprese</div>
-              <div class="carta-item-desc">Tomate, mozzarella fresca y albahaca</div>
+              <p class="carta-item-name">Salsa Sweet Chilli</p>
+              <p class="carta-item-desc">Picante dulce. Para mojar la corteza.</p>
             </div>
-            <div class="carta-item-price">9 &euro;</div>
+            <p class="carta-item-price">1 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Bruschetta</div>
-              <div class="carta-item-desc">Pan tostado, tomate, ajo y aceite de oliva virgen</div>
+              <p class="carta-item-name">Aceite picante</p>
+              <p class="carta-item-desc">Aceite de oliva con guindilla. Pídelo si te gusta picante.</p>
             </div>
-            <div class="carta-item-price">6 &euro;</div>
+            <p class="carta-item-price">Gratis</p>
+          </div>
+          <div class="carta-item">
+            <div>
+              <p class="carta-item-name">Extra de queso</p>
+              <p class="carta-item-desc">Mozzarella adicional sobre cualquier pizza.</p>
+            </div>
+            <p class="carta-item-price">1,50 €</p>
           </div>
         </div>
       </div>
       <div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Postres</h4>
+        <div class="carta-category reveal">
+          <h3>Bebidas</h3>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Tiramisu Casero</div>
-              <div class="carta-item-desc">Elaborado al momento con mascarpone y cafe</div>
+              <p class="carta-item-name">Refrescos en lata</p>
+              <p class="carta-item-desc">Coca-Cola, Coca-Cola Zero, Fanta, Aquarius.</p>
             </div>
-            <div class="carta-item-price">5 &euro;</div>
+            <p class="carta-item-price">1,80 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Panna Cotta</div>
-              <div class="carta-item-desc">Con coulis de frutos rojos</div>
+              <p class="carta-item-name">Cerveza</p>
+              <p class="carta-item-desc">Botellín de cerveza fría. Lo justo para acompañar.</p>
             </div>
-            <div class="carta-item-price">5 &euro;</div>
+            <p class="carta-item-price">2 €</p>
           </div>
           <div class="carta-item">
             <div>
-              <div class="carta-item-name">Helado Artesanal</div>
-              <div class="carta-item-desc">Selección de sabores de temporada</div>
+              <p class="carta-item-name">Vino tinto y blanco</p>
+              <p class="carta-item-desc">Selección de la casa. Botella entera o cuarto.</p>
             </div>
-            <div class="carta-item-price">4 &euro;</div>
+            <p class="carta-item-price">Desde 4 €</p>
+          </div>
+          <div class="carta-item">
+            <div>
+              <p class="carta-item-name">Agua mineral</p>
+              <p class="carta-item-desc">Botella de medio litro.</p>
+            </div>
+            <p class="carta-item-price">1 €</p>
           </div>
         </div>
-        <div class="carta-highlight reveal reveal-delay-2">
-          <h4>Menu del Dia</h4>
-          <p>De martes a viernes: primero, segundo, postre y bebida incluidos. Precio medio de la carta: 20-25 &euro;/persona incluyendo bebida.</p>
+        <div class="carta-highlight reveal">
+          <h4>Aviso importante: solo para llevar</h4>
+          <p>No tenemos servicio de mesa ni reparto a domicilio. Si quieres comer pizza recién hecha en el momento, llama, encarga, te damos hora y pasas a recogerla. Cerrado lunes y martes.</p>
         </div>
       </div>
     </div>
-    <a href="tel:+34946055762" class="carta-cta reveal">
-      <span>Reservar mesa</span><span>&rarr;</span>
+    <a href="tel:+34946055762" class="carta-cta">
+      <span>Llamar para pedir</span>
+      <svg class="arrow-inline" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M0 6h16M11 1l5 5-5 5"/>
+      </svg>
     </a>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials-section">
+<section class="testimonials-section" id="opiniones">
   <div class="testimonials-inner">
-    <p class="section-label reveal">Opiniones reales</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      Lo que dicen<br>en <em>Google &middot; 4.9&starf;</em>
+    <p class="section-label reveal">Lo que dicen los clientes</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:760px">
+      4,9 estrellas con 458 reseñas en <em>Google</em>
     </h2>
+    <p class="reveal reveal-delay-2" style="max-width:680px;color:var(--text-muted);margin-top:16px;">Premio a la mejor pizza de Euskadi y top 3 de Galdakao en Tripadvisor. Estos son comentarios literales de clientes que pasan a recoger su pizza en Kurtzea.</p>
     <div class="testimonials-grid">
       <div class="testimonial-card reveal">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
         </div>
-        <p class="testimonial-quote">"El horno de lena marca la diferencia. Las pizzas tienen un sabor increible, la masa crujiente y los ingredientes frescos. Un sitio que hay que conocer en Galdakao."</p>
+        <p class="testimonial-quote">"Las pizzas más ricas que hemos comido. Los ingredientes sin escatimar. Masa fina espectacular."</p>
         <div class="testimonial-divider"></div>
         <div class="testimonial-author">
-          <strong>Koldo A.</strong>
-          <span>Resena en Google &middot; Galdakao</span>
+          <strong>Asier S.</strong>
+          <span>Reseña Google</span>
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
         </div>
-        <p class="testimonial-quote">"El pan artesano recién salido del horno es espectacular. Y las carnes a la brasa no tienen rival en la zona. Precio muy razonable para la calidad que ofrecen."</p>
+        <p class="testimonial-quote">"Excelente trabajo artesanal de ver cómo te preparan la pizza y la hacen en un horno de leña, riquísima."</p>
         <div class="testimonial-divider"></div>
         <div class="testimonial-author">
-          <strong>Leire B.</strong>
-          <span>Resena en Google &middot; Bilbao</span>
+          <strong>Adrian G.</strong>
+          <span>Google · RestaurantGuru</span>
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
         </div>
-        <p class="testimonial-quote">"Llevamos años viniendo en familia. El horno de lena le da un toque unico a todo. El trato es genial y nunca decepciona. Un clasico de Galdakao."</p>
+        <p class="testimonial-quote">"La mejor pizzería de todo Galdakao. Sin duda."</p>
         <div class="testimonial-divider"></div>
         <div class="testimonial-author">
-          <strong>Asier T.</strong>
-          <span>Resena en Google &middot; Galdakao</span>
+          <strong>Abu B.</strong>
+          <span>Reseña Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
+        <p class="testimonial-quote">"Pedimos varias pizzas para llevar, estaban todas muy ricas y se notaban artesanales y hechas con mimo."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Linda A.</strong>
+          <span>Reseña Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
+        <p class="testimonial-quote">"Las pizzas de las mejores que he probado, y aun teniendo mil pedidos en lista siempre puntuales."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Alfonso C.</strong>
+          <span>Reseña Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
+        <p class="testimonial-quote">"Pizzas espectaculares, grandes y con ingredientes que se ven que son de calidad. Auténtico horno de leña."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Koro I.</strong>
+          <span>Reseña RestaurantGuru</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MAP + CONTACTO -->
-<div class="map-section" id="contacto">
-  <div class="map-inner">
-    <div class="map-info">
-      <p class="section-label reveal">Encuéntranos</p>
-      <h2 class="reveal reveal-delay-1">Visítanos en <em>Galdakao</em></h2>
-      <div class="map-details">
-        <div class="map-detail reveal">
-          <div class="map-detail-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <div class="map-detail-text">
-            <h4>Dirección</h4>
-            <p>Galdakao, Bizkaia</p>
-          </div>
-        </div>
-        <div class="map-detail reveal reveal-delay-1">
-          <div class="map-detail-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.52a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/>
-            </svg>
-          </div>
-          <div class="map-detail-text">
-            <h4>Teléfono</h4>
-            <p><a href="tel:+34946055762">946 055 762</a></p>
-          </div>
-        </div>
-        <div class="map-detail reveal reveal-delay-2">
-          <div class="map-detail-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-            </svg>
-          </div>
-          <div class="map-detail-text">
-            <h4>Horario</h4>
-            <p>Martes a Domingo<br>13:00-15:30 &middot; 20:00-23:00</p>
-          </div>
-        </div>
-        <div class="map-detail reveal reveal-delay-3">
-          <div class="map-detail-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-            </svg>
-          </div>
-          <div class="map-detail-text">
-            <h4>Facebook</h4>
-            <p><a href="https://www.facebook.com/p/Somerako-Labea-100007038030484/" target="_blank" rel="noopener">Somerako Labea</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <iframe
-      class="map-embed"
-      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Somerako+Labea,Galdakao&zoom=17"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Ubicación Somerako Labea Galdakao">
-    </iframe>
-  </div>
+<!-- MAP -->
+<div class="map-section" role="region" aria-label="Ubicación de Somerako Labea en el mapa">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2882.6!2d-2.8420831!3d43.2302067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xe49513063bca0254!2sSomerako%20Labea!5e0!3m2!1ses!2ses!4v1714400000000!5m2!1ses!2ses"
+    title="Mapa de Somerako Labea en Galdakao"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen></iframe>
 </div>
 
-<!-- CTA BANNER -->
-<div class="cta-section">
+<!-- CTA -->
+<div class="cta-section" id="contacto" role="region" aria-label="Llamada a la acción para encargar pizza">
   <div class="cta-text">
-    <h2>Horno de lena,<br>sabor de verdad</h2>
-    <p>Llama y reserva tu mesa. Te esperamos en Galdakao.</p>
+    <h2>Llama, encarga<br>y pasa a recogerla</h2>
+    <p>Llama al 946 05 57 62 o pasa por Gipuzkoa Kalea 1 (Kurtzea, Galdakao). Abrimos de miércoles a domingo de 19:00 a 23:30, viernes y sábado hasta las 00:00. Lunes y martes cerramos.</p>
   </div>
   <a href="tel:+34946055762" class="btn-dark">
-    <span>946 055 762</span>
-    <span>&nearr;</span>
+    <span>Llamar ahora</span>
+    <svg class="arrow-inline" viewBox="0 0 18 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M0 6h16M11 1l5 5-5 5"/>
+    </svg>
   </a>
 </div>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo">Somerako <span>Labea</span></a>
-      <p class="footer-tagline">"El horno de lena<br>mas valorado de Galdakao."</p>
+      <a href="#main-content" class="nav-logo">Somerako<span>.</span></a>
+      <p class="footer-tagline">"Pizza artesanal de horno de leña, en Kurtzea, Galdakao. Premio a la mejor pizza de Euskadi."</p>
       <div class="footer-social">
-        <a href="https://www.facebook.com/p/Somerako-Labea-100007038030484/" target="_blank" rel="noopener" class="social-link" title="Facebook Somerako Labea">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        <a href="https://maps.google.com/?cid=16471092129671283284" target="_blank" rel="noopener" class="social-link" aria-label="Google Maps">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.3 7 11.2 7.3 11.5.2.1.4.2.7.2s.5-.1.7-.2C13 21.2 20 15.3 20 10c0-4.4-3.6-8-8-8m0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
         </a>
-        <a href="https://maps.google.com/?q=Somerako+Labea+Galdakao" target="_blank" rel="noopener" class="social-link" title="Ver en Google Maps">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <a href="https://wa.me/34946055762" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04m0 18.1c-1.6 0-3.17-.43-4.55-1.25l-.32-.2-3.37.88.9-3.3-.22-.34A8.05 8.05 0 0 1 3.88 12C3.88 7.52 7.52 3.88 12 3.88S20.12 7.52 20.12 12 16.48 20.14 12 20.14"/></svg>
         </a>
-        <a href="tel:+34946055762" class="social-link" title="Llamar a Somerako Labea">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.52a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+        <a href="tel:+34946055762" class="social-link" aria-label="Teléfono">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.58-6.6l2.2-2.2a1 1 0 0 0 .25-1.02A11.4 11.4 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 0 0-1-1"/></svg>
         </a>
       </div>
     </div>
     <div class="footer-col">
-      <h4>Carta</h4>
+      <h3>Carta</h3>
       <ul>
-        <li><a href="#carta-principal">Pizzas artesanales</a></li>
-        <li><a href="#carta-principal">Pan artesano</a></li>
-        <li><a href="#carta-especialidades">Carnes a la brasa</a></li>
-        <li><a href="#carta-especialidades">Menu del dia</a></li>
+        <li><a href="#carta-principal">Pizzas clásicas</a></li>
+        <li><a href="#carta-principal">Especiales de la casa</a></li>
+        <li><a href="#carta-principal">Vegetarianas y veganas</a></li>
+        <li><a href="#carta-extras">Extras y bebidas</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Restaurante</h4>
+      <h3>Pizzería</h3>
       <ul>
         <li><a href="#nosotros">Sobre nosotros</a></li>
-        <li><a href="#galeria">Galeria</a></li>
-        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#contacto">Encargar</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h3>Contacto</h3>
       <ul>
-        <li><a href="tel:+34946055762">946 055 762</a></li>
-        <li><a href="https://maps.google.com/?q=Somerako+Labea+Galdakao" target="_blank" rel="noopener">Galdakao, Bizkaia</a></li>
-        <li><a href="https://www.facebook.com/p/Somerako-Labea-100007038030484/" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="tel:+34946055762">946 05 57 62</a></li>
+        <li><a href="https://maps.google.com/?cid=16471092129671283284" target="_blank" rel="noopener">Gipuzkoa Kalea, 1, 48960 Kurtzea (Galdakao)</a></li>
+        <li><a href="#contacto">Miércoles a domingo, 19:00 - 23:30</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Somerako Labea &middot; Restaurante &middot; Horno de Lena &middot; Galdakao. Todos los derechos reservados.</p>
+    <p class="footer-copy">&copy; 2026 Somerako Labea. Todos los derechos reservados.</p>
     <div class="footer-legal">
-      <a href="#">Politica de Privacidad</a>
-      <a href="#">Aviso Legal</a>
-      <a href="#">Cookies</a>
+      <a href="legal/aviso-legal.html">Aviso Legal</a>
+      <a href="legal/politica-privacidad.html">Política de Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
     </div>
   </div>
 </footer>
+
+<div class="powered-by">
+  <a href="https://ggelcano.com" target="_blank" rel="noopener">Web creada por G&amp;G Elcano</a>
+</div>
 
 <script>
   // LOADER
   window.addEventListener('load', () => {
     setTimeout(() => {
       document.getElementById('loader').classList.add('hidden');
-      document.getElementById('heroBg').classList.add('loaded');
-    }, 1800);
+    }, 1400);
   });
 
-  // CUSTOM CURSOR
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    dot.style.left = mouseX + 'px';
-    dot.style.top = mouseY + 'px';
-  });
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.7;
-    ringY += (mouseY - ringY) * 0.7;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-  document.querySelectorAll('a, button, .project-card, .service-card, .stat-card').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
-  });
-
-  // NAVBAR SCROLL
+  // NAVBAR scroll
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
@@ -973,64 +1586,62 @@
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
+    const isOpen = hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    if (isOpen) { const firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.focus();
+    }
   });
   function closeMobile() {
     hamburger.classList.remove('active');
     mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
   }
 
-  // REVEAL ON SCROLL
+  // REVEAL on scroll
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   reveals.forEach(el => observer.observe(el));
 
-  // COUNTER integer
+  // COUNTER animation
   function animateCount(el) {
-    const target = parseInt(el.dataset.target);
-    const duration = 1800;
-    const start = performance.now();
-    function step(now) {
-      const p = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - p, 4);
-      el.textContent = Math.round(ease * target);
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  // COUNTER decimal
-  function animateCountDecimal(el) {
     const target = parseFloat(el.dataset.target);
     const duration = 1800;
     const start = performance.now();
     function step(now) {
-      const p = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - p, 4);
-      el.textContent = (ease * target).toFixed(1);
-      if (p < 1) requestAnimationFrame(step);
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      const current = ease * target;
+      el.textContent = (Number.isInteger(target)) ? Math.round(current) : current.toFixed(0);
+      if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
-
   const countObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        if (e.target.classList.contains('count')) animateCount(e.target);
-        else if (e.target.classList.contains('count-decimal')) animateCountDecimal(e.target);
+        animateCount(e.target);
         countObserver.unobserve(e.target);
       }
     });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.count, .count-decimal').forEach(el => countObserver.observe(el));
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
 
   // HERO PARALLAX
   window.addEventListener('scroll', () => {
     const heroBg = document.getElementById('heroBg');
-    if (heroBg) heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.25) + 'px)';
+    if (heroBg && window.scrollY < window.innerHeight) {
+      heroBg.style.transform = `translateY(${window.scrollY * 0.18}px)`;
+    }
   });
 </script>
 </body>
