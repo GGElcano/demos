@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tahona Baserri | Panadería artesana en Letxezar Kalea, Barakaldo</title>
+  <meta name="description" content="Tahona Baserri, el obrador más antiguo de Barakaldo. Pan de masa madre, txapata, croissants, palmeras y tartas elaboradas cada mañana en Letxezar Kalea, 7. Más de 30 años de tradición. 4,5/5 con 154 reseñas en Google Maps.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Paleta rural / caserío vasco — diferenciada de Confiarte */
+      --harina: #f1ead8;          /* fondo harina-marfil */
+      --harina-light: #f7f1e2;
+      --tierra: #5e3a22;          /* terracota tostada principal */
+      --tierra-dark: #3f2614;
+      --tierra-light: #7a4f30;
+      --campo: #4a5d3e;           /* verde campo oscuro */
+      --campo-light: #6e8260;
+      --ocre: #b8862e;            /* ocre madera/dorado */
+      --ocre-light: #d2a04a;
+      --tinta: #1c1208;
+      --tinta-soft: #2e1f12;
+      --pergamino: #e6dab8;       /* pergamino/cera */
+      --pergamino-mid: #d3c393;
+      --text-muted: #6e5a40;
+      --font-serif: 'Fraunces', serif;
+      --font-sans: 'Inter', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--harina);
+      color: var(--tinta);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s, border-bottom 0.5s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(241,234,216,0.92);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(94,58,34,0.16);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      color: var(--tierra);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo span { color: var(--campo); font-style: italic; font-weight: 400; }
+    .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: var(--tinta-soft);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--tierra); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--tierra);
+      color: var(--tierra) !important;
+      padding: 10px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--tierra); color: var(--harina) !important; }
+
+    /* HAMBURGER MOBILE */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--tierra);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--harina); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--tierra); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+      font-weight: 500;
+    }
+    .mobile-menu a:hover { color: var(--campo); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(28,18,8,0.78) 0%, rgba(28,18,8,0.45) 50%, rgba(28,18,8,0.18) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+      background: linear-gradient(to top, rgba(28,18,8,0.85), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 920px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--ocre-light); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.85), 0 2px 24px rgba(0,0,0,0.6);
+      font-weight: 600;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--ocre-light);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7.2vw, 7.4rem);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+      color: var(--harina);
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+      min-width: 0;
+    }
+    .hero-title em { font-style: italic; color: var(--ocre-light); font-weight: 300; }
+    .hero-sub {
+      font-size: 1.08rem; color: rgba(241,234,216,0.94);
+      max-width: 540px; line-height: 1.75; margin-bottom: 52px;
+      font-weight: 400;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.85), 0 2px 16px rgba(0,0,0,0.6);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--ocre); color: var(--tinta);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--harina); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--tierra); }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
+    .btn-ghost {
+      color: rgba(241,234,216,0.92); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 12px;
+      transition: color 0.3s; font-weight: 500;
+    }
+    .btn-ghost:hover { color: var(--ocre-light); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(241,234,216,0.4);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow {
+      border-color: var(--ocre-light); transform: rotate(45deg);
+    }
+    .icon-arrow { width: 14px; height: 14px; }
+    .icon-arrow-up { width: 14px; height: 14px; }
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(241,234,216,0.78); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 70px;
+      background: linear-gradient(to bottom, var(--ocre-light), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* MARQUEE — seamless infinite loop */
+    .marquee-section {
+      border-top: 1px solid rgba(94,58,34,0.20);
+      border-bottom: 1px solid rgba(94,58,34,0.20);
+      overflow: hidden; padding: 22px 0; background: var(--tierra-dark);
+      position: relative;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: marquee 22s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 32px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      font-family: var(--font-serif); font-size: 1.2rem;
+      font-style: italic; color: rgba(241,234,216,0.92);
+      letter-spacing: 0.04em; font-weight: 400;
+    }
+    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--ocre-light); flex-shrink: 0; }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* SECTION COMMONS */
+    section { padding: 130px 60px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--campo); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+      font-weight: 600;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--campo); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.2vw, 4.4rem);
+      font-weight: 400; line-height: 1.08;
+      letter-spacing: -0.005em;
+      color: var(--tinta);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+      min-width: 0;
+    }
+    .section-title em { font-style: italic; color: var(--tierra); font-weight: 400; }
+
+    /* STATS */
+    .stats-section {
+      background: var(--pergamino);
+      padding: 100px 60px;
+      border-top: 1px solid rgba(94,58,34,0.14);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 60px 50px; background: var(--pergamino);
+      border: 1px solid rgba(94,58,34,0.18);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s, background 0.4s;
+      min-width: 0;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--tierra); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(94,58,34,0.45); background: var(--pergamino-mid); }
+    .stat-number {
+      font-family: var(--font-serif); font-size: clamp(2.5rem, 7vw, 4.6rem);
+      font-weight: 400; line-height: 1; color: var(--tinta);
+      margin-bottom: 12px; letter-spacing: -0.01em;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .stat-number .stat-suffix { color: var(--tierra); }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 500;
+      overflow-wrap: break-word;
+    }
+
+    /* GALLERY */
+    .projects-section { background: var(--harina); }
+    .projects-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .projects-header .section-title { max-width: 600px; }
+    .view-all {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--tierra);
+      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      transition: gap 0.3s; padding-bottom: 4px;
+      border-bottom: 1px solid rgba(94,58,34,0.45);
+      white-space: nowrap; font-weight: 600;
+    }
+    .view-all:hover { gap: 20px; border-color: var(--tierra); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .project-card:first-child {
+      grid-column: span 2; aspect-ratio: 21/8;
+    }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .project-card:hover .project-img { transform: scale(1.06); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(28,18,8,0.92) 0%, rgba(28,18,8,0.18) 60%, transparent 100%);
+      opacity: 0.7; transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 0.92; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 40px; transform: translateY(15px);
+      transition: transform 0.5s var(--ease-out);
+    }
+    .project-card:hover .project-info { transform: translateY(0); }
+    .project-cat {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ocre-light); margin-bottom: 10px; font-weight: 600;
+    }
+    .project-name {
+      font-family: var(--font-serif); font-size: 1.95rem;
+      font-weight: 400; line-height: 1.18; margin-bottom: 14px; color: var(--harina);
+    }
+    .project-meta {
+      font-size: 0.82rem; color: rgba(241,234,216,0.85);
+      letter-spacing: 0.04em; opacity: 0;
+      transition: opacity 0.5s 0.1s; line-height: 1.5;
+    }
+    .project-card:hover .project-meta { opacity: 1; }
+    .project-arrow {
+      position: absolute; top: 36px; right: 36px;
+      width: 50px; height: 50px;
+      border: 1px solid rgba(241,234,216,0.42);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translate(10px, -10px);
+      transition: all 0.4s var(--ease-out);
+      color: rgba(241,234,216,0.85);
+    }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--ocre-light); color: var(--ocre-light); }
+
+    /* ABOUT */
+    .about-section {
+      background: var(--pergamino);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 700px;
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-badge {
+      position: absolute; top: 24px; right: 24px;
+      background: var(--harina); border: 1px solid rgba(94,58,34,0.45);
+      padding: 24px 30px; max-width: 240px;
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 3rem;
+      color: var(--tierra); line-height: 1; font-weight: 500;
+    }
+    .about-badge-text {
+      font-size: 0.72rem; letter-spacing: 0.1em;
+      color: var(--tinta-soft); margin-top: 6px;
+      font-weight: 500;
+    }
+    .about-content {
+      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.85;
+      color: var(--tinta-soft); margin: 32px 0 40px;
+      font-weight: 400;
+    }
+    .about-body strong { color: var(--tierra); font-weight: 600; }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--campo); margin: 32px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 20px; }
+    .about-value {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border: 1px solid rgba(94,58,34,0.20);
+      transition: border-color 0.4s, background 0.4s;
+      background: rgba(241,234,216,0.55);
+    }
+    .about-value:hover { border-color: rgba(94,58,34,0.55); background: var(--harina); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.5rem;
+      color: var(--campo); opacity: 0.95; flex-shrink: 0;
+      line-height: 1.2; font-weight: 500;
+    }
+    .value-text h3 {
+      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 6px; color: var(--tierra);
+    }
+    .value-text p {
+      font-size: 0.92rem; color: var(--tinta-soft); font-weight: 400; line-height: 1.65;
+    }
+
+    /* SERVICES */
+    .services-section { background: var(--harina); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1400px; margin: 60px auto 0;
+    }
+    .service-card {
+      padding: 60px 48px; background: var(--harina);
+      border: 1px solid rgba(94,58,34,0.20);
+      position: relative; overflow: hidden;
+      transition: background 0.5s, border-color 0.5s;
+    }
+    .service-card:hover { background: var(--harina-light); border-color: rgba(94,58,34,0.45); }
+    .service-icon {
+      width: 52px; height: 52px; margin-bottom: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(94,58,34,0.45); color: var(--tierra);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.75rem;
+      font-weight: 500; margin-bottom: 12px; line-height: 1.22; color: var(--tinta);
+    }
+    .service-card p {
+      font-size: 0.95rem; color: var(--tinta-soft); line-height: 1.75;
+      font-weight: 400;
+    }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      margin-top: 32px; text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--tierra); transition: color 0.3s, gap 0.3s;
+      font-weight: 600;
+    }
+    .service-link:hover { color: var(--campo); gap: 16px; }
+    .service-number {
+      position: absolute; top: 30px; right: 36px;
+      font-family: var(--font-serif); font-size: 5rem;
+      font-weight: 400; color: rgba(94,58,34,0.10);
+      line-height: 1; transition: color 0.5s;
+    }
+    .service-card:hover .service-number { color: rgba(94,58,34,0.22); }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background: var(--pergamino); position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '"'; position: absolute; top: -60px; left: 40px;
+      font-family: var(--font-serif); font-size: 30rem;
+      color: rgba(94,58,34,0.06); line-height: 1; pointer-events: none;
+      font-style: italic;
+    }
+    .testimonials-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 70px;
+    }
+    .testimonial-card {
+      padding: 56px 44px; background: var(--harina);
+      border: 1px solid rgba(94,58,34,0.20);
+      transition: border-color 0.4s, background 0.4s;
+      display: flex; flex-direction: column;
+    }
+    .testimonial-card:hover { border-color: rgba(94,58,34,0.50); background: var(--harina-light); }
+    .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
+    .star {
+      width: 12px; height: 12px; background: var(--ocre);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif); font-size: 1.2rem;
+      font-style: italic; font-weight: 400;
+      line-height: 1.7; color: var(--tinta-soft);
+      margin-bottom: 36px; flex: 1;
+    }
+    .testimonial-divider {
+      width: 30px; height: 1px; background: var(--campo); margin-bottom: 28px; opacity: 0.8;
+    }
+    .testimonial-author strong {
+      display: block; font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 0.06em; margin-bottom: 4px; color: var(--tierra);
+    }
+    .testimonial-author span {
+      font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.04em;
+    }
+
+    /* MAP SECTION */
+    .map-section { background: var(--harina); padding: 0; }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      max-width: none;
+    }
+    .map-info {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--pergamino);
+    }
+    .map-info-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 28px 0; border-bottom: 1px solid rgba(94,58,34,0.20);
+    }
+    .map-info-item:first-of-type { padding-top: 40px; }
+    .map-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border: 1px solid rgba(94,58,34,0.45);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--tierra);
+    }
+    .map-info-text h3 {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--tierra); margin-bottom: 6px; font-weight: 600;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.95rem; color: var(--tinta-soft);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--tierra); }
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+    }
+
+    /* CTA BANNER */
+    .cta-section {
+      background: var(--tierra-dark); padding: 110px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 4rem);
+      font-weight: 400; color: var(--harina); line-height: 1.12;
+    }
+    .cta-text h2 em { font-style: italic; color: var(--ocre-light); }
+    .cta-text p {
+      font-size: 1.05rem; color: rgba(241,234,216,0.85); margin-top: 16px; font-weight: 400;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--ocre); color: var(--tinta);
+      text-decoration: none; padding: 20px 48px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 700; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--harina); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--tinta); color: var(--harina); padding: 90px 60px 50px;
+      border-top: 1px solid rgba(184,134,46,0.30);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 70px;
+    }
+    .footer-brand .nav-logo {
+      font-size: 1.85rem; margin-bottom: 22px; display: inline-flex;
+      color: var(--harina);
+    }
+    .footer-brand .nav-logo span { color: var(--ocre-light); }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.1rem; color: rgba(241,234,216,0.82);
+      line-height: 1.6; max-width: 290px; margin-bottom: 36px;
+      font-weight: 400;
+    }
+    .footer-social { display: flex; gap: 14px; flex-wrap: wrap; }
+    .social-link {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(241,234,216,0.28);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(241,234,216,0.82);
+      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .social-link:hover { background: var(--ocre); color: var(--tinta); border-color: var(--ocre); transform: translateY(-2px); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-col h3 {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--ocre-light); margin-bottom: 24px; font-weight: 700;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(241,234,216,0.78);
+      font-size: 0.9rem; transition: color 0.3s; font-weight: 400;
+    }
+    .footer-col ul a:hover { color: var(--harina); }
+    .footer-bottom {
+      border-top: 1px solid rgba(241,234,216,0.12);
+      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.78rem; color: rgba(241,234,216,0.7); letter-spacing: 0.05em;
+    }
+    .footer-legal { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.75rem; color: rgba(241,234,216,0.78);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--harina); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { to { opacity: 1; } }
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--harina); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2.6rem;
+      letter-spacing: 0.06em; color: var(--tierra); font-weight: 500;
+    }
+    .loader-logo span { color: var(--campo); font-style: italic; }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(94,58,34,0.18);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--tierra); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 36px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .about-content { padding: 80px 48px; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 360px; }
+      .about-content { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; align-items: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+      .map-info { padding: 60px 24px; }
+    }
+    @media (max-width: 480px) {
+      .hero-eyebrow {
+        font-size: 0.66rem; letter-spacing: 0.26em;
+        margin-bottom: 38px; line-height: 1.6;
+        flex-wrap: wrap; gap: 10px;
+      }
+      .hero-eyebrow::before { width: 24px; }
+      .hero-title { font-size: clamp(2.4rem, 11vw, 3.1rem); margin-bottom: 22px; margin-top: 2em; }
+      .hero-sub { font-size: 0.95rem; margin-bottom: 36px; }
+      .hero-content { padding: 0 24px 60px; }
+      .section-title { font-size: clamp(1.95rem, 8vw, 2.5rem); }
+      .stat-number { font-size: clamp(2.4rem, 12vw, 3.2rem); }
+      .stat-card { padding: 36px 24px; }
+      .service-card { padding: 40px 28px; }
+      .testimonial-card { padding: 36px 24px; }
+      .cta-section { padding: 60px 20px; }
+      .btn-dark { padding: 16px 32px; }
+      .btn-primary { padding: 16px 32px; }
+      .about-badge {
+        top: 16px; right: 16px;
+        padding: 18px 22px; max-width: 200px;
+      }
+      .about-badge-year { font-size: 2.4rem; }
+      .about-badge-text { font-size: 0.65rem; }
+    }
+    /* WCAG 2.4.7 — Focus visible */
+    :focus-visible { outline: 3px solid var(--tierra); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--tierra); outline-offset: 3px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--tierra); color: var(--harina); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+    /* WCAG 2.3.3 — respetar preferencia reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .marquee-track { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-logo">Tahona Baserri<span>.</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main-content" class="nav-logo">Tahona Baserri<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#galeria">Obrador</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto" class="nav-cta">Encargar</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú de navegación">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <a href="#galeria" onclick="closeMobile()">Obrador</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#contacto" onclick="closeMobile()">Encargar</a>
+</div>
+
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" id="heroBg" style="background-image: url('https://images.unsplash.com/photo-1599819055803-717bba43890f?w=1920&q=80'); background-size: cover; background-position: center;" role="img" aria-label="Pan rústico artesano dentro de una bolsa de papel kraft con baguette enharinada"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Obrador en Letxezar Kalea · Barakaldo</p>
+    <h1 class="hero-title" id="hero-title">Pan de masa madre,<br><em>de toda la vida.</em></h1>
+    <p class="hero-sub">El obrador más antiguo de Barakaldo. Pan, bollería y pastelería artesana elaborados cada mañana en Letxezar Kalea, 7. Más de 30 años amasando con masa madre, sin congelados.</p>
+    <div class="hero-actions">
+      <a href="tel:+34944386419" class="btn-primary" aria-label="Llamar a Tahona Baserri al 944 38 64 19">
+        <span>Llamar al 944 38 64 19
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a href="#servicios" class="btn-ghost">
+        <span>Ver el obrador</span>
+        <span class="btn-ghost-arrow" aria-hidden="true">
+          <svg class="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Txapata de masa madre</span>
+    <span class="marquee-item"><span class="dot"></span>Croissants de chocolate</span>
+    <span class="marquee-item"><span class="dot"></span>La Cristina</span>
+    <span class="marquee-item"><span class="dot"></span>Palmeras crujientes</span>
+    <span class="marquee-item"><span class="dot"></span>Tartas artesanas</span>
+    <span class="marquee-item"><span class="dot"></span>Pan recién hecho</span>
+    <span class="marquee-item"><span class="dot"></span>Bollería del día</span>
+    <span class="marquee-item"><span class="dot"></span>Encargos por teléfono</span>
+    <span class="marquee-item"><span class="dot"></span>Txapata de masa madre</span>
+    <span class="marquee-item"><span class="dot"></span>Croissants de chocolate</span>
+    <span class="marquee-item"><span class="dot"></span>La Cristina</span>
+    <span class="marquee-item"><span class="dot"></span>Palmeras crujientes</span>
+    <span class="marquee-item"><span class="dot"></span>Tartas artesanas</span>
+    <span class="marquee-item"><span class="dot"></span>Pan recién hecho</span>
+    <span class="marquee-item"><span class="dot"></span>Bollería del día</span>
+    <span class="marquee-item"><span class="dot"></span>Encargos por teléfono</span>
+  </div>
+</div>
+
+
+<div class="stats-section" role="region" aria-label="Cifras de la panadería">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="30">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Años amasando en Barakaldo</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="45" data-format="decimal">0</span></div>
+      <div class="stat-label">Sobre 5 en Google Maps</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="154">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div>
+      <div class="stat-label">Obrador propio sin congelados</div>
+    </div>
+  </div>
+</div>
+
+
+<section class="projects-section" id="galeria" aria-labelledby="galeria-title">
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">Nuestro obrador</p>
+      <h2 class="section-title reveal reveal-delay-1" id="galeria-title">Pan, bollería y pastelería<br><em>recién hechos cada mañana.</em></h2>
+    </div>
+    <a href="#contacto" class="view-all reveal" aria-label="Ir a la sección de contacto para hacer encargos">
+      Encargar
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1711672284661-bd70e38f31b2?w=1600&q=80" alt="Vitrina de panadería con bollos en bandejas de metal y estanterías de panes al fondo" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Vitrina del día</p>
+        <h3 class="project-name">Bollería y pan recién horneado</h3>
+        <p class="project-meta">Cada mañana, antes de las 06:30, sale del horno la primera tanda. Pan, bollos y bollería del día.</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1693483640461-267d788b6148?w=1200&q=80" alt="Croissants colocados en hilera sobre bandeja perforada de horno" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Bollería</p>
+        <h3 class="project-name">Croissants y bollos del día</h3>
+        <p class="project-meta">Croissants rellenos de nata con cobertura de chocolate negro. Hojaldre artesano horneado al momento.</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1776267067895-3047149a69cf?w=1200&q=80" alt="Vitrina iluminada con tartas variadas: cheesecake, tarta de chocolate y tarta con base nata" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Pastelería</p>
+        <h3 class="project-name">Tartas artesanas y la Cristina</h3>
+        <p class="project-meta">Tartas elaboradas en obrador propio. Brioches, hojaldres y nuestra Cristina, brioche con canela.</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="https://images.unsplash.com/photo-1635627363683-25f5adc35eb5?w=1200&q=80" alt="Pan redondo recién horneado con sal gruesa por encima en primer plano" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
+      <div class="project-info">
+        <p class="project-cat">Pan artesano</p>
+        <h3 class="project-name">Txapata y panes de masa madre</h3>
+        <p class="project-meta">Nuestra txapata, fermentada a fuego lento. Panes redondos, hogazas y especiales del fin de semana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
+  <div class="about-visual">
+    <img src="https://images.unsplash.com/photo-1653550027228-e3202a24ccc1?w=1400&q=80" alt="Cesta de mimbre con bollos de pan blanco enharinados" loading="lazy">
+    <div class="about-badge">
+      <div class="about-badge-year">+30</div>
+      <div class="about-badge-text">Años en Letxezar Kalea</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre nosotros</p>
+    <h2 class="section-title reveal reveal-delay-1" id="nosotros-title">
+      El obrador más antiguo<br>de <em>Barakaldo.</em>
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-delay-2">
+      Tahona Baserri lleva más de <strong>30 años</strong> amasando en Letxezar Kalea, 7. Somos el <strong>obrador más antiguo de Barakaldo</strong>: trabajamos cada madrugada con masa madre, fermentación lenta y receta de toda la vida. Nada de pan congelado, nada de distribución externa. La txapata, los croissants, las palmeras, La Cristina y las tartas salen del mismo horno cada mañana, antes de que el barrio abra los ojos.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h3>Masa madre fermentación lenta</h3>
+          <p>Pan elaborado con masa madre y reposos largos. Se nota en la corteza, en la miga y en la tostada del día siguiente.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h3>Obrador propio cada madrugada</h3>
+          <p>Todo se hace aquí: pan, bollería, hojaldres y tartas. Sin congelados, sin distribución, sin atajos.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h3>Trato de barrio</h3>
+          <p>Las dependientas conocen a la clientela por su nombre. Atención cercana, recomendaciones y encargos por teléfono.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="services-section" id="servicios" aria-labelledby="servicios-title">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Lo que hacemos</p>
+    <h2 class="section-title reveal reveal-delay-1" id="servicios-title" style="max-width:680px">Pan y pastelería de oficio para <em>cada momento del día.</em></h2>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-number" aria-hidden="true">01</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M4 10c0-3 2-5 5-5h6c3 0 5 2 5 5v9H4z"/>
+            <path d="M4 14h16M9 5v14M15 5v14"/>
+          </svg>
+        </div>
+        <h3>Pan artesano de masa madre</h3>
+        <p>Txapata, panes redondos, hogazas y especiales del fin de semana. Fermentación lenta y miga de toda la vida.</p>
+        <a href="tel:+34944386419" class="service-link" aria-label="Llamar para reservar pan del día">
+          Reservar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number" aria-hidden="true">02</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M3 14a9 9 0 0 1 18 0v3H3z"/>
+            <path d="M5 14h14M12 6v8"/>
+            <circle cx="12" cy="20" r="1.2" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Croissants y bollería</h3>
+        <p>Croissants rellenos de nata con chocolate negro, palmeras crujientes, napolitanas y bollos de mantequilla recién horneados.</p>
+        <a href="tel:+34944386419" class="service-link" aria-label="Llamar para encargar bollería">
+          Encargar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number" aria-hidden="true">03</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M4 21V8h16v13z"/>
+            <path d="M8 8V5h8v3"/>
+            <path d="M4 13h16"/>
+          </svg>
+        </div>
+        <h3>Tartas artesanas</h3>
+        <p>Tartas elaboradas cada mañana en el obrador. Receta tradicional, ingredientes de oficio y sin atajos.</p>
+        <a href="tel:+34944386419" class="service-link" aria-label="Llamar para preguntar por las tartas del día">
+          Reservar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number" aria-hidden="true">04</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M5 21V8l7-4 7 4v13z"/>
+            <path d="M9 21V13h6v8"/>
+          </svg>
+        </div>
+        <h3>Tartas por encargo</h3>
+        <p>Tartas personalizadas para cumpleaños, comuniones, bautizos y celebraciones. Encargos con 48 horas de antelación.</p>
+        <a href="tel:+34944386419" class="service-link" aria-label="Llamar para encargar una tarta personalizada">
+          Presupuesto
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number" aria-hidden="true">05</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M6 9h12l-1 11H7z"/>
+            <path d="M9 9V6a3 3 0 0 1 6 0v3M10 13v3M14 13v3"/>
+          </svg>
+        </div>
+        <h3>La Cristina y especialidades</h3>
+        <p>Nuestro brioche con canela, la Cristina, es referencia del barrio. También palmeras crujientes y dulces de la casa.</p>
+        <a href="tel:+34944386419" class="service-link" aria-label="Llamar para preguntar por especialidades">
+          Consultar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number" aria-hidden="true">06</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <rect x="3" y="6" width="18" height="14" rx="1.5"/>
+            <path d="M3 10h18M7 14h4"/>
+            <path d="M16 14h2v3h-2z"/>
+          </svg>
+        </div>
+        <h3>Roscón y campañas</h3>
+        <p>Roscón de Reyes en enero, monas de Pascua, panettone navideño. Campañas de temporada con receta tradicional.</p>
+        <a href="tel:+34944386419" class="service-link" aria-label="Llamar para reservar roscón o campañas">
+          Reservar
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="testimonials-section" aria-labelledby="testimonios-title">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen nuestros clientes</p>
+    <h2 class="section-title reveal reveal-delay-1" id="testimonios-title">
+      4,5 sobre 5 con 154<br>reseñas en <em>Google Maps.</em>
+    </h2>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"La txapata es de los mejores panes que he probado, se nota la masa madre y que no es congelado. Las tostadas al día siguiente insuperables."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Reseña en Google Maps</strong>
+          <span>Cliente local · 5 estrellas</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"La mejor elaboración de todo Barakaldo con diferencia. Las trabajadoras muy amables y súper simpáticas."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Álvaro V.</strong>
+          <span>Reseña en Google Maps · 5 estrellas</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"El mejor pan de Barakaldo. Son obrador. Deliciosas tartas y bollería fresca. Relación calidad-precio insuperable."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Reseña en Google Maps</strong>
+          <span>Vecina del barrio · 5 estrellas</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Las dependientas son encantadoras, amables y muy atentas con el público. El pan, postres, tartas y derivados son todos artesanales y buenísimos."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Reseña en Google Maps</strong>
+          <span>Familia habitual · 5 estrellas</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Tienen el obrador más antiguo de Barakaldo. Diferentes panes, exquisitos. Bollería riquísima y muy variada."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Iban L.</strong>
+          <span>Reseña en Google Maps · 5 estrellas</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Una de las mejores palmeras que he comido en mucho tiempo. El trato inmejorable."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Reseña en Google Maps</strong>
+          <span>Cliente nuevo · 5 estrellas</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Dónde estamos</p>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">
+        En Letxezar Kalea, 7,<br><em>San Vicente de Barakaldo.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>Letxezar Kalea, 7<br>San Vicente, 48901 Barakaldo (Bizkaia)</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfono</h3>
+          <a href="tel:+34944386419">944 38 64 19</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Horario</h3>
+          <p>Lunes a viernes: 6:30&ndash;14:30 y 18:00&ndash;20:30<br>Sábado y domingo: 6:30&ndash;14:30</p>
+        </div>
+      </div>
+      <div style="margin-top: 40px;">
+        <a href="tel:+34944386419" class="btn-primary" style="display: inline-flex;">
+          <span>Llamar al 944 38 64 19
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación de Tahona Baserri en Letxezar Kalea 7, Barakaldo"
+        src="https://www.google.com/maps?q=Tahona+Baserri+Letxezar+7+Barakaldo&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+
+<div class="cta-section" role="region" aria-label="Llamada a la acción de contacto">
+  <div class="cta-text">
+    <h2>¿Una celebración? <em>Te hacemos la tarta a medida.</em></h2>
+    <p>Llámanos al 944 38 64 19 con 48 horas de antelación. Tartas personalizadas, comuniones, cumpleaños y encargos especiales.</p>
+  </div>
+  <a href="tel:+34944386419" class="btn-dark">
+    <span>Llamar ahora
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
+  </a>
+</div>
+
+
+</main>
+
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#main-content" class="nav-logo">Tahona Baserri<span>.</span></a>
+      <p class="footer-tagline">"El obrador más antiguo de Barakaldo. Más de 30 años amasando con masa madre en Letxezar Kalea."</p>
+      <div class="footer-social">
+        <a href="https://maps.google.com/?cid=14717769898062285153" target="_blank" rel="noopener" class="social-link" aria-label="Ver Tahona Baserri en Google Maps">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.3 7 11.2 7.3 11.5.2.1.4.2.7.2s.5-.1.7-.2C13 21.2 20 15.3 20 10c0-4.4-3.6-8-8-8m0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+        </a>
+        <a href="tel:+34944386419" class="social-link" aria-label="Llamar a Tahona Baserri al 944 38 64 19">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.58-6.6l2.2-2.2a1 1 0 0 0 .25-1.02A11.4 11.4 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 0 0-1-1"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Obrador</h3>
+      <ul>
+        <li><a href="#servicios">Pan artesano</a></li>
+        <li><a href="#servicios">Croissants y bollería</a></li>
+        <li><a href="#servicios">Tartas artesanas</a></li>
+        <li><a href="#servicios">Tartas por encargo</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>La casa</h3>
+      <ul>
+        <li><a href="#nosotros">Nuestra historia</a></li>
+        <li><a href="#galeria">El obrador</a></li>
+        <li><a href="#contacto">Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34944386419">944 38 64 19</a></li>
+        <li><a href="#contacto">Letxezar Kalea 7, Barakaldo</a></li>
+        <li><a href="#contacto">Lunes a domingo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Tahona Baserri. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      const heroBg = document.getElementById('heroBg');
+      if (loader) loader.classList.add('hidden');
+      if (heroBg) heroBg.classList.add('loaded');
+    }, 1800);
+  });
+
+  // NAVBAR SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER MENU
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) { const firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+
+  function closeMobile() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobileMenu');
+    if (h) h.classList.remove('active');
+    if (m) m.classList.remove('open');
+  }
+
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+
+  // COUNTER ANIMATION (incluye decimales: 4,5)
+  function animateCount(el) {
+    const targetRaw = el.dataset.target;
+    const isDecimal = el.dataset.format === 'decimal';
+    const target = parseInt(targetRaw, 10);
+    const duration = 1800;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      const value = ease * target;
+      if (isDecimal) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const countObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCount(e.target);
+          countObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+  } else {
+    document.querySelectorAll('.count').forEach(el => animateCount(el));
+  }
+
+  // HERO PARALLAX
+  window.addEventListener('scroll', () => {
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+      const scrolled = window.scrollY;
+      heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
+    }
+  });
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
