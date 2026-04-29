@@ -229,7 +229,7 @@
     }
     .marquee-track {
       display: flex; gap: 0; white-space: nowrap;
-      animation: marquee 22s linear infinite;
+      animation: marquee 18s linear infinite;
     }
     .marquee-item {
       display: inline-flex; align-items: center; gap: 30px;
@@ -380,7 +380,7 @@
       width: 100%; height: 100%; object-fit: cover;
     }
     .about-badge {
-      position: absolute; bottom: 48px; left: 48px;
+      position: absolute; top: 24px; right: 24px;
       background: var(--black); border: 1px solid rgba(14,165,233,0.35);
       padding: 24px 30px; max-width: 240px;
     }
@@ -722,7 +722,15 @@
       .map-info { padding: 60px 24px; }
     }
     @media (max-width: 480px) {
-      .hero-title { font-size: clamp(2.4rem, 11vw, 3rem); }
+      .hero-title { font-size: clamp(2.4rem, 11vw, 3rem); margin-bottom: 22px; }
+      .hero-eyebrow {
+        font-size: 0.68rem; letter-spacing: 0.28em;
+        margin-bottom: 40px; line-height: 1.6;
+        flex-wrap: wrap; gap: 10px;
+      }
+      .hero-eyebrow::before { width: 24px; }
+      .hero-sub { font-size: 0.95rem; margin-bottom: 36px; }
+      .hero-content { padding: 0 24px 60px; }
       .section-title { font-size: clamp(1.9rem, 8vw, 2.4rem); }
       .stat-number { font-size: clamp(2.4rem, 12vw, 3.2rem); }
       .stat-card { padding: 36px 24px; }
@@ -731,6 +739,12 @@
       .cta-section { padding: 60px 20px; }
       .btn-dark { padding: 16px 32px; }
       .btn-primary { padding: 16px 32px; }
+      .about-badge {
+        top: 16px; right: 16px;
+        padding: 18px 22px; max-width: 200px;
+      }
+      .about-badge-year { font-size: 2.4rem; }
+      .about-badge-text { font-size: 0.65rem; }
     }
     /* WCAG 2.4.7 — Focus visible */
     :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
@@ -1154,16 +1168,14 @@
         </a>
       </div>
     </div>
-    <div class="map-frame" data-consent="terceros" data-fallback="Para ver el mapa de ubicación tienes que aceptar las cookies de terceros.">
-      <template data-consent-payload>
-        <iframe
-          title="Mapa de ubicación de Talleres Dicar en Alonso Kalea 6, Areeta, Getxo"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&q=place_id:ChIJ04fQfjJaTg0RJk1EuFqpGEQ&language=es"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-      </template>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación de Talleres Dicar en Alonso Kalea 6, Areeta, Getxo"
+        src="https://www.google.com/maps?q=Talleres+Dicar+Alonso+Kalea+6+Areeta+Getxo&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
   </div>
 </div>
