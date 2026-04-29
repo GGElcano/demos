@@ -221,25 +221,35 @@
       50% { opacity: 1; transform: scaleY(1.1); }
     }
 
-    /* MARQUEE */
+    /* MARQUEE — seamless infinite loop (rewrite 2026-04-29) */
     .marquee-section {
       border-top: 1px solid rgba(14,165,233,0.12);
       border-bottom: 1px solid rgba(14,165,233,0.12);
       overflow: hidden; padding: 20px 0; background: var(--carbon);
+      position: relative;
     }
     .marquee-track {
-      display: flex; gap: 0; white-space: nowrap;
-      animation: marquee 6s linear infinite;
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: marquee 18s linear infinite;
+      will-change: transform;
     }
+    .marquee-track:hover { animation-play-state: paused; }
     .marquee-item {
-      display: inline-flex; align-items: center; gap: 30px;
-      padding: 0 40px;
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 32px;
+      flex-shrink: 0;
+      white-space: nowrap;
       font-family: var(--font-serif); font-size: 1.1rem;
       font-style: italic; color: rgba(245,243,239,0.7);
       letter-spacing: 0.05em;
     }
     .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
 
     /* SECTION COMMONS */
     section { padding: 130px 60px; }
@@ -825,12 +835,16 @@
     <span class="marquee-item"><span class="dot"></span>Climatización</span>
     <span class="marquee-item"><span class="dot"></span>Pre-ITV</span>
     <span class="marquee-item"><span class="dot"></span>Electricidad</span>
+    <span class="marquee-item"><span class="dot"></span>Neumáticos</span>
+    <span class="marquee-item"><span class="dot"></span>Distribución</span>
     <span class="marquee-item"><span class="dot"></span>Diagnosis Bosch</span>
     <span class="marquee-item"><span class="dot"></span>Mecánica general</span>
     <span class="marquee-item"><span class="dot"></span>Frenos</span>
     <span class="marquee-item"><span class="dot"></span>Climatización</span>
     <span class="marquee-item"><span class="dot"></span>Pre-ITV</span>
     <span class="marquee-item"><span class="dot"></span>Electricidad</span>
+    <span class="marquee-item"><span class="dot"></span>Neumáticos</span>
+    <span class="marquee-item"><span class="dot"></span>Distribución</span>
   </div>
 </div>
 
