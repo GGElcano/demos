@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eguzkin Okindegia | Panadería artesana en Ugarana (Bizkaia)</title>
+  <meta name="description" content="Panadería artesana Eguzkin en Ugarana, Arrigorriaga. Pan de horno de leña, bollería, tortas de chorizo, pan de pasas y nueces. Productos locales de proximidad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0e0a06;
+      --white: #f5f3ef;
+      --accent: #C2820A;
+      --accent-light: #e0a82e;
+      --carbon: #181410;
+      --carbon-mid: #221c16;
+      --carbon-light: #302820;
+      --text-muted: #9a8a78;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Nunito Sans', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* FOCUS VISIBLE (a11y) */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(8,8,8,0.85);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(194,130,10,0.08);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      color: var(--white);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(245,243,239,0.65);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      padding: 10px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+
+    /* HAMBURGER MOBILE */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-nav-panel {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-nav-panel.open { display: flex; }
+    .mobile-nav-panel a {
+      text-decoration: none; color: var(--white); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-nav-panel a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('fotos/foto-03.jpg');
+      background-size: cover; background-position: center;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,8,8,0.85) 0%, rgba(8,8,8,0.4) 50%, rgba(8,8,8,0.2) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.9s 0.3s var(--ease-out) forwards;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3.2rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s 0.5s var(--ease-out) forwards;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,243,239,0.85);
+      max-width: 520px; line-height: 1.7; margin-bottom: 52px;
+      font-weight: 300;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 0.8s var(--ease-out) forwards;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s 1s var(--ease-out) forwards;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+    }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 14px;
+      color: var(--white); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 400; transition: color 0.3s;
+      border-bottom: 1px solid rgba(245,243,239,0.2); padding-bottom: 10px;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow { font-size: 1rem; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MARQUEE */
+    .marquee-section {
+      background: var(--carbon);
+      padding: 28px 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(194,130,10,0.08);
+      border-bottom: 1px solid rgba(194,130,10,0.08);
+    }
+    .marquee-track {
+      display: flex; gap: 60px;
+      animation: marquee 40s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: 20px;
+      font-family: var(--font-serif); font-size: 1.1rem; font-style: italic;
+      color: rgba(245,243,239,0.6);
+    }
+    .marquee-item .dot {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0;
+    }
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    /* STATS */
+    .stats-section {
+      background: var(--carbon);
+      padding: 90px 60px;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 40px; max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      text-align: center;
+      padding: 50px 30px;
+      border: 1px solid rgba(194,130,10,0.12);
+      background: var(--carbon-mid);
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .stat-card:hover { border-color: rgba(194,130,10,0.4); transform: translateY(-4px); }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 16px;
+      display: inline-flex; align-items: baseline;
+    }
+    .stat-suffix { font-size: 0.6em; margin-left: 2px; }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(245,243,239,0.6);
+    }
+
+    /* GENERIC SECTIONS */
+    section { padding: 140px 60px; }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .section-label::before {
+      content: ''; width: 32px; height: 1px; background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 60px;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* GALLERY */
+    .projects-section { background: var(--black); }
+    .projects-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 60px; max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .view-all {
+      text-decoration: none; color: var(--accent);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      border-bottom: 1px solid var(--accent); padding-bottom: 6px;
+      transition: color 0.3s;
+    }
+    .view-all:hover { color: var(--accent-light); }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1400px; margin: 0 auto;
+    }
+    .project-card:first-child { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: 16/11; }
+    .project-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 1s var(--ease-out);
+    }
+    .project-card:hover .project-img { transform: scale(1.08); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.2) 60%, transparent 100%);
+    }
+    .project-arrow {
+      position: absolute; top: 20px; right: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(14,10,6,0.8); backdrop-filter: blur(10px);
+      color: var(--white); display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; transition: background 0.3s;
+      border: 1px solid rgba(245,243,239,0.25);
+    }
+    .project-card:hover .project-arrow { background: var(--accent); color: var(--black); }
+    .project-info {
+      position: absolute; left: 30px; bottom: 28px; right: 30px; z-index: 2;
+    }
+    .project-cat {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .project-name {
+      font-family: var(--font-serif);
+      font-size: 1.6rem; font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .project-meta {
+      font-size: 0.88rem; color: rgba(245,243,239,0.7);
+    }
+
+    /* ABOUT */
+    .about-section {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--carbon);
+    }
+    .about-visual {
+      position: relative;
+      min-height: 640px;
+      background-image: url('fotos/foto-02.jpg');
+      background-size: cover; background-position: center;
+    }
+    .about-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(8,8,8,0.3), rgba(8,8,8,0.6));
+    }
+    .about-badge {
+      position: absolute; bottom: 40px; left: 40px; z-index: 2;
+      background: var(--black); padding: 28px 36px;
+      border: 1px solid rgba(194,130,10,0.3);
+      max-width: 280px;
+    }
+    .about-badge-year {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .about-badge-text {
+      font-size: 0.82rem; color: rgba(245,243,239,0.75); line-height: 1.5;
+    }
+    .about-content {
+      padding: 120px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-divider {
+      width: 60px; height: 1px; background: var(--accent);
+      margin: 8px 0 40px;
+    }
+    .about-body {
+      font-size: 1rem; color: rgba(245,243,239,0.78);
+      margin-bottom: 50px; line-height: 1.8;
+    }
+    .about-body strong { color: var(--white); font-weight: 500; }
+    .about-values {
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .about-value {
+      display: flex; gap: 24px; align-items: flex-start;
+    }
+    .value-num {
+      font-family: var(--font-serif);
+      font-size: 1.6rem; font-weight: 400;
+      color: var(--accent);
+      flex-shrink: 0; line-height: 1;
+      min-width: 40px;
+    }
+    .value-text h4 {
+      font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500;
+      margin-bottom: 6px; color: var(--white);
+    }
+    .value-text p {
+      font-size: 0.9rem; color: rgba(245,243,239,0.65); line-height: 1.6;
+    }
+
+    /* SERVICES */
+    .services-section { background: var(--black); padding: 140px 60px; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .service-card {
+      background: var(--carbon);
+      border: 1px solid rgba(194,130,10,0.08);
+      padding: 60px 44px;
+      transition: border-color 0.4s, transform 0.4s, background 0.4s;
+      position: relative;
+    }
+    .service-card:hover {
+      border-color: rgba(194,130,10,0.35);
+      transform: translateY(-6px);
+      background: var(--carbon-mid);
+    }
+    .service-number {
+      position: absolute; top: 24px; right: 28px;
+      font-family: var(--font-serif);
+      font-size: 0.95rem; color: var(--accent); opacity: 0.6;
+    }
+    .service-icon {
+      width: 56px; height: 56px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; font-weight: 400;
+      margin-bottom: 18px;
+    }
+    .service-card > p {
+      font-size: 0.95rem; color: rgba(245,243,239,0.75);
+      margin-bottom: 28px; line-height: 1.7;
+    }
+    .service-link {
+      text-decoration: none; color: var(--accent);
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .service-link:hover { color: var(--accent-light); }
+
+    /* CARTA */
+    .carta-section { background: var(--carbon); padding: 140px 60px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .carta-back {
+      display: inline-block; margin-bottom: 32px;
+      text-decoration: none; color: rgba(245,243,239,0.6);
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .carta-back:hover { color: var(--accent); }
+    .carta-columns {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      margin-top: 40px;
+    }
+    .carta-category { margin-bottom: 52px; }
+    .carta-category h4 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem; font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 28px; padding-bottom: 16px;
+      border-bottom: 1px solid rgba(194,130,10,0.2);
+      letter-spacing: 0.05em;
+    }
+    .carta-item {
+      display: flex; justify-content: space-between; gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px dashed rgba(245,243,239,0.08);
+    }
+    .carta-item:last-child { border-bottom: none; }
+    .carta-item-name {
+      font-size: 1rem; font-weight: 500; color: var(--white);
+      margin-bottom: 4px;
+    }
+    .carta-item-desc {
+      font-size: 0.85rem; color: rgba(245,243,239,0.6); line-height: 1.5;
+    }
+    .carta-highlight {
+      background: var(--carbon-mid);
+      border-left: 2px solid var(--accent);
+      padding: 32px;
+      margin-top: 20px;
+    }
+    .carta-highlight h4 {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .carta-highlight p {
+      font-size: 0.9rem; color: rgba(245,243,239,0.75); line-height: 1.6;
+    }
+    .carta-cta {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 18px 36px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; margin-top: 40px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .carta-cta:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+    /* TESTIMONIALS */
+    .testimonials-section { background: var(--black); padding: 140px 60px; }
+    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 28px; margin-top: 40px;
+    }
+    .testimonial-card {
+      background: var(--carbon);
+      border: 1px solid rgba(194,130,10,0.1);
+      padding: 48px 40px;
+      transition: border-color 0.4s, transform 0.4s;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(194,130,10,0.3); transform: translateY(-4px);
+    }
+    .testimonial-stars {
+      display: flex; gap: 6px; margin-bottom: 24px;
+    }
+    .star {
+      width: 14px; height: 14px;
+      background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: 1.1rem; font-style: italic;
+      color: rgba(245,243,239,0.88); line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .testimonial-divider {
+      width: 32px; height: 1px; background: var(--accent);
+      margin-bottom: 20px;
+    }
+    .testimonial-author {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .testimonial-author strong {
+      font-weight: 500; color: var(--white); font-size: 0.95rem;
+    }
+    .testimonial-author span {
+      font-size: 0.78rem; color: rgba(245,243,239,0.55); letter-spacing: 0.1em;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--carbon-mid);
+      padding: 120px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(245,243,239,0.7); max-width: 480px;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 20px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 26px 44px;
+      font-size: 1.1rem; font-weight: 600; letter-spacing: 0.05em;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-dark:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--carbon);
+      padding: 100px 60px 40px;
+      border-top: 1px solid rgba(194,130,10,0.08);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 60px;
+      max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .footer-tagline {
+      font-size: 0.9rem; color: rgba(245,243,239,0.6);
+      margin-top: 20px; max-width: 360px; line-height: 1.6;
+    }
+    .footer-social {
+      display: flex; gap: 14px; margin-top: 28px;
+    }
+    .social-link {
+      width: 42px; height: 42px;
+      border: 1px solid rgba(194,130,10,0.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); text-decoration: none;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .social-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-col h4 {
+      font-family: var(--font-serif);
+      font-size: 0.95rem; font-weight: 500;
+      color: var(--white); margin-bottom: 24px;
+      letter-spacing: 0.08em;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col a {
+      text-decoration: none; color: rgba(245,243,239,0.6);
+      font-size: 0.88rem; transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid rgba(194,130,10,0.08);
+      padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+      max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .footer-copy { font-size: 0.8rem; color: rgba(245,243,239,0.5); }
+    .footer-legal { display: flex; gap: 24px; }
+    .footer-legal a { font-size: 0.8rem; color: rgba(245,243,239,0.5); text-decoration: none; transition: color 0.3s; }
+    .footer-legal a:hover { color: var(--accent); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0;
+      background: var(--black);
+      z-index: 10000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 24px;
+      transition: opacity 0.6s, visibility 0.6s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif);
+      font-size: 1.8rem; font-weight: 400;
+      letter-spacing: 0.3em; color: var(--white);
+    }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(245,243,239,0.1);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card:first-child { grid-column: 1 / 3; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero { min-height: 620px; }
+      .hero-content { padding: 0 24px 70px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 340px; }
+      .about-content { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 70px 24px; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-card { padding: 40px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-logo">Eguzkin<span>.</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Eguzkin<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Abrir navegación">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav-panel" id="mobileMenu">
+  <a href="#galeria" onclick="closeMobile()">Galería</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#productos" onclick="closeMobile()">Productos</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+</div>
+
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Okindegia · Horno de leña · Ugarana</p>
+    <h1 class="hero-title">
+      Pan de verdad,<br>al <em>horno de leña</em>
+    </h1>
+    <p class="hero-sub">
+      Panadería artesana en el corazón de Ugarana, Arrigorriaga. Pan cocido en horno de leña, bollería, tortas tradicionales y una selección cuidada de productos locales de Bizkaia.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+34696991605" class="btn-primary">
+        <span>Llamar ahora</span>
+        <span>&#8594;</span>
+      </a>
+      <a href="#productos" class="btn-ghost">
+        <span>Ver productos</span>
+        <div class="btn-ghost-arrow">&#8599;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Horno de leña</span>
+    <span class="marquee-item"><span class="dot"></span>Pan artesano</span>
+    <span class="marquee-item"><span class="dot"></span>Pan de pasas y nueces</span>
+    <span class="marquee-item"><span class="dot"></span>Tortas caseras</span>
+    <span class="marquee-item"><span class="dot"></span>Producto local</span>
+    <span class="marquee-item"><span class="dot"></span>Quesos y embutidos</span>
+    <span class="marquee-item"><span class="dot"></span>Horno de leña</span>
+    <span class="marquee-item"><span class="dot"></span>Pan artesano</span>
+    <span class="marquee-item"><span class="dot"></span>Pan de pasas y nueces</span>
+    <span class="marquee-item"><span class="dot"></span>Tortas caseras</span>
+    <span class="marquee-item"><span class="dot"></span>Producto local</span>
+    <span class="marquee-item"><span class="dot"></span>Quesos y embutidos</span>
+  </div>
+</div>
+
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">,8</span></div>
+      <div class="stat-label">Nota en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="43">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="3">0</span></div>
+      <div class="stat-label">Días a la semana</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div>
+      <div class="stat-label">Horno de leña</div>
+    </div>
+  </div>
+</div>
+
+<section class="projects-section" id="galeria">
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">Nuestros productos</p>
+      <h2 class="section-title reveal reveal-delay-1">Lo que horneamos<br><em>cada mañana</em></h2>
+    </div>
+    <a href="https://maps.google.com/?cid=6966772304133929005" target="_blank" rel="noopener" class="view-all reveal">Ver en Google Maps &#8594;</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <img class="project-img" src="fotos/foto-02.jpg" alt="Cestas con panes artesanos recién horneados en Eguzkin Okindegia" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Pan artesano · Ugarana</p>
+        <h3 class="project-name">Variedad de panes</h3>
+        <p class="project-meta">Horneados cada jornada</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="fotos/foto-04.jpg" alt="Torta con huevo típica horneada en horno de leña" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Tradición</p>
+        <h3 class="project-name">Torta con huevo</h3>
+        <p class="project-meta">Receta de siempre</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="fotos/foto-06.jpg" alt="Estanterías con conservas, aceites y productos locales en la tienda" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Producto local</p>
+        <h3 class="project-name">Selección de proximidad</h3>
+        <p class="project-meta">Conservas, aceites, dulces</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="fotos/foto-05.jpg" alt="Masa artesana con pimientos preparada a mano" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Hecho a mano</p>
+        <h3 class="project-name">Torta de pimientos</h3>
+        <p class="project-meta">Masa fresca cada día</p>
+      </div>
+    </div>
+    <div class="project-card">
+      <img class="project-img" src="fotos/foto-10.jpg" alt="Masa artesana con chorizo lista para hornear" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-arrow" aria-hidden="true">&#8599;</div>
+      <div class="project-info">
+        <p class="project-cat">Salado</p>
+        <h3 class="project-name">Torta de chorizo</h3>
+        <p class="project-meta">Preparada al momento</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="about-section" id="nosotros">
+  <div class="about-visual">
+    <div class="about-badge">
+      <div class="about-badge-year">4,8</div>
+      <div class="about-badge-text">Valoración media en Google con 43 reseñas verificadas</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre nosotros</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Pan hecho<br><em>con tiempo</em>
+    </h2>
+    <div class="about-divider reveal"></div>
+    <p class="about-body reveal reveal-delay-2">
+      Eguzkin Okindegia es una panadería familiar en Ugarana, pedanía de Arrigorriaga. Llevamos años horneando <strong>pan cocido en horno de leña</strong>, con harinas de calidad y recetas que no han cambiado. Además del pan, encontrarás <strong>bollería, tortas tradicionales y una selección de productos locales</strong>: quesos, embutidos, conservas, aceites y dulces de Bizkaia.<br><br>Abrimos <strong>viernes, sábado y domingo por la mañana</strong>. Si necesitas algo especial, puedes encargarlo con antelación.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h4>Horno de leña</h4>
+          <p>Pan cocido a leña, con corteza y miga que no se consiguen de otra forma</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h4>Producto de proximidad</h4>
+          <p>Quesos, embutidos y conservas artesanas de pequeños productores de Bizkaia</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h4>Encargos a medida</h4>
+          <p>Avisa con un día y te preparamos el pan o la torta que necesites</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="services-section" id="productos">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Qué encontrarás</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:620px">
+      Todo lo bueno, <em>en un solo lugar</em>
+    </h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M4 14c0-3.5 3.5-6 8-6s8 2.5 8 6c0 1-.4 1.9-1 2.5H5c-.6-.6-1-1.5-1-2.5z"/>
+            <path d="M5 16.5h14v2H5z"/>
+            <path d="M9 11.5l.5-1M12 11l.5-1M15 11.5l.5-1"/>
+          </svg>
+        </div>
+        <h3>Pan de horno de leña</h3>
+        <p>Pan artesano cocido a leña, de corteza crujiente y miga bien horneada. Pan grande, barras, hogazas y panes especiales con pasas y nueces.</p>
+        <a href="#carta-pan" class="service-link">Ver variedades &#8594;</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12c0-2 1.5-4 4-4s4 2 4 4"/>
+            <circle cx="12" cy="13" r="1.4" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Tortas y bollería</h3>
+        <p>Tortas tradicionales con huevo, con chorizo, con pimientos. Bollería artesana recién horneada para el desayuno o la merienda.</p>
+        <a href="#carta-tortas" class="service-link">Ver tortas &#8594;</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M5 8h14l-1.5 11a2 2 0 01-2 2h-7a2 2 0 01-2-2L5 8z"/>
+            <path d="M9 8V6a3 3 0 016 0v2"/>
+          </svg>
+        </div>
+        <h3>Producto local</h3>
+        <p>Quesos, embutidos, conservas, aceites y dulces de productores de Bizkaia. Lo mejor de la tierra, sin pasar por intermediarios.</p>
+        <a href="#carta-local" class="service-link">Ver selección &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="carta-section" id="carta-pan">
+  <div class="section-inner">
+    <a href="#productos" class="carta-back reveal">&#8592; Volver a productos</a>
+    <p class="section-label reveal">Horneado a leña</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Pan <em>artesano</em>
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Panes de siempre</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Barra artesana</div>
+              <div class="carta-item-desc">Corteza crujiente, miga bien alveolada</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Hogaza de 1 kg</div>
+              <div class="carta-item-desc">Pan grande que aguanta varios días</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Pan redondo</div>
+              <div class="carta-item-desc">Masa larga y cocción a leña</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Pan integral</div>
+              <div class="carta-item-desc">Harina integral seleccionada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Panes especiales</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Pan de pasas y nueces</div>
+              <div class="carta-item-desc">Uno de los favoritos de la casa</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Pan de cereales</div>
+              <div class="carta-item-desc">Mezcla de semillas y cereales</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Pan por encargo</div>
+              <div class="carta-item-desc">Avísanos con un día de antelación</div>
+            </div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Horno de leña tradicional</h4>
+          <p>En agosto el horno de leña descansa por vacaciones, pero el despacho sigue abierto con pan del día siguiente. Siempre se puede encargar con antelación.</p>
+        </div>
+      </div>
+    </div>
+    <a href="tel:+34696991605" class="carta-cta reveal">
+      <span>Llamar para encargar</span><span>&#8594;</span>
+    </a>
+  </div>
+</section>
+
+<section class="carta-section" id="carta-tortas">
+  <div class="section-inner">
+    <a href="#productos" class="carta-back reveal">&#8592; Volver a productos</a>
+    <p class="section-label reveal">Recetas tradicionales</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Tortas y <em>bollería</em>
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Tortas saladas</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Torta con huevo</div>
+              <div class="carta-item-desc">Masa de pan con huevos enteros horneados</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Torta de chorizo</div>
+              <div class="carta-item-desc">Con chorizo artesano y masa de pan</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Torta de pimientos</div>
+              <div class="carta-item-desc">Pimientos rojos asados y queso</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Bollería</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Bollería del día</div>
+              <div class="carta-item-desc">Lo que tengamos recién hecho</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Dulces tradicionales</div>
+              <div class="carta-item-desc">Selección de repostería casera</div>
+            </div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Encargos para fines de semana</h4>
+          <p>Los fines de semana la torta con huevo y la de chorizo se agotan pronto. Si quieres asegurarte, llama el jueves o viernes y te la reservamos.</p>
+        </div>
+      </div>
+    </div>
+    <a href="tel:+34696991605" class="carta-cta reveal">
+      <span>Reservar por teléfono</span><span>&#8594;</span>
+    </a>
+  </div>
+</section>
+
+<section class="carta-section" id="carta-local">
+  <div class="section-inner">
+    <a href="#productos" class="carta-back reveal">&#8592; Volver a productos</a>
+    <p class="section-label reveal">De la tierra</p>
+    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
+      Producto <em>local</em>
+    </h2>
+    <div class="carta-columns">
+      <div>
+        <div class="carta-category reveal">
+          <h4>Quesos y embutidos</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Quesos artesanos</div>
+              <div class="carta-item-desc">De pastores y queseros de Bizkaia</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Embutidos caseros</div>
+              <div class="carta-item-desc">Chorizo, salchichón y curados</div>
+            </div>
+          </div>
+        </div>
+        <div class="carta-category reveal">
+          <h4>Conservas y aceites</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Conservas artesanas</div>
+              <div class="carta-item-desc">Mermeladas, encurtidos, patés</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Aceites y vinagres</div>
+              <div class="carta-item-desc">Selección de primera calidad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="carta-category reveal reveal-delay-1">
+          <h4>Dulces y otros</h4>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Miel y dulces</div>
+              <div class="carta-item-desc">Miel de apicultores locales</div>
+            </div>
+          </div>
+          <div class="carta-item">
+            <div>
+              <div class="carta-item-name">Vinos y sidras</div>
+              <div class="carta-item-desc">Selección de bodegas cercanas</div>
+            </div>
+          </div>
+        </div>
+        <div class="carta-highlight reveal reveal-delay-2">
+          <h4>Parada obligatoria si vienes de paso</h4>
+          <p>Al lado de la tienda hay aparcamiento. Es buen sitio para parar si vas o vienes de Gorbea, Orozko o la zona de Arratia.</p>
+        </div>
+      </div>
+    </div>
+    <a href="https://maps.google.com/?cid=6966772304133929005" target="_blank" rel="noopener" class="carta-cta reveal">
+      <span>Cómo llegar</span><span>&#8599;</span>
+    </a>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Reseñas reales de Google</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      Lo que dicen<br>nuestros <em>clientes</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Íbamos en la furgo, compramos una barra de 1 kg. Nos duró varios días. Pan de verdad, con buena corteza y bien horneado por dentro. De lo mejor que he probado."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Rafa</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Pan bien hecho, muchos tipos de pan para elegir, con materia prima de primera calidad y al horno de leña, y con la atención inmejorable de Mirari. No creo que haya otra panadería así."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Catalina G.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" aria-label="5 estrellas">
+          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        </div>
+        <p class="testimonial-quote">"Si te gusta el pan, aquí encontrarás variedad y trato amable. Hay además quesos, embutidos y otros productos de proximidad muy ricos."</p>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">
+          <strong>Imanol G.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section" id="contacto">
+  <div class="cta-text">
+    <h2>Encarga tu pan<br>o pásate a verlo</h2>
+    <p>Abrimos viernes, sábado y domingo por la mañana. Llámanos para encargos especiales o para reservar torta para el fin de semana.</p>
+  </div>
+  <a href="tel:+34696991605" class="btn-dark">
+    <span>696 99 16 05</span>
+    <span>&#8599;</span>
+  </a>
+  <div style="width:100%;margin-top:2rem;border-radius:12px;overflow:hidden;">
+    <iframe src="https://maps.google.com/maps?q=Eguzkin+Okindegia+Ugarana+Bizkaia&output=embed" width="100%" height="350" style="border:0;border-radius:12px;" allowfullscreen="" loading="lazy" title="Mapa de Eguzkin Okindegia"></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Eguzkin<span>.</span></a>
+      <p class="footer-tagline">Panadería artesana en Ugarana, Arrigorriaga. Pan de horno de leña y producto local de Bizkaia.</p>
+      <div class="footer-social">
+        <a href="https://maps.google.com/?cid=6966772304133929005" target="_blank" rel="noopener" class="social-link" aria-label="Ver ficha de Google Maps">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.5 7.1 11.4 7.4 11.6.2.1.4.2.6.2s.4-.1.6-.2C12.9 21.4 20 15.5 20 10c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+        </a>
+        <a href="https://wa.me/34696991605" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.4A9.9 9.9 0 0012 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        </a>
+        <a href="tel:+34696991605" class="social-link" aria-label="Llamar por teléfono">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.2 0-2.5-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1C8.7 6.5 8.5 5.2 8.5 4c0-.5-.5-1-1-1H4c-.5 0-1 .5-1 1 0 9.4 7.6 17 17 17 .5 0 1-.5 1-1v-3.5c0-.5-.5-1-1-1z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Productos</h4>
+      <ul>
+        <li><a href="#carta-pan">Pan artesano</a></li>
+        <li><a href="#carta-pan">Horno de leña</a></li>
+        <li><a href="#carta-tortas">Tortas</a></li>
+        <li><a href="#carta-tortas">Bollería</a></li>
+        <li><a href="#carta-local">Producto local</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Horario</h4>
+      <ul>
+        <li><a href="#">Viernes: 7:30 - 14:00</a></li>
+        <li><a href="#">Sábado: 8:00 - 14:00</a></li>
+        <li><a href="#">Domingo: 8:00 - 14:00</a></li>
+        <li><a href="#">Lunes a jueves: cerrado</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="tel:+34696991605">696 99 16 05</a></li>
+        <li><a href="https://maps.google.com/?cid=6966772304133929005" target="_blank" rel="noopener">Auzoa, 16</a></li>
+        <li><a href="https://maps.google.com/?cid=6966772304133929005" target="_blank" rel="noopener">48141 Ugarana, Bizkaia</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Eguzkin Okindegia. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+      document.getElementById('heroBg').classList.add('loaded');
+    }, 1200);
+  });
+
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.target);
+    const duration = 1600;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const heroBg = document.getElementById('heroBg');
+    if (heroBg) {
+      const scrolled = window.scrollY;
+      heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
+    }
+  });
+</script>
+</body>
+</html>
