@@ -467,21 +467,62 @@
     }
     .service-card:hover .service-number { color: rgba(123,158,107,0.1); }
 
-    /* ─── BANNER CLIMA ─── */
-    .clima-banner {
-      background: rgba(201,76,76,0.12);
-      border-bottom: 1px solid rgba(201,76,76,0.3);
-      color: #f5d3d3;
-      padding: 12px 24px;
-      text-align: center;
-      font-size: 0.85rem;
-      letter-spacing: 0.02em;
-      line-height: 1.5;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      flex-wrap: wrap;
+    /* ─── AVISOS IMPORTANTES ─── */
+    .avisos-section {
+      background: var(--carbon);
+      padding: 90px 60px;
+      border-top: 1px solid rgba(123,158,107,0.08);
+      border-bottom: 1px solid rgba(123,158,107,0.08);
     }
-    .clima-banner svg { color: #e8a0a0; flex-shrink: 0; }
-    .clima-banner strong { color: #fff; font-weight: 600; }
+    .avisos-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+    .avisos-header {
+      text-align: center; margin-bottom: 50px;
+    }
+    .avisos-header .section-label { justify-content: center; }
+    .avisos-header .section-label::before { display: none; }
+    .avisos-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .aviso-card {
+      display: flex; align-items: flex-start; gap: 22px;
+      background: var(--black);
+      border: 1px solid rgba(123,158,107,0.2);
+      border-left: 3px solid var(--accent);
+      padding: 32px 36px;
+    }
+    .aviso-card.aviso-warning {
+      border-left-color: #d68b8b;
+    }
+    .aviso-icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(123,158,107,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(123,158,107,0.25);
+    }
+    .aviso-warning .aviso-icon {
+      background: rgba(214,139,139,0.1);
+      color: #d68b8b;
+      border-color: rgba(214,139,139,0.3);
+    }
+    .aviso-body h4 {
+      font-size: 1rem; letter-spacing: 0.04em;
+      color: var(--white); margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .aviso-body p {
+      font-size: 0.92rem; color: rgba(245,243,239,0.72);
+      line-height: 1.6; font-weight: 300;
+    }
+    @media (max-width: 768px) {
+      .avisos-section { padding: 70px 24px; }
+      .avisos-grid { grid-template-columns: 1fr; }
+      .aviso-card { padding: 24px; flex-direction: column; gap: 14px; }
+    }
 
     /* ─── MENU DEL DIA ─── */
     .menu-dia-section {
@@ -884,12 +925,6 @@
 </head>
 <body>
 
-<!-- BANNER CLIMA ADVERSO -->
-<div class="clima-banner" role="alert" aria-live="polite">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-  <span><strong>Aviso:</strong> En caso de condiciones climáticas muy adversas el restaurante puede permanecer cerrado. Llámanos antes de venir para confirmar.</span>
-</div>
-
 <!-- LOADER -->
 <div class="loader" id="loader">
   <div class="loader-logo">Galanga <span>.</span></div>
@@ -1198,6 +1233,9 @@
             </ul>
             <h4 class="carta-cat carta-cat-spaced">Bebidas</h4>
             <ul class="carta-list">
+              <li>Vinos</li>
+              <li>Cervezas</li>
+              <li>Refrescos</li>
               <li>Zumo de naranja natural recién exprimido</li>
             </ul>
           </div>
@@ -1284,15 +1322,44 @@
       <strong>Horario invierno</strong>
       Pendiente de confirmar
     </div>
-    <div class="timbre-note">
-      Si llegas y la puerta está cerrada, llama al timbre. Salimos a abrirte enseguida.
-    </div>
   </div>
   <a href="tel:+34611896947" class="btn-dark">
     <span>Llamar ahora</span>
     <span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
   </a>
 </div>
+
+<!-- AVISOS IMPORTANTES -->
+<section class="avisos-section">
+  <div class="avisos-inner">
+    <div class="avisos-header">
+      <p class="section-label reveal">Antes de venir</p>
+      <h2 class="section-title reveal reveal-delay-1" style="font-size:clamp(2rem,3vw,3rem)">
+        Dos avisos<br><em>importantes</em>
+      </h2>
+    </div>
+    <div class="avisos-grid">
+      <div class="aviso-card aviso-warning reveal">
+        <div class="aviso-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="aviso-body">
+          <h4>Condiciones climáticas adversas</h4>
+          <p>En caso de temporal o condiciones meteorológicas muy adversas el restaurante puede permanecer cerrado. Llámanos antes de venir para confirmar que estamos abiertos.</p>
+        </div>
+      </div>
+      <div class="aviso-card reveal reveal-delay-1">
+        <div class="aviso-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        </div>
+        <div class="aviso-body">
+          <h4>Si la puerta está cerrada, llama al timbre</h4>
+          <p>Si al llegar te encuentras la puerta cerrada, simplemente llama al timbre. En unos momentos salimos a abrirte.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- MAP -->
 <section style="background: var(--carbon); padding: 0;">
