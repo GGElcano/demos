@@ -183,9 +183,9 @@
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.35);
-      color: var(--gold-light);
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(201,168,76,0.55);
+      color: #f5d97a;
       font-size: 12px; font-weight: 600;
       letter-spacing: 1.5px; text-transform: uppercase;
       padding: 6px 14px; border-radius: 20px;
@@ -230,9 +230,9 @@
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(201,168,76,0.45); }
 
     .btn-secondary {
-      background: rgba(255,255,255,0.1);
-      border: 1.5px solid rgba(255,255,255,0.35);
-      color: var(--white);
+      background: rgba(0,0,0,0.55);
+      border: 1.5px solid rgba(255,255,255,0.85);
+      color: #ffffff;
       padding: 14px 26px; border-radius: 50px;
       font-weight: 600; font-size: 15px;
       text-decoration: none;
@@ -480,13 +480,22 @@
     }
     .review-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(52,168,83,0.12);
-      border: 1px solid rgba(52,168,83,0.25);
-      color: #4caf70;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(122,200,140,0.55);
+      color: #8fe0a8;
       font-size: 10px; font-weight: 700;
       padding: 3px 10px; border-radius: 20px;
       letter-spacing: 0.8px; text-transform: uppercase;
       margin-bottom: 16px;
+    }
+    a:focus-visible, button:focus-visible, [role="button"]:focus-visible, summary:focus-visible {
+      outline: 3px solid #f5d97a;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
     .review-stars { color: #fbbc04; font-size: 16px; margin-bottom: 14px; letter-spacing: 1px; }
     .review-text {
@@ -822,6 +831,9 @@
     .fade-in-delay-5 { transition-delay: 0.5s; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+    }
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -871,7 +883,7 @@
       .navbar { padding: 0 16px; }
 
       /* Hero */
-      .hero { padding-top: 88px; padding-bottom: 48px; }
+      .hero { min-height: auto; height: auto; align-items: flex-start; padding-top: 88px; padding-bottom: 48px; }
       .hero-inner { padding: 0 16px; }
       .hero h1 { font-size: clamp(1.9rem, 7.5vw, 2.4rem); line-height: 1.18; }
       .hero-desc { font-size: 15px; margin-bottom: 24px; }
@@ -1038,7 +1050,7 @@
   <!-- ── NAVBAR ── -->
   <nav class="navbar" id="navbar">
     <a href="#" class="nav-brand">
-      <div class="nav-logo-icon">🌿</div>
+      <div class="nav-logo-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c.8 3.45 1.8 7.5-2.5 11.04C13.9 16.5 11 20 11 20zM2 22s.7-5 5-10"/></svg></div>
       <div class="nav-brand-text">
         <span class="nav-brand-name">Galanga</span>
         <span class="nav-brand-sub">GastroBar · Galdakao</span>
@@ -1064,7 +1076,7 @@
     <a href="#reseñas" class="mob-link">Reseñas</a>
     <a href="#eventos" class="mob-link">Eventos</a>
     <a href="#ubicación" class="mob-link">Ubicación</a>
-    <a href="https://restaurante.covermanager.com/galanga-gastrobar/" target="_blank" class="mob-cta">Reservar mesa →</a>
+    <a href="https://restaurante.covermanager.com/galanga-gastrobar/" target="_blank" class="mob-cta">Reservar mesa <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
   </div>
 
   <!-- ── HERO ── -->
@@ -1093,21 +1105,21 @@
       </div>
       <div class="hero-stats fade-in fade-in-delay-4">
         <div class="hero-stat">
-          <div class="hero-stat-icon">⭐</div>
+          <div class="hero-stat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg></div>
           <div class="hero-stat-text">
             <strong>4.9 / 5</strong>
             <span>38 reseñas en Google</span>
           </div>
         </div>
         <div class="hero-stat">
-          <div class="hero-stat-icon">🏌️</div>
+          <div class="hero-stat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M12 2l8 4-8 4"/></svg></div>
           <div class="hero-stat-text">
             <strong>Campo de Golf</strong>
             <span>Vistas únicas, terraza</span>
           </div>
         </div>
         <div class="hero-stat">
-          <div class="hero-stat-icon">🕐</div>
+          <div class="hero-stat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div class="hero-stat-text">
             <strong>Lun – Dom</strong>
             <span>10:30 – 21:00</span>
@@ -1131,28 +1143,28 @@
         </p>
         <div class="about-features">
           <div class="about-feat">
-            <span class="about-feat-icon">🌅</span>
+            <span class="about-feat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="8 6 12 2 16 6"/></svg></span>
             <div class="about-feat-text">
               <strong>Atardeceres únicos</strong>
               <span>Terraza con vistas al monte</span>
             </div>
           </div>
           <div class="about-feat">
-            <span class="about-feat-icon">🅿️</span>
+            <span class="about-feat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></span>
             <div class="about-feat-text">
               <strong>Parking gratuito</strong>
               <span>Acceso directo al local</span>
             </div>
           </div>
           <div class="about-feat">
-            <span class="about-feat-icon">👨‍👩‍👧</span>
+            <span class="about-feat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
             <div class="about-feat-text">
               <strong>Family-friendly</strong>
               <span>Espacio amplio y acogedor</span>
             </div>
           </div>
           <div class="about-feat">
-            <span class="about-feat-icon">♿</span>
+            <span class="about-feat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M19 13v-2a7 7 0 0 0-7 7v0a7 7 0 0 1-7-7v-2"/><path d="M12 11v4l3 6"/></svg></span>
             <div class="about-feat-text">
               <strong>Accesible</strong>
               <span>Acceso silla de ruedas</span>
@@ -1186,7 +1198,7 @@
           <span class="menu-card-badge">Estrella de la casa</span>
         </div>
         <div class="menu-card-body">
-          <div class="menu-card-icon">🍽️</div>
+          <div class="menu-card-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg></div>
           <h3>Croquetas de la abuela</h3>
           <p>Cremosas por dentro, doradas por fuera. Hechas con mimo y buen producto, como manda la tradición vasca.</p>
         </div>
@@ -1196,7 +1208,7 @@
           <div class="menu-card-img-inner" style="background-image: url('img/plato-4.jpg');"></div>
         </div>
         <div class="menu-card-body">
-          <div class="menu-card-icon">🥂</div>
+          <div class="menu-card-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v6a4 4 0 0 0 8 0V2"/><line x1="12" y1="14" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></div>
           <h3>Pintxos y cócteles</h3>
           <p>La tarde perfecta en Galanga empieza con un pintxo y termina viendo el atardecer desde la terraza con un cóctel en la mano.</p>
         </div>
@@ -1206,7 +1218,7 @@
           <div class="menu-card-img-inner" style="background-image: url('img/plato-5.jpg');"></div>
         </div>
         <div class="menu-card-body">
-          <div class="menu-card-icon">☕</div>
+          <div class="menu-card-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
           <h3>Desayunos</h3>
           <p>El mejor comienzo del día, con vistas a los montes. Tostadas, zumos, bollería y el café que te tienes merecido.</p>
         </div>
@@ -1216,7 +1228,7 @@
           <div class="menu-card-img-inner" style="background-image: url('img/plato-6.jpg');"></div>
         </div>
         <div class="menu-card-body">
-          <div class="menu-card-icon">📋</div>
+          <div class="menu-card-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6a2 2 0 0 1 2 2v2H7V4a2 2 0 0 1 2-2zM16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
           <h3>Menú diario</h3>
           <p>Menú de mercado que cambia cada día con producto fresco y cocina honesta. Relación calidad-precio que nuestros clientes siempre destacan.</p>
         </div>
@@ -1230,7 +1242,7 @@
       </div>
       <a href="https://galanga.buenacarta.com" target="_blank" class="btn-carta">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Ver carta digital →
+        Ver carta digital <svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
   </section>
@@ -1243,7 +1255,7 @@
       <p>Más de 38 reseñas verificadas en Google. Estas son algunas de las experiencias reales de quienes ya nos han visitado.</p>
       <div style="display:flex; justify-content:center; margin-top:24px; max-width:100%; flex-wrap:wrap;">
         <div class="google-score">
-          <div class="google-score-stars">★★★★★</div>
+          <div class="google-score-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg></div>
           <div class="google-score-text">
             <strong>4.9</strong>
             <span>/ 5 en Google (38 reseñas)</span>
@@ -1259,7 +1271,7 @@
           <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           Reseña verificada · Google
         </div>
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg></div>
         <p class="review-text">"Vistas espectaculares!! Local muy agradable; techos altos, cristalera, mucha luz, ... Comida con buena relación calidad precio. Espacioso para estar con niños. En resumen que la comida del día de la madre salió redonda!! Muchas gracias a Gastrobar por la atención recibida."</p>
         <div class="review-author">
           <div class="review-avatar">B</div>
@@ -1278,7 +1290,7 @@
           <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           Reseña verificada · TripAdvisor
         </div>
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg></div>
         <p class="review-text">"Sitio con buenísima atención, comida muy rica y sin pretensiones, grandes vistas a los montes y buena terraza con parking."</p>
         <div class="review-author">
           <div class="review-avatar">A</div>
@@ -1295,7 +1307,7 @@
           <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           Reseña verificada · TripAdvisor
         </div>
-        <div class="review-stars">★★★★★</div>
+        <div class="review-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="#fbbc04" aria-hidden="true"><path d="M12 .587l3.668 7.568L24 9.75l-6 5.847L19.336 24 12 19.897 4.664 24 6 15.597 0 9.75l8.332-1.595L12 .587z"/></svg></div>
         <p class="review-text">"Service food and experiences were so amazing!! Recommend to anyone that enjoys friendly customer service and cosy food."</p>
         <div class="review-author">
           <div class="review-avatar">A</div>
@@ -1319,7 +1331,7 @@
       <div class="events-grid">
         <div class="event-card fade-in">
           <div class="event-card-header">
-            <div class="event-icon-wrap">🎉</div>
+            <div class="event-icon-wrap" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01M22 8h.01M15 2h.01M22 20h.01"/><path d="M22 2 13.2 11.7"/><path d="M16.5 5.5l1.5 1.5"/></svg></div>
             <div class="event-card-header-text">
               <h3>Comedor privado</h3>
               <p>Un espacio exclusivo para tus celebraciones más íntimas. Cumpleaños, comuniones, reuniones de empresa o cualquier ocasión especial.</p>
@@ -1336,7 +1348,7 @@
         </div>
         <div class="event-card fade-in fade-in-delay-1">
           <div class="event-card-header">
-            <div class="event-icon-wrap">🍽️</div>
+            <div class="event-icon-wrap" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg></div>
             <div class="event-card-header-text">
               <h3>Servicio de catering</h3>
               <p>Llevamos la calidad de Galanga a donde tú quieras. Bodas, eventos corporativos, celebraciones en casa o en exterior.</p>
@@ -1380,7 +1392,7 @@
           <div class="vibe-label">La cocina de Galanga</div>
         </div>
         <div class="vibe-item vibe-item-4 fade-in fade-in-delay-2">
-          <div class="vibe-bg" style="background-image: url('img/plato-6.jpg');"></div>
+          <div class="vibe-bg" style="background-image: url('img/interior-1.jpg');"></div>
           <div class="vibe-overlay"></div>
           <div class="vibe-label">Terraza y ambiente</div>
         </div>
@@ -1394,7 +1406,7 @@
       <div class="location-info fade-in">
         <p class="section-eyebrow">Cómo llegar</p>
         <h2>A 20 minutos de Bilbao,<br>en el campo de golf Uraburu</h2>
-        <table class="hours-table">
+        <table class="hours-table" aria-label="Horario semanal Restaurante Galanga K11"><caption class="sr-only">Horario semanal: abierto de lunes a domingo de 10:30 a 21:00</caption>
           <tr><td>Lunes</td><td>10:30 – 21:00</td></tr>
           <tr><td>Martes</td><td>10:30 – 21:00</td></tr>
           <tr><td>Miércoles</td><td>10:30 – 21:00</td></tr>
@@ -1582,7 +1594,7 @@
           <p>BI-3732, 11<br>48960 Galdakao, Bizkaia</p>
           <a href="tel:+34611896947">+34 611 89 69 47</a>
           <a href="mailto:galangamaiter@gmail.com">galangamaiter@gmail.com</a>
-          <a href="https://restaurante.covermanager.com/galanga-gastrobar/" target="_blank" style="color: var(--gold); margin-top:14px; font-weight:600;">→ Reservar mesa online</a>
+          <a href="https://restaurante.covermanager.com/galanga-gastrobar/" target="_blank" style="color: var(--gold); margin-top:14px; font-weight:600;"><svg class="arrow-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-0.125em;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg> Reservar mesa online</a>
         </div>
       </div>
       <div class="footer-bottom">
