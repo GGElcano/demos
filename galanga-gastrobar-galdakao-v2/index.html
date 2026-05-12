@@ -48,6 +48,19 @@
       position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
       overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
+    .skip-link {
+      position: absolute; top: -120px; left: 16px; z-index: 10001;
+      background: var(--accent); color: var(--black);
+      padding: 14px 22px; text-decoration: none;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
+      border-radius: 4px;
+      transition: top 0.25s var(--ease-smooth);
+    }
+    .skip-link:focus {
+      top: 16px;
+      outline: 3px solid var(--white);
+      outline-offset: 2px;
+    }
 
     /* ─── NAVBAR ─── */
     nav {
@@ -75,11 +88,14 @@
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
     .nav-links a {
-      text-decoration: none; color: rgba(245,243,239,0.65);
+      text-decoration: none; color: rgba(245,243,239,0.85);
       font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
       transition: color 0.3s; font-weight: 400;
+      padding: 8px 4px;
+      min-height: 24px;
+      display: inline-flex; align-items: center;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent-light); }
     .nav-cta {
       background: transparent;
       border: 1px solid var(--accent);
@@ -93,8 +109,9 @@
 
     /* ─── HAMBURGER MOBILE ─── */
     .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 8px;
+      display: none; flex-direction: column; gap: 5px; justify-content: center; align-items: center;
+      background: none; border: none; cursor: pointer; padding: 10px;
+      min-width: 44px; min-height: 44px;
     }
     .hamburger span {
       width: 24px; height: 2px; background: var(--white);
@@ -112,8 +129,11 @@
     .mobile-menu a {
       text-decoration: none; color: var(--white); font-size: 1.2rem;
       letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+      padding: 14px 24px;
+      min-height: 44px;
+      display: inline-flex; align-items: center;
     }
-    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu a:hover, .mobile-menu a:focus-visible { color: var(--accent); }
 
     /* ─── HERO ─── */
     .hero {
@@ -310,12 +330,14 @@
     }
     .projects-header .section-title { max-width: 500px; }
     .view-all {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--accent);
-      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
-      transition: gap 0.3s; padding-bottom: 4px;
-      border-bottom: 1px solid rgba(123,158,107,0.3);
+      display: inline-flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--accent-light);
+      font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase;
+      transition: gap 0.3s, color 0.3s;
+      padding: 12px 4px;
+      border-bottom: 1px solid rgba(123,158,107,0.4);
       white-space: nowrap;
+      min-height: 24px;
     }
     .view-all:hover { gap: 20px; border-color: var(--accent); }
     .projects-grid {
@@ -357,9 +379,10 @@
       font-weight: 300; line-height: 1.15; margin-bottom: 14px;
     }
     .project-meta {
-      font-size: 0.73rem; color: rgba(245,243,239,0.45);
-      letter-spacing: 0.1em; opacity: 0;
+      font-size: 0.78rem; color: rgba(245,243,239,0.85);
+      letter-spacing: 0.1em; opacity: 1;
       transition: opacity 0.5s 0.1s;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.7);
     }
     .project-card:hover .project-meta { opacity: 1; }
     .project-arrow {
@@ -458,7 +481,8 @@
       display: inline-flex; align-items: center; gap: 10px;
       margin-top: 32px; text-decoration: none;
       font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(123,158,107,0.5); transition: color 0.3s, gap 0.3s;
+      color: var(--accent-light); transition: color 0.3s, gap 0.3s;
+      min-height: 24px;
     }
     .service-link:hover { color: var(--accent); gap: 16px; }
     .service-number {
@@ -502,16 +526,17 @@
       flex-shrink: 0;
       width: 48px; height: 48px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(123,158,107,0.1);
-      color: var(--accent);
-      border: 1px solid rgba(123,158,107,0.25);
+      background: var(--carbon-light);
+      color: var(--accent-light);
+      border: 1px solid rgba(123,158,107,0.45);
     }
     .aviso-warning .aviso-icon {
-      background: rgba(214,139,139,0.1);
-      color: #d68b8b;
-      border-color: rgba(214,139,139,0.3);
+      background: var(--carbon-light);
+      color: #e8a0a0;
+      border-color: rgba(214,139,139,0.5);
     }
-    .aviso-body h4 {
+    .aviso-body h3, .aviso-body h4 {
+      font-family: var(--font-sans);
       font-size: 1rem; letter-spacing: 0.04em;
       color: var(--white); margin-bottom: 8px;
       font-weight: 500;
@@ -652,11 +677,12 @@
       flex-shrink: 0;
       width: 44px; height: 44px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(123,158,107,0.1);
-      color: var(--accent);
-      border: 1px solid rgba(123,158,107,0.25);
+      background: var(--carbon-light);
+      color: var(--accent-light);
+      border: 1px solid rgba(123,158,107,0.45);
     }
-    .extra-body h4 {
+    .extra-body h3, .extra-body h4 {
+      font-family: var(--font-sans);
       font-size: 0.95rem; letter-spacing: 0.05em;
       color: var(--white); margin-bottom: 6px;
       font-weight: 500;
@@ -707,10 +733,10 @@
     .timbre-note {
       margin-top: 24px;
       padding: 14px 18px;
-      background: rgba(123,158,107,0.06);
+      background: var(--carbon-light);
       border-left: 2px solid var(--accent);
       font-size: 0.82rem;
-      color: rgba(245,243,239,0.7);
+      color: rgba(245,243,239,0.95);
       line-height: 1.55;
     }
 
@@ -783,7 +809,7 @@
       font-weight: 300; color: var(--black); line-height: 1.1;
     }
     .cta-text p {
-      font-size: 1rem; color: rgba(8,8,8,0.65); margin-top: 16px; font-weight: 300;
+      font-size: 1rem; color: rgba(8,8,8,0.92); margin-top: 16px; font-weight: 400;
     }
     .btn-dark {
       display: inline-flex; align-items: center; gap: 14px;
@@ -820,22 +846,29 @@
     }
     .footer-social { display: flex; gap: 14px; }
     .social-link {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(245,243,239,0.1);
+      width: 44px; height: 44px;
+      border: 1px solid rgba(245,243,239,0.25);
       display: flex; align-items: center; justify-content: center;
-      text-decoration: none; color: rgba(245,243,239,0.4);
+      text-decoration: none; color: rgba(245,243,239,0.85);
       font-size: 0.75rem; letter-spacing: 0.1em;
-      transition: border-color 0.3s, color 0.3s;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
     }
-    .social-link:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col h4 {
+    .social-link:hover, .social-link:focus-visible {
+      border-color: var(--accent-light); color: var(--accent-light);
+      background: var(--carbon-light);
+    }
+    .social-link svg { display: block; }
+    .footer-col h3, .footer-col h4, .footer-col-heading {
+      font-family: var(--font-sans);
       font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 24px; font-weight: 500;
+      line-height: 1.4;
     }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
     .footer-col ul a {
-      text-decoration: none; color: rgba(245,243,239,0.4);
+      text-decoration: none; color: rgba(245,243,239,0.75);
       font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+      min-height: 24px; display: inline-flex; align-items: center;
     }
     .footer-col ul a:hover { color: var(--white); }
     .footer-bottom {
@@ -843,14 +876,15 @@
       padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
     }
     .footer-copy {
-      font-size: 0.75rem; color: rgba(245,243,239,0.25); letter-spacing: 0.05em;
+      font-size: 0.78rem; color: rgba(245,243,239,0.65); letter-spacing: 0.05em;
     }
     .footer-legal { display: flex; gap: 28px; }
     .footer-legal a {
-      font-size: 0.72rem; color: rgba(245,243,239,0.2);
+      font-size: 0.78rem; color: rgba(245,243,239,0.7);
       text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+      min-height: 24px; display: inline-flex; align-items: center;
     }
-    .footer-legal a:hover { color: var(--text-muted); }
+    .footer-legal a:hover { color: var(--white); }
 
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -863,6 +897,22 @@
     .reveal-delay-1 { transition-delay: 0.15s; }
     .reveal-delay-2 { transition-delay: 0.3s; }
     .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ─── PREFERS REDUCED MOTION ─── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      html { scroll-behavior: auto; }
+      .marquee-track { animation: none !important; transform: none !important; }
+      .hero-bg { transform: none !important; transition: none !important; }
+      .scroll-line { animation: none !important; }
+      .loader-bar::after { animation: none !important; transform: translateX(0) !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
 
     /* ─── LOADER ─── */
     .loader {
@@ -920,49 +970,66 @@
       .cta-section { padding: 80px 24px; flex-direction: column; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-legal { flex-wrap: wrap; justify-content: center; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stats-section { padding: 70px 24px; }
+    }
+    @media (max-width: 380px) {
+      section { padding: 60px 16px; }
+      .hero-content { padding: 8px 16px 60px; }
+      .nav-logo { font-size: 1.25rem; }
+      nav, nav.scrolled { padding: 16px 16px; }
+      footer { padding: 60px 16px 40px; }
+      .stat-card { padding: 36px 24px; }
+      .stat-number { font-size: 3rem; }
+      .menu-dia-section, .avisos-section { padding-left: 16px; padding-right: 16px; }
     }
   </style>
 </head>
 <body>
 
+<!-- SKIP LINK -->
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
 <!-- LOADER -->
-<div class="loader" id="loader">
-  <div class="loader-logo">Galanga <span>.</span></div>
-  <div class="loader-bar"></div>
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando Restaurante Galanga K11">
+  <div class="loader-logo" aria-hidden="true">Galanga <span>.</span></div>
+  <div class="loader-bar" aria-hidden="true"></div>
 </div>
 
 <!-- NAV -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">Galanga<span>.</span></a>
+<header>
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main" class="nav-logo" aria-label="Inicio · Galanga K11">Galanga<span aria-hidden="true">.</span></a>
   <ul class="nav-links">
     <li><a href="#carta">Carta</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Especialidades</a></li>
     <li><a href="#contacto" class="nav-cta">Reservar</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menú">
-    <span></span><span></span><span></span>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
   </button>
 </nav>
+</header>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" aria-hidden="true">
   <a href="#carta" onclick="closeMobile()">Carta</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#servicios" onclick="closeMobile()">Especialidades</a>
   <a href="#contacto" onclick="closeMobile()">Reservar</a>
 </div>
 
+<main id="main">
 <!-- HERO -->
-<section class="hero">
+<section class="hero" aria-labelledby="hero-title">
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Cocina Vasca · Galdakao · Junto al Golf Uraburu</p>
-    <h1 class="hero-title">
+    <h1 class="hero-title" id="hero-title">
       Las mejores vistas<br>de Galdakao,<br>en plena <em>calma</em>
     </h1>
     <p class="hero-sub">
@@ -979,14 +1046,14 @@
       </a>
     </div>
   </div>
-  <div class="hero-scroll">
+  <div class="hero-scroll" aria-hidden="true">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
+<!-- MARQUEE (decorativo) -->
+<div class="marquee-section" aria-hidden="true" role="presentation">
   <div class="marquee-track">
     <span class="marquee-item"><span class="dot"></span>Txuletón de Vacuno Mayor</span>
     <span class="marquee-item"><span class="dot"></span>Raciones de la Casa</span>
@@ -1008,26 +1075,26 @@
 </div>
 
 <!-- STATS -->
-<div class="stats-section">
+<section class="stats-section" aria-label="Datos del restaurante">
   <div class="stats-grid">
-    <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="15">0</span><span class="stat-suffix">+</span></div>
+    <div class="stat-card reveal" role="group" aria-label="Más de 15 años en Galdakao">
+      <div class="stat-number" aria-hidden="true"><span class="count" data-target="15">0</span><span class="stat-suffix">+</span></div>
       <div class="stat-label">Años en Galdakao</div>
     </div>
-    <div class="stat-card reveal reveal-delay-1">
-      <div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div>
+    <div class="stat-card reveal reveal-delay-1" role="group" aria-label="100% cocina honesta">
+      <div class="stat-number" aria-hidden="true"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div>
       <div class="stat-label">Cocina honesta</div>
     </div>
-    <div class="stat-card reveal reveal-delay-2">
-      <div class="stat-number"><span class="count" data-target="7">0</span><span class="stat-suffix">/7</span></div>
+    <div class="stat-card reveal reveal-delay-2" role="group" aria-label="Abierto 7 días a la semana">
+      <div class="stat-number" aria-hidden="true"><span class="count" data-target="7">0</span><span class="stat-suffix">/7</span></div>
       <div class="stat-label">Días a la semana</div>
     </div>
-    <div class="stat-card reveal reveal-delay-3">
-      <div class="stat-number"><span class="count" data-target="0">0</span><span class="stat-suffix">€</span></div>
+    <div class="stat-card reveal reveal-delay-3" role="group" aria-label="0 euros de cuota de socio">
+      <div class="stat-number" aria-hidden="true"><span class="count" data-target="0">0</span><span class="stat-suffix">€</span></div>
       <div class="stat-label">Cuota de socio</div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- GALLERY / CARTA -->
 <section class="projects-section" id="carta">
@@ -1083,16 +1150,16 @@
 </section>
 
 <!-- ABOUT -->
-<div class="about-section" id="nosotros">
-  <div class="about-visual">
+<section class="about-section" id="nosotros" aria-labelledby="about-heading">
+  <div class="about-visual" role="img" aria-label="Terraza del restaurante con pintxos al fondo">
     <div class="about-badge">
-      <div class="about-badge-year">360°</div>
+      <div class="about-badge-year" aria-hidden="true">360°</div>
       <div class="about-badge-text">Vistas a los Montes de Vizcaya</div>
     </div>
   </div>
   <div class="about-content">
     <p class="section-label reveal">Sobre nosotros</p>
-    <h2 class="section-title reveal reveal-delay-1">
+    <h2 class="section-title reveal reveal-delay-1" id="about-heading">
       Cocina honesta,<br>producto de <em>primera</em>
     </h2>
     <div class="about-divider reveal"></div>
@@ -1101,21 +1168,21 @@
     </p>
     <div class="about-values reveal reveal-delay-3">
       <div class="about-value">
-        <div class="value-num">01</div>
+        <div class="value-num" aria-hidden="true">01</div>
         <div class="value-text">
           <h3>Vistas privilegiadas</h3>
           <p>Mesa con vistas al campo de golf Uraburu y a los Montes de Vizcaya.</p>
         </div>
       </div>
       <div class="about-value">
-        <div class="value-num">02</div>
+        <div class="value-num" aria-hidden="true">02</div>
         <div class="value-text">
           <h3>Salón amplio y tranquilo</h3>
           <p>Techos altos, grandes ventanales y mucho espacio. Aquí se come sin prisas y sin ruido.</p>
         </div>
       </div>
       <div class="about-value">
-        <div class="value-num">03</div>
+        <div class="value-num" aria-hidden="true">03</div>
         <div class="value-text">
           <h3>Abierto a todo el mundo</h3>
           <p>No hace falta ser socio del club ni tener invitación. Cualquiera puede venir a comer o tomar algo.</p>
@@ -1123,7 +1190,7 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- SERVICES / ESPECIALIDADES -->
 <section class="services-section" id="servicios">
@@ -1134,8 +1201,8 @@
     </h2>
     <div class="services-grid">
       <div class="service-card reveal">
-        <div class="service-number">01</div>
-        <div class="service-icon">
+        <div class="service-number" aria-hidden="true">01</div>
+        <div class="service-icon" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3M3 16v3a2 2 0 002 2h3m8 0h3a2 2 0 002-2v-3"/>
           </svg>
@@ -1145,8 +1212,8 @@
         <a href="#contacto" class="service-link">Reservar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-1px;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-number">02</div>
-        <div class="service-icon">
+        <div class="service-number" aria-hidden="true">02</div>
+        <div class="service-icon" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
           </svg>
@@ -1156,8 +1223,8 @@
         <a href="#contacto" class="service-link">Consultar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:-1px;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-number">03</div>
-        <div class="service-icon">
+        <div class="service-number" aria-hidden="true">03</div>
+        <div class="service-icon" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
             <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
           </svg>
@@ -1249,18 +1316,18 @@
       <div class="extra-card">
         <div class="extra-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
         <div class="extra-body">
-          <h4>Encargos especiales</h4>
+          <h3>Encargos especiales</h3>
           <p>¿Quieres un plato fuera de carta? Pídelo con 48 horas de antelación llamándonos y lo preparamos para ti.</p>
         </div>
       </div>
     </div>
 
     <div class="menu-dia-cta reveal reveal-delay-3">
-      <a href="https://wa.me/34611896947?text=Hola%2C+queria+preguntar+por+el+men%C3%BA+del+d%C3%ADa+de+hoy" target="_blank" rel="noopener" class="btn-wa">
+      <a href="https://wa.me/34611896947?text=Hola%2C+queria+preguntar+por+el+men%C3%BA+del+d%C3%ADa+de+hoy" target="_blank" rel="noopener" class="btn-wa" aria-label="Preguntar por WhatsApp al 611 89 69 47 (se abre en nueva pestaña)">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         <span>Preguntar por WhatsApp</span>
       </a>
-      <a href="tel:+34611896947" class="btn-call">
+      <a href="tel:+34611896947" class="btn-call" aria-label="Llamar al teléfono 611 89 69 47">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span>Llamar 611 89 69 47</span>
       </a>
@@ -1270,9 +1337,9 @@
 
 
 <!-- CTA -->
-<div class="cta-section" id="contacto">
+<section class="cta-section" id="contacto" aria-labelledby="cta-heading">
   <div class="cta-text">
-    <h2>¿Reservamos<br>mesa?</h2>
+    <h2 id="cta-heading">¿Reservamos<br>mesa?</h2>
     <p>Junto al campo de golf Uraburu, Galdakao. Llámanos o escríbenos y te guardamos el mejor sitio.</p>
     <div class="horarios-block">
       <strong>Horario verano</strong>
@@ -1281,11 +1348,11 @@
       Pendiente de confirmar
     </div>
   </div>
-  <a href="tel:+34611896947" class="btn-dark">
+  <a href="tel:+34611896947" class="btn-dark" aria-label="Llamar ahora al 611 89 69 47">
     <span>Llamar ahora</span>
     <span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
   </a>
-</div>
+</section>
 
 <!-- AVISOS IMPORTANTES -->
 <section class="avisos-section">
@@ -1302,7 +1369,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         </div>
         <div class="aviso-body">
-          <h4>Condiciones climáticas adversas</h4>
+          <h3>Condiciones climáticas adversas</h3>
           <p>En caso de temporal o condiciones meteorológicas muy adversas el restaurante puede permanecer cerrado. Llámanos antes de venir para confirmar que estamos abiertos.</p>
         </div>
       </div>
@@ -1311,7 +1378,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
         </div>
         <div class="aviso-body">
-          <h4>Si la puerta está cerrada, llama al timbre</h4>
+          <h3>Si la puerta está cerrada, llama al timbre</h3>
           <p>Si al llegar te encuentras la puerta cerrada, simplemente llama al timbre. En unos momentos salimos a abrirte.</p>
         </div>
       </div>
@@ -1320,48 +1387,57 @@
 </section>
 
 <!-- MAP -->
-<section style="background: var(--carbon); padding: 0;">
+<section style="background: var(--carbon); padding: 0;" aria-label="Mapa de ubicación">
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2895.7!2d-2.835!3d43.243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sGalanga+Gastro+Bar+Galdakao!5e0!3m2!1ses!2ses!4v1700000000000" width="100%" height="420" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Restaurante Galanga K11 en Galdakao"></iframe>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo">Galanga<span>.</span></a>
+      <a href="#main" class="nav-logo" aria-label="Volver al inicio">Galanga<span aria-hidden="true">.</span></a>
       <p class="footer-tagline">"La cocina vasca tiene alma propia. Nosotros nos limitamos a respetarla."<br>Restaurante Galanga K11</p>
       <div class="footer-social">
-        <a href="#" class="social-link">Fb</a>
-        <a href="#" class="social-link">Ig</a>
-        <a href="#" class="social-link">Gm</a>
-        <a href="#" class="social-link">Wa</a>
+        <a href="https://facebook.com/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook (se abre en nueva pestaña)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram (se abre en nueva pestaña)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://maps.google.com/?q=Galanga+Gastro+Bar+Galdakao" target="_blank" rel="noopener" class="social-link" aria-label="Google Maps (se abre en nueva pestaña)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C7.31 0 3.5 3.81 3.5 8.5c0 7.5 8.5 15.5 8.5 15.5s8.5-8 8.5-15.5C20.5 3.81 16.69 0 12 0zm0 11.5a3 3 0 110-6 3 3 0 010 6z"/></svg>
+        </a>
+        <a href="https://wa.me/34611896947" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp (se abre en nueva pestaña)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </a>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>Carta</h4>
+    <nav class="footer-col" aria-labelledby="footer-carta-heading">
+      <h3 class="footer-col-heading" id="footer-carta-heading">Carta</h3>
       <ul>
-        <li><a href="#">Pintxos</a></li>
-        <li><a href="#">De la brasa</a></li>
-        <li><a href="#">Pescados</a></li>
-        <li><a href="#">Postres</a></li>
-        <li><a href="#">Vinos</a></li>
+        <li><a href="#carta">Pintxos</a></li>
+        <li><a href="#carta">De la brasa</a></li>
+        <li><a href="#carta">Pescados</a></li>
+        <li><a href="#carta">Postres</a></li>
+        <li><a href="#carta">Vinos</a></li>
       </ul>
-    </div>
-    <div class="footer-col">
-      <h4>El Local</h4>
+    </nav>
+    <nav class="footer-col" aria-labelledby="footer-local-heading">
+      <h3 class="footer-col-heading" id="footer-local-heading">El Local</h3>
       <ul>
-        <li><a href="#">Nuestra historia</a></li>
-        <li><a href="#">Grupos y eventos</a></li>
-        <li><a href="#">Menú del día</a></li>
-        <li><a href="#">Terraza</a></li>
+        <li><a href="#nosotros">Nuestra historia</a></li>
+        <li><a href="#servicios">Grupos y eventos</a></li>
+        <li><a href="#menu-del-dia">Menú del día</a></li>
+        <li><a href="#carta">Terraza</a></li>
       </ul>
-    </div>
+    </nav>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h3 class="footer-col-heading">Contacto</h3>
       <ul>
-        <li><a href="tel:+34611896947">+34 611 89 69 47</a></li>
-        <li><a href="mailto:galangaurak11@gmail.com">galangaurak11@gmail.com</a></li>
-        <li><a href="#">Junto al Golf Uraburu, Galdakao</a></li>
+        <li><a href="tel:+34611896947" aria-label="Llamar al teléfono 611 89 69 47">+34 611 89 69 47</a></li>
+        <li><a href="mailto:galangaurak11@gmail.com" aria-label="Enviar email a galangaurak11@gmail.com">galangaurak11@gmail.com</a></li>
+        <li><a href="https://maps.google.com/?q=Galanga+Gastro+Bar+Galdakao" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps (se abre en nueva pestaña)">Junto al Golf Uraburu, Galdakao</a></li>
         <li>Verano: Lun a Dom · 10:30 a 21:00</li>
         <li>Invierno: pendiente de confirmar</li>
       </ul>
@@ -1369,40 +1445,82 @@
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2026 Restaurante Galanga K11. Todos los derechos reservados.</p>
-    <div class="footer-legal">
-      <a href="#">Política de Privacidad</a>
-      <a href="#">Aviso Legal</a>
-      <a href="#">Cookies</a>
-    </div>
+    <nav class="footer-legal" aria-label="Enlaces legales">
+      <a href="politica-privacidad.html">Política de Privacidad</a>
+      <a href="aviso-legal.html">Aviso Legal</a>
+      <a href="cookies.html">Cookies</a>
+    </nav>
   </div>
 </footer>
 
 <script>
-  // ── LOADER
+  // ── REDUCED MOTION DETECTION
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── LOADER (respeta reduced motion)
   window.addEventListener('load', () => {
+    const loaderDelay = prefersReducedMotion ? 0 : 1800;
     setTimeout(() => {
-      document.getElementById('loader').classList.add('hidden');
-      document.getElementById('heroBg').classList.add('loaded');
-    }, 1800);
+      const loader = document.getElementById('loader');
+      const heroBg = document.getElementById('heroBg');
+      if (loader) loader.classList.add('hidden');
+      if (heroBg) heroBg.classList.add('loaded');
+    }, loaderDelay);
   });
 
   // ── NAVBAR SCROLL
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
+  }, { passive: true });
 
-  // ── HAMBURGER MENU
+  // ── HAMBURGER MENU (con aria-expanded y focus management)
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-  });
+  const mobileMenuLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+
+  function openMobile() {
+    hamburger.classList.add('active');
+    mobileMenu.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Cerrar menú de navegación');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    // mover foco al primer enlace del menú
+    setTimeout(() => { if (mobileMenuLinks[0]) mobileMenuLinks[0].focus(); }, 50);
+  }
   function closeMobile() {
     hamburger.classList.remove('active');
     mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Abrir menú de navegación');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    hamburger.focus();
   }
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    if (isOpen) closeMobile(); else openMobile();
+  });
+  // Escape cierra menú móvil (focus trap mínimo)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMobile();
+    }
+  });
+  // Focus trap básico dentro del menú móvil
+  mobileMenu.addEventListener('keydown', (e) => {
+    if (!mobileMenu.classList.contains('open')) return;
+    if (e.key !== 'Tab') return;
+    const focusable = Array.from(mobileMenuLinks);
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
 
   // ── REVEAL ON SCROLL
   const reveals = document.querySelectorAll('.reveal');
@@ -1411,9 +1529,13 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   reveals.forEach(el => observer.observe(el));
 
-  // ── COUNTER ANIMATION
+  // ── COUNTER ANIMATION (respeta reduced motion)
   function animateCount(el) {
     const target = parseInt(el.dataset.target);
+    if (prefersReducedMotion) {
+      el.textContent = target;
+      return;
+    }
     const duration = 1800;
     const start = performance.now();
     function step(now) {
@@ -1435,13 +1557,22 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
 
-  // ── HERO PARALLAX
-  window.addEventListener('scroll', () => {
-    const heroBg = document.getElementById('heroBg');
-    if (heroBg) {
-      heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.25}px)`;
-    }
-  });
+  // ── HERO PARALLAX (deshabilitado con reduced motion)
+  if (!prefersReducedMotion) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const heroBg = document.getElementById('heroBg');
+          if (heroBg && window.scrollY < window.innerHeight * 1.2) {
+            heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.25}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 </script>
 </body>
 </html>
