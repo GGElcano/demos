@@ -219,7 +219,7 @@ a:focus-visible, button:focus-visible {
 }
 @media (max-width: 768px) {
   .hero { min-height: auto; height: auto; align-items: flex-start; padding-top: var(--s-4); }
-  .hero-meta { position: static; transform: none; margin-top: var(--s-3); }
+  .hero-meta { flex-direction: column; gap: 0.75rem; }
 }
 .hero-bg {
   position: absolute;
@@ -313,20 +313,15 @@ a:focus-visible, button:focus-visible {
 }
 
 .hero-meta {
-  position: absolute;
-  bottom: var(--s-3);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
   display: flex;
   gap: var(--s-3);
   flex-wrap: wrap;
-  justify-content: center;
-  color: rgba(245, 237, 225, 0.8);
+  color: rgba(245, 237, 225, 0.85);
   font-size: 0.85rem;
   letter-spacing: 0.05em;
-  text-align: center;
-  padding-inline: 1rem;
+  padding-top: var(--s-2);
+  border-top: 1px solid rgba(245, 237, 225, 0.18);
 }
 .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
 .hero-meta strong { color: var(--c-gold); font-weight: 600; }
@@ -460,7 +455,7 @@ section { padding-block: var(--s-5); }
   overflow: hidden;
   aspect-ratio: 4/5;
 }
-.about-img img { width: 100%; height: 100%; object-fit: cover; }
+.about-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
 .about-img-caption {
   position: absolute;
   bottom: var(--s-2);
@@ -874,10 +869,11 @@ section { padding-block: var(--s-5); }
         <a href="#carta" class="btn-ghost">Ver carta completa</a>
       </div>
     </div>
-    <div class="hero-meta" aria-hidden="false">
-      <span><strong>4,4</strong> · 1.195 reseñas en Google</span>
-      <span><strong>2020</strong> · Travelers' Choice TripAdvisor</span>
-      <span><strong>Recomendado</strong> · The Fork · The Vegetarian</span>
+      <div class="hero-meta" aria-hidden="false">
+        <span><strong>4,4</strong> · 1.195 reseñas en Google</span>
+        <span><strong>2020</strong> · Travelers' Choice TripAdvisor</span>
+        <span><strong>Recomendado</strong> · The Fork · The Vegetarian</span>
+      </div>
     </div>
   </section>
 
