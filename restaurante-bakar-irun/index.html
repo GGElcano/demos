@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurante Bakar — Parrilla en Irun · Especialistas en cocina a la parrilla</title>
+<meta name="description" content="Restaurante con parrilla en el centro de Irun. Carnes, pescados frescos, hamburguesas, veganos. Menú temático cada viernes. Plaza Anzarán 13. Tel 943 24 21 48.">
+<meta name="theme-color" content="#1a0e0a">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Restaurante Bakar",
+  "image": "https://restaurantebakar.com/wp-content/uploads/2022/10/Restaurante-Bakar-Irun-Gipuzkoa-Imagen-Principal-15.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Plaza Anzarán, 13",
+    "addressLocality": "Irun",
+    "postalCode": "20301",
+    "addressRegion": "Gipuzkoa",
+    "addressCountry": "ES"
+  },
+  "telephone": "+34943242148",
+  "servesCuisine": ["Parrilla", "Vasca", "Internacional", "Vegana"],
+  "priceRange": "€€",
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "00:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "18:00"}
+  ],
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.4", "reviewCount": "1195"}
+}
+</script>
+<style>
+:root {
+  --c-bg: #faf6f1;
+  --c-bg-dark: #1a0e0a;
+  --c-text: #1a0e0a;
+  --c-text-soft: #5a4d44;
+  --c-text-inv: #f5ede1;
+  --c-accent: #7a1f1a;
+  --c-accent-soft: #a8453d;
+  --c-gold: #d4a85a;
+  --c-line: rgba(26, 14, 10, 0.12);
+  --c-surface: #fff;
+  --c-surface-warm: #f0e6d8;
+  --f-display: 'Playfair Display', Georgia, serif;
+  --f-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --s-1: clamp(0.5rem, 1vw, 0.75rem);
+  --s-2: clamp(1rem, 2vw, 1.5rem);
+  --s-3: clamp(1.5rem, 3vw, 2.5rem);
+  --s-4: clamp(2.5rem, 5vw, 4.5rem);
+  --s-5: clamp(4rem, 8vw, 7rem);
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+  --max-w: 1280px;
+  --max-narrow: 880px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; height: auto; display: block; }
+button, a { cursor: pointer; font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+:where(h1, h2, h3, h4) { font-family: var(--f-display); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+
+.container { max-width: var(--max-w); margin-inline: auto; padding-inline: clamp(1rem, 4vw, 3rem); }
+.container-narrow { max-width: var(--max-narrow); margin-inline: auto; padding-inline: clamp(1rem, 4vw, 3rem); }
+
+/* ─── Header ───────────────────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 246, 241, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--c-line);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
+.brand {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  letter-spacing: 0.04em;
+}
+.brand strong { color: var(--c-accent); }
+.nav-menu {
+  display: none;
+  gap: var(--s-3);
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.nav-menu a {
+  position: relative;
+  padding-block: 0.4rem;
+  color: var(--c-text-soft);
+  transition: color 0.2s var(--ease);
+}
+.nav-menu a:hover, .nav-menu a:focus-visible { color: var(--c-accent); }
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--c-accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s var(--ease);
+}
+.nav-menu a:hover::after { transform: scaleX(1); }
+.btn-reserve {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--c-accent);
+  color: var(--c-text-inv);
+  padding: 0.7rem 1.3rem;
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.btn-reserve:hover, .btn-reserve:focus-visible {
+  background: var(--c-text);
+  transform: translateY(-2px);
+}
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  color: var(--c-text);
+}
+.menu-toggle svg { width: 20px; height: 20px; }
+
+@media (min-width: 880px) {
+  .nav-menu { display: flex; }
+  .menu-toggle { display: none; }
+}
+
+/* ─── Drawer mobile ────────────────────────────────────────────── */
+.drawer {
+  position: fixed;
+  inset: 0;
+  background: var(--c-bg);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.4s var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+.drawer[aria-hidden="false"] { transform: translateX(0); }
+.drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--c-line);
+}
+.drawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: var(--s-3) clamp(1rem, 4vw, 3rem);
+}
+.drawer a {
+  font-family: var(--f-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--c-line);
+}
+
+/* ─── Hero ─────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: clamp(560px, 85vh, 880px);
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background: var(--c-bg-dark);
+}
+@media (max-width: 768px) {
+  .hero { min-height: auto; height: auto; align-items: flex-start; padding-top: var(--s-4); }
+  .hero-meta { position: static; transform: none; margin-top: var(--s-3); }
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55) saturate(1.05);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26,14,10,0.35) 0%, rgba(26,14,10,0.6) 80%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: var(--c-text-inv);
+  padding-block: var(--s-5);
+}
+.hero-kicker, .hero-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 4px 24px rgba(0,0,0,0.5);
+}
+.hero-title {
+  text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+}
+.hero-sub {
+  text-shadow: 0 1px 8px rgba(0,0,0,0.8), 0 2px 20px rgba(0,0,0,0.5);
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  margin-bottom: var(--s-2);
+  max-width: 14ch;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--c-gold);
+}
+.hero-desc {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  max-width: 38ch;
+  margin-bottom: var(--s-3);
+  color: rgba(245, 237, 225, 0.92);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.8), 0 2px 20px rgba(0,0,0,0.5);
+}
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.btn-primary, .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.8rem;
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  transition: all 0.25s var(--ease);
+}
+.btn-primary {
+  background: var(--c-gold);
+  color: var(--c-text);
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+  background: var(--c-text-inv);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--c-text-inv);
+  border: 1px solid rgba(245, 237, 225, 0.4);
+}
+.btn-ghost:hover, .btn-ghost:focus-visible {
+  background: rgba(245, 237, 225, 0.1);
+  border-color: var(--c-gold);
+}
+
+.hero-meta {
+  position: absolute;
+  bottom: var(--s-3);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  justify-content: center;
+  color: rgba(245, 237, 225, 0.8);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding-inline: 1rem;
+}
+.hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
+.hero-meta strong { color: var(--c-gold); font-weight: 600; }
+
+/* ─── Sections ─────────────────────────────────────────────────── */
+section { padding-block: var(--s-5); }
+.section-head {
+  text-align: center;
+  margin-bottom: var(--s-4);
+  max-width: 50ch;
+  margin-inline: auto;
+}
+.section-kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.section-head h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: 1rem;
+}
+.section-head h2 em { font-style: italic; color: var(--c-accent); font-weight: 500; }
+.section-head p {
+  color: var(--c-text-soft);
+  font-size: 1.05rem;
+}
+
+/* ─── Especialidades (bento) ───────────────────────────────────── */
+.bento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-2);
+}
+.bento-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.bento-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(26, 14, 10, 0.12);
+}
+.bento-img {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+.bento-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.bento-item:hover .bento-img img { transform: scale(1.05); }
+.bento-body { padding: var(--s-2); }
+.bento-body h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.6rem;
+}
+.bento-body p {
+  color: var(--c-text-soft);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 720px) {
+  .bento { grid-template-columns: repeat(2, 1fr); }
+  .bento-item.feat { grid-column: span 2; }
+  .bento-item.feat .bento-img { aspect-ratio: 21/9; }
+}
+@media (min-width: 1024px) {
+  .bento { grid-template-columns: repeat(3, 1fr); }
+  .bento-item.feat { grid-column: span 2; grid-row: span 2; }
+  .bento-item.feat .bento-img { aspect-ratio: 4/3; height: 100%; }
+}
+
+/* ─── El Restaurante (split) ───────────────────────────────────── */
+.about {
+  background: var(--c-surface-warm);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+  align-items: center;
+}
+.about-text h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: var(--s-2);
+}
+.about-text h2 em { font-style: italic; color: var(--c-accent); font-weight: 500; }
+.about-text p {
+  margin-bottom: 1.2rem;
+  color: var(--c-text-soft);
+  font-size: 1.05rem;
+}
+.about-text p:first-of-type::first-letter {
+  font-family: var(--f-display);
+  font-size: 4rem;
+  float: left;
+  line-height: 0.9;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  color: var(--c-accent);
+  font-weight: 700;
+}
+.about-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-1);
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--c-line);
+}
+.about-meta div { text-align: center; }
+.about-meta strong {
+  display: block;
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--c-accent);
+  margin-bottom: 0.2rem;
+}
+.about-meta span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-text-soft); }
+.about-img {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.about-img img { width: 100%; height: 100%; object-fit: cover; }
+.about-img-caption {
+  position: absolute;
+  bottom: var(--s-2);
+  left: var(--s-2);
+  right: var(--s-2);
+  background: rgba(26, 14, 10, 0.85);
+  color: var(--c-text-inv);
+  padding: 0.8rem 1rem;
+  border-radius: var(--r-md);
+  font-size: 0.85rem;
+  backdrop-filter: blur(8px);
+}
+.about-img-caption strong { color: var(--c-gold); display: block; font-family: var(--f-display); font-size: 1.05rem; margin-bottom: 0.2rem; }
+
+@media (min-width: 880px) {
+  .about-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── Carta (acordeón categorías) ──────────────────────────────── */
+.menu-block {
+  background: var(--c-bg-dark);
+  color: var(--c-text-inv);
+}
+.menu-block .section-head h2, .menu-block .section-head p { color: var(--c-text-inv); }
+.menu-block .section-head h2 em { color: var(--c-gold); }
+.menu-block .section-head p { color: rgba(245, 237, 225, 0.7); }
+.menu-block .section-kicker { color: var(--c-gold); }
+.menu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: var(--s-3);
+}
+.menu-tab {
+  background: transparent;
+  color: var(--c-text-inv);
+  border: 1px solid rgba(245, 237, 225, 0.25);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s var(--ease);
+}
+.menu-tab:hover { border-color: var(--c-gold); }
+.menu-tab[aria-selected="true"] {
+  background: var(--c-gold);
+  color: var(--c-text);
+  border-color: var(--c-gold);
+}
+.menu-panels { max-width: 920px; margin-inline: auto; }
+.menu-panel[hidden] { display: none; }
+.menu-panel { animation: fade 0.3s var(--ease); }
+@keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.menu-list { display: grid; gap: 1.2rem; }
+.menu-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed rgba(245, 237, 225, 0.15);
+}
+.menu-row:last-child { border-bottom: none; }
+.menu-row .menu-item-name {
+  display: block;
+  font-family: var(--f-body);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--c-text-inv);
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+.menu-row .desc {
+  font-size: 0.88rem;
+  color: rgba(245, 237, 225, 0.7);
+  line-height: 1.5;
+}
+.menu-price {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--c-gold);
+  white-space: nowrap;
+}
+.menu-note {
+  text-align: center;
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid rgba(245, 237, 225, 0.15);
+  font-size: 0.85rem;
+  color: rgba(245, 237, 225, 0.6);
+  font-style: italic;
+}
+
+/* ─── Menús cards ──────────────────────────────────────────────── */
+.menus-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-2);
+}
+.menu-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-lg);
+  padding: var(--s-3);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.menu-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--c-accent);
+  box-shadow: 0 20px 40px rgba(122, 31, 26, 0.12);
+}
+.menu-card.featured {
+  background: linear-gradient(135deg, #1a0e0a 0%, #2c1812 100%);
+  color: var(--c-text-inv);
+  border-color: var(--c-gold);
+}
+.menu-card.featured .menu-card-price { color: var(--c-gold); }
+.menu-card.featured p { color: rgba(245, 237, 225, 0.8); }
+.menu-card.featured .menu-card-day { color: var(--c-gold); }
+.menu-card-day {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--c-accent);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+.menu-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+.menu-card-desc {
+  color: var(--c-text-soft);
+  font-size: 0.95rem;
+  margin-bottom: var(--s-2);
+  min-height: 3.2em;
+}
+.menu-card-price {
+  font-family: var(--f-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--c-accent);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.menu-card-price small {
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  color: var(--c-text-soft);
+  font-weight: 400;
+  display: block;
+  margin-top: 0.4rem;
+}
+.menu-card.featured .menu-card-price small { color: rgba(245, 237, 225, 0.7); }
+
+@media (min-width: 720px) { .menus-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .menus-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* ─── Galería ──────────────────────────────────────────────────── */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-1);
+}
+.gallery a {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  border-radius: var(--r-md);
+  background: var(--c-line);
+}
+.gallery a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.gallery a:hover img, .gallery a:focus-visible img { transform: scale(1.06); }
+.gallery a.tall { grid-row: span 2; aspect-ratio: 1/2; }
+
+@media (min-width: 720px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .gallery { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ─── Reconocimientos ──────────────────────────────────────────── */
+.press {
+  text-align: center;
+  background: var(--c-surface-warm);
+  padding-block: var(--s-4);
+}
+.press h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--c-text-soft);
+  margin-bottom: var(--s-3);
+  font-family: var(--f-body);
+  font-weight: 500;
+}
+.press-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--s-3);
+  list-style: none;
+  font-family: var(--f-display);
+  font-style: italic;
+  color: var(--c-text-soft);
+}
+.press-logos li {
+  font-size: 1.1rem;
+  padding: 0.4rem 0;
+  position: relative;
+}
+.press-logos li:not(:last-child)::after {
+  content: '·';
+  position: absolute;
+  right: calc(var(--s-3) / -2);
+  color: var(--c-accent);
+}
+
+/* ─── Contacto ─────────────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+.contact-info { padding-bottom: var(--s-2); }
+.contact-item {
+  display: flex;
+  gap: var(--s-2);
+  padding: var(--s-2) 0;
+  border-bottom: 1px solid var(--c-line);
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: var(--c-surface-warm);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-accent);
+}
+.contact-icon svg { width: 22px; height: 22px; }
+.contact-text strong {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--c-text-soft);
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+.contact-text p { line-height: 1.5; }
+.contact-text a:hover { color: var(--c-accent); }
+
+.schedule { display: grid; gap: 0.4rem; font-size: 0.95rem; }
+.schedule div { display: flex; justify-content: space-between; padding: 0.2rem 0; }
+.schedule div.closed { color: var(--c-accent); font-weight: 500; }
+.schedule strong { font-weight: 600; }
+
+.map-wrap {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--c-line);
+}
+.map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+@media (min-width: 880px) {
+  .contact-grid { grid-template-columns: 1fr 1.2fr; }
+}
+
+/* ─── Footer ──────────────────────────────────────────────────── */
+.site-footer {
+  background: var(--c-bg-dark);
+  color: rgba(245, 237, 225, 0.7);
+  padding-block: var(--s-3);
+  text-align: center;
+  font-size: 0.85rem;
+}
+.site-footer .container { display: flex; flex-direction: column; gap: var(--s-2); align-items: center; }
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(245, 237, 225, 0.1);
+  color: var(--c-text-inv);
+  transition: background 0.2s var(--ease);
+}
+.footer-social a:hover, .footer-social a:focus-visible { background: var(--c-accent); }
+.footer-social svg { width: 18px; height: 18px; }
+.footer-brand { color: var(--c-gold); font-family: var(--f-display); font-weight: 700; letter-spacing: 0.05em; }
+
+/* ─── WhatsApp floating ───────────────────────────────────────── */
+.fab-wa {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 90;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s var(--ease);
+}
+.fab-wa:hover, .fab-wa:focus-visible { transform: scale(1.1); }
+.fab-wa svg { width: 28px; height: 28px; }
+
+/* ─── Utilities ────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: -100px;
+  background: var(--c-text);
+  color: var(--c-text-inv);
+  padding: 0.75rem 1rem;
+  z-index: 1000;
+}
+.skip-link:focus { top: 0; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="site-header">
+  <nav class="nav" aria-label="Navegación principal">
+    <a href="#inicio" class="brand">Restaurante <strong>Bakar</strong></a>
+    <ul class="nav-menu">
+      <li><a href="#especialidades">Especialidades</a></li>
+      <li><a href="#restaurante">El Restaurante</a></li>
+      <li><a href="#carta">Carta</a></li>
+      <li><a href="#menus">Menús</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <a href="https://wa.me/34688781484?text=Hola%2C%20quer%C3%ADa%20reservar%20mesa%20en%20Bakar" class="btn-reserve" style="display:none">Reservar mesa</a>
+  </nav>
+</header>
+
+<aside id="drawer" class="drawer" aria-hidden="true" aria-label="Menú móvil" inert>
+  <div class="drawer-head">
+    <span class="brand">Restaurante <strong>Bakar</strong></span>
+    <button class="menu-toggle" aria-label="Cerrar menú" data-close>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="#especialidades" data-close-link>Especialidades</a></li>
+    <li><a href="#restaurante" data-close-link>El Restaurante</a></li>
+    <li><a href="#carta" data-close-link>Carta</a></li>
+    <li><a href="#menus" data-close-link>Menús</a></li>
+    <li><a href="#vinos" data-close-link>Carta de vinos</a></li>
+    <li><a href="#cocteles" data-close-link>Cócteles</a></li>
+    <li><a href="#galeria" data-close-link>Galería</a></li>
+    <li><a href="#contacto" data-close-link>Contacto</a></li>
+  </ul>
+</aside>
+
+<main id="main">
+  <section id="inicio" class="hero" aria-labelledby="hero-title">
+    <div class="hero-bg">
+      <img src="img/hero-1.jpg" alt="" loading="eager" fetchpriority="high">
+    </div>
+    <div class="container hero-content">
+      <p class="hero-kicker hero-eyebrow">Restaurante · Parrilla · Irun</p>
+      <h1 id="hero-title" class="hero-title">Cocina a la parrilla con <em>producto</em> de calidad</h1>
+      <p class="hero-desc hero-sub">Carnes seleccionadas, pescados frescos, hamburguesas y opciones veganas en el centro de Irun. De la mano del chef William Aristizabal.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/34688781484?text=Hola%2C%20quer%C3%ADa%20reservar%20mesa%20en%20Bakar" class="btn-primary">
+          Reservar mesa
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#carta" class="btn-ghost">Ver carta completa</a>
+      </div>
+    </div>
+    <div class="hero-meta" aria-hidden="false">
+      <span><strong>4,4</strong> · 1.195 reseñas en Google</span>
+      <span><strong>2020</strong> · Travelers' Choice TripAdvisor</span>
+      <span><strong>Recomendado</strong> · The Fork · The Vegetarian</span>
+    </div>
+  </section>
+
+  <section id="especialidades" aria-labelledby="esp-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">De nuestra cocina</p>
+        <h2 id="esp-title">Las famosas <em>superbrochetas</em> y mucho más</h2>
+        <p>Ensaladas, bocadillos, raciones, hamburguesas, y nuestros txuletones. Producto de calidad a precios asequibles.</p>
+      </div>
+      <div class="bento">
+        <article class="bento-item feat">
+          <div class="bento-img"><img src="img/brochetas.jpg" alt="Brochetas a la parrilla en Restaurante Bakar" loading="lazy"></div>
+          <div class="bento-body">
+            <h3>Especialistas en parrilla</h3>
+            <p>Brochetas de pollo, solomillo de vaca, pulpo y langostinos. Txuletón gourmet de 1.100 g con infiltración media-alta, entrecot y costillar a la parrilla. Pescado del día servido con guarnición.</p>
+          </div>
+        </article>
+        <article class="bento-item">
+          <div class="bento-img"><img src="img/cochinita.jpg" alt="Bocadillo de cochinita pibil" loading="lazy"></div>
+          <div class="bento-body">
+            <h3>Bocadillos del chef</h3>
+            <p>Mexicano de cochinita pibil, francés con queso de cabra y Pedro Ximénez, Gordita de pollo a baja temperatura.</p>
+          </div>
+        </article>
+        <article class="bento-item">
+          <div class="bento-img"><img src="img/nachos.jpg" alt="Nachos Bakar" loading="lazy"></div>
+          <div class="bento-body">
+            <h3>Raciones para compartir</h3>
+            <p>Nachos Bakar con chilli casero, tekeños de mozzarella, patatas del chef, calamares fritos y jamón ibérico.</p>
+          </div>
+        </article>
+        <article class="bento-item">
+          <div class="bento-img"><img src="img/ensalada.jpg" alt="Ensalada de tomate" loading="lazy"></div>
+          <div class="bento-body">
+            <h3>Ensaladas y opciones veganas</h3>
+            <p>Ensalada de tomate de Guadalfeo, mixta, queso de cabra y nueces, Cesar, gulas y gambas. Hamburguesa vegana y platos vegetarianos elaborados con producto fresco.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="restaurante" class="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-kicker">El Restaurante</p>
+          <h2 id="about-title">Construyendo <em>sueños</em>, plato a plato</h2>
+          <p>Restaurante con parrilla en el centro de Irun. Una cocina pensada para disfrutar con producto de calidad a precios asequibles, en la que conviven la tradición de la parrilla vasca y los toques internacionales de nuestro chef.</p>
+          <p>De la mano del chef William Aristizabal, elaboramos hamburguesas, platos veganos y vegetarianos con productos de máxima calidad, junto a las mejores carnes y pescados frescos. También preparamos toda nuestra comida para llevar y servimos a domicilio.</p>
+          <p>Gracias a todos por elegirnos y valorarnos tanto. Seguiremos atendiéndoles con toda nuestra pasión, máxima calidad y excelente servicio.</p>
+          <div class="about-meta">
+            <div><strong>4,4 <span aria-hidden="true" style="color:var(--c-gold)">·</span></strong><span>Google · 1.195 reseñas</span></div>
+            <div><strong>2020</strong><span>Travelers' Choice TripAdvisor</span></div>
+            <div><strong>2.000+</strong><span>Pedidos a domicilio</span></div>
+          </div>
+        </div>
+        <div class="about-img">
+          <img src="img/chef.jpg" alt="William Aristizabal, chef de Restaurante Bakar" loading="lazy">
+          <div class="about-img-caption">
+            <strong>William Aristizabal</strong>
+            Chef y alma de la cocina
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="carta" class="menu-block" aria-labelledby="carta-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Nuestra carta</p>
+        <h2 id="carta-title">La carta <em>completa</em> de Bakar</h2>
+        <p>Pintxos, raciones, especialidades del chef, ensaladas, hamburguesas, bocadillos, hot dogs, postres y cócteles. Todos los precios IVA incluido.</p>
+      </div>
+
+      <div class="menu-tabs" role="tablist" aria-label="Categorías de la carta">
+        <button class="menu-tab" role="tab" aria-selected="true" aria-controls="p-pintxos" id="t-pintxos">Pintxos</button>
+        <button class="menu-tab" role="tab" aria-selected="false" aria-controls="p-raciones" id="t-raciones">Raciones</button>
+        <button class="menu-tab" role="tab" aria-selected="false" aria-controls="p-chef" id="t-chef">Del chef</button>
+        <button class="menu-tab" role="tab" aria-selected="false" aria-controls="p-ensaladas" id="t-ensaladas">Ensaladas</button>
+        <button class="menu-tab" role="tab" aria-selected="false" aria-controls="p-burgers" id="t-burgers">Hamburguesas</button>
+        <button class="menu-tab" role="tab" aria-selected="false" aria-controls="p-bocadillos" id="t-bocadillos">Bocadillos</button>
+        <button class="menu-tab" role="tab" aria-selected="false" aria-controls="p-postres" id="t-postres">Postres</button>
+      </div>
+
+      <div class="menu-panels">
+        <div id="p-pintxos" class="menu-panel" role="tabpanel" aria-labelledby="t-pintxos">
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Morcilla de Burgos de arroz</p></div><span class="menu-price">2,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Bola de queso o picante</p></div><span class="menu-price">2,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Taco de cochinita pibil</p><p class="desc">Tortilla de maíz rellena de pierna de cerdo con guacamole y cebolla encurtida.</p></div><span class="menu-price">4,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Croqueta de jamón o bacalao</p></div><span class="menu-price">2,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Pintxo Bakar</p><p class="desc">Pan, bonito, guindilla y anchoa.</p></div><span class="menu-price">3,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Chorizo a la sidra</p></div><span class="menu-price">2,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Torrezno</p><p class="desc">Servido con salsa picante y tosta de pan.</p></div><span class="menu-price">3,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Empanadilla argentina rellena de carne</p></div><span class="menu-price">2,50 €</span></div>
+          </div>
+        </div>
+
+        <div id="p-raciones" class="menu-panel" role="tabpanel" aria-labelledby="t-raciones" hidden>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Nachos Bakar</p><p class="desc">Nachos de maíz con mezcla casera de chilli con carne picada, alubias, maíz dulce y nuestra salsa secreta. Acompañados de sour cream, guacamole y jalapeños.</p></div><span class="menu-price">13,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">3 Tacos de cochinita pibil</p><p class="desc">Tortilla de maíz rellena de pierna de cerdo con guacamole y jalapeños.</p></div><span class="menu-price">10,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Nachos Guacaques</p><p class="desc">Nachos de maíz con guacamole y queso.</p></div><span class="menu-price">7,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Tekeños</p><p class="desc">Palitos de queso mozzarella enrollados en hojaldre fritos y acompañados de salsa de piña.</p></div><span class="menu-price">9,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Patatas fritas caseras</p></div><span class="menu-price">5,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Patatas del chef</p><p class="desc">Pollo, bacon, queso y guacamole.</p></div><span class="menu-price">7,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Patatas 3 salsas</p><p class="desc">Queso, picante y alioli.</p></div><span class="menu-price">5,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Pollo al estilo Kentucky</p><p class="desc">Con patatas fritas y salsa al gusto.</p></div><span class="menu-price">7,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Alas al estilo del chef</p><p class="desc">Marinadas y cocinadas a baja temperatura, salsa BBQ casera.</p></div><span class="menu-price">8,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Yuca con chicharrón</p><p class="desc">Acompañada de salsa guacamole.</p></div><span class="menu-price">8,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Calamares fritos</p><p class="desc">Con alioli.</p></div><span class="menu-price">10,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Anchoas desaladas gourmet en filetes</p></div><span class="menu-price">12,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Tortilla de patata</p><p class="desc">Por encargo.</p></div><span class="menu-price">18,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Jamón ibérico</p><p class="desc">Media ración 11 €.</p></div><span class="menu-price">21,00 €</span></div>
+          </div>
+        </div>
+
+        <div id="p-chef" class="menu-panel" role="tabpanel" aria-labelledby="t-chef" hidden>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Brocheta de pollo</p><p class="desc">Jugosas pechugas de pollo, cebolla, pimientos, tomate, patata al gusto y salsa espelette.</p></div><span class="menu-price">18,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Brocheta de solomillo de vaca</p><p class="desc">Solomillo de ternera, cebolla, pimientos, tomate y patata al horno.</p></div><span class="menu-price">25,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Brocheta de pulpo y langostinos</p><p class="desc">Pulpo, langostinos, cebolla, pimientos, tomate y patata al horno.</p></div><span class="menu-price">27,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Txuleta gourmet · 1.100 g</p><p class="desc">Madurada con infiltración de grasa media-alta, servida con patatas y pimientos.</p></div><span class="menu-price">58,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Entrecot de vaca</p><p class="desc">Servido con patatas y pimientos.</p></div><span class="menu-price">20,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Costillar de cerdo a la parrilla</p><p class="desc">Salsa barbacoa con patatas y ensalada.</p></div><span class="menu-price">18,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Codillo asado</p><p class="desc">Asado a baja temperatura, ensalada verde y cremoso de patata.</p></div><span class="menu-price">18,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Pescado del día</p><p class="desc">Servido con guarnición. Preguntar al camarero.</p></div><span class="menu-price">19,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Txipirones a la plancha</p><p class="desc">Servidos con ensalada y patata cocida.</p></div><span class="menu-price">18,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Langostinos a la parrilla</p><p class="desc">Servidos con ensalada y patata cocida, 6 unidades.</p></div><span class="menu-price">18,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Menú infantil</p><p class="desc">Hasta los 12 años.</p></div><span class="menu-price">15,00 €</span></div>
+          </div>
+        </div>
+
+        <div id="p-ensaladas" class="menu-panel" role="tabpanel" aria-labelledby="t-ensaladas" hidden>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Ensalada mixta</p><p class="desc">Mix de lechugas, tomate, maíz, zanahoria, cebolla, espárrago, huevo cocido, aceituna y bonito.</p></div><span class="menu-price">10,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Ensalada de tomate</p><p class="desc">Tres tipos de tomate de Guadalfeo, guindilla, cebolleta, aceite de oliva y sal en escamas.</p></div><span class="menu-price">13,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Ensalada de queso de cabra</p><p class="desc">Mix de lechuga, semillas, queso de cabra, frutos rojos, cebolla caramelizada y nueces.</p></div><span class="menu-price">11,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Ensalada Cesar</p><p class="desc">Mix de lechuga, salsa de la casa, crotones, tomate cherry, queso, pollo, huevo cocido y bacon.</p></div><span class="menu-price">12,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Ensalada de gulas y gambas</p><p class="desc">Mix de lechugas, tomate cherry, salteado de gulas y gambas con vinagreta casera.</p></div><span class="menu-price">12,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Ensalada verde</p><p class="desc">Mix de lechugas y cebolleta con vinagreta casera.</p></div><span class="menu-price">5,00 €</span></div>
+          </div>
+        </div>
+
+        <div id="p-burgers" class="menu-panel" role="tabpanel" aria-labelledby="t-burgers" hidden>
+          <p class="menu-note" style="text-align:left; margin-top:0; margin-bottom:1.5rem; font-style:normal; color:rgba(245,237,225,0.85);"><strong style="color:var(--c-gold)">15,00 €</strong> · Todas las hamburguesas acompañadas de patatas fritas. Puede añadir huevo frito por 1 € más.</p>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Mexicana</p><p class="desc">Carne 100% ternera o pollo a la parrilla, bacon, queso mozzarella, cochinita, guacamole, sour cream, jalapeños, tomate y lechuga.</p></div><span class="menu-price">15,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Bakar</p><p class="desc">Carne 100% ternera o pollo a la parrilla, bacon, queso mozzarella, dulce de piña, tomate y lechuga.</p></div><span class="menu-price">15,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">La Ostia</p><p class="desc">Carne 100% ternera o pollo a la parrilla, bacon, pollo desmigado, queso, tomate y lechuga.</p></div><span class="menu-price">15,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">De Cabra</p><p class="desc">Carne 100% ternera o pollo a la parrilla, queso de cabra, cebolla caramelizada, bacon, tomate y lechuga.</p></div><span class="menu-price">15,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Hamburguesa vegetal vegana</p><p class="desc">Opción 100% vegana con base vegetal de la casa.</p></div><span class="menu-price">15,00 €</span></div>
+          </div>
+        </div>
+
+        <div id="p-bocadillos" class="menu-panel" role="tabpanel" aria-labelledby="t-bocadillos" hidden>
+          <p class="menu-note" style="text-align:left; margin-top:0; margin-bottom:1.5rem; font-style:normal; color:rgba(245,237,225,0.85);"><strong style="color:var(--c-gold)">10,00 €</strong> · Bocadillos servidos en pan crujiente.</p>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">I.T.V.</p><p class="desc">Pan crujiente con lomo de cerdo, bacon, queso, mayonesa de cebolla y huevo frito.</p></div><span class="menu-price">10,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Francés</p><p class="desc">Pan crujiente, queso de cabra, mix de lechuga, tomate, cebolla caramelizada con pasas y salsa Pedro Ximénez.</p></div><span class="menu-price">10,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Mexicano</p><p class="desc">Pan crujiente, queso mozzarella, pierna de cerdo desmechada y cocida a baja temperatura, guacamole, crema agria y jalapeños.</p></div><span class="menu-price">10,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Gordita de pollo</p><p class="desc">Pan crujiente, pollo a baja temperatura mezclado con queso cheddar, mayonesa y bacon.</p></div><span class="menu-price">10,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Pollo crocante</p><p class="desc">Pan crujiente, filete de pechuga crocante, huevo cocido, lechuga y tomate.</p></div><span class="menu-price">10,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Perrito sencillo</p><p class="desc">Pan abierto en mariposa, salchicha alemana, queso, bacon y salsas.</p></div><span class="menu-price">7,00 €</span></div>
+          </div>
+        </div>
+
+        <div id="p-postres" class="menu-panel" role="tabpanel" aria-labelledby="t-postres" hidden>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Arroz con leche</p></div><span class="menu-price">5,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Cuajada de oveja</p></div><span class="menu-price">5,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Coulant de chocolate</p></div><span class="menu-price">6,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Coulant de queso</p><p class="desc">Filadelfia y queso fresco, especialidad de la casa.</p></div><span class="menu-price">6,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Tarta de queso casera con frutos rojos</p></div><span class="menu-price">6,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Yogur con frutos rojos</p></div><span class="menu-price">6,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Torrija casera de pan brioche</p><p class="desc">Caramelizada y acompañada con helado.</p></div><span class="menu-price">6,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Helados</p></div><span class="menu-price">5,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Crema catalana</p></div><span class="menu-price">5,50 €</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="menu-note">En terraza, suplemento sobre los precios de carta. Disponemos de servicio especial de reparto a domicilio (envío gratis en pedidos superiores a 20 €). También pedidos para recoger en local.</p>
+    </div>
+  </section>
+
+  <section id="menus" aria-labelledby="menus-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Nuestros menús</p>
+        <h2 id="menus-title">Cada viernes <em>viajamos</em> a un país diferente</h2>
+        <p>Menús temáticos, sidrería, fin de semana, brunch y opciones concertadas para grupos y celebraciones.</p>
+      </div>
+      <div class="menus-grid">
+        <article class="menu-card featured">
+          <p class="menu-card-day">Solo los viernes</p>
+          <h3>Menú temático</h3>
+          <p class="menu-card-desc">Cada viernes viajamos a un país diferente. Platos para disfrutar y conocer mundo.</p>
+          <div class="menu-card-price">20 €<small>Mediodía · 25 € noche (con reserva)</small></div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">Sidrería completa</p>
+          <h3>Menú sidrería</h3>
+          <p class="menu-card-desc">Txorizo a la sidra, tortilla de bacalao, txuleta con patatas, queso con membrillo.</p>
+          <div class="menu-card-price">42 €<small>Por persona</small></div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">De lunes a jueves</p>
+          <h3>Menú del día</h3>
+          <p class="menu-card-desc">Mediodía. Primer plato, segundo plato, postre y bebida incluidos.</p>
+          <div class="menu-card-price">15 €<small>Por persona</small></div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">Sábado y domingo</p>
+          <h3>Menú fin de semana</h3>
+          <p class="menu-card-desc">Mediodía. Primer plato, segundo plato, postre y bebida incluidos.</p>
+          <div class="menu-card-price">30 €<small>Por persona</small></div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">Mañanas</p>
+          <h3>Brunch</h3>
+          <p class="menu-card-desc">Combinación completa de mañana para disfrutar sin prisas.</p>
+          <div class="menu-card-price">20 €<small>Por persona</small></div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">Grupos · Celebraciones</p>
+          <h3>Menús concertados</h3>
+          <p class="menu-card-desc">Menús por encargo para grupos. Comedor interior y terraza. Celebraciones y eventos. Consúltanos.</p>
+          <div class="menu-card-price">A consultar<small>Personalizado por grupo</small></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="vinos" class="menu-block" aria-labelledby="vinos-title" style="background:#241510;">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Carta de vinos</p>
+        <h2 id="vinos-title">Vinos de la <em>casa</em></h2>
+        <p>Selección de blancos, rosados y tintos para acompañar la mesa.</p>
+      </div>
+      <div class="menu-panels" style="display:grid; gap:var(--s-3); grid-template-columns:1fr;">
+        <div>
+          <h3 style="color:var(--c-gold); font-family:var(--f-display); font-size:1.4rem; margin-bottom:1rem; text-align:center; letter-spacing:0.05em;">Blancos</h3>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Batuta Airen Blanco</p></div><span class="menu-price">7,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Blanco Rueda</p></div><span class="menu-price">9,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Blanco Verdejo</p></div><span class="menu-price">9,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Bricos Albariño</p></div><span class="menu-price">14,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Camino de Castillo Verdejo</p></div><span class="menu-price">9,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Cava Codorniu Extra Brut</p></div><span class="menu-price">16,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Cava Comte Subirats</p></div><span class="menu-price">13,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Cavanza Onnay</p></div><span class="menu-price">11,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Champagne Henri Verlaine</p></div><span class="menu-price">35,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Champagne Moët Chandon</p></div><span class="menu-price">55,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Chardonnay El Rincón</p></div><span class="menu-price">12,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Rueda Viña Mayor Verdejo</p></div><span class="menu-price">12,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Señorío Real Rueda</p></div><span class="menu-price">9,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Sidra</p></div><span class="menu-price">4,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Txakoli Basa Lore</p></div><span class="menu-price">14,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Txakoli Lau Teillatu</p></div><span class="menu-price">10,50 €</span></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="color:var(--c-gold); font-family:var(--f-display); font-size:1.4rem; margin-bottom:1rem; text-align:center; letter-spacing:0.05em;">Rosados</h3>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Batuta Rosado</p></div><span class="menu-price">7,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Clarete Pleno</p></div><span class="menu-price">9,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Lambrusco</p></div><span class="menu-price">9,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Moscato Valmarone</p></div><span class="menu-price">9,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Rosado Alex Garnacha</p></div><span class="menu-price">11,00 €</span></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="color:var(--c-gold); font-family:var(--f-display); font-size:1.4rem; margin-bottom:1rem; text-align:center; letter-spacing:0.05em;">Tintos</h3>
+          <div class="menu-list">
+            <div class="menu-row"><div><p class="menu-item-name">Beronia Crianza</p></div><span class="menu-price">14,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Casa Crianza</p></div><span class="menu-price">12,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Crianza Algil</p></div><span class="menu-price">19,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Emilio Moro</p></div><span class="menu-price">36,00 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Fernández Pierola Crianza</p></div><span class="menu-price">18,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">La Planta Ribera Duero</p></div><span class="menu-price">15,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">La Poda</p></div><span class="menu-price">18,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">López de Haro</p></div><span class="menu-price">15,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Tinto Ramón Bilbao</p></div><span class="menu-price">18,50 €</span></div>
+            <div class="menu-row"><div><p class="menu-item-name">Vivanco Crianza</p></div><span class="menu-price">21,50 €</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cocteles" aria-labelledby="cocteles-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Coctelería</p>
+        <h2 id="cocteles-title">Nuestros <em>cócteles</em></h2>
+        <p>Clásicos de la casa preparados con producto seleccionado. Todos a 8,00 €.</p>
+      </div>
+      <div class="menus-grid">
+        <article class="menu-card">
+          <p class="menu-card-day">Clásico cubano</p>
+          <h3>Mojito</h3>
+          <p class="menu-card-desc">Lima, azúcar moreno, ron blanco y Schweppes.</p>
+          <div class="menu-card-price">8,00 €</div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">Tequila</p>
+          <h3>Margarita</h3>
+          <p class="menu-card-desc">Tequila, triple sec, zumo de lima o naranja.</p>
+          <div class="menu-card-price">8,00 €</div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">Crema</p>
+          <h3>Alexander</h3>
+          <p class="menu-card-desc">Licor de café, Baileys, azúcar y whisky.</p>
+          <div class="menu-card-price">8,00 €</div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">Peruano</p>
+          <h3>Pisco Sour</h3>
+          <p class="menu-card-desc">Pisco peruano, azúcar, lima. 40 % de alcohol.</p>
+          <div class="menu-card-price">8,00 €</div>
+        </article>
+        <article class="menu-card">
+          <p class="menu-card-day">Refrescante</p>
+          <h3>Destornillador</h3>
+          <p class="menu-card-desc">Zumo de naranja, vodka y angostura.</p>
+          <div class="menu-card-price">8,00 €</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria" aria-labelledby="gal-title" style="background:var(--c-surface-warm);">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Galería</p>
+        <h2 id="gal-title">El día a día en <em>Bakar</em></h2>
+        <p>Comedor, terraza, parrilla y los platos que salen de nuestra cocina.</p>
+      </div>
+      <div class="gallery">
+        <a href="img/gal-1.jpg" target="_blank" rel="noopener" class="tall"><img src="img/gal-1.jpg" alt="Comedor interior de Restaurante Bakar" loading="lazy"></a>
+        <a href="img/gal-3.jpg" target="_blank" rel="noopener"><img src="img/gal-3.jpg" alt="Detalle del comedor Bakar" loading="lazy"></a>
+        <a href="img/gal-5.jpg" target="_blank" rel="noopener"><img src="img/gal-5.jpg" alt="Espacio interior Bakar" loading="lazy"></a>
+        <a href="img/gal-8.jpg" target="_blank" rel="noopener"><img src="img/gal-8.jpg" alt="Vista del local" loading="lazy"></a>
+        <a href="img/gal-12.jpg" target="_blank" rel="noopener"><img src="img/gal-12.jpg" alt="Comedor Bakar" loading="lazy"></a>
+        <a href="img/gal-15.jpg" target="_blank" rel="noopener"><img src="img/gal-15.jpg" alt="Ambiente del restaurante" loading="lazy"></a>
+        <a href="img/gal-7.jpg" target="_blank" rel="noopener"><img src="img/gal-7.jpg" alt="Detalle del local Bakar" loading="lazy"></a>
+        <a href="img/menu-tematico.jpg" target="_blank" rel="noopener"><img src="img/menu-tematico.jpg" alt="Menú temático del viernes" loading="lazy"></a>
+        <a href="img/comedor.jpg" target="_blank" rel="noopener"><img src="img/comedor.jpg" alt="Vista interior del comedor" loading="lazy"></a>
+        <a href="img/hero-2.jpg" target="_blank" rel="noopener"><img src="img/hero-2.jpg" alt="Plato emblemático Bakar" loading="lazy"></a>
+        <a href="img/hero-3.jpg" target="_blank" rel="noopener"><img src="img/hero-3.jpg" alt="Cocina Bakar" loading="lazy"></a>
+        <a href="img/vinos.jpg" target="_blank" rel="noopener"><img src="img/vinos.jpg" alt="Carta de vinos" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="press" aria-label="Aparecemos en">
+    <div class="container">
+      <h3>Recomendado en</h3>
+      <ul class="press-logos">
+        <li>TripAdvisor Travelers' Choice 2020</li>
+        <li>The Fork</li>
+        <li>The Vegetarian</li>
+        <li>Gastronomía Turismo</li>
+        <li>Guru 2021</li>
+        <li>Gipuzkoa Burger</li>
+        <li>Ondojan</li>
+        <li>Noticias de Gipuzkoa</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contacto" aria-labelledby="contacto-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-kicker">Contacto</p>
+        <h2 id="contacto-title">Horario, ubicación y <em>reservas</em></h2>
+        <p>Estamos en pleno centro de Irun. Reserva por teléfono, WhatsApp o pásate sin cita.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.37 1.6.72 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.74a2 2 0 0 1 2.11-.45c.74.35 1.53.59 2.34.72A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div class="contact-text">
+              <strong>Teléfono</strong>
+              <p><a href="tel:+34943242148">943 24 21 48</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </span>
+            <div class="contact-text">
+              <strong>WhatsApp</strong>
+              <p><a href="https://wa.me/34688781484?text=Hola%2C%20quer%C3%ADa%20reservar%20mesa%20en%20Bakar">688 781 484</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div class="contact-text">
+              <strong>Ubicación</strong>
+              <p>Plaza Anzarán, 13<br>20301 Irun · Gipuzkoa</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <div class="contact-text">
+              <strong>Horario</strong>
+              <div class="schedule">
+                <div class="closed"><span>Lunes</span><strong>Descanso semanal</strong></div>
+                <div><span>Martes – Sábado</span><strong>09:00 – 00:00</strong></div>
+                <div><span>Domingo</span><strong>10:00 – 18:00</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps?q=Plaza+Anzaran+13,+20301+Irun,+Gipuzkoa&output=embed"
+            title="Mapa con la ubicación de Restaurante Bakar en Plaza Anzarán 13, Irun"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-brand">Restaurante Bakar · Irun</p>
+    <ul class="footer-social" aria-label="Redes sociales">
+      <li><a href="https://www.instagram.com/restaurantebakar/" aria-label="Instagram de Bakar" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a></li>
+      <li><a href="https://www.facebook.com/restaurantebakar" aria-label="Facebook de Bakar" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a></li>
+      <li><a href="https://maps.google.com/?cid=7148820429637556085" aria-label="Bakar en Google Maps" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </a></li>
+    </ul>
+    <p>© 2026 Restaurante Bakar · Plaza Anzarán 13, Irun · 943 24 21 48</p>
+  </div>
+</footer>
+
+<a class="fab-wa" href="https://wa.me/34688781484?text=Hola%2C%20quer%C3%ADa%20reservar%20mesa%20en%20Bakar" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function() {
+  // Drawer toggle
+  const drawer = document.getElementById('drawer');
+  const toggles = document.querySelectorAll('.menu-toggle');
+  const drawerLinks = document.querySelectorAll('[data-close-link]');
+  function openDrawer() { drawer.setAttribute('aria-hidden', 'false'); drawer.removeAttribute('inert'); document.body.style.overflow = 'hidden'; }
+  function closeDrawer() { drawer.setAttribute('aria-hidden', 'true'); drawer.setAttribute('inert', ''); document.body.style.overflow = ''; }
+  toggles.forEach(b => b.addEventListener('click', () => {
+    if (b.hasAttribute('data-close')) closeDrawer();
+    else openDrawer();
+  }));
+  drawerLinks.forEach(a => a.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  // Carta tabs
+  const tabs = document.querySelectorAll('.menu-tab');
+  const panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+      panels.forEach(p => p.setAttribute('hidden', ''));
+      tab.setAttribute('aria-selected', 'true');
+      const panelId = tab.getAttribute('aria-controls');
+      document.getElementById(panelId).removeAttribute('hidden');
+    });
+    tab.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { tabs[(i+1) % tabs.length].focus(); tabs[(i+1) % tabs.length].click(); }
+      if (e.key === 'ArrowLeft') { tabs[(i-1+tabs.length) % tabs.length].focus(); tabs[(i-1+tabs.length) % tabs.length].click(); }
+    });
+  });
+
+  // Show reserve btn on scroll (desktop)
+  const btnReserve = document.querySelector('.btn-reserve');
+  if (btnReserve && window.matchMedia('(min-width: 880px)').matches) {
+    window.addEventListener('scroll', () => {
+      btnReserve.style.display = window.scrollY > 400 ? 'inline-flex' : 'none';
+    }, { passive: true });
+  }
+})();
+</script>
+</body>
+</html>
