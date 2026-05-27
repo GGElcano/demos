@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desguaces y Grúas Bolumburu — Lemoa, Bizkaia</title>
+  <meta name="description" content="Desguace autorizado en Lemoa, Bizkaia. Tasamos tu coche gratis, venta de recambios, servicio de grúa y tramitación de bajas. Más de 30 años en el sector.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #ba1118;
+      --red-dark: #8a0d12;
+      --red-light: #e8151d;
+      --green: #78ac24;
+      --green-dark: #5f8a1c;
+      --dark: #0f0f0f;
+      --dark-card: #1a1a1a;
+      --dark-border: #2a2a2a;
+      --ink: #f0f0f0;
+      --ink-dim: #999;
+      --ink-muted: #666;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,15,15,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--dark-border);
+      padding: 0 2rem;
+      height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--ink-dim); text-decoration: none; font-size: .9rem;
+      font-weight: 500; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--red); color: #fff; border: none; padding: .6rem 1.4rem;
+      border-radius: 50px; font-weight: 600; font-size: .85rem; cursor: pointer;
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--red-light); }
+
+    .hamburger { display: none; background: none; border: none; color: var(--ink); font-size: 1.5rem; cursor: pointer; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 4rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(186,17,24,.15) 0%, transparent 60%),
+                  var(--dark);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+      background: linear-gradient(transparent, var(--dark));
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(120,172,36,.12); border: 1px solid rgba(120,172,36,.3);
+      padding: .4rem 1rem; border-radius: 50px; font-size: .8rem;
+      color: var(--green); font-weight: 600; margin-bottom: 1.5rem;
+    }
+    .hero-badge::before { content: '♻'; font-size: 1rem; }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800; line-height: 1.05; margin-bottom: 1.5rem;
+    }
+    .hero h1 .accent { color: var(--red); }
+    .hero p { font-size: 1.15rem; color: var(--ink-dim); max-width: 580px; margin: 0 auto 2.5rem; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: #fff; border: none; padding: .9rem 2rem;
+      border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer;
+      text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(186,17,24,.3); }
+    .btn-secondary {
+      background: transparent; color: var(--ink); border: 1px solid var(--dark-border);
+      padding: .9rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem;
+      cursor: pointer; text-decoration: none; transition: all .2s;
+    }
+    .btn-secondary:hover { border-color: var(--ink-dim); background: rgba(255,255,255,.05); }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; color: var(--red); font-size: .8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: .75rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; line-height: 1.15; margin-bottom: 1rem;
+    }
+    .section-desc { color: var(--ink-dim); font-size: 1.05rem; max-width: 600px; margin-bottom: 3rem; }
+
+    /* ─── SERVICIOS ─── */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .service-card {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: all .3s;
+    }
+    .service-card:hover { border-color: var(--red); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+    .service-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(186,17,24,.12); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.2rem;
+    }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+    .service-card p { color: var(--ink-dim); font-size: .92rem; line-height: 1.6; }
+
+    /* ─── INSTALACIONES ─── */
+    .facilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .facility-card {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: var(--radius); padding: 1.8rem; text-align: center;
+    }
+    .facility-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .facility-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+    .facility-card p { color: var(--ink-dim); font-size: .88rem; }
+
+    /* ─── FILOSOFIA ─── */
+    .philosophy {
+      background: linear-gradient(135deg, rgba(120,172,36,.08), rgba(186,17,24,.08));
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius); padding: 3.5rem; max-width: 900px; margin: 0 auto;
+    }
+    .philosophy blockquote {
+      font-size: 1.3rem; font-weight: 500; line-height: 1.7;
+      border-left: 4px solid var(--green); padding-left: 1.5rem;
+      color: var(--ink); margin-bottom: 1.5rem;
+    }
+    .philosophy .values { display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem; }
+    .philosophy .value-item { flex: 1; min-width: 200px; }
+    .philosophy .value-item h4 { color: var(--green); font-size: .85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: .3rem; }
+    .philosophy .value-item p { color: var(--ink-dim); font-size: .9rem; }
+
+    /* ─── RESEÑAS ─── */
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .review-card {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: var(--radius); padding: 1.8rem;
+    }
+    .review-stars { color: #f5a623; font-size: 1.1rem; margin-bottom: .8rem; }
+    .review-text { color: var(--ink-dim); font-size: .92rem; line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+    .review-author { font-weight: 600; font-size: .88rem; }
+    .review-source { color: var(--ink-muted); font-size: .8rem; }
+    .google-rating {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: var(--radius-sm); padding: 1.2rem 1.8rem; display: inline-flex;
+    }
+    .google-rating .score { font-size: 2.5rem; font-weight: 800; color: var(--ink); }
+    .google-rating .details { text-align: left; }
+    .google-rating .stars { color: #f5a623; font-size: 1.2rem; }
+    .google-rating .count { color: var(--ink-dim); font-size: .85rem; }
+
+    /* ─── FORMULARIO TASACION ─── */
+    #tasacion { background: var(--dark); }
+    .form-wrapper {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .form-info h2 { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; }
+    .form-info p { color: var(--ink-dim); font-size: 1.05rem; margin-bottom: 2rem; }
+    .form-perks { list-style: none; }
+    .form-perks li {
+      display: flex; align-items: center; gap: .8rem;
+      padding: .7rem 0; color: var(--ink-dim); font-size: .95rem;
+    }
+    .form-perks li::before {
+      content: '✓'; display: flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(120,172,36,.15); color: var(--green);
+      font-weight: 700; font-size: .8rem; flex-shrink: 0;
+    }
+    .form-card {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: var(--radius); padding: 2.5rem;
+    }
+    .form-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-size: .85rem; font-weight: 600; color: var(--ink-dim); margin-bottom: .4rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; background: var(--dark); border: 1px solid var(--dark-border);
+      border-radius: var(--radius-sm); padding: .8rem 1rem; color: var(--ink);
+      font-family: inherit; font-size: .95rem; transition: border-color .2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--red);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit {
+      width: 100%; background: var(--red); color: #fff; border: none;
+      padding: 1rem; border-radius: 50px; font-weight: 700; font-size: 1rem;
+      cursor: pointer; transition: all .2s; margin-top: .5rem;
+    }
+    .form-submit:hover { background: var(--red-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(186,17,24,.3); }
+
+    /* ─── UBICACION ─── */
+    .location-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .location-info { }
+    .location-info .address { font-size: 1.1rem; font-weight: 600; margin-bottom: .5rem; }
+    .location-info .detail { color: var(--ink-dim); font-size: .95rem; margin-bottom: .3rem; display: flex; align-items: center; gap: .5rem; }
+    .location-info .hours { margin-top: 1.5rem; }
+    .location-info .hours h4 { font-size: .85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--red); margin-bottom: .8rem; }
+    .hours-table { list-style: none; }
+    .hours-table li { display: flex; justify-content: space-between; padding: .4rem 0; border-bottom: 1px solid var(--dark-border); font-size: .92rem; }
+    .hours-table .day { color: var(--ink-dim); }
+    .hours-table .time { font-weight: 600; }
+    .map-container {
+      border-radius: var(--radius); overflow: hidden; border: 1px solid var(--dark-border);
+      height: 400px;
+    }
+    .map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.8) invert(0.92) contrast(0.9); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--dark-border); padding: 3rem 2rem; text-align: center;
+    }
+    footer .footer-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: .5rem; }
+    footer .footer-brand span { color: var(--red); }
+    footer p { color: var(--ink-muted); font-size: .85rem; }
+    footer .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin: 1rem 0; }
+    footer .footer-links a { color: var(--ink-dim); text-decoration: none; font-size: .9rem; }
+    footer .footer-links a:hover { color: var(--ink); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .form-wrapper, .location-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      section { padding: 4rem 1.5rem; }
+      .philosophy { padding: 2rem; }
+      .philosophy .values { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">BOLUMBURU<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#instalaciones">Instalaciones</a></li>
+      <li><a href="#filosofia">Filosofia</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+      <li><a href="#ubicacion">Ubicacion</a></li>
+    </ul>
+    <a href="#tasacion" class="nav-cta">Tasa tu coche</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Desguace autorizado — Gobierno Vasco</div>
+      <h1>Tu coche tiene <span class="accent">valor</span>.<br>Nosotros lo tasamos <span class="accent">gratis</span>.</h1>
+      <p>Mas de 30 anos reciclando vehiculos en Bizkaia. Recogida con grua, tramitacion de baja y la mejor tasacion para tu coche.</p>
+      <div class="hero-buttons">
+        <a href="#tasacion" class="btn-primary">📋 Solicitar tasacion gratuita</a>
+        <a href="tel:946312310" class="btn-secondary">📞 946 312 310</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="container">
+      <span class="section-label">Servicios</span>
+      <h2 class="section-title">Todo lo que necesitas, en un solo sitio</h2>
+      <p class="section-desc">Desde la tasacion de tu vehiculo hasta la venta de recambios de calidad. Nos encargamos de todo.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🚗</div>
+          <h3>Tasacion gratuita</h3>
+          <p>Valoramos tu vehiculo sin compromiso. Te damos el mejor precio del mercado y nos encargamos de la recogida con grua incluida.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📄</div>
+          <h3>Tramitacion de bajas</h3>
+          <p>Gestionamos toda la documentacion ante la DGT. Tu solo tienes que traer el coche — o lo recogemos nosotros.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Venta de recambios</h3>
+          <p>Miles de piezas revisadas y garantizadas: motores, cajas de cambio, carroceria, electricidad. Envio a toda Espana.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚛</div>
+          <h3>Servicio de grua</h3>
+          <p>Recogemos tu vehiculo donde este. Grua disponible para Bizkaia y alrededores. Rapido y sin complicaciones.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">♻️</div>
+          <h3>Reciclaje autorizado</h3>
+          <p>Centro autorizado para la descontaminacion y reciclaje de vehiculos. Cumplimos toda la normativa medioambiental.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🛞</div>
+          <h3>Neumaticos de ocasion</h3>
+          <p>Neumaticos de primeras marcas revisados y a precios imbatibles. Tambien neumaticos nuevos a precios de desguace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTALACIONES -->
+  <section id="instalaciones" style="background: rgba(255,255,255,.02);">
+    <div class="container">
+      <span class="section-label">Instalaciones</span>
+      <h2 class="section-title">Un desguace de nueva generacion</h2>
+      <p class="section-desc">Nuestras instalaciones en Lemoa estan preparadas para ofrecer un servicio profesional, limpio y eficiente.</p>
+      <div class="facilities-grid">
+        <div class="facility-card">
+          <div class="icon">🏭</div>
+          <h3>Nave principal</h3>
+          <p>Amplia nave cubierta para el despiece y almacenamiento de vehiculos protegidos de la intemperie.</p>
+        </div>
+        <div class="facility-card">
+          <div class="icon">🧪</div>
+          <h3>Zona de descontaminacion</h3>
+          <p>Area especifica para la extraccion segura de liquidos y materiales contaminantes segun normativa.</p>
+        </div>
+        <div class="facility-card">
+          <div class="icon">📦</div>
+          <h3>Almacen de recambios</h3>
+          <p>Sistema organizado de catalogacion de piezas para encontrar lo que necesitas en minutos.</p>
+        </div>
+        <div class="facility-card">
+          <div class="icon">🅿️</div>
+          <h3>Zona de vehiculos</h3>
+          <p>Amplio espacio exterior para vehiculos en proceso de despiece, accesible y ordenado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILOSOFIA -->
+  <section id="filosofia">
+    <div class="container">
+      <span class="section-label">Nuestra filosofia</span>
+      <h2 class="section-title">Mas que un desguace</h2>
+      <div class="philosophy">
+        <blockquote>
+          "Creemos que cada vehiculo tiene una segunda vida. Nuestro trabajo es darle esa oportunidad — reciclando con responsabilidad, ofreciendo piezas de calidad y tratando a cada cliente como nos gustaria que nos tratasen a nosotros."
+        </blockquote>
+        <div class="values">
+          <div class="value-item">
+            <h4>♻️ Compromiso medioambiental</h4>
+            <p>Centro autorizado por el Gobierno Vasco. Cada vehiculo se descontamina y recicla siguiendo los estandares mas exigentes.</p>
+          </div>
+          <div class="value-item">
+            <h4>🤝 Trato cercano</h4>
+            <p>Somos un equipo pequeno que conoce a sus clientes. Aqui no eres un numero — eres una persona con un coche que necesita solucion.</p>
+          </div>
+          <div class="value-item">
+            <h4>💯 Honestidad</h4>
+            <p>Precios claros, sin sorpresas. Si una pieza no esta en buen estado, te lo decimos. Si tu coche vale mas, te lo pagamos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPINIONES -->
+  <section id="opiniones" style="background: rgba(255,255,255,.02);">
+    <div class="container">
+      <span class="section-label">Opiniones</span>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+      <div class="google-rating">
+        <div class="score">3.9</div>
+        <div class="details">
+          <div class="stars">★★★★☆</div>
+          <div class="count">185 resenas en Google</div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Gran profesionalidad. Ibai me atendio de maravilla, encontro la pieza que necesitaba para mi BMW en menos de 30 minutos. Precio muy competitivo."</p>
+          <div class="review-author">Cliente verificado</div>
+          <div class="review-source">Google Maps</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Lleve mi coche para dar de baja y me lo gestionaron todo. Recogida con grua incluida y tramites de baja sin moverme de casa. Muy recomendable."</p>
+          <div class="review-author">Cliente verificado</div>
+          <div class="review-source">Google Maps</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Buen trato y precios justos. Fui a buscar un motor y me asesoraron genial. La pieza llego en perfecto estado. Repetire seguro."</p>
+          <div class="review-author">Cliente verificado</div>
+          <div class="review-source">Google Maps</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULARIO TASACION -->
+  <section id="tasacion">
+    <div class="container">
+      <div class="form-wrapper">
+        <div class="form-info">
+          <span class="section-label">Tasacion gratuita</span>
+          <h2>Descubre cuanto vale tu coche</h2>
+          <p>Rellena el formulario y te contactamos en menos de 24 horas con una valoracion sin compromiso. Si te interesa, nos encargamos de todo.</p>
+          <ul class="form-perks">
+            <li>Tasacion gratuita y sin compromiso</li>
+            <li>Recogida con grua incluida en Bizkaia</li>
+            <li>Tramitacion completa de la baja</li>
+            <li>Pago inmediato</li>
+            <li>Gestión en menos de 48 horas</li>
+          </ul>
+        </div>
+        <div class="form-card">
+          <h3>📋 Solicitar tasacion</h3>
+          <form action="mailto:desguace.bolumburu@gmail.com" method="post" enctype="text/plain">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+              </div>
+              <div class="form-group">
+                <label>Telefono</label>
+                <input type="tel" name="telefono" placeholder="600 000 000" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" placeholder="tu@email.com">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Marca y modelo</label>
+                <input type="text" name="vehiculo" placeholder="Ej: Seat Ibiza 1.4 TDI" required>
+              </div>
+              <div class="form-group">
+                <label>Ano</label>
+                <input type="number" name="ano" placeholder="2015" min="1980" max="2026">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Kilometros</label>
+                <input type="text" name="km" placeholder="Ej: 120.000 km">
+              </div>
+              <div class="form-group">
+                <label>Estado</label>
+                <select name="estado">
+                  <option value="">Selecciona...</option>
+                  <option value="funciona">Funciona correctamente</option>
+                  <option value="averiado">Averiado / no arranca</option>
+                  <option value="siniestro">Siniestro / golpe</option>
+                  <option value="sin-itv">Sin ITV / abandonado</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Comentarios (opcional)</label>
+              <textarea name="comentarios" placeholder="Cuentanos mas sobre el vehiculo..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Solicitar tasacion gratuita →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACION -->
+  <section id="ubicacion" style="background: rgba(255,255,255,.02);">
+    <div class="container">
+      <span class="section-label">Donde estamos</span>
+      <h2 class="section-title">Visitanos en Lemoa</h2>
+      <div class="location-wrapper">
+        <div class="location-info">
+          <p class="address">Barrio Zubiate, 14</p>
+          <p class="detail">📍 48330 Lemoa, Bizkaia</p>
+          <p class="detail">📞 <a href="tel:946312310" style="color: var(--ink); text-decoration: none;">946 312 310</a></p>
+          <p class="detail">📱 <a href="tel:638200479" style="color: var(--ink); text-decoration: none;">638 200 479</a></p>
+          <p class="detail">✉️ <a href="mailto:desguace.bolumburu@gmail.com" style="color: var(--ink); text-decoration: none;">desguace.bolumburu@gmail.com</a></p>
+          <div class="hours">
+            <h4>Horario</h4>
+            <ul class="hours-table">
+              <li><span class="day">Lunes a Viernes</span><span class="time">9:30 — 14:00</span></li>
+              <li><span class="day"></span><span class="time">15:00 — 18:30</span></li>
+              <li><span class="day">Sabado</span><span class="time">Cerrado</span></li>
+              <li><span class="day">Domingo</span><span class="time">Cerrado</span></li>
+            </ul>
+          </div>
+          <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <a href="https://www.facebook.com/Desguaces-Bolumburu-2350820385199099" target="_blank" style="color: var(--ink-dim); text-decoration: none; font-size: .9rem;">Facebook →</a>
+            <a href="https://www.instagram.com/desguacesbolumburu" target="_blank" style="color: var(--ink-dim); text-decoration: none; font-size: .9rem;">Instagram →</a>
+          </div>
+        </div>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.5!2d-2.731!3d43.189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4e8f5c0a9c3d%3A0x0!2sBarrio+Zubiate+14+Lemoa!5e0!3m2!1ses!2ses!4v1" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">BOLUMBURU<span>.</span></div>
+    <div class="footer-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#tasacion">Tasacion</a>
+      <a href="#ubicacion">Contacto</a>
+    </div>
+    <p>© 2026 Desguaces y Gruas Bolumburu S.L. — Lemoa, Bizkaia</p>
+    <p style="margin-top: .3rem; font-size: .75rem; color: var(--ink-muted);">Centro autorizado de tratamiento de vehiculos</p>
+  </footer>
+
+</body>
+</html>
