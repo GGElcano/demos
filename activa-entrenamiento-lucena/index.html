@@ -193,23 +193,32 @@
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.4rem; }
     .service-card {
       background: var(--dark-card); border: 1px solid var(--dark-border);
-      border-radius: var(--radius); padding: 2rem 1.8rem;
+      border-radius: var(--radius); padding: 0;
       transition: all .3s; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
     .service-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: var(--accent); transform: scaleX(0); transform-origin: left;
-      transition: transform .35s;
+      transition: transform .35s; z-index: 2;
     }
     .service-card:hover { border-color: rgba(132,204,22,.4); transform: translateY(-4px); }
     .service-card:hover::before { transform: scaleX(1); }
-    .service-icon {
-      width: 50px; height: 50px; border-radius: 14px;
-      background: rgba(132,204,22,.12);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.3rem; color: var(--accent);
+    .card-img-wrap {
+      position: relative; width: 100%; aspect-ratio: 7/5;
+      overflow: hidden; background: var(--dark-soft);
     }
-    .service-icon svg { width: 26px; height: 26px; }
+    .card-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(15,15,17,.55) 100%);
+      pointer-events: none;
+    }
+    .card-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform .5s ease;
+    }
+    .service-card:hover .card-img-wrap img { transform: scale(1.04); }
+    .service-card-body { padding: 1.5rem 1.6rem 1.8rem; }
     .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: .55rem; letter-spacing: -.01em; }
     .service-card p { color: var(--ink-dim); font-size: .94rem; line-height: 1.6; }
 
@@ -601,24 +610,40 @@
       <p class="section-desc">Aqui no hay maquinas anonimas ni sales abarrotadas. Hay un entrenador, un plan y un grupo pequeno que te empuja.</p>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon"><i data-lucide="user"></i></div>
-          <h3>Entrenamiento personal</h3>
-          <p>Individual, en pareja o trio. Plan a medida con objetivos claros y seguimiento real de cada sesion.</p>
+          <div class="card-img-wrap">
+            <img src="img/servicio-entrenamiento-personal.jpg" alt="Entrenamiento personal individual con entrenador" loading="lazy" width="700" height="500">
+          </div>
+          <div class="service-card-body">
+            <h3>Entrenamiento personal</h3>
+            <p>Individual, en pareja o trio. Plan a medida con objetivos claros y seguimiento real de cada sesion.</p>
+          </div>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i data-lucide="users"></i></div>
-          <h3>Grupos reducidos</h3>
-          <p>Maximo 10 personas por sesion. Entrenamiento funcional con la atencion personal que un gimnasio no te puede dar.</p>
+          <div class="card-img-wrap">
+            <img src="img/servicio-grupos-reducidos.jpg" alt="Grupo reducido entrenando con mancuernas" loading="lazy" width="700" height="500">
+          </div>
+          <div class="service-card-body">
+            <h3>Grupos reducidos</h3>
+            <p>Maximo 10 personas por sesion. Entrenamiento funcional con la atencion personal que un gimnasio no te puede dar.</p>
+          </div>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i data-lucide="activity"></i></div>
-          <h3>Pilates</h3>
-          <p>Clases por nivel, en grupo o personalizadas. Mejora tu movilidad, postura y core con tecnica de verdad.</p>
+          <div class="card-img-wrap">
+            <img src="img/servicio-pilates.jpg" alt="Clase de pilates con reformer" loading="lazy" width="700" height="500">
+          </div>
+          <div class="service-card-body">
+            <h3>Pilates</h3>
+            <p>Clases por nivel, en grupo o personalizadas. Mejora tu movilidad, postura y core con tecnica de verdad.</p>
+          </div>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i data-lucide="heart-pulse"></i></div>
-          <h3>Clases colectivas</h3>
-          <p>Cardio, fuerza y flexibilidad. Para los que quieren entrenar sin pensar — solo presentarse y darlo todo.</p>
+          <div class="card-img-wrap">
+            <img src="img/servicio-clases-colectivas.jpg" alt="Clase colectiva de estiramientos y fuerza" loading="lazy" width="700" height="500">
+          </div>
+          <div class="service-card-body">
+            <h3>Clases colectivas</h3>
+            <p>Cardio, fuerza y flexibilidad. Para los que quieren entrenar sin pensar — solo presentarse y darlo todo.</p>
+          </div>
         </div>
       </div>
     </div>

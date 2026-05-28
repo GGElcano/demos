@@ -274,25 +274,40 @@
     #oposiciones { background: var(--bg-soft); }
     .opos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: var(--max); margin: 0 auto; }
     .opo-card {
-      background: #fff; border-radius: var(--radius); padding: 2rem;
+      background: #fff; border-radius: var(--radius); padding: 0;
       border: 1px solid var(--border);
       transition: all .3s ease; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
+    .opo-card > h3, .opo-card > p.lead, .opo-card > ul { padding-left: 2rem; padding-right: 2rem; }
+    .opo-card > h3 { padding-top: 1.5rem; }
+    .opo-card > ul { padding-bottom: 2rem; }
     .opo-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--primary-light));
       transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+      z-index: 2;
     }
     .opo-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(15,23,42,.08); border-color: transparent; }
     .opo-card:hover::before { transform: scaleX(1); }
     .opo-card.accent::before { background: linear-gradient(90deg, var(--accent), var(--lime)); }
-    .opo-icon {
-      width: 56px; height: 56px; border-radius: 14px;
-      background: linear-gradient(135deg, rgba(30,64,175,.12), rgba(59,130,246,.12));
-      display: grid; place-items: center; margin-bottom: 1.5rem;
-      font-size: 1.7rem;
+    .card-img-wrap {
+      position: relative; width: 100%; aspect-ratio: 7 / 4;
+      overflow: hidden; background: var(--bg-soft);
     }
-    .opo-card.accent .opo-icon { background: linear-gradient(135deg, rgba(249,115,22,.12), rgba(132,204,22,.12)); }
+    .card-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .5s ease;
+    }
+    .opo-card:hover .card-img-wrap img { transform: scale(1.04); }
+    .card-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(30,64,175,0) 55%, rgba(15,23,42,.18) 100%);
+      pointer-events: none;
+    }
+    .opo-card.accent .card-img-wrap::after {
+      background: linear-gradient(180deg, rgba(249,115,22,0) 55%, rgba(15,23,42,.18) 100%);
+    }
     .opo-card h3 {
       font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.25rem;
       margin-bottom: .75rem; color: var(--ink);
@@ -822,7 +837,9 @@
     <div class="opos-grid">
 
       <div class="opo-card" data-aos="fade-up">
-        <div class="opo-icon">🎓</div>
+        <div class="card-img-wrap">
+          <img src="img/oposicion-educacion.jpg" alt="Oposiciones de Educación — Magisterio y Secundaria" loading="lazy" width="700" height="500">
+        </div>
         <h3>Educación</h3>
         <p class="lead">Magisterio y Secundaria: programación, supuestos prácticos y prueba oral con tribunal simulado.</p>
         <ul>
@@ -834,7 +851,9 @@
       </div>
 
       <div class="opo-card accent" data-aos="fade-up" data-aos-delay="100">
-        <div class="opo-icon">⚕️</div>
+        <div class="card-img-wrap">
+          <img src="img/oposicion-sanidad.jpg" alt="Oposiciones de Sanidad SESCAM — Celador, TCAE y Auxiliar Administrativo Sanitario" loading="lazy" width="700" height="500">
+        </div>
         <h3>Sanidad SESCAM</h3>
         <p class="lead">Preparación específica para las plazas convocadas por el Servicio de Salud de Castilla-La Mancha.</p>
         <ul>
@@ -846,7 +865,9 @@
       </div>
 
       <div class="opo-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="opo-icon">📋</div>
+        <div class="card-img-wrap">
+          <img src="img/oposicion-administracion.jpg" alt="Oposiciones de Administración — Auxiliar Administrativo del Estado, JCCM y Correos" loading="lazy" width="700" height="500">
+        </div>
         <h3>Administración</h3>
         <p class="lead">Estado y JCCM. Material en formato esquemas + tests adaptados al estilo de cada convocatoria.</p>
         <ul>
@@ -858,7 +879,9 @@
       </div>
 
       <div class="opo-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="opo-icon">🛡️</div>
+        <div class="card-img-wrap">
+          <img src="img/oposicion-fuerzas.jpg" alt="Oposiciones de Fuerzas y Cuerpos de Seguridad" loading="lazy" width="700" height="500">
+        </div>
         <h3>Fuerzas y Cuerpos</h3>
         <p class="lead">Preparación inicial para las oposiciones de seguridad pública. Asesoramiento sobre requisitos físicos.</p>
         <ul>

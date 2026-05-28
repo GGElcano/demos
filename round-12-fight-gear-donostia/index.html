@@ -300,7 +300,6 @@
       background: var(--bg-2);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 2rem 1.4rem;
       text-align: center;
       transition: all .3s ease;
       position: relative;
@@ -309,7 +308,8 @@
     .disciplina::before {
       content: ''; position: absolute; inset: 0;
       background: linear-gradient(135deg, transparent 0%, rgba(220,38,38,.08) 100%);
-      opacity: 0; transition: opacity .3s;
+      opacity: 0; transition: opacity .3s; pointer-events: none;
+      z-index: 2;
     }
     .disciplina:hover {
       transform: translateY(-6px);
@@ -317,26 +317,35 @@
       box-shadow: 0 20px 50px rgba(0,0,0,.5);
     }
     .disciplina:hover::before { opacity: 1; }
-    .disciplina .icon-wrap {
-      width: 60px; height: 60px;
-      background: rgba(220,38,38,.12);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.2rem;
-      color: var(--red);
+    .disciplina .card-img-wrap {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--bg-3);
+      position: relative;
+    }
+    .disciplina .card-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,.55) 100%);
+      pointer-events: none;
+    }
+    .disciplina .card-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s ease;
+      filter: saturate(.95) contrast(1.05);
+    }
+    .disciplina:hover .card-img-wrap img { transform: scale(1.06); }
+    .disciplina .card-body {
+      padding: 1.2rem 1.4rem 1.6rem;
       position: relative; z-index: 1;
     }
-    .disciplina .icon-wrap svg { width: 30px; height: 30px; stroke-width: 2; }
     .disciplina h3 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.4rem; letter-spacing: .04em;
       margin-bottom: .3rem; text-transform: uppercase;
-      position: relative; z-index: 1;
     }
     .disciplina p {
       color: var(--ink-muted); font-size: .82rem;
       text-transform: uppercase; letter-spacing: .06em;
-      position: relative; z-index: 1;
     }
 
     /* ───── WHY ───── */
@@ -818,34 +827,58 @@
       </div>
       <div class="disciplinas-grid">
         <div class="disciplina reveal">
-          <div class="icon-wrap"><i data-lucide="dumbbell"></i></div>
-          <h3>Boxeo</h3>
-          <p>Guantes · Vendas · Cascos</p>
+          <div class="card-img-wrap">
+            <img src="img/disc-boxeo.jpg" alt="Boxeo — guantes y entrenamiento" loading="lazy" width="700" height="525">
+          </div>
+          <div class="card-body">
+            <h3>Boxeo</h3>
+            <p>Guantes · Vendas · Cascos</p>
+          </div>
         </div>
         <div class="disciplina reveal">
-          <div class="icon-wrap"><i data-lucide="flame"></i></div>
-          <h3>Muay Thai</h3>
-          <p>Espinilleras · Shorts · Cuerdas</p>
+          <div class="card-img-wrap">
+            <img src="img/disc-muaythai.jpg" alt="Muay Thai — patadas y rodillas" loading="lazy" width="700" height="525">
+          </div>
+          <div class="card-body">
+            <h3>Muay Thai</h3>
+            <p>Espinilleras · Shorts · Cuerdas</p>
+          </div>
         </div>
         <div class="disciplina reveal">
-          <div class="icon-wrap"><i data-lucide="swords"></i></div>
-          <h3>MMA</h3>
-          <p>Guantillas · Rashguards · Bucales</p>
+          <div class="card-img-wrap">
+            <img src="img/disc-mma.jpg" alt="MMA — combate y guantillas" loading="lazy" width="700" height="525">
+          </div>
+          <div class="card-body">
+            <h3>MMA</h3>
+            <p>Guantillas · Rashguards · Bucales</p>
+          </div>
         </div>
         <div class="disciplina reveal">
-          <div class="icon-wrap"><i data-lucide="shield"></i></div>
-          <h3>BJJ</h3>
-          <p>Gis · Cinturones · Rash</p>
+          <div class="card-img-wrap">
+            <img src="img/disc-bjj.jpg" alt="BJJ — Brazilian Jiu Jitsu en gi" loading="lazy" width="700" height="525">
+          </div>
+          <div class="card-body">
+            <h3>BJJ</h3>
+            <p>Gis · Cinturones · Rash</p>
+          </div>
         </div>
         <div class="disciplina reveal">
-          <div class="icon-wrap"><i data-lucide="zap"></i></div>
-          <h3>Kickboxing</h3>
-          <p>Guantes · Botines · Protecciones</p>
+          <div class="card-img-wrap">
+            <img src="img/disc-kickboxing.jpg" alt="Kickboxing — entrenamiento de patadas" loading="lazy" width="700" height="525">
+          </div>
+          <div class="card-body">
+            <h3>Kickboxing</h3>
+            <p>Guantes · Botines · Protecciones</p>
+          </div>
         </div>
         <div class="disciplina reveal">
-          <div class="icon-wrap"><i data-lucide="target"></i></div>
-          <h3>Judo</h3>
-          <p>Judogis · Cinturones · Bolsas</p>
+          <div class="card-img-wrap">
+            <img src="img/disc-judo.jpg" alt="Judo — proyección en tatami" loading="lazy" width="700" height="525">
+          </div>
+          <div class="card-body">
+            <h3>Judo</h3>
+            <p>Judogis · Cinturones · Bolsas</p>
+          </div>
         </div>
       </div>
     </div>
@@ -918,8 +951,8 @@
         </article>
 
         <article class="producto reveal">
-          <div class="producto-img">
-            <div class="icon-placeholder"><i data-lucide="hand"></i></div>
+          <div class="producto-img has-photo">
+            <img src="img/prod-guantes-leone.jpg" alt="Guantes de boxeo Leone Authentic 2" loading="lazy">
           </div>
           <div class="producto-body">
             <span class="producto-cat">Guantes</span>
@@ -940,8 +973,8 @@
         </article>
 
         <article class="producto reveal">
-          <div class="producto-img">
-            <div class="icon-placeholder"><i data-lucide="shield-half"></i></div>
+          <div class="producto-img has-photo">
+            <img src="img/prod-casco-mexican.jpg" alt="Casco de boxeo Regium estilo mexicano" loading="lazy">
           </div>
           <div class="producto-body">
             <span class="producto-cat">Protecciones</span>
@@ -951,8 +984,8 @@
         </article>
 
         <article class="producto reveal">
-          <div class="producto-img">
-            <div class="icon-placeholder"><i data-lucide="footprints"></i></div>
+          <div class="producto-img has-photo">
+            <img src="img/prod-botines.jpg" alt="Botines de boxeo Charlie Ring Pro" loading="lazy">
           </div>
           <div class="producto-body">
             <span class="producto-cat">Calzado</span>
@@ -962,9 +995,9 @@
         </article>
 
         <article class="producto reveal">
-          <div class="producto-img">
+          <div class="producto-img has-photo">
             <span class="producto-badge">BJJ</span>
-            <div class="icon-placeholder"><i data-lucide="shirt"></i></div>
+            <img src="img/prod-gi-bjj.jpg" alt="Gi de Brazilian Jiu Jitsu Manto Ruinism" loading="lazy">
           </div>
           <div class="producto-body">
             <span class="producto-cat">Gi BJJ</span>
@@ -974,8 +1007,8 @@
         </article>
 
         <article class="producto reveal">
-          <div class="producto-img">
-            <div class="icon-placeholder"><i data-lucide="bandage"></i></div>
+          <div class="producto-img has-photo">
+            <img src="img/prod-vendas.jpg" alt="Vendas de boxeo Regium 4,5 metros" loading="lazy">
           </div>
           <div class="producto-body">
             <span class="producto-cat">Vendajes</span>
@@ -985,8 +1018,8 @@
         </article>
 
         <article class="producto reveal">
-          <div class="producto-img">
-            <div class="icon-placeholder"><i data-lucide="award"></i></div>
+          <div class="producto-img has-photo">
+            <img src="img/prod-cinturon-bjj.jpg" alt="Cinturón de Brazilian Jiu Jitsu Fumetsu Icon" loading="lazy">
           </div>
           <div class="producto-body">
             <span class="producto-cat">Cinturones</span>
