@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tu Mensajería — Mensajería urgente en tu ciudad</title>
+<meta name="description" content="Tu Mensajería: mensajería y paquetería de última milla con base en tu ciudad, tu provincia. Reparto en el mismo día por tu comarca. Ágiles, trazables y honestos.">
+<meta name="theme-color" content="#0a0a0a">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   PLANTILLA "mensajeria" — startup logística (negro + lima eléctrico)
+   Paleta inspirada en empresas tech de logística (Glovo/Wolt/Stuart).
+   Tipografía: Space Grotesk (display) + Inter (body) + JetBrains Mono.
+   ============================================================ */
+
+:root {
+  --bg:        #0a0a0a;
+  --bg-soft:   #111111;
+  --cream:     #f4f4f0;
+  --cream-2:   #ffffff;
+  --ink:       #0a0a0a;
+  --ink-2:     #1e1e1e;
+  --muted:     #6a6a6a;
+  --muted-d:   #9a9a9a;
+  --line:      rgba(255,255,255,.08);
+  --line-l:    rgba(0,0,0,.08);
+
+  --accent:    #d4ff3a;          /* lima eléctrico */
+  --accent-2:  #b8e22d;
+  --accent-d:  #1a1a05;          /* texto sobre accent */
+
+  --radius:    12px;
+  --radius-lg: 22px;
+  --shadow-1:  0 1px 2px rgba(0,0,0,.05), 0 10px 30px -10px rgba(0,0,0,.15);
+  --shadow-2:  0 40px 80px -30px rgba(0,0,0,.5);
+
+  --container: 1200px;
+  --pad:       28px;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body:    "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+a   { color: inherit; text-decoration: none; }
+
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 var(--pad); }
+
+/* ===== Typography ===== */
+h1,h2,h3,h4,h5 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; margin: 0 0 .4em; color: var(--ink); }
+h2 { font-size: clamp(30px, 4.4vw, 52px); line-height: 1.05; }
+h3 { font-size: 20px; line-height: 1.25; }
+h4 { font-size: 13px; }
+p  { margin: 0 0 1em; color: var(--ink-2); }
+
+.display { font-family: var(--font-display); font-weight: 600; font-size: clamp(44px, 7vw, 92px); line-height: .96; letter-spacing: -0.035em; color: #fff; margin: 18px 0 22px; }
+
+.hl { color: var(--accent); position: relative; display: inline-block; }
+
+.mono   { font-family: var(--font-mono); letter-spacing: 0; }
+.small  { font-size: 12px; }
+.micro  { font-size: 12.5px; margin-top: 14px; }
+.white  { color: #fff; }
+.muted  { color: var(--muted); }
+.muted-light { color: rgba(255,255,255,.65); }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px; border-radius: 10px;
+  font-family: var(--font-display); font-weight: 600; font-size: 14.5px; letter-spacing: -0.005em;
+  border: 1.5px solid transparent; cursor: pointer;
+  transition: transform .15s, background .18s, color .18s, border-color .18s, box-shadow .18s;
+  white-space: nowrap;
+}
+.btn:hover  { transform: translateY(-1px); }
+.btn-sm     { padding: 9px 14px; font-size: 13px; border-radius: 8px; }
+.btn-lg     { padding: 16px 26px; font-size: 15.5px; }
+.btn-block  { width: 100%; justify-content: center; }
+.btn-accent       { background: var(--accent); color: var(--accent-d); box-shadow: 0 8px 24px -10px rgba(212,255,58,.7); }
+.btn-accent:hover { background: var(--accent-2); }
+.btn-ghost { background: transparent; border-color: rgba(255,255,255,.3); color: #fff; }
+.btn-ghost:hover { background: rgba(255,255,255,.08); border-color: #fff; }
+.btn-outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
+.btn-outline-light:hover { background: #fff; color: var(--ink); border-color: #fff; }
+
+/* ===== Header ===== */
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 60; background: transparent; transition: background .25s, backdrop-filter .25s, border-color .25s; border-bottom: 1px solid transparent; }
+.site-header.scrolled { background: rgba(10,10,10,.78); backdrop-filter: saturate(160%) blur(14px); border-bottom-color: rgba(255,255,255,.06); }
+.header-inner { display: flex; align-items: center; gap: 28px; padding-top: 14px; padding-bottom: 14px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.brand-mark { width: 32px; height: 32px; background: var(--accent); color: var(--accent-d); font-family: var(--font-display); font-weight: 700; font-size: 18px; display: grid; place-items: center; border-radius: 8px; }
+.brand-text { font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: #fff; }
+.brand-dot  { color: var(--accent); }
+.nav { display: flex; gap: 28px; margin-left: auto; }
+.nav a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.75); position: relative; padding: 6px 0; transition: color .2s; }
+.nav a:hover { color: var(--accent); }
+.header-cta { flex: 0 0 auto; }
+.burger { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
+.burger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; transition: transform .2s; }
+
+/* ===== Hero ===== */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding: 140px 0 80px; overflow: hidden; color: #fff; background: var(--bg); }
+.hero-media { position: absolute; inset: 0; z-index: 0; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; filter: saturate(.85) contrast(1.05) brightness(.95); animation: heroZoom 22s ease-out infinite alternate; }
+@keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
+.hero-overlay { position: absolute; inset: 0; background:
+    linear-gradient(180deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,.4) 40%, rgba(10,10,10,.95) 100%),
+    linear-gradient(100deg, rgba(10,10,10,.85) 0%, rgba(10,10,10,0) 55%); }
+.hero-content { position: relative; z-index: 2; width: 100%; }
+.hero-grid { display: grid; grid-template-columns: 1.4fr .8fr; gap: 60px; align-items: end; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15); font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .04em; color: #fff; backdrop-filter: blur(6px); }
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); position: relative; }
+.pulse::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: pulseDot 1.8s ease-out infinite; }
+@keyframes pulseDot { 0% { opacity: .8; transform: scale(1); } 100% { opacity: 0; transform: scale(3); } }
+.lead { font-size: clamp(16px, 1.4vw, 18.5px); max-width: 560px; color: rgba(255,255,255,.85); margin-bottom: 32px; }
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(14px); border-radius: var(--radius-lg); padding: 28px; }
+.hero-card-head { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 500; color: rgba(255,255,255,.7); margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(212,255,58,.18); }
+.hero-stats { display: flex; flex-direction: column; gap: 18px; margin-bottom: 24px; }
+.hero-stats > div { display: flex; flex-direction: column; gap: 2px; }
+.hero-stats strong { font-size: 30px; font-weight: 700; color: #fff; line-height: 1; }
+.hero-stats span { font-size: 12.5px; color: rgba(255,255,255,.6); line-height: 1.4; }
+.hero-card-cta { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 600; font-size: 13.5px; color: var(--accent); border-top: 1px dashed rgba(255,255,255,.12); padding-top: 16px; width: 100%; justify-content: space-between; }
+.hero-card-cta:hover { color: #fff; }
+
+/* ===== Ticker ===== */
+.ticker { background: var(--accent); color: var(--accent-d); padding: 14px 0; overflow: hidden; }
+.ticker-track { display: inline-flex; gap: 24px; align-items: center; white-space: nowrap; font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: -.005em; animation: ticker 40s linear infinite; }
+.ticker-track i { font-style: normal; font-size: 8px; color: var(--accent-d); opacity: .5; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ===== Sections ===== */
+.section { padding: 110px 0; }
+.section-alt   { background: var(--cream-2); }
+.section-cream { background: var(--cream); }
+.section-dark  { background: var(--bg); color: #fff; }
+.section-dark h2, .section-dark h3, .section-dark h4 { color: #fff; }
+.section-head { max-width: 720px; margin: 0 auto 60px; text-align: center; }
+.section-head.left { margin-left: 0; text-align: left; }
+.section-head p { font-size: 17px; color: var(--muted); }
+.kicker { display: inline-block; font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: .05em; color: var(--ink); margin-bottom: 18px; }
+.kicker.accent { color: var(--accent); }
+
+/* ===== Services ===== */
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.service { position: relative; background: var(--cream-2); border: 1px solid var(--line-l); border-radius: var(--radius-lg); padding: 30px; transition: transform .25s, border-color .25s, box-shadow .25s; }
+.service:hover { transform: translateY(-4px); border-color: var(--ink); box-shadow: var(--shadow-1); }
+.service-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 22px; }
+.service-num { font-size: 12px; color: var(--muted); font-weight: 700; }
+.service-ic { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; background: var(--cream); color: var(--ink); border: 1px solid var(--line-l); }
+.service-ic svg { width: 22px; height: 22px; }
+.service h3 { margin-bottom: 8px; }
+.service p  { font-size: 14.5px; color: var(--muted); margin: 0 0 18px; }
+.service-tag { display: inline-block; font-family: var(--font-mono); font-size: 11.5px; padding: 5px 9px; background: var(--ink); color: var(--accent); border-radius: 6px; }
+.service-feat { background: var(--ink); color: #fff; border: 0; display: flex; flex-direction: column; }
+.service-feat h3 { color: #fff; }
+.service-feat p  { color: rgba(255,255,255,.7); flex: 1; }
+.service-feat .service-num { color: var(--accent); font-size: 32px; line-height: 1; }
+.link-arrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--accent); padding-top: 8px; }
+.link-arrow:hover svg { transform: translateX(4px); }
+.link-arrow svg { transition: transform .2s ease; }
+
+/* ===== CTA band ===== */
+.cta-band { background: var(--ink); color: #fff; padding: 70px 0; border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05); }
+.cta-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+.cta-actions { display: flex; flex-direction: column; gap: 12px; }
+.cta-actions .btn { justify-content: center; }
+
+/* ===== Process ===== */
+.process { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.process li { position: relative; padding: 28px 22px; background: var(--cream-2); border: 1px solid var(--line-l); border-radius: var(--radius-lg); }
+.process li::before { content: ""; position: absolute; top: 0; left: 28px; right: 28px; height: 3px; background: var(--accent); border-radius: 0 0 3px 3px; }
+.step-num { display: inline-block; font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+.process h3 { margin-bottom: 8px; font-size: 18px; }
+.process p  { margin: 0; font-size: 14px; color: var(--muted); }
+
+/* ===== Audiences ===== */
+.audiences { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.aud { display: grid; grid-template-columns: 200px 1fr; background: var(--cream-2); border: 1px solid var(--line-l); border-radius: var(--radius-lg); overflow: hidden; transition: transform .25s, box-shadow .25s; }
+.aud:hover { transform: translateY(-3px); box-shadow: var(--shadow-1); }
+.aud-media { overflow: hidden; }
+.aud-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.aud:hover .aud-media img { transform: scale(1.06); }
+.aud-body { padding: 24px; display: flex; flex-direction: column; justify-content: center; }
+.aud h3 { margin-bottom: 6px; font-size: 18px; }
+.aud p  { margin: 0; font-size: 14px; color: var(--muted); }
+
+/* ===== Split / Cobertura ===== */
+.split { display: grid; grid-template-columns: 1.3fr 1fr; gap: 70px; align-items: start; }
+.coverage { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 8px; max-width: 540px; }
+.coverage li { font-family: var(--font-mono); font-size: 12.5px; padding: 8px 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 999px; color: rgba(255,255,255,.85); }
+.coverage-card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: 28px; position: sticky; top: 100px; }
+.cc-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px dashed rgba(255,255,255,.1); }
+.cc-row:last-of-type { border-bottom: 0; }
+.cc-label { font-size: 12.5px; color: rgba(255,255,255,.75); }
+.cc-value { font-size: 14px; font-weight: 700; }
+.cc-value.accent { color: var(--accent); }
+.cc-divider { height: 1px; background: rgba(255,255,255,.12); margin: 14px 0; }
+.cc-pricing { display: flex; align-items: baseline; gap: 10px; padding: 14px 0 22px; }
+.cc-pricing .small { color: rgba(255,255,255,.65); }
+.price { font-size: 38px; font-weight: 700; color: #fff; line-height: 1; }
+
+/* ===== Gallery ===== */
+.gallery { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 200px; gap: 14px; }
+.gallery .g { overflow: hidden; border-radius: var(--radius); position: relative; }
+.gallery .g img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.gallery .g:hover img { transform: scale(1.06); }
+.g-1 { grid-column: span 2; grid-row: span 2; }
+.g-2 { grid-column: span 4; }
+.g-3 { grid-column: span 2; }
+.g-4 { grid-column: span 2; }
+.g-5 { grid-column: span 6; grid-row: span 1; max-height: 240px; }
+.g-5 img { object-position: center 45%; }
+
+/* ===== Contact ===== */
+.contact-list { list-style: none; padding: 0; margin: 28px 0; display: grid; gap: 16px; }
+.contact-list li { display: flex; gap: 14px; align-items: flex-start; }
+.contact-list .ci { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 10px; background: var(--cream-2); border: 1px solid var(--line-l); display: grid; place-items: center; color: var(--ink); }
+.contact-list .ci svg { width: 18px; height: 18px; }
+.contact-list small { display: block; font-size: 11px; color: var(--muted); margin-bottom: 2px; }
+.contact-list a { color: var(--ink); font-weight: 600; font-size: 15.5px; }
+.contact-list a:hover { border-bottom: 1px solid var(--accent); }
+
+.hours-card { background: var(--cream-2); border: 1px solid var(--line-l); border-radius: var(--radius-lg); padding: 24px 26px; margin-top: 24px; }
+.hours-card h4 { margin: 0 0 12px; font-size: 11px; color: var(--muted); }
+.hours { width: 100%; border-collapse: collapse; }
+.hours td { padding: 11px 0; border-bottom: 1px solid var(--line-l); font-size: 14px; font-variant-numeric: tabular-nums; }
+.hours tr:last-child td { border-bottom: 0; }
+.hours td:first-child { font-weight: 500; }
+.hours td:last-child  { text-align: right; color: var(--ink-2); font-family: var(--font-mono); }
+.hours .closed { color: var(--muted); font-family: var(--font-mono); }
+.hours tr.horario-hoy td { background: var(--accent); color: var(--accent-d); }
+.hours tr.horario-hoy td:first-child { font-weight: 700; padding-left: 10px; }
+.hours tr.horario-hoy td:last-child  { padding-right: 10px; color: var(--accent-d); }
+.hours tr.horario-hoy .closed { color: var(--accent-d); }
+
+/* ===== Contact form ===== */
+.contact-form { background: var(--ink); color: #fff; border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-2); }
+.form-head { margin-bottom: 22px; }
+.form-tag { display: inline-block; font-size: 11px; padding: 5px 10px; background: rgba(212,255,58,.12); color: var(--accent); border-radius: 6px; margin-bottom: 10px; }
+.contact-form h3 { color: #fff; margin: 0; }
+.contact-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.contact-form label { display: block; margin-bottom: 12px; }
+.contact-form span { display: block; font-size: 11px; color: rgba(255,255,255,.6); margin-bottom: 6px; }
+.contact-form input, .contact-form select, .contact-form textarea {
+  width: 100%; padding: 13px 14px; background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1); border-radius: 8px;
+  color: #fff; font-family: inherit; font-size: 14.5px;
+  transition: border-color .18s, background .18s;
+}
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,.35); }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent); background: rgba(212,255,58,.04); }
+.contact-form textarea { resize: vertical; }
+.contact-form .btn-block { margin-top: 10px; }
+.form-note  { margin-top: 14px; color: var(--accent); font-size: 13.5px; font-weight: 600; }
+.legal-mini { margin: 12px 0 0; font-size: 11.5px; color: rgba(255,255,255,.4); }
+
+/* ===== Footer ===== */
+.site-footer { background: #050505; color: rgba(255,255,255,.7); padding: 60px 0 0; }
+.footer-inner { display: grid; grid-template-columns: 1.2fr 2fr; gap: 50px; padding-bottom: 50px; }
+.footer-brand .brand { margin-bottom: 18px; }
+.footer-brand p { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,.55); margin: 0; }
+.footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; }
+.footer-cols h5 { color: rgba(255,255,255,.4); font-size: 11px; font-weight: 500; margin: 0 0 14px; }
+.footer-cols a { display: block; font-size: 14px; padding: 5px 0; color: rgba(255,255,255,.7); }
+.footer-cols a:hover { color: var(--accent); }
+.copyright { border-top: 1px solid rgba(255,255,255,.05); padding: 22px 0; color: rgba(255,255,255,.4); }
+.copy-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+/* ===== Reveal ===== */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== Responsive ===== */
+@media (max-width: 1080px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-card { max-width: 460px; }
+  .services { grid-template-columns: repeat(2, 1fr); }
+  .process  { grid-template-columns: repeat(2, 1fr); }
+  .audiences { grid-template-columns: 1fr; }
+  .split { grid-template-columns: 1fr; gap: 50px; }
+  .coverage-card { position: static; }
+}
+@media (max-width: 760px) {
+  .nav { display: none; }
+  .burger { display: block; margin-left: auto; }
+  .header-cta { display: none; }
+  .site-header.nav-open .nav {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(10,10,10,.97);
+    padding: 20px var(--pad); gap: 16px;
+  }
+  .section { padding: 70px 0; }
+  .hero { padding: 120px 0 60px; }
+  .services { grid-template-columns: 1fr; }
+  .process  { grid-template-columns: 1fr; }
+  .aud { grid-template-columns: 1fr; }
+  .aud-media { height: 200px; }
+  .cta-inner { grid-template-columns: 1fr; }
+  .contact-form .row { grid-template-columns: 1fr; }
+  .contact-form { padding: 26px; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-cols { grid-template-columns: repeat(2,1fr); }
+  .gallery { grid-template-columns: repeat(2,1fr); grid-auto-rows: 160px; }
+  .g-1 { grid-column: span 2; grid-row: span 2; }
+  .g-2 { grid-column: span 2; }
+  .g-3 { grid-column: span 1; }
+  .g-4 { grid-column: span 1; }
+  .g-5 { grid-column: span 2; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark">M</span>
+      <span class="brand-text">Tu Mensajería<span class="brand-dot">.</span></span>
+    </a>
+    <nav class="nav">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#para-quien">Para quién</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#contacto" class="btn btn-accent btn-sm header-cta">
+      Pedir recogida
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button class="burger" aria-label="Menú" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-media">
+    <img src="https://ggelcano.github.io/demos/ricrep/img/courier-1.jpg" alt="Mensajero de Tu Mensajería cargando paquetes en su furgoneta" loading="eager">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="wrap hero-content">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="pulse"></span>Activos · tu ciudad, tu provincia</span>
+        <h1 class="display">Tu paquete en tu provincia,<br><span class="hl">hoy mismo.</span></h1>
+        <p class="lead">Mensajería urgente y paquetería de última milla con base en tu ciudad. Reparto en el día por toda tu provincia y comarca de tu zona. Sin sorpresas, sin promesas vacías.</p>
+        <div class="hero-ctas">
+          <a href="#contacto" class="btn btn-accent btn-lg">Pedir recogida
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#servicios" class="btn btn-ghost btn-lg">Ver servicios</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="hero-card-head"><span class="status-dot"></span><span class="mono">OPERATIVOS AHORA</span></div>
+        <div class="hero-stats">
+          <div><strong class="mono">&lt; 4 h</strong><span>Entrega media urgente en tu zona</span></div>
+          <div><strong class="mono">99,2 %</strong><span>Envíos a tiempo</span></div>
+          <div><strong class="mono">24/7</strong><span>Seguimiento de tu envío</span></div>
+        </div>
+        <a href="#contacto" class="hero-card-cta">Solicita una cotización
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Mensajería urgente</span><i>●</i><span>Paquetería B2B</span><i>●</i><span>Última milla e-commerce</span><i>●</i><span>Ruta programada</span><i>●</i><span>Recogidas y devoluciones</span><i>●</i><span>Mismo día en tu provincia</span><i>●</i><span>Trazabilidad completa</span><i>●</i>
+    <span>Mensajería urgente</span><i>●</i><span>Paquetería B2B</span><i>●</i><span>Última milla e-commerce</span><i>●</i><span>Ruta programada</span><i>●</i><span>Recogidas y devoluciones</span><i>●</i><span>Mismo día en tu provincia</span><i>●</i><span>Trazabilidad completa</span><i>●</i>
+  </div>
+</div>
+
+<!-- ===== SERVICIOS ===== -->
+<section class="section" id="servicios">
+  <div class="wrap">
+    <header class="section-head">
+      <span class="kicker">[ Servicios ]</span>
+      <h2>Movemos lo que necesites,<br>cuando lo necesites.</h2>
+      <p>Cinco formas distintas de entregar, una sola promesa: el envío llega cuando dijimos que llegaría.</p>
+    </header>
+    <div class="services">
+      <article class="service">
+        <div class="service-head"><span class="service-num mono">01</span><div class="service-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div></div>
+        <h3>Mensajería urgente</h3>
+        <p>Recogemos en una hora, entregamos en el mismo día. Para sobres, paquetes pequeños y todo lo que no puede esperar a mañana.</p>
+        <span class="service-tag">≤ 4 h en tu zona</span>
+      </article>
+      <article class="service">
+        <div class="service-head"><span class="service-num mono">02</span><div class="service-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7l9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></div></div>
+        <h3>Paquetería B2B</h3>
+        <p>Recogidas y entregas regulares entre empresas. Hasta 30 kg por bulto, con albarán digital y firma del receptor.</p>
+        <span class="service-tag">Hasta 30 kg/bulto</span>
+      </article>
+      <article class="service">
+        <div class="service-head"><span class="service-num mono">03</span><div class="service-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="14" height="13" rx="1"/><path d="M17 8h3l1 4v5h-4"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg></div></div>
+        <h3>Última milla e-commerce</h3>
+        <p>Integramos tu tienda y entregamos los pedidos del día a tus clientes finales. Notificación de tracking automática.</p>
+        <span class="service-tag">Shopify · WooCommerce · API</span>
+      </article>
+      <article class="service">
+        <div class="service-head"><span class="service-num mono">04</span><div class="service-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div></div>
+        <h3>Ruta programada</h3>
+        <p>Si necesitas pasar por los mismos sitios cada semana, te montamos una ruta fija a precio cerrado mensual.</p>
+        <span class="service-tag">Tarifa plana mensual</span>
+      </article>
+      <article class="service">
+        <div class="service-head"><span class="service-num mono">05</span><div class="service-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7"/><path d="m3 7 9 6 9-6"/><path d="m16 19 2 2 4-4"/></svg></div></div>
+        <h3>Recogidas y devoluciones</h3>
+        <p>Tu cliente devuelve un producto y nosotros vamos a buscarlo. Cerramos el ciclo del e-commerce sin que muevas un dedo.</p>
+        <span class="service-tag">Reverse logistics</span>
+      </article>
+      <article class="service service-feat">
+        <div class="service-head"><span class="service-num mono">+</span></div>
+        <h3>¿No es exactamente lo que buscas?</h3>
+        <p>Si tu caso no encaja en ninguna casilla, llámanos. Lo más probable es que ya lo hayamos hecho para otra empresa.</p>
+        <a href="#contacto" class="link-arrow">Cuéntanos tu caso
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BANDA ===== -->
+<section class="cta-band">
+  <div class="wrap cta-inner">
+    <div>
+      <span class="kicker accent">[ Pide ya ]</span>
+      <h2 class="white">¿Tienes un envío urgente<br>para hoy?</h2>
+      <p class="muted-light">Estamos a una llamada o un WhatsApp. Te confirmamos recogida en menos de 15 minutos.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="tel:+34000000000" class="btn btn-accent btn-lg">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+        Llámanos
+      </a>
+      <a href="https://wa.me/34000000000?text=Hola%20Tu Mensajería%2C%20quiero%20pedir%20una%20recogida." target="_blank" rel="noopener" class="btn btn-outline-light btn-lg">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESO ===== -->
+<section class="section section-alt" id="proceso">
+  <div class="wrap">
+    <header class="section-head">
+      <span class="kicker">[ Cómo trabajamos ]</span>
+      <h2>Cuatro pasos, cero fricción.</h2>
+      <p>Sin formularios eternos, sin agentes que no responden, sin "el sistema dice que llegó cuando no llegó".</p>
+    </header>
+    <ol class="process">
+      <li><span class="step-num mono">01</span><h3>Nos cuentas qué envías</h3><p>WhatsApp, teléfono o formulario web. Indícanos origen, destino y peso aproximado. Te damos precio cerrado en 15 min.</p></li>
+      <li><span class="step-num mono">02</span><h3>Recogemos donde digas</h3><p>Pasamos por la dirección que nos indiques con la ventana horaria que mejor te venga. Etiqueta y albarán los ponemos nosotros.</p></li>
+      <li><span class="step-num mono">03</span><h3>Te enviamos el tracking</h3><p>SMS o email con enlace de seguimiento en tiempo real. Tu cliente sabe cuándo llega; tú también.</p></li>
+      <li><span class="step-num mono">04</span><h3>Entregamos y cerramos</h3><p>Firma o foto en el destino. Confirmación automática a las dos partes. Si algo se tuerce, te llamamos nosotros antes que tú a nosotros.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== PARA QUIÉN ===== -->
+<section class="section" id="para-quien">
+  <div class="wrap">
+    <header class="section-head left">
+      <span class="kicker">[ Para quién ]</span>
+      <h2>Trabajamos con quien<br>tiene prisa <span class="hl">y exigencia</span>.</h2>
+    </header>
+    <div class="audiences">
+      <article class="aud">
+        <div class="aud-media"><img src="https://ggelcano.github.io/demos/ricrep/img/delivery-driver.jpg" alt="Entrega a comercio"></div>
+        <div class="aud-body"><h3>Comercio y hostelería</h3><p>Reparto entre tu cocina central y tus locales, traslado de género, devoluciones a proveedor. Ventanas horarias respetadas al minuto.</p></div>
+      </article>
+      <article class="aud">
+        <div class="aud-media"><img src="https://ggelcano.github.io/demos/ricrep/img/loading.jpg" alt="Carga para e-commerce"></div>
+        <div class="aud-body"><h3>E-commerce local</h3><p>Entregamos lo que vendiste por la mañana esa misma tarde. Sin esperas de 3-5 días que matan la conversión.</p></div>
+      </article>
+      <article class="aud">
+        <div class="aud-media"><img src="https://ggelcano.github.io/demos/ricrep/img/delivery-handoff.jpg" alt="Mensajería entre oficinas"></div>
+        <div class="aud-body"><h3>Empresas y despachos</h3><p>Notas, contratos, documentación urgente, muestras. Mensajero con discreción y prueba de entrega firmada.</p></div>
+      </article>
+      <article class="aud">
+        <div class="aud-media"><img src="https://ggelcano.github.io/demos/ricrep/img/packages.jpg" alt="Entrega a particular"></div>
+        <div class="aud-body"><h3>Particulares</h3><p>¿Necesitas mover algo de un sitio a otro de tu provincia hoy? Llámanos, te lo movemos. Sin cuenta, sin contrato.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COBERTURA ===== -->
+<section class="section section-dark" id="cobertura">
+  <div class="wrap split">
+    <div class="split-text">
+      <span class="kicker accent">[ Cobertura ]</span>
+      <h2 class="white">De tu ciudad a toda la comarca,<br>en el mismo día.</h2>
+      <p class="muted-light">Operamos en toda tu provincia con base en tu ciudad. En el área metropolitana de tu zona entregamos en menos de 4 horas; el resto de la provincia, el mismo día.</p>
+
+      <ul class="coverage">
+        <li>Zona 1</li><li>Zona 2</li><li>Zona 3</li>
+        <li>Zona 4</li><li>Zona 5</li><li>Zona 6</li>
+        <li>Zona 7</li><li>Zona 8</li><li>Zona 9</li>
+        <li>Zona 10</li><li>Zona 11</li><li>Zona 12</li>
+        <li>Zona 13</li><li>Zona 14</li><li>Zona 15</li>
+      </ul>
+
+      <p class="muted-light micro">¿Tu destino no está en la lista? Lo más seguro es que también lleguemos. Pregúntanos.</p>
+    </div>
+
+    <div class="coverage-card">
+      <div class="cc-row"><span class="cc-label mono">ZONA A — tu zona área</span><span class="cc-value mono accent">≤ 4 h</span></div>
+      <div class="cc-row"><span class="cc-label mono">ZONA B — Resto tu provincia</span><span class="cc-value mono accent">Mismo día</span></div>
+      <div class="cc-row"><span class="cc-label mono">ZONA C — Otras provincias</span><span class="cc-value mono accent">24-48 h</span></div>
+      <div class="cc-divider"></div>
+      <div class="cc-pricing">
+        <span class="mono small">DESDE</span>
+        <strong class="mono price">0,00 €</strong>
+        <span class="small">por envío urbano</span>
+      </div>
+      <a href="#contacto" class="btn btn-accent btn-block">Pide tarifa cerrada</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERIA ===== -->
+<section class="section" id="galeria">
+  <div class="wrap">
+    <header class="section-head"><span class="kicker">[ Operación ]</span><h2>Lo que hacemos a diario.</h2></header>
+    <div class="gallery">
+      <a class="g g-1" href="https://ggelcano.github.io/demos/ricrep/img/courier-2.jpg" target="_blank"><img src="https://ggelcano.github.io/demos/ricrep/img/courier-2.jpg" alt="Mensajero cargando paquetes"></a>
+      <a class="g g-2" href="https://ggelcano.github.io/demos/ricrep/img/warehouse.jpg" target="_blank"><img src="https://ggelcano.github.io/demos/ricrep/img/warehouse.jpg" alt="Almacén de Tu Mensajería"></a>
+      <a class="g g-3" href="https://ggelcano.github.io/demos/ricrep/img/delivery-courier.jpg" target="_blank"><img src="https://ggelcano.github.io/demos/ricrep/img/delivery-courier.jpg" alt="Centro logístico"></a>
+      <a class="g g-4" href="https://ggelcano.github.io/demos/ricrep/img/delivery-van.jpg" target="_blank"><img src="https://ggelcano.github.io/demos/ricrep/img/delivery-van.jpg" alt="Conductor de Tu Mensajería en ruta"></a>
+      <a class="g g-5" href="https://ggelcano.github.io/demos/ricrep/img/hero-van.jpg" target="_blank"><img src="https://ggelcano.github.io/demos/ricrep/img/hero-van.jpg" alt="Flota en muelle"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="section section-cream" id="contacto">
+  <div class="wrap split">
+    <div class="split-text">
+      <span class="kicker">[ Contacto ]</span>
+      <h2>Pide tu recogida<br>en menos de un minuto.</h2>
+      <p>Indícanos qué necesitas mover y a dónde. Te contestamos en cuestión de minutos con precio cerrado y ventana de recogida.</p>
+
+      <ul class="contact-list">
+        <li>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
+          <div><small class="mono">TELÉFONO</small><a href="tel:+34000000000">000 000 000</a></div>
+        </li>
+        <li>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg></span>
+          <div><small class="mono">WHATSAPP</small><a href="https://wa.me/34000000000" target="_blank" rel="noopener">000 000 000</a></div>
+        </li>
+        <li>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><path d="m22 6-10 7L2 6"/></svg></span>
+          <div><small class="mono">EMAIL</small><a href="mailto:hola@tunegocio.es">hola@tunegocio.es</a></div>
+        </li>
+        <li>
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><small class="mono">OFICINA</small><a href="https://maps.google.com/?q=Tu+Dirección+Tu+Ciudad" target="_blank" rel="noopener">Tu dirección, tu ciudad</a></div>
+        </li>
+      </ul>
+
+      <div class="hours-card">
+        <h4 class="mono">HORARIO DE OFICINA</h4>
+        <table class="hours">
+          <tbody>
+            <tr data-day="1"><td>Lunes</td><td>—</td></tr>
+            <tr data-day="2"><td>Martes</td><td>—</td></tr>
+            <tr data-day="3"><td>Miércoles</td><td>—</td></tr>
+            <tr data-day="4"><td>Jueves</td><td>—</td></tr>
+            <tr data-day="5"><td>Viernes</td><td>—</td></tr>
+            <tr data-day="6"><td>Sábado</td><td>—</td></tr>
+            <tr data-day="0"><td>Domingo</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contactForm" novalidate>
+      <header class="form-head">
+        <span class="form-tag mono">FORMULARIO RÁPIDO</span>
+        <h3>Cuéntanos tu envío</h3>
+      </header>
+      <div class="row">
+        <label><span class="mono">NOMBRE / EMPRESA</span><input type="text" name="nombre" required></label>
+        <label><span class="mono">TELÉFONO</span><input type="tel" name="telefono" required></label>
+      </div>
+      <div class="row">
+        <label><span class="mono">RECOGIDA EN</span><input type="text" name="origen" placeholder="tu ciudad, tu zona..." required></label>
+        <label><span class="mono">ENTREGA EN</span><input type="text" name="destino" placeholder="Zona 4, Zona 11..." required></label>
+      </div>
+      <label><span class="mono">TIPO DE ENVÍO</span>
+        <select name="tipo">
+          <option>Sobre / documentación</option>
+          <option>Paquete pequeño (≤ 5 kg)</option>
+          <option>Paquete grande (5-30 kg)</option>
+          <option>Carga voluminosa</option>
+          <option>Ruta programada</option>
+        </select>
+      </label>
+      <label><span class="mono">URGENCIA</span>
+        <select name="urgencia">
+          <option>Ya · en la próxima hora</option>
+          <option>Hoy · antes de las 20:00</option>
+          <option>Mañana</option>
+          <option>Esta semana</option>
+        </select>
+      </label>
+      <label><span class="mono">NOTAS</span><textarea name="notas" rows="3" placeholder="Detalles, contacto en destino, instrucciones especiales..."></textarea></label>
+      <button type="submit" class="btn btn-accent btn-block">Solicitar cotización
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p class="form-note" id="formNote" hidden>Listo. Te contactamos en menos de 15 minutos.</p>
+      <p class="legal-mini">Respondemos a todas las solicitudes. Tus datos no se usan para publicidad.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <span class="brand-mark">M</span>
+        <span class="brand-text">Tu Mensajería<span class="brand-dot">.</span></span>
+      </a>
+      <p class="mono small">Tu Mensajería S.L. · CIF B00000000<br>Tu dirección<br>00000 tu ciudad, tu provincia</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h5 class="mono">SERVICIOS</h5>
+        <a href="#servicios">Mensajería urgente</a>
+        <a href="#servicios">Paquetería B2B</a>
+        <a href="#servicios">E-commerce</a>
+        <a href="#servicios">Ruta programada</a>
+      </div>
+      <div>
+        <h5 class="mono">EMPRESA</h5>
+        <a href="#cobertura">Cobertura</a>
+        <a href="#para-quien">Para quién</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div>
+        <h5 class="mono">LEGAL</h5>
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <div class="wrap copy-inner">
+      <span class="mono small">© <span id="year"></span> Tu Mensajería S.L.</span>
+      <span class="mono small">Hecho con ⚡ en tu ciudad</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Año en footer
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Header scrolled
+const header = document.getElementById('siteHeader');
+const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// Burger menu
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => header.classList.toggle('nav-open'));
+header.querySelectorAll('.nav a').forEach(a =>
+  a.addEventListener('click', () => header.classList.remove('nav-open'))
+);
+
+// Día actual en horario (regla G&G: fila de hoy destacada)
+(function highlightToday() {
+  const today = new Date().getDay();
+  document.querySelectorAll('.hours tr').forEach(tr => {
+    if (Number(tr.dataset.day) === today) tr.classList.add('horario-hoy');
+  });
+})();
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+document.querySelectorAll('.section, .service, .aud, .process li, .hours-card, .contact-form, .coverage-card').forEach(el => {
+  el.classList.add('reveal');
+  io.observe(el);
+});
+
+// Formulario (demo, sin backend)
+const form = document.getElementById('contactForm');
+const note = document.getElementById('formNote');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  note.hidden = false;
+  const btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Solicitud enviada ✓';
+  btn.disabled = true;
+});
+</script>
+</body>
+</html>
