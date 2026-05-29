@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro Notable | Academia de Oposiciones en Tomelloso, Ciudad Real</title>
+  <meta name="description" content="Centro Notable: academia de oposiciones en Tomelloso. Magisterio, Sanidad, Correos, Administraci&#243;n y m&#225;s. Grupos reducidos, preparadores en activo y campus virtual. 5,0 en Google con m&#225;s de 150 rese&#241;as.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <link rel="icon" href="https://www.centronotable.es/wp-content/uploads/2023/07/favicon-centro-notable-300x244.png" type="image/png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FAFAF7;
+      --bg-warm: #F0EFEB;
+      --text: #1a1a2e;
+      --text-muted: #6b7280;
+      --accent: #ff4a2d;
+      --accent-hover: #e8421f;
+      --accent-soft: rgba(255, 74, 45, 0.06);
+      --blue: #2b5494;
+      --blue-dark: #1e3a6e;
+      --border: rgba(26, 26, 46, 0.08);
+      --border-accent: rgba(255, 74, 45, 0.15);
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'Nunito', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      transition: opacity 0.7s, visibility 0.7s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-display); font-size: 2rem;
+      letter-spacing: 0.06em; color: var(--text);
+    }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 180px; height: 2px; background: var(--border);
+      position: relative; overflow: hidden; border-radius: 2px;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.4s var(--ease-out) 0.2s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 26px 60px;
+      transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 400;
+      letter-spacing: 0.04em; text-decoration: none;
+      color: #fff; display: flex; align-items: center; gap: 4px;
+      transition: color 0.4s;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,0.85);
+      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #fff !important;
+      padding: 10px 26px !important;
+      font-size: 0.75rem !important;
+      letter-spacing: 0.15em !important;
+      transition: background 0.3s !important;
+      border: none;
+    }
+    .nav-cta:hover { background: var(--accent-hover) !important; }
+
+    nav.scrolled {
+      background: rgba(250, 250, 247, 0.97);
+      backdrop-filter: blur(16px);
+      padding: 16px 60px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    nav.scrolled .nav-logo { color: var(--text); }
+    nav.scrolled .nav-links a { color: var(--text-muted); }
+    nav.scrolled .nav-links a:hover { color: var(--accent); }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: #fff;
+      transition: transform 0.3s, opacity 0.3s, background 0.4s;
+    }
+    nav.scrolled .hamburger span { background: var(--text); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--text); font-size: 1.2rem;
+      letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s;
+      font-weight: 600;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.06);
+      transition: transform 6s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(26,26,46,0.88) 0%, rgba(26,26,46,0.5) 50%, rgba(26,26,46,0.3) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+      background: linear-gradient(to top, rgba(26,26,46,0.85), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 90px;
+      max-width: 860px;
+    }
+    .hero-eyebrow {
+      font-size: 0.74rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 14px;
+      font-weight: 600;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 36px; height: 2px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 400; line-height: 1.08;
+      letter-spacing: -0.01em; margin-bottom: 28px;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.88);
+      max-width: 540px; line-height: 1.75; margin-bottom: 44px;
+      font-weight: 300;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--accent); color: #fff;
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 700; font-family: var(--font-body);
+      transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent-hover); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+    .btn-ghost {
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s; font-weight: 600;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow { border-color: var(--accent); transform: rotate(45deg); }
+    .icon-arrow { width: 14px; height: 14px; }
+
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 90px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      opacity: 0; animation: fadeIn 1s 2s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2.5s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* MARQUEE */
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; padding: 18px 0;
+      background: var(--bg-warm);
+    }
+    .marquee-track {
+      display: flex; width: max-content; align-items: center;
+      animation: marquee 18s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 30px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-display); font-size: 1.05rem;
+      font-style: italic; color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .marquee-item .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* SECTION COMMONS */
+    section { padding: 120px 60px; }
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+      font-weight: 700;
+    }
+    .section-label::before { content: ''; width: 28px; height: 2px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 400; line-height: 1.12;
+      letter-spacing: -0.01em; color: var(--text);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+    .section-sub {
+      font-size: 1.05rem; color: var(--text-muted); line-height: 1.75;
+      max-width: 560px; margin-top: 20px; font-weight: 300;
+    }
+
+    /* STATS */
+    .stats-section {
+      background: var(--bg); padding: 100px 60px;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; max-width: 1200px; margin: 0 auto;
+      background: var(--border);
+    }
+    .stat-card {
+      padding: 52px 40px; background: var(--bg);
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .stat-card:hover { background: var(--accent-soft); }
+    .stat-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::after { transform: scaleX(1); }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7vw, 4.2rem);
+      font-weight: 400; line-height: 1; color: var(--text);
+      margin-bottom: 10px; letter-spacing: -0.02em;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .stat-number .stat-suffix { color: var(--accent); }
+    .stat-label {
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 500;
+    }
+
+    /* OPOSICIONES */
+    .opos-section { background: var(--bg-warm); }
+    .opos-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 60px; max-width: 1200px; margin-left: auto; margin-right: auto;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .opos-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; max-width: 1200px; margin: 0 auto;
+    }
+    .opos-card {
+      padding: 48px 36px; background: var(--bg);
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+    }
+    .opos-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: 0 12px 40px rgba(255,74,45,0.08);
+      transform: translateY(-4px);
+    }
+    .opos-icon {
+      width: 48px; height: 48px; margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent-soft); color: var(--accent);
+      border-radius: 12px;
+    }
+    .opos-card h3 {
+      font-family: var(--font-display); font-size: 1.5rem;
+      font-weight: 400; margin-bottom: 12px; line-height: 1.2;
+      color: var(--text);
+    }
+    .opos-card p {
+      font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;
+      font-weight: 300;
+    }
+    .opos-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 24px; text-decoration: none;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700;
+      transition: gap 0.3s;
+    }
+    .opos-link:hover { gap: 14px; }
+    .opos-number {
+      position: absolute; top: 24px; right: 28px;
+      font-family: var(--font-display); font-size: 4.5rem;
+      font-weight: 400; color: rgba(255,74,45,0.06);
+      line-height: 1; transition: color 0.5s;
+    }
+    .opos-card:hover .opos-number { color: rgba(255,74,45,0.12); }
+
+    /* ABOUT */
+    .about-section {
+      background: var(--bg);
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 650px;
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .about-visual:hover img { transform: scale(1.03); }
+    .about-badge {
+      position: absolute; top: 24px; right: 24px;
+      background: var(--bg); border: 1px solid var(--border-accent);
+      padding: 22px 28px; max-width: 220px;
+    }
+    .about-badge-year {
+      font-family: var(--font-display); font-size: 2.8rem;
+      color: var(--accent); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.72rem; letter-spacing: 0.08em;
+      color: var(--text-muted); margin-top: 4px; font-weight: 500;
+    }
+    .about-content {
+      padding: 90px 70px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.05rem; line-height: 1.85;
+      color: var(--text-muted); margin: 28px 0 36px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--text); font-weight: 600; }
+    .about-divider {
+      width: 50px; height: 2px; background: var(--accent); margin: 28px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 16px; }
+    .about-value {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px; border: 1px solid var(--border);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .about-value:hover { border-color: var(--border-accent); background: var(--accent-soft); }
+    .value-num {
+      font-family: var(--font-display); font-size: 1.3rem;
+      color: var(--accent); opacity: 0.7; flex-shrink: 0; line-height: 1.2;
+    }
+    .value-text h3 {
+      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 700; margin-bottom: 4px; color: var(--text);
+    }
+    .value-text p {
+      font-size: 0.88rem; color: var(--text-muted); font-weight: 300; line-height: 1.6;
+    }
+
+    /* METODOLOGIA (replaces testimonials - no verified review texts) */
+    .metodo-section { background: var(--bg-warm); }
+    .metodo-inner { max-width: 1200px; margin: 0 auto; }
+    .metodo-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 0; margin-top: 60px; position: relative;
+    }
+    .metodo-grid::before {
+      content: ''; position: absolute;
+      top: 40px; left: 10%; right: 10%;
+      height: 2px; background: var(--border);
+      z-index: 0;
+    }
+    .metodo-step {
+      text-align: center; padding: 0 16px;
+      position: relative; z-index: 1;
+    }
+    .metodo-num {
+      width: 80px; height: 80px; margin: 0 auto 24px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg);
+      border: 2px solid var(--border-accent);
+      border-radius: 50%;
+      font-family: var(--font-display); font-size: 1.6rem;
+      color: var(--accent);
+      transition: background 0.4s, color 0.4s;
+    }
+    .metodo-step:hover .metodo-num {
+      background: var(--accent); color: #fff;
+    }
+    .metodo-step h3 {
+      font-family: var(--font-display); font-size: 1.15rem;
+      font-weight: 400; margin-bottom: 10px; color: var(--text);
+      line-height: 1.3;
+    }
+    .metodo-step p {
+      font-size: 0.85rem; color: var(--text-muted);
+      line-height: 1.65; font-weight: 300;
+    }
+
+    /* EQUIPO */
+    .equipo-section { background: var(--bg); }
+    .equipo-inner { max-width: 1200px; margin: 0 auto; }
+    .equipo-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; margin-top: 60px;
+    }
+    .equipo-card {
+      position: relative; overflow: hidden;
+      background: var(--bg-warm);
+      transition: box-shadow 0.4s, transform 0.4s;
+    }
+    .equipo-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+    .equipo-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .equipo-card:hover .equipo-photo { transform: scale(1.04); }
+    .equipo-info {
+      padding: 24px 20px 28px;
+    }
+    .equipo-info h3 {
+      font-family: var(--font-display); font-size: 1.2rem;
+      font-weight: 400; margin-bottom: 4px; color: var(--text);
+    }
+    .equipo-info .equipo-role {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin-bottom: 8px;
+    }
+    .equipo-info p {
+      font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; font-weight: 300;
+    }
+
+    /* MAP SECTION */
+    .map-section { background: var(--bg-warm); padding: 0; }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      max-width: none;
+    }
+    .map-info {
+      padding: 90px 70px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--bg-warm);
+    }
+    .map-info-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 22px 0; border-bottom: 1px solid var(--border);
+    }
+    .map-info-item:first-of-type { padding-top: 36px; }
+    .map-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      border: 1px solid var(--border-accent);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); border-radius: 10px;
+      background: var(--accent-soft);
+    }
+    .map-info-text h3 {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 4px; font-weight: 700;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.95rem; color: var(--text);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--accent); }
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+    }
+
+    /* HORARIO */
+    .horario-table {
+      width: 100%; border-collapse: collapse; margin-top: 8px;
+    }
+    .horario-table td {
+      padding: 8px 0; font-size: 0.9rem; color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .horario-table td:first-child { font-weight: 600; width: 120px; }
+    .horario-table td:last-child { color: var(--text-muted); font-weight: 300; }
+    .horario-hoy td {
+      color: var(--accent) !important; font-weight: 600 !important;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      background: var(--accent); padding: 100px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 280px; }
+    .cta-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400; color: #fff; line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(255,255,255,0.88); margin-top: 14px; font-weight: 300;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--text); color: #fff;
+      text-decoration: none; padding: 18px 44px;
+      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 700; font-family: var(--font-body);
+      transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--blue-dark); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--blue-dark); padding: 80px 60px 44px;
+      color: #fff;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 60px;
+    }
+    .footer-brand .nav-logo {
+      font-size: 1.6rem; margin-bottom: 18px; display: inline-flex;
+      color: #fff;
+    }
+    .footer-tagline {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 1rem; color: rgba(255,255,255,0.7);
+      line-height: 1.6; max-width: 260px; margin-bottom: 28px;
+    }
+    .footer-social { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(255,255,255,0.7);
+      transition: all 0.3s;
+    }
+    .social-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-2px); }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h3 {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px; font-weight: 700;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(255,255,255,0.7);
+      font-size: 0.88rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 32px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
+    }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.75rem; color: rgba(255,255,255,0.6);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: #fff; }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp-float {
+      position: fixed; bottom: 26px; right: 26px; z-index: 998;
+      width: 56px; height: 56px;
+      background: #25d366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(37,211,102,0.35);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 22px rgba(37,211,102,0.45);
+    }
+    .whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* REVEAL (safe default: visible) */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.js-hidden { opacity: 0; transform: translateY(28px); }
+    .reveal.js-visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.12s; }
+    .reveal-d2 { transition-delay: 0.24s; }
+    .reveal-d3 { transition-delay: 0.36s; }
+    .reveal-d4 { transition-delay: 0.48s; }
+
+    /* FOCUS VISIBLE */
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: #fff; padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 22px 36px; }
+      nav.scrolled { padding: 14px 36px; }
+      section { padding: 90px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .opos-grid { grid-template-columns: repeat(2, 1fr); }
+      .equipo-grid { grid-template-columns: repeat(2, 1fr); }
+      .metodo-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .metodo-grid::before { display: none; }
+      .metodo-step:nth-child(n+4) { margin-top: 24px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 36px; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 380px; }
+      .about-content { padding: 60px 36px; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hamburger { display: flex; }
+      nav { padding: 18px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      section { padding: 70px 24px; }
+      .hero-content { padding: 6px 24px 60px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .opos-grid { grid-template-columns: 1fr; }
+      .equipo-grid { grid-template-columns: 1fr 1fr; }
+      .metodo-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 320px; }
+      .about-content { padding: 50px 24px; }
+      .cta-section { padding: 70px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; align-items: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 60px 24px; }
+      .map-info { padding: 50px 24px; }
+      .opos-header { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 36px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 10vw, 2.8rem); margin-bottom: 20px; }
+      .hero-eyebrow { font-size: 0.66rem; letter-spacing: 0.22em; margin-bottom: 36px; flex-wrap: wrap; gap: 8px; }
+      .hero-eyebrow::before { width: 20px; }
+      .hero-sub { font-size: 0.92rem; margin-bottom: 30px; }
+      .hero-content { padding: 5px 20px 50px; }
+      .section-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+      .stat-number { font-size: clamp(2.2rem, 11vw, 3rem); }
+      .stat-card { padding: 32px 20px; }
+      .opos-card { padding: 36px 24px; }
+      .equipo-grid { grid-template-columns: 1fr; }
+      .metodo-grid { grid-template-columns: 1fr; gap: 16px; }
+      .metodo-step { text-align: left; display: flex; gap: 16px; align-items: flex-start; padding: 0; }
+      .metodo-num { width: 52px; height: 52px; font-size: 1.2rem; margin: 0; flex-shrink: 0; }
+      .metodo-step h3, .metodo-step p { text-align: left; }
+      .cta-section { padding: 56px 20px; }
+      .btn-dark { padding: 16px 32px; }
+      .btn-primary { padding: 14px 28px; }
+      .about-badge { top: 14px; right: 14px; padding: 16px 20px; max-width: 180px; }
+      .about-badge-year { font-size: 2.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .marquee-track { animation: none !important; }
+      .reveal.js-hidden { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-logo">Centro <span>Notable</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar" aria-label="Navegaci&#243;n principal">
+  <a href="#main-content" class="nav-logo">Notable<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#oposiciones">Oposiciones</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#contacto" class="nav-cta">Inf&#243;rmate</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir men&#250; de navegaci&#243;n">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegaci&#243;n principal">
+  <a href="#oposiciones" onclick="closeMobile()">Oposiciones</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#equipo" onclick="closeMobile()">Equipo</a>
+  <a href="#metodologia" onclick="closeMobile()">Metodolog&#237;a</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+</div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" id="heroBg" style="background-image: url('https://www.centronotable.es/wp-content/uploads/2023/07/academia-oposiciones.png'); background-size: cover; background-position: center;" role="img" aria-label="Instalaciones de la academia Centro Notable en Tomelloso"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Academia de oposiciones  &#183; Tomelloso, Ciudad Real &#183; Desde 2018</p>
+    <h1 class="hero-title" id="hero-title">Tu plaza<br>empieza <em>aqu&#237;.</em></h1>
+    <p class="hero-sub">Preparamos oposiciones de Magisterio, Sanidad, Correos y Administraci&#243;n con preparadores en activo, grupos reducidos y temarios propios. Presencial en Tomelloso, Albacete y Ja&#233;n, u online desde donde quieras.</p>
+    <div class="hero-actions">
+      <a href="tel:+34614442456" class="btn-primary" aria-label="Llamar a Centro Notable al 614 442 456">
+        <span>Llamar al 614 442 456
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a href="#oposiciones" class="btn-ghost">
+        <span>Ver oposiciones</span>
+        <span class="btn-ghost-arrow" aria-hidden="true">
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Magisterio Primaria</span>
+    <span class="marquee-item"><span class="dot"></span>Sanidad SESCAM</span>
+    <span class="marquee-item"><span class="dot"></span>Correos</span>
+    <span class="marquee-item"><span class="dot"></span>Polic&#237;a Local</span>
+    <span class="marquee-item"><span class="dot"></span>Auxiliar Administrativo</span>
+    <span class="marquee-item"><span class="dot"></span>ATE</span>
+    <span class="marquee-item"><span class="dot"></span>Audici&#243;n y Lenguaje</span>
+    <span class="marquee-item"><span class="dot"></span>Educaci&#243;n Infantil</span>
+    <span class="marquee-item"><span class="dot"></span>Magisterio Primaria</span>
+    <span class="marquee-item"><span class="dot"></span>Sanidad SESCAM</span>
+    <span class="marquee-item"><span class="dot"></span>Correos</span>
+    <span class="marquee-item"><span class="dot"></span>Polic&#237;a Local</span>
+    <span class="marquee-item"><span class="dot"></span>Auxiliar Administrativo</span>
+    <span class="marquee-item"><span class="dot"></span>ATE</span>
+    <span class="marquee-item"><span class="dot"></span>Audici&#243;n y Lenguaje</span>
+    <span class="marquee-item"><span class="dot"></span>Educaci&#243;n Infantil</span>
+  </div>
+</div>
+
+<div class="stats-section" role="region" aria-label="Cifras de Centro Notable">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number">2018</div>
+      <div class="stat-label">A&#241;o de apertura</div>
+    </div>
+    <div class="stat-card reveal reveal-d1">
+      <div class="stat-number"><span class="count" data-target="50" data-decimal="true">0</span></div>
+      <div class="stat-label">Sobre 5 en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-d2">
+      <div class="stat-number"><span class="count" data-target="150">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Rese&#241;as verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-d3">
+      <div class="stat-number"><span class="count" data-target="220">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Alumnos formados</div>
+    </div>
+  </div>
+</div>
+
+<section class="opos-section" id="oposiciones" aria-labelledby="opos-title">
+  <div class="opos-header">
+    <div>
+      <p class="section-label reveal">Oposiciones</p>
+      <h2 class="section-title reveal reveal-d1" id="opos-title">Preparamos las oposiciones<br>que <em>importan en CLM.</em></h2>
+      <p class="section-sub reveal reveal-d2">Cada especialidad tiene su preparador experto, con experiencia real en el sector y conocimiento directo de los tribunales.</p>
+    </div>
+  </div>
+  <div class="opos-grid">
+    <div class="opos-card reveal">
+      <div class="opos-number" aria-hidden="true">01</div>
+      <div class="opos-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <h3>Magisterio</h3>
+      <p>Primaria, Infantil, Ingl&#233;s, Educaci&#243;n F&#237;sica y Pedagog&#237;a Terap&#233;utica. El 100% de nuestros alumnos aprobaron la parte oral en la &#250;ltima convocatoria.</p>
+      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Magisterio" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Magisterio por WhatsApp">
+        Pedir info
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="opos-card reveal reveal-d1">
+      <div class="opos-number" aria-hidden="true">02</div>
+      <div class="opos-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3>Sanidad SESCAM</h3>
+      <p>Celador, TCAE y Auxiliar Administrativo. Preparador con m&#225;s de 22 a&#241;os de experiencia en la rama sanitaria.</p>
+      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Sanidad" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Sanidad por WhatsApp">
+        Pedir info
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="opos-card reveal reveal-d2">
+      <div class="opos-number" aria-hidden="true">03</div>
+      <div class="opos-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M9 4v4"/><path d="M15 4v4"/></svg>
+      </div>
+      <h3>Correos</h3>
+      <p>Preparaci&#243;n completa con clases online los viernes. Preparador responsable de Ventas de Correos en Castilla-La Mancha desde 2007.</p>
+      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Correos" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Correos por WhatsApp">
+        Pedir info
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="opos-card reveal">
+      <div class="opos-number" aria-hidden="true">04</div>
+      <div class="opos-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Polic&#237;a Local</h3>
+      <p>Temario com&#250;n CLM, psicot&#233;cnicos con psic&#243;loga especializada y preparaci&#243;n f&#237;sica incluida. Preparador subinspector con m&#225;s de 20 a&#241;os de servicio.</p>
+      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Polic%C3%ADa%20Local" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Polic&#237;a Local por WhatsApp">
+        Pedir info
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="opos-card reveal reveal-d1">
+      <div class="opos-number" aria-hidden="true">05</div>
+      <div class="opos-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+      </div>
+      <h3>Auxiliar Administrativo</h3>
+      <p>Preparaci&#243;n para la Administraci&#243;n del Estado y la Junta de Comunidades de Castilla-La Mancha (JCCM).</p>
+      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Administrativo" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Auxiliar Administrativo por WhatsApp">
+        Pedir info
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="opos-card reveal reveal-d2">
+      <div class="opos-number" aria-hidden="true">06</div>
+      <div class="opos-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <h3>ATE y Secundaria</h3>
+      <p>Auxiliar T&#233;cnico Educativo y oposiciones de Secundaria: Orientaci&#243;n, Ingl&#233;s, Inform&#225;tica y Educaci&#243;n F&#237;sica.</p>
+      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20ATE" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre ATE por WhatsApp">
+        Pedir info
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
+  <div class="about-visual">
+    <img src="https://www.centronotable.es/wp-content/uploads/2023/07/educator-img31.jpg" alt="Clase presencial en la academia Centro Notable de Tomelloso" loading="lazy">
+    <div class="about-badge">
+      <div class="about-badge-year">2018</div>
+      <div class="about-badge-text">Preparando opositores en CLM</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre nosotros</p>
+    <h2 class="section-title reveal reveal-d1" id="nosotros-title">
+      Tu esfuerzo,<br>nuestro <em>compromiso.</em>
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-d2">
+      Centro Notable abri&#243; sus puertas en <strong>abril de 2018</strong> en Tomelloso con 50 alumnos. Hoy somos una academia de referencia en Castilla-La Mancha con m&#225;s de <strong>220 opositores</strong> en preparaci&#243;n y sedes presenciales en <strong>Tomelloso, Albacete y Ja&#233;n</strong>. Nuestros preparadores son profesionales en activo que conocen el temario, los tribunales y lo que hace falta para conseguir la plaza. Grupos reducidos, temarios condensados y actualizados, simulacros reales y un tutor personal que te acompa&#241;a hasta el d&#237;a del examen.
+    </p>
+    <div class="about-values reveal reveal-d3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h3>Grupos reducidos</h3>
+          <p>Atenci&#243;n personalizada en cada clase. Tus dudas no se pierden en una sala masificada.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h3>Preparadores en activo</h3>
+          <p>Profesionales que trabajan en el sector y conocen lo que los tribunales buscan en cada convocatoria.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h3>Online y presencial</h3>
+          <p>Campus virtual con clases en directo, v&#237;deos grabados y temarios descargables. Prep&#225;rate desde cualquier sitio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="metodo-section" id="metodologia" aria-labelledby="metodo-title">
+  <div class="metodo-inner">
+    <p class="section-label reveal">C&#243;mo trabajamos</p>
+    <h2 class="section-title reveal reveal-d1" id="metodo-title">Cinco pasos hacia <em>tu plaza.</em></h2>
+    <p class="section-sub reveal reveal-d2">Un proceso claro para que sepas en qu&#233; punto est&#225;s y qu&#233; viene despu&#233;s.</p>
+    <div class="metodo-grid">
+      <div class="metodo-step reveal">
+        <div class="metodo-num">1</div>
+        <div>
+          <h3>Elige tu oposici&#243;n</h3>
+          <p>Te asesoramos sobre convocatorias abiertas y cu&#225;l encaja con tu perfil.</p>
+        </div>
+      </div>
+      <div class="metodo-step reveal reveal-d1">
+        <div class="metodo-num">2</div>
+        <div>
+          <h3>Recibe tu temario</h3>
+          <p>Material actualizado, condensado y alineado con los criterios de evaluaci&#243;n.</p>
+        </div>
+      </div>
+      <div class="metodo-step reveal reveal-d2">
+        <div class="metodo-num">3</div>
+        <div>
+          <h3>Clases y simulacros</h3>
+          <p>Clases en directo, v&#237;deos grabados para repasar y simulacros peri&#243;dicos de examen.</p>
+        </div>
+      </div>
+      <div class="metodo-step reveal reveal-d3">
+        <div class="metodo-num">4</div>
+        <div>
+          <h3>Tutor personal</h3>
+          <p>Un preparador experto te gu&#237;a, corrige tus ejercicios y te motiva durante toda la preparaci&#243;n.</p>
+        </div>
+      </div>
+      <div class="metodo-step reveal reveal-d4">
+        <div class="metodo-num">5</div>
+        <div>
+          <h3>D&#237;a del examen</h3>
+          <p>Vas preparado, seguro y con las herramientas para conseguir tu plaza.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="equipo-section" id="equipo" aria-labelledby="equipo-title">
+  <div class="equipo-inner">
+    <p class="section-label reveal">Equipo docente</p>
+    <h2 class="section-title reveal reveal-d1" id="equipo-title">Preparadores que conocen<br><em>los tribunales.</em></h2>
+    <p class="section-sub reveal reveal-d2">Todos nuestros preparadores son profesionales en activo con experiencia directa en oposiciones.</p>
+    <div class="equipo-grid">
+      <div class="equipo-card reveal">
+        <img class="equipo-photo" src="https://www.centronotable.es/wp-content/uploads/2023/07/profesor-oposiciones-de-primaria.jpg" alt="Carmelo Juan, responsable del &#225;rea de Magisterio en Centro Notable" loading="lazy">
+        <div class="equipo-info">
+          <div class="equipo-role">Responsable Magisterio</div>
+          <h3>Carmelo Juan</h3>
+          <p>Especialista en Primaria y Educaci&#243;n F&#237;sica. Premio Innovaci&#243;n Educativa 2022. 12 a&#241;os en equipos directivos.</p>
+        </div>
+      </div>
+      <div class="equipo-card reveal reveal-d1">
+        <img class="equipo-photo" src="https://www.centronotable.es/wp-content/uploads/2023/07/profesora-oposiciones-infantil.jpg" alt="Cristina, preparadora de oposiciones de Educaci&#243;n Infantil" loading="lazy">
+        <div class="equipo-info">
+          <div class="equipo-role">Infantil</div>
+          <h3>Cristina</h3>
+          <p>Diplomada en Magisterio Infantil. Preparando opositores desde 2013.</p>
+        </div>
+      </div>
+      <div class="equipo-card reveal reveal-d2">
+        <img class="equipo-photo" src="https://www.centronotable.es/wp-content/uploads/2023/07/profesor-oposiciones-sanidad.jpg" alt="Jos&#233; Miguel, responsable del &#225;rea de Sanidad en Centro Notable" loading="lazy">
+        <div class="equipo-info">
+          <div class="equipo-role">Responsable Sanidad</div>
+          <h3>Jos&#233; Miguel</h3>
+          <p>Diplomado en Enfermer&#237;a. M&#225;s de 22 a&#241;os de experiencia en la rama sanitaria.</p>
+        </div>
+      </div>
+      <div class="equipo-card reveal reveal-d3">
+        <img class="equipo-photo" src="https://www.centronotable.es/wp-content/uploads/2023/07/profesora-oposiciones-magisterio-ingl%C2%AEs.jpg" alt="Laura, preparadora de oposiciones de Magisterio de Ingl&#233;s" loading="lazy">
+        <div class="equipo-info">
+          <div class="equipo-role">Ingl&#233;s</div>
+          <h3>Laura</h3>
+          <p>Diplomada en Magisterio de Ingl&#233;s. Preparando opositores desde 2017.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Contacto</p>
+      <h2 class="section-title reveal reveal-d1" style="margin-bottom: 0;">
+        En Tomelloso,<br><em>en la calle Socuéllamos.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Direcci&#243;n</h3>
+          <p>C. Socuéllamos, 27<br>13700 Tomelloso, Ciudad Real</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Tel&#233;fono</h3>
+          <a href="tel:+34614442456">614 442 456</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Email</h3>
+          <a href="mailto:info@centronotable.es">info@centronotable.es</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Horario</h3>
+          <table class="horario-table" aria-label="Horario semanal de Centro Notable">
+            <tr id="row-lun"><td>Lunes</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
+            <tr id="row-mar"><td>Martes</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
+            <tr id="row-mie"><td>Mi&#233;rcoles</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
+            <tr id="row-jue"><td>Jueves</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
+            <tr id="row-vie"><td>Viernes</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
+            <tr id="row-sab"><td>S&#225;bado</td><td>Cerrado</td></tr>
+            <tr id="row-dom"><td>Domingo</td><td>Cerrado</td></tr>
+          </table>
+        </div>
+      </div>
+      <div style="margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="tel:+34614442456" class="btn-primary" style="display: inline-flex;">
+          <span>Llamar ahora
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicaci&#243;n de Centro Notable en C. Socu&#233;llamos 27, Tomelloso"
+        src="https://www.google.com/maps?q=Centro+Notable+Socuellamos+27+Tomelloso+Ciudad+Real&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section" role="region" aria-label="Llamada a la acci&#243;n de contacto">
+  <div class="cta-text">
+    <h2>¿Quieres conseguir tu plaza?<br>Hablemos.</h2>
+    <p>Ll&#225;manos al 614 442 456 o escr&#237;benos por WhatsApp. Te contamos c&#243;mo empezar sin compromiso.</p>
+  </div>
+  <a href="https://wa.me/34607427159?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20oposiciones" target="_blank" rel="noopener" class="btn-dark">
+    <span>Escribir por WhatsApp
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
+  </a>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#main-content" class="nav-logo">Notable<span>.</span></a>
+      <p class="footer-tagline">Academia de oposiciones en Tomelloso, Albacete y Ja&#233;n. Tu esfuerzo, nuestro compromiso.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/centronotable/" target="_blank" rel="noopener" class="social-link" aria-label="Centro Notable en Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.6-.1 4.8-.1M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.3C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.2 2.2.6 2.9.3.8.7 1.5 1.3 2.1.7.7 1.3 1 2.1 1.3.8.3 1.6.5 2.9.6 1.2 0 1.6.1 4.9.1s3.7 0 4.9-.1c1.3-.1 2.2-.2 2.9-.6.8-.3 1.5-.7 2.1-1.3.7-.7 1-1.3 1.3-2.1.3-.8.5-1.6.6-2.9 0-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.2-2.2-.6-2.9-.3-.8-.7-1.5-1.3-2.1C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/centronotable/" target="_blank" rel="noopener" class="social-link" aria-label="Centro Notable en Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.1c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v2.9h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4C19.6 23.1 24 18 24 12.1z"/></svg>
+        </a>
+        <a href="https://wa.me/34607427159" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp a Centro Notable">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04"/></svg>
+        </a>
+        <a href="mailto:info@centronotable.es" class="social-link" aria-label="Enviar correo a info@centronotable.es">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2m0 4l-8 5-8-5V6l8 5 8-5z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Oposiciones</h3>
+      <ul>
+        <li><a href="#oposiciones">Magisterio</a></li>
+        <li><a href="#oposiciones">Sanidad SESCAM</a></li>
+        <li><a href="#oposiciones">Correos</a></li>
+        <li><a href="#oposiciones">Polic&#237;a Local</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Academia</h3>
+      <ul>
+        <li><a href="#nosotros">Qui&#233;nes somos</a></li>
+        <li><a href="#equipo">Equipo docente</a></li>
+        <li><a href="#metodologia">Metodolog&#237;a</a></li>
+        <li><a href="#contacto">C&#243;mo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34614442456">614 442 456</a></li>
+        <li><a href="mailto:info@centronotable.es">info@centronotable.es</a></li>
+        <li><a href="#contacto">Tomelloso, Ciudad Real</a></li>
+        <li><a href="https://wa.me/34607427159" target="_blank" rel="noopener">WhatsApp: 607 427 159</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Centro Notable. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/34607427159?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20oposiciones" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04"/></svg>
+</a>
+
+<script>
+  // LOADER
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('loader');
+      var heroBg = document.getElementById('heroBg');
+      if (loader) loader.classList.add('hidden');
+      if (heroBg) heroBg.classList.add('loaded');
+    }, 1600);
+  });
+
+  // NAVBAR SCROLL
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER MENU
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) {
+        var firstLink = mobileMenu.querySelector('a');
+        if (firstLink) firstLink.focus();
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+
+  function closeMobile() {
+    var h = document.getElementById('hamburger');
+    var m = document.getElementById('mobileMenu');
+    if (h) { h.classList.remove('active'); h.setAttribute('aria-expanded', 'false'); }
+    if (m) m.classList.remove('open');
+  }
+
+  // REVEAL ON SCROLL (JS-based: CSS default is visible, JS adds hidden class)
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    // Only hide elements below the fold
+    reveals.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top > window.innerHeight * 0.95) {
+        el.classList.add('js-hidden');
+      }
+    });
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.remove('js-hidden');
+          e.target.classList.add('js-visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el) { revealObserver.observe(el); });
+  }
+
+  // COUNTER ANIMATION
+  function animateCount(el) {
+    var target = parseInt(el.dataset.target, 10);
+    var isDecimal = el.dataset.decimal === 'true';
+    var duration = 1600;
+    var start = performance.now();
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 4);
+      var value = ease * target;
+      if (isDecimal) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var countObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          animateCount(e.target);
+          countObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
+  } else {
+    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+  }
+
+  // HERO PARALLAX (subtle)
+  window.addEventListener('scroll', function() {
+    var heroBg = document.getElementById('heroBg');
+    if (heroBg && window.scrollY < window.innerHeight) {
+      heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.2) + 'px)';
+    }
+  });
+
+  // HIGHLIGHT TODAY (horario)
+  function highlightToday() {
+    var dayMap = ['row-dom', 'row-lun', 'row-mar', 'row-mie', 'row-jue', 'row-vie', 'row-sab'];
+    var today = new Date().getDay();
+    var rowId = dayMap[today];
+    var row = document.getElementById(rowId);
+    if (row) row.classList.add('horario-hoy');
+  }
+  highlightToday();
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
