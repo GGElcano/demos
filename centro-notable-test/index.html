@@ -3,31 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centro Notable | Academia de Oposiciones en Tomelloso, Ciudad Real</title>
-  <meta name="description" content="Centro Notable: academia de oposiciones en Tomelloso. Magisterio, Sanidad, Correos, Administraci&#243;n y m&#225;s. Grupos reducidos, preparadores en activo y campus virtual. 5,0 en Google con m&#225;s de 150 rese&#241;as.">
+  <title>Notable Formación | Academia de Oposiciones en Tomelloso, Ciudad Real</title>
+  <meta name="description" content="Notable Formación es la academia de oposiciones de Tomelloso (Ciudad Real) con sedes en Albacete y Jaén. Magisterio, Sanidad, Correos, Policía y más. 5,0 en Google con 165 reseñas. Presencial y online.">
   <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="legal/cookie-banner.css">
-  <link rel="icon" href="https://www.centronotable.es/wp-content/uploads/2023/07/favicon-centro-notable-300x244.png" type="image/png">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #FAFAF7;
-      --bg-warm: #F0EFEB;
-      --text: #1a1a2e;
-      --text-muted: #6b7280;
-      --accent: #ff4a2d;
-      --accent-hover: #e8421f;
-      --accent-soft: rgba(255, 74, 45, 0.06);
-      --blue: #2b5494;
-      --blue-dark: #1e3a6e;
-      --border: rgba(26, 26, 46, 0.08);
-      --border-accent: rgba(255, 74, 45, 0.15);
-      --font-display: 'DM Serif Display', serif;
-      --font-body: 'Nunito', sans-serif;
+      --blue: #1e3a6e;
+      --blue-dark: #142952;
+      --blue-light: #2a4f8f;
+      --magenta: #e91e8f;
+      --magenta-light: #f54daa;
+      --magenta-soft: rgba(233,30,143,0.08);
+      --white: #ffffff;
+      --off-white: #f8f7f4;
+      --cream: #faf9f6;
+      --gray-100: #f3f2ef;
+      --gray-200: #e8e6e1;
+      --gray-400: #9b9791;
+      --gray-600: #6b6762;
+      --gray-800: #3a3835;
+      --text: #2a2825;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Nunito', 'Segoe UI', sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -35,728 +38,833 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
+      background: var(--white);
       color: var(--text);
       font-family: var(--font-body);
       font-weight: 400;
-      line-height: 1.65;
+      line-height: 1.7;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* LOADER */
+    /* ─── LOADER ─── */
     .loader {
       position: fixed; inset: 0; z-index: 10000;
-      background: var(--bg);
+      background: var(--blue);
       display: flex; align-items: center; justify-content: center;
       flex-direction: column; gap: 24px;
-      transition: opacity 0.7s, visibility 0.7s;
+      transition: opacity 0.7s var(--ease-smooth), visibility 0.7s;
     }
     .loader.hidden { opacity: 0; visibility: hidden; }
     .loader-logo {
-      font-family: var(--font-display); font-size: 2rem;
-      letter-spacing: 0.06em; color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.8rem; font-weight: 800;
+      letter-spacing: 0.04em; color: var(--white);
     }
-    .loader-logo span { color: var(--accent); }
+    .loader-logo span { color: var(--magenta); }
     .loader-bar {
-      width: 180px; height: 2px; background: var(--border);
-      position: relative; overflow: hidden; border-radius: 2px;
+      width: 180px; height: 2px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 2px; overflow: hidden;
     }
     .loader-bar::after {
-      content: ''; position: absolute; inset: 0;
-      background: var(--accent); transform: translateX(-100%);
+      content: ''; display: block; width: 100%; height: 100%;
+      background: var(--magenta);
+      transform: translateX(-100%);
       animation: loadBar 1.4s var(--ease-out) 0.2s forwards;
     }
     @keyframes loadBar { to { transform: translateX(0); } }
 
-    /* NAV */
+    /* ─── NAVBAR ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 26px 60px;
+      padding: 24px 56px;
       transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
     }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.4rem; font-weight: 400;
-      letter-spacing: 0.04em; text-decoration: none;
-      color: #fff; display: flex; align-items: center; gap: 4px;
-      transition: color 0.4s;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: rgba(255,255,255,0.85);
-      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
-      transition: color 0.3s; font-weight: 500;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-cta {
-      background: var(--accent) !important;
-      color: #fff !important;
-      padding: 10px 26px !important;
-      font-size: 0.75rem !important;
-      letter-spacing: 0.15em !important;
-      transition: background 0.3s !important;
-      border: none;
-    }
-    .nav-cta:hover { background: var(--accent-hover) !important; }
-
     nav.scrolled {
-      background: rgba(250, 250, 247, 0.97);
-      backdrop-filter: blur(16px);
-      padding: 16px 60px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.97);
+      padding: 16px 56px;
+      box-shadow: 0 1px 24px rgba(30,58,110,0.07);
+      backdrop-filter: blur(12px);
     }
-    nav.scrolled .nav-logo { color: var(--text); }
-    nav.scrolled .nav-links a { color: var(--text-muted); }
-    nav.scrolled .nav-links a:hover { color: var(--accent); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 36px; width: auto;
+    }
+    .nav-links {
+      display: flex; gap: 40px;
+      list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--blue);
+      font-size: 0.82rem; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 700;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--magenta); }
+    .nav-cta {
+      background: var(--magenta) !important;
+      color: var(--white) !important;
+      padding: 11px 28px !important;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.3s !important;
+    }
+    .nav-cta:hover {
+      background: var(--magenta-light) !important;
+      transform: translateY(-1px);
+    }
 
     /* HAMBURGER */
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+      background: none; border: none; cursor: pointer; padding: 8px;
     }
     .hamburger span {
-      width: 24px; height: 2px; background: #fff;
-      transition: transform 0.3s, opacity 0.3s, background 0.4s;
+      width: 24px; height: 2px; background: var(--blue);
+      transition: transform 0.3s, opacity 0.3s;
     }
-    nav.scrolled .hamburger span { background: var(--text); }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
     .mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--bg); z-index: 999;
-      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+      display: none; position: fixed; inset: 0;
+      background: var(--white); z-index: 999;
+      flex-direction: column; align-items: center;
+      justify-content: center; gap: 28px;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      text-decoration: none; color: var(--text); font-size: 1.2rem;
-      letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s;
-      font-weight: 600;
+      text-decoration: none; color: var(--blue);
+      font-size: 1.1rem; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 700;
+      transition: color 0.3s;
     }
-    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu a:hover { color: var(--magenta); }
 
-    /* HERO */
+    /* ─── HERO ─── */
     .hero {
-      position: relative; height: 100vh; min-height: 700px;
-      display: flex; align-items: flex-end; justify-content: flex-start;
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 140px 56px 100px;
       overflow: hidden;
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transform: scale(1.06);
-      transition: transform 6s var(--ease-out);
+      background: linear-gradient(135deg, var(--off-white) 0%, var(--cream) 50%, var(--gray-100) 100%);
     }
-    .hero-bg.loaded { transform: scale(1); }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(160deg, rgba(26,26,46,0.88) 0%, rgba(26,26,46,0.5) 50%, rgba(26,26,46,0.3) 100%);
+    .hero-shape-1 {
+      position: absolute; top: -20%; right: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(30,58,110,0.04) 0%, transparent 70%);
+      border-radius: 50%;
     }
-    .hero-overlay-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
-      background: linear-gradient(to top, rgba(26,26,46,0.85), transparent);
+    .hero-shape-2 {
+      position: absolute; bottom: -30%; left: -15%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(233,30,143,0.04) 0%, transparent 70%);
+      border-radius: 50%;
     }
-    .hero-content {
+    .hero-inner {
       position: relative; z-index: 2;
-      padding: 0 60px 90px;
-      max-width: 860px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      max-width: 1320px; margin: 0 auto; width: 100%;
     }
-    .hero-eyebrow {
-      font-size: 0.74rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 24px;
-      display: flex; align-items: center; gap: 14px;
-      font-weight: 600;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    .hero-content { max-width: 600px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      padding: 8px 18px; border-radius: 100px;
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--blue); letter-spacing: 0.06em;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(30,58,110,0.06);
     }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 36px; height: 2px; background: var(--accent);
+    .hero-badge .badge-dot {
+      width: 8px; height: 8px;
+      background: var(--magenta);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
     }
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(2.8rem, 6vw, 5.5rem);
-      font-weight: 400; line-height: 1.08;
-      letter-spacing: -0.01em; margin-bottom: 28px;
-      color: #fff;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      font-weight: 700; line-height: 1.08;
+      color: var(--blue-dark);
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
     }
-    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-title em {
+      font-style: italic;
+      color: var(--magenta);
+    }
     .hero-sub {
-      font-size: 1.05rem; color: rgba(255,255,255,0.88);
-      max-width: 540px; line-height: 1.75; margin-bottom: 44px;
-      font-weight: 300;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      font-size: 1.12rem; color: var(--gray-600);
+      line-height: 1.75; margin-bottom: 40px;
+      max-width: 480px; font-weight: 400;
     }
     .hero-actions {
-      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+      display: flex; align-items: center;
+      gap: 20px; flex-wrap: wrap;
     }
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: var(--accent); color: #fff;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--magenta); color: var(--white);
       text-decoration: none; padding: 16px 36px;
-      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-      font-weight: 700; font-family: var(--font-body);
-      transition: all 0.35s var(--ease-smooth);
-      position: relative; overflow: hidden;
+      font-size: 0.85rem; letter-spacing: 0.08em;
+      font-weight: 700; border-radius: 8px;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(233,30,143,0.25);
     }
-    .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--accent-hover); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
+    .btn-primary:hover {
+      background: var(--magenta-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(233,30,143,0.35);
     }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
-    .btn-ghost {
-      color: rgba(255,255,255,0.85); text-decoration: none;
-      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-      transition: color 0.3s; font-weight: 600;
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--blue);
+      text-decoration: none; padding: 16px 32px;
+      font-size: 0.85rem; letter-spacing: 0.08em;
+      font-weight: 700; border-radius: 8px;
+      border: 2px solid var(--blue);
+      transition: background 0.3s, color 0.3s, transform 0.3s;
     }
-    .btn-ghost:hover { color: var(--accent); }
-    .btn-ghost-arrow {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.3s, transform 0.3s;
+    .btn-secondary:hover {
+      background: var(--blue);
+      color: var(--white);
+      transform: translateY(-2px);
     }
-    .btn-ghost:hover .btn-ghost-arrow { border-color: var(--accent); transform: rotate(45deg); }
-    .icon-arrow { width: 14px; height: 14px; }
+    .btn-secondary svg { width: 16px; height: 16px; }
 
-    .hero-scroll {
-      position: absolute; right: 60px; bottom: 90px; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 14px;
-      opacity: 0; animation: fadeIn 1s 2s ease forwards;
+    .hero-visual {
+      position: relative;
+      display: flex; justify-content: center;
     }
-    .hero-scroll span {
-      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(255,255,255,0.5); writing-mode: vertical-rl;
+    .hero-img-wrapper {
+      position: relative;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(30,58,110,0.12);
+      max-width: 520px; width: 100%;
     }
-    .scroll-line {
-      width: 1px; height: 60px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: scrollPulse 2.5s infinite;
+    .hero-img-wrapper img {
+      width: 100%; height: auto; display: block;
+      aspect-ratio: 4/3; object-fit: cover;
     }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+    .hero-float-card {
+      position: absolute; bottom: -20px; left: -30px;
+      background: var(--white);
+      padding: 20px 24px; border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(30,58,110,0.12);
+      display: flex; align-items: center; gap: 14px;
+      z-index: 3;
     }
-    @keyframes fadeIn { to { opacity: 1; } }
+    .hero-float-icon {
+      width: 48px; height: 48px;
+      background: var(--magenta-soft);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-float-icon svg { width: 22px; height: 22px; color: var(--magenta); }
+    .hero-float-text { line-height: 1.3; }
+    .hero-float-text strong {
+      display: block; font-size: 1.3rem;
+      font-weight: 800; color: var(--blue-dark);
+    }
+    .hero-float-text span {
+      font-size: 0.78rem; color: var(--gray-400);
+      font-weight: 600;
+    }
+    .hero-float-card-2 {
+      position: absolute; top: 20px; right: -20px;
+      background: var(--blue);
+      padding: 16px 22px; border-radius: 14px;
+      box-shadow: 0 8px 32px rgba(30,58,110,0.2);
+      color: var(--white); z-index: 3;
+      text-align: center;
+    }
+    .hero-float-card-2 strong {
+      display: block; font-size: 1.6rem;
+      font-weight: 800; line-height: 1;
+    }
+    .hero-float-card-2 span {
+      font-size: 0.7rem; opacity: 0.8;
+      letter-spacing: 0.06em; font-weight: 600;
+    }
 
-    /* MARQUEE */
+    /* ─── MARQUEE ─── */
     .marquee-section {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-top: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
       overflow: hidden; padding: 18px 0;
-      background: var(--bg-warm);
+      background: var(--white);
     }
     .marquee-track {
-      display: flex; width: max-content; align-items: center;
+      display: flex; width: max-content;
+      align-items: center;
       animation: marquee 18s linear infinite;
       will-change: transform;
     }
     .marquee-track:hover { animation-play-state: paused; }
     .marquee-item {
-      display: inline-flex; align-items: center; gap: 14px;
-      padding: 0 30px; flex-shrink: 0; white-space: nowrap;
-      font-family: var(--font-display); font-size: 1.05rem;
-      font-style: italic; color: var(--text-muted);
-      letter-spacing: 0.04em;
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 0 28px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-display);
+      font-size: 1rem; font-style: italic;
+      color: var(--gray-600); letter-spacing: 0.03em;
     }
     .marquee-item .dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--accent); flex-shrink: 0;
+      width: 5px; height: 5px;
+      border-radius: 50%; background: var(--magenta);
+      flex-shrink: 0;
     }
     @keyframes marquee {
-      0%   { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-50%, 0, 0); }
+      0% { transform: translate3d(0,0,0); }
+      100% { transform: translate3d(-50%,0,0); }
     }
 
-    /* SECTION COMMONS */
-    section { padding: 120px 60px; }
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 120px 56px; }
     .section-label {
-      font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 16px;
+      font-size: 0.72rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--magenta);
+      font-weight: 700; margin-bottom: 14px;
       display: flex; align-items: center; gap: 12px;
-      font-weight: 700;
     }
-    .section-label::before { content: ''; width: 28px; height: 2px; background: var(--accent); }
+    .section-label::before {
+      content: ''; width: 28px; height: 2px;
+      background: var(--magenta); border-radius: 2px;
+    }
     .section-title {
       font-family: var(--font-display);
-      font-size: clamp(2.2rem, 4vw, 3.8rem);
-      font-weight: 400; line-height: 1.12;
-      letter-spacing: -0.01em; color: var(--text);
-      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+      font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+      font-weight: 700; line-height: 1.12;
+      color: var(--blue-dark);
+      letter-spacing: -0.01em;
     }
-    .section-title em { font-style: italic; color: var(--accent); }
-    .section-sub {
-      font-size: 1.05rem; color: var(--text-muted); line-height: 1.75;
-      max-width: 560px; margin-top: 20px; font-weight: 300;
+    .section-title em {
+      font-style: italic; color: var(--magenta);
     }
 
-    /* STATS */
+    /* ─── STATS ─── */
     .stats-section {
-      background: var(--bg); padding: 100px 60px;
+      background: var(--blue);
+      padding: 80px 56px;
     }
     .stats-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 1px; max-width: 1200px; margin: 0 auto;
-      background: var(--border);
     }
     .stat-card {
-      padding: 52px 40px; background: var(--bg);
-      position: relative; overflow: hidden;
-      transition: background 0.4s;
+      padding: 48px 36px; text-align: center;
+      position: relative;
     }
-    .stat-card:hover { background: var(--accent-soft); }
     .stat-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; background: var(--accent); transform: scaleX(0);
-      transition: transform 0.5s var(--ease-out); transform-origin: left;
+      content: ''; position: absolute;
+      top: 20%; right: 0; height: 60%;
+      width: 1px; background: rgba(255,255,255,0.12);
     }
-    .stat-card:hover::after { transform: scaleX(1); }
+    .stat-card:last-child::after { display: none; }
     .stat-number {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 7vw, 4.2rem);
-      font-weight: 400; line-height: 1; color: var(--text);
-      margin-bottom: 10px; letter-spacing: -0.02em;
-      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1; margin-bottom: 8px;
     }
-    .stat-number .stat-suffix { color: var(--accent); }
+    .stat-suffix { color: var(--magenta-light); }
     .stat-label {
-      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--text-muted); font-weight: 500;
+      font-size: 0.78rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6);
+      font-weight: 600;
     }
 
-    /* OPOSICIONES */
-    .opos-section { background: var(--bg-warm); }
-    .opos-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 60px; max-width: 1200px; margin-left: auto; margin-right: auto;
-      gap: 32px; flex-wrap: wrap;
+    /* ─── OPOSICIONES (SERVICES) ─── */
+    .services-section { background: var(--off-white); }
+    .services-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; gap: 40px;
+      max-width: 1200px; margin: 0 auto 64px;
+      flex-wrap: wrap;
     }
-    .opos-grid {
+    .services-header .section-title { max-width: 560px; }
+    .services-header-text {
+      max-width: 380px; font-size: 0.95rem;
+      color: var(--gray-600); line-height: 1.7;
+    }
+    .services-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 20px; max-width: 1200px; margin: 0 auto;
     }
-    .opos-card {
-      padding: 48px 36px; background: var(--bg);
-      border: 1px solid var(--border);
+    .service-card {
+      background: var(--white);
+      padding: 44px 36px;
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
       position: relative; overflow: hidden;
-      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
     }
-    .opos-card:hover {
-      border-color: var(--border-accent);
-      box-shadow: 0 12px 40px rgba(255,74,45,0.08);
-      transform: translateY(-4px);
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(30,58,110,0.08);
+      border-color: rgba(233,30,143,0.2);
     }
-    .opos-icon {
-      width: 48px; height: 48px; margin-bottom: 28px;
+    .service-icon {
+      width: 56px; height: 56px; margin-bottom: 24px;
+      background: var(--magenta-soft);
+      border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      background: var(--accent-soft); color: var(--accent);
-      border-radius: 12px;
+      transition: background 0.3s;
     }
-    .opos-card h3 {
-      font-family: var(--font-display); font-size: 1.5rem;
-      font-weight: 400; margin-bottom: 12px; line-height: 1.2;
-      color: var(--text);
+    .service-card:hover .service-icon { background: rgba(233,30,143,0.14); }
+    .service-icon svg { width: 26px; height: 26px; color: var(--magenta); }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--blue-dark); margin-bottom: 10px;
+      line-height: 1.2;
     }
-    .opos-card p {
-      font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;
-      font-weight: 300;
+    .service-card p {
+      font-size: 0.92rem; color: var(--gray-600);
+      line-height: 1.7;
     }
-    .opos-link {
-      display: inline-flex; align-items: center; gap: 8px;
-      margin-top: 24px; text-decoration: none;
-      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent); font-weight: 700;
-      transition: gap 0.3s;
+    .service-tag {
+      display: inline-block; margin-top: 18px;
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 700;
+      color: var(--magenta); padding: 6px 14px;
+      background: var(--magenta-soft);
+      border-radius: 6px;
     }
-    .opos-link:hover { gap: 14px; }
-    .opos-number {
-      position: absolute; top: 24px; right: 28px;
-      font-family: var(--font-display); font-size: 4.5rem;
-      font-weight: 400; color: rgba(255,74,45,0.06);
-      line-height: 1; transition: color 0.5s;
-    }
-    .opos-card:hover .opos-number { color: rgba(255,74,45,0.12); }
 
-    /* ABOUT */
+    /* ─── ABOUT ─── */
     .about-section {
-      background: var(--bg);
-      display: grid; grid-template-columns: 1.1fr 1fr;
-      gap: 0; padding: 0; max-width: none;
+      background: var(--white); padding: 0;
+    }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      max-width: none; min-height: 700px;
     }
     .about-visual {
-      position: relative; overflow: hidden; min-height: 650px;
+      position: relative; overflow: hidden;
+      background: var(--gray-100);
     }
     .about-visual img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.8s var(--ease-out);
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
-    .about-visual:hover img { transform: scale(1.03); }
     .about-badge {
       position: absolute; top: 24px; right: 24px;
-      background: var(--bg); border: 1px solid var(--border-accent);
-      padding: 22px 28px; max-width: 220px;
+      background: var(--blue);
+      padding: 22px 28px; border-radius: 14px;
+      box-shadow: 0 8px 28px rgba(30,58,110,0.2);
     }
     .about-badge-year {
-      font-family: var(--font-display); font-size: 2.8rem;
-      color: var(--accent); line-height: 1;
+      font-family: var(--font-display);
+      font-size: 2.6rem; color: var(--white);
+      font-weight: 700; line-height: 1;
     }
     .about-badge-text {
       font-size: 0.72rem; letter-spacing: 0.08em;
-      color: var(--text-muted); margin-top: 4px; font-weight: 500;
+      color: rgba(255,255,255,0.7); margin-top: 4px;
+      font-weight: 600;
     }
     .about-content {
-      padding: 90px 70px;
-      display: flex; flex-direction: column; justify-content: center;
+      padding: 100px 80px;
+      display: flex; flex-direction: column;
+      justify-content: center;
     }
     .about-body {
       font-size: 1.05rem; line-height: 1.85;
-      color: var(--text-muted); margin: 28px 0 36px;
-      font-weight: 300;
+      color: var(--gray-600); margin: 28px 0 36px;
     }
-    .about-body strong { color: var(--text); font-weight: 600; }
+    .about-body strong { color: var(--blue-dark); font-weight: 700; }
     .about-divider {
-      width: 50px; height: 2px; background: var(--accent); margin: 28px 0;
+      width: 50px; height: 2px;
+      background: var(--magenta);
+      border-radius: 2px; margin: 28px 0;
     }
-    .about-values { display: flex; flex-direction: column; gap: 16px; }
-    .about-value {
-      display: flex; gap: 18px; align-items: flex-start;
-      padding: 18px; border: 1px solid var(--border);
-      transition: border-color 0.4s, background 0.4s;
+    .about-features {
+      display: flex; flex-direction: column; gap: 18px;
     }
-    .about-value:hover { border-color: var(--border-accent); background: var(--accent-soft); }
-    .value-num {
-      font-family: var(--font-display); font-size: 1.3rem;
-      color: var(--accent); opacity: 0.7; flex-shrink: 0; line-height: 1.2;
+    .about-feature {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px; border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      transition: border-color 0.3s, background 0.3s;
     }
-    .value-text h3 {
-      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
-      font-weight: 700; margin-bottom: 4px; color: var(--text);
+    .about-feature:hover {
+      border-color: rgba(233,30,143,0.2);
+      background: var(--magenta-soft);
     }
-    .value-text p {
-      font-size: 0.88rem; color: var(--text-muted); font-weight: 300; line-height: 1.6;
+    .feature-num {
+      font-family: var(--font-display);
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--magenta); opacity: 0.7;
+      flex-shrink: 0; line-height: 1.3;
+    }
+    .feature-text h3 {
+      font-size: 0.82rem; letter-spacing: 0.08em;
+      text-transform: uppercase; font-weight: 700;
+      color: var(--blue-dark); margin-bottom: 4px;
+    }
+    .feature-text p {
+      font-size: 0.88rem; color: var(--gray-600);
+      line-height: 1.6;
     }
 
-    /* METODOLOGIA (replaces testimonials - no verified review texts) */
-    .metodo-section { background: var(--bg-warm); }
-    .metodo-inner { max-width: 1200px; margin: 0 auto; }
-    .metodo-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr);
-      gap: 0; margin-top: 60px; position: relative;
+    /* ─── METHODOLOGY ─── */
+    .method-section { background: var(--off-white); }
+    .method-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; max-width: 1200px;
+      margin: 56px auto 0;
     }
-    .metodo-grid::before {
-      content: ''; position: absolute;
-      top: 40px; left: 10%; right: 10%;
-      height: 2px; background: var(--border);
-      z-index: 0;
+    .method-card {
+      background: var(--white);
+      padding: 40px 28px; border-radius: 16px;
+      border: 1px solid var(--gray-200);
+      text-align: center;
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
     }
-    .metodo-step {
-      text-align: center; padding: 0 16px;
+    .method-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(30,58,110,0.06);
+    }
+    .method-step {
+      width: 44px; height: 44px; margin: 0 auto 20px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--white);
+    }
+    .method-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--blue-dark); margin-bottom: 10px;
+    }
+    .method-card p {
+      font-size: 0.88rem; color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-section {
+      background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '\201C'; position: absolute;
+      top: -30px; left: 30px;
+      font-family: var(--font-display);
+      font-size: 24rem; color: rgba(233,30,143,0.04);
+      line-height: 1; pointer-events: none;
+    }
+    .testimonials-inner {
+      max-width: 1200px; margin: 0 auto;
       position: relative; z-index: 1;
     }
-    .metodo-num {
-      width: 80px; height: 80px; margin: 0 auto 24px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--bg);
-      border: 2px solid var(--border-accent);
-      border-radius: 50%;
-      font-family: var(--font-display); font-size: 1.6rem;
-      color: var(--accent);
-      transition: background 0.4s, color 0.4s;
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 56px;
     }
-    .metodo-step:hover .metodo-num {
-      background: var(--accent); color: #fff;
+    .testimonial-card {
+      padding: 40px 32px;
+      background: var(--off-white);
+      border-radius: 16px;
+      border: 1px solid var(--gray-200);
+      transition: border-color 0.3s, transform 0.4s var(--ease-out);
+      display: flex; flex-direction: column;
     }
-    .metodo-step h3 {
-      font-family: var(--font-display); font-size: 1.15rem;
-      font-weight: 400; margin-bottom: 10px; color: var(--text);
-      line-height: 1.3;
-    }
-    .metodo-step p {
-      font-size: 0.85rem; color: var(--text-muted);
-      line-height: 1.65; font-weight: 300;
-    }
-
-    /* EQUIPO */
-    .equipo-section { background: var(--bg); }
-    .equipo-inner { max-width: 1200px; margin: 0 auto; }
-    .equipo-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 24px; margin-top: 60px;
-    }
-    .equipo-card {
-      position: relative; overflow: hidden;
-      background: var(--bg-warm);
-      transition: box-shadow 0.4s, transform 0.4s;
-    }
-    .equipo-card:hover {
-      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    .testimonial-card:hover {
+      border-color: rgba(233,30,143,0.2);
       transform: translateY(-4px);
     }
-    .equipo-photo {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover;
-      transition: transform 0.6s var(--ease-out);
+    .testimonial-stars {
+      display: flex; gap: 4px; margin-bottom: 22px;
     }
-    .equipo-card:hover .equipo-photo { transform: scale(1.04); }
-    .equipo-info {
-      padding: 24px 20px 28px;
+    .star {
+      width: 14px; height: 14px;
+      background: #f5a623;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
-    .equipo-info h3 {
-      font-family: var(--font-display); font-size: 1.2rem;
-      font-weight: 400; margin-bottom: 4px; color: var(--text);
+    .testimonial-quote {
+      font-size: 1rem; font-style: italic;
+      line-height: 1.75; color: var(--gray-800);
+      margin-bottom: 28px; flex: 1;
     }
-    .equipo-info .equipo-role {
-      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent); font-weight: 700; margin-bottom: 8px;
+    .testimonial-divider {
+      width: 30px; height: 2px;
+      background: var(--magenta);
+      border-radius: 2px;
+      margin-bottom: 18px; opacity: 0.6;
     }
-    .equipo-info p {
-      font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; font-weight: 300;
+    .testimonial-author strong {
+      display: block; font-size: 0.88rem;
+      font-weight: 700; color: var(--blue-dark);
+      margin-bottom: 2px;
+    }
+    .testimonial-author span {
+      font-size: 0.75rem; color: var(--gray-400);
+      font-weight: 600;
     }
 
-    /* MAP SECTION */
-    .map-section { background: var(--bg-warm); padding: 0; }
+    /* ─── GALLERY ─── */
+    .gallery-section {
+      background: var(--off-white);
+      padding: 100px 56px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 16px;
+      max-width: 1200px; margin: 48px auto 0;
+    }
+    .gallery-item {
+      border-radius: 14px; overflow: hidden;
+      position: relative;
+    }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* ─── HORARIO ─── */
+    .horario-section {
+      background: var(--white);
+      padding: 100px 56px;
+    }
+    .horario-inner {
+      max-width: 600px; margin: 48px auto 0;
+    }
+    .horario-table {
+      width: 100%; border-collapse: collapse;
+    }
+    .horario-table tr {
+      border-bottom: 1px solid var(--gray-200);
+      transition: background 0.2s;
+    }
+    .horario-table td {
+      padding: 16px 20px;
+      font-size: 0.95rem;
+    }
+    .horario-table td:first-child {
+      font-weight: 700; color: var(--blue-dark);
+      width: 40%;
+    }
+    .horario-table td:last-child {
+      color: var(--gray-600); text-align: right;
+    }
+    .horario-hoy {
+      background: var(--magenta-soft) !important;
+      border-radius: 8px;
+    }
+    .horario-hoy td:first-child { color: var(--magenta); }
+    .horario-closed td:last-child {
+      color: var(--gray-400); font-style: italic;
+    }
+
+    /* ─── MAP ─── */
+    .map-section { background: var(--off-white); padding: 0; }
     .map-inner {
       display: grid; grid-template-columns: 1fr 1fr;
-      max-width: none;
     }
     .map-info {
-      padding: 90px 70px;
-      display: flex; flex-direction: column; justify-content: center;
-      background: var(--bg-warm);
+      padding: 80px 64px;
+      display: flex; flex-direction: column;
+      justify-content: center;
     }
     .map-info-item {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 22px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 20px;
+      align-items: flex-start;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--gray-200);
     }
-    .map-info-item:first-of-type { padding-top: 36px; }
     .map-icon {
-      width: 42px; height: 42px; flex-shrink: 0;
-      border: 1px solid var(--border-accent);
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--magenta-soft);
+      border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      color: var(--accent); border-radius: 10px;
-      background: var(--accent-soft);
+      color: var(--magenta);
     }
+    .map-icon svg { width: 20px; height: 20px; }
     .map-info-text h3 {
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 4px; font-weight: 700;
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--magenta); margin-bottom: 4px;
+      font-weight: 700;
     }
-    .map-info-text p, .map-info-text a {
-      font-size: 0.95rem; color: var(--text);
-      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    .map-info-text p,
+    .map-info-text a {
+      font-size: 0.95rem; color: var(--gray-800);
+      text-decoration: none; transition: color 0.3s;
+      line-height: 1.6;
     }
-    .map-info-text a:hover { color: var(--accent); }
+    .map-info-text a:hover { color: var(--magenta); }
     .map-frame { min-height: 500px; position: relative; }
     .map-frame iframe {
       width: 100%; height: 100%; min-height: 500px;
       border: none; display: block;
     }
 
-    /* HORARIO */
-    .horario-table {
-      width: 100%; border-collapse: collapse; margin-top: 8px;
-    }
-    .horario-table td {
-      padding: 8px 0; font-size: 0.9rem; color: var(--text);
-      border-bottom: 1px solid var(--border);
-    }
-    .horario-table td:first-child { font-weight: 600; width: 120px; }
-    .horario-table td:last-child { color: var(--text-muted); font-weight: 300; }
-    .horario-hoy td {
-      color: var(--accent) !important; font-weight: 600 !important;
-    }
-
-    /* CTA SECTION */
+    /* ─── CTA ─── */
     .cta-section {
-      background: var(--accent); padding: 100px 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 48px; flex-wrap: wrap;
+      background: var(--blue);
+      padding: 100px 56px;
+      text-align: center;
+      position: relative; overflow: hidden;
     }
-    .cta-text { flex: 1; min-width: 280px; }
-    .cta-text h2 {
+    .cta-section::before {
+      content: ''; position: absolute;
+      top: -50%; right: -20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(233,30,143,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-inner {
+      max-width: 700px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .cta-inner h2 {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 400; color: #fff; line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.12; margin-bottom: 16px;
     }
-    .cta-text p {
-      font-size: 1rem; color: rgba(255,255,255,0.88); margin-top: 14px; font-weight: 300;
+    .cta-inner h2 em {
+      font-style: italic; color: var(--magenta-light);
     }
-    .btn-dark {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: var(--text); color: #fff;
-      text-decoration: none; padding: 18px 44px;
-      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-      font-weight: 700; font-family: var(--font-body);
-      transition: all 0.35s var(--ease-smooth);
-      white-space: nowrap; position: relative; overflow: hidden;
+    .cta-inner p {
+      font-size: 1.05rem; color: rgba(255,255,255,0.7);
+      margin-bottom: 36px; line-height: 1.7;
     }
-    .btn-dark::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--blue-dark); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
+    .cta-actions {
+      display: flex; gap: 16px;
+      justify-content: center; flex-wrap: wrap;
     }
-    .btn-dark:hover::before { transform: translateX(0); }
-    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white); color: var(--blue-dark);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.85rem; letter-spacing: 0.08em;
+      font-weight: 700; border-radius: 8px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--white);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.85rem; letter-spacing: 0.08em;
+      font-weight: 700; border-radius: 8px;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .btn-outline-white:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
 
-    /* FOOTER */
+    /* ─── FOOTER ─── */
     footer {
-      background: var(--blue-dark); padding: 80px 60px 44px;
-      color: #fff;
+      background: var(--blue-dark);
+      padding: 80px 56px 44px;
     }
     .footer-top {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px; margin-bottom: 60px;
+      gap: 56px; margin-bottom: 60px;
     }
     .footer-brand .nav-logo {
-      font-size: 1.6rem; margin-bottom: 18px; display: inline-flex;
-      color: #fff;
+      margin-bottom: 18px; display: inline-flex;
     }
+    .footer-brand .nav-logo img { filter: brightness(0) invert(1); }
     .footer-tagline {
-      font-family: var(--font-display); font-style: italic;
-      font-size: 1rem; color: rgba(255,255,255,0.7);
-      line-height: 1.6; max-width: 260px; margin-bottom: 28px;
+      font-family: var(--font-display);
+      font-style: italic; font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6; max-width: 260px;
+      margin-bottom: 28px;
     }
-    .footer-social { display: flex; gap: 12px; flex-wrap: wrap; }
+    .footer-social { display: flex; gap: 10px; }
     .social-link {
       width: 38px; height: 38px;
       border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 8px;
+      border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       text-decoration: none; color: rgba(255,255,255,0.7);
       transition: all 0.3s;
     }
-    .social-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-2px); }
+    .social-link:hover {
+      background: var(--magenta); border-color: var(--magenta);
+      color: var(--white); transform: translateY(-2px);
+    }
     .social-link svg { width: 16px; height: 16px; }
     .footer-col h3 {
-      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 20px; font-weight: 700;
+      font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--magenta-light);
+      margin-bottom: 20px; font-weight: 700;
     }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .footer-col ul a {
-      text-decoration: none; color: rgba(255,255,255,0.7);
-      font-size: 0.88rem; transition: color 0.3s; font-weight: 300;
+      text-decoration: none; color: rgba(255,255,255,0.65);
+      font-size: 0.88rem; transition: color 0.3s;
     }
-    .footer-col ul a:hover { color: #fff; }
+    .footer-col ul a:hover { color: var(--white); }
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 32px; display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px; display: flex;
+      justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
     }
     .footer-copy {
-      font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
+      font-size: 0.78rem; color: rgba(255,255,255,0.45);
     }
     .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
     .footer-legal a, .footer-legal button {
-      font-size: 0.75rem; color: rgba(255,255,255,0.6);
-      text-decoration: none; letter-spacing: 0.04em; transition: color 0.3s;
-      background: none; border: none; padding: 0; cursor: pointer;
-      font-family: inherit;
+      font-size: 0.75rem; color: rgba(255,255,255,0.55);
+      text-decoration: none; transition: color 0.3s;
+      background: none; border: none; padding: 0;
+      cursor: pointer; font-family: inherit;
     }
-    .footer-legal a:hover, .footer-legal button:hover { color: #fff; }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--white); }
 
-    /* WHATSAPP FLOAT */
-    .whatsapp-float {
-      position: fixed; bottom: 26px; right: 26px; z-index: 998;
-      width: 56px; height: 56px;
-      background: #25d366; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 14px rgba(37,211,102,0.35);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 22px rgba(37,211,102,0.45);
-    }
-    .whatsapp-float svg { width: 28px; height: 28px; fill: #fff; }
-
-    /* REVEAL (safe default: visible) */
+    /* ─── REVEALS ─── */
     .reveal {
       opacity: 1; transform: translateY(0);
       transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
     }
-    .reveal.js-hidden { opacity: 0; transform: translateY(28px); }
-    .reveal.js-visible { opacity: 1; transform: translateY(0); }
-    .reveal-d1 { transition-delay: 0.12s; }
-    .reveal-d2 { transition-delay: 0.24s; }
-    .reveal-d3 { transition-delay: 0.36s; }
-    .reveal-d4 { transition-delay: 0.48s; }
+    .reveal.hidden { opacity: 0; transform: translateY(28px); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
 
-    /* FOCUS VISIBLE */
-    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    /* ─── FOCUS ─── */
+    :focus-visible { outline: 3px solid var(--magenta); outline-offset: 3px; border-radius: 4px; }
     .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: #fff; padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--magenta); color: var(--white); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 6px; }
 
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      nav { padding: 22px 36px; }
-      nav.scrolled { padding: 14px 36px; }
-      section { padding: 90px 36px; }
-      .hero-content { padding: 0 36px 80px; }
-      .hero-scroll { right: 36px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .opos-grid { grid-template-columns: repeat(2, 1fr); }
-      .equipo-grid { grid-template-columns: repeat(2, 1fr); }
-      .metodo-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
-      .metodo-grid::before { display: none; }
-      .metodo-step:nth-child(n+4) { margin-top: 24px; }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .map-inner { grid-template-columns: 1fr; }
-      .map-info { padding: 60px 36px; }
-      .about-section { grid-template-columns: 1fr; }
-      .about-visual { min-height: 380px; }
-      .about-content { padding: 60px 36px; }
-    }
-    @media (max-width: 768px) {
-      .hero { min-height: auto; height: auto; align-items: flex-start; }
-      .hamburger { display: flex; }
-      nav { padding: 18px 24px; }
-      nav.scrolled { padding: 14px 24px; }
-      .nav-links { display: none; }
-      section { padding: 70px 24px; }
-      .hero-content { padding: 6px 24px 60px; }
-      .hero-scroll { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .opos-grid { grid-template-columns: 1fr; }
-      .equipo-grid { grid-template-columns: 1fr 1fr; }
-      .metodo-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-      .about-section { grid-template-columns: 1fr; }
-      .about-visual { min-height: 320px; }
-      .about-content { padding: 50px 24px; }
-      .cta-section { padding: 70px 24px; flex-direction: column; align-items: flex-start; }
-      .footer-top { grid-template-columns: 1fr; gap: 36px; }
-      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; align-items: center; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .stats-section { padding: 60px 24px; }
-      .map-info { padding: 50px 24px; }
-      .opos-header { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 36px; }
-    }
-    @media (max-width: 480px) {
-      .hero-title { font-size: clamp(2.2rem, 10vw, 2.8rem); margin-bottom: 20px; }
-      .hero-eyebrow { font-size: 0.66rem; letter-spacing: 0.22em; margin-bottom: 36px; flex-wrap: wrap; gap: 8px; }
-      .hero-eyebrow::before { width: 20px; }
-      .hero-sub { font-size: 0.92rem; margin-bottom: 30px; }
-      .hero-content { padding: 5px 20px 50px; }
-      .section-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
-      .stat-number { font-size: clamp(2.2rem, 11vw, 3rem); }
-      .stat-card { padding: 32px 20px; }
-      .opos-card { padding: 36px 24px; }
-      .equipo-grid { grid-template-columns: 1fr; }
-      .metodo-grid { grid-template-columns: 1fr; gap: 16px; }
-      .metodo-step { text-align: left; display: flex; gap: 16px; align-items: flex-start; padding: 0; }
-      .metodo-num { width: 52px; height: 52px; font-size: 1.2rem; margin: 0; flex-shrink: 0; }
-      .metodo-step h3, .metodo-step p { text-align: left; }
-      .cta-section { padding: 56px 20px; }
-      .btn-dark { padding: 16px 32px; }
-      .btn-primary { padding: 14px 28px; }
-      .about-badge { top: 14px; right: 14px; padding: 16px 20px; max-width: 180px; }
-      .about-badge-year { font-size: 2.2rem; }
-    }
-
+    /* ─── REDUCED MOTION ─── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -765,359 +873,478 @@
         scroll-behavior: auto !important;
       }
       .marquee-track { animation: none !important; }
-      .reveal.js-hidden { opacity: 1; transform: none; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 20px 32px; }
+      nav.scrolled { padding: 14px 32px; }
+      section { padding: 90px 32px; }
+      .hero { padding: 120px 32px 80px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .hero-img-wrapper { max-width: 460px; }
+      .hero-float-card { bottom: -16px; left: -10px; }
+      .hero-float-card-2 { top: 10px; right: -10px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-visual { min-height: 400px; }
+      .about-content { padding: 60px 32px; }
+      .method-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-row: span 1; grid-column: span 2; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; padding: 100px 24px 60px; }
+      .hamburger { display: flex; }
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      section { padding: 72px 24px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-float-card { position: relative; bottom: auto; left: auto; margin-top: 16px; }
+      .hero-float-card-2 { display: none; }
+      .stats-section { padding: 60px 24px; }
+      .stat-card { padding: 32px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .method-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:first-child { grid-column: span 1; }
+      .gallery-section { padding: 72px 24px; }
+      .horario-section { padding: 72px 24px; }
+      .cta-section { padding: 72px 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .map-info { padding: 48px 24px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 10vw, 2.8rem); }
+      .hero-sub { font-size: 1rem; }
+      .section-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+      .stat-number { font-size: clamp(2rem, 10vw, 2.8rem); }
+      .services-header { flex-direction: column; align-items: flex-start; }
+      .btn-primary, .btn-secondary, .btn-white, .btn-outline-white { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
 <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
-  <div class="loader-logo">Centro <span>Notable</span></div>
+  <div class="loader-logo">Notable<span>.</span></div>
   <div class="loader-bar"></div>
 </div>
 
-<nav id="navbar" aria-label="Navegaci&#243;n principal">
-  <a href="#main-content" class="nav-logo">Notable<span>.</span></a>
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main-content" class="nav-logo" aria-label="Notable Formación - Inicio">
+    <img src="logo.png" alt="Logo de Notable Formación" width="337" height="100">
+  </a>
   <ul class="nav-links">
     <li><a href="#oposiciones">Oposiciones</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#equipo">Equipo</a></li>
-    <li><a href="#contacto" class="nav-cta">Inf&#243;rmate</a></li>
+    <li><a href="#método">Método</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-cta">Contactar</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir men&#250; de navegaci&#243;n">
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú de navegación">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegaci&#243;n principal">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
   <a href="#oposiciones" onclick="closeMobile()">Oposiciones</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
-  <a href="#equipo" onclick="closeMobile()">Equipo</a>
-  <a href="#metodologia" onclick="closeMobile()">Metodolog&#237;a</a>
-  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="#método" onclick="closeMobile()">Método</a>
+  <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="#contacto" onclick="closeMobile()">Contactar</a>
 </div>
 
 <a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
 <main id="main-content">
 
+<!-- ═══ HERO ═══ -->
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-bg" id="heroBg" style="background-image: url('https://www.centronotable.es/wp-content/uploads/2023/07/academia-oposiciones.png'); background-size: cover; background-position: center;" role="img" aria-label="Instalaciones de la academia Centro Notable en Tomelloso"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-overlay-bottom"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Academia de oposiciones  &#183; Tomelloso, Ciudad Real &#183; Desde 2018</p>
-    <h1 class="hero-title" id="hero-title">Tu plaza<br>empieza <em>aqu&#237;.</em></h1>
-    <p class="hero-sub">Preparamos oposiciones de Magisterio, Sanidad, Correos y Administraci&#243;n con preparadores en activo, grupos reducidos y temarios propios. Presencial en Tomelloso, Albacete y Ja&#233;n, u online desde donde quieras.</p>
-    <div class="hero-actions">
-      <a href="tel:+34614442456" class="btn-primary" aria-label="Llamar a Centro Notable al 614 442 456">
-        <span>Llamar al 614 442 456
-          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-      <a href="#oposiciones" class="btn-ghost">
-        <span>Ver oposiciones</span>
-        <span class="btn-ghost-arrow" aria-hidden="true">
-          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>
-        </span>
-      </a>
-    </div>
+  <div class="hero-bg">
+    <div class="hero-shape-1"></div>
+    <div class="hero-shape-2"></div>
   </div>
-  <div class="hero-scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Desde 2018 en Tomelloso
+      </div>
+      <h1 class="hero-title" id="hero-title">
+        Tu plaza es posible.<br>
+        <em>Prepárala con quien sabe.</em>
+      </h1>
+      <p class="hero-sub">
+        Notable Formación es la academia de oposiciones de Tomelloso con más de 220 alumnos y 16 preparadores especializados. Magisterio, Sanidad, Correos y más, en presencial u online.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/34607427159" target="_blank" rel="noopener" class="btn-primary" aria-label="Escribir por WhatsApp al 607 427 159">
+          Escribe por WhatsApp
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="tel:+34614442456" class="btn-secondary" aria-label="Llamar al 614 44 24 56">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg>
+          614 44 24 56
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrapper">
+        <img src="profesor-1.jpg" alt="Alumnos estudiando en el aula de Notable Formación en Tomelloso" width="450" height="300">
+      </div>
+      <div class="hero-float-card">
+        <div class="hero-float-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="hero-float-text">
+          <strong>5,0 / 5</strong>
+          <span>165 reseñas en Google</span>
+        </div>
+      </div>
+      <div class="hero-float-card-2">
+        <strong>220+</strong>
+        <span>alumnos activos</span>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ═══ MARQUEE ═══ -->
 <div class="marquee-section" aria-hidden="true">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Magisterio Primaria</span>
+    <span class="marquee-item"><span class="dot"></span>Magisterio</span>
     <span class="marquee-item"><span class="dot"></span>Sanidad SESCAM</span>
     <span class="marquee-item"><span class="dot"></span>Correos</span>
-    <span class="marquee-item"><span class="dot"></span>Polic&#237;a Local</span>
+    <span class="marquee-item"><span class="dot"></span>Policía Nacional</span>
+    <span class="marquee-item"><span class="dot"></span>Guardia Civil</span>
     <span class="marquee-item"><span class="dot"></span>Auxiliar Administrativo</span>
-    <span class="marquee-item"><span class="dot"></span>ATE</span>
-    <span class="marquee-item"><span class="dot"></span>Audici&#243;n y Lenguaje</span>
-    <span class="marquee-item"><span class="dot"></span>Educaci&#243;n Infantil</span>
-    <span class="marquee-item"><span class="dot"></span>Magisterio Primaria</span>
+    <span class="marquee-item"><span class="dot"></span>Celador</span>
+    <span class="marquee-item"><span class="dot"></span>Secundaria</span>
+    <span class="marquee-item"><span class="dot"></span>Magisterio</span>
     <span class="marquee-item"><span class="dot"></span>Sanidad SESCAM</span>
     <span class="marquee-item"><span class="dot"></span>Correos</span>
-    <span class="marquee-item"><span class="dot"></span>Polic&#237;a Local</span>
+    <span class="marquee-item"><span class="dot"></span>Policía Nacional</span>
+    <span class="marquee-item"><span class="dot"></span>Guardia Civil</span>
     <span class="marquee-item"><span class="dot"></span>Auxiliar Administrativo</span>
-    <span class="marquee-item"><span class="dot"></span>ATE</span>
-    <span class="marquee-item"><span class="dot"></span>Audici&#243;n y Lenguaje</span>
-    <span class="marquee-item"><span class="dot"></span>Educaci&#243;n Infantil</span>
+    <span class="marquee-item"><span class="dot"></span>Celador</span>
+    <span class="marquee-item"><span class="dot"></span>Secundaria</span>
   </div>
 </div>
 
-<div class="stats-section" role="region" aria-label="Cifras de Centro Notable">
+<!-- ═══ STATS ═══ -->
+<div class="stats-section" role="region" aria-label="Cifras de Notable Formación">
   <div class="stats-grid">
     <div class="stat-card reveal">
-      <div class="stat-number">2018</div>
-      <div class="stat-label">A&#241;o de apertura</div>
+      <div class="stat-number"><span class="count" data-target="50" data-decimal="true">0</span><span class="stat-suffix"> / 5</span></div>
+      <div class="stat-label">Valoración en Google</div>
     </div>
-    <div class="stat-card reveal reveal-d1">
-      <div class="stat-number"><span class="count" data-target="50" data-decimal="true">0</span></div>
-      <div class="stat-label">Sobre 5 en Google</div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="165">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
     </div>
-    <div class="stat-card reveal reveal-d2">
-      <div class="stat-number"><span class="count" data-target="150">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Rese&#241;as verificadas</div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="16">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Preparadores expertos</div>
     </div>
-    <div class="stat-card reveal reveal-d3">
+    <div class="stat-card reveal reveal-delay-3">
       <div class="stat-number"><span class="count" data-target="220">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Alumnos formados</div>
+      <div class="stat-label">Alumnos en oposiciones</div>
     </div>
   </div>
 </div>
 
-<section class="opos-section" id="oposiciones" aria-labelledby="opos-title">
-  <div class="opos-header">
+<!-- ═══ OPOSICIONES ═══ -->
+<section class="services-section" id="oposiciones" aria-labelledby="oposiciones-title">
+  <div class="services-header">
     <div>
       <p class="section-label reveal">Oposiciones</p>
-      <h2 class="section-title reveal reveal-d1" id="opos-title">Preparamos las oposiciones<br>que <em>importan en CLM.</em></h2>
-      <p class="section-sub reveal reveal-d2">Cada especialidad tiene su preparador experto, con experiencia real en el sector y conocimiento directo de los tribunales.</p>
+      <h2 class="section-title reveal reveal-delay-1" id="oposiciones-title">
+        Preparamos las oposiciones<br>que <em>cambian vidas.</em>
+      </h2>
     </div>
+    <p class="services-header-text reveal reveal-delay-2">
+      Temarios actualizados, simulacros de examen, tutorías personalizadas y campus virtual. Presencial en Tomelloso, Albacete y Jaén, u online desde cualquier punto.
+    </p>
   </div>
-  <div class="opos-grid">
-    <div class="opos-card reveal">
-      <div class="opos-number" aria-hidden="true">01</div>
-      <div class="opos-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
       </div>
       <h3>Magisterio</h3>
-      <p>Primaria, Infantil, Ingl&#233;s, Educaci&#243;n F&#237;sica y Pedagog&#237;a Terap&#233;utica. El 100% de nuestros alumnos aprobaron la parte oral en la &#250;ltima convocatoria.</p>
-      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Magisterio" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Magisterio por WhatsApp">
-        Pedir info
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
+      <p>Primaria, Infantil, Educación Física, Inglés, Audición y Lenguaje, Pedagogía Terapéutica. CLM, Madrid y Andalucía.</p>
+      <span class="service-tag">100% aprobados en oral</span>
     </div>
-    <div class="opos-card reveal reveal-d1">
-      <div class="opos-number" aria-hidden="true">02</div>
-      <div class="opos-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       </div>
       <h3>Sanidad SESCAM</h3>
-      <p>Celador, TCAE y Auxiliar Administrativo. Preparador con m&#225;s de 22 a&#241;os de experiencia en la rama sanitaria.</p>
-      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Sanidad" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Sanidad por WhatsApp">
-        Pedir info
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
+      <p>Celador, TCAE, Auxiliar Administrativo SESCAM. Preparación integral con José Miguel, enfermero con más de 22 años de experiencia.</p>
+      <span class="service-tag">Presencial y online</span>
     </div>
-    <div class="opos-card reveal reveal-d2">
-      <div class="opos-number" aria-hidden="true">03</div>
-      <div class="opos-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M9 4v4"/><path d="M15 4v4"/></svg>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </div>
       <h3>Correos</h3>
-      <p>Preparaci&#243;n completa con clases online los viernes. Preparador responsable de Ventas de Correos en Castilla-La Mancha desde 2007.</p>
-      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Correos" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Correos por WhatsApp">
-        Pedir info
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
+      <p>Preparación completa para personal laboral fijo de Correos. Material actualizado, tests y simulacros con Felipe, responsable comercial de Correos en CLM.</p>
+      <span class="service-tag">Desde 60 euros/mes</span>
     </div>
-    <div class="opos-card reveal">
-      <div class="opos-number" aria-hidden="true">04</div>
-      <div class="opos-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
       </div>
-      <h3>Polic&#237;a Local</h3>
-      <p>Temario com&#250;n CLM, psicot&#233;cnicos con psic&#243;loga especializada y preparaci&#243;n f&#237;sica incluida. Preparador subinspector con m&#225;s de 20 a&#241;os de servicio.</p>
-      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Polic%C3%ADa%20Local" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Polic&#237;a Local por WhatsApp">
-        Pedir info
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
+      <h3>Secundaria</h3>
+      <p>Orientación educativa, Inglés, Informática y Educación Física. Temarios completos y preparación de la parte práctica.</p>
+      <span class="service-tag">CLM y Madrid</span>
     </div>
-    <div class="opos-card reveal reveal-d1">
-      <div class="opos-number" aria-hidden="true">05</div>
-      <div class="opos-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
       </div>
-      <h3>Auxiliar Administrativo</h3>
-      <p>Preparaci&#243;n para la Administraci&#243;n del Estado y la Junta de Comunidades de Castilla-La Mancha (JCCM).</p>
-      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20Administrativo" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre Auxiliar Administrativo por WhatsApp">
-        Pedir info
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
+      <h3>Administración</h3>
+      <p>Auxiliar Administrativo del Estado y de la JCCM. Temarios, tests y simulacros adaptados a cada convocatoria.</p>
+      <span class="service-tag">Estado y JCCM</span>
     </div>
-    <div class="opos-card reveal reveal-d2">
-      <div class="opos-number" aria-hidden="true">06</div>
-      <div class="opos-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <h3>ATE y Secundaria</h3>
-      <p>Auxiliar T&#233;cnico Educativo y oposiciones de Secundaria: Orientaci&#243;n, Ingl&#233;s, Inform&#225;tica y Educaci&#243;n F&#237;sica.</p>
-      <a href="https://wa.me/34607427159?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20ATE" target="_blank" rel="noopener" class="opos-link" aria-label="Pedir informaci&#243;n sobre ATE por WhatsApp">
-        Pedir info
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </a>
+      <h3>Fuerzas de seguridad</h3>
+      <p>Policía Nacional, Guardia Civil y Policía Local. Preparación de temario, psicotécnicos y pruebas físicas con profesionales en activo.</p>
+      <span class="service-tag">Temario + físicas</span>
     </div>
   </div>
 </section>
 
-<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
-  <div class="about-visual">
-    <img src="https://www.centronotable.es/wp-content/uploads/2023/07/educator-img31.jpg" alt="Clase presencial en la academia Centro Notable de Tomelloso" loading="lazy">
-    <div class="about-badge">
-      <div class="about-badge-year">2018</div>
-      <div class="about-badge-text">Preparando opositores en CLM</div>
+<!-- ═══ ABOUT ═══ -->
+<div class="about-section" id="nosotros" role="region" aria-labelledby="nosotros-title">
+  <div class="about-inner">
+    <div class="about-visual">
+      <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80" alt="Profesor explicando a un grupo de alumnos en una academia" loading="lazy">
+      <div class="about-badge">
+        <div class="about-badge-year">2018</div>
+        <div class="about-badge-text">Fundada en Tomelloso</div>
+      </div>
     </div>
-  </div>
-  <div class="about-content">
-    <p class="section-label reveal">Sobre nosotros</p>
-    <h2 class="section-title reveal reveal-d1" id="nosotros-title">
-      Tu esfuerzo,<br>nuestro <em>compromiso.</em>
-    </h2>
-    <div class="about-divider reveal" aria-hidden="true"></div>
-    <p class="about-body reveal reveal-d2">
-      Centro Notable abri&#243; sus puertas en <strong>abril de 2018</strong> en Tomelloso con 50 alumnos. Hoy somos una academia de referencia en Castilla-La Mancha con m&#225;s de <strong>220 opositores</strong> en preparaci&#243;n y sedes presenciales en <strong>Tomelloso, Albacete y Ja&#233;n</strong>. Nuestros preparadores son profesionales en activo que conocen el temario, los tribunales y lo que hace falta para conseguir la plaza. Grupos reducidos, temarios condensados y actualizados, simulacros reales y un tutor personal que te acompa&#241;a hasta el d&#237;a del examen.
-    </p>
-    <div class="about-values reveal reveal-d3">
-      <div class="about-value">
-        <div class="value-num">01</div>
-        <div class="value-text">
-          <h3>Grupos reducidos</h3>
-          <p>Atenci&#243;n personalizada en cada clase. Tus dudas no se pierden en una sala masificada.</p>
+    <div class="about-content">
+      <p class="section-label reveal">Quiénes somos</p>
+      <h2 class="section-title reveal reveal-delay-1" id="nosotros-title">
+        Preparadores que fueron<br><em>opositores antes.</em>
+      </h2>
+      <p class="about-body reveal reveal-delay-2">
+        <strong>Pablo Buendía</strong> y <strong>Nuria López</strong> abrieron Notable en abril de 2018 como centro de refuerzo escolar. Cuando vieron que el opositor más cercano tenía que desplazarse a Ciudad Real, Albacete o Toledo, decidieron llenar ese vacío. En 2020 lanzaron la división de oposiciones y en cinco años han pasado de 50 a más de <strong>220 alumnos</strong>, con sedes ya en Albacete y Jaén y un campus virtual para toda España.
+      </p>
+      <div class="about-divider reveal" aria-hidden="true"></div>
+      <div class="about-features reveal reveal-delay-3">
+        <div class="about-feature">
+          <div class="feature-num">01</div>
+          <div class="feature-text">
+            <h3>Grupos reducidos</h3>
+            <p>Clases con pocos alumnos para detectar problemas y adaptar el ritmo a cada persona.</p>
+          </div>
         </div>
-      </div>
-      <div class="about-value">
-        <div class="value-num">02</div>
-        <div class="value-text">
-          <h3>Preparadores en activo</h3>
-          <p>Profesionales que trabajan en el sector y conocen lo que los tribunales buscan en cada convocatoria.</p>
+        <div class="about-feature">
+          <div class="feature-num">02</div>
+          <div class="feature-text">
+            <h3>Campus virtual propio</h3>
+            <p>Temarios descargables, clases grabadas, simulacros y tutorías desde cualquier lugar.</p>
+          </div>
         </div>
-      </div>
-      <div class="about-value">
-        <div class="value-num">03</div>
-        <div class="value-text">
-          <h3>Online y presencial</h3>
-          <p>Campus virtual con clases en directo, v&#237;deos grabados y temarios descargables. Prep&#225;rate desde cualquier sitio.</p>
+        <div class="about-feature">
+          <div class="feature-num">03</div>
+          <div class="feature-text">
+            <h3>Preparadores titulados</h3>
+            <p>Más de 16 profesores con experiencia real en el aula, en el hospital y en el examen.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<section class="metodo-section" id="metodologia" aria-labelledby="metodo-title">
-  <div class="metodo-inner">
-    <p class="section-label reveal">C&#243;mo trabajamos</p>
-    <h2 class="section-title reveal reveal-d1" id="metodo-title">Cinco pasos hacia <em>tu plaza.</em></h2>
-    <p class="section-sub reveal reveal-d2">Un proceso claro para que sepas en qu&#233; punto est&#225;s y qu&#233; viene despu&#233;s.</p>
-    <div class="metodo-grid">
-      <div class="metodo-step reveal">
-        <div class="metodo-num">1</div>
-        <div>
-          <h3>Elige tu oposici&#243;n</h3>
-          <p>Te asesoramos sobre convocatorias abiertas y cu&#225;l encaja con tu perfil.</p>
+<!-- ═══ METODO ═══ -->
+<section class="method-section" id="método" aria-labelledby="método-title">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;">
+    <p class="section-label reveal" style="justify-content:center;">Cómo trabajamos</p>
+    <h2 class="section-title reveal reveal-delay-1" id="método-title">
+      Un método pensado para<br><em>que apruebes.</em>
+    </h2>
+  </div>
+  <div class="method-grid">
+    <div class="method-card reveal">
+      <div class="method-step">1</div>
+      <h3>Evaluación inicial</h3>
+      <p>Analizamos tu punto de partida, tu disponibilidad y la convocatoria a la que te presentas para trazar un plan realista.</p>
+    </div>
+    <div class="method-card reveal reveal-delay-1">
+      <div class="method-step">2</div>
+      <h3>Plan de estudio</h3>
+      <p>Temario completo y actualizado, resúmenes gráficos y vídeos grabados que puedes ver a tu ritmo desde el campus.</p>
+    </div>
+    <div class="method-card reveal reveal-delay-2">
+      <div class="method-step">3</div>
+      <h3>Práctica constante</h3>
+      <p>Simulacros periódicos, tests comentados con bibliografía y preparación específica de la prueba oral o práctica.</p>
+    </div>
+    <div class="method-card reveal reveal-delay-3">
+      <div class="method-step">4</div>
+      <h3>Tutoría personal</h3>
+      <p>Un preparador asignado que corrige tu material, resuelve dudas y te acompaña hasta el día del examen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials-section" id="opiniones" aria-labelledby="opiniones-title">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen nuestros alumnos</p>
+    <h2 class="section-title reveal reveal-delay-1" id="opiniones-title">
+      5,0 sobre 5 con 165 reseñas<br>verificadas en <em>Google Maps.</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Estoy muy contenta con la academia, según avanzamos más segura estoy del acierto en la elección. El compromiso del preparador es impresionante, resuelve dudas casi al instante, apoyado siempre en bibliografía, clases adicionales, material extra y test con soluciones comentadas."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Cristina G.</strong>
+          <span>Reseña en Google Maps</span>
         </div>
       </div>
-      <div class="metodo-step reveal reveal-d1">
-        <div class="metodo-num">2</div>
-        <div>
-          <h3>Recibe tu temario</h3>
-          <p>Material actualizado, condensado y alineado con los criterios de evaluaci&#243;n.</p>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Grandes profesores, buen material, buen precio. Años buscando unos buenos preparadores y por fin lo he encontrado. Gracias por vuestro trabajo. Ahora toca ir a por la plaza."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Virginia D.</strong>
+          <span>Reseña en Google Maps</span>
         </div>
       </div>
-      <div class="metodo-step reveal reveal-d2">
-        <div class="metodo-num">3</div>
-        <div>
-          <h3>Clases y simulacros</h3>
-          <p>Clases en directo, v&#237;deos grabados para repasar y simulacros peri&#243;dicos de examen.</p>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
         </div>
-      </div>
-      <div class="metodo-step reveal reveal-d3">
-        <div class="metodo-num">4</div>
-        <div>
-          <h3>Tutor personal</h3>
-          <p>Un preparador experto te gu&#237;a, corrige tus ejercicios y te motiva durante toda la preparaci&#243;n.</p>
-        </div>
-      </div>
-      <div class="metodo-step reveal reveal-d4">
-        <div class="metodo-num">5</div>
-        <div>
-          <h3>D&#237;a del examen</h3>
-          <p>Vas preparado, seguro y con las herramientas para conseguir tu plaza.</p>
+        <p class="testimonial-quote">"He tenido la oportunidad de preparar una oposición con Notable Formación. Tanto las clases online, la colaboración activa de los profesores, como la facilitación de todo tipo de materiales, han sido determinantes para esta recomendación."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Manuel C.</strong>
+          <span>Reseña en Google Maps</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="equipo-section" id="equipo" aria-labelledby="equipo-title">
-  <div class="equipo-inner">
-    <p class="section-label reveal">Equipo docente</p>
-    <h2 class="section-title reveal reveal-d1" id="equipo-title">Preparadores que conocen<br><em>los tribunales.</em></h2>
-    <p class="section-sub reveal reveal-d2">Todos nuestros preparadores son profesionales en activo con experiencia directa en oposiciones.</p>
-    <div class="equipo-grid">
-      <div class="equipo-card reveal">
-        <img class="equipo-photo" src="https://www.centronotable.es/wp-content/uploads/2023/07/profesor-oposiciones-de-primaria.jpg" alt="Carmelo Juan, responsable del &#225;rea de Magisterio en Centro Notable" loading="lazy">
-        <div class="equipo-info">
-          <div class="equipo-role">Responsable Magisterio</div>
-          <h3>Carmelo Juan</h3>
-          <p>Especialista en Primaria y Educaci&#243;n F&#237;sica. Premio Innovaci&#243;n Educativa 2022. 12 a&#241;os en equipos directivos.</p>
-        </div>
-      </div>
-      <div class="equipo-card reveal reveal-d1">
-        <img class="equipo-photo" src="https://www.centronotable.es/wp-content/uploads/2023/07/profesora-oposiciones-infantil.jpg" alt="Cristina, preparadora de oposiciones de Educaci&#243;n Infantil" loading="lazy">
-        <div class="equipo-info">
-          <div class="equipo-role">Infantil</div>
-          <h3>Cristina</h3>
-          <p>Diplomada en Magisterio Infantil. Preparando opositores desde 2013.</p>
-        </div>
-      </div>
-      <div class="equipo-card reveal reveal-d2">
-        <img class="equipo-photo" src="https://www.centronotable.es/wp-content/uploads/2023/07/profesor-oposiciones-sanidad.jpg" alt="Jos&#233; Miguel, responsable del &#225;rea de Sanidad en Centro Notable" loading="lazy">
-        <div class="equipo-info">
-          <div class="equipo-role">Responsable Sanidad</div>
-          <h3>Jos&#233; Miguel</h3>
-          <p>Diplomado en Enfermer&#237;a. M&#225;s de 22 a&#241;os de experiencia en la rama sanitaria.</p>
-        </div>
-      </div>
-      <div class="equipo-card reveal reveal-d3">
-        <img class="equipo-photo" src="https://www.centronotable.es/wp-content/uploads/2023/07/profesora-oposiciones-magisterio-ingl%C2%AEs.jpg" alt="Laura, preparadora de oposiciones de Magisterio de Ingl&#233;s" loading="lazy">
-        <div class="equipo-info">
-          <div class="equipo-role">Ingl&#233;s</div>
-          <h3>Laura</h3>
-          <p>Diplomada en Magisterio de Ingl&#233;s. Preparando opositores desde 2017.</p>
-        </div>
-      </div>
+<!-- ═══ GALLERY ═══ -->
+<section class="gallery-section" aria-labelledby="galeria-title">
+  <div style="max-width:1200px;margin:0 auto;">
+    <p class="section-label reveal">La academia</p>
+    <h2 class="section-title reveal reveal-delay-1" id="galeria-title">
+      Donde se preparan<br>los <em>futuros funcionarios.</em>
+    </h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c476?w=1200&q=80" alt="Sala de estudio con alumnos concentrados preparando oposiciones" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="preparar-oposicion.jpg" alt="Alumna estudiando con libros y apuntes de oposiciones" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="magisterio.jpg" alt="Material de estudio de oposiciones de magisterio" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" alt="Persona tomando notas durante una clase de preparación" loading="lazy">
     </div>
   </div>
 </section>
 
+<!-- ═══ HORARIO ═══ -->
+<section class="horario-section" id="horario" aria-labelledby="horario-title">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;">
+    <p class="section-label reveal" style="justify-content:center;">Horario de atención</p>
+    <h2 class="section-title reveal reveal-delay-1" id="horario-title">
+      Estamos para <em>ayudarte.</em>
+    </h2>
+  </div>
+  <div class="horario-inner">
+    <table class="horario-table" id="horarioTable">
+      <tr data-day="1">
+        <td>Lunes</td>
+        <td>10:30 - 13:30 / 16:00 - 21:00</td>
+      </tr>
+      <tr data-day="2">
+        <td>Martes</td>
+        <td>10:30 - 13:30 / 16:00 - 21:00</td>
+      </tr>
+      <tr data-day="3">
+        <td>Miércoles</td>
+        <td>10:30 - 13:30 / 16:00 - 21:00</td>
+      </tr>
+      <tr data-day="4">
+        <td>Jueves</td>
+        <td>10:30 - 13:30 / 16:00 - 21:00</td>
+      </tr>
+      <tr data-day="5">
+        <td>Viernes</td>
+        <td>10:30 - 13:30 / 16:00 - 21:00</td>
+      </tr>
+      <tr data-day="6" class="horario-closed">
+        <td>Sábado</td>
+        <td>Cerrado</td>
+      </tr>
+      <tr data-day="0" class="horario-closed">
+        <td>Domingo</td>
+        <td>Cerrado</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ MAP + CONTACT ═══ -->
 <div class="map-section" id="contacto">
   <div class="map-inner">
     <div class="map-info">
-      <p class="section-label reveal">Contacto</p>
-      <h2 class="section-title reveal reveal-d1" style="margin-bottom: 0;">
+      <p class="section-label reveal">Dónde estamos</p>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">
         En Tomelloso,<br><em>en la calle Socuéllamos.</em>
       </h2>
       <div class="map-info-item">
         <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div class="map-info-text">
-          <h3>Direcci&#243;n</h3>
-          <p>C. Socuéllamos, 27<br>13700 Tomelloso, Ciudad Real</p>
+          <h3>Dirección</h3>
+          <p>C/ Socuéllamos, 27<br>13700 Tomelloso (Ciudad Real)</p>
         </div>
       </div>
       <div class="map-info-item">
         <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg>
         </div>
         <div class="map-info-text">
-          <h3>Tel&#233;fono</h3>
-          <a href="tel:+34614442456">614 442 456</a>
+          <h3>Teléfono</h3>
+          <a href="tel:+34614442456">614 44 24 56</a>
         </div>
       </div>
       <div class="map-info-item">
         <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
         <div class="map-info-text">
           <h3>Email</h3>
@@ -1126,35 +1353,24 @@
       </div>
       <div class="map-info-item">
         <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <div class="map-info-text">
           <h3>Horario</h3>
-          <table class="horario-table" aria-label="Horario semanal de Centro Notable">
-            <tr id="row-lun"><td>Lunes</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
-            <tr id="row-mar"><td>Martes</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
-            <tr id="row-mie"><td>Mi&#233;rcoles</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
-            <tr id="row-jue"><td>Jueves</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
-            <tr id="row-vie"><td>Viernes</td><td>10:30 - 13:30 / 16:00 - 21:00</td></tr>
-            <tr id="row-sab"><td>S&#225;bado</td><td>Cerrado</td></tr>
-            <tr id="row-dom"><td>Domingo</td><td>Cerrado</td></tr>
-          </table>
+          <p>Lunes a viernes: 10:30 - 13:30 / 16:00 - 21:00</p>
         </div>
       </div>
-      <div style="margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap;">
-        <a href="tel:+34614442456" class="btn-primary" style="display: inline-flex;">
-          <span>Llamar ahora
-            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
+      <div style="margin-top:32px;">
+        <a href="https://wa.me/34607427159" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;">
+          Escribe por WhatsApp
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
       </div>
     </div>
     <div class="map-frame">
       <iframe
-        title="Mapa de ubicaci&#243;n de Centro Notable en C. Socu&#233;llamos 27, Tomelloso"
-        src="https://www.google.com/maps?q=Centro+Notable+Socuellamos+27+Tomelloso+Ciudad+Real&output=embed"
+        title="Mapa de ubicación de Notable Formación en Calle Socuéllamos 27, Tomelloso"
+        src="https://www.google.com/maps?q=Centro+Notable+Calle+Socuéllamos+27+Tomelloso+Ciudad+Real&output=embed"
         allowfullscreen
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
@@ -1163,33 +1379,41 @@
   </div>
 </div>
 
-<div class="cta-section" role="region" aria-label="Llamada a la acci&#243;n de contacto">
-  <div class="cta-text">
-    <h2>¿Quieres conseguir tu plaza?<br>Hablemos.</h2>
-    <p>Ll&#225;manos al 614 442 456 o escr&#237;benos por WhatsApp. Te contamos c&#243;mo empezar sin compromiso.</p>
+<!-- ═══ CTA ═══ -->
+<div class="cta-section" role="region" aria-label="Llamada a la acción de contacto">
+  <div class="cta-inner">
+    <h2>Tu plaza está<br>más <em>cerca.</em></h2>
+    <p>Cuéntanos que oposición te interesa y te explicamos cómo podemos ayudarte. Sin compromiso.</p>
+    <div class="cta-actions">
+      <a href="https://wa.me/34607427159" target="_blank" rel="noopener" class="btn-white">
+        WhatsApp
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="tel:+34614442456" class="btn-outline-white">
+        Llamar al 614 44 24 56
+      </a>
+    </div>
   </div>
-  <a href="https://wa.me/34607427159?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20oposiciones" target="_blank" rel="noopener" class="btn-dark">
-    <span>Escribir por WhatsApp
-      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-    </span>
-  </a>
 </div>
 
 </main>
 
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#main-content" class="nav-logo">Notable<span>.</span></a>
-      <p class="footer-tagline">Academia de oposiciones en Tomelloso, Albacete y Ja&#233;n. Tu esfuerzo, nuestro compromiso.</p>
+      <a href="#main-content" class="nav-logo" aria-label="Notable Formación - Inicio">
+        <img src="logo.png" alt="Logo de Notable Formación" width="337" height="100">
+      </a>
+      <p class="footer-tagline">"Compartimos metas con todos y cada uno de nuestros alumnos."</p>
       <div class="footer-social">
-        <a href="https://www.instagram.com/centronotable/" target="_blank" rel="noopener" class="social-link" aria-label="Centro Notable en Instagram">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.6-.1 4.8-.1M12 0C8.7 0 8.3 0 7.1.1 5.8.1 4.9.3 4.1.6c-.8.3-1.5.7-2.1 1.3C1.3 2.6.9 3.3.6 4.1.3 4.9.1 5.8.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.3.2 2.2.6 2.9.3.8.7 1.5 1.3 2.1.7.7 1.3 1 2.1 1.3.8.3 1.6.5 2.9.6 1.2 0 1.6.1 4.9.1s3.7 0 4.9-.1c1.3-.1 2.2-.2 2.9-.6.8-.3 1.5-.7 2.1-1.3.7-.7 1-1.3 1.3-2.1.3-.8.5-1.6.6-2.9 0-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.3-.2-2.2-.6-2.9-.3-.8-.7-1.5-1.3-2.1C21.4 1.3 20.7.9 19.9.6 19.1.3 18.2.1 16.9.1 15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z"/></svg>
+        <a href="https://www.facebook.com/centronotable/" target="_blank" rel="noopener" class="social-link" aria-label="Notable Formación en Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </a>
-        <a href="https://www.facebook.com/centronotable/" target="_blank" rel="noopener" class="social-link" aria-label="Centro Notable en Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.1c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v2.9h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4C19.6 23.1 24 18 24 12.1z"/></svg>
+        <a href="https://www.instagram.com/centronotable/" target="_blank" rel="noopener" class="social-link" aria-label="Notable Formación en Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
         </a>
-        <a href="https://wa.me/34607427159" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp a Centro Notable">
+        <a href="https://wa.me/34607427159" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04"/></svg>
         </a>
         <a href="mailto:info@centronotable.es" class="social-link" aria-label="Enviar correo a info@centronotable.es">
@@ -1203,30 +1427,30 @@
         <li><a href="#oposiciones">Magisterio</a></li>
         <li><a href="#oposiciones">Sanidad SESCAM</a></li>
         <li><a href="#oposiciones">Correos</a></li>
-        <li><a href="#oposiciones">Polic&#237;a Local</a></li>
+        <li><a href="#oposiciones">Administración</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h3>Academia</h3>
+      <h3>La academia</h3>
       <ul>
-        <li><a href="#nosotros">Qui&#233;nes somos</a></li>
-        <li><a href="#equipo">Equipo docente</a></li>
-        <li><a href="#metodologia">Metodolog&#237;a</a></li>
-        <li><a href="#contacto">C&#243;mo llegar</a></li>
+        <li><a href="#nosotros">Quiénes somos</a></li>
+        <li><a href="#método">Nuestro método</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h3>Contacto</h3>
       <ul>
-        <li><a href="tel:+34614442456">614 442 456</a></li>
+        <li><a href="tel:+34614442456">614 44 24 56</a></li>
         <li><a href="mailto:info@centronotable.es">info@centronotable.es</a></li>
-        <li><a href="#contacto">Tomelloso, Ciudad Real</a></li>
-        <li><a href="https://wa.me/34607427159" target="_blank" rel="noopener">WhatsApp: 607 427 159</a></li>
+        <li><a href="#contacto">Tomelloso (Ciudad Real)</a></li>
+        <li><a href="#horario">L-V, 10:30 - 21:00</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Centro Notable. Todos los derechos reservados.</p>
+    <p class="footer-copy">&copy; 2026 Notable Formación. Todos los derechos reservados.</p>
     <div class="footer-legal">
       <a href="legal/aviso-legal.html">Aviso legal</a>
       <a href="legal/politica-privacidad.html">Privacidad</a>
@@ -1236,25 +1460,19 @@
   </div>
 </footer>
 
-<a href="https://wa.me/34607427159?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20oposiciones" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04"/></svg>
-</a>
-
 <script>
   // LOADER
   window.addEventListener('load', function() {
     setTimeout(function() {
       var loader = document.getElementById('loader');
-      var heroBg = document.getElementById('heroBg');
       if (loader) loader.classList.add('hidden');
-      if (heroBg) heroBg.classList.add('loaded');
     }, 1600);
   });
 
   // NAVBAR SCROLL
   var navbar = document.getElementById('navbar');
   window.addEventListener('scroll', function() {
-    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
   });
 
   // HAMBURGER MENU
@@ -1265,10 +1483,7 @@
       var isOpen = hamburger.classList.toggle('active');
       mobileMenu.classList.toggle('open', isOpen);
       hamburger.setAttribute('aria-expanded', isOpen);
-      if (isOpen) {
-        var firstLink = mobileMenu.querySelector('a');
-        if (firstLink) firstLink.focus();
-      }
+      if (isOpen) { var firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
     });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
@@ -1283,37 +1498,30 @@
   function closeMobile() {
     var h = document.getElementById('hamburger');
     var m = document.getElementById('mobileMenu');
-    if (h) { h.classList.remove('active'); h.setAttribute('aria-expanded', 'false'); }
+    if (h) h.classList.remove('active');
     if (m) m.classList.remove('open');
+    if (h) h.setAttribute('aria-expanded', 'false');
   }
 
-  // REVEAL ON SCROLL (JS-based: CSS default is visible, JS adds hidden class)
+  // REVEAL ON SCROLL — start hidden via JS so tab-background doesn't break
   var reveals = document.querySelectorAll('.reveal');
+  reveals.forEach(function(el) { el.classList.add('hidden'); });
   if ('IntersectionObserver' in window) {
-    // Only hide elements below the fold
-    reveals.forEach(function(el) {
-      var rect = el.getBoundingClientRect();
-      if (rect.top > window.innerHeight * 0.95) {
-        el.classList.add('js-hidden');
-      }
-    });
-    var revealObserver = new IntersectionObserver(function(entries) {
+    var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.remove('js-hidden');
-          e.target.classList.add('js-visible');
-          revealObserver.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.remove('hidden'); e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(function(el) { revealObserver.observe(el); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.remove('hidden'); el.classList.add('visible'); });
   }
 
   // COUNTER ANIMATION
   function animateCount(el) {
     var target = parseInt(el.dataset.target, 10);
     var isDecimal = el.dataset.decimal === 'true';
-    var duration = 1600;
+    var duration = 1800;
     var start = performance.now();
     function step(now) {
       var progress = Math.min((now - start) / duration, 1);
@@ -1332,10 +1540,7 @@
   if ('IntersectionObserver' in window) {
     var countObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          animateCount(e.target);
-          countObserver.unobserve(e.target);
-        }
+        if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
       });
     }, { threshold: 0.5 });
     document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
@@ -1343,21 +1548,15 @@
     document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
   }
 
-  // HERO PARALLAX (subtle)
-  window.addEventListener('scroll', function() {
-    var heroBg = document.getElementById('heroBg');
-    if (heroBg && window.scrollY < window.innerHeight) {
-      heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.2) + 'px)';
-    }
-  });
-
-  // HIGHLIGHT TODAY (horario)
+  // HIGHLIGHT TODAY IN SCHEDULE
   function highlightToday() {
-    var dayMap = ['row-dom', 'row-lun', 'row-mar', 'row-mie', 'row-jue', 'row-vie', 'row-sab'];
     var today = new Date().getDay();
-    var rowId = dayMap[today];
-    var row = document.getElementById(rowId);
-    if (row) row.classList.add('horario-hoy');
+    var rows = document.querySelectorAll('#horarioTable tr[data-day]');
+    rows.forEach(function(row) {
+      if (parseInt(row.dataset.day, 10) === today) {
+        row.classList.add('horario-hoy');
+      }
+    });
   }
   highlightToday();
 </script>
