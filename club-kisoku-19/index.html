@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Kisoku | Artes Marciales en Hondarribia desde 1993</title>
+  <meta name="description" content="Club Kisoku, la fuerza del propio espíritu. Karate, defensa personal, taekwondo, tai chi y más en Hondarribia. Fundado en 1993 por Sensei José Ángel Rial. 4,9/5 en Google con 89 reseñas.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --black-warm: #0f0d0b;
+      --white: #f5f2ed;
+      --white-soft: #e8e4de;
+      --red: #c30000;
+      --red-bright: #e01010;
+      --red-deep: #840000;
+      --red-glow: rgba(195, 0, 0, 0.15);
+      --gray-900: #1a1816;
+      --gray-800: #252220;
+      --gray-700: #3a3634;
+      --gray-600: #5a5654;
+      --gray-400: #8a8684;
+      --gray-300: #aaa6a4;
+      --font-serif: 'Noto Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== LOADER ===== */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--black); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 1.8rem;
+      letter-spacing: 0.2em; color: var(--white);
+      text-transform: uppercase;
+    }
+    .loader-logo span { color: var(--red); }
+    .loader-bar {
+      width: 160px; height: 2px; background: var(--gray-800);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--red); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(10,10,10,0.88);
+      padding: 16px 60px;
+      border-bottom: 1px solid rgba(195,0,0,0.12);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none; color: var(--white);
+    }
+    .nav-brand img {
+      width: 38px; height: auto;
+      filter: brightness(1.1);
+    }
+    .nav-brand-text {
+      font-family: var(--font-serif);
+      font-size: 1.1rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 400;
+    }
+    .nav-brand-text span { color: var(--red); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(245,242,237,0.75);
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--red-bright); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--red);
+      color: var(--red-bright) !important;
+      padding: 10px 26px !important;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.22em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--red) !important; color: var(--white) !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.1rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--red-bright); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center 30%;
+      transform: scale(1.08);
+      transition: transform 8s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.6) 45%, rgba(10,10,10,0.3) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+    /* Red enso circle decoration */
+    .hero-enso {
+      position: absolute; right: 8%; top: 15%;
+      width: 380px; height: 380px;
+      border: 2px solid rgba(195,0,0,0.15);
+      border-radius: 50%;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .hero-enso::after {
+      content: ''; position: absolute;
+      top: -4px; right: 20%; width: 40px; height: 8px;
+      background: var(--red); border-radius: 4px;
+      transform: rotate(-30deg);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 860px;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--red-bright); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--red);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6.5vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .hero-title em { font-style: italic; color: var(--red-bright); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,242,237,0.88);
+      max-width: 480px; line-height: 1.7; margin-bottom: 48px;
+      font-weight: 300;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+    }
+    .hero-actions { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--red); color: var(--white);
+      text-decoration: none; padding: 18px 38px;
+      font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--red-bright); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+
+    .btn-ghost {
+      color: rgba(245,242,237,0.82); text-decoration: none;
+      font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--red-bright); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(245,242,237,0.3);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow { border-color: var(--red); transform: rotate(45deg); }
+    .icon-arrow { width: 14px; height: 14px; }
+
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      opacity: 0; animation: fadeIn 1s 1.8s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gray-400); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* ===== MARQUEE ===== */
+    .marquee-section {
+      border-top: 1px solid rgba(195,0,0,0.15);
+      border-bottom: 1px solid rgba(195,0,0,0.15);
+      overflow: hidden; padding: 18px 0; background: var(--gray-900);
+    }
+    .marquee-track {
+      display: flex; width: max-content; align-items: center;
+      animation: marquee 22s linear infinite; will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 32px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-serif); font-size: 1rem;
+      font-style: italic; color: rgba(245,242,237,0.6);
+      letter-spacing: 0.04em;
+    }
+    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* ===== SECTION COMMONS ===== */
+    section { padding: 120px 60px; }
+    .section-label {
+      font-size: 0.66rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--red-bright); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--red); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300; line-height: 1.12;
+      letter-spacing: -0.01em;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .section-title em { font-style: italic; color: var(--red-bright); }
+
+    /* ===== STATS ===== */
+    .stats-section {
+      background: var(--gray-900); padding: 90px 60px;
+      border-top: 1px solid rgba(195,0,0,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; max-width: 1300px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 54px 44px; background: var(--gray-900);
+      border: 1px solid rgba(195,0,0,0.1);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--red); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(195,0,0,0.3); }
+    .stat-number {
+      font-family: var(--font-serif); font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 300; line-height: 1; color: var(--white);
+      margin-bottom: 10px; letter-spacing: -0.02em;
+    }
+    .stat-number .stat-suffix { color: var(--red); }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gray-400); font-weight: 400;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-section {
+      background: var(--gray-900);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .about-visual { position: relative; overflow: hidden; min-height: 650px; }
+    .about-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge {
+      position: absolute; top: 24px; right: 24px;
+      background: var(--black); border: 1px solid rgba(195,0,0,0.3);
+      padding: 22px 28px;
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 2.8rem;
+      color: var(--red); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.7rem; letter-spacing: 0.08em;
+      color: rgba(245,242,237,0.7); margin-top: 4px;
+    }
+    .about-content {
+      padding: 90px 70px; display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.02rem; line-height: 1.8;
+      color: rgba(245,242,237,0.75); margin: 28px 0 36px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--white); font-weight: 500; }
+    .about-divider { width: 50px; height: 1px; background: var(--red); margin: 28px 0; }
+    .about-values { display: flex; flex-direction: column; gap: 18px; }
+    .about-value {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px; border: 1px solid rgba(195,0,0,0.1);
+      transition: border-color 0.4s;
+    }
+    .about-value:hover { border-color: rgba(195,0,0,0.35); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.3rem;
+      color: var(--red); opacity: 0.6; flex-shrink: 0; line-height: 1.2;
+    }
+    .value-text h3 {
+      font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 500; margin-bottom: 4px;
+    }
+    .value-text p { font-size: 0.86rem; color: rgba(245,242,237,0.65); font-weight: 300; line-height: 1.6; }
+
+    /* ===== DISCIPLINES (services) ===== */
+    .disciplines-section { background: var(--black); }
+    .disciplines-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1300px; margin: 56px auto 0;
+    }
+    .discipline-card {
+      padding: 52px 40px; background: var(--black);
+      border: 1px solid rgba(195,0,0,0.1);
+      position: relative; overflow: hidden;
+      transition: background 0.5s, border-color 0.5s;
+    }
+    .discipline-card:hover { background: var(--gray-800); border-color: rgba(195,0,0,0.3); }
+    .discipline-icon {
+      width: 48px; height: 48px; margin-bottom: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(195,0,0,0.3); color: var(--red);
+    }
+    .discipline-card h3 {
+      font-family: var(--font-serif); font-size: 1.5rem;
+      font-weight: 400; margin-bottom: 10px; line-height: 1.2;
+    }
+    .discipline-card p {
+      font-size: 0.9rem; color: rgba(245,242,237,0.68); line-height: 1.7; font-weight: 300;
+    }
+    .discipline-number {
+      position: absolute; top: 26px; right: 30px;
+      font-family: var(--font-serif); font-size: 4.5rem;
+      font-weight: 300; color: rgba(195,0,0,0.06);
+      line-height: 1; transition: color 0.5s;
+    }
+    .discipline-card:hover .discipline-number { color: rgba(195,0,0,0.14); }
+
+    /* ===== GALLERY ===== */
+    .gallery-section { background: var(--black); }
+    .gallery-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 60px; max-width: 1300px; margin-left: auto; margin-right: auto;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .gallery-header .section-title { max-width: 500px; }
+    .gallery-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3px; max-width: 1300px; margin: 0 auto;
+    }
+    .gallery-card {
+      position: relative; overflow: hidden; aspect-ratio: 4/3;
+    }
+    .gallery-card:first-child { grid-column: span 2; aspect-ratio: 21/9; }
+    .gallery-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .gallery-card:hover img { transform: scale(1.05); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.1) 60%, transparent 100%);
+      opacity: 0.65; transition: opacity 0.5s;
+    }
+    .gallery-card:hover .gallery-overlay { opacity: 0.85; }
+    .gallery-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 36px; transform: translateY(10px);
+      transition: transform 0.5s var(--ease-out);
+    }
+    .gallery-card:hover .gallery-info { transform: translateY(0); }
+    .gallery-cat {
+      font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--red-bright); margin-bottom: 8px; font-weight: 500;
+    }
+    .gallery-name {
+      font-family: var(--font-serif); font-size: 1.6rem;
+      font-weight: 300; line-height: 1.2;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-section {
+      background: var(--gray-900); position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '\201C'; position: absolute; top: -50px; left: 40px;
+      font-family: var(--font-serif); font-size: 28rem;
+      color: rgba(195,0,0,0.04); line-height: 1; pointer-events: none;
+    }
+    .testimonials-inner { max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 60px;
+    }
+    .testimonial-card {
+      padding: 50px 40px; background: rgba(10,10,10,0.5);
+      border: 1px solid rgba(195,0,0,0.1);
+      transition: border-color 0.4s, background 0.4s;
+      display: flex; flex-direction: column;
+    }
+    .testimonial-card:hover { border-color: rgba(195,0,0,0.3); background: rgba(10,10,10,0.75); }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 24px; }
+    .star {
+      width: 12px; height: 12px; background: var(--red);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-style: italic; font-weight: 300;
+      line-height: 1.7; color: rgba(245,242,237,0.88);
+      margin-bottom: 32px; flex: 1;
+    }
+    .testimonial-divider {
+      width: 28px; height: 1px; background: var(--red); margin-bottom: 24px; opacity: 0.5;
+    }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.06em; margin-bottom: 3px; color: var(--white);
+    }
+    .testimonial-author span {
+      font-size: 0.72rem; color: rgba(245,242,237,0.6); letter-spacing: 0.04em;
+    }
+
+    /* ===== HORARIO ===== */
+    .horario-section { background: var(--black); }
+    .horario-inner { max-width: 900px; margin: 0 auto; }
+    .horario-table {
+      width: 100%; border-collapse: collapse; margin-top: 48px;
+    }
+    .horario-table th, .horario-table td {
+      padding: 16px 20px; text-align: left;
+      border-bottom: 1px solid rgba(195,0,0,0.1);
+      font-size: 0.9rem; font-weight: 300;
+    }
+    .horario-table th {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--red-bright); font-weight: 500;
+    }
+    .horario-table td:first-child {
+      font-weight: 500; color: var(--white); min-width: 200px;
+    }
+    .horario-table td { color: rgba(245,242,237,0.75); }
+    .horario-hoy {
+      background: rgba(195,0,0,0.08) !important;
+      border-left: 3px solid var(--red);
+    }
+    .horario-hoy td { color: var(--white) !important; font-weight: 400 !important; }
+    .horario-hoy td:first-child { color: var(--red-bright) !important; font-weight: 600 !important; }
+
+    /* ===== MAP SECTION ===== */
+    .map-section { background: var(--black); padding: 0; }
+    .map-inner { display: grid; grid-template-columns: 1fr 1fr; }
+    .map-info {
+      padding: 90px 70px; display: flex; flex-direction: column; justify-content: center;
+      background: var(--gray-900);
+    }
+    .map-info-item {
+      display: flex; gap: 22px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid rgba(195,0,0,0.1);
+    }
+    .map-info-item:first-of-type { padding-top: 36px; }
+    .map-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      border: 1px solid rgba(195,0,0,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red);
+    }
+    .map-info-text h3 {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red-bright); margin-bottom: 4px; font-weight: 500;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.92rem; color: rgba(245,242,237,0.8);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--white); }
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+      filter: invert(90%) hue-rotate(180deg) saturate(0.5);
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      background: var(--red); padding: 100px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 280px; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300; color: var(--white); line-height: 1.1;
+    }
+    .cta-text p { font-size: 0.96rem; color: rgba(245,242,237,0.88); margin-top: 14px; font-weight: 300; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--black); color: var(--white);
+      text-decoration: none; padding: 20px 44px;
+      font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gray-800); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black); padding: 80px 60px 44px;
+      border-top: 1px solid rgba(195,0,0,0.1);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px; margin-bottom: 64px;
+    }
+    .footer-brand .nav-brand {
+      font-size: 1.6rem; margin-bottom: 20px; display: inline-flex;
+    }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1rem; color: rgba(245,242,237,0.7);
+      line-height: 1.6; max-width: 260px; margin-bottom: 32px; margin-top: 16px;
+    }
+    .footer-social { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(245,242,237,0.2);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(245,242,237,0.7);
+      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .social-link:hover { background: var(--red); color: var(--white); border-color: var(--red); transform: translateY(-2px); }
+    .social-link svg { width: 17px; height: 17px; }
+    .footer-col h3 {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 22px; font-weight: 600;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(245,242,237,0.7);
+      font-size: 0.86rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,242,237,0.08);
+      padding-top: 32px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 0.76rem; color: rgba(245,242,237,0.6); letter-spacing: 0.04em; }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.73rem; color: rgba(245,242,237,0.7);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer; font-family: inherit;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--white); }
+
+    /* ===== ANIMATIONS ===== */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .reveal.hidden-init { opacity: 0; transform: translateY(30px); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ===== FOCUS / A11Y ===== */
+    :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; border-radius: 2px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--red); color: var(--white); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      nav { padding: 22px 32px; }
+      nav.scrolled { padding: 14px 32px; }
+      section { padding: 90px 32px; }
+      .hero-content { padding: 0 32px 80px; }
+      .hero-scroll { right: 32px; }
+      .hero-enso { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .disciplines-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 44px; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 32px; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 350px; }
+      .about-content { padding: 60px 32px; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hamburger { display: flex; }
+      nav { padding: 18px 22px; }
+      nav.scrolled { padding: 12px 22px; }
+      .nav-links { display: none; }
+      section { padding: 70px 22px; }
+      .hero-content { padding: 120px 22px 60px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
+      .disciplines-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 70px 22px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 18px; text-align: center; align-items: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 60px 22px; }
+      .horario-table { font-size: 0.82rem; }
+      .horario-table th, .horario-table td { padding: 12px 14px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 10vw, 2.8rem); margin-bottom: 20px; }
+      .hero-eyebrow { font-size: 0.64rem; margin-bottom: 34px; flex-wrap: wrap; gap: 8px; }
+      .hero-sub { font-size: 0.93rem; margin-bottom: 32px; }
+      .hero-content { padding: 110px 20px 50px; }
+      .section-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+      .stat-number { font-size: clamp(2.2rem, 11vw, 3rem); }
+      .stat-card { padding: 32px 22px; }
+      .discipline-card { padding: 36px 24px; }
+      .testimonial-card { padding: 32px 22px; }
+      .btn-primary { padding: 16px 30px; }
+      .btn-dark { padding: 16px 30px; }
+      .about-badge { top: 14px; right: 14px; padding: 16px 20px; }
+      .about-badge-year { font-size: 2.2rem; }
+      .horario-table td:first-child { min-width: 140px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+      }
+      .marquee-track { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-logo">KISOKU<span>.</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar" aria-label="Navegacion principal">
+  <a href="#main-content" class="nav-brand">
+    <img src="img/logo.png" alt="Escudo Club Kisoku" width="38" height="42">
+    <span class="nav-brand-text">Club <span>Kisoku</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#disciplinas">Disciplinas</a></li>
+    <li><a href="#nosotros">El club</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#contacto" class="nav-cta">Contactar</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menu de navegacion">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegacion principal">
+  <a href="#disciplinas" onclick="closeMobile()">Disciplinas</a>
+  <a href="#nosotros" onclick="closeMobile()">El club</a>
+  <a href="#horarios" onclick="closeMobile()">Horarios</a>
+  <a href="#contacto" onclick="closeMobile()">Contactar</a>
+</div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" id="heroBg" style="background-image: url('img/header-bg.jpg');" role="img" aria-label="Silueta de karateka ejecutando una patada alta con cielo rojo de fondo y caracteres japoneses"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+  <div class="hero-enso" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Artes marciales en Hondarribia desde 1993</p>
+    <h1 class="hero-title" id="hero-title">La fuerza del<br><em>propio espíritu.</em></h1>
+    <p class="hero-sub">Club Kisoku lleva más de 30 años formando karatekas, cinturones negros e instructores en Hondarribia. Karate, defensa personal, taekwondo, tai chi y más, para todas las edades.</p>
+    <div class="hero-actions">
+      <a href="tel:+34671788277" class="btn-primary" aria-label="Llamar al Club Kisoku al 671 788 277">
+        <span>Llamar al 671 788 277
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a href="#disciplinas" class="btn-ghost">
+        <span>Ver disciplinas</span>
+        <span class="btn-ghost-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Karate Shotokan</span>
+    <span class="marquee-item"><span class="dot"></span>Defensa Personal</span>
+    <span class="marquee-item"><span class="dot"></span>Taekwondo</span>
+    <span class="marquee-item"><span class="dot"></span>Tai Chi</span>
+    <span class="marquee-item"><span class="dot"></span>BJJ</span>
+    <span class="marquee-item"><span class="dot"></span>Judo</span>
+    <span class="marquee-item"><span class="dot"></span>Goshin</span>
+    <span class="marquee-item"><span class="dot"></span>Defensa Personal Femenina</span>
+    <span class="marquee-item"><span class="dot"></span>Karate Shotokan</span>
+    <span class="marquee-item"><span class="dot"></span>Defensa Personal</span>
+    <span class="marquee-item"><span class="dot"></span>Taekwondo</span>
+    <span class="marquee-item"><span class="dot"></span>Tai Chi</span>
+    <span class="marquee-item"><span class="dot"></span>BJJ</span>
+    <span class="marquee-item"><span class="dot"></span>Judo</span>
+    <span class="marquee-item"><span class="dot"></span>Goshin</span>
+    <span class="marquee-item"><span class="dot"></span>Defensa Personal Femenina</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section" role="region" aria-label="Cifras del club">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="30">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Años formando karatekas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="49">0</span></div>
+      <div class="stat-label">Sobre 5 en Google Maps</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="89">0</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="1993">0</span></div>
+      <div class="stat-label">Fundado en Hondarribia</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
+  <div class="about-visual">
+    <img src="img/club-group.jpg" alt="Tatami principal del dojo con suelo azul y rojo, espejos de pared y amplia iluminacion" loading="lazy">
+    <div class="about-badge">
+      <div class="about-badge-year">1993</div>
+      <div class="about-badge-text">Hondarribia, Gipuzkoa</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre el club</p>
+    <h2 class="section-title reveal reveal-delay-1" id="nosotros-title">
+      Más que un club,<br><em>una familia.</em>
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-delay-2">
+      El Club Kisoku fue fundado el <strong>13 de septiembre de 1993</strong> por el <strong>Sensei José Ángel Rial</strong>. Su nombre significa "la fuerza del propio espíritu". Tras más de 30 años de trayectoria, ha formado un gran número de cinturones negros, instructores y alumnos cualificados. Integrado en la <strong>Federación Guipuzcoana, Vasca y Española de Karate</strong>, así como en las federaciones de Taekwondo y Lucha, el club cuenta con dos tatamis amplios y ventilados en su sede de la calle Amutalde.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h3>Tradición y disciplina</h3>
+          <p>Estilo Shotokan y Kase Ryu Ha. Valores del karate clásico aplicados a la formación integral de cada alumno.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h3>Todas las edades</h3>
+          <p>Desde karate infantil hasta clases de adultos. Cada grupo con su propio horario, nivel y ritmo adaptado.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h3>Instalaciones propias</h3>
+          <p>Dos tatamis en plantas independientes, amplios, con buena ventilación y espejos de pared completo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DISCIPLINES -->
+<section class="disciplines-section" id="disciplinas" aria-labelledby="disciplinas-title">
+  <p class="section-label reveal">Nuestras disciplinas</p>
+  <h2 class="section-title reveal reveal-delay-1" id="disciplinas-title" style="max-width:600px;">Encuentra tu camino<br><em>en las artes marciales.</em></h2>
+  <div class="disciplines-grid">
+    <div class="discipline-card reveal">
+      <div class="discipline-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="3"/><path d="M6.5 21l2-8L12 16l3.5-3 2 8"/><path d="M12 11v5"/></svg>
+      </div>
+      <div class="discipline-number" aria-hidden="true">01</div>
+      <h3>Karate</h3>
+      <p>Infantil y adultos. Estilo Shotokan y Kase Ryu Ha. Formación técnica completa, desde iniciación hasta cinturón negro y competición federada.</p>
+    </div>
+    <div class="discipline-card reveal reveal-delay-1">
+      <div class="discipline-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="discipline-number" aria-hidden="true">02</div>
+      <h3>Goshin</h3>
+      <p>Defensa personal práctica y eficaz basada en técnicas de Goshindo Taikijutsu Ryu. Aprende a reaccionar ante situaciones reales de forma controlada.</p>
+    </div>
+    <div class="discipline-card reveal reveal-delay-2">
+      <div class="discipline-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="3"/><path d="M5 21l3-9 4 3 4-3 3 9"/><path d="M8 12l4-1 4 1"/></svg>
+      </div>
+      <div class="discipline-number" aria-hidden="true">03</div>
+      <h3>Defensa Personal Femenina</h3>
+      <p>Cursos específicos los sábados. Técnicas adaptadas, autoconfianza y preparación real. Un referente en Hondarribia con más de quince años de trayectoria.</p>
+    </div>
+    <div class="discipline-card reveal">
+      <div class="discipline-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="3"/><path d="M12 8v6M8 21l4-7 4 7"/><path d="M7 13h10"/></svg>
+      </div>
+      <div class="discipline-number" aria-hidden="true">04</div>
+      <h3>Taekwondo</h3>
+      <p>Arte marcial coreano de piernas potentes y técnica depurada. Clases para todas las edades con competición federada disponible.</p>
+    </div>
+    <div class="discipline-card reveal reveal-delay-1">
+      <div class="discipline-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3c-1.5 3-1.5 6 0 9s1.5 6 0 9"/><path d="M3 12h18"/></svg>
+      </div>
+      <div class="discipline-number" aria-hidden="true">05</div>
+      <h3>Tai Chi</h3>
+      <p>Movimiento pausado, respiración consciente y equilibrio interior. Una práctica milenaria para cuidar cuerpo y mente a cualquier edad.</p>
+    </div>
+    <div class="discipline-card reveal reveal-delay-2">
+      <div class="discipline-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="3"/><path d="M6 21l3-8h6l3 8"/><path d="M9 13l3-2 3 2"/></svg>
+      </div>
+      <div class="discipline-number" aria-hidden="true">06</div>
+      <h3>BJJ y Judo</h3>
+      <p>Trabajo de suelo, proyecciones e inmovilizaciones. Disciplinas de agarre que complementan la formación marcial del club.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="galeria" aria-labelledby="galeria-title">
+  <div class="gallery-header">
+    <div>
+      <p class="section-label reveal">El dojo</p>
+      <h2 class="section-title reveal reveal-delay-1" id="galeria-title">Donde se forja<br><em>el espíritu.</em></h2>
+    </div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card">
+      <img src="img/club-competition.jpg" alt="Grupo de karatekas del Club Kisoku posando en formación con gis blancos y cinturones de distintos colores tras un entrenamiento de la selección guipuzcoana" loading="lazy">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <p class="gallery-cat">Competición</p>
+        <h3 class="gallery-name">Entrenamiento de la selección guipuzcoana</h3>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="img/club-recent-1.jpg" alt="Segundo tatami del Club Kisoku con suelo verde y rojo, espejos y equipamiento de entrenamiento" loading="lazy">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <p class="gallery-cat">Instalaciones</p>
+        <h3 class="gallery-name">Tatami de la planta inferior</h3>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="img/club-training-1.jpg" alt="Fachada exterior del Club Kisoku en la calle Amutalde con el cartel del club visible" loading="lazy">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <p class="gallery-cat">Sede</p>
+        <h3 class="gallery-name">Calle Amutalde, Hondarribia</h3>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="img/club-recent-2.jpg" alt="Vista interior del segundo tatami del Club Kisoku preparado para la clase" loading="lazy">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-info">
+        <p class="gallery-cat">Entrenamiento</p>
+        <h3 class="gallery-name">Espacio amplio y ventilado</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" aria-labelledby="testimonios-title">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen nuestros alumnos</p>
+    <h2 class="section-title reveal reveal-delay-1" id="testimonios-title">
+      4,9 sobre 5 con 89 reseñas<br>verificadas en <em>Google Maps.</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"El mejor sitio de artes marciales si buscas profesionalidad, entrenamiento duro, potente y efectivo. Aprendes mucho en poco tiempo y el dueño, José Ángel, es una persona increíble tanto como sensei como persona. Más que un club es una familia."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Beatriz M.</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"El mejor club de artes marciales que he visto. El lugar perfecto para crecer tanto como persona como karateka."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>David L.</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Un club fantástico, muy atentos con niños pequeños, y con un ambiente muy bonito. Los profesores se preocupan por cada alumno."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Javier O.</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIOS -->
+<section class="horario-section" id="horarios" aria-labelledby="horarios-title">
+  <div class="horario-inner">
+    <p class="section-label reveal">Horarios</p>
+    <h2 class="section-title reveal reveal-delay-1" id="horarios-title">Encuentra tu <em>clase.</em></h2>
+    <table class="horario-table reveal reveal-delay-2" id="horarioTable">
+      <thead>
+        <tr>
+          <th>Disciplina</th>
+          <th>Días</th>
+          <th>Horario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-dias="1,3,5">
+          <td>Karate Infantil</td>
+          <td>Lunes, miércoles y viernes</td>
+          <td>18:00 - 19:00</td>
+        </tr>
+        <tr data-dias="2,4">
+          <td>Karate Infantil</td>
+          <td>Martes y jueves</td>
+          <td>18:00 - 19:00</td>
+        </tr>
+        <tr data-dias="1,3,5">
+          <td>Karate Adultos</td>
+          <td>Lunes, miércoles y viernes</td>
+          <td>19:00 - 20:30</td>
+        </tr>
+        <tr data-dias="2,4">
+          <td>Goshin Defensa Personal</td>
+          <td>Martes y jueves</td>
+          <td>19:00 - 20:30</td>
+        </tr>
+        <tr data-dias="6">
+          <td>Defensa Personal Femenina</td>
+          <td>Sábados</td>
+          <td>09:30 - 12:30</td>
+        </tr>
+        <tr data-dias="1,3">
+          <td>Taekwondo</td>
+          <td>Lunes y miércoles</td>
+          <td>18:00 - 19:00</td>
+        </tr>
+        <tr data-dias="2,5">
+          <td>Tai Chi</td>
+          <td>Martes y viernes</td>
+          <td>19:30 - 20:30</td>
+        </tr>
+        <tr data-dias="5">
+          <td>Defensa Personal Policial</td>
+          <td>Viernes</td>
+          <td>17:00 - 18:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- MAP + CONTACT -->
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Dónde estamos</p>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">
+        En Hondarribia,<br><em>calle Amutalde 19.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>C/ Amutalde, 19 C<br>20280 Hondarribia (Gipuzkoa)</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfono</h3>
+          <a href="tel:+34671788277">671 788 277</a><br>
+          <a href="tel:+34943058777">943 058 777</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Email</h3>
+          <a href="mailto:kisoku@clubkisoku.com">kisoku@clubkisoku.com</a>
+        </div>
+      </div>
+      <div style="margin-top: 36px;">
+        <a href="tel:+34671788277" class="btn-primary" style="display: inline-flex;">
+          <span>Llamar al 671 788 277
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación del Club Kisoku en Amutalde Kalea 19, Hondarribia"
+        src="https://www.google.com/maps?q=Club+Kisoku+Amutalde+Kalea+19+Hondarribia&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" role="region" aria-label="Llamada a la acción">
+  <div class="cta-text">
+    <h2>¿Listo para empezar<br>tu camino?</h2>
+    <p>Primera clase de prueba sin compromiso. Llámanos y te contamos cómo funciona.</p>
+  </div>
+  <a href="tel:+34671788277" class="btn-dark">
+    <span>Llamar ahora
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
+  </a>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#main-content" class="nav-brand">
+        <img src="img/logo.png" alt="Club Kisoku" width="34" height="38">
+        <span class="nav-brand-text">Club <span>Kisoku</span></span>
+      </a>
+      <p class="footer-tagline">"La fuerza del propio espíritu." Artes marciales en Hondarribia desde 1993.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/clubkisoku" target="_blank" rel="noopener" class="social-link" aria-label="Seguir al Club Kisoku en Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="https://wa.me/34671788277" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp al Club Kisoku">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04"/></svg>
+        </a>
+        <a href="tel:+34671788277" class="social-link" aria-label="Llamar al Club Kisoku">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 00-1.02.24l-2.2 2.2a15.07 15.07 0 01-6.58-6.6l2.2-2.2a1 1 0 00.25-1.02A11.4 11.4 0 018.5 4a1 1 0 00-1-1H4a1 1 0 00-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 00-1-1"/></svg>
+        </a>
+        <a href="mailto:kisoku@clubkisoku.com" class="social-link" aria-label="Enviar correo al Club Kisoku">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2m0 4l-8 5-8-5V6l8 5 8-5z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Disciplinas</h3>
+      <ul>
+        <li><a href="#disciplinas">Karate</a></li>
+        <li><a href="#disciplinas">Goshin</a></li>
+        <li><a href="#disciplinas">Taekwondo</a></li>
+        <li><a href="#disciplinas">Tai Chi</a></li>
+        <li><a href="#disciplinas">BJJ y Judo</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>El club</h3>
+      <ul>
+        <li><a href="#nosotros">Historia</a></li>
+        <li><a href="#galeria">Instalaciones</a></li>
+        <li><a href="#horarios">Horarios</a></li>
+        <li><a href="#contacto">Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34671788277">671 788 277</a></li>
+        <li><a href="tel:+34943058777">943 058 777</a></li>
+        <li><a href="mailto:kisoku@clubkisoku.com">kisoku@clubkisoku.com</a></li>
+        <li><a href="#contacto">Hondarribia</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Club Kisoku. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('loader');
+      var heroBg = document.getElementById('heroBg');
+      if (loader) loader.classList.add('hidden');
+      if (heroBg) heroBg.classList.add('loaded');
+    }, 1800);
+  });
+
+  // NAVBAR SCROLL
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) { var fl = mobileMenu.querySelector('a'); if (fl) fl.focus(); }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+
+  function closeMobile() {
+    var h = document.getElementById('hamburger');
+    var m = document.getElementById('mobileMenu');
+    if (h) h.classList.remove('active');
+    if (m) m.classList.remove('open');
+    if (h) h.setAttribute('aria-expanded', 'false');
+  }
+
+  // REVEAL ON SCROLL — progressive enhancement: hide only if JS + IO available
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    reveals.forEach(function(el) { el.classList.add('hidden-init'); });
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.remove('hidden-init'); e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  }
+
+  // COUNTER ANIMATION
+  function animateCount(el) {
+    var target = parseInt(el.dataset.target, 10);
+    var isRating = (target === 49);
+    var duration = 1800;
+    var start = performance.now();
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 4);
+      var value = ease * target;
+      if (isRating) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var countObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
+  } else {
+    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+  }
+
+  // HERO PARALLAX
+  window.addEventListener('scroll', function() {
+    var heroBg = document.getElementById('heroBg');
+    if (heroBg && window.innerWidth > 768) {
+      heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.22) + 'px)';
+    }
+  });
+
+  // HIGHLIGHT TODAY HORARIO
+  function highlightToday() {
+    var table = document.getElementById('horarioTable');
+    if (!table) return;
+    var today = new Date().getDay(); // 0=dom, 1=lun...6=sab
+    var rows = table.querySelectorAll('tbody tr');
+    rows.forEach(function(row) {
+      var dias = row.getAttribute('data-dias');
+      if (dias) {
+        var arr = dias.split(',').map(Number);
+        if (arr.indexOf(today) !== -1) {
+          row.classList.add('horario-hoy');
+        }
+      }
+    });
+  }
+  highlightToday();
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
