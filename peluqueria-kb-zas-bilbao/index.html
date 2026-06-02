@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peluquer&iacute;a KB-ZAS | Tu peluquer&iacute;a en el centro de Bilbao</title>
+  <meta name="description" content="Peluquer&iacute;a KB-ZAS: tres generaciones de estilismo en el centro de Bilbao. Especialistas en color, balayage y tratamientos Living Proof. 5/5 en Google con 127 rese&ntilde;as. Solo con cita previa.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FAF7F3;
+      --bg-warm: #F3EDE6;
+      --bg-dark: #1d1d1b;
+      --text: #1d1d1b;
+      --text-light: #5c5650;
+      --text-muted: #8a827a;
+      --accent: #e94e1b;
+      --accent-dark: #c9400f;
+      --accent-light: #f4724a;
+      --white: #ffffff;
+      --border: rgba(29, 29, 27, 0.1);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+
+    /* ── LOADER ────────────────────────────── */
+    .loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s var(--ease-smooth), visibility 0.6s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-inner {
+      width: 40px; height: 40px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation-name: loaderRotate;
+      animation-duration: 0.8s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    @keyframes loaderRotate { to { transform: rotate(360deg); } }
+
+    /* ── NAVBAR ────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(250, 247, 243, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 16px 48px;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 36px; width: auto;
+      transition: height 0.4s;
+    }
+    nav.scrolled .nav-logo img { height: 30px; }
+
+    .nav-links {
+      display: flex; gap: 36px; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--text-light);
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 500; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta-link {
+      background: var(--accent); color: var(--white) !important;
+      padding: 10px 24px; font-size: 0.75rem !important;
+      letter-spacing: 0.15em !important;
+      transition: background 0.3s, transform 0.3s !important;
+    }
+    .nav-cta-link:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--text);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--text);
+      font-family: var(--font-serif); font-size: 1.8rem;
+      font-weight: 400; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ── HERO ──────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh; min-height: 100dvh;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('hero-trabajo.png') center/cover no-repeat;
+      transform: scale(1.06);
+      transition: transform 10s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(29,29,27,0.15) 0%,
+        rgba(29,29,27,0.3) 40%,
+        rgba(29,29,27,0.75) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 48px 80px;
+      max-width: 800px;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 36px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 300; line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--accent-light);
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.85);
+      max-width: 480px; line-height: 1.7;
+      margin-bottom: 40px; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 20px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: var(--white);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; font-family: var(--font-sans);
+      border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--white);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; font-family: var(--font-sans);
+      border: 1px solid rgba(255,255,255,0.4);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--white); color: var(--white); }
+
+    .hero-badge {
+      position: absolute; right: 48px; bottom: 80px; z-index: 2;
+      text-align: right;
+    }
+    .hero-badge-rating {
+      font-family: var(--font-serif);
+      font-size: 3.5rem; font-weight: 300;
+      color: var(--white); line-height: 1;
+    }
+    .hero-badge-stars { color: var(--accent-light); font-size: 1rem; letter-spacing: 2px; }
+    .hero-badge-label {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); margin-top: 4px;
+    }
+
+    /* ── MARQUEE ───────────────────────────── */
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; padding: 16px 0;
+      background: var(--bg-warm);
+    }
+    .marquee-track {
+      display: flex; width: max-content; align-items: center;
+      animation: marquee 22s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 0 28px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-serif); font-size: 1.1rem;
+      font-style: italic; color: var(--text-light);
+      letter-spacing: 0.03em;
+    }
+    .marquee-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* ── SECTIONS COMMON ──────────────────── */
+    .section { padding: 100px 48px; }
+    .section-dark { background: var(--bg-dark); color: var(--white); }
+    .section-warm { background: var(--bg-warm); }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before {
+      content: ''; width: 28px; height: 1px; background: var(--accent);
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300; line-height: 1.15;
+      margin-bottom: 20px; letter-spacing: -0.01em;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: var(--text-light);
+      max-width: 560px; line-height: 1.7; font-weight: 300;
+    }
+    .section-dark .section-subtitle { color: rgba(255,255,255,0.7); }
+
+    /* ── REVEAL ANIMATION ─────────────────── */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.reveal-hidden {
+      opacity: 0; transform: translateY(32px);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── ABOUT / NOSOTRAS ─────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      margin-top: 60px;
+    }
+    .about-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      position: relative;
+    }
+    .about-img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: grayscale(0.1);
+      transition: filter 0.5s;
+    }
+    .about-img:hover { filter: grayscale(0); }
+    .about-img:first-child { margin-top: 40px; }
+    .about-accent-box {
+      position: absolute; bottom: -20px; left: -20px;
+      background: var(--accent); color: var(--white);
+      padding: 20px 28px;
+      font-family: var(--font-serif); font-size: 1.4rem;
+      font-weight: 300; line-height: 1.3;
+    }
+    .about-accent-box span {
+      display: block; font-size: 2.8rem; font-weight: 300;
+    }
+    .about-text p {
+      font-size: 1rem; line-height: 1.8;
+      color: var(--text-light); margin-bottom: 20px;
+    }
+    .about-text p:first-of-type {
+      font-size: 1.15rem; color: var(--text); font-weight: 400;
+    }
+    .about-signature {
+      margin-top: 32px; padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 16px;
+    }
+    .about-signature-img {
+      width: 48px; height: 48px; border-radius: 50%;
+      object-fit: cover;
+    }
+    .about-signature-name {
+      font-family: var(--font-serif);
+      font-size: 1.1rem; font-weight: 500;
+    }
+    .about-signature-role {
+      font-size: 0.8rem; color: var(--text-muted);
+    }
+
+    /* ── SERVICIOS ─────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+    .service-card {
+      padding: 40px 32px;
+      border: 1px solid var(--border);
+      transition: border-color 0.4s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--accent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-number {
+      font-family: var(--font-serif);
+      font-size: 2.5rem; font-weight: 300;
+      color: var(--accent); opacity: 0.4;
+      line-height: 1; margin-bottom: 20px;
+    }
+    .service-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; font-weight: 400;
+      margin-bottom: 12px; line-height: 1.25;
+    }
+    .service-desc {
+      font-size: 0.92rem; color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ── GALERIA ───────────────────────────── */
+    .gallery-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 48px;
+    }
+    .gallery-item {
+      overflow: hidden; position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s var(--ease-out);
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item-tall { grid-row: span 2; }
+
+    /* ── RESENAS ───────────────────────────── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+    .review-card {
+      padding: 36px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .review-stars {
+      color: var(--accent); font-size: 0.9rem;
+      letter-spacing: 3px; margin-bottom: 20px;
+    }
+    .review-text {
+      font-family: var(--font-serif);
+      font-size: 1.15rem; font-style: italic;
+      line-height: 1.65; color: var(--text);
+      margin-bottom: 24px;
+    }
+    .review-author {
+      font-size: 0.8rem; color: var(--text-muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500;
+    }
+    .review-source {
+      font-size: 0.72rem; color: var(--text-muted);
+      margin-top: 4px; font-weight: 400;
+      letter-spacing: 0; text-transform: none;
+    }
+
+    /* ── STATS BAR ─────────────────────────── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      padding: 48px 32px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 300; line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,0.6);
+    }
+
+    /* ── HORARIO ───────────────────────────── */
+    .horario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+      margin-top: 60px;
+    }
+    .horario-table {
+      width: 100%; border-collapse: collapse;
+    }
+    .horario-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .horario-table td {
+      padding: 16px 0;
+      font-size: 0.95rem;
+    }
+    .horario-table td:first-child {
+      font-weight: 500; letter-spacing: 0.03em;
+    }
+    .horario-table td:last-child {
+      text-align: right; color: var(--text-light);
+    }
+    .horario-hoy {
+      background: rgba(233, 78, 27, 0.06);
+    }
+    .horario-hoy td {
+      color: var(--accent) !important;
+      font-weight: 600 !important;
+    }
+    .horario-closed td:last-child {
+      color: var(--text-muted);
+    }
+    .horario-info {
+      padding: 32px;
+      background: var(--bg-warm);
+      border: 1px solid var(--border);
+    }
+    .horario-info-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; margin-bottom: 16px;
+    }
+    .horario-info p {
+      font-size: 0.95rem; color: var(--text-light);
+      line-height: 1.7; margin-bottom: 12px;
+    }
+    .horario-info a {
+      color: var(--accent); text-decoration: none; font-weight: 500;
+    }
+    .horario-info a:hover { text-decoration: underline; }
+
+    /* ── MAPA ──────────────────────────────── */
+    .map-section { padding: 0; }
+    .map-container {
+      position: relative; width: 100%; height: 450px;
+    }
+    .map-container iframe {
+      width: 100%; height: 100%; border: 0;
+    }
+
+    /* ── CTA FINAL ─────────────────────────── */
+    .cta-section {
+      text-align: center;
+      padding: 120px 48px;
+      background: var(--bg-dark); color: var(--white);
+    }
+    .cta-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 300; line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .cta-title em { font-style: italic; color: var(--accent-light); }
+    .cta-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.65);
+      max-width: 520px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .cta-actions {
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary-light {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: var(--white);
+      text-decoration: none; padding: 18px 42px;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; font-family: var(--font-sans);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-primary-light:hover { background: var(--accent-light); transform: translateY(-2px); }
+    .btn-outline-light {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--white);
+      text-decoration: none; padding: 18px 42px;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; font-family: var(--font-sans);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.3s;
+    }
+    .btn-outline-light:hover { border-color: var(--white); }
+
+    /* ── FOOTER ────────────────────────────── */
+    footer {
+      background: var(--bg-dark); color: rgba(255,255,255,0.5);
+      padding: 48px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px;
+    }
+    .footer-copy { font-size: 0.82rem; }
+    .footer-links {
+      display: flex; gap: 24px; list-style: none;
+    }
+    .footer-links a {
+      text-decoration: none; color: rgba(255,255,255,0.5);
+      font-size: 0.78rem; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-cookies-btn {
+      background: none; border: none; color: rgba(255,255,255,0.5);
+      font-size: 0.78rem; cursor: pointer; font-family: inherit;
+      transition: color 0.3s;
+    }
+    .footer-cookies-btn:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ────────────────────────── */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-images { order: -1; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .horario-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hero-content { padding: 120px 24px 60px; }
+
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-badge { display: none; }
+
+      .section { padding: 72px 24px; }
+
+      .services-grid { grid-template-columns: 1fr; gap: 24px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      .gallery-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .gallery-item-tall { grid-row: span 1; }
+
+      .about-accent-box { position: static; margin-top: 16px; }
+
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+
+      .cta-section { padding: 80px 24px; }
+
+      footer { padding: 32px 24px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem; }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .gallery-row { grid-template-columns: 1fr; }
+      .stat-item { padding: 32px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-inner"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo" aria-label="KB-ZAS inicio">
+      <img src="logo.svg" alt="Logo Peluquería KB-ZAS" width="120" height="40">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#nosotras">Nosotras</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="tel:+34944026120" class="nav-cta-link">Pedir cita</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#nosotras" class="mobile-link">Nosotras</a>
+    <a href="#servicios" class="mobile-link">Servicios</a>
+    <a href="#opiniones" class="mobile-link">Opiniones</a>
+    <a href="#horario" class="mobile-link">Horario</a>
+    <a href="tel:+34944026120" class="mobile-link" style="color:var(--accent)">Pedir cita</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Desde 2004 en el centro de Bilbao</p>
+      <h1 class="hero-title">El color que te <em>define</em></h1>
+      <p class="hero-sub">Tres generaciones de estilistas especializadas en color, corte y tratamientos avanzados. Porque tu imagen merece manos que la entiendan.</p>
+      <div class="hero-actions">
+        <a href="tel:+34944026120" class="btn-primary">
+          <span>Reservar cita</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#nosotras" class="btn-secondary">Conocer más</a>
+      </div>
+    </div>
+    <div class="hero-badge" aria-label="Valoración en Google: 5 sobre 5">
+      <div class="hero-badge-rating">5.0</div>
+      <div class="hero-badge-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="hero-badge-label">127 reseñas en Google</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-dot"></span>Color y mechas</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Balayage</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Corte y peinado</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Keratina</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Living Proof</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Maquillaje</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Novias</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Baby lights</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Tratamientos capilares</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Color y mechas</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Balayage</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Corte y peinado</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Keratina</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Living Proof</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Maquillaje</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Novias</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Baby lights</span>
+      <span class="marquee-item"><span class="marquee-dot"></span>Tratamientos capilares</span>
+    </div>
+  </div>
+
+  <!-- NOSOTRAS -->
+  <section class="section" id="nosotras">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal">
+          <img src="maru.jpg" alt="Maru, fundadora de Peluquería KB-ZAS en Bilbao" class="about-img" width="400" height="533" loading="lazy">
+          <img src="janire.jpg" alt="Janire, estilista de Peluquería KB-ZAS" class="about-img" width="400" height="533" loading="lazy">
+          <div class="about-accent-box">
+            <span>3</span>
+            generaciones de estilismo
+          </div>
+        </div>
+        <div class="about-text">
+          <div class="section-label reveal">Nosotras</div>
+          <h2 class="section-title reveal reveal-delay-1">Una familia dedicada<br>al estilismo</h2>
+          <p class="reveal reveal-delay-2">KB-ZAS nace en 2004 de la mano de Maru, heredera de una tradición familiar que arranca en el salón de su padre, José Mari. Lo que empezó como vocación se convirtió en un referente del centro de Bilbao.</p>
+          <p class="reveal reveal-delay-3">Hoy, junto a su hija Janire (tercera generación), forman un equipo que combina experiencia y formación continua. Especialistas certificadas en Living Proof y técnicas de color avanzadas como balayage, baby lights y flamboyage.</p>
+          <p class="reveal reveal-delay-4">Cada clienta es única. Por eso trabajan solo con cita previa: para dedicar el tiempo que cada persona necesita, sin prisas.</p>
+          <div class="about-signature reveal reveal-delay-4">
+            <img src="maru.jpg" alt="Maru" class="about-signature-img" width="48" height="48" loading="lazy">
+            <div>
+              <div class="about-signature-name">Maru</div>
+              <div class="about-signature-role">Fundadora de KB-ZAS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="section section-warm" id="servicios">
+    <div class="container">
+      <div class="section-label reveal">Servicios</div>
+      <h2 class="section-title reveal reveal-delay-1">Todo lo que tu pelo necesita</h2>
+      <p class="section-subtitle reveal reveal-delay-2">Desde un corte con personalidad hasta la transformacion de color mas exigente. Cada servicio empieza con una consulta personalizada.</p>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-number">01</div>
+          <h3 class="service-name">Color y mechas</h3>
+          <p class="service-desc">Balayage, baby lights, shatush, californianas, ombre... Dominamos todas las tecnicas para encontrar el efecto que mejor encaja con tu rostro y estilo de vida.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-number">02</div>
+          <h3 class="service-name">Corte y peinado</h3>
+          <p class="service-desc">Cortes de mujer y hombre con estudio previo de facciones y textura capilar. Peinados para eventos, bodas y ocasiones especiales.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-number">03</div>
+          <h3 class="service-name">Tratamientos Living Proof</h3>
+          <p class="service-desc">Tratamiento biomimético que refuerza el cabello dañado, debilitado o deshidratado. Repara la fibra capilar y previene la rotura hasta en un 93%.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-number">04</div>
+          <h3 class="service-name">Keratina y alisados</h3>
+          <p class="service-desc">Alisado orgánico Acquacoco, botox capilar, reconstrucción y tratamientos para rizos. Resultados de hasta 6 meses con productos respetuosos.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-number">05</div>
+          <h3 class="service-name">Cuidado del cuero cabelludo</h3>
+          <p class="service-desc">Detox, tratamiento anticaída y protocolo para psoriasis con productos Nubea. Sesiones progresivas que mejoran la salud capilar desde la raíz.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-number">06</div>
+          <h3 class="service-name">Maquillaje y novias</h3>
+          <p class="service-desc">Servicio integral para tu día especial: prueba previa, peinado y maquillaje. Porque mereces sentirte espectacular sin preocuparte de nada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="section" id="galeria">
+    <div class="container">
+      <div class="section-label reveal">Nuestro trabajo</div>
+      <h2 class="section-title reveal reveal-delay-1">Resultados que hablan</h2>
+      <div class="gallery-row reveal reveal-delay-2">
+        <div class="gallery-item gallery-item-tall">
+          <img src="hero-trabajo.png" alt="Resultado de coloración realizado en Peluquería KB-ZAS Bilbao" width="800" height="1067" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="trabajo-sofisticado.jpg" alt="Recogido sofisticado con trenzas creado en KB-ZAS" width="400" height="400" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="living-proof.png" alt="Tratamiento Living Proof aplicado en KB-ZAS Bilbao" width="400" height="400" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section-dark">
+    <div class="stats-bar">
+      <div class="stat-item reveal">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-number">5.0</div>
+        <div class="stat-label">Nota en Google</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-number">127</div>
+        <div class="stat-label">Reseñas verificadas</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Generaciones</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPINIONES -->
+  <section class="section" id="opiniones">
+    <div class="container">
+      <div class="section-label reveal">Opiniones</div>
+      <h2 class="section-title reveal reveal-delay-1">Lo que dicen nuestras clientas</h2>
+      <p class="section-subtitle reveal reveal-delay-2">127 reseñas y una nota de 5 sobre 5 en Google. Aquí van algunas de las que más nos representan.</p>
+
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-stars" aria-label="5 estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">La mejor peluquería de Bilbao. Me han atendido con mimo, me han escuchado, aconsejado y he pasado un buen rato.</p>
+          <div class="review-author">Clienta verificada</div>
+          <div class="review-source">Reseña en Google</div>
+        </div>
+        <div class="review-card reveal reveal-delay-1">
+          <div class="review-stars" aria-label="5 estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Son unas artistas. Tratan el pelo con mucho cuidado, tienen productos de calidad y son grandes conocedoras de su trabajo, formándose continuamente.</p>
+          <div class="review-author">Clienta verificada</div>
+          <div class="review-source">Reseña en Google</div>
+        </div>
+        <div class="review-card reveal reveal-delay-2">
+          <div class="review-stars" aria-label="5 estrellas">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="review-text">Muy contenta con el tratamiento de keratina. Janire y Maru son muy entretenidas, sales de allí con una sonrisa.</p>
+          <div class="review-author">Clienta verificada</div>
+          <div class="review-source">Reseña en Google</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIO -->
+  <section class="section section-warm" id="horario">
+    <div class="container">
+      <div class="section-label reveal">Horario y contacto</div>
+      <h2 class="section-title reveal reveal-delay-1">Te esperamos</h2>
+
+      <div class="horario-grid">
+        <div class="reveal reveal-delay-2">
+          <table class="horario-table" id="horarioTable">
+            <tbody>
+              <tr class="horario-closed" data-day="1">
+                <td>Lunes</td>
+                <td>Cerrado</td>
+              </tr>
+              <tr data-day="2">
+                <td>Martes</td>
+                <td>9:30 - 19:00</td>
+              </tr>
+              <tr data-day="3">
+                <td>Miércoles</td>
+                <td>9:30 - 19:00</td>
+              </tr>
+              <tr data-day="4">
+                <td>Jueves</td>
+                <td>9:30 - 19:00</td>
+              </tr>
+              <tr data-day="5">
+                <td>Viernes</td>
+                <td>9:30 - 19:00</td>
+              </tr>
+              <tr data-day="6">
+                <td>Sábado</td>
+                <td>9:00 - 13:00</td>
+              </tr>
+              <tr class="horario-closed" data-day="0">
+                <td>Domingo</td>
+                <td>Cerrado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="horario-info reveal reveal-delay-3">
+          <h3 class="horario-info-title">Solo con cita previa</h3>
+          <p>Trabajamos exclusivamente con cita previa para poder dedicarte el tiempo que mereces, sin esperas.</p>
+          <p><strong>Teléfono:</strong> <a href="tel:+34944026120">944 02 61 20</a></p>
+          <p><strong>WhatsApp:</strong> <a href="https://wa.me/34645016406">645 01 64 06</a></p>
+          <p><strong>Email:</strong> <a href="mailto:pelukbzas@gmail.com">pelukbzas@gmail.com</a></p>
+          <p style="margin-top:20px"><strong>Dirección:</strong><br>Fernández del Campo, 26<br>48010 Bilbao</p>
+          <p style="font-size:0.85rem; color:var(--text-muted)">Junto a Azkuna Zentroa (Alhóndiga)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <section class="map-section" id="ubicacion">
+    <div class="map-container">
+      <iframe
+        src="https://maps.google.com/maps?q=Peluqueria+KB-zas+Fernandez+del+Campo+26+Bilbao&output=embed"
+        allowfullscreen loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación de Peluquería KB-ZAS en Google Maps"
+        style="width:100%;height:450px;border:0"></iframe>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="container">
+      <p class="section-label reveal" style="justify-content:center">Reserva tu cita</p>
+      <h2 class="cta-title reveal reveal-delay-1">Tu pelo merece<br>manos que lo <em>entiendan</em></h2>
+      <p class="cta-sub reveal reveal-delay-2">Llámanos, escríbenos por WhatsApp o envíanos un email. Estaremos encantadas de recibirte en nuestro salón del centro de Bilbao.</p>
+      <div class="cta-actions reveal reveal-delay-3">
+        <a href="tel:+34944026120" class="btn-primary-light">
+          Llamar ahora
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </a>
+        <a href="https://wa.me/34645016406" class="btn-outline-light" target="_blank" rel="noopener">
+          WhatsApp
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-copy">Peluquería KB-ZAS. Fernández del Campo, 26, 48010 Bilbao.</p>
+      <ul class="footer-links">
+        <li><a href="legal/aviso-legal.html">Aviso legal</a></li>
+        <li><a href="legal/politica-privacidad.html">Privacidad</a></li>
+        <li><a href="legal/politica-cookies.html">Cookies</a></li>
+        <li><button class="footer-cookies-btn" onclick="if(window.GGConsent)window.GGConsent.open()">Configurar cookies</button></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- COOKIE BANNER -->
+  <script src="legal/cookie-banner.js"></script>
+
+  <!-- JS -->
+  <script>
+    (function() {
+      'use strict';
+
+      // Loader
+      var loader = document.getElementById('loader');
+      window.addEventListener('load', function() {
+        if (loader) loader.classList.add('hidden');
+      });
+      // Fallback: hide loader after 3s
+      setTimeout(function() {
+        if (loader) loader.classList.add('hidden');
+      }, 3000);
+
+      // Navbar scroll
+      var navbar = document.getElementById('navbar');
+      var lastScroll = 0;
+      window.addEventListener('scroll', function() {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollY > 60) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+        lastScroll = scrollY;
+      }, { passive: true });
+
+      // Hero BG parallax
+      var heroBg = document.getElementById('heroBg');
+      if (heroBg) {
+        setTimeout(function() { heroBg.classList.add('loaded'); }, 100);
+      }
+
+      // Hamburger menu
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobileMenu');
+      if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', function() {
+          var isOpen = mobileMenu.classList.toggle('open');
+          hamburger.classList.toggle('active');
+          hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+        var mobileLinks = mobileMenu.querySelectorAll('a');
+        for (var i = 0; i < mobileLinks.length; i++) {
+          mobileLinks[i].addEventListener('click', function() {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+          });
+        }
+      }
+
+      // Scroll reveals — set hidden first, then observe
+      var revealEls = document.querySelectorAll('.reveal');
+      for (var r = 0; r < revealEls.length; r++) {
+        revealEls[r].classList.add('reveal-hidden');
+      }
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove('reveal-hidden');
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        for (var o = 0; o < revealEls.length; o++) { observer.observe(revealEls[o]); }
+      } else {
+        for (var j = 0; j < revealEls.length; j++) {
+          revealEls[j].classList.remove('reveal-hidden');
+          revealEls[j].classList.add('visible');
+        }
+      }
+
+      // Highlight today in schedule
+      function highlightToday() {
+        var table = document.getElementById('horarioTable');
+        if (!table) return;
+        var today = new Date().getDay(); // 0=Sun, 1=Mon...
+        var rows = table.querySelectorAll('tr[data-day]');
+        for (var k = 0; k < rows.length; k++) {
+          var day = parseInt(rows[k].getAttribute('data-day'), 10);
+          if (day === today) {
+            rows[k].classList.add('horario-hoy');
+          }
+        }
+      }
+      highlightToday();
+
+    })();
+  </script>
+
+</body>
+</html>
