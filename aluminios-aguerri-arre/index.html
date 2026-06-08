@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aluminios Aguerri | Ventanas de Aluminio y PVC en Navarra</title>
+  <meta name="description" content="Aluminios Aguerri: fabricantes e instaladores de ventanas de aluminio y PVC en Arre, Navarra. Empresa familiar desde 1980. 5/5 en Google con 119 reseñas. Persianas, mosquiteras, cerramientos y mamparas.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2255a6;
+      --blue-dark: #1a4280;
+      --blue-light: #e8f0fa;
+      --blue-mist: #f0f5fb;
+      --white: #ffffff;
+      --cream: #fafaf8;
+      --sand: #f5f3ef;
+      --charcoal: #1a1a1a;
+      --slate: #3a3a3a;
+      --text: #2c2c2c;
+      --text-light: #6b6b6b;
+      --border: #e2e2e2;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══════ LOADER ═══════ */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      transition: opacity 0.7s var(--ease), visibility 0.7s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-name {
+      font-family: var(--font-sans);
+      font-size: 0.8rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--blue); font-weight: 600;
+    }
+    .loader-bar {
+      width: 160px; height: 2px; background: var(--border);
+      position: relative; overflow: hidden; border-radius: 1px;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--blue); transform: translateX(-100%);
+      animation: loadBar 1.4s var(--ease) 0.2s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* ═══════ NAV ═══════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 56px;
+      background: transparent;
+      transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      padding: 16px 56px;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--charcoal);
+    }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-logo-text {
+      font-weight: 600; font-size: 0.82rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: var(--slate);
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 500; transition: color 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1.5px; background: var(--blue);
+      transition: width 0.35s var(--ease);
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta-link {
+      background: var(--blue) !important; color: var(--white) !important;
+      padding: 10px 28px !important; font-size: 0.72rem !important;
+      letter-spacing: 0.18em !important; transition: background 0.3s !important;
+    }
+    .nav-cta-link::after { display: none !important; }
+    .nav-cta-link:hover { background: var(--blue-dark) !important; color: var(--white) !important; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--charcoal);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: var(--white); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--charcoal); font-size: 1.1rem;
+      letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--blue); }
+
+    /* ═══════ HERO ═══════ */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .hero-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 160px 56px 100px 56px;
+      max-width: 680px;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--blue); font-weight: 600;
+      margin-bottom: 28px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 1.5px; background: var(--blue);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 4.5vw, 4.6rem);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--charcoal);
+      margin-bottom: 28px;
+    }
+    .hero-title em { font-style: italic; color: var(--blue); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--text-light);
+      max-width: 480px; line-height: 1.75;
+      margin-bottom: 48px; font-weight: 300;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .hero-image {
+      position: relative; overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 6s var(--ease);
+    }
+    .hero-image img.loaded { transform: scale(1.02); }
+    .hero-image-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 30%;
+      background: linear-gradient(to top, rgba(255,255,255,0.3), transparent);
+    }
+    .hero-badge {
+      position: absolute; bottom: 40px; left: 40px;
+      background: var(--white); border: 1px solid var(--border);
+      padding: 20px 28px;
+      display: flex; align-items: center; gap: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .hero-badge-stars { display: flex; gap: 3px; }
+    .hero-badge-stars .star-icon { width: 14px; height: 14px; color: #eab308; }
+    .hero-badge-text { font-size: 0.78rem; color: var(--text-light); line-height: 1.4; }
+    .hero-badge-text strong { color: var(--charcoal); font-weight: 600; }
+
+    /* ═══════ BUTTONS ═══════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--blue); color: var(--white);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(34,85,166,0.25); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--blue);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; border: 1.5px solid var(--blue);
+      transition: all 0.35s var(--ease-smooth); cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--blue); color: var(--white); }
+    .icon-arrow { width: 14px; height: 14px; }
+
+    /* ═══════ MARQUEE ═══════ */
+    .marquee-section {
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      overflow: hidden; padding: 18px 0; background: var(--cream);
+    }
+    .marquee-track {
+      display: flex; width: max-content; align-items: center;
+      animation: marquee 22s linear infinite; will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 0 36px; flex-shrink: 0; white-space: nowrap;
+      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-light); font-weight: 500;
+    }
+    .marquee-item .dot {
+      width: 5px; height: 5px; background: var(--blue); flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* ═══════ SECTIONS COMMON ═══════ */
+    .section { padding: 120px 56px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 16px; font-weight: 600;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before { content: ''; width: 24px; height: 1.5px; background: var(--blue); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+      font-weight: 400; line-height: 1.15;
+      letter-spacing: -0.01em; color: var(--charcoal);
+    }
+    .section-title em { font-style: italic; color: var(--blue); }
+
+    /* ═══════ STATS ═══════ */
+    .stats-section {
+      background: var(--blue); padding: 80px 56px;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; max-width: 1200px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 48px 40px; text-align: center;
+      position: relative;
+    }
+    .stat-card::after {
+      content: ''; position: absolute; top: 20%; right: 0;
+      width: 1px; height: 60%; background: rgba(255,255,255,0.2);
+    }
+    .stat-card:last-child::after { display: none; }
+    .stat-number {
+      font-family: var(--font-serif); font-size: clamp(2.5rem, 5vw, 3.8rem);
+      font-weight: 400; line-height: 1; color: var(--white);
+      margin-bottom: 10px;
+    }
+    .stat-suffix { color: rgba(255,255,255,0.6); }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); font-weight: 500;
+    }
+
+    /* ═══════ SERVICES ═══════ */
+    .services-section { background: var(--cream); }
+    .services-header {
+      max-width: 1200px; margin: 0 auto 64px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .services-header .section-title { max-width: 520px; }
+    .services-header-text {
+      max-width: 380px; font-size: 0.95rem; color: var(--text-light);
+      line-height: 1.7; font-weight: 300;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1200px; margin: 0 auto;
+      background: var(--border);
+    }
+    .service-card {
+      padding: 52px 40px; background: var(--white);
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .service-card:hover { background: var(--blue-mist); }
+    .service-icon {
+      width: 48px; height: 48px; margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.5rem;
+      font-weight: 400; margin-bottom: 12px; line-height: 1.2;
+      color: var(--charcoal);
+    }
+    .service-card p {
+      font-size: 0.9rem; color: var(--text-light); line-height: 1.7; font-weight: 300;
+    }
+    .service-number {
+      position: absolute; top: 24px; right: 28px;
+      font-family: var(--font-serif); font-size: 4rem;
+      font-weight: 400; color: rgba(34,85,166,0.06);
+      line-height: 1;
+    }
+
+    /* ═══════ GALLERY / PROJECTS ═══════ */
+    .gallery-section { background: var(--white); }
+    .gallery-grid {
+      display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr;
+      gap: 4px; max-width: 1200px; margin: 56px auto 0;
+      height: 600px;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden;
+    }
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s var(--ease);
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 28px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      color: var(--white);
+    }
+    .gallery-caption-cat {
+      font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); margin-bottom: 4px; font-weight: 500;
+    }
+    .gallery-caption-title {
+      font-family: var(--font-serif); font-size: 1.2rem;
+      font-weight: 400; line-height: 1.3;
+    }
+
+    /* ═══════ ABOUT ═══════ */
+    .about-section {
+      background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; max-width: none; padding: 0;
+    }
+    .about-image { position: relative; overflow: hidden; min-height: 650px; }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge {
+      position: absolute; top: 32px; right: 32px;
+      background: var(--white); padding: 20px 28px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 2.6rem;
+      color: var(--blue); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.68rem; letter-spacing: 0.08em;
+      color: var(--text-light); margin-top: 4px;
+    }
+    .about-content {
+      padding: 80px 72px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--cream);
+    }
+    .about-body {
+      font-size: 1rem; line-height: 1.8;
+      color: var(--text-light); margin: 28px 0 36px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--charcoal); font-weight: 500; }
+    .about-divider {
+      width: 48px; height: 1.5px; background: var(--blue); margin: 28px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 16px; }
+    .about-value {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px 20px; border: 1px solid var(--border);
+      background: var(--white); transition: border-color 0.3s;
+    }
+    .about-value:hover { border-color: var(--blue); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.3rem;
+      color: var(--blue); opacity: 0.5; flex-shrink: 0;
+    }
+    .value-text h3 {
+      font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 4px; color: var(--charcoal);
+    }
+    .value-text p {
+      font-size: 0.88rem; color: var(--text-light); font-weight: 300; line-height: 1.6;
+    }
+
+    /* ═══════ PROCESS / COMO TRABAJAMOS ═══════ */
+    .process-section { background: var(--white); }
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 32px; max-width: 1200px; margin: 56px auto 0;
+    }
+    .process-step { position: relative; padding-top: 20px; }
+    .process-step::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 2px; background: var(--border);
+    }
+    .process-step::after {
+      content: ''; position: absolute; top: -3px; left: 0;
+      width: 8px; height: 8px; background: var(--blue); border-radius: 50%;
+    }
+    .process-number {
+      font-family: var(--font-serif); font-size: 2.4rem;
+      color: rgba(34,85,166,0.12); margin-bottom: 12px;
+      font-weight: 400;
+    }
+    .process-step h3 {
+      font-size: 0.92rem; font-weight: 600;
+      margin-bottom: 8px; color: var(--charcoal);
+    }
+    .process-step p {
+      font-size: 0.85rem; color: var(--text-light);
+      line-height: 1.65; font-weight: 300;
+    }
+
+    /* ═══════ GOOGLE REVIEWS BANNER ═══════ */
+    .reviews-banner {
+      background: var(--cream); padding: 80px 56px;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .reviews-inner {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .reviews-stars { display: flex; justify-content: center; gap: 6px; margin-bottom: 20px; }
+    .reviews-stars .star-icon { width: 22px; height: 22px; color: #eab308; }
+    .reviews-title {
+      font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400; color: var(--charcoal); line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .reviews-subtitle {
+      font-size: 0.92rem; color: var(--text-light); font-weight: 300;
+    }
+    .reviews-badge-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 20px; text-decoration: none;
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--blue); font-weight: 600;
+      transition: gap 0.3s;
+    }
+    .reviews-badge-link:hover { gap: 14px; }
+
+    /* ═══════ MAP / CONTACT ═══════ */
+    .map-section { background: var(--white); padding: 0; }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      max-width: none;
+    }
+    .map-info {
+      padding: 80px 72px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--cream);
+    }
+    .map-info-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid var(--border);
+    }
+    .map-info-item:first-of-type { padding-top: 36px; }
+    .map-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .map-info-text h3 {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 4px; font-weight: 600;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.92rem; color: var(--text);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--blue); }
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+    }
+
+    /* ═══════ CTA BANNER ═══════ */
+    .cta-section {
+      background: var(--charcoal); padding: 100px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 400; color: var(--white); line-height: 1.15;
+    }
+    .cta-text h2 em { font-style: italic; color: var(--blue-light); }
+    .cta-text p {
+      font-size: 0.95rem; color: rgba(255,255,255,0.7); margin-top: 14px; font-weight: 300;
+    }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--white); color: var(--charcoal);
+      text-decoration: none; padding: 18px 44px;
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap;
+    }
+    .btn-white:hover { background: var(--blue-light); color: var(--blue-dark); transform: translateY(-1px); }
+
+    /* ═══════ FOOTER ═══════ */
+    footer {
+      background: var(--charcoal); padding: 72px 56px 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px; margin-bottom: 56px;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .footer-brand .nav-logo img { filter: brightness(0) invert(1); }
+    .footer-brand .nav-logo-text { color: var(--white); }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 0.95rem; color: rgba(255,255,255,0.6);
+      line-height: 1.6; max-width: 260px;
+    }
+    .footer-social { display: flex; gap: 12px; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(255,255,255,0.7);
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .social-link:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h3 {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue-light); margin-bottom: 20px; font-weight: 600;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(255,255,255,0.65);
+      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
+    }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.72rem; color: rgba(255,255,255,0.6);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--white); }
+
+    /* ═══════ REVEAL ═══════ */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.12s; }
+    .reveal-d2 { transition-delay: 0.24s; }
+    .reveal-d3 { transition-delay: 0.36s; }
+
+    /* ═══════ A11Y ═══════ */
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 2px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--blue); color: var(--white); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .marquee-track { animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ═══════ RESPONSIVE ═══════ */
+    @media (max-width: 1024px) {
+      nav { padding: 20px 32px; }
+      nav.scrolled { padding: 14px 32px; }
+      .section { padding: 90px 32px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 140px 32px 60px; max-width: 100%; }
+      .hero-image { height: 50vh; min-height: 360px; }
+      .hero-badge { bottom: 24px; left: 24px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-section { padding: 60px 32px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-header { flex-direction: column; align-items: flex-start; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; height: auto; }
+      .gallery-item:first-child { grid-row: auto; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-image { min-height: 360px; }
+      .about-content { padding: 60px 32px; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hamburger { display: flex; }
+      nav { padding: 18px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      .section { padding: 72px 24px; }
+      .hero-content { padding: 120px 24px 48px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .gallery-grid { grid-template-columns: 1fr; height: auto; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-section { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .cta-section { padding: 72px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; align-items: center; }
+      .stat-card { padding: 36px 24px; }
+      .reviews-banner { padding: 60px 24px; }
+      .map-info { padding: 48px 24px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 9vw, 2.8rem); }
+      .section-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+      .stat-number { font-size: clamp(2rem, 10vw, 2.8rem); }
+      .process-grid { grid-template-columns: 1fr; }
+      .hero-badge { padding: 14px 18px; bottom: 16px; left: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-name">Aluminios Aguerri</div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main-content" class="nav-logo">
+    <img src="img/logo.png" alt="Logo Aluminios Aguerri" width="36" height="36">
+    <span class="nav-logo-text">Aluminios<br>Aguerri</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#trabajos">Trabajos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="tel:+34948333952" class="nav-cta-link">948 33 39 52</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menu de navegacion">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de navegacion">
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#trabajos" onclick="closeMobile()">Trabajos</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="tel:+34948333952" onclick="closeMobile()">Llamar: 948 33 39 52</a>
+</div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Fabricantes desde 1980 en Navarra</p>
+    <h1 class="hero-title" id="hero-title">Ventanas que cambian <em>tu hogar.</em></h1>
+    <p class="hero-sub">Fabricamos e instalamos ventanas de aluminio y PVC, cerramientos, persianas y mosquiteras. Empresa familiar con taller propio en Arre. Asesoramiento, medición, fabricación y montaje: todo con nuestro equipo.</p>
+    <div class="hero-actions">
+      <a href="tel:+34948333952" class="btn-primary" aria-label="Llamar a Aluminios Aguerri al 948 33 39 52">
+        Llamar al 948 33 39 52
+        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#servicios" class="btn-outline">
+        Ver servicios
+        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img id="heroImg" src="img/hero-fachada.jpg" alt="Cerramiento de aluminio con acabado madera instalado por Aluminios Aguerri en un porche de Navarra" loading="eager">
+    <div class="hero-badge">
+      <div class="hero-badge-stars" role="img" aria-label="5 estrellas sobre 5">
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="hero-badge-text">
+        <strong>5,0 en Google Maps</strong><br>119 reseñas verificadas
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MARQUEE ═══════ -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Ventanas de aluminio</span>
+    <span class="marquee-item"><span class="dot"></span>Ventanas de PVC</span>
+    <span class="marquee-item"><span class="dot"></span>Cerramientos</span>
+    <span class="marquee-item"><span class="dot"></span>Persianas motorizadas</span>
+    <span class="marquee-item"><span class="dot"></span>Mosquiteras</span>
+    <span class="marquee-item"><span class="dot"></span>Mamparas de baño</span>
+    <span class="marquee-item"><span class="dot"></span>Puertas de portal</span>
+    <span class="marquee-item"><span class="dot"></span>Reparaciones</span>
+    <span class="marquee-item"><span class="dot"></span>Ventanas de aluminio</span>
+    <span class="marquee-item"><span class="dot"></span>Ventanas de PVC</span>
+    <span class="marquee-item"><span class="dot"></span>Cerramientos</span>
+    <span class="marquee-item"><span class="dot"></span>Persianas motorizadas</span>
+    <span class="marquee-item"><span class="dot"></span>Mosquiteras</span>
+    <span class="marquee-item"><span class="dot"></span>Mamparas de baño</span>
+    <span class="marquee-item"><span class="dot"></span>Puertas de portal</span>
+    <span class="marquee-item"><span class="dot"></span>Reparaciones</span>
+  </div>
+</div>
+
+<!-- ═══════ STATS ═══════ -->
+<div class="stats-section" role="region" aria-label="Cifras de Aluminios Aguerri">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="45">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat-card reveal reveal-d1">
+      <div class="stat-number"><span class="count" data-target="50" data-decimal="true">0</span></div>
+      <div class="stat-label">Sobre 5 en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-d2">
+      <div class="stat-number"><span class="count" data-target="119">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-d3">
+      <div class="stat-number">100<span class="stat-suffix">%</span></div>
+      <div class="stat-label">Fabricación propia</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SERVICES ═══════ -->
+<section class="section services-section" id="servicios" aria-labelledby="servicios-title">
+  <div class="services-header">
+    <div>
+      <p class="section-label reveal">Lo que hacemos</p>
+      <h2 class="section-title reveal reveal-d1" id="servicios-title">Fabricamos, instalamos<br>y <em>reparamos.</em></h2>
+    </div>
+    <p class="services-header-text reveal reveal-d2">Desde nuestro taller en el Polígono Ezcabarte fabricamos a medida y montamos con equipo propio. Sin intermediarios, sin subcontratas.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 3v18"/></svg>
+      </div>
+      <h3>Ventanas de aluminio</h3>
+      <p>Perfiles con rotura de puente térmico, abatibles, correderas, oscilobatientes. Fabricación a medida con acabados lacados o imitación madera.</p>
+      <span class="service-number" aria-hidden="true">01</span>
+    </div>
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="M2 10h20"/><path d="M8 4v16"/></svg>
+      </div>
+      <h3>Ventanas de PVC</h3>
+      <p>Sistemas REHAU de máxima eficiencia energética. Aislamiento térmico y acústico superior, ideales para reducir el ruido y la factura de calefacción.</p>
+      <span class="service-number" aria-hidden="true">02</span>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V12h6v9"/></svg>
+      </div>
+      <h3>Cerramientos</h3>
+      <p>Cerramientos de terrazas, porches y balcones. Aprovecha metros de tu vivienda con un espacio luminoso, confortable y protegido de la intemperie.</p>
+      <span class="service-number" aria-hidden="true">03</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5v14"/><path d="M21 5v14"/><path d="M3 12h18"/><path d="M8 5v14"/><path d="M16 5v14"/></svg>
+      </div>
+      <h3>Persianas y motorización</h3>
+      <p>Persianas de aluminio, compactos y sistemas motorizados RolaPlus. Sustitución e instalación nueva con cajones integrados.</p>
+      <span class="service-number" aria-hidden="true">04</span>
+    </div>
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M3 12h18"/></svg>
+      </div>
+      <h3>Mosquiteras y mamparas</h3>
+      <p>Mosquiteras enrollables, plisadas y correderas. Mamparas de baño a medida en cristal templado con perfilería de aluminio.</p>
+      <span class="service-number" aria-hidden="true">05</span>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3>Reparaciones</h3>
+      <p>Servicio técnico para ventanas, persianas y cerramientos que no funcionan bien. Sustitución de cristales, herrajes, motores y burletes.</p>
+      <span class="service-number" aria-hidden="true">06</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ GALLERY ═══════ -->
+<section class="section gallery-section" id="trabajos" aria-labelledby="trabajos-title">
+  <p class="section-label reveal">Nuestros trabajos</p>
+  <h2 class="section-title reveal reveal-d1" id="trabajos-title">Lo que sale de nuestro <em>taller.</em></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal">
+      <img src="img/taller1.jpeg" alt="Cerramiento de aluminio con acabado madera para un porche en el entorno rural de Navarra" loading="lazy">
+      <div class="gallery-caption">
+        <p class="gallery-caption-cat">Cerramientos</p>
+        <p class="gallery-caption-title">Cerramiento con acabado madera</p>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-d1">
+      <img src="img/taller2.jpeg" alt="Operario de Aluminios Aguerri montando una ventana de PVC en el taller de Arre" loading="lazy">
+      <div class="gallery-caption">
+        <p class="gallery-caption-cat">Taller propio</p>
+        <p class="gallery-caption-title">Fabricación a medida en Arre</p>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-d2">
+      <img src="img/portal.jpg" alt="Puerta de portal de aluminio con vidrios instalada por Aluminios Aguerri" loading="lazy">
+      <div class="gallery-caption">
+        <p class="gallery-caption-cat">Puertas de portal</p>
+        <p class="gallery-caption-title">Acceso comercial en aluminio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ABOUT ═══════ -->
+<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
+  <div class="about-image">
+    <img src="img/taller3.jpeg" alt="Operario de Aluminios Aguerri comprobando la instalación de una ventana en un piso de Pamplona" loading="lazy">
+    <div class="about-badge">
+      <div class="about-badge-year">1980</div>
+      <div class="about-badge-text">Empresa familiar en Arre</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre nosotros</p>
+    <h2 class="section-title reveal reveal-d1" id="nosotros-title">
+      Fabricantes con<br>oficio <em>propio.</em>
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-d2">
+      Ángel Aguerri fundó la empresa en <strong>mayo de 1980</strong>. Desde entonces, el taller del Polígono Ezcabarte en Arre ha sido el lugar donde medimos, cortamos, ensamblamos y preparamos cada ventana, cerramiento y puerta antes de instalarla. <strong>Fabricación propia con equipo de montaje propio</strong>: no subcontratamos la instalación ni dependemos de terceros. Trabajamos con sistemas <strong>REHAU</strong> en PVC y perfilería de aluminio con rotura de puente térmico para garantizar el mejor aislamiento.
+    </p>
+    <div class="about-values reveal reveal-d3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h3>Taller propio en Arre</h3>
+          <p>Fabricamos a medida en nuestras instalaciones del Polígono Ezcabarte. Lo que vendes es lo que fabricas.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h3>Equipo de montaje</h3>
+          <p>Nuestros instaladores son de la casa. Conocen cada pieza porque la han visto fabricar en el taller.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h3>Asesoramiento técnico</h3>
+          <p>Te ayudamos a elegir la mejor solucion para tu vivienda. Material, apertura, aislamiento: lo analizamos contigo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ COMO TRABAJAMOS ═══════ -->
+<section class="section process-section" aria-labelledby="proceso-title">
+  <p class="section-label reveal">Cómo trabajamos</p>
+  <h2 class="section-title reveal reveal-d1" id="proceso-title">De la primera llamada<br>a la instalación <em>terminada.</em></h2>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-number">01</div>
+      <h3>Contacto y visita</h3>
+      <p>Nos llamas o escribes. Concertamos una visita para ver la obra, tomar medidas y escuchar lo que necesitas.</p>
+    </div>
+    <div class="process-step reveal reveal-d1">
+      <div class="process-number">02</div>
+      <h3>Presupuesto a medida</h3>
+      <p>Preparamos un presupuesto detallado con materiales, plazos y precio cerrado. Sin sorpresas al final de la obra.</p>
+    </div>
+    <div class="process-step reveal reveal-d2">
+      <div class="process-number">03</div>
+      <h3>Fabricación en taller</h3>
+      <p>Cortamos, ensamblamos y preparamos cada pieza en nuestro taller de Arre. Control de calidad antes de salir.</p>
+    </div>
+    <div class="process-step reveal reveal-d3">
+      <div class="process-number">04</div>
+      <h3>Instalación y acabado</h3>
+      <p>Nuestro equipo de montaje instala en tu vivienda, limpia la zona y repasa los detalles hasta que todo quede perfecto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ REVIEWS BANNER ═══════ -->
+<div class="reviews-banner" role="region" aria-label="Valoracion en Google Maps">
+  <div class="reviews-inner reveal">
+    <div class="reviews-stars" role="img" aria-label="5 estrellas sobre 5">
+      <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+    </div>
+    <h2 class="reviews-title">5,0 sobre 5 con 119 reseñas verificadas en Google Maps</h2>
+    <p class="reviews-subtitle">Nuestros clientes nos valoran por el trato cercano, la calidad del trabajo y el cumplimiento de plazos.</p>
+    <a href="https://www.google.com/maps/search/Aluminios+Aguerri+Arre" target="_blank" rel="noopener" class="reviews-badge-link">
+      Ver reseñas en Google
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════ MAP / CONTACT ═══════ -->
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Dónde estamos</p>
+      <h2 class="section-title reveal reveal-d1" style="margin-bottom: 0;">
+        En el Polígono Ezcabarte,<br><em>en Arre.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>Pol. Ezcabarte, Calle M, Nave 26<br>31194 Arre, Navarra</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfono</h3>
+          <a href="tel:+34948333952">948 33 39 52</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Email</h3>
+          <a href="mailto:aluminiosaguerri@gmail.com">aluminiosaguerri@gmail.com</a>
+        </div>
+      </div>
+      <div style="margin-top: 36px;">
+        <a href="tel:+34948333952" class="btn-primary" style="display: inline-flex;">
+          Llamar al 948 33 39 52
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación de Aluminios Aguerri en Polígono Ezcabarte, Arre, Navarra"
+        src="https://www.google.com/maps?q=Aluminios+Aguerri+Arre+Navarra&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ CTA ═══════ -->
+<div class="cta-section" role="region" aria-label="Llamada a la acción">
+  <div class="cta-text">
+    <h2>Quieres cambiar tus ventanas<br>o cerrar tu <em>terraza?</em></h2>
+    <p>Llámanos al 948 33 39 52. Te asesoramos sin compromiso y te preparamos un presupuesto a medida.</p>
+  </div>
+  <a href="tel:+34948333952" class="btn-white">
+    Llamar ahora
+    <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#main-content" class="nav-logo">
+        <img src="img/logo.png" alt="Logo Aluminios Aguerri" width="36" height="36">
+        <span class="nav-logo-text">Aluminios<br>Aguerri</span>
+      </a>
+      <p class="footer-tagline">"Fabricantes de ventanas de aluminio y PVC en Navarra desde 1980."</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/aluminiosaguerri/" target="_blank" rel="noopener" class="social-link" aria-label="Seguir a Aluminios Aguerri en Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="https://www.google.com/maps/search/Aluminios+Aguerri+Arre" target="_blank" rel="noopener" class="social-link" aria-label="Ver Aluminios Aguerri en Google Maps">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.3 7 11.2 7.3 11.5.2.1.4.2.7.2s.5-.1.7-.2C13 21.2 20 15.3 20 10c0-4.4-3.6-8-8-8m0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+        </a>
+        <a href="tel:+34948333952" class="social-link" aria-label="Llamar a Aluminios Aguerri">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.58-6.6l2.2-2.2a1 1 0 0 0 .25-1.02A11.4 11.4 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 0 0-1-1"/></svg>
+        </a>
+        <a href="mailto:aluminiosaguerri@gmail.com" class="social-link" aria-label="Enviar correo a aluminiosaguerri@gmail.com">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Servicios</h3>
+      <ul>
+        <li><a href="#servicios">Ventanas de aluminio</a></li>
+        <li><a href="#servicios">Ventanas de PVC</a></li>
+        <li><a href="#servicios">Cerramientos</a></li>
+        <li><a href="#servicios">Persianas</a></li>
+        <li><a href="#servicios">Reparaciones</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Empresa</h3>
+      <ul>
+        <li><a href="#nosotros">Sobre nosotros</a></li>
+        <li><a href="#trabajos">Nuestros trabajos</a></li>
+        <li><a href="#contacto">Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34948333952">948 33 39 52</a></li>
+        <li><a href="mailto:aluminiosaguerri@gmail.com">aluminiosaguerri@gmail.com</a></li>
+        <li><a href="#contacto">Arre, Navarra</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; <span id="footerYear"></span> Aluminios Aguerri. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('loader');
+      var heroImg = document.getElementById('heroImg');
+      if (loader) loader.classList.add('hidden');
+      if (heroImg) heroImg.classList.add('loaded');
+    }, 1600);
+  });
+
+  // FOOTER YEAR
+  var footerYear = document.getElementById('footerYear');
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+  // NAVBAR SCROLL
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // HAMBURGER
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) { var first = mobileMenu.querySelector('a'); if (first) first.focus(); }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+
+  function closeMobile() {
+    var h = document.getElementById('hamburger');
+    var m = document.getElementById('mobileMenu');
+    if (h) h.classList.remove('active');
+    if (m) m.classList.remove('open');
+    if (h) h.setAttribute('aria-expanded', 'false');
+  }
+
+  // REVEAL ON SCROLL
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  // COUNTER ANIMATION
+  function animateCount(el) {
+    var targetRaw = el.dataset.target;
+    var isDecimal = el.dataset.decimal === 'true';
+    var target = parseInt(targetRaw, 10);
+    var duration = 1600;
+    var start = performance.now();
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 4);
+      var value = ease * target;
+      if (isDecimal) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var countObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
+  } else {
+    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+  }
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
