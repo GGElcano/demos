@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comunitelia · Soluciones Tecnológicas para Empresas e Instituciones</title>
+<meta name="description" content="Ciberseguridad, telefonía, centralita virtual, conectividad y transformación digital a la medida de tu organización. Partner integral de nuevas tecnologías en Castilla-La Mancha.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23e6007d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --magenta:#e6007d;
+  --magenta-d:#d40f7d;
+  --purple:#730051;
+  --navy:#0E1C3D;
+  --navy-2:#121F41;
+  --slate:#1d4354;
+  --ink:#1a1a2e;
+  --gray:#575756;
+  --muted:#6b7280;
+  --line:#e8e8ef;
+  --bg:#ffffff;
+  --bg-soft:#f7f7fb;
+  --bg-pink:#FCEEF6;
+  --radius:18px;
+  --shadow-sm:0 2px 8px rgba(14,28,61,.06);
+  --shadow:0 18px 50px -20px rgba(14,28,61,.28);
+  --shadow-pink:0 22px 60px -18px rgba(230,0,125,.45);
+  --maxw:1180px;
+  --head:'Space Grotesk',sans-serif;
+  --body:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4{font-family:var(--head);line-height:1.12;letter-spacing:-.02em;font-weight:700;color:var(--navy)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.accent{color:var(--magenta)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);margin-bottom:18px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--magenta);border-radius:2px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--head);font-weight:600;font-size:.98rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:none;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s;white-space:nowrap}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:linear-gradient(120deg,var(--magenta),var(--magenta-d));color:#fff;box-shadow:var(--shadow-pink)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 28px 70px -16px rgba(230,0,125,.6)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.16);transform:translateY(-3px)}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-dark:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+
+/* ===== NAV ===== */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 24px;max-width:var(--maxw);margin:0 auto;transition:.3s}
+.nav-scrolled{background:rgba(255,255,255,.86);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
+.nav-scrolled .nav-inner{padding-top:11px;padding-bottom:11px}
+.logo{height:34px;width:auto}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-weight:500;font-size:.95rem;color:#fff;position:relative;transition:.2s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--magenta);transition:width .25s}
+.nav-links a:hover::after{width:100%}
+.nav-scrolled .nav-links a{color:var(--navy)}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-phone{display:flex;align-items:center;gap:9px;font-family:var(--head);font-weight:600;color:#fff;font-size:1rem;transition:.2s}
+.nav-phone svg{width:18px;height:18px;color:var(--magenta)}
+.nav-scrolled .nav-phone{color:var(--navy)}
+.nav-scrolled .logo-white{display:none}
+.logo-color{display:none}
+.nav-scrolled .logo-color{display:block}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.burger span{width:26px;height:2.5px;background:#fff;border-radius:2px;transition:.3s}
+.nav-scrolled .burger span{background:var(--navy)}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--navy);overflow:hidden;padding:140px 0 90px}
+.hero-mesh{position:absolute;inset:0;z-index:0;opacity:.9}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:float 16s ease-in-out infinite}
+.blob.b1{width:520px;height:520px;background:radial-gradient(circle,var(--magenta),transparent 70%);top:-120px;right:-80px}
+.blob.b2{width:460px;height:460px;background:radial-gradient(circle,var(--purple),transparent 70%);bottom:-140px;left:-100px;animation-delay:-5s}
+.blob.b3{width:360px;height:360px;background:radial-gradient(circle,var(--slate),transparent 70%);top:40%;left:45%;animation-delay:-9s}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.08)}66%{transform:translate(-30px,25px) scale(.95)}}
+.hero-grid-overlay{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse 90% 70% at 50% 40%,#000 30%,transparent 75%)}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);padding:8px 16px;border-radius:999px;font-size:.82rem;font-weight:500;color:#dfe3ef;margin-bottom:26px}
+.hero-badge b{color:#fff}
+.dot{width:8px;height:8px;border-radius:50%;background:#25D366;box-shadow:0 0 0 4px rgba(37,211,102,.2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(2.5rem,5.2vw,4.05rem);color:#fff;margin-bottom:22px}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,#ff4fb0,var(--magenta));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:1.18rem;color:#c5cbdc;max-width:540px;margin-bottom:34px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:38px}
+.hero-trust{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.hero-trust span{font-size:.78rem;color:#8a92ab;font-weight:500;letter-spacing:.03em;display:flex;align-items:center;gap:8px}
+.hero-trust .iso{font-family:var(--head);font-weight:600;color:#cdd3e3;border:1px solid rgba(255,255,255,.2);padding:5px 11px;border-radius:8px;font-size:.74rem}
+
+/* hero visual card */
+.hero-visual{position:relative}
+.glass-card{background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.16);border-radius:24px;padding:28px;backdrop-filter:blur(14px);box-shadow:0 30px 80px -30px rgba(0,0,0,.6)}
+.gc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.gc-head b{color:#fff;font-family:var(--head);font-size:1.05rem}
+.gc-live{font-size:.72rem;color:#25D366;display:flex;align-items:center;gap:7px;font-weight:600}
+.gc-row{display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.05);margin-bottom:11px;transition:.3s}
+.gc-row:hover{background:rgba(230,0,125,.14);transform:translateX(5px)}
+.gc-ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;background:rgba(230,0,125,.18)}
+.gc-ic svg{width:21px;height:21px;color:#ff66b5}
+.gc-txt b{display:block;color:#fff;font-size:.92rem;font-family:var(--body);font-weight:600}
+.gc-txt span{font-size:.78rem;color:#9aa2bb}
+.gc-stat{margin-left:auto;font-family:var(--head);font-weight:700;color:#fff;font-size:.95rem}
+.gc-stat.ok{color:#25D366}
+.float-pill{position:absolute;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:11px}
+.float-pill svg{width:22px;height:22px}
+.fp1{top:-22px;left:-26px;animation:float 7s ease-in-out infinite}
+.fp2{bottom:-24px;right:-18px;animation:float 8s ease-in-out infinite reverse}
+.float-pill b{font-family:var(--head);font-size:.95rem;color:var(--navy);display:block;line-height:1.1}
+.float-pill span{font-size:.72rem;color:var(--muted)}
+
+/* ===== TRUSTBAR ===== */
+.trustbar{background:var(--bg-soft);border-bottom:1px solid var(--line);padding:30px 0}
+.tb-inner{display:flex;align-items:center;justify-content:center;gap:46px;flex-wrap:wrap}
+.tb-inner p{font-size:.82rem;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.tb-logo{font-family:var(--head);font-weight:700;color:#9aa0b4;font-size:1.15rem;letter-spacing:-.01em;transition:.3s;opacity:.7}
+.tb-logo:hover{opacity:1;color:var(--navy)}
+
+/* ===== SECTION SHELL ===== */
+section.block{padding:104px 0}
+.sec-head{max-width:680px;margin:0 auto 60px;text-align:center}
+.sec-head h2{font-size:clamp(2rem,3.6vw,2.85rem);margin-bottom:18px}
+.sec-head p{font-size:1.12rem;color:var(--muted)}
+
+/* ===== SERVICES ===== */
+.serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.serv{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.serv::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--magenta),var(--purple));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.serv:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent}
+.serv:hover::before{transform:scaleX(1)}
+.serv-ic{width:58px;height:58px;border-radius:15px;display:grid;place-items:center;margin-bottom:22px;background:var(--bg-pink);transition:.35s}
+.serv-ic svg{width:28px;height:28px;color:var(--magenta);transition:.35s}
+.serv:hover .serv-ic{background:linear-gradient(135deg,var(--magenta),var(--magenta-d))}
+.serv:hover .serv-ic svg{color:#fff}
+.serv h3{font-size:1.32rem;margin-bottom:11px}
+.serv p{color:var(--muted);font-size:.98rem;margin-bottom:18px}
+.serv .more{font-family:var(--head);font-weight:600;font-size:.9rem;color:var(--magenta);display:inline-flex;align-items:center;gap:6px;transition:gap .25s}
+.serv:hover .more{gap:11px}
+
+/* ===== STATS ===== */
+.stats{background:var(--navy);position:relative;overflow:hidden}
+.stats .blob{opacity:.35}
+.stats-inner{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.stat .num{font-family:var(--head);font-weight:700;font-size:clamp(2.6rem,4.4vw,3.6rem);background:linear-gradient(120deg,#fff,#ff8fc8);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.stat .lbl{color:#aab1c8;margin-top:10px;font-size:.96rem;font-weight:500}
+
+/* ===== WHY / ADVANTAGES ===== */
+.why{background:var(--bg-soft)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.adv{background:#fff;border-radius:var(--radius);padding:30px 28px;border:1px solid var(--line);transition:.35s}
+.adv:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.adv-ic{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;margin-bottom:18px;background:var(--navy)}
+.adv-ic svg{width:24px;height:24px;color:#ff66b5}
+.adv h3{font-size:1.18rem;margin-bottom:9px}
+.adv p{color:var(--muted);font-size:.95rem}
+
+/* ===== SECTORS / SPLIT ===== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.split-side{padding:54px 48px}
+.split-side.emp{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff}
+.split-side.pub{background:linear-gradient(160deg,var(--magenta),var(--purple));color:#fff}
+.split-side h3{color:#fff;font-size:1.7rem;margin:18px 0 14px}
+.split-side p{color:rgba(255,255,255,.85);margin-bottom:24px}
+.split-tag{font-family:var(--head);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;opacity:.7}
+.split-side ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.split-side li{display:flex;align-items:center;gap:11px;font-size:.97rem;color:rgba(255,255,255,.92)}
+.split-side li svg{width:18px;height:18px;flex-shrink:0;color:#fff}
+
+/* ===== AUDIT CTA ===== */
+.audit{background:linear-gradient(120deg,var(--magenta),var(--purple));border-radius:26px;padding:64px 56px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.audit::after{content:"";position:absolute;top:-60px;right:-40px;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.1);filter:blur(10px)}
+.audit-l{position:relative;z-index:2}
+.audit h2{color:#fff;font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:16px}
+.audit p{color:rgba(255,255,255,.92);font-size:1.1rem;margin-bottom:8px}
+.audit .small{font-size:.86rem;color:rgba(255,255,255,.72)}
+.audit-r{position:relative;z-index:2;display:flex;flex-direction:column;gap:14px}
+.audit .btn-white{background:#fff;color:var(--magenta);justify-content:center}
+.audit .btn-white:hover{transform:translateY(-3px);box-shadow:0 20px 50px -16px rgba(0,0,0,.4)}
+.audit .price-strike{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.16);padding:9px 16px;border-radius:999px;font-family:var(--head);font-weight:600;color:#fff;font-size:.92rem;align-self:flex-start}
+.audit .price-strike s{opacity:.6}
+
+/* ===== TESTIMONIAL ===== */
+.testi{max-width:820px;margin:0 auto;text-align:center}
+.testi .quote-mark{font-family:var(--head);font-size:5rem;color:var(--bg-pink);line-height:.5;margin-bottom:-10px}
+.testi blockquote{font-family:var(--head);font-size:clamp(1.35rem,2.6vw,1.85rem);font-weight:500;color:var(--navy);letter-spacing:-.01em;line-height:1.4;margin-bottom:24px}
+.testi .who{font-weight:600;color:var(--magenta)}
+.testi .who span{display:block;color:var(--muted);font-weight:400;font-size:.92rem;margin-top:2px}
+
+/* ===== CONTACT ===== */
+.contact{background:var(--navy);position:relative;overflow:hidden}
+.contact .blob{opacity:.3}
+.contact-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+.contact-l h2{color:#fff;font-size:clamp(2rem,3.6vw,2.7rem);margin-bottom:18px}
+.contact-l p{color:#aeb6cd;font-size:1.08rem;margin-bottom:34px}
+.cinfo{display:flex;flex-direction:column;gap:18px}
+.cinfo a,.cinfo div{display:flex;align-items:center;gap:16px;color:#dfe3ef}
+.cinfo .ci-ic{width:48px;height:48px;border-radius:13px;background:rgba(255,255,255,.07);display:grid;place-items:center;flex-shrink:0;transition:.3s}
+.cinfo a:hover .ci-ic{background:var(--magenta)}
+.cinfo .ci-ic svg{width:21px;height:21px;color:#ff66b5;transition:.3s}
+.cinfo a:hover .ci-ic svg{color:#fff}
+.cinfo b{display:block;font-family:var(--head);font-size:1.12rem;color:#fff}
+.cinfo span{font-size:.85rem;color:#8a92ab}
+.form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:34px}
+.form h3{color:#fff;font-size:1.35rem;margin-bottom:6px}
+.form>p{color:#9aa2bb;font-size:.92rem;margin-bottom:24px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.8rem;color:#bfc5d8;font-weight:500}
+.field input,.field textarea,.field select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:11px;padding:13px 15px;color:#fff;font-family:var(--body);font-size:.95rem;transition:.25s;width:100%}
+.field input::placeholder,.field textarea::placeholder{color:#717a96}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--magenta);background:rgba(230,0,125,.08)}
+.field select option{background:var(--navy)}
+.form .btn{width:100%;justify-content:center;margin-top:8px}
+.form-note{font-size:.78rem;color:#717a96;margin-top:14px;text-align:center}
+
+/* ===== FOOTER ===== */
+footer{background:#0a132b;color:#aeb6cd;padding:70px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-brand img{height:34px;margin-bottom:20px}
+.foot-brand p{font-size:.92rem;max-width:300px;margin-bottom:20px;color:#8a92ab}
+.foot-soc{display:flex;gap:12px}
+.foot-soc a{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.06);display:grid;place-items:center;transition:.3s}
+.foot-soc a:hover{background:var(--magenta);transform:translateY(-3px)}
+.foot-soc svg{width:17px;height:17px;color:#cdd3e3}
+.foot-col h4{color:#fff;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;font-family:var(--head)}
+.foot-col a{display:block;font-size:.92rem;margin-bottom:11px;color:#8a92ab;transition:.2s}
+.foot-col a:hover{color:var(--magenta);transform:translateX(3px)}
+.foot-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:24px;font-size:.82rem;color:#717a96}
+.foot-bottom a{color:#717a96}
+.foot-bottom a:hover{color:#aeb6cd}
+
+/* WhatsApp float */
+.wa{position:fixed;bottom:26px;right:26px;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 12px 34px rgba(37,211,102,.5);z-index:90;transition:.3s;animation:waBob 3s ease-in-out infinite}
+@keyframes waBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:32px;height:32px;color:#fff}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}
+
+/* mobile menu */
+.mobile-menu{position:fixed;inset:0;background:var(--navy);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.mobile-menu.open{transform:none}
+.mobile-menu a{color:#fff;font-family:var(--head);font-size:1.5rem;font-weight:600}
+.mobile-menu .close{position:absolute;top:26px;right:26px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer}
+
+@media(max-width:960px){
+  .nav-links,.nav-phone{display:none}
+  .burger{display:flex}
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .hero-visual{max-width:440px}
+  .serv-grid,.why-grid{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:1fr 1fr;gap:40px 20px}
+  .split{grid-template-columns:1fr}
+  .audit{grid-template-columns:1fr;padding:46px 34px}
+  .contact-inner{grid-template-columns:1fr;gap:40px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .serv-grid,.why-grid,.foot-grid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  section.block{padding:74px 0}
+  .hero{padding:120px 0 70px}
+  .audit{padding:38px 26px}
+  .split-side{padding:40px 30px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#inicio" aria-label="Comunitelia inicio">
+      <img src="img/logo-comunitelia-blanco.svg" alt="Comunitelia" class="logo logo-white">
+      <img src="img/logo-comunitelia.svg" alt="Comunitelia" class="logo logo-color">
+    </a>
+    <nav class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#porque">Por qué nosotros</a>
+      <a href="#sectores">Sectores</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:926161112" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+        926 161 112
+      </a>
+      <a href="#contacto" class="btn btn-primary">Auditoría gratis</a>
+      <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu">&times;</button>
+  <a href="#servicios">Servicios</a>
+  <a href="#porque">Por qué nosotros</a>
+  <a href="#sectores">Sectores</a>
+  <a href="#contacto">Contacto</a>
+  <a href="tel:926161112" class="btn btn-primary">926 161 112</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-mesh">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  </div>
+  <div class="hero-grid-overlay"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="hero-badge"><span class="dot"></span>Miembro del <b>Grupo Citelia</b> · Castilla-La Mancha</div>
+      <h1>Tranquilidad digital, <em>sin complicaciones técnicas</em></h1>
+      <p class="lead">Ciberseguridad, telefonía, conectividad y transformación digital a la medida de tu organización. Un único partner que escucha, diseña y mantiene toda tu tecnología.</p>
+      <div class="hero-cta">
+        <a href="#contacto" class="btn btn-primary">Solicita tu auditoría gratuita
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#servicios" class="btn btn-ghost">Ver soluciones</a>
+      </div>
+      <div class="hero-trust">
+        <span class="iso">ISO 9001</span>
+        <span class="iso">ISO 14001</span>
+        <span>+20 años de experiencia en Telecomunicaciones</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-pill fp1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
+        <div><b>99,9%</b><span>disponibilidad de red</span></div>
+      </div>
+      <div class="float-pill fp2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#e6007d" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div><b>Soporte ágil</b><span>respuesta inmediata</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="gc-head">
+          <b>Tu infraestructura, controlada</b>
+          <span class="gc-live"><span class="dot"></span>EN VIVO</span>
+        </div>
+        <div class="gc-row">
+          <div class="gc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="gc-txt"><b>Firewall &amp; Ciberseguridad</b><span>Amenazas bloqueadas hoy: 1.284</span></div>
+          <span class="gc-stat ok">Protegido</span>
+        </div>
+        <div class="gc-row">
+          <div class="gc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="gc-txt"><b>Centralita Virtual</b><span>14 líneas activas · 0 caídas</span></div>
+          <span class="gc-stat ok">Online</span>
+        </div>
+        <div class="gc-row">
+          <div class="gc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg></div>
+          <div class="gc-txt"><b>Conectividad Fibra</b><span>320 Mbps simétricos</span></div>
+          <span class="gc-stat">Estable</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTBAR -->
+<div class="trustbar">
+  <div class="wrap tb-inner">
+    <p>Trabajamos con tecnología líder</p>
+    <span class="tb-logo">Fortinet</span>
+    <span class="tb-logo">Google Workspace</span>
+    <span class="tb-logo">Grupo Citelia</span>
+    <span class="tb-logo">ISO 9001</span>
+    <span class="tb-logo">ISO 14001</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="block" id="servicios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Soluciones Tecnológicas</div>
+      <h2>Todo lo que tu empresa necesita, con un único interlocutor</h2>
+      <p>El mundo de las empresas y los ayuntamientos es cada vez más voluble. Contar con las soluciones tecnológicas adecuadas es la clave, y nosotros las diseñamos a tu medida.</p>
+    </div>
+    <div class="serv-grid">
+      <article class="serv reveal d1">
+        <div class="serv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Ciberseguridad</h3>
+        <p>Implementamos medidas de seguridad para que tengas tu información bajo control: firewall, protección perimetral y monitorización continua.</p>
+        <a href="#contacto" class="more">Saber más →</a>
+      </article>
+      <article class="serv reveal d2">
+        <div class="serv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <h3>Telefonía para Empresas</h3>
+        <p>Todas las soluciones de telefonía fija, móvil o centralitas que tu empresa necesite, unificadas y con tarifas pensadas para negocio.</p>
+        <a href="#contacto" class="more">Saber más →</a>
+      </article>
+      <article class="serv reveal d3">
+        <div class="serv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Centralita Virtual</h3>
+        <p>Mejora las comunicaciones y la eficiencia de tu organización con una centralita en la nube: extensiones, colas y desvíos sin instalaciones.</p>
+        <a href="#contacto" class="more">Saber más →</a>
+      </article>
+      <article class="serv reveal d1">
+        <div class="serv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg></div>
+        <h3>Conectividad</h3>
+        <p>Mejora tu conexión a internet: fibra, redes privadas y acceso en zonas rurales. Desplegamos infraestructura donde otros no llegan.</p>
+        <a href="#contacto" class="more">Saber más →</a>
+      </article>
+      <article class="serv reveal d2">
+        <div class="serv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Mantenimiento</h3>
+        <p>Nos ocupamos de tener tus redes y sistemas al día y en perfecto funcionamiento, con monitorización proactiva 24/7.</p>
+        <a href="#contacto" class="more">Saber más →</a>
+      </article>
+      <article class="serv reveal d3">
+        <div class="serv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Transformación Digital</h3>
+        <p>Soluciones para mejorar la productividad y la eficiencia: asignación de tareas, control horario, gestión de empleados y teletrabajo eficaz.</p>
+        <a href="#contacto" class="more">Saber más →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats block">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap stats-inner">
+    <div class="stat reveal d1"><div class="num" data-count="20" data-suffix="+">0</div><div class="lbl">Años de experiencia en el sector</div></div>
+    <div class="stat reveal d2"><div class="num" data-count="99.9" data-suffix="%" data-dec="1">0</div><div class="lbl">Disponibilidad de red garantizada</div></div>
+    <div class="stat reveal d3"><div class="num" data-count="6" data-suffix="">0</div><div class="lbl">Áreas tecnológicas integradas</div></div>
+    <div class="stat reveal d4"><div class="num" data-count="1" data-suffix="">0</div><div class="lbl">Asesor comercial personal por cliente</div></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="block why" id="porque">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Por qué Comunitelia</div>
+      <h2>Una empresa que escucha a su cliente</h2>
+      <p>Te ayudamos a superar los desafíos de comunicaciones y tecnología de tu empresa. Trato cercano, proyectos a medida y compromiso con el territorio.</p>
+    </div>
+    <div class="why-grid">
+      <div class="adv reveal d1">
+        <div class="adv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+        <h3>Proyectos a medida</h3>
+        <p>Nuestro departamento de Ingeniería crea proyectos a medida que mejoran las comunicaciones de pymes y ayuntamientos.</p>
+      </div>
+      <div class="adv reveal d2">
+        <div class="adv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Atención al cliente</h3>
+        <p>Sin rodeos ni intermediarios. Trato cercano: cada cliente dispone de su propio asesor comercial personal.</p>
+      </div>
+      <div class="adv reveal d3">
+        <div class="adv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22c1.25-1.25 2.5-2 4-2 2 0 3 1 5 1s3-2 3-4-1-3-1-5 2-3 4-3M6 12s2-1 4-1"/><path d="M11 3c0 4-3 7-7 7"/></svg></div>
+        <h3>Apoyamos el medio rural</h3>
+        <p>Desplegamos infraestructura en municipios con acceso a Internet deficitario, con equipos respetuosos con el medio ambiente.</p>
+      </div>
+      <div class="adv reveal d1">
+        <div class="adv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Servicio técnico profesional</h3>
+        <p>Damos respuesta rápida y eficaz ante cualquier incidencia, con técnicos especializados que conocen tu instalación.</p>
+      </div>
+      <div class="adv reveal d2">
+        <div class="adv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Comprometidos con Castilla-La Mancha</h3>
+        <p>Empresa local y joven formada por profesionales con más de 20 años de experiencia en Telecomunicaciones.</p>
+      </div>
+      <div class="adv reveal d3">
+        <div class="adv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></div>
+        <h3>Facilidades de pago</h3>
+        <p>Auditorías gratuitas y factura única. Comodidad, control del gasto y grandes facilidades de pago para tu organización.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="block" id="sectores">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">A quién ayudamos</div>
+      <h2>Soluciones para empresas e instituciones públicas</h2>
+      <p>Adaptamos la tecnología a organizaciones de todos los tamaños, con la misma cercanía y el mismo nivel de exigencia.</p>
+    </div>
+    <div class="split reveal d1">
+      <div class="split-side emp">
+        <span class="split-tag">Empresas &amp; Pymes</span>
+        <h3>Tecnología que impulsa tu negocio</h3>
+        <p>Centraliza tus comunicaciones, protege tus datos y mejora la productividad de tu equipo con soluciones que crecen contigo.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Teletrabajo eficaz y colaboración en la nube</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Control horario y gestión de empleados</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Ciberseguridad y copias de seguridad</li>
+        </ul>
+      </div>
+      <div class="split-side pub">
+        <span class="split-tag">Ayuntamientos &amp; Sector público</span>
+        <h3>Smart City y servicios al ciudadano</h3>
+        <p>Llevamos conectividad e infraestructura inteligente a municipios, incluidos los entornos rurales con acceso deficitario.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Conectividad en zonas rurales</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Soluciones Smart City y Smart Building</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Infraestructura sostenible y eficiente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT CTA -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="audit reveal">
+      <div class="audit-l">
+        <div class="price-strike"><s>300 €</s> · Auditoría tecnológica <b>GRATIS</b></div>
+        <h2 style="margin-top:18px">Descubre qué puede mejorar en tu tecnología</h2>
+        <p>Nuestros comerciales especializados se pondrán en contacto contigo para concertar una cita y evaluar las soluciones que tu organización necesita.</p>
+        <p class="small">*Coste por auditoría 300&nbsp;€. Descuento del 100% realizando el proyecto con nosotros.</p>
+      </div>
+      <div class="audit-r">
+        <a href="#contacto" class="btn btn-white">Quiero mi auditoría gratuita
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="tel:926161112" class="btn btn-ghost" style="justify-content:center;border-color:rgba(255,255,255,.5)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+          Llámanos: 926 161 112
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="block why">
+  <div class="wrap">
+    <div class="testi reveal">
+      <div class="quote-mark">&ldquo;</div>
+      <blockquote>Una empresa que escucha a su cliente y con la que se puede hablar de forma natural. Los escogimos porque queríamos trabajar con empresas locales y con un buen servicio. Estamos muy contentos.</blockquote>
+      <div class="who">Cliente de Comunitelia<span>Pyme de Castilla-La Mancha</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="block contact" id="contacto">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap contact-inner">
+    <div class="contact-l reveal">
+      <div class="eyebrow">Contacto</div>
+      <h2>Hablemos de tu proyecto</h2>
+      <p>Cuéntanos qué necesita tu organización. Te asignamos un asesor comercial personal que estudiará tu caso sin compromiso.</p>
+      <div class="cinfo">
+        <a href="tel:926161112">
+          <div class="ci-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><b>926 161 112</b><span>Lunes a viernes, atención directa</span></div>
+        </a>
+        <a href="#contacto">
+          <div class="ci-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" fill="none"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></div>
+          <div><b>info@comunitelia.com</b><span>Te respondemos en menos de 24 h</span></div>
+        </a>
+        <div>
+          <div class="ci-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><b>Castilla-La Mancha</b><span>Cobertura en toda la región</span></div>
+        </div>
+      </div>
+    </div>
+    <form class="form reveal d1" id="contactForm">
+      <h3>Solicita tu auditoría gratuita</h3>
+      <p>Sin compromiso · Respuesta de un asesor personal</p>
+      <div class="frow">
+        <div class="field"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+        <div class="field"><label>Empresa / Entidad</label><input type="text" name="empresa" placeholder="Nombre de tu organización"></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
+        <div class="field"><label>Teléfono</label><input type="tel" name="telefono" placeholder="600 000 000"></div>
+      </div>
+      <div class="field full" style="margin-bottom:14px">
+        <label>¿Qué necesitas?</label>
+        <select name="servicio">
+          <option>Ciberseguridad</option>
+          <option>Telefonía / Centralita Virtual</option>
+          <option>Conectividad / Fibra</option>
+          <option>Mantenimiento</option>
+          <option>Transformación Digital</option>
+          <option>Auditoría tecnológica completa</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label>Mensaje</label>
+        <textarea name="mensaje" rows="3" placeholder="Cuéntanos brevemente tu proyecto"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar solicitud
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+      <p class="form-note">Al enviar aceptas nuestra política de privacidad. No compartimos tus datos.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="img/logo-comunitelia-blanco.svg" alt="Comunitelia">
+        <p>Partner integral de nuevas tecnologías. Soluciones tecnológicas a la medida de tu organización en Castilla-La Mancha. Miembro del Grupo Citelia.</p>
+        <div class="foot-soc">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Servicios</h4>
+        <a href="#servicios">Ciberseguridad</a>
+        <a href="#servicios">Telefonía para Empresas</a>
+        <a href="#servicios">Centralita Virtual</a>
+        <a href="#servicios">Conectividad</a>
+        <a href="#servicios">Transformación Digital</a>
+      </div>
+      <div class="foot-col">
+        <h4>Soluciones Smart</h4>
+        <a href="#sectores">Smart City</a>
+        <a href="#sectores">Smart Building</a>
+        <a href="#porque">Quiénes somos</a>
+        <a href="#porque">Nuestros aliados</a>
+        <a href="#contacto">Blog</a>
+      </div>
+      <div class="foot-col">
+        <h4>Soporte</h4>
+        <a href="#contacto">Portal del cliente</a>
+        <a href="#contacto">Tu factura</a>
+        <a href="#contacto">Canal de denuncias</a>
+        <a href="tel:926161112">926 161 112</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Comunitelia · Faten Facilities Telecom, S.L. · Miembro del Grupo Citelia</div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
+        <a href="#">Aviso Legal</a>
+        <a href="#">Política de Privacidad</a>
+        <a href="#">Política de Cookies</a>
+        <a href="#">Seguridad de la Información</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/34926161112" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.5.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5L9.5 7c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3M12 2a10 10 0 0 0-8.6 15l-1.3 4.7L7 20.4A10 10 0 1 0 12 2z"/></svg>
+</a>
+
+<script>
+// nav scroll
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('nav-scrolled',scrollY>40));
+// mobile menu
+const mm=document.getElementById('mobileMenu');
+document.getElementById('burger').onclick=()=>mm.classList.add('open');
+document.getElementById('closeMenu').onclick=()=>mm.classList.remove('open');
+mm.querySelectorAll('a').forEach(a=>a.onclick=()=>mm.classList.remove('open'));
+// reveal
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// counters
+const cio=new IntersectionObserver((es)=>es.forEach(e=>{
+  if(!e.isIntersecting)return; cio.unobserve(e.target);
+  const el=e.target, target=parseFloat(el.dataset.count), dec=parseInt(el.dataset.dec||0), suf=el.dataset.suffix||'';
+  let cur=0, steps=60, inc=target/steps, i=0;
+  const t=setInterval(()=>{cur+=inc;i++;if(i>=steps){cur=target;clearInterval(t)}el.textContent=cur.toFixed(dec).replace('.',',')+suf;},18);
+}),{threshold:.5});
+document.querySelectorAll('.num[data-count]').forEach(el=>cio.observe(el));
+// form
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const b=e.target.querySelector('button');
+  b.innerHTML='✓ ¡Solicitud enviada!';b.style.background='#25D366';
+  setTimeout(()=>{e.target.reset();b.innerHTML='Enviar solicitud';b.style.background='';},2800);
+});
+</script>
+</body>
+</html>
