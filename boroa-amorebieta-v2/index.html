@@ -1598,6 +1598,7 @@ function switchView(view){
   const hv=document.getElementById('heroVideo');
   if(hv){view==='inicio'?hv.play().catch(()=>{}):hv.pause();}
   if(HAS_GSAP && !REDUCED){ScrollTrigger.refresh();initReveals(view);}
+  dispatchEvent(new Event('resize'));   /* canvases inicializados a 0 cuando su vista estaba oculta */
 }
 function go(view,push=true,anchor=null){
   if(view==='restaurante'){view='inicio';anchor=anchor||'#siglos';}
@@ -1719,7 +1720,8 @@ if(HAS_GSAP && !REDUCED){
 
 /* arranque desde hash */
 if(location.hash && location.hash!=='#inicio'){
-  const raw=location.hash.replace('#','');
+  let raw=location.hash.replace('#','');
+  if(raw==='restaurante')raw='inicio';
   const v=VIEWS.includes(raw)?raw:'perdido';
   document.querySelectorAll('.view').forEach(x=>x.classList.remove('current'));
   document.getElementById('v-'+v).classList.add('current');
@@ -2066,6 +2068,7 @@ if(!REDUCED){
   (function loop(t){
     requestAnimationFrame(loop);
     if(!active)return;
+    if(W<2||H<2)resize();
     const r=wrap.getBoundingClientRect();
     const total=r.height-H;
     const p=Math.max(0,Math.min(1,-r.top/total));
