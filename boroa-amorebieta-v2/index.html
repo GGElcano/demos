@@ -2089,9 +2089,9 @@ if(!REDUCED){
       if(birdPts[0]){flying=true;flyT0=t;flyDir=want>dispCh?1:-1;}
       dispCh=want;
     }
-    let ax=cx,ay=cy,as=scale,fg=CH_FG[dispCh],k=.045,damp=.86,trail=false;
+    let ax=cx,ay=cy,as=scale,fg=CH_FG[dispCh],k=.07,damp=.84,trail=false;
     if(flying){
-      const ft=(t-flyT0)/1300;
+      const ft=(t-flyT0)/700;
       if(ft>=1){flying=false;const nowW=(()=>{const g=segAt(p);return g.type==='ch'?g.i:(((p-g.a)/(g.b-g.a))>.5?Math.min(3,g.i+1):g.i)})();
         if(nowW!==dispCh){dispCh=nowW;curKey='';}}   /* aterriza y morph directo: no encadena vuelos */
       else{
