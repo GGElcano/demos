@@ -202,6 +202,8 @@ h2.display em{font-style:italic;color:var(--bronze)}
 .lead{font-size:clamp(14.5px,1.35vw,17px);line-height:1.85;color:var(--ink-soft);max-width:560px;font-weight:300}
 .dark .lead{color:rgba(249,247,240,.75)}
 .rv{opacity:0;transform:translateY(40px)}
+.rv-l{transform:translate(-80px,0)}
+.rv-r{transform:translate(80px,0)}
 .no-motion .rv{opacity:1;transform:none}
 
 /* ============ MARQUESINA RECONOCIMIENTOS ============ */
@@ -616,6 +618,49 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 .rg-card .btn{margin:20px auto 0}
 @media(max-width:880px){.regala-grid{grid-template-columns:1fr}}
 
+
+/* ============ RUEDA DE MENÚS (carta) ============ */
+#menuWheel{position:relative;background:var(--noche);margin:clamp(34px,4vw,52px) calc(-1 * clamp(22px,5vw,72px)) 0;
+  padding:clamp(44px,5vw,64px) 0 clamp(30px,3vw,44px);overflow:hidden}
+.wheel-scene{height:clamp(380px,52vh,520px);perspective:1300px;position:relative;cursor:grab;touch-action:pan-y}
+.wheel-scene:active{cursor:grabbing}
+#wheelTrack{position:absolute;top:50%;left:50%;transform-style:preserve-3d;will-change:transform}
+.w-card{position:absolute;width:clamp(180px,19vw,260px);aspect-ratio:4/5;transform-style:preserve-3d;
+  margin-left:calc(clamp(180px,19vw,260px) / -2);margin-top:calc(clamp(180px,19vw,260px) * 1.25 / -2)}
+.w-card .wc{position:absolute;inset:0;overflow:hidden;border-radius:6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);
+  background:var(--ink);transition:outline .3s;outline:1px solid transparent}
+.w-card.sel .wc{outline:2px solid var(--bronze-light)}
+.w-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.w-card .wi{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;z-index:2;
+  background:linear-gradient(180deg,transparent,rgba(10,15,26,.9));pointer-events:none}
+.w-card .wi b{display:block;font-family:var(--serif);font-weight:400;font-size:17px;color:var(--cream);line-height:1.2}
+.w-card .wi span{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--bronze-light)}
+.wheel-cap{text-align:center;margin-bottom:6px}
+.wheel-cap .label{justify-content:center;color:var(--bronze-light)}
+.wheel-cap .label::after{content:'';width:38px;height:1px;background:var(--bronze)}
+.wheel-foot{text-align:center;margin-top:18px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(249,247,240,.4)}
+#menuDetail{max-width:1280px;margin:0 auto;padding-top:clamp(20px,3vw,36px);min-height:60px}
+#menuDetail .md-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:10px}
+#menuDetail .md-head h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.6vw,50px)}
+#menuDetail .md-head h3 em{font-style:italic;color:var(--bronze)}
+#menuDetail .md-price{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.6vw,34px);color:var(--bronze-deep)}
+#menuDetail .md-body{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+#menuDetail.show .md-body{opacity:1;transform:none}
+
+/* ============ EVENTOS: cinta + pétalos ============ */
+.evt-line-wrap{overflow:hidden;padding:clamp(26px,4vw,46px) 0;border-bottom:1px solid var(--line);background:var(--paper)}
+.evt-line{white-space:nowrap;font-family:var(--serif);font-weight:300;font-style:italic;
+  font-size:clamp(34px,5vw,72px);color:var(--bronze-deep);will-change:transform}
+.evt-line b{font-style:normal;font-weight:300;color:var(--ink)}
+#petals{position:absolute;inset:0;pointer-events:none;z-index:4}
+.ev-bodas{position:relative;overflow:hidden}
+
+/* ============ CURSOR DE AGUA ============ */
+#fluidC{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3998;mix-blend-mode:multiply}
+.dark #fluidC{mix-blend-mode:screen}
+@media(pointer:coarse){#fluidC{display:none}}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:1080px){
   nav.main{display:none}
@@ -660,8 +705,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
   </div>
 </div>
 <audio id="amb" src="assets/ambiente.mp3" loop preload="none"></audio>
-<div id="curDot" aria-hidden="true"></div>
-<div id="curRing" aria-hidden="true"></div>
+<canvas id="fluidC" aria-hidden="true"></canvas>
 
 <div id="curtain" aria-hidden="true"></div>
 
@@ -972,6 +1016,13 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
   <div class="sec">
     <div class="sec-inner">
 
+      <div id="menuWheel">
+        <div class="wheel-cap"><div class="label">Gira y elige</div></div>
+        <div class="wheel-scene" id="wheelScene"><div id="wheelTrack"></div></div>
+        <div class="wheel-foot">Arrastra para girar · toca un menú para abrirlo</div>
+      </div>
+      <div id="menuDetail"></div>
+
       <div class="macc rv">
 
       <!-- LA CARTA -->
@@ -1246,7 +1297,12 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
   </div>
 
-  <div class="sec">
+  <div class="evt-line-wrap" aria-hidden="true">
+    <div class="evt-line" id="evtLine">Tu gran día <b>bajo los robles centenarios</b> — bodas · comuniones · empresas — cada detalle <b>mimado al máximo</b> — ceremonias civiles <b>en la terraza</b> — Tu gran día <b>bajo los robles centenarios</b> — bodas · comuniones · empresas —</div>
+  </div>
+
+  <div class="sec ev-bodas">
+    <canvas id="petals" aria-hidden="true"></canvas>
     <div class="sec-inner ev-split">
       <div class="ev-fig rv">
         <img src="assets/bodas-2000.webp" alt="Celebración de boda en el caserío" loading="lazy">
@@ -1385,9 +1441,11 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     <div class="rg-stage" id="rgStage">
       <div class="gridlayer" aria-hidden="true"></div>
       <h1 class="rg-title" id="rgTitle">Regala<br><em>Boroa</em></h1>
-      <div class="rg-orb rg-orb-1" data-orb="0"><img src="assets/flota-pina.webp" alt=""></div>
-      <div class="rg-orb rg-orb-2" data-orb="1"><img src="assets/flota-txangurro.webp" alt=""></div>
-      <div class="rg-orb rg-orb-3" data-orb="2"><img src="assets/flota-caja-2.webp" alt=""></div>
+      <div class="rg-orb rg-orb-2" data-orb="0"><img src="assets/caja-txindoki.webp" alt="Caja menú Txindoki"></div>
+      <div class="rg-orb rg-orb-1" data-orb="1"><img src="assets/caja-mugarra.webp" alt="Caja menú Mugarra"></div>
+      <div class="rg-orb rg-orb-2" data-orb="2"><img src="assets/caja-txindoki-mar.webp" alt="Caja Txindoki con maridaje"></div>
+      <div class="rg-orb rg-orb-1" data-orb="3"><img src="assets/caja-mugarra-mar.webp" alt="Caja Mugarra con maridaje"></div>
+      <div class="rg-orb rg-orb-3" data-orb="4"><img src="assets/flota-caja-2.webp" alt="Caja menú Vegetariano"></div>
       <img class="rg-caja" id="rgCaja" src="assets/flota-caja-veg.webp" alt="Caja regalo de Boroa">
       <div class="rg-sub">Una caja · un menú degustación · una mesa esperando</div>
     </div>
@@ -1416,20 +1474,20 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
       <div class="regala-grid">
         <div class="rg-card rg-card3d rv">
           <div class="rg-card-in">
-          <img src="assets/flota-caja-2.webp" alt="Caja regalo menú Txindoki" loading="lazy">
+          <img src="assets/caja-txindoki.webp" alt="Caja regalo menú Txindoki" loading="lazy">
           <div class="rg-k">19 pases · el grande</div>
           <div class="rg-t">Menú Degustación Txindoki</div>
           <div class="rg-p">170 €<small>con maridaje 250 €</small></div>
-          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-degustacion-txindoki/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+          <button class="btn btn-ink" data-regalo="Menú Degustación Txindoki">Regalar <span class="arr">→</span></button>
           </div>
         </div>
         <div class="rg-card rg-card3d rv">
           <div class="rg-card-in">
-          <img src="assets/flota-caja-2.webp" alt="Caja regalo menú Mugarra" loading="lazy">
+          <img src="assets/caja-mugarra.webp" alt="Caja regalo menú Mugarra" loading="lazy">
           <div class="rg-k">El equilibrado</div>
           <div class="rg-t">Menú Degustación Mugarra</div>
           <div class="rg-p">110 €<small>con maridaje 160 €</small></div>
-          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-mugarra-bebidas-no-incluidas/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+          <button class="btn btn-ink" data-regalo="Menú Degustación Mugarra">Regalar <span class="arr">→</span></button>
           </div>
         </div>
         <div class="rg-card rg-card3d rv">
@@ -1438,12 +1496,12 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
           <div class="rg-k">De la huerta</div>
           <div class="rg-t">Menú Vegetariano</div>
           <div class="rg-p">90 €<small>con maridaje 140 €</small></div>
-          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-vegetariano-maridaje/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+          <button class="btn btn-ink" data-regalo="Menú Vegetariano">Regalar <span class="arr">→</span></button>
           </div>
         </div>
       </div>
       <div class="rv" style="text-align:center;margin-top:38px">
-        <a class="btn btn-ink" href="https://www.boroa.com/regala-boroa/" target="_blank" rel="noopener">Ver la tienda completa <span class="arr">→</span></a>
+        <a class="btn btn-ink" href="tel:+34946734747">Encargar por teléfono · 946 734 747 <span class="arr">→</span></a>
       </div>
     </div>
   </div>
@@ -1664,9 +1722,17 @@ if(HAS_GSAP && !REDUCED){
   /* Reveals genéricos por vista */
   function initReveals(view){
     const root=document.getElementById('v-'+view);
+    const GRIDS='.intro-grid,.ev-split,.bodega-grid,.res-wrap,.con-grid,.feat-grid';
     root.querySelectorAll('.rv').forEach(el=>{
       if(el._rvDone)return; el._rvDone=true;
-      gsap.to(el,{opacity:1,y:0,duration:1.15,ease:'power3.out',
+      const grid=el.closest(GRIDS);
+      if(grid && !el.classList.contains('rv-l') && !el.classList.contains('rv-r')){
+        const kids=[...grid.children].filter(c=>c.classList.contains('rv'));
+        const idx=kids.indexOf(el);
+        if(idx===0)el.classList.add('rv-l');
+        else if(idx===kids.length-1 && kids.length>1)el.classList.add('rv-r');
+      }
+      gsap.to(el,{opacity:1,x:0,y:0,duration:1.2,ease:'power3.out',
         scrollTrigger:{trigger:el,start:'top 88%',once:true}});
     });
   }
@@ -1812,26 +1878,48 @@ if(matchMedia('(pointer:fine)').matches && !REDUCED){
   });
 }
 
-/* ============ CURSOR PERSONALIZADO + BOTONES MAGNÉTICOS ============ */
+/* ============ CURSOR DE AGUA (tinta fluida) + BOTONES MAGNÉTICOS ============ */
 if(matchMedia('(pointer:fine)').matches && !REDUCED){
-  const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
-  dot.style.opacity=0;ring.style.opacity=0;
-  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my,seen=false;
-  addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    if(!seen){seen=true;dot.style.opacity=1;ring.style.opacity=1;rx=mx;ry=my;}
-    dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;
-  },{passive:true});
-  (function cur(){requestAnimationFrame(cur);
-    rx+=(mx-rx)*.16;ry+=(my-ry)*.16;
-    ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;
-  })();
-  document.addEventListener('mouseover',e=>{
-    if(e.target.closest('a,button,[data-go],.tab,.cmode'))ring.classList.add('big');
-  });
-  document.addEventListener('mouseout',e=>{
-    if(e.target.closest('a,button,[data-go],.tab,.cmode'))ring.classList.remove('big');
-  });
+  const fc=document.getElementById('fluidC'),fx=fc.getContext('2d');
+  let FW=0,FH=0;
+  function fres(){FW=fc.width=innerWidth;FH=fc.height=innerHeight;}
+  fres();addEventListener('resize',fres);
+  /* sprite de gota suave pre-renderizado */
+  const blob=document.createElement('canvas');blob.width=blob.height=128;
+  const bx=blob.getContext('2d');
+  const g=bx.createRadialGradient(64,64,2,64,64,62);
+  g.addColorStop(0,'rgba(154,123,79,.4)');
+  g.addColorStop(.45,'rgba(154,123,79,.16)');
+  g.addColorStop(1,'rgba(154,123,79,0)');
+  bx.fillStyle=g;bx.fillRect(0,0,128,128);
+  /* cadena de puntos con muelle = estela líquida */
+  const NPTS=16, pts=Array.from({length:NPTS},()=>({x:innerWidth/2,y:innerHeight/2,vx:0,vy:0}));
+  let mx=innerWidth/2,my=innerHeight/2,seen=false,lastMove=0;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;seen=true;lastMove=performance.now()},{passive:true});
+  (function fluid(t){
+    requestAnimationFrame(fluid);
+    if(!seen)return;
+    /* desvanecer lo pintado (queda el rastro acuoso) */
+    fx.globalCompositeOperation='destination-out';
+    fx.fillStyle='rgba(0,0,0,.13)';
+    fx.fillRect(0,0,FW,FH);
+    fx.globalCompositeOperation='source-over';
+    /* la cadena persigue al ratón como agua */
+    let tx=mx,ty=my;
+    const idle=(performance.now()-lastMove)>120;
+    pts.forEach((p,i)=>{
+      const k=.34-i*.012, d=.62+i*.012;
+      p.vx=(p.vx+(tx-p.x)*k)*d;
+      p.vy=(p.vy+(ty-p.y)*k)*d;
+      p.x+=p.vx;p.y+=p.vy;
+      const sway=idle?0:Math.sin(t*.004+i*1.1)*3;
+      const r=(30-i*1.5)*(idle?.55:1);
+      fx.globalAlpha=.4-i*.022;
+      fx.drawImage(blob,p.x-r+sway,p.y-r,r*2,r*2);
+      tx=p.x;ty=p.y;
+    });
+    fx.globalAlpha=1;
+  })(0);
   /* magnéticos */
   document.querySelectorAll('.btn,.gate-btn,#sndToggle,#burger').forEach(el=>{
     el.addEventListener('mousemove',e=>{
@@ -1978,7 +2066,7 @@ if(!REDUCED){
       if(key!==curKey){curKey=key;setTargets(birdPts[pose]||birdPts[1]||targets[seg.i],pose===0?!mirror:mirror);}
       ax=W*.5+Math.sin(st*Math.PI)*W*.2*dir;
       ay=cy-Math.sin(st*Math.PI*2)*H*.07+Math.sin(t*.012)*9;
-      as=scale*.6;
+      as=scale*.72;
       ch=st>.5?Math.min(3,seg.i+1):seg.i;
       fg=CH_FG[ch];
       setDots(ch);
@@ -2001,7 +2089,7 @@ if(!REDUCED){
     else ctx.clearRect(0,0,W,H);
     ctx.fillStyle=fg;
     const time=t*.001;
-    const k=seg.type==='fly'?.11:.045;            // en vuelo persiguen mucho más rápido
+    const k=seg.type==='fly'?.16:.045;            // en vuelo persiguen mucho más rápido
     const damp=seg.type==='fly'?.8:.86;
     for(const q of P){
       const wob=Math.sin(time*1.4+q.ph)*1.6;
@@ -2012,6 +2100,132 @@ if(!REDUCED){
     }
   })(0);
 })();
+
+
+/* ============ RUEDA DE MENÚS (carta) ============ */
+(function(){
+  const scene=document.getElementById('wheelScene'),track=document.getElementById('wheelTrack'),
+        detail=document.getElementById('menuDetail'),macc=document.querySelector('.macc');
+  if(!scene||!macc)return;
+  if(REDUCED){document.getElementById('menuWheel').style.display='none';return;}
+  macc.style.display='none';
+  const DATA=[...macc.querySelectorAll('.mrow')].map(row=>({
+    id:row.id,
+    img:row.querySelector('.mimg img')?.getAttribute('src'),
+    kicker:row.querySelector('.mk')?.textContent||'',
+    title:row.querySelector('.mhead h3')?.innerHTML||'',
+    price:row.querySelector('.mprice')?.innerHTML||'',
+    body:row.querySelector('.mbody-in')
+  }));
+  const n=DATA.length, step=360/n;
+  let R=0,rot=0,vel=0,auto=.05,active=false,dragging=false,moved=false,lastX=0,selected=-1;
+  const cards=DATA.map((d,i)=>{
+    const el=document.createElement('div');el.className='w-card';
+    el.innerHTML=`<div class="wc"><img src="${d.img}" alt="" loading="lazy"><div class="wi"><b>${d.title.replace(/<[^>]+>/g,' ')}</b><span>${d.kicker}</span></div></div>`;
+    el.addEventListener('click',()=>{if(!moved)select(i)});
+    track.appendChild(el);return el;
+  });
+  function layout(){
+    const w=cards[0].offsetWidth||220;
+    R=Math.round((w/2)/Math.tan(Math.PI/n)*1.18);
+    cards.forEach((el,i)=>{el.style.transform=`rotateY(${i*step}deg) translateZ(${R}px)`});
+  }
+  layout();addEventListener('resize',layout);
+  function select(i){
+    selected=i;auto=0;
+    cards.forEach((c,j)=>c.classList.toggle('sel',j===i));
+    /* girar hasta poner la tarjeta de frente */
+    const target=-i*step, cur=((rot%360)+360)%360;
+    let delta=((target-cur)%360+540)%360-180;
+    const t0=performance.now(),r0=rot,dur=900;
+    (function spin(t){
+      const k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,3);
+      rot=r0+delta*e;
+      if(k<1)requestAnimationFrame(spin);
+    })(t0);
+    /* volcar contenido al panel */
+    const d=DATA[i];
+    detail.classList.remove('show');
+    setTimeout(()=>{
+      detail.innerHTML='';
+      const head=document.createElement('div');head.className='md-head';
+      head.innerHTML=`<h3>${d.title}</h3><div class="md-price">${d.price}</div>`;
+      const body=document.createElement('div');body.className='md-body';
+      body.appendChild(d.body);
+      detail.appendChild(head);detail.appendChild(body);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>detail.classList.add('show')));
+      const y=detail.getBoundingClientRect().top+scrollY-110;
+      if(lenis)lenis.scrollTo(y);else scrollTo({top:y,behavior:'smooth'});
+    },180);
+  }
+  new IntersectionObserver(es=>es.forEach(en=>active=en.isIntersecting),{threshold:.05}).observe(scene);
+  scene.addEventListener('pointerdown',e=>{dragging=true;moved=false;lastX=e.clientX;scene.setPointerCapture(e.pointerId)});
+  scene.addEventListener('pointermove',e=>{if(!dragging)return;const dx=e.clientX-lastX;lastX=e.clientX;
+    if(Math.abs(dx)>4)moved=true;vel=dx*.18;rot+=dx*.18});
+  scene.addEventListener('pointerup',()=>dragging=false);
+  scene.addEventListener('pointercancel',()=>dragging=false);
+  (function loop(){
+    requestAnimationFrame(loop);
+    if(!active)return;
+    if(!dragging){rot+=auto+vel;vel*=.95;if(Math.abs(vel)<.01)vel=0;}
+    track.style.transform=`rotateY(${rot}deg)`;
+    cards.forEach((el,i)=>{
+      const a=((i*step+rot)%360+360)%360;
+      const c=Math.cos(a*Math.PI/180);
+      el.querySelector('.wc').style.filter=`brightness(${.4+.6*(c+1)/2})`;
+      el.style.zIndex=Math.round((c+1)*50);
+    });
+  })();
+})();
+
+/* ============ EVENTOS: cinta horizontal con el scroll ============ */
+(function(){
+  const line=document.getElementById('evtLine');if(!line||REDUCED)return;
+  (function mv(){
+    requestAnimationFrame(mv);
+    const r=line.parentElement.getBoundingClientRect();
+    if(r.bottom<0||r.top>innerHeight)return;
+    const p=(innerHeight-r.top)/(innerHeight+r.height);
+    line.style.transform=`translateX(${-p*34}%)`;
+  })();
+})();
+
+/* ============ EVENTOS: pétalos sobre bodas ============ */
+(function(){
+  const cv=document.getElementById('petals');if(!cv||REDUCED)return;
+  const ctx=cv.getContext('2d');
+  const sec=cv.parentElement;let W=0,H=0,on=false;
+  function rs(){W=cv.width=sec.clientWidth;H=cv.height=sec.clientHeight}
+  rs();addEventListener('resize',rs);
+  new IntersectionObserver(es=>es.forEach(en=>on=en.isIntersecting),{threshold:0}).observe(sec);
+  const N=innerWidth<880?16:30;
+  const P=Array.from({length:N},()=>({x:Math.random(),y:Math.random(),s:5+Math.random()*9,
+    w:.6+Math.random()*1.2,ph:Math.random()*6.28,v:.00022+Math.random()*.00035}));
+  (function fall(t){
+    requestAnimationFrame(fall);
+    if(!on)return;
+    ctx.clearRect(0,0,W,H);
+    P.forEach(p=>{
+      p.y+=p.v; if(p.y>1.05){p.y=-.05;p.x=Math.random();}
+      const x=p.x*W+Math.sin(t*.0006*p.w+p.ph)*38;
+      const y=p.y*H;
+      const rot=Math.sin(t*.0008*p.w+p.ph)*1.2;
+      ctx.save();ctx.translate(x,y);ctx.rotate(rot);
+      ctx.fillStyle='rgba(200,173,127,.4)';
+      ctx.beginPath();ctx.ellipse(0,0,p.s,p.s*.45,0,0,6.28);ctx.fill();
+      ctx.restore();
+    });
+  })(0);
+})();
+
+/* ============ REGALAR: prefill de la reserva ============ */
+document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click',()=>{
+  go('reservas');
+  setTimeout(()=>{
+    const obs=document.querySelector('#resForm textarea[name="obs"]');
+    if(obs)obs.value='Quiero regalar el '+b.dataset.regalo+' (caja regalo).';
+  },900);
+}));
 
 /* ============ FORM RESERVAS → email ============ */
 document.getElementById('resForm').addEventListener('submit',e=>{
