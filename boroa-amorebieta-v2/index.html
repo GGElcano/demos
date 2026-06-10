@@ -536,6 +536,56 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 #v-perdido p{margin-top:12px;color:rgba(249,247,240,.6);font-size:14px;letter-spacing:.06em}
 #v-perdido .btn{margin-top:34px}
 
+/* ============ CINCO SIGLOS EN UN SCROLL ============ */
+#siglos{position:relative;height:430svh}
+.siglos-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--paper);transition:none}
+#siglosCanvas{position:absolute;inset:0;width:100%;height:100%}
+.siglos-cap{position:absolute;left:clamp(24px,7vw,110px);top:50%;transform:translateY(-50%);max-width:340px;
+  opacity:0;pointer-events:none}
+.siglos-cap .sc-k{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze);font-weight:600;
+  display:flex;align-items:center;gap:12px}
+.siglos-cap .sc-k::before{content:'';width:30px;height:1px;background:var(--bronze)}
+.siglos-cap h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.2vw,46px);line-height:1.1;margin-top:12px}
+.siglos-cap h3 em{font-style:italic;color:var(--bronze)}
+.siglos-cap p{margin-top:10px;font-size:13.5px;line-height:1.8;opacity:.8}
+.siglos-stage.dark-ch .siglos-cap{color:var(--cream)}
+.siglos-stage.dark-ch .siglos-cap p{color:rgba(249,247,240,.7)}
+.siglos-progress{position:absolute;right:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:14px}
+.siglos-progress span{width:8px;height:8px;border-radius:50%;border:1px solid var(--bronze);transition:.4s;display:block}
+.siglos-progress span.on{background:var(--bronze)}
+.siglos-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:9.5px;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--bronze);opacity:.7}
+@media(max-width:880px){
+  .siglos-cap{left:24px;right:24px;max-width:none;top:auto;bottom:64px;transform:none}
+  #siglos{height:380svh}
+}
+
+/* ============ RESERVA ONLINE (TheFork) ============ */
+.fork-card{margin-top:38px;border:1px solid var(--line-dark);padding:clamp(24px,3vw,36px);background:rgba(200,173,127,.04)}
+.fork-card .fk-k{font-size:9.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze-light);font-weight:500}
+.fork-card .fk-t{font-family:var(--serif);font-size:clamp(21px,2.2vw,28px);font-weight:400;color:var(--cream);margin-top:8px}
+.fork-card .fk-score{display:flex;align-items:baseline;gap:10px;margin-top:6px}
+.fork-card .fk-score b{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--bronze-light);font-weight:400}
+.fork-card .fk-score span{font-size:11px;letter-spacing:.14em;color:rgba(249,247,240,.55);text-transform:uppercase}
+.fork-card .btn{margin-top:18px}
+
+/* ============ REGALA BOROA ============ */
+#regala{background:var(--paper-2);position:relative;overflow:hidden}
+.regala-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(38px,5vw,56px)}
+.rg-card{background:var(--cream);border:1px solid var(--line);padding:clamp(26px,3vw,38px) clamp(22px,2.4vw,30px);
+  text-align:center;display:flex;flex-direction:column;transition:.5s var(--ease)}
+.rg-card:hover{transform:translateY(-8px);box-shadow:0 36px 70px -34px rgba(22,20,15,.3)}
+.rg-card img{width:72%;max-width:230px;margin:0 auto 18px;filter:drop-shadow(0 18px 26px rgba(22,20,15,.22));
+  transition:transform .6s var(--ease)}
+.rg-card:hover img{transform:rotate(-4deg) translateY(-6px)}
+.rg-k{font-size:9.5px;letter-spacing:.36em;text-transform:uppercase;color:var(--bronze);font-weight:600}
+.rg-t{font-family:var(--serif);font-size:clamp(22px,2.2vw,28px);font-weight:400;margin-top:8px;line-height:1.15}
+.rg-p{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--bronze-deep);margin-top:8px}
+.rg-p small{font-size:13px;color:var(--ink-soft);font-family:var(--sans);font-style:normal;display:block;margin-top:2px;letter-spacing:.06em}
+.rg-card .btn{margin:20px auto 0}
+@media(max-width:880px){.regala-grid{grid-template-columns:1fr}}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:1080px){
   nav.main{display:none}
@@ -760,6 +810,35 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
       <div class="label">El restaurante</div>
       <h1>Un caserío del s. XV<br><em>lleno de magia</em></h1>
       <p class="ph-sub">Piedra, roble y mantel blanco. La arquitectura original, restaurada con escrupuloso respeto; la cocina, en constante búsqueda de innovar y sorprender.</p>
+    </div>
+  </div>
+
+  <!-- CINCO SIGLOS EN UN SCROLL -->
+  <div id="siglos">
+    <div class="siglos-stage" id="siglosStage">
+      <canvas id="siglosCanvas"></canvas>
+      <div class="siglos-cap" data-ch="0">
+        <div class="sc-k">01 · Siglo XV</div>
+        <h3>Nace <em>el caserío</em></h3>
+        <p>Piedra y roble levantados en las campas de Boroa. Cinco siglos resistiendo al tiempo.</p>
+      </div>
+      <div class="siglos-cap" data-ch="1">
+        <div class="sc-k">02 · 17 de marzo de 1997</div>
+        <h3>Se enciende <em>el fuego</em></h3>
+        <p>Boroa Jatetxea abre sus puertas entre robles centenarios.</p>
+      </div>
+      <div class="siglos-cap" data-ch="2">
+        <div class="sc-k">03 · Noviembre de 2008</div>
+        <h3>Llega <em>la estrella</em></h3>
+        <p>La guía Michelin reconoce una cocina vizcaína que evoluciona sin olvidar de dónde viene. Y con ella, 2 Soles Repsol.</p>
+      </div>
+      <div class="siglos-cap" data-ch="3">
+        <div class="sc-k">04 · Hoy</div>
+        <h3>La mesa <em>te espera</em></h3>
+        <p>Cinco siglos de piedra, veinticinco años de fuego. El resto lo escribes tú.</p>
+      </div>
+      <div class="siglos-progress" id="siglosDots"><span class="on"></span><span></span><span></span><span></span></div>
+      <div class="siglos-hint">Sigue bajando</div>
     </div>
   </div>
 
@@ -1182,6 +1261,12 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
           <div class="sched-row" data-day="0"><span class="d">Domingo</span><span class="h">13:00 – 15:30</span></div>
         </div>
         <p class="res-note">Horario de comidas, de lunes a domingo. Menús degustación con servicio de 13:00 a 14:30 y reserva con 24 h de antelación. Adaptado para personas con discapacidad · amplio parking.</p>
+        <div class="fork-card rv">
+          <div class="fk-k">Reserva online al instante</div>
+          <div class="fk-t">Boroa en TheFork</div>
+          <div class="fk-score"><b>9,8</b><span>/ 10 · valoración de los comensales</span></div>
+          <a class="btn btn-solid" href="https://www.thefork.es/restaurante/boroa-jatetxea-r619081" target="_blank" rel="noopener">Reservar en TheFork <span class="arr">→</span></a>
+        </div>
       </div>
       <div class="rv">
         <div class="label">Online</div>
@@ -1203,6 +1288,43 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
             <button class="btn btn-solid" type="submit">Enviar petición <span class="arr">→</span></button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGALA BOROA -->
+  <div class="sec" id="regala">
+    <div class="sec-inner">
+      <div class="rv" style="text-align:center">
+        <div class="label center">La tienda</div>
+        <h2 class="display">Regala <em>Boroa</em></h2>
+        <p class="lead" style="margin:18px auto 0;max-width:520px">Una caja, un menú degustación y una mesa esperando. El regalo que no se olvida, directo de su tienda online.</p>
+      </div>
+      <div class="regala-grid">
+        <div class="rg-card rv">
+          <img src="assets/flota-caja-2.webp" alt="Caja regalo menú Txindoki" loading="lazy">
+          <div class="rg-k">19 pases · el grande</div>
+          <div class="rg-t">Menú Degustación Txindoki</div>
+          <div class="rg-p">170 €<small>con maridaje 250 €</small></div>
+          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-degustacion-txindoki/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+        </div>
+        <div class="rg-card rv">
+          <img src="assets/flota-caja-2.webp" alt="Caja regalo menú Mugarra" loading="lazy">
+          <div class="rg-k">El equilibrado</div>
+          <div class="rg-t">Menú Degustación Mugarra</div>
+          <div class="rg-p">110 €<small>con maridaje 160 €</small></div>
+          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-mugarra-bebidas-no-incluidas/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+        </div>
+        <div class="rg-card rv">
+          <img src="assets/flota-caja-veg.webp" alt="Caja regalo menú Vegetariano" loading="lazy">
+          <div class="rg-k">De la huerta</div>
+          <div class="rg-t">Menú Vegetariano</div>
+          <div class="rg-p">90 €<small>con maridaje 140 €</small></div>
+          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-vegetariano-maridaje/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="rv" style="text-align:center;margin-top:38px">
+        <a class="btn btn-ink" href="https://www.boroa.com/regala-boroa/" target="_blank" rel="noopener">Ver la tienda completa <span class="arr">→</span></a>
       </div>
     </div>
   </div>
@@ -1622,6 +1744,102 @@ if(!REDUCED){
     },{passive:true});
   }
 }
+
+/* ============ CINCO SIGLOS EN UN SCROLL (partículas) ============ */
+(function(){
+  const wrap=document.getElementById('siglos'),stage=document.getElementById('siglosStage'),
+        cv=document.getElementById('siglosCanvas');
+  if(!wrap||!cv)return;
+  if(REDUCED){wrap.style.display='none';return;}
+  const ctx=cv.getContext('2d');
+  const MOBILE=innerWidth<880;
+  const N=MOBILE?1200:2400;
+  const DPR=Math.min(devicePixelRatio||1,1.5);
+  let W=0,H=0,cx=0,cy=0,scale=1;
+
+  /* —— fondos y colores por capítulo —— */
+  const CH_BG=[[244,241,232],[27,36,54],[12,19,34],[63,47,46]];
+  const CH_FG=['#6e573a','#c8ad7f','#c8ad7f','#e7d9bd'];
+  const CH_DARK=[false,true,true,true];
+
+  /* —— formas: se muestrean de un canvas offscreen 360x300 —— */
+  const OW=360,OH=300;
+  function shapeCaserio(o){
+    o.beginPath();o.moveTo(40,150);o.lineTo(180,52);o.lineTo(320,150);o.closePath();o.fill(); // tejado
+    o.fillRect(70,150,220,96);                                                                // muros
+    o.fillRect(216,74,24,46);                                                                 // chimenea
+    o.clearRect(120,182,38,64);o.clearRect(204,182,38,64);                                    // puertas
+  }
+  function shapeText(t,size,font){return o=>{o.font=`${size}px ${font}`;o.textAlign='center';o.textBaseline='middle';o.fillText(t,OW/2,OH/2)}}
+  const SHAPES=[shapeCaserio,shapeText('1997',128,'Georgia, serif'),shapeText('★',230,'serif'),shapeText('B—',170,'Georgia, serif')];
+  const targets=SHAPES.map(draw=>{
+    const oc=document.createElement('canvas');oc.width=OW;oc.height=OH;
+    const o=oc.getContext('2d');o.fillStyle='#000';draw(o);
+    const d=o.getImageData(0,0,OW,OH).data,pts=[];
+    for(let y=0;y<OH;y+=3)for(let x=0;x<OW;x+=3)
+      if(d[(y*OW+x)*4+3]>128)pts.push([x-OW/2,y-OH/2]);
+    return pts;
+  });
+
+  /* —— partículas —— */
+  const P=Array.from({length:N},()=>({x:(Math.random()-.5)*600,y:(Math.random()-.5)*500,
+    vx:0,vy:0,tx:0,ty:0,s:.7+Math.random()*1.7,ph:Math.random()*6.28}));
+  let chapter=-1;
+  function assign(ch){
+    chapter=ch;const pts=targets[ch];
+    P.forEach((p,i)=>{const t=pts[(i*7)%pts.length];p.tx=t[0];p.ty=t[1];});
+    document.querySelectorAll('#siglosDots span').forEach((s,i)=>s.classList.toggle('on',i<=ch));
+  }
+  function resize(){
+    W=stage.clientWidth;H=stage.clientHeight;
+    cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);
+    cx=W*(MOBILE?.5:.58);cy=H*(MOBILE?.42:.5);
+    scale=Math.min(W/(MOBILE?420:760),H/520)*(MOBILE?1.05:1.35);
+  }
+  resize();addEventListener('resize',resize);
+
+  let active=false;
+  new IntersectionObserver(es=>es.forEach(en=>active=en.isIntersecting),{threshold:.02}).observe(wrap);
+
+  const caps=[...document.querySelectorAll('.siglos-cap')];
+  const lerp=(a,b,k)=>a+(b-a)*k;
+  function bgAt(p){
+    const seg=Math.min(2.999,p*3);const i=Math.floor(seg),k=seg-i;
+    const A=CH_BG[i],B=CH_BG[Math.min(3,i+1)];
+    return [lerp(A[0],B[0],k),lerp(A[1],B[1],k),lerp(A[2],B[2],k)];
+  }
+  (function loop(t){
+    requestAnimationFrame(loop);
+    if(!active)return;
+    const r=wrap.getBoundingClientRect();
+    const total=r.height-H;
+    const p=Math.max(0,Math.min(1,-r.top/total));
+    const ch=Math.min(3,Math.floor(p*4));
+    if(ch!==chapter)assign(ch);
+    /* fondo */
+    const[br,bg2,bb]=bgAt(p);
+    stage.style.background=`rgb(${br|0},${bg2|0},${bb|0})`;
+    stage.classList.toggle('dark-ch',CH_DARK[ch]);
+    /* captions */
+    caps.forEach((c,i)=>{
+      const center=(i+.5)/4,d=Math.abs(p-center);
+      const a=Math.max(0,1-d*7);
+      c.style.opacity=a;
+      c.style.transform=(MOBILE?'':'translateY(-50%) ')+`translateY(${(1-a)*18}px)`;
+    });
+    /* partículas */
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=CH_FG[ch];
+    const time=t*.001;
+    for(const q of P){
+      const wob=Math.sin(time*1.4+q.ph)*1.6;
+      q.vx=(q.vx+(q.tx*scale+cx-q.x)*.045)*.86;
+      q.vy=(q.vy+(q.ty*scale+cy-q.y)*.045)*.86;
+      q.x+=q.vx;q.y+=q.vy;
+      ctx.fillRect(q.x+wob,q.y+Math.cos(time+q.ph)*1.6,q.s,q.s);
+    }
+  })(0);
+})();
 
 /* ============ FORM RESERVAS → email ============ */
 document.getElementById('resForm').addEventListener('submit',e=>{
