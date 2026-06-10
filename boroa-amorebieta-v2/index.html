@@ -2091,7 +2091,7 @@ if(!REDUCED){
     }
     let ax=cx,ay=cy,as=scale,fg=CH_FG[dispCh],k=.045,damp=.86,trail=false;
     if(flying){
-      const ft=(t-flyT0)/2000;
+      const ft=(t-flyT0)/1300;
       if(ft>=1){flying=false;const nowW=(()=>{const g=segAt(p);return g.type==='ch'?g.i:(((p-g.a)/(g.b-g.a))>.5?Math.min(3,g.i+1):g.i)})();
         if(nowW!==dispCh){dispCh=nowW;curKey='';}}   /* aterriza y morph directo: no encadena vuelos */
       else{
@@ -2188,6 +2188,7 @@ if(!REDUCED){
       const body=document.createElement('div');body.className='md-body';
       body.appendChild(d.body);
       detail.appendChild(head);detail.appendChild(body);
+      if(window.__i18nApply)__i18nApply(detail);
       requestAnimationFrame(()=>requestAnimationFrame(()=>detail.classList.add('show')));
       const y=detail.getBoundingClientRect().top+scrollY-110;
       if(lenis)lenis.scrollTo(y);else scrollTo({top:y,behavior:'smooth'});
@@ -2275,6 +2276,31 @@ document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click'
 (function(){
   const D={
   eu:{
+  "Más de veinte años redescubriendo y evolucionando platos propios de toda la vida, en una búsqueda continua de innovar y sorprender.":"Hogei urte baino gehiago betiko platerak berraurkitzen eta eboluzionatzen, berritzeko eta harritzeko bilaketa etengabean.",
+  "La Carta":"Karta","Menú Txindoki":"Txindoki Menua","Menú Mugarra":"Mugarra Menua","Menú Vegetariano":"Menu Begetarianoa","Menú Bizkargi":"Bizkargi Menua","Menús para grupos":"Taldeentzako menuak",
+  "A la carta · producto de temporada":"Kartara · sasoiko produktua",
+  "Menú degustación · 19 pases":"Dastatze-menua · 19 pase","Menú degustación · 11 pases":"Dastatze-menua · 11 pase","Menú degustación · de la huerta":"Dastatze-menua · baratzekoa",
+  "Entre semana · el menú de la casa":"Aste barruan · etxeko menua","Grupos y comuniones · mín. 8 comensales":"Taldeak eta jaunartzeak · gutx. 8 mahaikide",
+  "Entrantes, raciones cortas, pescados del Cantábrico, carnes a la brasa y postres de obrador.":"Sarrerakoak, errazio laburrak, Kantauriko arrainak, brasako haragiak eta obradoreko postreak.",
+  "El gran viaje de Boroa: del ajoblanco al pichón, con caviar Beluga y kokotxa al pilpil.":"Boroako bidaia handia: ajoblancotik usokumera, Beluga kabiarrarekin eta kokotxa pilpilean.",
+  "El equilibrado: vieira con caviar, merluza al txakoli y cochinillo con manzana de Boroa.":"Orekatua: bieira kabiarrarekin, legatza txakolinetan eta txerrikumea Boroako sagarrarekin.",
+  "Espárragos de Navarra, habitas de Aroa, alcachofas con trufa y el cheesecake de Idiazabal.":"Nafarroako zainzuriak, Aroako babatxikiak, orburuak boilurrarekin eta Idiazabal cheesecake-a.",
+  "Cambia cada semana con el mercado y la temporada. La forma más cercana de conocer Boroa.":"Astero aldatzen da merkatuarekin eta sasoiarekin. Boroa ezagutzeko modurik hurbilena.",
+  "Tres propuestas a mesa completa, concertadas con 3 días de antelación. Válidos hasta el 31 de julio de 2026.":"Hiru proposamen mahai osorako, 3 egun lehenago hitzartuta. 2026ko uztailaren 31ra arte balio dute.",
+  "maridaje +80 €":"uztartzea +80 €","maridaje +50 €":"uztartzea +50 €","con maridaje 140 €":"uztartzearekin 140 €","con maridaje 250 €":"uztartzearekin 250 €","con maridaje 160 €":"uztartzearekin 160 €",
+  "Semanal":"Astero","consultar el menú de la semana":"galdetu asteko menua",
+  "Reserva con 24 h de antelación · máx. 12 comensales · servicio 13:00 – 14:30 · a mesa completa":"Erreserba 24 ordu lehenago · gehienez 12 mahaikide · zerbitzua 13:00 – 14:30 · mahai osora",
+  "Máx. 12 comensales · a mesa completa":"Gehienez 12 mahaikide · mahai osora",
+  "Reserva con 24 h de antelación · máx. 8 comensales":"Erreserba 24 ordu lehenago · gehienez 8 mahaikide",
+  "De martes a viernes no festivos · a mesa completa":"Asteartetik ostiralera, jaiegunak izan ezik · mahai osora",
+  "Entrantes":"Sarrerakoak","En ración corta — para realzar su esencia":"Errazio laburrean — esentzia nabarmentzeko","Pescados":"Arrainak","Carnes":"Haragiak","Postres":"Postreak","Aperitivos":"Aperitiboak",
+  "Maridaje recomendado":"Uztartze gomendatua","80 € por persona":"80 € pertsonako","50 € por persona":"50 € pertsonako",
+  "10% I.V.A. incluido":"%10 BEZ barne","10% I.V.A. incluido · Producto de temporada":"%10 BEZ barne · Sasoiko produktua",
+  "El Bizkargi es el menú del día de Boroa: una selección corta que la cocina compone cada semana con lo mejor del mercado. Llama y te contamos el menú de esta semana.":"Bizkargi Boroako eguneko menua da: sukaldeak astero merkatuko onenarekin osatzen duen aukeraketa laburra. Deitu eta asteko menua kontatuko dizugu.",
+  "946 734 747 · menú de la semana":"946 734 747 · asteko menua",
+  "Menús para":"Menuak","grupos":"taldeentzat","De la huerta al monte":"Baratzetik mendira","Mar y brasa":"Itsasoa eta brasa","Bogavante y chuletón":"Abakandoa eta txuletoia",
+  "19 pases · el grande":"19 pase · handia","El equilibrado":"Orekatua","De la huerta":"Baratzekoa","19 pases + 5 vinos":"19 pase + 5 ardo","Con 5 vinos elegidos":"5 ardo aukeraturekin","Huerta + bodega":"Baratzea + upategia",
+  "Txindoki + Maridaje":"Txindoki + Uztartzea","Mugarra + Maridaje":"Mugarra + Uztartzea","Vegetariano + Maridaje":"Begetarianoa + Uztartzea","Menú Degustación Txindoki":"Txindoki Dastatze Menua","Menú Degustación Mugarra":"Mugarra Dastatze Menua",
   "Inicio":"Hasiera","Carta y Menús":"Karta eta Menuak","Eventos":"Ekitaldiak","Regala Boroa":"Oparitu Boroa","Reservas":"Erreserbak","Contacto":"Kontaktua",
   "Entrar":"Sartu","entrar en silencio":"isilik sartu",
   "Amorebieta-Etxano · Bizkaia":"Amorebieta-Etxano · Bizkaia",
@@ -2324,6 +2350,31 @@ document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click'
   "Tu mesa":"Zure mahaia","te espera":"zure zain dago"
   },
   en:{
+  "Más de veinte años redescubriendo y evolucionando platos propios de toda la vida, en una búsqueda continua de innovar y sorprender.":"More than twenty years rediscovering and evolving lifelong dishes, in a constant quest to innovate and surprise.",
+  "La Carta":"À la carte","Menú Txindoki":"Txindoki Menu","Menú Mugarra":"Mugarra Menu","Menú Vegetariano":"Vegetarian Menu","Menú Bizkargi":"Bizkargi Menu","Menús para grupos":"Group menus",
+  "A la carta · producto de temporada":"À la carte · seasonal produce",
+  "Menú degustación · 19 pases":"Tasting menu · 19 courses","Menú degustación · 11 pases":"Tasting menu · 11 courses","Menú degustación · de la huerta":"Tasting menu · from the garden",
+  "Entre semana · el menú de la casa":"Weekdays · the house menu","Grupos y comuniones · mín. 8 comensales":"Groups & communions · min. 8 guests",
+  "Entrantes, raciones cortas, pescados del Cantábrico, carnes a la brasa y postres de obrador.":"Starters, small plates, Cantabrian fish, charcoal-grilled meats and house-made desserts.",
+  "El gran viaje de Boroa: del ajoblanco al pichón, con caviar Beluga y kokotxa al pilpil.":"Boroa's grand journey: from ajoblanco to pigeon, with Beluga caviar and kokotxa al pilpil.",
+  "El equilibrado: vieira con caviar, merluza al txakoli y cochinillo con manzana de Boroa.":"The balanced one: scallop with caviar, hake in txakoli and suckling pig with Boroa apple.",
+  "Espárragos de Navarra, habitas de Aroa, alcachofas con trufa y el cheesecake de Idiazabal.":"Navarra asparagus, Aroa baby broad beans, artichokes with truffle and the Idiazabal cheesecake.",
+  "Cambia cada semana con el mercado y la temporada. La forma más cercana de conocer Boroa.":"Changes every week with the market and the season. The closest way to know Boroa.",
+  "Tres propuestas a mesa completa, concertadas con 3 días de antelación. Válidos hasta el 31 de julio de 2026.":"Three full-table proposals, arranged 3 days in advance. Valid until July 31, 2026.",
+  "maridaje +80 €":"pairing +80 €","maridaje +50 €":"pairing +50 €","con maridaje 140 €":"with pairing 140 €","con maridaje 250 €":"with pairing 250 €","con maridaje 160 €":"with pairing 160 €",
+  "Semanal":"Weekly","consultar el menú de la semana":"ask for this week's menu",
+  "Reserva con 24 h de antelación · máx. 12 comensales · servicio 13:00 – 14:30 · a mesa completa":"Book 24h ahead · max. 12 guests · service 1:00 – 2:30 pm · full table",
+  "Máx. 12 comensales · a mesa completa":"Max. 12 guests · full table",
+  "Reserva con 24 h de antelación · máx. 8 comensales":"Book 24h ahead · max. 8 guests",
+  "De martes a viernes no festivos · a mesa completa":"Tuesday to Friday, non-holidays · full table",
+  "Entrantes":"Starters","En ración corta — para realzar su esencia":"Small plates — to heighten their essence","Pescados":"Fish","Carnes":"Meat","Postres":"Desserts","Aperitivos":"Appetisers",
+  "Maridaje recomendado":"Recommended pairing","80 € por persona":"80 € per person","50 € por persona":"50 € per person",
+  "10% I.V.A. incluido":"10% VAT included","10% I.V.A. incluido · Producto de temporada":"10% VAT included · Seasonal produce",
+  "El Bizkargi es el menú del día de Boroa: una selección corta que la cocina compone cada semana con lo mejor del mercado. Llama y te contamos el menú de esta semana.":"The Bizkargi is Boroa's daily menu: a short selection the kitchen composes weekly with the market's best. Call us and we'll tell you this week's menu.",
+  "946 734 747 · menú de la semana":"946 734 747 · this week's menu",
+  "Menús para":"Menus for","grupos":"groups","De la huerta al monte":"From garden to mountain","Mar y brasa":"Sea & embers","Bogavante y chuletón":"Lobster & rib steak",
+  "19 pases · el grande":"19 courses · the grand one","El equilibrado":"The balanced one","De la huerta":"From the garden","19 pases + 5 vinos":"19 courses + 5 wines","Con 5 vinos elegidos":"With 5 chosen wines","Huerta + bodega":"Garden + cellar",
+  "Txindoki + Maridaje":"Txindoki + Pairing","Mugarra + Maridaje":"Mugarra + Pairing","Vegetariano + Maridaje":"Vegetarian + Pairing","Menú Degustación Txindoki":"Txindoki Tasting Menu","Menú Degustación Mugarra":"Mugarra Tasting Menu",
   "Inicio":"Home","Carta y Menús":"Menu & Tastings","Eventos":"Events","Regala Boroa":"Gift Boroa","Reservas":"Reservations","Contacto":"Contact",
   "Entrar":"Enter","entrar en silencio":"enter in silence",
   "Cocina vizcaína de raíz en un caserío del siglo XV restaurado con escrupuloso respeto, rodeado de robles centenarios.":"Deep-rooted Biscayan cuisine in a scrupulously restored 15th-century farmhouse, surrounded by centuries-old oaks.",
@@ -2404,6 +2455,17 @@ document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click'
       ht.innerHTML=words.join(' ');
     }
   }
+  window.__i18nApply=function(root){
+    const l=document.documentElement.lang||'es';
+    if(l==='es')return;
+    const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    while(w.nextNode()){
+      const n=w.currentNode, key=n.nodeValue.trim().replace(/\s+/g,' ');
+      if(key.length<2)continue;
+      const tr=D[l][key];
+      if(tr!==undefined)n.nodeValue=n.nodeValue.replace(n.nodeValue.trim(),tr);
+    }
+  };
   document.querySelectorAll('#langSwitch span').forEach(sp=>sp.addEventListener('click',()=>setLang(sp.dataset.lang)));
   const saved=localStorage.getItem('boroa-lang');
   if(saved && saved!=='es')setTimeout(()=>setLang(saved),100);
