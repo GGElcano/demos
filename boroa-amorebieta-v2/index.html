@@ -1344,33 +1344,17 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
           <div class="sched-row" data-day="0"><span class="d">Domingo</span><span class="h">13:00 – 15:30</span></div>
         </div>
         <p class="res-note">Horario de comidas, de lunes a domingo. Menús degustación con servicio de 13:00 a 14:30 y reserva con 24 h de antelación. Adaptado para personas con discapacidad · amplio parking.</p>
-        <div class="fork-card rv">
-          <div class="fk-k">Reserva online al instante</div>
-          <div class="fk-t">Boroa en TheFork</div>
-          <div class="fk-score"><b>9,8</b><span>/ 10 · valoración de los comensales</span></div>
-          <a class="btn btn-solid" href="https://www.thefork.es/restaurante/boroa-jatetxea-r619081" target="_blank" rel="noopener">Reservar en TheFork <span class="arr">→</span></a>
-        </div>
       </div>
       <div class="rv">
         <div class="label">Online</div>
-        <h2 class="display" style="margin-bottom:30px">Pide tu mesa</h2>
-        <form class="form" id="resForm">
-          <div class="f-row">
-            <div class="f-cell"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
-            <div class="f-cell"><label>Teléfono</label><input type="tel" name="tel" placeholder="600 000 000" required></div>
-          </div>
-          <div class="f-row">
-            <div class="f-cell"><label>Fecha</label><input type="date" name="fecha" required></div>
-            <div class="f-cell"><label>Comensales</label>
-              <select name="pax"><option>2 personas</option><option>3 personas</option><option>4 personas</option><option>5 personas</option><option>6 personas</option><option>7 – 12 personas</option><option>Grupo (+12)</option></select>
-            </div>
-          </div>
-          <div class="f-cell" style="border-right:none"><label>Observaciones</label><textarea name="obs" placeholder="Alergias, menú degustación, celebración…"></textarea></div>
-          <div class="f-submit">
-            <span class="f-hint">Te confirmamos por teléfono o email en horario de servicio.</span>
-            <button class="btn btn-solid" type="submit">Enviar petición <span class="arr">→</span></button>
-          </div>
-        </form>
+        <h2 class="display">Reserva al instante</h2>
+        <div class="fork-card" style="margin-top:30px">
+          <div class="fk-k">Disponibilidad en tiempo real</div>
+          <div class="fk-t">Boroa en TheFork</div>
+          <div class="fk-score"><b>9,8</b><span>/ 10 · valoración de los comensales</span></div>
+          <p style="margin-top:14px;font-size:13px;color:rgba(249,247,240,.6);line-height:1.8">Elige día, hora y comensales y recibe la confirmación al momento. Para grupos de más de 12, menús degustación o regalos, mejor una llamada.</p>
+          <a class="btn btn-solid" href="https://www.thefork.es/restaurante/boroa-jatetxea-r619081" target="_blank" rel="noopener">Reservar en TheFork <span class="arr">→</span></a>
+        </div>
       </div>
     </div>
   </div>
@@ -1571,6 +1555,8 @@ function ambFade(to,ms){
 }
 function enterSite(withSound){
   pre.classList.add('done');
+  const hv=document.getElementById('heroVideo');
+  if(hv && hv.tagName==='VIDEO')hv.play().catch(()=>{if(window._heroToImg)window._heroToImg()});
   sndToggle.classList.add('show');
   if(withSound){
     amb.volume=0;
@@ -1796,13 +1782,23 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
 (function(){
   const v=document.getElementById('heroVideo');
   if(!v)return;
+  v.muted=true;v.setAttribute('muted','');v.setAttribute('webkit-playsinline','');
   if(innerWidth<768){v.querySelector('source').src='assets/hero-entrada-960.mp4';v.load();}
-  if(REDUCED){
-    const img=document.createElement('img');img.src='assets/entrada-noche-1600.webp';img.alt='Caserío Boroa al anochecer';
-    v.replaceWith(img);return;
+  let swapped=false;
+  function toImg(){
+    if(swapped)return;swapped=true;
+    const img=document.createElement('img');
+    img.src='assets/entrada-noche-1600.webp';img.alt='Caserío Boroa al anochecer';
+    v.replaceWith(img);
   }
+  window._heroToImg=toImg;
+  if(REDUCED){toImg();return;}
+  /* si en 2,5s no ha arrancado (modo ahorro de iOS, datos restringidos…), foto y sin icono de play */
+  setTimeout(()=>{if(!swapped && (v.paused || v.currentTime===0))v.play().catch(toImg);},2500);
+  setTimeout(()=>{if(!swapped && (v.paused || v.currentTime===0))toImg();},5000);
   new IntersectionObserver(es=>es.forEach(en=>{
-    en.isIntersecting?v.play().catch(()=>{}):v.pause();
+    if(swapped)return;
+    en.isIntersecting?v.play().catch(toImg):v.pause();
   }),{threshold:.05}).observe(v);
 })();
 
@@ -2084,16 +2080,16 @@ if(!REDUCED){
     }
     let ax=cx,ay=cy,as=scale,fg=CH_FG[dispCh],k=.045,damp=.86,trail=false;
     if(flying){
-      const ft=(t-flyT0)/2700;
+      const ft=(t-flyT0)/2000;
       if(ft>=1){flying=false;}
       else{
-        const pose=Math.floor((t-flyT0)/600)%2;
+        const pose=Math.floor((t-flyT0)/700)%2;
         const mirror=flyDir<0;
         const key='fly'+pose+(mirror?'m':'');
         if(key!==curKey){curKey=key;setTargets(birdPts[pose],pose===0?!mirror:mirror);}
-        ax=cx+Math.sin(ft*Math.PI)*W*.24*flyDir;
-        ay=cy-Math.sin(ft*Math.PI*2)*H*.06+Math.sin(t*.012)*8;
-        as=scale*.7;k=.15;damp=.84;trail=true;
+        ax=cx+Math.sin(ft*Math.PI)*W*.13*flyDir;
+        ay=cy-Math.sin(ft*Math.PI*2)*H*.04+Math.sin(t*.009)*7;
+        as=scale*.7;k=.12;damp=.86;trail=true;
       }
     }
     if(!flying){
@@ -2260,13 +2256,7 @@ if(!REDUCED){
 })();
 
 /* ============ REGALAR: prefill de la reserva ============ */
-document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click',()=>{
-  go('reservas');
-  setTimeout(()=>{
-    const obs=document.querySelector('#resForm textarea[name="obs"]');
-    if(obs)obs.value='Quiero regalar el '+b.dataset.regalo+' (caja regalo).';
-  },900);
-}));
+document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click',()=>go('reservas')));
 
 /* ============ HERO: ascuas que huyen del cursor ============ */
 (function(){
@@ -2305,20 +2295,6 @@ document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click'
   })(0);
 })();
 
-/* ============ FORM RESERVAS → email ============ */
-document.getElementById('resForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const f=new FormData(e.target);
-  const body=encodeURIComponent(
-`Solicitud de reserva — web
-
-Nombre: ${f.get('nombre')}
-Teléfono: ${f.get('tel')}
-Fecha: ${f.get('fecha')}
-Comensales: ${f.get('pax')}
-Observaciones: ${f.get('obs')||'—'}`);
-  location.href=`mailto:boroa@boroa.com?subject=${encodeURIComponent('Reserva web — '+f.get('nombre'))}&body=${body}`;
-});
 </script>
 </body>
 </html>
