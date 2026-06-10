@@ -2130,8 +2130,7 @@ if(!REDUCED){
   const scene=document.getElementById('wheelScene'),track=document.getElementById('wheelTrack'),
         detail=document.getElementById('menuDetail'),macc=document.querySelector('.macc');
   if(!scene||!macc)return;
-  if(REDUCED){document.getElementById('menuWheel').style.display='none';return;}
-  macc.style.display='none';
+  macc.style.display='none';   /* la rueda sale SIEMPRE; con reduce-motion solo pierde el autogiro */
   const DATA=[...macc.querySelectorAll('.mrow')].map(row=>({
     id:row.id,
     img:row.querySelector('.mimg img')?.getAttribute('src'),
@@ -2141,7 +2140,7 @@ if(!REDUCED){
     body:row.querySelector('.mbody-in')
   }));
   const n=DATA.length, step=360/n;
-  let R=0,rot=0,vel=0,auto=.05,active=false,dragging=false,moved=false,lastX=0,selected=-1;
+  let R=0,rot=0,vel=0,auto=REDUCED?0:.05,active=false,dragging=false,moved=false,lastX=0,selected=-1;
   const cards=DATA.map((d,i)=>{
     const el=document.createElement('div');el.className='w-card';
     el.innerHTML=`<div class="wc"><img src="${d.img}" alt="" loading="lazy"><div class="wi"><b>${d.title.replace(/<[^>]+>/g,' ')}</b><span>${d.kicker}</span></div></div>`;
