@@ -660,6 +660,14 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 #fluidC{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3998;opacity:.92}
 @media(pointer:coarse){#fluidC{display:none}}
 
+/* ============ HERO ULTRA: ascuas + barrido ============ */
+#emberC{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.hero-sweep{position:absolute;inset:-20%;z-index:2;pointer-events:none;opacity:0;
+  background:linear-gradient(115deg,transparent 38%,rgba(200,173,127,.13) 50%,transparent 62%);
+  animation:sweep 9s var(--ease) infinite}
+@keyframes sweep{0%,72%{transform:translateX(-55%);opacity:0}78%{opacity:1}88%,100%{transform:translateX(55%);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hero-sweep{display:none}}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:1080px){
   nav.main{display:none}
@@ -715,7 +723,6 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
   </a>
   <nav class="main">
     <a data-go="inicio" class="active">Inicio</a>
-    <a data-go="restaurante">El Restaurante</a>
     <a data-go="carta">Carta y Menús</a>
     <a data-go="eventos">Eventos</a>
     <a data-go="regala">Regala Boroa</a>
@@ -736,7 +743,6 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 
 <div id="mnav">
   <a data-go="inicio">Inicio</a>
-  <a data-go="restaurante">El Restaurante</a>
   <a data-go="carta">Carta y Menús</a>
   <a data-go="eventos">Eventos</a>
   <a data-go="regala">Regala Boroa</a>
@@ -760,6 +766,8 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
         </video>
       </div>
       <div class="hero-veil"></div>
+      <canvas id="emberC" aria-hidden="true"></canvas>
+      <div class="hero-sweep" aria-hidden="true"></div>
       <div class="hero-inner" id="heroInner">
         <div class="hero-title-block">
           <div class="hero-eyebrow">Amorebieta-Etxano · Bizkaia</div>
@@ -796,98 +804,6 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
   </div>
 
-  <!-- ¿QUÉ TE APETECE? con flotantes -->
-  <div id="apetece">
-    <div class="flo flo-1" data-speed="-26" data-rot="-7"><img src="assets/flota-caja-veg.webp" alt="Caja regalo menú vegetariano"><span class="tag">Regala Boroa</span></div>
-    <div class="flo flo-2" data-speed="-58" data-rot="6"><img src="assets/flota-txangurro.webp" alt="Txangurro a la donostiarra"><span class="tag">Txangurro</span></div>
-    <div class="flo flo-3" data-speed="-38" data-rot="5"><img src="assets/flota-caja-2.webp" alt="Caja regalo Boroa"></div>
-    <div class="flo flo-4" data-speed="-70" data-rot="-10"><img src="assets/flota-pina.webp" alt="Piña del bosque de Boroa"></div>
-    <div class="flo flo-5" data-speed="-18" data-rot="3"><img src="assets/flota-caja-veg.webp" alt="" style="opacity:.55"></div>
-    <div class="ap-center">
-      <div class="label center rv">Carta · menús degustación · tienda</div>
-      <h2 class="rv">¿Qué te apetece <em>hoy?</em></h2>
-      <p class="rv">Kokotxas al pilpil, dos menús degustación con nombre de monte, un vegetariano de huerta propia — o una caja para regalar Boroa a quien más quieres.</p>
-      <div class="hero-ctas rv" style="justify-content:center">
-        <a class="btn btn-ink" data-go="carta">Ver carta y menús <span class="arr">→</span></a>
-        <a class="btn btn-ink" data-go="eventos">Celebraciones</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- TARJETA FIJA SOBRE MURO KEN BURNS -->
-  <div id="muro">
-    <div class="muro-bg">
-      <div class="kb-wrap"><img class="kb" src="assets/interior-sala-2000.webp" alt="Sala de Boroa"></div>
-      <div class="muro-veil"></div>
-      <div class="muro-card" id="muroCard">
-        <div class="label">El caserío</div>
-        <h3>Cinco siglos de piedra,<br><em>veinticinco años de fuego</em></h3>
-        <p>Un caserío del siglo XV restaurado con escrupuloso respeto. Desde el 17 de marzo de 1997, cocina vizcaína que evoluciona platos de toda la vida entre robles centenarios.</p>
-        <a class="btn btn-ink" data-go="restaurante">Conocer el restaurante <span class="arr">→</span></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- RAIL HORIZONTAL -->
-  <div id="rail" class="dark" style="position:relative;overflow:hidden">
-    <div class="gridlayer" aria-hidden="true"></div>
-    <div class="rail-head">
-      <div>
-        <div class="label">La mesa de Boroa</div>
-        <h2 class="display rv">Mesa, bodega <em>y celebración</em></h2>
-      </div>
-      <div class="rail-hint">Arrastra para explorar →</div>
-    </div>
-    <div class="rail-track" id="railTrack">
-      <a class="rail-card" data-go="carta"><img src="assets/kokotxa-800.webp" alt="Kokotxas al pilpil"><div class="rc-body"><div class="rc-k">La carta</div><div class="rc-t">Kokotxas de merluza al pilpil</div></div></a>
-      <a class="rail-card" data-go="carta"><img src="assets/interior-mesa-1200.webp" alt="Menú degustación"><div class="rc-body"><div class="rc-k">Menú degustación</div><div class="rc-t">Txindoki — 19 pases</div></div></a>
-      <a class="rail-card" data-go="restaurante"><img src="assets/bodega-vertical-1000.webp" alt="La bodega"><div class="rc-body"><div class="rc-k">La bodega</div><div class="rc-t">350 referencias que maridan</div></div></a>
-      <a class="rail-card" data-go="eventos"><img src="assets/bodas-1200.webp" alt="Bodas"><div class="rc-body"><div class="rc-k">Eventos</div><div class="rc-t">Tu boda bajo los robles</div></div></a>
-      <a class="rail-card" data-go="restaurante"><img src="assets/pergola-noche-1200.webp" alt="Terraza"><div class="rc-body"><div class="rc-k">La terraza</div><div class="rc-t">Al caer la tarde</div></div></a>
-      <a class="rail-card" data-go="restaurante"><img src="assets/terraza-dia-1600.webp" alt="Robles centenarios"><div class="rc-body"><div class="rc-k">El entorno</div><div class="rc-t">Robles centenarios</div></div></a>
-    </div>
-  </div>
-
-  <!-- QUOTES -->
-  <div class="sec quotes">
-    <div class="sec-inner">
-      <span class="q-mark">“</span>
-      <div class="q-stage" id="qStage"></div>
-      <div class="q-dots" id="qDots"></div>
-    </div>
-  </div>
-
-  <!-- CIERRE GRANDE -->
-  <div id="cierre">
-    <div class="gridlayer" aria-hidden="true" style="z-index:3;opacity:.3"></div>
-    <div class="kb-wrap"><img class="kb kb-b" src="assets/pergola-noche-2000.webp" alt="Terraza de Boroa al anochecer"></div>
-    <div class="veil"></div>
-    <div class="cierre-c">
-      <h2 class="rv">¿Te sentamos<br><em>a la mesa?</em></h2>
-      <a class="btn btn-solid btn-big rv" data-go="reservas">Reservar en Boroa <span class="arr">→</span></a>
-      <div class="cierre-meta rv">
-        <span>946 734 747</span>
-        <span>Comidas L–D · 13:00 – 15:30</span>
-        <span>San Pedro de Boroa 11 · Amorebieta</span>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- ════════════════ EL RESTAURANTE ════════════════ -->
-<section class="view" id="v-restaurante">
-
-  <div class="page-head">
-    <div class="kb-wrap"><img class="kb" src="assets/interior-sala-2000.webp" alt="Sala de Boroa Jatetxea"></div>
-    <div class="veil"></div>
-    <div class="ph-inner">
-      <div class="label">El restaurante</div>
-      <h1>Un caserío del s. XV<br><em>lleno de magia</em></h1>
-      <p class="ph-sub">Piedra, roble y mantel blanco. La arquitectura original, restaurada con escrupuloso respeto; la cocina, en constante búsqueda de innovar y sorprender.</p>
-    </div>
-  </div>
-
   <!-- CINCO SIGLOS EN UN SCROLL -->
   <div id="siglos">
     <div class="siglos-stage" id="siglosStage">
@@ -917,7 +833,26 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
   </div>
 
-  <div class="sec">
+
+  <!-- ¿QUÉ TE APETECE? con flotantes -->
+  <div id="apetece">
+    <div class="flo flo-1" data-speed="-26" data-rot="-7"><img src="assets/flota-caja-veg.webp" alt="Caja regalo menú vegetariano"><span class="tag">Regala Boroa</span></div>
+    <div class="flo flo-2" data-speed="-58" data-rot="6"><img src="assets/flota-txangurro.webp" alt="Txangurro a la donostiarra"><span class="tag">Txangurro</span></div>
+    <div class="flo flo-3" data-speed="-38" data-rot="5"><img src="assets/flota-caja-2.webp" alt="Caja regalo Boroa"></div>
+    <div class="flo flo-4" data-speed="-70" data-rot="-10"><img src="assets/flota-pina.webp" alt="Piña del bosque de Boroa"></div>
+    <div class="flo flo-5" data-speed="-18" data-rot="3"><img src="assets/flota-caja-veg.webp" alt="" style="opacity:.55"></div>
+    <div class="ap-center">
+      <div class="label center rv">Carta · menús degustación · tienda</div>
+      <h2 class="rv">¿Qué te apetece <em>hoy?</em></h2>
+      <p class="rv">Kokotxas al pilpil, dos menús degustación con nombre de monte, un vegetariano de huerta propia — o una caja para regalar Boroa a quien más quieres.</p>
+      <div class="hero-ctas rv" style="justify-content:center">
+        <a class="btn btn-ink" data-go="carta">Ver carta y menús <span class="arr">→</span></a>
+        <a class="btn btn-ink" data-go="eventos">Celebraciones</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="historiaSec">
     <div class="sec-inner">
       <div class="intro-grid">
         <div class="rv">
@@ -948,7 +883,8 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
   </div>
 
-  <div class="sec bodega dark">
+
+  <div class="sec bodega dark" id="bodegaSec">
     <div class="sec-inner">
       <div class="bodega-grid">
         <div class="rv">
@@ -973,6 +909,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
   </div>
 
+
   <div class="sec">
     <div class="sec-inner">
       <div class="rv">
@@ -988,12 +925,49 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
   </div>
 
-  <div class="cta-band">
-    <div class="kb-wrap"><img class="kb" src="assets/entrada-noche-1600.webp" alt="Entrada del caserío de noche" loading="lazy"></div>
+
+  <!-- RAIL HORIZONTAL -->
+  <div id="rail" class="dark" style="position:relative;overflow:hidden">
+    <div class="gridlayer" aria-hidden="true"></div>
+    <div class="rail-head">
+      <div>
+        <div class="label">La mesa de Boroa</div>
+        <h2 class="display rv">Mesa, bodega <em>y celebración</em></h2>
+      </div>
+      <div class="rail-hint">Arrastra para explorar →</div>
+    </div>
+    <div class="rail-track" id="railTrack">
+      <a class="rail-card" data-go="carta"><img src="assets/kokotxa-800.webp" alt="Kokotxas al pilpil"><div class="rc-body"><div class="rc-k">La carta</div><div class="rc-t">Kokotxas de merluza al pilpil</div></div></a>
+      <a class="rail-card" data-go="carta"><img src="assets/interior-mesa-1200.webp" alt="Menú degustación"><div class="rc-body"><div class="rc-k">Menú degustación</div><div class="rc-t">Txindoki — 19 pases</div></div></a>
+      <a class="rail-card" data-go="inicio" data-to="#bodegaSec"><img src="assets/bodega-vertical-1000.webp" alt="La bodega"><div class="rc-body"><div class="rc-k">La bodega</div><div class="rc-t">350 referencias que maridan</div></div></a>
+      <a class="rail-card" data-go="eventos"><img src="assets/bodas-1200.webp" alt="Bodas"><div class="rc-body"><div class="rc-k">Eventos</div><div class="rc-t">Tu boda bajo los robles</div></div></a>
+      <a class="rail-card" data-go="reservas"><img src="assets/pergola-noche-1200.webp" alt="Terraza"><div class="rc-body"><div class="rc-k">La terraza</div><div class="rc-t">Al caer la tarde</div></div></a>
+      <a class="rail-card" data-go="inicio" data-to="#historiaSec"><img src="assets/terraza-dia-1600.webp" alt="Robles centenarios"><div class="rc-body"><div class="rc-k">El entorno</div><div class="rc-t">Robles centenarios</div></div></a>
+    </div>
+  </div>
+
+  <!-- QUOTES -->
+  <div class="sec quotes">
+    <div class="sec-inner">
+      <span class="q-mark">“</span>
+      <div class="q-stage" id="qStage"></div>
+      <div class="q-dots" id="qDots"></div>
+    </div>
+  </div>
+
+  <!-- CIERRE GRANDE -->
+  <div id="cierre">
+    <div class="gridlayer" aria-hidden="true" style="z-index:3;opacity:.3"></div>
+    <div class="kb-wrap"><img class="kb kb-b" src="assets/pergola-noche-2000.webp" alt="Terraza de Boroa al anochecer"></div>
     <div class="veil"></div>
-    <div class="cta-c rv">
-      <h2>La mesa está puesta<br><em>desde hace cinco siglos</em></h2>
-      <div style="margin-top:30px"><a class="btn btn-solid" data-go="reservas">Reservar mesa <span class="arr">→</span></a></div>
+    <div class="cierre-c">
+      <h2 class="rv">¿Te sentamos<br><em>a la mesa?</em></h2>
+      <a class="btn btn-solid btn-big rv" data-go="reservas">Reservar en Boroa <span class="arr">→</span></a>
+      <div class="cierre-meta rv">
+        <span>946 734 747</span>
+        <span>Comidas L–D · 13:00 – 15:30</span>
+        <span>San Pedro de Boroa 11 · Amorebieta</span>
+      </div>
     </div>
   </div>
 
@@ -1552,8 +1526,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
     <div class="foot-col">
       <h5>Visita</h5>
-      <a data-go="restaurante">El Restaurante</a>
-      <a data-go="carta">Carta y Menús</a>
+        <a data-go="carta">Carta y Menús</a>
       <a data-go="eventos">Bodas y Eventos</a>
       <a data-go="regala">Regala Boroa</a>
       <a data-go="reservas">Reservas</a>
@@ -1628,7 +1601,7 @@ if(!REDUCED && typeof Lenis!=='undefined'){
 }
 
 /* ============ ROUTER CON CORTINA ============ */
-const VIEWS=['inicio','restaurante','carta','eventos','regala','reservas','contacto'];
+const VIEWS=['inicio','carta','eventos','regala','reservas','contacto'];
 const curtain=document.getElementById('curtain');
 let routing=false;
 function switchView(view){
@@ -1640,7 +1613,8 @@ function switchView(view){
   if(hv){view==='inicio'?hv.play().catch(()=>{}):hv.pause();}
   if(HAS_GSAP && !REDUCED){ScrollTrigger.refresh();initReveals(view);}
 }
-function go(view,push=true){
+function go(view,push=true,anchor=null){
+  if(view==='restaurante'){view='inicio';anchor=anchor||'#siglos';}
   if(!VIEWS.includes(view) && view!=='perdido')view='perdido';
   if(routing)return;
   document.body.classList.remove('menu-open');
@@ -1650,14 +1624,14 @@ function go(view,push=true){
     gsap.timeline({onComplete:()=>{routing=false}})
       .set(curtain,{transformOrigin:'bottom'})
       .to(curtain,{scaleY:1,duration:.45,ease:'power3.in'})
-      .add(()=>switchView(view))
+      .add(()=>{switchView(view);if(anchor){const el=document.querySelector(anchor);if(el){const y=el.getBoundingClientRect().top+scrollY-70;scrollTo(0,y);if(lenis)lenis.scrollTo(y,{immediate:true});}}})
       .set(curtain,{transformOrigin:'top'})
       .to(curtain,{scaleY:0,duration:.6,ease:'power3.out'},'+=0.05');
-  }else{switchView(view);}
+  }else{switchView(view);if(anchor){const el=document.querySelector(anchor);if(el)el.scrollIntoView();}}
 }
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-go]');
-  if(t){e.preventDefault();go(t.dataset.go);}
+  if(t){e.preventDefault();go(t.dataset.go,true,t.dataset.to||null);}
 });
 window.addEventListener('popstate',()=>go(location.hash.replace('#','')||'inicio',false));
 
@@ -2110,16 +2084,16 @@ if(!REDUCED){
     }
     let ax=cx,ay=cy,as=scale,fg=CH_FG[dispCh],k=.045,damp=.86,trail=false;
     if(flying){
-      const ft=(t-flyT0)/1500;
+      const ft=(t-flyT0)/2700;
       if(ft>=1){flying=false;}
       else{
-        const pose=Math.floor((t-flyT0)/420)%2;
+        const pose=Math.floor((t-flyT0)/600)%2;
         const mirror=flyDir<0;
         const key='fly'+pose+(mirror?'m':'');
         if(key!==curKey){curKey=key;setTargets(birdPts[pose],pose===0?!mirror:mirror);}
         ax=cx+Math.sin(ft*Math.PI)*W*.24*flyDir;
         ay=cy-Math.sin(ft*Math.PI*2)*H*.06+Math.sin(t*.012)*8;
-        as=scale*.7;k=.22;damp=.8;trail=true;
+        as=scale*.7;k=.15;damp=.84;trail=true;
       }
     }
     if(!flying){
@@ -2279,6 +2253,43 @@ document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click'
     if(obs)obs.value='Quiero regalar el '+b.dataset.regalo+' (caja regalo).';
   },900);
 }));
+
+/* ============ HERO: ascuas que huyen del cursor ============ */
+(function(){
+  const cv=document.getElementById('emberC');if(!cv||REDUCED)return;
+  const ctx=cv.getContext('2d');
+  const stage=document.getElementById('heroStage');
+  let W=0,H=0,on=true;
+  function rs(){W=cv.width=stage.clientWidth;H=cv.height=stage.clientHeight}
+  rs();addEventListener('resize',rs);
+  new IntersectionObserver(es=>es.forEach(en=>on=en.isIntersecting),{threshold:.02}).observe(stage);
+  let mx=-999,my=-999;
+  stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top},{passive:true});
+  stage.addEventListener('pointerleave',()=>{mx=-999;my=-999});
+  const N=innerWidth<880?34:72;
+  const E=Array.from({length:N},()=>({x:Math.random(),y:Math.random(),
+    s:.8+Math.random()*2.2, v:.00014+Math.random()*.00038,
+    ph:Math.random()*6.28, w:.5+Math.random()*1.4, o:.3+Math.random()*.6}));
+  (function emb(t){
+    requestAnimationFrame(emb);
+    if(!on)return;
+    ctx.clearRect(0,0,W,H);
+    E.forEach(e=>{
+      e.y-=e.v; if(e.y<-.04){e.y=1.04;e.x=Math.random();}
+      let x=e.x*W+Math.sin(t*.0005*e.w+e.ph)*26;
+      let y=e.y*H;
+      /* huyen del cursor */
+      const dx=x-mx,dy=y-my,d2=dx*dx+dy*dy;
+      if(d2<16900){const d=Math.sqrt(d2)||1,f=(130-d)/130*34;x+=dx/d*f;y+=dy/d*f;}
+      const tw=.55+.45*Math.sin(t*.004*e.w+e.ph);          /* parpadeo */
+      ctx.globalAlpha=e.o*tw;
+      ctx.fillStyle='rgba(228,196,138,1)';
+      ctx.beginPath();ctx.arc(x,y,e.s,0,6.28);ctx.fill();
+      if(e.s>2.2){ctx.globalAlpha=e.o*tw*.3;ctx.beginPath();ctx.arc(x,y,e.s*3,0,6.28);ctx.fill();}
+    });
+    ctx.globalAlpha=1;
+  })(0);
+})();
 
 /* ============ FORM RESERVAS → email ============ */
 document.getElementById('resForm').addEventListener('submit',e=>{
