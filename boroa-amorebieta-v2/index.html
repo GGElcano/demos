@@ -2095,10 +2095,11 @@ if(!REDUCED){
       if(ft>=1){flying=false;const nowW=(()=>{const g=segAt(p);return g.type==='ch'?g.i:(((p-g.a)/(g.b-g.a))>.5?Math.min(3,g.i+1):g.i)})();
         if(nowW!==dispCh){dispCh=nowW;curKey='';}}   /* aterriza y morph directo: no encadena vuelos */
       else{
-        const pose=Math.floor((t-flyT0)/700)%2;
+        const wantPose=Math.floor((t-flyT0)/700)%2;
+        const pose=birdPts[wantPose]?wantPose:(birdPts[0]?0:1);   /* nunca una pose sin cargar */
         const mirror=flyDir<0;
         const key='fly'+pose+(mirror?'m':'');
-        if(key!==curKey){curKey=key;setTargets(birdPts[pose],pose===0?!mirror:mirror);}
+        if(key!==curKey && birdPts[pose]){curKey=key;setTargets(birdPts[pose],pose===0?!mirror:mirror);}
         ax=cx+Math.sin(ft*Math.PI)*W*.13*flyDir;
         ay=cy-Math.sin(ft*Math.PI*2)*H*.04+Math.sin(t*.009)*7;
         as=scale*.7;k=.12;damp=.86;trail=true;
