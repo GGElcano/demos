@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boroa Jatetxea · Alta cocina vasca en un caserío del s.XV · Amorebieta</title>
+<meta name="description" content="Boroa Jatetxea — 1 Estrella Michelin desde 2008. Cocina vizcaína de raíz en un caserío del siglo XV rodeado de robles centenarios. Amorebieta-Etxano, Bizkaia.">
+<meta property="og:title" content="Boroa Jatetxea · Paraíso gastronómico en plena naturaleza">
+<meta property="og:description" content="1 Estrella Michelin · 2 Soles Repsol · Caserío del s.XV · Amorebieta-Etxano">
+<meta property="og:image" content="assets/entrada-noche-1600.webp">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/boroa-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Boroa Jatetxea",
+  "image": "assets/entrada-noche-1600.webp",
+  "servesCuisine": "Cocina vasca de autor",
+  "telephone": "+34 946 734 747",
+  "email": "boroa@boroa.com",
+  "priceRange": "€€€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "San Pedro de Boroa 11",
+    "addressLocality": "Amorebieta-Etxano",
+    "postalCode": "48340",
+    "addressRegion": "Bizkaia",
+    "addressCountry": "ES"
+  },
+  "award": "1 Estrella Michelin (desde 2008), 2 Soles Repsol, Q de Plata",
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "13:00", "closes": "15:30"
+  }]
+}
+</script>
+<style>
+/* ============ DESIGN TOKENS ============ */
+:root{
+  --ink:#16140f;
+  --ink-soft:#2a261d;
+  --noche:#0c1322;
+  --noche-2:#101a2e;
+  --paper:#f4f1e8;
+  --paper-2:#ece7d9;
+  --paper-3:#e2dcc9;
+  --bronze:#9a7b4f;
+  --bronze-deep:#6e573a;
+  --bronze-light:#c8ad7f;
+  --cream:#f9f7f0;
+  --line:rgba(110,87,58,.22);
+  --line-dark:rgba(200,173,127,.18);
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Work Sans', system-ui, sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--bronze);color:var(--cream)}
+
+/* ============ GRAIN ============ */
+#grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:2000;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 9s steps(10) infinite;}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}10%{transform:translate(-3%,-5%)}20%{transform:translate(-7%,3%)}
+  30%{transform:translate(4%,-9%)}40%{transform:translate(-3%,11%)}50%{transform:translate(-8%,-4%)}
+  60%{transform:translate(8%,0)}70%{transform:translate(0,7%)}80%{transform:translate(2%,12%)}90%{transform:translate(-5%,4%)}}
+
+/* ============ PRELOADER ============ */
+#preloader{position:fixed;inset:0;background:var(--noche);z-index:3000;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;transition:opacity 1s var(--ease),visibility 1s}
+#preloader.done{opacity:0;visibility:hidden}
+.pre-mono{font-family:var(--serif);font-size:84px;font-weight:300;color:var(--cream);line-height:1;letter-spacing:.04em;
+  opacity:0;animation:preIn 1.2s var(--ease-out) .15s forwards}
+.pre-mono em{font-style:normal;color:var(--bronze-light)}
+.pre-sub{font-size:11px;letter-spacing:.5em;color:var(--bronze-light);text-transform:uppercase;text-indent:.5em;
+  opacity:0;animation:preIn 1.2s var(--ease-out) .45s forwards}
+.pre-line{width:0;height:1px;background:var(--bronze);animation:preLine 1.6s var(--ease) .3s forwards}
+@keyframes preIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes preLine{to{width:120px}}
+
+/* ============ HEADER ============ */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 clamp(20px,4vw,56px);
+  display:flex;align-items:center;justify-content:space-between;height:84px;
+  transition:background .5s var(--ease),height .5s var(--ease),box-shadow .5s}
+header.scrolled{background:rgba(12,19,34,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);height:66px;
+  box-shadow:0 1px 0 var(--line-dark)}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;cursor:pointer}
+.brand .b-name{font-family:var(--serif);font-size:27px;font-weight:500;color:var(--cream);letter-spacing:.12em}
+.brand .b-sub{font-size:9px;letter-spacing:.42em;color:var(--bronze-light);text-transform:uppercase}
+nav.main{display:flex;gap:clamp(14px,2.2vw,34px);align-items:center}
+nav.main a{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(249,247,240,.82);
+  text-decoration:none;padding:6px 0;position:relative;transition:color .3s;cursor:pointer;font-weight:400}
+nav.main a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--bronze-light);
+  transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+nav.main a:hover,nav.main a.active{color:var(--cream)}
+nav.main a:hover::after,nav.main a.active::after{transform:scaleX(1);transform-origin:left}
+.head-right{display:flex;align-items:center;gap:22px}
+.langs{display:flex;gap:2px;font-size:10px;letter-spacing:.14em}
+.langs span{padding:4px 7px;color:rgba(249,247,240,.45);cursor:default}
+.langs span.on{color:var(--cream);border-bottom:1px solid var(--bronze-light)}
+.head-tel{font-size:12px;letter-spacing:.12em;color:var(--bronze-light);text-decoration:none;white-space:nowrap}
+.head-tel:hover{color:var(--cream)}
+#burger{display:none;background:none;border:none;cursor:pointer;z-index:1102;width:30px;height:22px;position:relative}
+#burger span{position:absolute;left:0;width:100%;height:1.5px;background:var(--cream);transition:.4s var(--ease)}
+#burger span:nth-child(1){top:0}#burger span:nth-child(2){top:10px}#burger span:nth-child(3){top:20px}
+body.menu-open #burger span:nth-child(1){top:10px;transform:rotate(45deg)}
+body.menu-open #burger span:nth-child(2){opacity:0}
+body.menu-open #burger span:nth-child(3){top:10px;transform:rotate(-45deg)}
+
+/* mobile nav */
+#mnav{position:fixed;inset:0;background:var(--noche);z-index:1100;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;opacity:0;visibility:hidden;transition:.5s var(--ease)}
+body.menu-open #mnav{opacity:1;visibility:visible}
+#mnav a{font-family:var(--serif);font-size:34px;font-weight:400;color:var(--cream);text-decoration:none;
+  padding:8px;letter-spacing:.04em;opacity:0;transform:translateY(16px);transition:.5s var(--ease)}
+body.menu-open #mnav a{opacity:1;transform:none}
+#mnav a:nth-child(2){transition-delay:.06s}#mnav a:nth-child(3){transition-delay:.12s}
+#mnav a:nth-child(4){transition-delay:.18s}#mnav a:nth-child(5){transition-delay:.24s}
+#mnav a:nth-child(6){transition-delay:.3s}
+#mnav .m-tel{margin-top:26px;font-family:var(--sans);font-size:13px;letter-spacing:.2em;color:var(--bronze-light)}
+
+/* ============ VIEWS ============ */
+.view{display:none}
+.view.current{display:block;animation:viewIn .8s var(--ease-out)}
+@keyframes viewIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* ============ HERO ============ */
+.hero{position:relative;height:100svh;min-height:620px;display:flex;align-items:flex-end;overflow:hidden;background:var(--noche)}
+.hero-media{position:absolute;inset:0}
+.hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-veil{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(12,19,34,.42) 0%,rgba(12,19,34,.05) 34%,rgba(12,19,34,.12) 62%,rgba(10,15,26,.82) 100%)}
+.hero-inner{position:relative;z-index:3;width:100%;padding:0 clamp(22px,5vw,72px) clamp(48px,7vh,92px);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.hero-title-block{max-width:760px}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--bronze-light);margin-bottom:22px;font-weight:400}
+.hero-eyebrow::before{content:'';width:46px;height:1px;background:var(--bronze)}
+.hero h1{font-family:var(--serif);font-weight:300;color:var(--cream);
+  font-size:clamp(44px,7.2vw,104px);line-height:1.02;letter-spacing:.005em}
+.hero h1 em{font-style:italic;color:var(--bronze-light)}
+.hero-sub{margin-top:20px;font-size:clamp(13px,1.3vw,15.5px);color:rgba(249,247,240,.78);max-width:430px;line-height:1.8;font-weight:300}
+.hero-ctas{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+.hero-side{display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right}
+.award-chip{display:flex;align-items:center;gap:11px;color:rgba(249,247,240,.85);font-size:11.5px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:400}
+.award-chip b{color:var(--bronze-light);font-weight:500;font-family:var(--serif);font-size:15px;letter-spacing:.05em}
+.scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;
+  align-items:center;gap:8px;color:rgba(249,247,240,.55);font-size:9.5px;letter-spacing:.4em;text-transform:uppercase}
+.scroll-cue::after{content:'';width:1px;height:42px;background:linear-gradient(180deg,var(--bronze-light),transparent);
+  animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}
+  55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:15px 30px;font-family:var(--sans);font-size:11px;
+  letter-spacing:.26em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid transparent;
+  transition:.45s var(--ease);font-weight:500;background:none}
+.btn .arr{transition:transform .45s var(--ease)}
+.btn:hover .arr{transform:translateX(6px)}
+.btn-solid{background:var(--bronze);color:var(--cream)}
+.btn-solid:hover{background:var(--bronze-deep)}
+.btn-ghost{border-color:rgba(249,247,240,.4);color:var(--cream)}
+.btn-ghost:hover{border-color:var(--bronze-light);background:rgba(200,173,127,.08)}
+.btn-ink{border-color:var(--bronze-deep);color:var(--bronze-deep)}
+.btn-ink:hover{background:var(--bronze-deep);color:var(--cream)}
+
+/* ============ SECTION SCAFFOLD ============ */
+.sec{padding:clamp(70px,10vw,130px) clamp(22px,5vw,72px)}
+.sec-inner{max-width:1280px;margin:0 auto}
+.label{display:flex;align-items:center;gap:14px;font-size:10.5px;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--bronze-deep);font-weight:500;margin-bottom:20px}
+.label::before{content:'';width:38px;height:1px;background:var(--bronze)}
+.dark .label{color:var(--bronze-light)}
+h2.display{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.6vw,64px);line-height:1.08;letter-spacing:.005em}
+h2.display em{font-style:italic;color:var(--bronze)}
+.dark h2.display{color:var(--cream)}
+.lead{font-size:clamp(14.5px,1.35vw,17px);line-height:1.85;color:var(--ink-soft);max-width:560px;font-weight:300}
+.dark .lead{color:rgba(249,247,240,.75)}
+
+/* reveals */
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}.rv-d3{transition-delay:.36s}.rv-d4{transition-delay:.48s}
+
+/* ============ INTRO EDITORIAL ============ */
+.intro{background:var(--paper)}
+.intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px);align-items:center}
+.intro-fig{position:relative}
+.intro-fig img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;object-position:center 18%}
+.intro-fig::after{content:'';position:absolute;inset:18px -18px -18px 18px;border:1px solid var(--line);z-index:-1}
+.intro-year{position:absolute;right:-10px;bottom:-26px;background:var(--paper);padding:14px 20px;
+  font-family:var(--serif);font-size:15px;font-style:italic;color:var(--bronze-deep);border:1px solid var(--line)}
+.drop::first-letter{font-family:var(--serif);font-size:3.3em;float:left;line-height:.82;padding-right:10px;color:var(--bronze-deep)}
+
+/* awards band */
+.awards-band{background:var(--noche);position:relative;overflow:hidden}
+.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:1280px;margin:0 auto}
+.award-cell{padding:clamp(36px,4.5vw,64px) 30px;text-align:center;position:relative}
+.award-cell + .award-cell::before{content:'';position:absolute;left:0;top:24%;height:52%;width:1px;background:var(--line-dark)}
+.award-num{font-family:var(--serif);font-size:clamp(40px,4.6vw,62px);font-weight:300;color:var(--bronze-light);line-height:1}
+.award-name{margin-top:10px;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:rgba(249,247,240,.75);font-weight:400}
+.award-note{margin-top:6px;font-family:var(--serif);font-style:italic;font-size:14px;color:rgba(249,247,240,.45)}
+
+/* ============ CARDS TRIO ============ */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(40px,5vw,64px)}
+.t-card{position:relative;overflow:hidden;aspect-ratio:3/4.1;display:flex;align-items:flex-end;text-decoration:none;cursor:pointer;background:var(--ink)}
+.t-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease);}
+.t-card:hover img{transform:scale(1.06)}
+.t-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(10,15,26,.88));transition:.5s}
+.t-body{position:relative;z-index:2;padding:30px;width:100%}
+.t-kicker{font-size:9.5px;letter-spacing:.38em;text-transform:uppercase;color:var(--bronze-light);font-weight:500}
+.t-title{font-family:var(--serif);font-size:clamp(24px,2.3vw,32px);font-weight:400;color:var(--cream);margin-top:8px;line-height:1.15}
+.t-link{margin-top:14px;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(249,247,240,.65);
+  display:inline-flex;gap:9px;align-items:center;transition:.3s}
+.t-card:hover .t-link{color:var(--bronze-light)}
+
+/* ============ FEATURE SPLIT (kokotxa) ============ */
+.feature{background:var(--paper-2)}
+.feat-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(40px,6vw,90px);align-items:center}
+.feat-fig{position:relative;overflow:hidden}
+.feat-fig img{width:100%;display:block;aspect-ratio:1/1.2;object-fit:cover;transition:transform 1.6s var(--ease)}
+.feat-fig:hover img{transform:scale(1.05)}
+.menu-mini{margin-top:34px;border-top:1px solid var(--line)}
+.menu-mini-row{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:17px 0;border-bottom:1px solid var(--line)}
+.menu-mini-row .n{font-family:var(--serif);font-size:clamp(18px,1.8vw,23px);font-weight:500}
+.menu-mini-row .d{font-size:12px;color:var(--ink-soft);opacity:.75;letter-spacing:.04em}
+.menu-mini-row .p{font-family:var(--serif);font-size:19px;color:var(--bronze-deep);white-space:nowrap;font-style:italic}
+
+/* ============ QUOTES ============ */
+.quotes{background:var(--noche);position:relative;overflow:hidden}
+.quotes .sec-inner{max-width:980px;text-align:center}
+.q-mark{font-family:var(--serif);font-size:110px;line-height:.4;color:var(--bronze);opacity:.55;display:block;margin-bottom:34px}
+.q-stage{position:relative;min-height:230px}
+.q-item{position:absolute;inset:0;opacity:0;transition:opacity 1s var(--ease);pointer-events:none}
+.q-item.on{opacity:1;pointer-events:auto}
+.q-text{font-family:var(--serif);font-size:clamp(20px,2.6vw,31px);font-weight:300;font-style:italic;
+  color:var(--cream);line-height:1.5}
+.q-who{margin-top:26px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--bronze-light);font-weight:500}
+.q-src{margin-top:5px;font-size:11px;color:rgba(249,247,240,.4);letter-spacing:.1em}
+.q-dots{display:flex;gap:10px;justify-content:center;margin-top:40px}
+.q-dots button{width:26px;height:2px;border:none;background:rgba(249,247,240,.22);cursor:pointer;transition:.4s;padding:0}
+.q-dots button.on{background:var(--bronze-light)}
+
+/* ============ CTA BAND ============ */
+.cta-band{position:relative;overflow:hidden;min-height:480px;display:flex;align-items:center;justify-content:center;text-align:center}
+.cta-band .bg{position:absolute;inset:0}
+.cta-band .bg img,.cta-band .bg video{width:100%;height:100%;object-fit:cover}
+.cta-band .veil{position:absolute;inset:0;background:rgba(10,15,26,.62)}
+.cta-c{position:relative;z-index:2;padding:80px 24px;max-width:760px}
+.cta-c h2{font-family:var(--serif);font-weight:300;font-size:clamp(34px,4.4vw,58px);color:var(--cream);line-height:1.12}
+.cta-c h2 em{font-style:italic;color:var(--bronze-light)}
+.cta-c p{margin-top:16px;color:rgba(249,247,240,.75);font-size:14.5px;letter-spacing:.04em}
+
+/* ============ HISTORIA / RESTAURANTE ============ */
+.page-head{position:relative;min-height:62vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--noche)}
+.page-head .bg{position:absolute;inset:0}
+.page-head .bg img,.page-head .bg video{width:100%;height:100%;object-fit:cover}
+.page-head .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,19,34,.5),rgba(12,19,34,.15) 45%,rgba(10,15,26,.85))}
+.ph-inner{position:relative;z-index:2;width:100%;max-width:1280px;margin:0 auto;padding:130px clamp(22px,5vw,72px) clamp(44px,6vh,70px)}
+.ph-inner .label{color:var(--bronze-light)}
+.ph-inner h1{font-family:var(--serif);font-weight:300;color:var(--cream);font-size:clamp(40px,6vw,84px);line-height:1.04}
+.ph-inner h1 em{font-style:italic;color:var(--bronze-light)}
+.ph-sub{margin-top:14px;color:rgba(249,247,240,.72);font-size:14.5px;max-width:520px;line-height:1.8}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:clamp(46px,6vw,80px)}
+.stat{background:var(--paper);padding:clamp(26px,3vw,44px) 20px;text-align:center}
+.stat .v{font-family:var(--serif);font-size:clamp(34px,3.8vw,54px);font-weight:300;color:var(--bronze-deep);line-height:1}
+.stat .k{margin-top:9px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);opacity:.8;font-weight:500}
+
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,22px);margin-top:clamp(40px,5vw,70px)}
+.g-item{overflow:hidden;position:relative}
+.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.5s var(--ease)}
+.g-item:hover img{transform:scale(1.06)}
+.g-1{grid-column:span 7;aspect-ratio:16/10}
+.g-2{grid-column:span 5;aspect-ratio:4/5;margin-top:clamp(30px,4vw,60px)}
+.g-3{grid-column:span 5;aspect-ratio:4/5;margin-top:calc(clamp(30px,4vw,60px) * -1)}
+.g-4{grid-column:span 7;aspect-ratio:16/10}
+.g-cap{position:absolute;left:0;bottom:0;background:rgba(10,15,26,.72);backdrop-filter:blur(6px);color:var(--cream);
+  font-size:10px;letter-spacing:.26em;text-transform:uppercase;padding:10px 16px}
+
+/* bodega dark */
+.bodega{background:var(--noche-2);position:relative}
+.bodega-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
+.wine-card{border:1px solid var(--line-dark);padding:clamp(28px,3.4vw,46px);position:relative;background:rgba(200,173,127,.03)}
+.wine-k{font-size:9.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze-light);font-weight:500}
+.wine-n{font-family:var(--serif);font-size:clamp(25px,2.6vw,34px);font-weight:400;color:var(--cream);margin-top:10px;line-height:1.15}
+.wine-d{margin-top:14px;font-size:13px;color:rgba(249,247,240,.65);line-height:1.85}
+.wine-specs{display:flex;gap:26px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-dark);flex-wrap:wrap}
+.wine-specs div b{display:block;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--bronze-light);font-weight:400}
+.wine-specs div span{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(249,247,240,.45)}
+.bodega-fig{overflow:hidden}
+.bodega-fig img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover}
+
+/* compromiso */
+.comp-list{margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--line)}
+.comp-row{display:grid;grid-template-columns:90px 1fr 2fr;gap:clamp(18px,3vw,46px);padding:clamp(22px,3vw,34px) 0;
+  border-bottom:1px solid var(--line);align-items:baseline}
+.comp-num{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--bronze)}
+.comp-t{font-family:var(--serif);font-size:clamp(19px,2vw,25px);font-weight:500;line-height:1.2}
+.comp-d{font-size:13.5px;color:var(--ink-soft);line-height:1.8}
+
+/* ============ CARTA ============ */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:clamp(34px,4vw,52px);border-bottom:1px solid var(--line)}
+.tab{background:none;border:none;font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  padding:15px 22px;cursor:pointer;color:var(--ink-soft);position:relative;transition:.3s;font-weight:500}
+.tab::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--bronze-deep);
+  transform:scaleX(0);transition:transform .4s var(--ease)}
+.tab.on{color:var(--bronze-deep)}
+.tab.on::after{transform:scaleX(1)}
+.pane{display:none;padding-top:clamp(38px,5vw,60px)}
+.pane.on{display:block;animation:viewIn .7s var(--ease-out)}
+.menu-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:8px}
+.menu-head h3{font-family:var(--serif);font-size:clamp(28px,3.4vw,44px);font-weight:300;line-height:1.1}
+.menu-head h3 em{font-style:italic;color:var(--bronze)}
+.menu-price{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-style:italic;color:var(--bronze-deep);white-space:nowrap}
+.menu-price small{font-size:12px;font-family:var(--sans);font-style:normal;letter-spacing:.14em;color:var(--ink-soft);display:block;text-align:right;margin-top:2px}
+.menu-meta{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);opacity:.75;margin-bottom:34px}
+.course-group{margin-top:34px}
+.cg-title{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze-deep);font-weight:600;
+  display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.cg-title::after{content:'';flex:1;height:1px;background:var(--line)}
+.dish{display:flex;justify-content:space-between;gap:26px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line)}
+.dish:last-child{border-bottom:none}
+.dish .dn{font-family:var(--serif);font-size:clamp(17px,1.75vw,21.5px);font-weight:500;line-height:1.3}
+.dish .dd{font-size:12.5px;color:var(--ink-soft);opacity:.8;margin-top:3px;line-height:1.6}
+.dish .dp{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--bronze-deep);white-space:nowrap}
+.tasting{counter-reset:course;max-width:760px;margin:0 auto}
+.tasting .dish{justify-content:flex-start}
+.tasting .dish::before{counter-increment:course;content:counter(course,decimal-leading-zero);
+  font-family:var(--serif);font-style:italic;font-size:14px;color:var(--bronze);min-width:36px}
+.pairing{margin-top:40px;padding:clamp(24px,3vw,38px);background:var(--paper-2);border:1px solid var(--line)}
+.pairing h4{font-family:var(--serif);font-size:21px;font-weight:500;margin-bottom:4px}
+.pairing .pp{font-family:var(--serif);font-style:italic;color:var(--bronze-deep);font-size:17px;margin-bottom:14px}
+.pairing li{list-style:none;font-size:13.5px;color:var(--ink-soft);padding:7px 0;border-bottom:1px solid var(--line)}
+.pairing li:last-child{border-bottom:none}
+.menu-foot{margin-top:26px;font-size:11.5px;letter-spacing:.1em;color:var(--ink-soft);opacity:.75;font-style:italic}
+
+/* ============ EVENTOS ============ */
+.ev-split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px);align-items:center}
+.ev-fig{overflow:hidden;position:relative}
+.ev-fig img{width:100%;display:block;aspect-ratio:4/4.6;object-fit:cover}
+.ev-badge{position:absolute;top:22px;left:22px;background:rgba(10,15,26,.78);backdrop-filter:blur(8px);color:var(--cream);
+  padding:13px 18px;font-size:10px;letter-spacing:.3em;text-transform:uppercase}
+.ev-badge b{display:block;font-family:var(--serif);font-size:24px;font-weight:300;color:var(--bronze-light);letter-spacing:.02em;margin-top:3px}
+.svc{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:34px}
+.svc div{background:var(--paper);padding:24px 22px}
+.svc b{font-family:var(--serif);font-size:18.5px;font-weight:500;display:block;margin-bottom:6px}
+.svc p{font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+.gmenus{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(38px,5vw,58px)}
+.gmenu{border:1px solid var(--line);padding:clamp(26px,3vw,40px) clamp(22px,2.4vw,32px);background:var(--cream);
+  display:flex;flex-direction:column;transition:.5s var(--ease);position:relative}
+.gmenu:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(22,20,15,.25)}
+.gmenu.hot{background:var(--noche);border-color:var(--noche)}
+.gmenu.hot .gm-t,.gmenu.hot .gm-dish{color:var(--cream)}
+.gmenu.hot .gm-dish{border-color:var(--line-dark)}
+.gm-k{font-size:9.5px;letter-spacing:.36em;text-transform:uppercase;color:var(--bronze);font-weight:600}
+.gm-t{font-family:var(--serif);font-size:25px;font-weight:400;margin:8px 0 4px}
+.gm-p{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--bronze-deep);margin-bottom:18px}
+.gmenu.hot .gm-p{color:var(--bronze-light)}
+.gm-dish{font-size:12.8px;color:var(--ink-soft);padding:8px 0;border-bottom:1px solid var(--line);line-height:1.55}
+.gm-dish:last-of-type{border:none}
+.gm-note{margin-top:auto;padding-top:16px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-deep);opacity:.8}
+.gmenu.hot .gm-note{color:var(--bronze-light)}
+
+/* ============ RESERVAS ============ */
+.res-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px)}
+.res-tel{font-family:var(--serif);font-size:clamp(34px,4vw,52px);font-weight:300;color:var(--cream);text-decoration:none;
+  display:inline-block;margin-top:12px;border-bottom:1px solid var(--bronze);padding-bottom:6px;transition:.4s}
+.res-tel:hover{color:var(--bronze-light)}
+.sched{margin-top:38px;border-top:1px solid var(--line-dark)}
+.sched-row{display:flex;justify-content:space-between;padding:13px 4px;border-bottom:1px solid var(--line-dark);
+  font-size:13px;color:rgba(249,247,240,.7);letter-spacing:.06em}
+.sched-row.today{background:rgba(200,173,127,.12);color:var(--cream);padding-left:14px;padding-right:14px;
+  border-left:2px solid var(--bronze-light)}
+.sched-row.today .d::after{content:' · hoy';font-style:italic;color:var(--bronze-light)}
+.sched-row .h{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--bronze-light)}
+.res-note{margin-top:20px;font-size:12px;color:rgba(249,247,240,.5);line-height:1.8}
+.form{display:flex;flex-direction:column;gap:0;border:1px solid var(--line-dark);background:rgba(200,173,127,.03)}
+.f-row{display:grid;grid-template-columns:1fr 1fr}
+.f-cell{padding:20px 22px;border-bottom:1px solid var(--line-dark);position:relative}
+.f-row .f-cell:first-child{border-right:1px solid var(--line-dark)}
+.f-cell label{display:block;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--bronze-light);margin-bottom:7px;font-weight:500}
+.f-cell input,.f-cell select,.f-cell textarea{width:100%;background:none;border:none;outline:none;color:var(--cream);
+  font-family:var(--serif);font-size:17px;font-weight:400}
+.f-cell input::placeholder,.f-cell textarea::placeholder{color:rgba(249,247,240,.3)}
+.f-cell select{appearance:none;cursor:pointer}
+.f-cell select option{background:var(--noche);color:var(--cream)}
+.f-cell textarea{resize:none;min-height:64px;font-size:15.5px;line-height:1.6}
+.f-submit{padding:22px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.f-hint{font-size:10.5px;color:rgba(249,247,240,.45);letter-spacing:.06em;max-width:280px;line-height:1.6}
+
+/* ============ CONTACTO ============ */
+.con-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,80px);align-items:stretch}
+.con-item{padding:24px 0;border-bottom:1px solid var(--line)}
+.con-item .k{font-size:9.5px;letter-spacing:.36em;text-transform:uppercase;color:var(--bronze-deep);font-weight:600;margin-bottom:8px}
+.con-item .v{font-family:var(--serif);font-size:clamp(19px,2vw,25px);font-weight:400;line-height:1.4}
+.con-item a{color:inherit;text-decoration:none;transition:.3s}
+.con-item a:hover{color:var(--bronze-deep)}
+.map-fig{position:relative;min-height:420px;background:var(--paper-3)}
+.map-fig iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:sepia(.32) saturate(.78)}
+
+/* ============ FOOTER ============ */
+footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw,84px) clamp(22px,5vw,72px) 36px}
+.foot-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:clamp(30px,4vw,60px)}
+.foot-brand .fb-n{font-family:var(--serif);font-size:30px;font-weight:400;color:var(--cream);letter-spacing:.1em}
+.foot-brand p{font-size:12.5px;line-height:1.9;margin-top:14px;max-width:300px}
+.foot-col h5{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze-light);margin-bottom:18px;font-weight:500}
+.foot-col a,.foot-col span{display:block;font-size:13px;color:rgba(249,247,240,.6);text-decoration:none;padding:5px 0;transition:.3s;cursor:pointer}
+.foot-col a:hover{color:var(--cream)}
+.foot-base{max-width:1280px;margin:48px auto 0;padding-top:24px;border-top:1px solid var(--line-dark);
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:11px;color:rgba(249,247,240,.38);letter-spacing:.06em}
+.foot-base a{color:inherit;text-decoration:none}
+.foot-base a:hover{color:var(--bronze-light)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1080px){
+  nav.main{display:none}
+  #burger{display:block}
+  .head-tel{display:none}
+}
+@media(max-width:880px){
+  .intro-grid,.feat-grid,.bodega-grid,.ev-split,.res-wrap,.con-grid{grid-template-columns:1fr}
+  .trio{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
+  .t-card{aspect-ratio:3/3.4}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .awards-grid{grid-template-columns:1fr}
+  .award-cell + .award-cell::before{left:24%;top:0;width:52%;height:1px}
+  .gmenus{grid-template-columns:1fr}
+  .g-1,.g-2,.g-3,.g-4{grid-column:span 12;margin:0;aspect-ratio:16/10}
+  .comp-row{grid-template-columns:1fr;gap:8px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .hero-side{display:none}
+  .f-row{grid-template-columns:1fr}
+  .f-row .f-cell:first-child{border-right:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+  #grain{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="grain" aria-hidden="true"></div>
+
+<div id="preloader" aria-hidden="true">
+  <div class="pre-mono">B<em>—</em></div>
+  <div class="pre-line"></div>
+  <div class="pre-sub">Boroa Jatetxea</div>
+</div>
+
+<header id="header">
+  <a class="brand" data-go="inicio">
+    <span class="b-name">BOROA</span>
+    <span class="b-sub">Jatetxea · MCMXCVII</span>
+  </a>
+  <nav class="main">
+    <a data-go="inicio" class="active">Inicio</a>
+    <a data-go="restaurante">El Restaurante</a>
+    <a data-go="carta">Carta y Menús</a>
+    <a data-go="eventos">Eventos</a>
+    <a data-go="reservas">Reservas</a>
+    <a data-go="contacto">Contacto</a>
+  </nav>
+  <div class="head-right">
+    <div class="langs" title="La versión final incluye euskera e inglés completos">
+      <span class="on">ES</span><span>EU</span><span>EN</span>
+    </div>
+    <a class="head-tel" href="tel:+34946734747">946 734 747</a>
+    <button id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div id="mnav">
+  <a data-go="inicio">Inicio</a>
+  <a data-go="restaurante">El Restaurante</a>
+  <a data-go="carta">Carta y Menús</a>
+  <a data-go="eventos">Eventos</a>
+  <a data-go="reservas">Reservas</a>
+  <a data-go="contacto">Contacto</a>
+  <div class="m-tel">+34 946 734 747</div>
+</div>
+
+<main>
+
+<!-- ════════════════ INICIO ════════════════ -->
+<section class="view current" id="v-inicio">
+
+  <div class="hero">
+    <div class="hero-media" id="heroMedia">
+      <video id="heroVideo" autoplay muted loop playsinline preload="auto"
+        poster="assets/entrada-noche-1600.webp">
+        <source src="assets/hero-entrada.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-veil"></div>
+    <div class="hero-inner">
+      <div class="hero-title-block">
+        <div class="hero-eyebrow">Amorebieta-Etxano · Bizkaia</div>
+        <h1>Paraíso gastronómico<br><em>en plena naturaleza</em></h1>
+        <p class="hero-sub">Cocina vizcaína de raíz en un caserío del siglo XV restaurado con escrupuloso respeto, rodeado de robles centenarios.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-solid" data-go="reservas">Reservar mesa <span class="arr">→</span></a>
+          <a class="btn btn-ghost" data-go="carta">Carta y menús</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="award-chip"><b>★</b> 1 Estrella Michelin · desde 2008</div>
+        <div class="award-chip"><b>☀☀</b> 2 Soles Repsol</div>
+        <div class="award-chip"><b>Q</b> Q de Plata a la gestión</div>
+      </div>
+    </div>
+    <div class="scroll-cue">Descubrir</div>
+  </div>
+
+  <div class="sec intro">
+    <div class="sec-inner intro-grid">
+      <div class="rv">
+        <div class="label">El caserío</div>
+        <h2 class="display">Cinco siglos de piedra,<br><em>veinticinco años de fuego</em></h2>
+        <p class="lead drop" style="margin-top:26px">Boroa Jatetxea está ubicado en un caserío del siglo XV restaurado con un escrupuloso respeto hacia su arquitectura original. El 17 de marzo de 1997 abrió sus puertas en este rincón de Bizkaia lleno de magia: terraza exterior, robles centenarios y una cocina que lleva más de veinte años redescubriendo y evolucionando platos propios de toda la vida.</p>
+        <div style="margin-top:34px"><a class="btn btn-ink" data-go="restaurante">Conocer el restaurante <span class="arr">→</span></a></div>
+      </div>
+      <div class="intro-fig rv rv-d2">
+        <img src="assets/fachada-dia-1600.webp" alt="Caserío de Boroa Jatetxea" loading="lazy">
+        <div class="intro-year">Caserío del s. XV — restaurado</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="awards-band">
+    <div class="awards-grid">
+      <div class="award-cell rv"><div class="award-num" data-count="1">1</div><div class="award-name">Estrella Michelin</div><div class="award-note">desde noviembre de 2008</div></div>
+      <div class="award-cell rv rv-d1"><div class="award-num" data-count="2">2</div><div class="award-name">Soles Repsol</div><div class="award-note">Guía Repsol</div></div>
+      <div class="award-cell rv rv-d2"><div class="award-num" data-count="350">350</div><div class="award-name">Referencias en bodega</div><div class="award-note">txakolis · Rioja · internacionales</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="label">Boroa, en tres actos</div>
+        <h2 class="display">Mesa, bodega <em>y celebración</em></h2>
+      </div>
+      <div class="trio">
+        <a class="t-card rv" data-go="carta">
+          <img src="assets/kokotxa-800.webp" alt="Kokotxas de merluza al pilpil" loading="lazy">
+          <div class="t-body">
+            <div class="t-kicker">Carta y menús</div>
+            <div class="t-title">Cocina vizcaína arraigada</div>
+            <div class="t-link">Ver la carta <span>→</span></div>
+          </div>
+        </a>
+        <a class="t-card rv rv-d1" data-go="restaurante">
+          <img src="assets/bodega-vertical-1000.webp" alt="La bodega de Boroa" loading="lazy">
+          <div class="t-body">
+            <div class="t-kicker">La bodega</div>
+            <div class="t-title">350 referencias que maridan</div>
+            <div class="t-link">Descubrir la bodega <span>→</span></div>
+          </div>
+        </a>
+        <a class="t-card rv rv-d2" data-go="eventos">
+          <img src="assets/bodas-1200.webp" alt="Bodas y eventos en Boroa" loading="lazy">
+          <div class="t-body">
+            <div class="t-kicker">Eventos</div>
+            <div class="t-title">El lugar de tus celebraciones</div>
+            <div class="t-link">Bodas, empresas y grupos <span>→</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec feature">
+    <div class="sec-inner feat-grid">
+      <div class="feat-fig rv">
+        <img src="assets/kokotxa-1400.webp" alt="Kokotxas de merluza al pilpil de Boroa" loading="lazy">
+      </div>
+      <div class="rv rv-d1">
+        <div class="label">De la carta</div>
+        <h2 class="display">Productos únicos,<br><em>elaboración perfecta</em></h2>
+        <div class="menu-mini">
+          <div class="menu-mini-row"><div><div class="n">Kokotxas de merluza al pilpil</div></div><div class="p">48 €</div></div>
+          <div class="menu-mini-row"><div><div class="n">Degustación de bacalao</div><div class="d">vizcaína · pilpil · brasa</div></div><div class="p">40 €</div></div>
+          <div class="menu-mini-row"><div><div class="n">Pichón en asado breve</div><div class="d">crema de foie, crumble de maíz y texturas de zanahorias</div></div><div class="p">40 €</div></div>
+          <div class="menu-mini-row"><div><div class="n">Chuleta de ganado mayor</div><div class="d">40 días de maduración, a la brasa</div></div><div class="p">95 €/kg</div></div>
+        </div>
+        <div style="margin-top:32px"><a class="btn btn-ink" data-go="carta">Carta completa <span class="arr">→</span></a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec quotes">
+    <div class="sec-inner rv">
+      <span class="q-mark">“</span>
+      <div class="q-stage" id="qStage"></div>
+      <div class="q-dots" id="qDots"></div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div class="bg"><img src="assets/pergola-noche-2000.webp" alt="Terraza de Boroa al anochecer" loading="lazy"></div>
+    <div class="veil"></div>
+    <div class="cta-c rv">
+      <h2>Ven a disfrutar de un entorno único<br><em>y una comida de primera</em></h2>
+      <p>Comidas de lunes a domingo · 13:00 — 15:30</p>
+      <div style="margin-top:30px"><a class="btn btn-solid" data-go="reservas">Reserva en Boroa <span class="arr">→</span></a></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════ EL RESTAURANTE ════════════════ -->
+<section class="view" id="v-restaurante">
+
+  <div class="page-head">
+    <div class="bg"><img src="assets/interior-sala-2000.webp" alt="Sala de Boroa Jatetxea"></div>
+    <div class="veil"></div>
+    <div class="ph-inner">
+      <div class="label">El restaurante</div>
+      <h1>Un caserío del s. XV<br><em>lleno de magia</em></h1>
+      <p class="ph-sub">Piedra, roble y mantel blanco. La arquitectura original, restaurada con escrupuloso respeto; la cocina, en constante búsqueda de innovar y sorprender.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-inner">
+      <div class="intro-grid">
+        <div class="rv">
+          <div class="label">Nuestra historia</div>
+          <h2 class="display">Desde 1997,<br><em>fuego lento</em></h2>
+          <p class="lead" style="margin-top:24px">El 17 de marzo de 1997 Boroa abrió sus puertas con un amplio parking y una terraza exterior rodeada de robles centenarios. Varias áreas de terraza y una zona de juegos infantil dan vida al exterior de nuestro precioso caserío.</p>
+          <p class="lead" style="margin-top:16px">Nuestra misión es que el cliente disfrute y sienta una atención exquisita gracias a un servicio personalizado y de calidad. La cercanía, amabilidad y eficiencia es una actitud reflejada en todo el equipo que compone Boroa Jatetxea.</p>
+        </div>
+        <div class="intro-fig rv rv-d2">
+          <img src="assets/terraza-dia-1600.webp" alt="Terraza de Boroa entre robles centenarios" loading="lazy">
+          <div class="intro-year">Robles centenarios — terraza</div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat rv"><div class="v">s.XV</div><div class="k">El caserío</div></div>
+        <div class="stat rv rv-d1"><div class="v">1997</div><div class="k">Apertura</div></div>
+        <div class="stat rv rv-d2"><div class="v">2008</div><div class="k">Estrella Michelin</div></div>
+        <div class="stat rv rv-d3"><div class="v">210</div><div class="k">Comensales · capacidad</div></div>
+      </div>
+
+      <div class="gallery">
+        <div class="g-item g-1 rv"><img src="assets/interior-sala-2000.webp" alt="Sala principal" loading="lazy"><div class="g-cap">La sala</div></div>
+        <div class="g-item g-2 rv rv-d1"><img src="assets/interior-mesa-1200.webp" alt="Mesa vestida" loading="lazy"><div class="g-cap">La mesa</div></div>
+        <div class="g-item g-3 rv"><img src="assets/en-boroa-1000.webp" alt="En Boroa" loading="lazy"><div class="g-cap">El detalle</div></div>
+        <div class="g-item g-4 rv rv-d1"><img src="assets/pergola-noche-2000.webp" alt="Terraza nocturna" loading="lazy"><div class="g-cap">La terraza, al caer la tarde</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec bodega dark">
+    <div class="sec-inner">
+      <div class="bodega-grid">
+        <div class="rv">
+          <div class="label">La bodega</div>
+          <h2 class="display">El vino despierta<br><em>mil y una sensaciones</em></h2>
+          <p class="lead" style="margin-top:22px">Nuestra bodega ofrece una carta de vinos que marida con nuestra oferta gastronómica: las Denominaciones de Origen más importantes del panorama nacional y una selección internacional. 350 referencias, con enorme variedad de txakolis y D.O.Ca. Rioja.</p>
+          <div class="wine-card" style="margin-top:36px">
+            <div class="wine-k">Vino recomendado</div>
+            <div class="wine-n">Luis Cañas Reserva<br>«Selección de la Familia»</div>
+            <div class="wine-d">Uvas de viñedos singulares de más de 45 años en Villabuena, Samaniego y Leza. Aroma intenso y complejo: fruta negra y matices especiados; en boca fresco, amplio, con final contundente de notas balsámicas y regaliz.</div>
+            <div class="wine-specs">
+              <div><b>85%</b><span>Tempranillo</span></div>
+              <div><b>17 meses</b><span>Roble francés y americano</span></div>
+              <div><b>+45 años</b><span>Edad del viñedo</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="bodega-fig rv rv-d2">
+          <img src="assets/bodega-2000.webp" alt="Botellas de la bodega de Boroa" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="label">Compromiso Boroa</div>
+        <h2 class="display">Lo que devolvemos <em>a la tierra</em></h2>
+      </div>
+      <div class="comp-list">
+        <div class="comp-row rv"><div class="comp-num">001/</div><div class="comp-t">Personas</div><div class="comp-d">En colaboración con Cruz Roja, formamos en nuestra cocina a personas en riesgo de exclusión para completar sus prácticas profesionales.</div></div>
+        <div class="comp-row rv"><div class="comp-num">002/</div><div class="comp-t">Desarrollo sostenible</div><div class="comp-d">Cuidado del entorno y de los arbolados centenarios y frutales, reciclaje integral y reutilización en cada rincón de la casa.</div></div>
+        <div class="comp-row rv"><div class="comp-num">003/</div><div class="comp-t">Cultura y deporte</div><div class="comp-d">Apoyo a la Korrika y al euskera, al fútbol base, al Rally de Amorebieta, a las fiestas del barrio y a las ikastolas en el Ibilaldia.</div></div>
+        <div class="comp-row rv"><div class="comp-num">004/</div><div class="comp-t">Oficio</div><div class="comp-d">Enseñamos nuestra forma de trabajar y nuestra filosofía a quienes aman esta profesión, formando a los nuevos profesionales de la cocina vasca.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div class="bg"><img src="assets/entrada-noche-1600.webp" alt="Entrada del caserío de noche" loading="lazy"></div>
+    <div class="veil"></div>
+    <div class="cta-c rv">
+      <h2>La mesa está puesta<br><em>desde hace cinco siglos</em></h2>
+      <div style="margin-top:30px"><a class="btn btn-solid" data-go="reservas">Reservar mesa <span class="arr">→</span></a></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════ CARTA Y MENÚS ════════════════ -->
+<section class="view" id="v-carta">
+
+  <div class="page-head">
+    <div class="bg"><img src="assets/kokotxa-1400.webp" alt="Plato de Boroa"></div>
+    <div class="veil"></div>
+    <div class="ph-inner">
+      <div class="label">Carta y menús</div>
+      <h1>Cocina vizcaína<br><em>arraigada</em></h1>
+      <p class="ph-sub">Más de veinte años redescubriendo y evolucionando platos propios de toda la vida, en una búsqueda continua de innovar y sorprender.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-inner">
+      <div class="tabs rv" role="tablist">
+        <button class="tab on" data-pane="p-carta">La carta</button>
+        <button class="tab" data-pane="p-txindoki">Menú Txindoki</button>
+        <button class="tab" data-pane="p-mugarra">Menú Mugarra</button>
+        <button class="tab" data-pane="p-veg">Menú Vegetariano</button>
+      </div>
+
+      <!-- LA CARTA -->
+      <div class="pane on" id="p-carta">
+        <div class="course-group">
+          <div class="cg-title">Entrantes</div>
+          <div class="dish"><div><div class="dn">Ostra “Gillardeau” nº2</div></div><div class="dp">7 € /ud.</div></div>
+          <div class="dish"><div><div class="dn">Gambas blancas de Huelva a la plancha</div></div><div class="dp">40 €</div></div>
+          <div class="dish"><div><div class="dn">Cecina de Angus, arbequina y pan con tomate</div></div><div class="dp">40 €</div></div>
+          <div class="dish"><div><div class="dn">Caviar de Beluga 100% 000 (Mar Caspio) 10 g</div></div><div class="dp">48 €</div></div>
+          <div class="dish"><div><div class="dn">Mollejitas de cordero salteadas</div><div class="dd">sobre risotto de trigo trufado y texturas de zanahorias</div></div><div class="dp">36 €</div></div>
+          <div class="dish"><div><div class="dn">Tartar de atún rojo “Balfegó”</div><div class="dd">crocante de algas y emulsión de jengibre y mostaza antigua</div></div><div class="dp">36 €</div></div>
+          <div class="dish"><div><div class="dn">Vieiras en asado breve</div><div class="dd">sobre arroz de plancton, hinojo y caviar</div></div><div class="dp">36 €</div></div>
+          <div class="dish"><div><div class="dn">Pulpo de “Os Miñarzos” a la brasa</div><div class="dd">texturas de patata y gel de ajo negro</div></div><div class="dp">36 €</div></div>
+        </div>
+        <div class="course-group">
+          <div class="cg-title">En ración corta — para realzar su esencia</div>
+          <div class="dish"><div><div class="dn">Royal de espárragos de Navarra</div><div class="dd">anguila ahumada y mahonesa de trigueros</div></div><div class="dp">24 €</div></div>
+          <div class="dish"><div><div class="dn">Bombón de foie relleno de txakoli “Urezti”</div><div class="dd">palomitas y pan de chocolate y especias</div></div><div class="dp">24 €</div></div>
+          <div class="dish"><div><div class="dn">Carabinero al carbón</div><div class="dd">sobre teja crocante de su coral y yema de huevo “Telletxe”</div></div><div class="dp">29 €</div></div>
+          <div class="dish"><div><div class="dn">Habitas de temporada</div><div class="dd">huevo de caserío y velo de trufa negra</div></div><div class="dp">28 €</div></div>
+        </div>
+        <div class="course-group">
+          <div class="cg-title">Pescados</div>
+          <div class="dish"><div><div class="dn">Tataki de atún rojo “Balfegó”</div><div class="dd">sésamo negro y gel de soja</div></div><div class="dp">40 €</div></div>
+          <div class="dish"><div><div class="dn">Kokotxas de merluza al pilpil</div></div><div class="dp">48 €</div></div>
+          <div class="dish"><div><div class="dn">Degustación de bacalao</div><div class="dd">vizcaína, pilpil y brasa</div></div><div class="dp">40 €</div></div>
+          <div class="dish"><div><div class="dn">Merluza del Golfo de Bizkaia a la parrilla</div><div class="dd">con almejas en salsa verde</div></div><div class="dp">40 €</div></div>
+        </div>
+        <div class="course-group">
+          <div class="cg-title">Carnes</div>
+          <div class="dish"><div><div class="dn">Solomillo a la parrilla</div><div class="dd">arroz de hongos y merengue de trufa</div></div><div class="dp">40 €</div></div>
+          <div class="dish"><div><div class="dn">Chuleta de ganado mayor</div><div class="dd">40 días de maduración, a la brasa, con ensalada y patatas</div></div><div class="dp">95 €/kg</div></div>
+          <div class="dish"><div><div class="dn">Cochinillo asado al horno</div><div class="dd">patata asada y manzana de Boroa</div></div><div class="dp">40 €</div></div>
+          <div class="dish"><div><div class="dn">Paleta de cordero lechal al horno</div><div class="dd">con patatas en su jugo y ensalada</div></div><div class="dp">40 €</div></div>
+          <div class="dish"><div><div class="dn">Pichón en asado breve</div><div class="dd">crema de foie, crumble de maíz y texturas de zanahorias</div></div><div class="dp">40 €</div></div>
+        </div>
+        <div class="course-group">
+          <div class="cg-title">Postres</div>
+          <div class="dish"><div><div class="dn">Albaricoque, miel y oveja</div><div class="dd">albaricoque fermentado, cremoso de oveja, sorbete de miel y lima</div></div><div class="dp">16 €</div></div>
+          <div class="dish"><div><div class="dn">Gazta</div><div class="dd">degustación de quesos artesanales: oveja, vaca y mezcla</div></div><div class="dp">18 €</div></div>
+          <div class="dish"><div><div class="dn">Torrija caramelo</div><div class="dd">pan brioche, leche frita, caramelo salado, naranja y toffee</div></div><div class="dp">16 €</div></div>
+          <div class="dish"><div><div class="dn">Tarta de queso</div><div class="dd">cheesecake de Idiazabal, fresas, pimienta rosa y ruibarbo</div></div><div class="dp">16 €</div></div>
+          <div class="dish"><div><div class="dn">Nuestro Mojito</div><div class="dd">gel de ron, espuma de lima y limón y helado de hierbabuena</div></div><div class="dp">16 €</div></div>
+          <div class="dish"><div><div class="dn">Coulant</div><div class="dd">cereza, chocolate negro y pistacho</div></div><div class="dp">18 €</div></div>
+          <div class="dish"><div><div class="dn">Surtido de repostería</div><div class="dd">4 bocados con 2 helados caseros · recomendado para 2 personas</div></div><div class="dp">24 €</div></div>
+        </div>
+        <p class="menu-foot">10% I.V.A. incluido · Producto de temporada</p>
+      </div>
+
+      <!-- TXINDOKI -->
+      <div class="pane" id="p-txindoki">
+        <div class="menu-head">
+          <h3>Menú Degustación <em>Txindoki</em></h3>
+          <div class="menu-price">170 €<small>maridaje +80 €</small></div>
+        </div>
+        <div class="menu-meta">Reserva con 24 h de antelación · máx. 12 comensales · servicio 13:00 – 14:30 · a mesa completa</div>
+        <div class="tasting">
+          <div class="dish"><div><div class="dn">Ajoblanco y albahaca</div></div></div>
+          <div class="dish"><div><div class="dn">Brioche de gamba roja, kimchee y encurtidos</div></div></div>
+          <div class="dish"><div><div class="dn">Nube de Idiazabal, nueces y hierbas aromáticas</div></div></div>
+          <div class="dish"><div><div class="dn">Amanita y trufa en huevo de cristal</div></div></div>
+          <div class="dish"><div><div class="dn">Buñuelo de bacalao y vizcaína</div></div></div>
+          <div class="dish"><div><div class="dn">Bombón de foie, txakoli Urezti, chocolate y especias</div></div></div>
+          <div class="dish"><div><div class="dn">Ostra Gillardeau al natural con leche de tigre</div></div></div>
+          <div class="dish"><div><div class="dn">Espárragos de Navarra y anguila ahumada</div></div></div>
+          <div class="dish"><div><div class="dn">Guisantes lágrima y caviar Beluga</div></div></div>
+          <div class="dish"><div><div class="dn">Atún rojo “Balfegó”, mostaza y jengibre</div></div></div>
+          <div class="dish"><div><div class="dn">Huevo, coliflor, chocolate blanco y trufa</div></div></div>
+          <div class="dish"><div><div class="dn">Vieira, arroz, algas e hinojo</div></div></div>
+          <div class="dish"><div><div class="dn">Perretxikos, parmentine y foie</div></div></div>
+          <div class="dish"><div><div class="dn">Merluza del Cantábrico con su kokotxa al pilpil</div></div></div>
+          <div class="dish"><div><div class="dn">Pichón, maíz y zanahorias</div></div></div>
+          <div class="dish"><div><div class="dn">Nuestro Mojito</div></div></div>
+          <div class="dish"><div><div class="dn">Idiazabal, fresas y pimienta</div></div></div>
+          <div class="dish"><div><div class="dn">Cereza, chocolate negro y pistacho</div></div></div>
+          <div class="dish"><div><div class="dn">Café y sus petit fours · Agua Km0 Boroa</div></div></div>
+        </div>
+        <div class="pairing rv">
+          <h4>Maridaje recomendado</h4>
+          <div class="pp">80 € por persona</div>
+          <ul>
+            <li>Ayala A/18 Blanc de Blancs — A.O.C. Champagne</li>
+            <li>Oremus Mandolas 2022, Furmint — Hungría</li>
+            <li>San Román Malvasía 2023 — D.O. Toro</li>
+            <li>Roda I Reserva 2018 — D.O.Ca. Rioja</li>
+            <li>Malus-mama 2015</li>
+          </ul>
+        </div>
+        <p class="menu-foot">10% I.V.A. incluido</p>
+      </div>
+
+      <!-- MUGARRA -->
+      <div class="pane" id="p-mugarra">
+        <div class="menu-head">
+          <h3>Menú Degustación <em>Mugarra</em></h3>
+          <div class="menu-price">110 €<small>maridaje +50 €</small></div>
+        </div>
+        <div class="menu-meta">Máx. 12 comensales · a mesa completa</div>
+        <div class="course-group" style="margin-top:0">
+          <div class="cg-title">Aperitivos</div>
+          <div class="tasting">
+            <div class="dish"><div><div class="dn">Ajoblanco y albahaca</div></div></div>
+            <div class="dish"><div><div class="dn">Gamba roja, kimchee y encurtidos</div></div></div>
+            <div class="dish"><div><div class="dn">Ostra Gillardeau al natural bañada en leche de tigre</div></div></div>
+          </div>
+        </div>
+        <div class="course-group">
+          <div class="cg-title">Menú</div>
+          <div class="tasting">
+            <div class="dish"><div><div class="dn">Royal de espárragos de Navarra, anguila ahumada y mahonesa de trigueros</div></div></div>
+            <div class="dish"><div><div class="dn">Yema de huevo de caserío, boletus de primavera y trufa de temporada</div></div></div>
+            <div class="dish"><div><div class="dn">Vieira en asado breve sobre arroz de algas, hinojo y caviar</div></div></div>
+            <div class="dish"><div><div class="dn">Merluza a la parrilla con almejas en salsa de txakoli Itsasmendi</div></div></div>
+            <div class="dish"><div><div class="dn">Cochinillo asado al horno, patata asada y manzana de Boroa</div></div></div>
+            <div class="dish"><div><div class="dn">Nuestro Mojito</div></div></div>
+            <div class="dish"><div><div class="dn">Cheesecake de Idiazabal, fresas, pimienta rosa y ruibarbo</div></div></div>
+            <div class="dish"><div><div class="dn">Café y sus petit fours · Agua Km0 Boroa</div></div></div>
+          </div>
+        </div>
+        <div class="pairing rv">
+          <h4>Maridaje recomendado</h4>
+          <div class="pp">50 € por persona</div>
+          <ul>
+            <li>Juvé &amp; Camps Reserva de la Familia 2020 — D.O. Cava</li>
+            <li>UBE de Ubérrima Miraflores 2024 — Sanlúcar de Barrameda</li>
+            <li>Oremus Mandolas 2022, Furmint — Hungría</li>
+            <li>Sango 2018, Tempranillo — D.O. Toro</li>
+            <li>Itsasmendi Urezti, vendimia tardía 2020 — D.O. Bizkaiko Txakolina</li>
+          </ul>
+        </div>
+        <p class="menu-foot">10% I.V.A. incluido</p>
+      </div>
+
+      <!-- VEGETARIANO -->
+      <div class="pane" id="p-veg">
+        <div class="menu-head">
+          <h3>Menú <em>Vegetariano</em></h3>
+          <div class="menu-price">90 €<small>con maridaje 140 €</small></div>
+        </div>
+        <div class="menu-meta">Reserva con 24 h de antelación · máx. 8 comensales</div>
+        <div class="tasting">
+          <div class="dish"><div><div class="dn">Ajoblanco y albahaca</div></div></div>
+          <div class="dish"><div><div class="dn">Pan brioche y mantequilla de lima</div></div></div>
+          <div class="dish"><div><div class="dn">Nube de Idiazabal, nueces y hierbas aromáticas</div></div></div>
+          <div class="dish"><div><div class="dn">Espárragos naturales de Navarra en diferentes texturas</div></div></div>
+          <div class="dish"><div><div class="dn">Huevo, coliflor, chocolate blanco y trufa</div></div></div>
+          <div class="dish"><div><div class="dn">Habitas de Aroa con boletus a la brasa</div></div></div>
+          <div class="dish"><div><div class="dn">Alcachofas de temporada con cremoso de trufa</div></div></div>
+          <div class="dish"><div><div class="dn">Fajitas de tempe ahumado y verduras, cebolla encurtida y kimchee</div></div></div>
+          <div class="dish"><div><div class="dn">Nuestro Mojito</div></div></div>
+          <div class="dish"><div><div class="dn">Cheesecake de Idiazabal, fresas, pimienta rosa y ruibarbo</div></div></div>
+          <div class="dish"><div><div class="dn">Café o infusión · Petit fours · Agua Km0 Boroa</div></div></div>
+        </div>
+        <p class="menu-foot">10% I.V.A. incluido</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div class="bg"><img src="assets/interior-mesa-2000.webp" alt="Mesa de Boroa" loading="lazy"></div>
+    <div class="veil"></div>
+    <div class="cta-c rv">
+      <h2>¿Te sentamos <em>a la mesa?</em></h2>
+      <p>También puedes regalar Boroa: menús degustación y tarjetas regalo.</p>
+      <div style="margin-top:30px"><a class="btn btn-solid" data-go="reservas">Reservar <span class="arr">→</span></a></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════ EVENTOS ════════════════ -->
+<section class="view" id="v-eventos">
+
+  <div class="page-head">
+    <div class="bg"><img src="assets/bodas-2000.webp" alt="Bodas en Boroa"></div>
+    <div class="veil"></div>
+    <div class="ph-inner">
+      <div class="label">Eventos y celebraciones</div>
+      <h1>El lugar perfecto<br><em>para tus celebraciones</em></h1>
+      <p class="ph-sub">Cada detalle, mimado y cuidado al máximo. Bodas, comuniones, comidas de empresa y grupos en un rincón de Bizkaia lleno de magia.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-inner ev-split">
+      <div class="ev-fig rv">
+        <img src="assets/bodas-2000.webp" alt="Celebración de boda en el caserío" loading="lazy">
+        <div class="ev-badge">Capacidad<b>210 comensales</b></div>
+      </div>
+      <div class="rv rv-d1">
+        <div class="label">Bodas y comuniones</div>
+        <h2 class="display">Tu gran día,<br><em>bajo los robles</em></h2>
+        <p class="lead" style="margin-top:22px">En Boroa te hacemos la vida más fácil: podemos proporcionarte todos los servicios que convierten cualquier celebración en un momento inolvidable. Ofrecemos la posibilidad de celebrar ceremonias civiles en la terraza.</p>
+        <div class="svc">
+          <div><b>Ceremonia civil</b><p>En la terraza, rodeados de robles centenarios.</p></div>
+          <div><b>Servicio de autobús</b><p>De minibuses de 9 plazas a autobuses de 72, y coches de época o de lujo para los novios.</p></div>
+          <div><b>Reportaje fotográfico</b><p>Más de 25 años de oficio buscando las situaciones que conectan y crean sentimiento.</p></div>
+          <div><b>Decoración floral</b><p>Flores Elorz, especialistas en decoración nupcial desde 1990.</p></div>
+        </div>
+        <div style="margin-top:30px"><a class="btn btn-ink" data-go="contacto">Solicitar presupuesto <span class="arr">→</span></a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" style="background:var(--paper-2)">
+    <div class="sec-inner">
+      <div class="rv">
+        <div class="label">Grupos · mínimo 8 comensales</div>
+        <h2 class="display">Menús para grupos <em>y comuniones</em></h2>
+        <p class="lead" style="margin-top:18px">A mesa completa, concertados con un mínimo de 3 días de antelación. Válidos hasta el 31 de julio de 2026.</p>
+      </div>
+      <div class="gmenus">
+        <div class="gmenu rv">
+          <div class="gm-k">Menú 1</div>
+          <div class="gm-t">De la huerta al monte</div>
+          <div class="gm-p">100 €</div>
+          <div class="gm-dish">Royal de foie, gelatina de Pedro Ximénez y pan de chocolate y especias</div>
+          <div class="gm-dish">Colitas de gambas sobre tartar de aguacate y vinagreta de cítricos</div>
+          <div class="gm-dish">Yema de huevo de caserío, cebolla morada de Zalla y cremoso de parmentine</div>
+          <div class="gm-dish">Hongos y mollejas crocantes de cordero sobre crema de boniato y trufa</div>
+          <div class="gm-dish">Láminas de ganado mayor con tosta de queso Idiazabal</div>
+          <div class="gm-dish">Tartaleta de limón, notas tropicales y helado</div>
+          <div class="gm-note">Bodega: Laderas de Bideona · Luis Cañas · 10% IVA incl.</div>
+        </div>
+        <div class="gmenu hot rv rv-d1">
+          <div class="gm-k">Menú 2</div>
+          <div class="gm-t">Mar y brasa</div>
+          <div class="gm-p">115 €</div>
+          <div class="gm-dish">Jamón ibérico de bellota</div>
+          <div class="gm-dish">Ensalada de pulpo gallego, patata arbequina y vinagreta de ajo negro</div>
+          <div class="gm-dish">Hongos a la plancha con foie gras al Oporto y crema fina trufada</div>
+          <div class="gm-dish">Rodaballo a la brasa con rizos de begiandi</div>
+          <div class="gm-dish">Solomillo a la brasa con espuma de parmentine y pimientos</div>
+          <div class="gm-dish">Tarta de chocolate y praliné con helado</div>
+          <div class="gm-note">Bodega: Laderas de Bideona · Itsas Mendi · 10% IVA incl.</div>
+        </div>
+        <div class="gmenu rv rv-d2">
+          <div class="gm-k">Menú 3</div>
+          <div class="gm-t">Bogavante y chuletón</div>
+          <div class="gm-p">130 €</div>
+          <div class="gm-dish">Corte de foie caramelizado con cremoso de plátano</div>
+          <div class="gm-dish">Ensalada de bogavante, mezclum de hortalizas y vinagreta de tomate</div>
+          <div class="gm-dish">Vieiras en asado breve sobre arroz cremoso de berberechos</div>
+          <div class="gm-dish">Lubina imperial a la brasa con patata panadera y pilpil cítrico</div>
+          <div class="gm-dish">Chuletón de ganado mayor con patatas fritas y ensalada</div>
+          <div class="gm-dish">Cheesecake de Idiazabal con esponja helada de frutos rojos</div>
+          <div class="gm-note">Bodega: Luis Cañas crianza · Itsas Mendi Nº7 · 10% IVA incl.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-inner ev-split">
+      <div class="rv">
+        <div class="label">Empresas</div>
+        <h2 class="display">Comidas de empresa<br><em>que cierran tratos</em></h2>
+        <p class="lead" style="margin-top:22px">Te invitamos a visitarnos, descubrir el encanto de Boroa y contarnos qué deseas para ese día tan especial. Menús de Navidad para grupos desde 10 personas.</p>
+        <div class="menu-mini" style="max-width:480px">
+          <div class="menu-mini-row"><div><div class="n">Menú Navidad empresas</div><div class="d">noviembre — diciembre · mín. 10 personas</div></div><div class="p">82 €</div></div>
+        </div>
+        <div style="margin-top:30px"><a class="btn btn-ink" data-go="contacto">Solicitar propuesta <span class="arr">→</span></a></div>
+      </div>
+      <div class="ev-fig rv rv-d1">
+        <img src="assets/interior-sala-2000.webp" alt="Sala para eventos de empresa" loading="lazy" style="aspect-ratio:4/3.4">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════ RESERVAS ════════════════ -->
+<section class="view" id="v-reservas">
+
+  <div class="page-head" style="min-height:54vh">
+    <div class="bg"><img src="assets/pergola-noche-2000.webp" alt="Terraza de Boroa al anochecer"></div>
+    <div class="veil"></div>
+    <div class="ph-inner">
+      <div class="label">Reservas</div>
+      <h1>Tu mesa<br><em>te espera</em></h1>
+    </div>
+  </div>
+
+  <div class="sec dark" style="background:var(--noche)">
+    <div class="sec-inner res-wrap">
+      <div class="rv">
+        <div class="label">Por teléfono</div>
+        <h2 class="display">El gesto más rápido</h2>
+        <a class="res-tel" href="tel:+34946734747">946 734 747</a>
+        <div class="sched" id="sched">
+          <div class="sched-row" data-day="1"><span class="d">Lunes</span><span class="h">13:00 – 15:30</span></div>
+          <div class="sched-row" data-day="2"><span class="d">Martes</span><span class="h">13:00 – 15:30</span></div>
+          <div class="sched-row" data-day="3"><span class="d">Miércoles</span><span class="h">13:00 – 15:30</span></div>
+          <div class="sched-row" data-day="4"><span class="d">Jueves</span><span class="h">13:00 – 15:30</span></div>
+          <div class="sched-row" data-day="5"><span class="d">Viernes</span><span class="h">13:00 – 15:30</span></div>
+          <div class="sched-row" data-day="6"><span class="d">Sábado</span><span class="h">13:00 – 15:30</span></div>
+          <div class="sched-row" data-day="0"><span class="d">Domingo</span><span class="h">13:00 – 15:30</span></div>
+        </div>
+        <p class="res-note">Horario de comidas, de lunes a domingo. Menús degustación con servicio de 13:00 a 14:30 y reserva con 24 h de antelación. Adaptado para personas con discapacidad · amplio parking.</p>
+      </div>
+      <div class="rv rv-d2">
+        <div class="label">Online</div>
+        <h2 class="display" style="margin-bottom:30px">Pide tu mesa</h2>
+        <form class="form" id="resForm">
+          <div class="f-row">
+            <div class="f-cell"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+            <div class="f-cell"><label>Teléfono</label><input type="tel" name="tel" placeholder="600 000 000" required></div>
+          </div>
+          <div class="f-row">
+            <div class="f-cell"><label>Fecha</label><input type="date" name="fecha" required></div>
+            <div class="f-cell"><label>Comensales</label>
+              <select name="pax"><option>2 personas</option><option>3 personas</option><option>4 personas</option><option>5 personas</option><option>6 personas</option><option>7 – 12 personas</option><option>Grupo (+12)</option></select>
+            </div>
+          </div>
+          <div class="f-cell" style="border-right:none"><label>Observaciones</label><textarea name="obs" placeholder="Alergias, menú degustación, celebración…"></textarea></div>
+          <div class="f-submit">
+            <span class="f-hint">Te confirmamos por teléfono o email en horario de servicio.</span>
+            <button class="btn btn-solid" type="submit">Enviar petición <span class="arr">→</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════ CONTACTO ════════════════ -->
+<section class="view" id="v-contacto">
+
+  <div class="page-head" style="min-height:54vh">
+    <div class="bg"><img src="assets/fachada-dia-2560.webp" alt="Caserío Boroa de día"></div>
+    <div class="veil"></div>
+    <div class="ph-inner">
+      <div class="label">Contacto</div>
+      <h1>Estaremos encantados<br><em>de atenderte</em></h1>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-inner con-grid">
+      <div class="rv">
+        <div class="con-item"><div class="k">Dirección</div><div class="v">San Pedro de Boroa 11<br>48340 Amorebieta-Etxano · Bizkaia</div></div>
+        <div class="con-item"><div class="k">Teléfono</div><div class="v"><a href="tel:+34946734747">+34 946 734 747</a></div></div>
+        <div class="con-item"><div class="k">Email</div><div class="v"><a href="mailto:boroa@boroa.com">boroa@boroa.com</a></div></div>
+        <div class="con-item"><div class="k">Horario</div><div class="v">Comidas L–D · 13:00 – 15:30</div></div>
+        <div class="con-item" style="border-bottom:none"><div class="k">Accesibilidad</div><div class="v">Adaptado para personas con discapacidad · amplio parking · zona de juegos infantil</div></div>
+      </div>
+      <div class="map-fig rv rv-d2">
+        <iframe title="Mapa — Boroa Jatetxea" loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-2.7560%2C43.2390%2C-2.7160%2C43.2640&amp;layer=mapnik&amp;marker=43.25153%2C-2.73596"></iframe>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="fb-n">BOROA</div>
+      <p>Jatetxea · Restaurante<br>Paraíso gastronómico en plena naturaleza. 1 Estrella Michelin desde 2008, 2 Soles Repsol y Q de Plata.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Visita</h5>
+      <a data-go="restaurante">El Restaurante</a>
+      <a data-go="carta">Carta y Menús</a>
+      <a data-go="eventos">Bodas y Eventos</a>
+      <a data-go="reservas">Reservas</a>
+    </div>
+    <div class="foot-col">
+      <h5>Contacto</h5>
+      <a href="tel:+34946734747">946 734 747</a>
+      <a href="mailto:boroa@boroa.com">boroa@boroa.com</a>
+      <span>San Pedro de Boroa 11<br>48340 Amorebieta-Etxano</span>
+    </div>
+    <div class="foot-col">
+      <h5>Legal</h5>
+      <span>Aviso legal</span>
+      <span>Política de privacidad</span>
+      <span>Política de cookies</span>
+      <span>Compromiso Boroa</span>
+    </div>
+  </div>
+  <div class="foot-base">
+    <span>© Boroa Jatetxea — todos los derechos reservados</span>
+    <span>Demo de diseño — <a href="https://ggelcano.com">G&amp;G Elcano</a> · Webs para negocios con historia</span>
+  </div>
+</footer>
+
+<script>
+/* ============ PRELOADER ============ */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('preloader').classList.add('done'),900);
+});
+setTimeout(()=>document.getElementById('preloader').classList.add('done'),3200);
+
+/* ============ ROUTER ============ */
+const VIEWS=['inicio','restaurante','carta','eventos','reservas','contacto'];
+function go(view,push=true){
+  if(!VIEWS.includes(view))view='inicio';
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('current'));
+  document.getElementById('v-'+view).classList.add('current');
+  document.querySelectorAll('nav.main a').forEach(a=>a.classList.toggle('active',a.dataset.go===view));
+  document.body.classList.remove('menu-open');
+  if(push)history.pushState(null,'','#'+view);
+  window.scrollTo({top:0,behavior:'instant'});
+  requestAnimationFrame(()=>observeReveals());
+  const hv=document.getElementById('heroVideo');
+  if(hv){view==='inicio'?hv.play().catch(()=>{}):hv.pause();}
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-go]');
+  if(t){e.preventDefault();go(t.dataset.go);}
+});
+window.addEventListener('popstate',()=>go(location.hash.replace('#','')||'inicio',false));
+if(location.hash)go(location.hash.replace('#',''),false);
+
+/* ============ HEADER STATE ============ */
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+/* ============ BURGER ============ */
+document.getElementById('burger').addEventListener('click',()=>document.body.classList.toggle('menu-open'));
+
+/* ============ REVEALS ============ */
+let io;
+function observeReveals(){
+  if(io)io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(en=>{
+    if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+  }),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.view.current .rv:not(.in)').forEach(el=>io.observe(el));
+}
+observeReveals();
+
+/* ============ QUOTES ============ */
+const QUOTES=[
+ {t:'Mi reconocimiento hacia el equipo que hace posible que cada visita a Boroa se convierta en un verdadero placer. Diez a la presentación. Entorno maravilloso. ZORIONAK!',w:'Maite Garagarza',s:'Cliente de Boroa Jatetxea'},
+ {t:'Bien merecida tiene esa estrella Michelin, tanto por su comida, que es estupenda, como por el trato del personal, que es exquisito.',w:'Idoia Ibarra',s:'Cliente de Boroa Jatetxea'},
+ {t:'Magnífica cocina en una localización extraordinaria. Siempre que hemos estado hemos salido encantados.',w:'Sabin E.',s:'TripAdvisor'},
+ {t:'Nos quedamos cortos si decimos que es PERFECTO. El entorno maravilloso, el caserío una preciosidad, la comida inmejorable, la atención fantástica.',w:'Marta Martínez de Eulate',s:'Cliente de Boroa Jatetxea'},
+ {t:'El Boroa es un restaurante que nunca decepciona. Sólo al llegar, el entorno te maravilla. Tomarse un aperitivo en esa terraza es una gozada.',w:'Eva',s:'TripAdvisor'}
+];
+const qStage=document.getElementById('qStage'),qDots=document.getElementById('qDots');
+QUOTES.forEach((q,i)=>{
+  const d=document.createElement('div');d.className='q-item'+(i===0?' on':'');
+  d.innerHTML=`<p class="q-text">${q.t}</p><div class="q-who">${q.w}</div><div class="q-src">${q.s}</div>`;
+  qStage.appendChild(d);
+  const b=document.createElement('button');if(i===0)b.classList.add('on');
+  b.addEventListener('click',()=>setQuote(i));qDots.appendChild(b);
+});
+let qi=0,qTimer=setInterval(()=>setQuote((qi+1)%QUOTES.length),6500);
+function setQuote(i){
+  qi=i;
+  qStage.querySelectorAll('.q-item').forEach((el,j)=>el.classList.toggle('on',j===i));
+  qDots.querySelectorAll('button').forEach((el,j)=>el.classList.toggle('on',j===i));
+  clearInterval(qTimer);qTimer=setInterval(()=>setQuote((qi+1)%QUOTES.length),6500);
+}
+
+/* ============ TABS ============ */
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  document.getElementById(t.dataset.pane).classList.add('on');
+}));
+
+/* ============ HOY EN HORARIO ============ */
+(function(){
+  const today=new Date().getDay();
+  document.querySelectorAll('#sched .sched-row').forEach(r=>{
+    if(parseInt(r.dataset.day)===today)r.classList.add('today');
+  });
+})();
+
+/* ============ VIDEO: pausa fuera de pantalla + reduced motion ============ */
+(function(){
+  const v=document.getElementById('heroVideo');
+  if(!v)return;
+  if(innerWidth<768){v.querySelector('source').src='assets/hero-entrada-960.mp4';v.load();}
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.remove();
+    const img=document.createElement('img');img.src='assets/entrada-noche-1600.webp';img.alt='Caserío Boroa al anochecer';
+    document.getElementById('heroMedia').appendChild(img);return;}
+  new IntersectionObserver(es=>es.forEach(en=>{
+    en.isIntersecting?v.play().catch(()=>{}):v.pause();
+  }),{threshold:.1}).observe(v);
+})();
+
+/* ============ PARALLAX SUAVE HERO ============ */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const m=document.getElementById('heroMedia');
+  addEventListener('scroll',()=>{
+    const y=Math.min(scrollY,innerHeight);
+    m.style.transform=`translateY(${y*.18}px) scale(${1+y/innerHeight*.04})`;
+  },{passive:true});
+})();
+
+/* ============ FORM RESERVAS → email ============ */
+document.getElementById('resForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f=new FormData(e.target);
+  const body=encodeURIComponent(
+`Solicitud de reserva — web
+
+Nombre: ${f.get('nombre')}
+Teléfono: ${f.get('tel')}
+Fecha: ${f.get('fecha')}
+Comensales: ${f.get('pax')}
+Observaciones: ${f.get('obs')||'—'}`);
+  location.href=`mailto:boroa@boroa.com?subject=${encodeURIComponent('Reserva web — '+f.get('nombre'))}&body=${body}`;
+});
+</script>
+</body>
+</html>
