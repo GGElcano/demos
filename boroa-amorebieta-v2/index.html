@@ -499,30 +499,60 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
   -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 78%);
   mask-image:radial-gradient(ellipse at center,#000 30%,transparent 78%)}
 
-/* ============ ANILLO 3D (carta visual) ============ */
-.carta-modes{display:flex;justify-content:center;gap:0;margin-top:clamp(30px,4vw,46px)}
-.cmode{background:none;border:1px solid var(--line);padding:13px 30px;cursor:pointer;font-family:var(--sans);
-  font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:500;color:var(--ink-soft);transition:.35s var(--ease)}
-.cmode:first-child{border-right:none}
-.cmode.on{background:var(--noche);color:var(--cream);border-color:var(--noche)}
-#cartaVisual{position:relative;background:var(--noche);margin:clamp(34px,4vw,52px) calc(-1 * clamp(22px,5vw,72px)) 0;
-  padding:clamp(50px,6vw,80px) 0 clamp(40px,5vw,60px);overflow:hidden}
-.ring-scene{height:clamp(420px,58vh,560px);perspective:1200px;position:relative;cursor:grab;touch-action:pan-y}
-.ring-scene:active{cursor:grabbing}
-#ringTrack{position:absolute;top:50%;left:50%;transform-style:preserve-3d;will-change:transform}
-.ring-card{position:absolute;width:clamp(190px,21vw,280px);aspect-ratio:4/5;transform-style:preserve-3d;
-  margin-left:calc(clamp(190px,21vw,280px) / -2);margin-top:calc(clamp(190px,21vw,280px) * 1.25 / -2)}
-.ring-card .rcc{position:absolute;inset:0;overflow:hidden;border-radius:6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);
-  background:var(--ink)}
-.ring-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
-.ring-card .rci{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;z-index:2;
-  background:linear-gradient(180deg,transparent,rgba(10,15,26,.88));pointer-events:none}
-.ring-card .rci b{display:block;font-family:var(--serif);font-weight:400;font-size:17px;color:var(--cream);line-height:1.2}
-.ring-card .rci span{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--bronze-light)}
-.ring-foot{text-align:center;margin-top:26px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(249,247,240,.4)}
-.ring-cap{position:absolute;top:clamp(8px,1.5vw,18px);left:50%;transform:translateX(-50%);text-align:center;z-index:5;width:100%;pointer-events:none}
-.ring-cap .label{justify-content:center;color:var(--bronze-light);margin-bottom:4px}
-.ring-cap .label::after{content:'';width:38px;height:1px;background:var(--bronze)}
+/* ============ ACORDEÓN DE MENÚS (carta) ============ */
+.macc{margin-top:clamp(34px,4vw,54px);border-top:1px solid var(--line)}
+.mrow{border-bottom:1px solid var(--line)}
+.mhead{width:100%;display:grid;grid-template-columns:clamp(86px,9vw,128px) 1fr auto auto;align-items:center;
+  gap:clamp(16px,2.6vw,38px);background:none;border:none;cursor:pointer;text-align:left;
+  padding:clamp(16px,2vw,26px) 4px;font-family:inherit;transition:background .4s}
+.mhead:hover{background:rgba(110,87,58,.05)}
+.mimg{width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:2px}
+.mimg img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.mhead:hover .mimg img{transform:scale(1.1)}
+.mk{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze-deep);font-weight:600}
+.mhead h3{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.4vw,48px);line-height:1.05;margin-top:4px}
+.mhead h3 em{font-style:italic;color:var(--bronze)}
+.mdesc{font-size:12px;color:var(--ink-soft);opacity:.8;margin-top:6px;max-width:380px;line-height:1.6}
+.mprice{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,32px);color:var(--bronze-deep);white-space:nowrap;text-align:right}
+.mprice small{display:block;font-family:var(--sans);font-style:normal;font-size:10.5px;letter-spacing:.1em;color:var(--ink-soft);margin-top:2px}
+.mplus{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;position:relative;flex:none;transition:.5s var(--ease)}
+.mplus::before,.mplus::after{content:'';position:absolute;top:50%;left:50%;background:var(--bronze-deep);transition:.5s var(--ease)}
+.mplus::before{width:14px;height:1.5px;transform:translate(-50%,-50%)}
+.mplus::after{width:1.5px;height:14px;transform:translate(-50%,-50%)}
+.mrow.open .mplus{background:var(--bronze-deep);border-color:var(--bronze-deep)}
+.mrow.open .mplus::before,.mrow.open .mplus::after{background:var(--cream)}
+.mrow.open .mplus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.mbody{max-height:0;overflow:hidden;transition:max-height .7s var(--ease)}
+.mbody-in{padding:clamp(10px,2vw,24px) 4px clamp(36px,4vw,56px)}
+.dishes2col{columns:2;column-gap:clamp(40px,5vw,80px)}
+.dishes2col .course-group{break-inside:avoid;margin-top:0;margin-bottom:34px}
+.dish{transition:padding-left .4s var(--ease)}
+.dish:hover{padding-left:12px}
+.dish:hover .dn{color:var(--bronze-deep)}
+@media(max-width:880px){
+  .mhead{grid-template-columns:64px 1fr auto}
+  .mplus{display:none}
+  .dishes2col{columns:1}
+}
+
+/* ============ REGALA BOROA — vista ultra motion ============ */
+#rg-hero{position:relative;height:280svh;background:var(--noche)}
+.rg-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.rg-title{position:absolute;z-index:2;font-family:var(--serif);font-weight:300;color:var(--cream);
+  font-size:clamp(54px,10vw,150px);line-height:1;text-align:center;letter-spacing:.01em;will-change:transform,opacity}
+.rg-title em{font-style:italic;color:var(--bronze-light)}
+.rg-caja{position:absolute;z-index:4;width:clamp(240px,30vw,460px);will-change:transform;
+  filter:drop-shadow(0 60px 80px rgba(0,0,0,.55))}
+.rg-orb{position:absolute;z-index:3;will-change:transform;filter:drop-shadow(0 24px 36px rgba(0,0,0,.4));pointer-events:none}
+.rg-orb img{width:100%;display:block}
+.rg-orb-1{width:clamp(110px,12vw,190px)}
+.rg-orb-2{width:clamp(130px,15vw,230px)}
+.rg-orb-3{width:clamp(80px,8vw,130px)}
+.rg-sub{position:absolute;z-index:5;bottom:clamp(30px,6vh,60px);left:50%;transform:translateX(-50%);
+  text-align:center;color:rgba(249,247,240,.65);font-size:12px;letter-spacing:.22em;text-transform:uppercase;width:100%}
+.rg-cards{background:var(--paper-2)}
+.rg-card3d{transform-style:preserve-3d;will-change:transform}
+.rg-card3d .rg-card-in{transform:translateZ(24px)}
 
 /* ============ VISTA PERDIDO (404) ============ */
 #v-perdido .lost{min-height:100svh;background:var(--noche);position:relative;display:flex;flex-direction:column;
@@ -537,7 +567,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 #v-perdido .btn{margin-top:34px}
 
 /* ============ CINCO SIGLOS EN UN SCROLL ============ */
-#siglos{position:relative;height:520svh}
+#siglos{position:relative;height:600svh}
 .siglos-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--paper);transition:none}
 #siglosCanvas{position:absolute;inset:0;width:100%;height:100%}
 .siglos-cap{position:absolute;left:clamp(24px,7vw,110px);top:50%;transform:translateY(-50%);max-width:340px;
@@ -645,6 +675,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     <a data-go="restaurante">El Restaurante</a>
     <a data-go="carta">Carta y Menús</a>
     <a data-go="eventos">Eventos</a>
+    <a data-go="regala">Regala Boroa</a>
     <a data-go="reservas">Reservas</a>
     <a data-go="contacto">Contacto</a>
   </nav>
@@ -665,6 +696,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
   <a data-go="restaurante">El Restaurante</a>
   <a data-go="carta">Carta y Menús</a>
   <a data-go="eventos">Eventos</a>
+  <a data-go="regala">Regala Boroa</a>
   <a data-go="reservas">Reservas</a>
   <a data-go="contacto">Contacto</a>
   <div class="m-tel">+34 946 734 747</div>
@@ -940,30 +972,18 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
   <div class="sec">
     <div class="sec-inner">
 
-      <div class="carta-modes rv">
-        <button class="cmode on" id="modeVisual">Carta visual</button>
-        <button class="cmode" id="modeClasica">Carta clásica</button>
-      </div>
+      <div class="macc rv">
 
-      <div id="cartaVisual">
-        <div class="ring-cap">
-          <div class="label">Gira la mesa</div>
-        </div>
-        <div class="ring-scene" id="ringScene">
-          <div id="ringTrack"></div>
-        </div>
-        <div class="ring-foot">Arrastra para girar · toca una tarjeta para ir a su sección</div>
-      </div>
-
-      <div id="cartaClasica" style="display:none">
-      <div class="tabs rv" role="tablist">
-        <button class="tab on" data-pane="p-carta">La carta</button>
-        <button class="tab" data-pane="p-txindoki">Menú Txindoki</button>
-        <button class="tab" data-pane="p-mugarra">Menú Mugarra</button>
-        <button class="tab" data-pane="p-veg">Menú Vegetariano</button>
-      </div>
-
-      <div class="pane on" id="p-carta">
+      <!-- LA CARTA -->
+      <div class="mrow" id="mr-carta">
+        <button class="mhead">
+          <span class="mimg"><img src="assets/ring-kokotxa.webp" alt="La carta" loading="lazy"></span>
+          <span class="mtitle"><span class="mk">A la carta · producto de temporada</span><h3>La <em>Carta</em></h3>
+            <span class="mdesc">Entrantes, raciones cortas, pescados del Cantábrico, carnes a la brasa y postres de obrador.</span></span>
+          <span class="mprice">7 – 95 €</span>
+          <span class="mplus"></span>
+        </button>
+        <div class="mbody"><div class="mbody-in"><div class="dishes2col">
         <div class="course-group">
           <div class="cg-title">Entrantes</div>
           <div class="dish"><div><div class="dn">Ostra “Gillardeau” nº2</div></div><div class="dp">7 € /ud.</div></div>
@@ -1007,14 +1027,20 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
           <div class="dish"><div><div class="dn">Coulant</div><div class="dd">cereza, chocolate negro y pistacho</div></div><div class="dp">18 €</div></div>
           <div class="dish"><div><div class="dn">Surtido de repostería</div><div class="dd">4 bocados con 2 helados caseros · recomendado para 2 personas</div></div><div class="dp">24 €</div></div>
         </div>
+        </div><!-- /dishes2col -->
         <p class="menu-foot">10% I.V.A. incluido · Producto de temporada</p>
+        </div></div><!-- /mbody -->
       </div>
 
-      <div class="pane" id="p-txindoki">
-        <div class="menu-head">
-          <h3>Menú Degustación <em>Txindoki</em></h3>
-          <div class="menu-price">170 €<small>maridaje +80 €</small></div>
-        </div>
+      <div class="mrow" id="mr-txindoki">
+        <button class="mhead">
+          <span class="mimg"><img src="assets/ring-terraza.webp" alt="Menú Txindoki" loading="lazy"></span>
+          <span class="mtitle"><span class="mk">Menú degustación · 19 pases</span><h3>Menú <em>Txindoki</em></h3>
+            <span class="mdesc">El gran viaje de Boroa: del ajoblanco al pichón, con caviar Beluga y kokotxa al pilpil.</span></span>
+          <span class="mprice">170 €<small>maridaje +80 €</small></span>
+          <span class="mplus"></span>
+        </button>
+        <div class="mbody"><div class="mbody-in">
         <div class="menu-meta">Reserva con 24 h de antelación · máx. 12 comensales · servicio 13:00 – 14:30 · a mesa completa</div>
         <div class="tasting">
           <div class="dish"><div><div class="dn">Ajoblanco y albahaca</div></div></div>
@@ -1049,13 +1075,18 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
           </ul>
         </div>
         <p class="menu-foot">10% I.V.A. incluido</p>
+        </div></div><!-- /mbody -->
       </div>
 
-      <div class="pane" id="p-mugarra">
-        <div class="menu-head">
-          <h3>Menú Degustación <em>Mugarra</em></h3>
-          <div class="menu-price">110 €<small>maridaje +50 €</small></div>
-        </div>
+      <div class="mrow" id="mr-mugarra">
+        <button class="mhead">
+          <span class="mimg"><img src="assets/ring-tarta.webp" alt="Menú Mugarra" loading="lazy"></span>
+          <span class="mtitle"><span class="mk">Menú degustación · 11 pases</span><h3>Menú <em>Mugarra</em></h3>
+            <span class="mdesc">El equilibrado: vieira con caviar, merluza al txakoli y cochinillo con manzana de Boroa.</span></span>
+          <span class="mprice">110 €<small>maridaje +50 €</small></span>
+          <span class="mplus"></span>
+        </button>
+        <div class="mbody"><div class="mbody-in">
         <div class="menu-meta">Máx. 12 comensales · a mesa completa</div>
         <div class="course-group" style="margin-top:0">
           <div class="cg-title">Aperitivos</div>
@@ -1090,13 +1121,18 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
           </ul>
         </div>
         <p class="menu-foot">10% I.V.A. incluido</p>
+        </div></div><!-- /mbody -->
       </div>
 
-      <div class="pane" id="p-veg">
-        <div class="menu-head">
-          <h3>Menú <em>Vegetariano</em></h3>
-          <div class="menu-price">90 €<small>con maridaje 140 €</small></div>
-        </div>
+      <div class="mrow" id="mr-veg">
+        <button class="mhead">
+          <span class="mimg"><img src="assets/ring-babatxikis.webp" alt="Menú Vegetariano" loading="lazy"></span>
+          <span class="mtitle"><span class="mk">Menú degustación · de la huerta</span><h3>Menú <em>Vegetariano</em></h3>
+            <span class="mdesc">Espárragos de Navarra, habitas de Aroa, alcachofas con trufa y el cheesecake de Idiazabal.</span></span>
+          <span class="mprice">90 €<small>con maridaje 140 €</small></span>
+          <span class="mplus"></span>
+        </button>
+        <div class="mbody"><div class="mbody-in">
         <div class="menu-meta">Reserva con 24 h de antelación · máx. 8 comensales</div>
         <div class="tasting">
           <div class="dish"><div><div class="dn">Ajoblanco y albahaca</div></div></div>
@@ -1112,9 +1148,75 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
           <div class="dish"><div><div class="dn">Café o infusión · Petit fours · Agua Km0 Boroa</div></div></div>
         </div>
         <p class="menu-foot">10% I.V.A. incluido</p>
+        </div></div><!-- /mbody -->
       </div>
 
-      </div><!-- /cartaClasica -->
+      <div class="mrow" id="mr-bizkargi">
+        <button class="mhead">
+          <span class="mimg"><img src="assets/ring-sala.webp" alt="Menú Bizkargi" loading="lazy"></span>
+          <span class="mtitle"><span class="mk">Entre semana · el menú de la casa</span><h3>Menú <em>Bizkargi</em></h3>
+            <span class="mdesc">Cambia cada semana con el mercado y la temporada. La forma más cercana de conocer Boroa.</span></span>
+          <span class="mprice">Semanal<small>consultar el menú de la semana</small></span>
+          <span class="mplus"></span>
+        </button>
+        <div class="mbody"><div class="mbody-in">
+          <div class="menu-meta">De martes a viernes no festivos · a mesa completa</div>
+          <p class="lead" style="max-width:640px">El Bizkargi es el menú del día de Boroa: una selección corta que la cocina compone cada semana con lo mejor del mercado. Llama y te contamos el menú de esta semana.</p>
+          <div style="margin-top:24px"><a class="btn btn-ink" href="tel:+34946734747">946 734 747 · menú de la semana <span class="arr">→</span></a></div>
+        </div></div><!-- /mbody -->
+      </div>
+
+      <div class="mrow" id="mr-grupos">
+        <button class="mhead">
+          <span class="mimg"><img src="assets/ring-bodas.webp" alt="Menús para grupos" loading="lazy"></span>
+          <span class="mtitle"><span class="mk">Grupos y comuniones · mín. 8 comensales</span><h3>Menús para <em>grupos</em></h3>
+            <span class="mdesc">Tres propuestas a mesa completa, concertadas con 3 días de antelación. Válidos hasta el 31 de julio de 2026.</span></span>
+          <span class="mprice">100 – 130 €</span>
+          <span class="mplus"></span>
+        </button>
+        <div class="mbody"><div class="mbody-in">
+          <div class="gmenus" style="margin-top:10px">
+            <div class="gmenu">
+              <div class="gm-k">Menú 1</div>
+              <div class="gm-t">De la huerta al monte</div>
+              <div class="gm-p">100 €</div>
+              <div class="gm-dish">Royal de foie, gelatina de Pedro Ximénez y pan de chocolate y especias</div>
+              <div class="gm-dish">Colitas de gambas sobre tartar de aguacate y vinagreta de cítricos</div>
+              <div class="gm-dish">Yema de huevo de caserío, cebolla morada de Zalla y cremoso de parmentine</div>
+              <div class="gm-dish">Hongos y mollejas crocantes de cordero sobre crema de boniato y trufa</div>
+              <div class="gm-dish">Láminas de ganado mayor con tosta de queso Idiazabal</div>
+              <div class="gm-dish">Tartaleta de limón, notas tropicales y helado</div>
+              <div class="gm-note">Bodega: Laderas de Bideona · Luis Cañas · 10% IVA incl.</div>
+            </div>
+            <div class="gmenu hot">
+              <div class="gm-k">Menú 2</div>
+              <div class="gm-t">Mar y brasa</div>
+              <div class="gm-p">115 €</div>
+              <div class="gm-dish">Jamón ibérico de bellota</div>
+              <div class="gm-dish">Ensalada de pulpo gallego, patata arbequina y vinagreta de ajo negro</div>
+              <div class="gm-dish">Hongos a la plancha con foie gras al Oporto y crema fina trufada</div>
+              <div class="gm-dish">Rodaballo a la brasa con rizos de begiandi</div>
+              <div class="gm-dish">Solomillo a la brasa con espuma de parmentine y pimientos</div>
+              <div class="gm-dish">Tarta de chocolate y praliné con helado</div>
+              <div class="gm-note">Bodega: Laderas de Bideona · Itsas Mendi · 10% IVA incl.</div>
+            </div>
+            <div class="gmenu">
+              <div class="gm-k">Menú 3</div>
+              <div class="gm-t">Bogavante y chuletón</div>
+              <div class="gm-p">130 €</div>
+              <div class="gm-dish">Corte de foie caramelizado con cremoso de plátano</div>
+              <div class="gm-dish">Ensalada de bogavante, mezclum de hortalizas y vinagreta de tomate</div>
+              <div class="gm-dish">Vieiras en asado breve sobre arroz cremoso de berberechos</div>
+              <div class="gm-dish">Lubina imperial a la brasa con patata panadera y pilpil cítrico</div>
+              <div class="gm-dish">Chuletón de ganado mayor con patatas fritas y ensalada</div>
+              <div class="gm-dish">Cheesecake de Idiazabal con esponja helada de frutos rojos</div>
+              <div class="gm-note">Bodega: Luis Cañas crianza · Itsas Mendi Nº7 · 10% IVA incl.</div>
+            </div>
+          </div>
+        </div></div><!-- /mbody -->
+      </div>
+
+      </div><!-- /macc -->
 
     </div>
   </div>
@@ -1161,54 +1263,6 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
           <div><b>Decoración floral</b><p>Flores Elorz, especialistas en decoración nupcial desde 1990.</p></div>
         </div>
         <div style="margin-top:30px"><a class="btn btn-ink" data-go="contacto">Solicitar presupuesto <span class="arr">→</span></a></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec" style="background:var(--paper-2)">
-    <div class="sec-inner">
-      <div class="rv">
-        <div class="label">Grupos · mínimo 8 comensales</div>
-        <h2 class="display">Menús para grupos <em>y comuniones</em></h2>
-        <p class="lead" style="margin-top:18px">A mesa completa, concertados con un mínimo de 3 días de antelación. Válidos hasta el 31 de julio de 2026.</p>
-      </div>
-      <div class="gmenus">
-        <div class="gmenu rv">
-          <div class="gm-k">Menú 1</div>
-          <div class="gm-t">De la huerta al monte</div>
-          <div class="gm-p">100 €</div>
-          <div class="gm-dish">Royal de foie, gelatina de Pedro Ximénez y pan de chocolate y especias</div>
-          <div class="gm-dish">Colitas de gambas sobre tartar de aguacate y vinagreta de cítricos</div>
-          <div class="gm-dish">Yema de huevo de caserío, cebolla morada de Zalla y cremoso de parmentine</div>
-          <div class="gm-dish">Hongos y mollejas crocantes de cordero sobre crema de boniato y trufa</div>
-          <div class="gm-dish">Láminas de ganado mayor con tosta de queso Idiazabal</div>
-          <div class="gm-dish">Tartaleta de limón, notas tropicales y helado</div>
-          <div class="gm-note">Bodega: Laderas de Bideona · Luis Cañas · 10% IVA incl.</div>
-        </div>
-        <div class="gmenu hot rv">
-          <div class="gm-k">Menú 2</div>
-          <div class="gm-t">Mar y brasa</div>
-          <div class="gm-p">115 €</div>
-          <div class="gm-dish">Jamón ibérico de bellota</div>
-          <div class="gm-dish">Ensalada de pulpo gallego, patata arbequina y vinagreta de ajo negro</div>
-          <div class="gm-dish">Hongos a la plancha con foie gras al Oporto y crema fina trufada</div>
-          <div class="gm-dish">Rodaballo a la brasa con rizos de begiandi</div>
-          <div class="gm-dish">Solomillo a la brasa con espuma de parmentine y pimientos</div>
-          <div class="gm-dish">Tarta de chocolate y praliné con helado</div>
-          <div class="gm-note">Bodega: Laderas de Bideona · Itsas Mendi · 10% IVA incl.</div>
-        </div>
-        <div class="gmenu rv">
-          <div class="gm-k">Menú 3</div>
-          <div class="gm-t">Bogavante y chuletón</div>
-          <div class="gm-p">130 €</div>
-          <div class="gm-dish">Corte de foie caramelizado con cremoso de plátano</div>
-          <div class="gm-dish">Ensalada de bogavante, mezclum de hortalizas y vinagreta de tomate</div>
-          <div class="gm-dish">Vieiras en asado breve sobre arroz cremoso de berberechos</div>
-          <div class="gm-dish">Lubina imperial a la brasa con patata panadera y pilpil cítrico</div>
-          <div class="gm-dish">Chuletón de ganado mayor con patatas fritas y ensalada</div>
-          <div class="gm-dish">Cheesecake de Idiazabal con esponja helada de frutos rojos</div>
-          <div class="gm-note">Bodega: Luis Cañas crianza · Itsas Mendi Nº7 · 10% IVA incl.</div>
-        </div>
       </div>
     </div>
   </div>
@@ -1292,44 +1346,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
   </div>
 
-  <!-- REGALA BOROA -->
-  <div class="sec" id="regala">
-    <div class="sec-inner">
-      <div class="rv" style="text-align:center">
-        <div class="label center">La tienda</div>
-        <h2 class="display">Regala <em>Boroa</em></h2>
-        <p class="lead" style="margin:18px auto 0;max-width:520px">Una caja, un menú degustación y una mesa esperando. El regalo que no se olvida, directo de su tienda online.</p>
-      </div>
-      <div class="regala-grid">
-        <div class="rg-card rv">
-          <img src="assets/flota-caja-2.webp" alt="Caja regalo menú Txindoki" loading="lazy">
-          <div class="rg-k">19 pases · el grande</div>
-          <div class="rg-t">Menú Degustación Txindoki</div>
-          <div class="rg-p">170 €<small>con maridaje 250 €</small></div>
-          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-degustacion-txindoki/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
-        </div>
-        <div class="rg-card rv">
-          <img src="assets/flota-caja-2.webp" alt="Caja regalo menú Mugarra" loading="lazy">
-          <div class="rg-k">El equilibrado</div>
-          <div class="rg-t">Menú Degustación Mugarra</div>
-          <div class="rg-p">110 €<small>con maridaje 160 €</small></div>
-          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-mugarra-bebidas-no-incluidas/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
-        </div>
-        <div class="rg-card rv">
-          <img src="assets/flota-caja-veg.webp" alt="Caja regalo menú Vegetariano" loading="lazy">
-          <div class="rg-k">De la huerta</div>
-          <div class="rg-t">Menú Vegetariano</div>
-          <div class="rg-p">90 €<small>con maridaje 140 €</small></div>
-          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-vegetariano-maridaje/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
-        </div>
-      </div>
-      <div class="rv" style="text-align:center;margin-top:38px">
-        <a class="btn btn-ink" href="https://www.boroa.com/regala-boroa/" target="_blank" rel="noopener">Ver la tienda completa <span class="arr">→</span></a>
-      </div>
-    </div>
-  </div>
-
-</section>
+  </section>
 
 <!-- ════════════════ CONTACTO ════════════════ -->
 <section class="view" id="v-contacto">
@@ -1361,6 +1378,87 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 
 </section>
 
+<!-- ════════════════ REGALA BOROA ════════════════ -->
+<section class="view" id="v-regala">
+
+  <div id="rg-hero">
+    <div class="rg-stage" id="rgStage">
+      <div class="gridlayer" aria-hidden="true"></div>
+      <h1 class="rg-title" id="rgTitle">Regala<br><em>Boroa</em></h1>
+      <div class="rg-orb rg-orb-1" data-orb="0"><img src="assets/flota-pina.webp" alt=""></div>
+      <div class="rg-orb rg-orb-2" data-orb="1"><img src="assets/flota-txangurro.webp" alt=""></div>
+      <div class="rg-orb rg-orb-3" data-orb="2"><img src="assets/flota-caja-2.webp" alt=""></div>
+      <img class="rg-caja" id="rgCaja" src="assets/flota-caja-veg.webp" alt="Caja regalo de Boroa">
+      <div class="rg-sub">Una caja · un menú degustación · una mesa esperando</div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="mq-track">
+      <div class="mq-item">Menú Txindoki</div>
+      <div class="mq-item">Menú Mugarra</div>
+      <div class="mq-item">Menú Vegetariano</div>
+      <div class="mq-item">El regalo que no se olvida</div>
+      <div class="mq-item">Menú Txindoki</div>
+      <div class="mq-item">Menú Mugarra</div>
+      <div class="mq-item">Menú Vegetariano</div>
+      <div class="mq-item">El regalo que no se olvida</div>
+    </div>
+  </div>
+
+  <div class="sec rg-cards" id="regala">
+    <div class="sec-inner">
+      <div class="rv" style="text-align:center">
+        <div class="label center">La tienda</div>
+        <h2 class="display">Elige <em>el suyo</em></h2>
+        <p class="lead" style="margin:18px auto 0;max-width:520px">Compra directa en la tienda online de Boroa: la caja llega con la experiencia dentro.</p>
+      </div>
+      <div class="regala-grid">
+        <div class="rg-card rg-card3d rv">
+          <div class="rg-card-in">
+          <img src="assets/flota-caja-2.webp" alt="Caja regalo menú Txindoki" loading="lazy">
+          <div class="rg-k">19 pases · el grande</div>
+          <div class="rg-t">Menú Degustación Txindoki</div>
+          <div class="rg-p">170 €<small>con maridaje 250 €</small></div>
+          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-degustacion-txindoki/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+          </div>
+        </div>
+        <div class="rg-card rg-card3d rv">
+          <div class="rg-card-in">
+          <img src="assets/flota-caja-2.webp" alt="Caja regalo menú Mugarra" loading="lazy">
+          <div class="rg-k">El equilibrado</div>
+          <div class="rg-t">Menú Degustación Mugarra</div>
+          <div class="rg-p">110 €<small>con maridaje 160 €</small></div>
+          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-mugarra-bebidas-no-incluidas/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+          </div>
+        </div>
+        <div class="rg-card rg-card3d rv">
+          <div class="rg-card-in">
+          <img src="assets/flota-caja-veg.webp" alt="Caja regalo menú Vegetariano" loading="lazy">
+          <div class="rg-k">De la huerta</div>
+          <div class="rg-t">Menú Vegetariano</div>
+          <div class="rg-p">90 €<small>con maridaje 140 €</small></div>
+          <a class="btn btn-ink" href="https://www.boroa.com/producto/menu-vegetariano-maridaje/" target="_blank" rel="noopener">Regalar <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="rv" style="text-align:center;margin-top:38px">
+        <a class="btn btn-ink" href="https://www.boroa.com/regala-boroa/" target="_blank" rel="noopener">Ver la tienda completa <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <div class="kb-wrap"><img class="kb" src="assets/interior-mesa-2000.webp" alt="Mesa de Boroa" loading="lazy"></div>
+    <div class="veil"></div>
+    <div class="cta-c rv">
+      <h2>¿Y si el regalo<br><em>fuera una mesa?</em></h2>
+      <div style="margin-top:30px"><a class="btn btn-solid" data-go="reservas">Reservar mesa <span class="arr">→</span></a></div>
+    </div>
+  </div>
+
+</section>
+
 <!-- ════════════════ ¿TE HAS PERDIDO? (404 interna) ════════════════ -->
 <section class="view" id="v-perdido">
   <div class="lost">
@@ -1385,6 +1483,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
       <a data-go="restaurante">El Restaurante</a>
       <a data-go="carta">Carta y Menús</a>
       <a data-go="eventos">Bodas y Eventos</a>
+      <a data-go="regala">Regala Boroa</a>
       <a data-go="reservas">Reservas</a>
     </div>
     <div class="foot-col">
@@ -1457,7 +1556,7 @@ if(!REDUCED && typeof Lenis!=='undefined'){
 }
 
 /* ============ ROUTER CON CORTINA ============ */
-const VIEWS=['inicio','restaurante','carta','eventos','reservas','contacto'];
+const VIEWS=['inicio','restaurante','carta','eventos','regala','reservas','contacto'];
 const curtain=document.getElementById('curtain');
 let routing=false;
 function switchView(view){
@@ -1526,14 +1625,33 @@ if(HAS_GSAP && !REDUCED){
   .to('#heroInner',{opacity:0,y:-40,ease:'none'},0)
   .to('.scroll-cue',{opacity:0,ease:'none'},0);
 
-  /* Flotantes: parallax por scroll + vaivén */
-  document.querySelectorAll('.flo').forEach(el=>{
-    const sp=parseFloat(el.dataset.speed||-30), rot=parseFloat(el.dataset.rot||0);
-    gsap.to(el,{yPercent:sp,rotation:rot,ease:'none',
-      scrollTrigger:{trigger:'#apetece',start:'top bottom',end:'bottom top',scrub:1.2}});
-    gsap.to(el.querySelector('img'),{y:'+=16',rotation:rot>0?2:-2,duration:2.6+Math.abs(sp)/30,
-      ease:'sine.inOut',yoyo:true,repeat:-1});
-  });
+  /* Flotantes: ESPIRAL alrededor del titular según bajas + vaivén */
+  (function(){
+    const ap=document.getElementById('apetece');if(!ap)return;
+    const flos=[...ap.querySelectorAll('.flo')];if(!flos.length)return;
+    flos.forEach(el=>{el.style.top='50%';el.style.left='50%';el.style.right='auto';el.style.bottom='auto'});
+    const CONF=flos.map((el,i)=>({el,
+      a0:i*(Math.PI*2/flos.length)+(i%2?.45:0),
+      rx:.38+.05*(i%3), ry:.35+.05*((i+1)%3),
+      spin:i%2?-1:1, w:.9+(i%3)*.25}));
+    flos.forEach((el,i)=>gsap.to(el.querySelector('img'),
+      {y:'+=14',rotation:i%2?3:-3,duration:2.4+i*.4,ease:'sine.inOut',yoyo:true,repeat:-1}));
+    let on=false;
+    new IntersectionObserver(es=>es.forEach(en=>on=en.isIntersecting),{threshold:0}).observe(ap);
+    (function spiral(){
+      requestAnimationFrame(spiral);
+      if(!on)return;
+      const r=ap.getBoundingClientRect();
+      const p=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight+r.height)));
+      CONF.forEach(c=>{
+        const a=c.a0+p*3.6*c.spin*c.w;                 // órbita con el scroll
+        const shrink=1-p*.12;                          // la espiral se cierra al bajar
+        const x=Math.cos(a)*r.width*c.rx*shrink;
+        const y=Math.sin(a)*r.height*c.ry*shrink;
+        c.el.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px) rotate(${Math.sin(a)*10}deg)`;
+      });
+    })();
+  })();
 
   /* Tarjeta del muro: entra escalando */
   gsap.fromTo('#muroCard',{scale:.82,opacity:0,yPercent:14},{scale:1,opacity:1,yPercent:0,ease:'none',
@@ -1634,68 +1752,65 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
   }),{threshold:.05}).observe(v);
 })();
 
-/* ============ ANILLO 3D — carta visual ============ */
-const RING=[
- {img:'ring-kokotxa.webp',  b:'Kokotxas de merluza al pilpil', s:'48 €',                go:'carta'},
- {img:'ring-txangurro.webp',b:'Txangurro a la donostiarra',    s:'de temporada',        go:'carta'},
- {img:'ring-tarta.webp',    b:'Tarta cuatro chocolates',       s:'obrador propio',      go:'carta'},
- {img:'ring-babatxikis.webp',b:'Huevo, habitas y trufa',       s:'de la huerta',        go:'carta'},
- {img:'ring-caserio.webp',  b:'El caserío',                    s:'siglo XV',            go:'restaurante'},
- {img:'ring-sala.webp',     b:'La sala',                       s:'piedra y mantel',     go:'restaurante'},
- {img:'ring-bodega.webp',   b:'La bodega',                     s:'350 referencias',     go:'restaurante'},
- {img:'ring-terraza.webp',  b:'La terraza',                    s:'al caer la tarde',    go:'reservas'},
- {img:'ring-bodas.webp',    b:'Celebraciones',                 s:'hasta 210 comensales',go:'eventos'},
-];
-(function(){
-  const scene=document.getElementById('ringScene'),track=document.getElementById('ringTrack');
-  if(!scene)return;
-  const n=RING.length, step=360/n;
-  let R=0,rot=0,vel=0,auto=REDUCED?0:.05,active=false,dragging=false,moved=false,lastX=0;
-  const cards=RING.map((d,i)=>{
-    const el=document.createElement('div');el.className='ring-card';
-    el.innerHTML=`<div class="rcc"><img src="assets/${d.img}" alt="${d.b}" loading="lazy"><div class="rci"><b>${d.b}</b><span>${d.s}</span></div></div>`;
-    el.addEventListener('click',()=>{if(!moved)go(d.go)});
-    track.appendChild(el);return el;
-  });
-  function layout(){
-    const w=cards[0].offsetWidth||240;
-    R=Math.round((w/2)/Math.tan(Math.PI/n)*1.18);
-    cards.forEach((el,i)=>{el.style.transform=`rotateY(${i*step}deg) translateZ(${R}px)`});
-  }
-  layout();addEventListener('resize',layout);
-  new IntersectionObserver(es=>es.forEach(en=>active=en.isIntersecting),{threshold:.05}).observe(scene);
-  scene.addEventListener('pointerdown',e=>{dragging=true;moved=false;lastX=e.clientX;scene.setPointerCapture(e.pointerId)});
-  scene.addEventListener('pointermove',e=>{if(!dragging)return;const dx=e.clientX-lastX;lastX=e.clientX;
-    if(Math.abs(dx)>2)moved=true;vel=dx*.18;rot+=dx*.18});
-  scene.addEventListener('pointerup',()=>dragging=false);
-  scene.addEventListener('pointercancel',()=>dragging=false);
-  (function loop(){
-    requestAnimationFrame(loop);
-    if(!active)return;
-    if(!dragging){rot+=auto+vel;vel*=.95;if(Math.abs(vel)<.01)vel=0;}
-    track.style.transform=`rotateY(${rot}deg)`;
-    cards.forEach((el,i)=>{
-      const a=((i*step+rot)%360+360)%360;
-      const c=Math.cos(a*Math.PI/180);          // 1 = delante
-      el.querySelector('.rcc').style.filter=`brightness(${.42+.58*(c+1)/2})`;
-      el.style.zIndex=Math.round((c+1)*50);
+/* ============ ACORDEÓN DE MENÚS ============ */
+document.querySelectorAll('.mrow').forEach(row=>{
+  const head=row.querySelector('.mhead'),body=row.querySelector('.mbody');
+  head.addEventListener('click',()=>{
+    const open=row.classList.contains('open');
+    document.querySelectorAll('.mrow.open').forEach(r=>{
+      r.classList.remove('open');r.querySelector('.mbody').style.maxHeight='0px';
     });
-  })();
+    if(!open){
+      row.classList.add('open');
+      body.style.maxHeight=body.scrollHeight+'px';
+      setTimeout(()=>{ if(row.classList.contains('open')) body.style.maxHeight=body.scrollHeight+'px'; },720);
+    }
+  });
+});
+
+/* ============ REGALA: showcase con pin + órbitas ============ */
+(function(){
+  const hero=document.getElementById('rg-hero');if(!hero)return;
+  if(REDUCED){hero.style.height='100svh';return;}
+  const caja=document.getElementById('rgCaja'),title=document.getElementById('rgTitle');
+  const orbs=[...hero.querySelectorAll('.rg-orb')];
+  let on=false;
+  new IntersectionObserver(es=>es.forEach(en=>on=en.isIntersecting),{threshold:0}).observe(hero);
+  (function loop(t){
+    requestAnimationFrame(loop);
+    if(!on)return;
+    const r=hero.getBoundingClientRect();
+    const total=r.height-innerHeight;
+    const p=Math.max(0,Math.min(1,-r.top/total));
+    const bob=Math.sin(t*.0012)*10;
+    caja.style.transform=`translateY(${bob}px) rotate(${-10+p*22}deg) scale(${.55+p*.65})`;
+    title.style.transform=`translateY(${-p*46}%) scale(${1-p*.18})`;
+    title.style.opacity=1-p*.75;
+    orbs.forEach((o,i)=>{
+      const a=(i*2.1)+p*5+(i%2?Math.PI:0);
+      const R=(.26+i*.05)*(1-p*.3);
+      const x=Math.cos(a)*innerWidth*R, y=Math.sin(a)*innerHeight*R*.7;
+      o.style.transform=`translate(${x}px,${y}px) rotate(${Math.sin(a)*16}deg)`;
+    });
+  })(0);
 })();
 
-/* conmutador carta visual / clásica */
-(function(){
-  const mv=document.getElementById('modeVisual'),mc=document.getElementById('modeClasica');
-  const v=document.getElementById('cartaVisual'),c=document.getElementById('cartaClasica');
-  if(!mv)return;
-  function setMode(visual){
-    mv.classList.toggle('on',visual);mc.classList.toggle('on',!visual);
-    v.style.display=visual?'block':'none';c.style.display=visual?'none':'block';
-    if(HAS_GSAP && !REDUCED)ScrollTrigger.refresh();
-  }
-  mv.addEventListener('click',()=>setMode(true));
-  mc.addEventListener('click',()=>setMode(false));
-})();
+/* ============ REGALA: tilt 3D de las tarjetas ============ */
+if(matchMedia('(pointer:fine)').matches && !REDUCED){
+  document.querySelectorAll('.rg-card3d').forEach(card=>{
+    card.style.perspective='800px';
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`translateY(-8px) rotateY(${px*9}deg) rotateX(${-py*9}deg)`;
+      card.style.transition='transform .08s';
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transition='transform .6s cubic-bezier(.22,.61,.36,1)';
+      card.style.transform='none';
+    });
+  });
+}
 
 /* ============ CURSOR PERSONALIZADO + BOTONES MAGNÉTICOS ============ */
 if(matchMedia('(pointer:fine)').matches && !REDUCED){
@@ -1801,13 +1916,13 @@ if(!REDUCED){
 
   /* —— segmentos: capítulo → vuelo → capítulo… —— */
   const SEG=[
-    {type:'ch', i:0, a:0,   b:.17},
-    {type:'fly',i:0, a:.17, b:.27},
-    {type:'ch', i:1, a:.27, b:.44},
-    {type:'fly',i:1, a:.44, b:.54},
-    {type:'ch', i:2, a:.54, b:.71},
-    {type:'fly',i:2, a:.71, b:.81},
-    {type:'ch', i:3, a:.81, b:1.01},
+    {type:'ch', i:0, a:0,   b:.15},
+    {type:'fly',i:0, a:.15, b:.28},
+    {type:'ch', i:1, a:.28, b:.42},
+    {type:'fly',i:1, a:.42, b:.55},
+    {type:'ch', i:2, a:.55, b:.69},
+    {type:'fly',i:2, a:.69, b:.82},
+    {type:'ch', i:3, a:.82, b:1.01},
   ];
   function segAt(p){for(const s of SEG)if(p>=s.a&&p<s.b)return s;return SEG[SEG.length-1];}
 
@@ -1881,8 +1996,9 @@ if(!REDUCED){
       c.style.opacity=a;
       c.style.transform=(MOBILE?'':'translateY(-50%) ')+`translateY(${(1-a)*18}px)`;
     });
-    /* partículas */
-    ctx.clearRect(0,0,W,H);
+    /* partículas (con estela durante el vuelo) */
+    if(seg.type==='fly'){ctx.fillStyle=`rgba(${br|0},${bg2|0},${bb|0},.28)`;ctx.fillRect(0,0,W,H);}
+    else ctx.clearRect(0,0,W,H);
     ctx.fillStyle=fg;
     const time=t*.001;
     const k=seg.type==='fly'?.11:.045;            // en vuelo persiguen mucho más rápido
