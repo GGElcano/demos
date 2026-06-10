@@ -2032,7 +2032,7 @@ if(!REDUCED){
   /* —— partículas —— */
   const P=Array.from({length:N},()=>({x:(Math.random()-.5)*600,y:(Math.random()-.5)*500,
     vx:0,vy:0,tx:0,ty:0,s:.7+Math.random()*1.7,ph:Math.random()*6.28}));
-  let curKey='';
+  let curKey='',dispCh=-1,flying=false,flyT0=0,flyDir=1;
   function setTargets(pts,mirror){
     P.forEach((p,i)=>{const t=pts[(i*7)%pts.length];p.tx=mirror?-t[0]:t[0];p.ty=t[1];});
   }
@@ -2063,49 +2063,51 @@ if(!REDUCED){
     const r=wrap.getBoundingClientRect();
     const total=r.height-H;
     const p=Math.max(0,Math.min(1,-r.top/total));
-    const seg=segAt(p);
-    const st=(p-seg.a)/(seg.b-seg.a);            // 0..1 dentro del segmento
-    let ax=cx,ay=cy,as=scale,ch=seg.i,fg;
-
-    if(seg.type==='ch' || !birdPts[0]){
-      const key='ch'+seg.i;
-      if(key!==curKey){curKey=key;setTargets(targets[seg.i],false);}
-      fg=CH_FG[seg.i];
-      setDots(seg.i);
-    }else{
-      /* —— VUELO: el enjambre se hace golondrina y cruza la escena —— */
-      const dir=seg.i%2?-1:1;
-      const pose=Math.floor(t/620)%2;             // aleteo lento, da tiempo a formarse
-      const mirror=dir<0;                          // pose abajo mira a la derecha
-      const key='fly'+pose+(mirror?'m':'');
-      if(key!==curKey){curKey=key;setTargets(birdPts[pose]||birdPts[1]||targets[seg.i],pose===0?!mirror:mirror);}
-      ax=W*.5+Math.sin(st*Math.PI)*W*.2*dir;
-      ay=cy-Math.sin(st*Math.PI*2)*H*.07+Math.sin(t*.012)*9;
-      as=scale*.72;
-      ch=st>.5?Math.min(3,seg.i+1):seg.i;
-      fg=CH_FG[ch];
-      setDots(ch);
+    /* capítulo deseado según scroll */
+    const sg=segAt(p);
+    const want=sg.type==='ch'?sg.i:(((p-sg.a)/(sg.b-sg.a))>.5?Math.min(3,sg.i+1):sg.i);
+    if(dispCh===-1)dispCh=want;
+    /* cambio de capítulo → VUELO A TIEMPO REAL (independiente del scroll) */
+    if(!flying && want!==dispCh){
+      if(birdPts[0]){flying=true;flyT0=t;flyDir=want>dispCh?1:-1;}
+      dispCh=want;
     }
-
+    let ax=cx,ay=cy,as=scale,fg=CH_FG[dispCh],k=.045,damp=.86,trail=false;
+    if(flying){
+      const ft=(t-flyT0)/1500;
+      if(ft>=1){flying=false;}
+      else{
+        const pose=Math.floor((t-flyT0)/420)%2;
+        const mirror=flyDir<0;
+        const key='fly'+pose+(mirror?'m':'');
+        if(key!==curKey){curKey=key;setTargets(birdPts[pose],pose===0?!mirror:mirror);}
+        ax=cx+Math.sin(ft*Math.PI)*W*.24*flyDir;
+        ay=cy-Math.sin(ft*Math.PI*2)*H*.06+Math.sin(t*.012)*8;
+        as=scale*.7;k=.22;damp=.8;trail=true;
+      }
+    }
+    if(!flying){
+      const key='ch'+dispCh;
+      if(key!==curKey){curKey=key;setTargets(targets[dispCh],false);}
+    }
+    setDots(dispCh);
     /* fondo */
     const[br,bg2,bb]=bgAt(p);
     stage.style.background=`rgb(${br|0},${bg2|0},${bb|0})`;
-    stage.classList.toggle('dark-ch',CH_DARK[ch]);
+    stage.classList.toggle('dark-ch',CH_DARK[dispCh]);
     /* captions: visibles solo en el centro de su capítulo */
     caps.forEach((c,i)=>{
-      const s=SEG.find(x=>x.type==='ch'&&x.i===i);
-      const center=(s.a+s.b)/2,d=Math.abs(p-center);
-      const a=Math.max(0,1-d*9);
-      c.style.opacity=a;
-      c.style.transform=(MOBILE?'':'translateY(-50%) ')+`translateY(${(1-a)*18}px)`;
+      const sc=SEG.find(x=>x.type==='ch'&&x.i===i);
+      const center=(sc.a+sc.b)/2,d=Math.abs(p-center);
+      const a2=Math.max(0,1-d*9);
+      c.style.opacity=a2;
+      c.style.transform=(MOBILE?'':'translateY(-50%) ')+`translateY(${(1-a2)*18}px)`;
     });
     /* partículas (con estela durante el vuelo) */
-    if(seg.type==='fly'){ctx.fillStyle=`rgba(${br|0},${bg2|0},${bb|0},.28)`;ctx.fillRect(0,0,W,H);}
+    if(trail){ctx.fillStyle=`rgba(${br|0},${bg2|0},${bb|0},.28)`;ctx.fillRect(0,0,W,H);}
     else ctx.clearRect(0,0,W,H);
     ctx.fillStyle=fg;
     const time=t*.001;
-    const k=seg.type==='fly'?.16:.045;            // en vuelo persiguen mucho más rápido
-    const damp=seg.type==='fly'?.8:.86;
     for(const q of P){
       const wob=Math.sin(time*1.4+q.ph)*1.6;
       q.vx=(q.vx+(q.tx*as+ax-q.x)*k)*damp;
