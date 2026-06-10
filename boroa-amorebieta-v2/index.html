@@ -64,7 +64,9 @@
 html{scroll-behavior:auto}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
+html{overflow-x:clip}
 body{
+  overflow-x:clip;
   font-family:var(--sans);
   background:var(--paper);
   color:var(--ink);
@@ -108,7 +110,8 @@ nav.main a:hover,nav.main a.active{color:var(--cream)}
 nav.main a:hover::after,nav.main a.active::after{transform:scaleX(1);transform-origin:left}
 .head-right{display:flex;align-items:center;gap:22px}
 .langs{display:flex;gap:2px;font-size:10px;letter-spacing:.14em}
-.langs span{padding:4px 7px;color:rgba(249,247,240,.45);cursor:default}
+.langs span{padding:4px 7px;color:rgba(249,247,240,.45);cursor:pointer;transition:.3s}
+.langs span:hover{color:var(--cream)}
 .langs span.on{color:var(--cream);border-bottom:1px solid var(--bronze-light)}
 .head-tel{font-size:12px;letter-spacing:.12em;color:var(--bronze-light);text-decoration:none;white-space:nowrap}
 .head-tel:hover{color:var(--cream)}
@@ -158,7 +161,7 @@ body.menu-open #mnav a{opacity:1;transform:none}
 .hero-stage h1{font-family:var(--serif);font-weight:300;color:var(--cream);
   font-size:clamp(44px,7.2vw,104px);line-height:1.02;letter-spacing:.005em}
 .hero-stage h1 em{font-style:italic;color:var(--bronze-light)}
-.hero-stage h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom}
+.hero-stage h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.14em;margin-bottom:-.14em}
 .hero-stage h1 .w>span{display:inline-block;transform:translateY(110%)}
 .hero-sub{margin-top:20px;font-size:clamp(13px,1.3vw,15.5px);color:rgba(249,247,240,.78);max-width:430px;line-height:1.8;font-weight:300}
 .hero-ctas{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
@@ -415,6 +418,8 @@ h2.display em{font-style:italic;color:var(--bronze)}
 .sched-row.today{background:rgba(200,173,127,.12);color:var(--cream);padding-left:14px;padding-right:14px;
   border-left:2px solid var(--bronze-light)}
 .sched-row.today .d::after{content:' · hoy';font-style:italic;color:var(--bronze-light)}
+html[lang="eu"] .sched-row.today .d::after{content:' · gaur'}
+html[lang="en"] .sched-row.today .d::after{content:' · today'}
 .sched-row .h{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--bronze-light)}
 .res-note{margin-top:20px;font-size:12px;color:rgba(249,247,240,.5);line-height:1.8}
 .form{display:flex;flex-direction:column;gap:0;border:1px solid var(--line-dark);background:rgba(200,173,127,.03)}
@@ -674,6 +679,10 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
   #burger{display:block}
   .head-tel{display:none}
 }
+@media(max-width:640px){
+  .brand .b-sub{display:none}
+  .brand .b-name{font-size:23px}
+}
 @media(max-width:880px){
   .intro-grid,.bodega-grid,.ev-split,.res-wrap,.con-grid{grid-template-columns:1fr}
   .stats{grid-template-columns:repeat(2,1fr)}
@@ -730,8 +739,8 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     <a data-go="contacto">Contacto</a>
   </nav>
   <div class="head-right">
-    <div class="langs" title="La versión final incluye euskera e inglés completos">
-      <span class="on">ES</span><span>EU</span><span>EN</span>
+    <div class="langs" id="langSwitch">
+      <span class="on" data-lang="es">ES</span><span data-lang="eu">EU</span><span data-lang="en">EN</span>
     </div>
     <button id="sndToggle" aria-label="Sonido ambiente">
       <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path class="l2" d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg>
@@ -1655,7 +1664,7 @@ if(HAS_GSAP && !REDUCED){
     scrollTrigger:{trigger:'#heroPin',start:'top top',end:'bottom bottom',scrub:true}
   })
   .to('#heroStage',{scale:.72,borderRadius:'14px',ease:'none'},0)
-  .to('#heroInner',{opacity:0,y:-40,ease:'none'},0)
+  .to('#heroInner',{opacity:0,y:-40,duration:.32,ease:'none'},0)
   .to('.scroll-cue',{opacity:0,ease:'none'},0);
 
   /* Flotantes: ESPIRAL alrededor del titular según bajas + vaivén */
@@ -2084,7 +2093,8 @@ if(!REDUCED){
     let ax=cx,ay=cy,as=scale,fg=CH_FG[dispCh],k=.045,damp=.86,trail=false;
     if(flying){
       const ft=(t-flyT0)/2000;
-      if(ft>=1){flying=false;}
+      if(ft>=1){flying=false;const nowW=(()=>{const g=segAt(p);return g.type==='ch'?g.i:(((p-g.a)/(g.b-g.a))>.5?Math.min(3,g.i+1):g.i)})();
+        if(nowW!==dispCh){dispCh=nowW;curKey='';}}   /* aterriza y morph directo: no encadena vuelos */
       else{
         const pose=Math.floor((t-flyT0)/700)%2;
         const mirror=flyDir<0;
@@ -2259,6 +2269,145 @@ if(!REDUCED){
 
 /* ============ REGALAR: prefill de la reserva ============ */
 document.querySelectorAll('[data-regalo]').forEach(b=>b.addEventListener('click',()=>go('reservas')));
+
+
+/* ============ IDIOMAS ES · EU · EN ============ */
+(function(){
+  const D={
+  eu:{
+  "Inicio":"Hasiera","Carta y Menús":"Karta eta Menuak","Eventos":"Ekitaldiak","Regala Boroa":"Oparitu Boroa","Reservas":"Erreserbak","Contacto":"Kontaktua",
+  "Entrar":"Sartu","entrar en silencio":"isilik sartu",
+  "Amorebieta-Etxano · Bizkaia":"Amorebieta-Etxano · Bizkaia",
+  "Cocina vizcaína de raíz en un caserío del siglo XV restaurado con escrupuloso respeto, rodeado de robles centenarios.":"Erro-errotiko bizkaitar sukaldaritza, XV. mendeko baserri zaharberritu batean, ehun urteko hariztiez inguratuta.",
+  "Reservar mesa":"Mahaia erreserbatu","Carta y menús":"Karta eta menuak","Descubrir":"Aurkitu",
+  "1 Estrella Michelin · desde 2008":"Michelin izar 1 · 2008tik","2 Soles Repsol":"2 Repsol Eguzki","Q de Plata a la gestión":"Zilarrezko Q kudeaketari",
+  "1 Estrella Michelin desde 2008":"Michelin izar 1 · 2008tik","Q de Plata a la gestión":"Zilarrezko Q","Caserío del siglo XV":"XV. mendeko baserria","350 referencias en bodega":"350 erreferentzia upategian",
+  "01 · Siglo XV":"01 · XV. mendea","Nace":"Jaiotzen da","el caserío":"baserria",
+  "Piedra y roble levantados en las campas de Boroa. Cinco siglos resistiendo al tiempo.":"Harria eta haritza Boroako zelaietan. Bost mende denborari eusten.",
+  "02 · 17 de marzo de 1997":"02 · 1997ko martxoaren 17a","Se enciende":"Pizten da","el fuego":"sua",
+  "Boroa Jatetxea abre sus puertas entre robles centenarios.":"Boroa Jatetxeak ateak zabaltzen ditu ehun urteko hariztien artean.",
+  "03 · Noviembre de 2008":"03 · 2008ko azaroa","Llega":"Heltzen da","la estrella":"izarra",
+  "La guía Michelin reconoce una cocina vizcaína que evoluciona sin olvidar de dónde viene. Y con ella, 2 Soles Repsol.":"Michelin gidak aitortzen du nondik datorren ahaztu gabe eboluzionatzen duen bizkaitar sukaldaritza. Eta harekin, 2 Repsol Eguzki.",
+  "04 · Hoy":"04 · Gaur","La mesa":"Mahaia","te espera":"zure zain dago",
+  "Cinco siglos de piedra, veinticinco años de fuego. El resto lo escribes tú.":"Bost mende harri, hogeita bost urte su. Gainerakoa zuk idazten duzu.",
+  "Sigue bajando":"Jarraitu jaisten",
+  "Carta · menús degustación · tienda":"Karta · dastatze-menuak · denda","¿Qué te apetece":"Zer hartuko zenuke","hoy?":"gaur?",
+  "Kokotxas al pilpil, dos menús degustación con nombre de monte, un vegetariano de huerta propia — o una caja para regalar Boroa a quien más quieres.":"Kokotxak pilpilean, mendi izeneko bi dastatze-menu, baratzeko begetarianoa — edo Boroa oparitzeko kutxa bat.",
+  "Ver carta y menús":"Ikusi karta eta menuak","Celebraciones":"Ospakizunak",
+  "Nuestra historia":"Gure historia","Desde 1997,":"1997tik,","fuego lento":"su motela",
+  "El caserío":"Baserria","Apertura":"Irekiera","Estrella Michelin":"Michelin izarra","Comensales · capacidad":"Mahaikideak · edukiera",
+  "La sala":"Jangela","La mesa":"Mahaia","El detalle":"Xehetasuna","La terraza, al caer la tarde":"Terraza, ilunabarrean",
+  "La bodega":"Upategia","El vino despierta":"Ardoak esnatzen ditu","mil y una sensaciones":"mila eta bat sentsazio",
+  "Vino recomendado":"Ardo gomendatua","Compromiso Boroa":"Boroa Konpromisoa","Lo que devolvemos":"Itzultzen duguna","a la tierra":"lurrari",
+  "Personas":"Pertsonak","Desarrollo sostenible":"Garapen jasangarria","Cultura y deporte":"Kultura eta kirola","Oficio":"Ogibidea",
+  "La mesa de Boroa":"Boroako mahaia","Mesa, bodega":"Mahaia, upategia","y celebración":"eta ospakizuna","Arrastra para explorar →":"Arrastatu esploratzeko →",
+  "¿Te sentamos":"Eseriko zaitugu","a la mesa?":"mahaian?","Reservar en Boroa":"Erreserbatu Boroan",
+  "Comidas L–D · 13:00 – 15:30":"Bazkariak Al–Ig · 13:00 – 15:30",
+  "Carta y menús":"Karta eta menuak","Cocina vizcaína":"Bizkaitar sukaldaritza","arraigada":"errotua",
+  "Gira y elige":"Biratu eta aukeratu","Arrastra para girar · toca un menú para abrirlo":"Arrastatu biratzeko · ukitu menu bat irekitzeko",
+  "Menú":"Menua","La":"","Carta":"Karta",
+  "Eventos y celebraciones":"Ekitaldiak eta ospakizunak","El lugar perfecto":"Toki ezin hobea","para tus celebraciones":"zure ospakizunetarako",
+  "Bodas y comuniones":"Ezkontzak eta jaunartzeak","Tu gran día,":"Zure egun handia,","bajo los robles":"hariztien azpian",
+  "Ceremonia civil":"Ezkontza zibila","Servicio de autobús":"Autobus zerbitzua","Reportaje fotográfico":"Argazki erreportajea","Decoración floral":"Lore apainketa",
+  "Solicitar presupuesto":"Aurrekontua eskatu","Empresas":"Enpresak","Comidas de empresa":"Enpresa bazkariak","que cierran tratos":"tratuak ixten dituztenak","Solicitar propuesta":"Proposamena eskatu",
+  "La tienda":"Denda","Elige":"Aukeratu","el suyo":"berea","Regalar":"Oparitu",
+  "Una caja · un menú degustación · una mesa esperando":"Kutxa bat · dastatze-menu bat · mahai bat zain",
+  "El regalo que no se olvida":"Ahazten ez den oparia","Ver la tienda completa":"Ikusi denda osoa",
+  "¿Y si el regalo":"Eta oparia","fuera una mesa?":"mahai bat balitz?",
+  "Por teléfono":"Telefonoz","El gesto más rápido":"Keinurik azkarrena","Online":"Online","Reserva al instante":"Erreserbatu unean",
+  "Lunes":"Astelehena","Martes":"Asteartea","Miércoles":"Asteazkena","Jueves":"Osteguna","Viernes":"Ostirala","Sábado":"Larunbata","Domingo":"Igandea",
+  "Reservar en TheFork":"Erreserbatu TheFork-en","Disponibilidad en tiempo real":"Erabilgarritasuna denbora errealean",
+  "Contacto":"Kontaktua","Estaremos encantados":"Pozik hartuko zaitugu","de atenderte":"zure zain",
+  "Dirección":"Helbidea","Teléfono":"Telefonoa","Horario":"Ordutegia","Accesibilidad":"Irisgarritasuna",
+  "Visita":"Bisita","Legal":"Legezkoa","Bodas y Eventos":"Ezkontzak eta Ekitaldiak",
+  "¿Te has":"Galdu","perdido?":"al zara?","Esta mesa no existe. Pero la tuya te está esperando.":"Mahai hau ez da existitzen. Baina zurea zure zain dago.","Volver a la mesa":"Itzuli mahaira",
+  "Tu mesa":"Zure mahaia","te espera":"zure zain dago"
+  },
+  en:{
+  "Inicio":"Home","Carta y Menús":"Menu & Tastings","Eventos":"Events","Regala Boroa":"Gift Boroa","Reservas":"Reservations","Contacto":"Contact",
+  "Entrar":"Enter","entrar en silencio":"enter in silence",
+  "Cocina vizcaína de raíz en un caserío del siglo XV restaurado con escrupuloso respeto, rodeado de robles centenarios.":"Deep-rooted Biscayan cuisine in a scrupulously restored 15th-century farmhouse, surrounded by centuries-old oaks.",
+  "Reservar mesa":"Book a table","Carta y menús":"Menu & tastings","Descubrir":"Discover",
+  "1 Estrella Michelin · desde 2008":"1 Michelin Star · since 2008","2 Soles Repsol":"2 Repsol Suns","Q de Plata a la gestión":"Silver Q for management",
+  "1 Estrella Michelin desde 2008":"1 Michelin Star since 2008","Caserío del siglo XV":"15th-century farmhouse","350 referencias en bodega":"350 wines in the cellar",
+  "01 · Siglo XV":"01 · 15th century","Nace":"Born:","el caserío":"the farmhouse",
+  "Piedra y roble levantados en las campas de Boroa. Cinco siglos resistiendo al tiempo.":"Stone and oak raised on the meadows of Boroa. Five centuries standing against time.",
+  "02 · 17 de marzo de 1997":"02 · March 17, 1997","Se enciende":"The fire","el fuego":"is lit",
+  "Boroa Jatetxea abre sus puertas entre robles centenarios.":"Boroa Jatetxea opens its doors among centuries-old oaks.",
+  "03 · Noviembre de 2008":"03 · November 2008","Llega":"Here comes","la estrella":"the star",
+  "La guía Michelin reconoce una cocina vizcaína que evoluciona sin olvidar de dónde viene. Y con ella, 2 Soles Repsol.":"The Michelin guide recognises a Biscayan cuisine that evolves without forgetting its roots. And with it, 2 Repsol Suns.",
+  "04 · Hoy":"04 · Today","La mesa":"The table","te espera":"awaits you",
+  "Cinco siglos de piedra, veinticinco años de fuego. El resto lo escribes tú.":"Five centuries of stone, twenty-five years of fire. You write the rest.",
+  "Sigue bajando":"Keep scrolling",
+  "Carta · menús degustación · tienda":"Menu · tasting menus · shop","¿Qué te apetece":"What are you in the mood for","hoy?":"today?",
+  "Kokotxas al pilpil, dos menús degustación con nombre de monte, un vegetariano de huerta propia — o una caja para regalar Boroa a quien más quieres.":"Kokotxas al pilpil, two tasting menus named after mountains, a garden vegetarian — or a gift box of Boroa for someone you love.",
+  "Ver carta y menús":"See menu & tastings","Celebraciones":"Celebrations",
+  "Nuestra historia":"Our story","Desde 1997,":"Since 1997,","fuego lento":"slow fire",
+  "El caserío":"The farmhouse","Apertura":"Opening","Estrella Michelin":"Michelin Star","Comensales · capacidad":"Guests · capacity",
+  "La sala":"The dining room","El detalle":"The detail","La terraza, al caer la tarde":"The terrace at dusk",
+  "La bodega":"The cellar","El vino despierta":"Wine awakens","mil y una sensaciones":"a thousand and one sensations",
+  "Vino recomendado":"Recommended wine","Compromiso Boroa":"Boroa Commitment","Lo que devolvemos":"What we give back","a la tierra":"to the land",
+  "Personas":"People","Desarrollo sostenible":"Sustainability","Cultura y deporte":"Culture & sport","Oficio":"Craft",
+  "La mesa de Boroa":"Boroa's table","Mesa, bodega":"Table, cellar","y celebración":"and celebration","Arrastra para explorar →":"Drag to explore →",
+  "¿Te sentamos":"Shall we seat you","a la mesa?":"at the table?","Reservar en Boroa":"Book at Boroa",
+  "Comidas L–D · 13:00 – 15:30":"Lunch Mon–Sun · 1:00 – 3:30 pm",
+  "Cocina vizcaína":"Biscayan cuisine","arraigada":"deep-rooted",
+  "Gira y elige":"Spin & choose","Arrastra para girar · toca un menú para abrirlo":"Drag to spin · tap a menu to open it",
+  "Menú":"Menu","Carta":"Carte",
+  "Eventos y celebraciones":"Events & celebrations","El lugar perfecto":"The perfect place","para tus celebraciones":"for your celebrations",
+  "Bodas y comuniones":"Weddings & communions","Tu gran día,":"Your big day,","bajo los robles":"under the oaks",
+  "Ceremonia civil":"Civil ceremony","Servicio de autobús":"Bus service","Reportaje fotográfico":"Photo reportage","Decoración floral":"Floral design",
+  "Solicitar presupuesto":"Request a quote","Empresas":"Companies","Comidas de empresa":"Business lunches","que cierran tratos":"that close deals","Solicitar propuesta":"Request a proposal",
+  "La tienda":"The shop","Elige":"Choose","el suyo":"theirs","Regalar":"Gift it",
+  "Una caja · un menú degustación · una mesa esperando":"A box · a tasting menu · a table waiting",
+  "El regalo que no se olvida":"The gift they never forget","Ver la tienda completa":"See the full shop",
+  "¿Y si el regalo":"What if the gift","fuera una mesa?":"were a table?",
+  "Por teléfono":"By phone","El gesto más rápido":"The fastest gesture","Reserva al instante":"Book instantly",
+  "Lunes":"Monday","Martes":"Tuesday","Miércoles":"Wednesday","Jueves":"Thursday","Viernes":"Friday","Sábado":"Saturday","Domingo":"Sunday",
+  "Reservar en TheFork":"Book on TheFork","Disponibilidad en tiempo real":"Real-time availability",
+  "Estaremos encantados":"We will be delighted","de atenderte":"to look after you",
+  "Dirección":"Address","Teléfono":"Phone","Horario":"Hours","Accesibilidad":"Accessibility",
+  "Visita":"Visit","Legal":"Legal","Bodas y Eventos":"Weddings & Events",
+  "¿Te has":"Are you","perdido?":"lost?","Esta mesa no existe. Pero la tuya te está esperando.":"This table does not exist. But yours is waiting for you.","Volver a la mesa":"Back to the table",
+  "Tu mesa":"Your table"
+  }};
+  const HERO={es:'Paraíso gastronómico <em>en plena naturaleza</em>',
+              eu:'Paradisu gastronomikoa <em>natura betean</em>',
+              en:'A gastronomic paradise <em>in the heart of nature</em>'};
+  /* recolectar nodos de texto */
+  const nodes=[];
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>{
+    if(!n.nodeValue.trim()||n.nodeValue.trim().length<2)return NodeFilter.FILTER_REJECT;
+    const p=n.parentElement;if(!p||/SCRIPT|STYLE/.test(p.tagName))return NodeFilter.FILTER_REJECT;
+    if(p.closest('#heroTitle'))return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;}});
+  while(walker.nextNode())nodes.push({n:walker.currentNode,es:walker.currentNode.nodeValue});
+  function setLang(l){
+    document.documentElement.lang=l;
+    localStorage.setItem('boroa-lang',l);
+    document.querySelectorAll('#langSwitch span').forEach(sp=>sp.classList.toggle('on',sp.dataset.lang===l));
+    nodes.forEach(o=>{
+      if(l==='es'){o.n.nodeValue=o.es;return;}
+      const key=o.es.trim().replace(/\s+/g,' ');
+      const tr=D[l][key];
+      if(tr!==undefined)o.n.nodeValue=o.es.replace(o.es.trim(),tr);
+      else o.n.nodeValue=o.es;
+    });
+    const ht=document.getElementById('heroTitle');
+    if(ht && !ht.querySelector('.w')) ht.innerHTML=HERO[l];   /* antes del split */
+    else if(ht){ /* re-split con el idioma nuevo, palabras ya visibles */
+      const words=HERO[l].split(/(<em>.*?<\/em>)/).flatMap(part=>{
+        if(part.startsWith('<em>')){const inner=part.replace(/<\/?em>/g,'');
+          return inner.split(' ').filter(Boolean).map(w=>`<span class="w"><span style="transform:none"><em>${w}</em></span></span>`);}
+        return part.split(' ').filter(Boolean).map(w=>`<span class="w"><span style="transform:none">${w}</span></span>`);
+      });
+      ht.innerHTML=words.join(' ');
+    }
+  }
+  document.querySelectorAll('#langSwitch span').forEach(sp=>sp.addEventListener('click',()=>setLang(sp.dataset.lang)));
+  const saved=localStorage.getItem('boroa-lang');
+  if(saved && saved!=='es')setTimeout(()=>setLang(saved),100);
+})();
 
 /* ============ HERO: ascuas que huyen del cursor ============ */
 (function(){
