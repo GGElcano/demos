@@ -457,6 +457,85 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 .foot-base a{color:inherit;text-decoration:none}
 .foot-base a:hover{color:var(--bronze-light)}
 
+/* ============ GATE DE SONIDO (preloader) ============ */
+.gate{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:14px;opacity:0;transform:translateY(14px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease)}
+#preloader.gate-ready .gate{opacity:1;transform:none}
+.gate-btn{background:var(--cream);color:var(--ink);border:none;border-radius:999px;padding:15px 34px;cursor:pointer;
+  font-family:var(--sans);font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:500;
+  display:inline-flex;align-items:center;gap:10px;transition:.35s var(--ease)}
+.gate-btn:hover{background:var(--bronze-light)}
+.gate-btn .dot{width:7px;height:7px;border-radius:50%;background:var(--bronze);animation:gpulse 1.6s ease-in-out infinite}
+@keyframes gpulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+.gate-quiet{background:none;border:none;color:rgba(249,247,240,.45);font-family:var(--sans);font-size:10.5px;
+  letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:8px;transition:.3s}
+.gate-quiet:hover{color:var(--cream)}
+
+/* sound toggle del header */
+#sndToggle{display:none;background:none;border:1px solid var(--line-dark);border-radius:999px;width:34px;height:34px;
+  cursor:pointer;align-items:center;justify-content:center;transition:.3s}
+#sndToggle.show{display:inline-flex}
+#sndToggle svg{width:15px;height:15px;stroke:var(--bronze-light);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#sndToggle:hover{border-color:var(--bronze-light)}
+#sndToggle .l2{transition:opacity .3s}
+#sndToggle.muted .l2{opacity:0}
+#sndToggle.muted{opacity:.55}
+
+/* ============ CURSOR PERSONALIZADO ============ */
+@media(pointer:fine){
+  #curDot{position:fixed;top:0;left:0;width:6px;height:6px;border-radius:50%;background:var(--bronze-light);
+    z-index:4000;pointer-events:none;transform:translate(-50%,-50%)}
+  #curRing{position:fixed;top:0;left:0;width:34px;height:34px;border-radius:50%;border:1px solid var(--bronze);
+    z-index:3999;pointer-events:none;transform:translate(-50%,-50%);transition:width .35s var(--ease),height .35s var(--ease),opacity .3s}
+  #curRing.big{width:58px;height:58px;opacity:.55}
+}
+@media(pointer:coarse){#curDot,#curRing{display:none}}
+
+/* ============ REJILLA PARALLAX (fondos oscuros) ============ */
+.gridlayer{position:absolute;inset:-40px;pointer-events:none;z-index:0;opacity:.5;will-change:transform;
+  background-image:linear-gradient(rgba(200,173,127,.055) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(200,173,127,.055) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 78%);
+  mask-image:radial-gradient(ellipse at center,#000 30%,transparent 78%)}
+
+/* ============ ANILLO 3D (carta visual) ============ */
+.carta-modes{display:flex;justify-content:center;gap:0;margin-top:clamp(30px,4vw,46px)}
+.cmode{background:none;border:1px solid var(--line);padding:13px 30px;cursor:pointer;font-family:var(--sans);
+  font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:500;color:var(--ink-soft);transition:.35s var(--ease)}
+.cmode:first-child{border-right:none}
+.cmode.on{background:var(--noche);color:var(--cream);border-color:var(--noche)}
+#cartaVisual{position:relative;background:var(--noche);margin:clamp(34px,4vw,52px) calc(-1 * clamp(22px,5vw,72px)) 0;
+  padding:clamp(50px,6vw,80px) 0 clamp(40px,5vw,60px);overflow:hidden}
+.ring-scene{height:clamp(420px,58vh,560px);perspective:1200px;position:relative;cursor:grab;touch-action:pan-y}
+.ring-scene:active{cursor:grabbing}
+#ringTrack{position:absolute;top:50%;left:50%;transform-style:preserve-3d;will-change:transform}
+.ring-card{position:absolute;width:clamp(190px,21vw,280px);aspect-ratio:4/5;transform-style:preserve-3d;
+  margin-left:calc(clamp(190px,21vw,280px) / -2);margin-top:calc(clamp(190px,21vw,280px) * 1.25 / -2)}
+.ring-card .rcc{position:absolute;inset:0;overflow:hidden;border-radius:6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);
+  background:var(--ink)}
+.ring-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.ring-card .rci{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;z-index:2;
+  background:linear-gradient(180deg,transparent,rgba(10,15,26,.88));pointer-events:none}
+.ring-card .rci b{display:block;font-family:var(--serif);font-weight:400;font-size:17px;color:var(--cream);line-height:1.2}
+.ring-card .rci span{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--bronze-light)}
+.ring-foot{text-align:center;margin-top:26px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:rgba(249,247,240,.4)}
+.ring-cap{position:absolute;top:clamp(8px,1.5vw,18px);left:50%;transform:translateX(-50%);text-align:center;z-index:5;width:100%;pointer-events:none}
+.ring-cap .label{justify-content:center;color:var(--bronze-light);margin-bottom:4px}
+.ring-cap .label::after{content:'';width:38px;height:1px;background:var(--bronze)}
+
+/* ============ VISTA PERDIDO (404) ============ */
+#v-perdido .lost{min-height:100svh;background:var(--noche);position:relative;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;overflow:hidden}
+#v-perdido .lost-pina{width:clamp(120px,16vw,200px);animation:pinaSpin 14s linear infinite;
+  filter:drop-shadow(0 24px 40px rgba(0,0,0,.5))}
+@keyframes pinaSpin{from{transform:rotate(0) translateY(0)}25%{transform:rotate(90deg) translateY(-10px)}
+  50%{transform:rotate(180deg) translateY(0)}75%{transform:rotate(270deg) translateY(-10px)}to{transform:rotate(360deg) translateY(0)}}
+#v-perdido h1{font-family:var(--serif);font-weight:300;color:var(--cream);font-size:clamp(38px,5.4vw,72px);margin-top:34px;line-height:1.1}
+#v-perdido h1 em{font-style:italic;color:var(--bronze-light)}
+#v-perdido p{margin-top:12px;color:rgba(249,247,240,.6);font-size:14px;letter-spacing:.06em}
+#v-perdido .btn{margin-top:34px}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:1080px){
   nav.main{display:none}
@@ -491,11 +570,18 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 </head>
 <body>
 
-<div id="preloader" aria-hidden="true">
+<div id="preloader">
   <div class="pre-mono">B<em>—</em></div>
   <div class="pre-line"></div>
   <div class="pre-sub">Boroa Jatetxea</div>
+  <div class="gate">
+    <button class="gate-btn" id="gateSound">Entrar <span class="dot"></span></button>
+    <button class="gate-quiet" id="gateQuiet">entrar en silencio</button>
+  </div>
 </div>
+<audio id="amb" src="assets/ambiente.mp3" loop preload="none"></audio>
+<div id="curDot" aria-hidden="true"></div>
+<div id="curRing" aria-hidden="true"></div>
 
 <div id="curtain" aria-hidden="true"></div>
 
@@ -516,6 +602,9 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     <div class="langs" title="La versión final incluye euskera e inglés completos">
       <span class="on">ES</span><span>EU</span><span>EN</span>
     </div>
+    <button id="sndToggle" aria-label="Sonido ambiente">
+      <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path class="l2" d="M15.5 8.5a5 5 0 0 1 0 7"></path></svg>
+    </button>
     <a class="head-tel" href="tel:+34946734747">946 734 747</a>
     <button id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
@@ -615,7 +704,8 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
   </div>
 
   <!-- RAIL HORIZONTAL -->
-  <div id="rail" class="dark">
+  <div id="rail" class="dark" style="position:relative;overflow:hidden">
+    <div class="gridlayer" aria-hidden="true"></div>
     <div class="rail-head">
       <div>
         <div class="label">La mesa de Boroa</div>
@@ -644,6 +734,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 
   <!-- CIERRE GRANDE -->
   <div id="cierre">
+    <div class="gridlayer" aria-hidden="true" style="z-index:3;opacity:.3"></div>
     <div class="kb-wrap"><img class="kb kb-b" src="assets/pergola-noche-2000.webp" alt="Terraza de Boroa al anochecer"></div>
     <div class="veil"></div>
     <div class="cierre-c">
@@ -769,6 +860,23 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 
   <div class="sec">
     <div class="sec-inner">
+
+      <div class="carta-modes rv">
+        <button class="cmode on" id="modeVisual">Carta visual</button>
+        <button class="cmode" id="modeClasica">Carta clásica</button>
+      </div>
+
+      <div id="cartaVisual">
+        <div class="ring-cap">
+          <div class="label">Gira la mesa</div>
+        </div>
+        <div class="ring-scene" id="ringScene">
+          <div id="ringTrack"></div>
+        </div>
+        <div class="ring-foot">Arrastra para girar · toca una tarjeta para ir a su sección</div>
+      </div>
+
+      <div id="cartaClasica" style="display:none">
       <div class="tabs rv" role="tablist">
         <button class="tab on" data-pane="p-carta">La carta</button>
         <button class="tab" data-pane="p-txindoki">Menú Txindoki</button>
@@ -927,6 +1035,8 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
         <p class="menu-foot">10% I.V.A. incluido</p>
       </div>
 
+      </div><!-- /cartaClasica -->
+
     </div>
   </div>
 
@@ -1055,7 +1165,8 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
     </div>
   </div>
 
-  <div class="sec dark" style="background:var(--noche)">
+  <div class="sec dark" style="background:var(--noche);overflow:hidden">
+    <div class="gridlayer" aria-hidden="true"></div>
     <div class="sec-inner res-wrap">
       <div class="rv">
         <div class="label">Por teléfono</div>
@@ -1128,6 +1239,17 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 
 </section>
 
+<!-- ════════════════ ¿TE HAS PERDIDO? (404 interna) ════════════════ -->
+<section class="view" id="v-perdido">
+  <div class="lost">
+    <div class="gridlayer" aria-hidden="true"></div>
+    <img class="lost-pina" src="assets/flota-pina.webp" alt="Piña de Boroa">
+    <h1>¿Te has <em>perdido?</em></h1>
+    <p>Esta mesa no existe. Pero la tuya te está esperando.</p>
+    <a class="btn btn-solid" data-go="inicio">Volver a la mesa <span class="arr">→</span></a>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -1171,9 +1293,33 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const HAS_GSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 if (REDUCED || !HAS_GSAP) document.documentElement.classList.add('no-motion');
 
-/* ============ PRELOADER ============ */
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').classList.add('done'),800));
-setTimeout(()=>document.getElementById('preloader').classList.add('done'),3200);
+/* ============ PRELOADER + PUERTA DE SONIDO ============ */
+const pre=document.getElementById('preloader');
+const amb=document.getElementById('amb');
+const sndToggle=document.getElementById('sndToggle');
+let ambOn=false;
+function ambFade(to,ms){
+  const from=amb.volume,t0=performance.now();
+  (function step(t){const k=Math.min(1,(t-t0)/ms);amb.volume=from+(to-from)*k;
+    if(k<1)requestAnimationFrame(step);else if(to===0)amb.pause();})(t0);
+}
+function enterSite(withSound){
+  pre.classList.add('done');
+  sndToggle.classList.add('show');
+  if(withSound){
+    amb.volume=0;
+    amb.play().then(()=>ambFade(.22,2800)).catch(()=>{});
+    ambOn=true;
+  }else{sndToggle.classList.add('muted');}
+}
+document.getElementById('gateSound').addEventListener('click',()=>enterSite(true));
+document.getElementById('gateQuiet').addEventListener('click',()=>enterSite(false));
+sndToggle.addEventListener('click',()=>{
+  if(ambOn){ambFade(0,900);ambOn=false;sndToggle.classList.add('muted');}
+  else{amb.play().then(()=>ambFade(.22,1500)).catch(()=>{});ambOn=true;sndToggle.classList.remove('muted');}
+});
+window.addEventListener('load',()=>setTimeout(()=>pre.classList.add('gate-ready'),700));
+setTimeout(()=>pre.classList.add('gate-ready'),4000);
 
 /* ============ LENIS SMOOTH SCROLL ============ */
 let lenis=null;
@@ -1202,7 +1348,7 @@ function switchView(view){
   if(HAS_GSAP && !REDUCED){ScrollTrigger.refresh();initReveals(view);}
 }
 function go(view,push=true){
-  if(!VIEWS.includes(view))view='inicio';
+  if(!VIEWS.includes(view) && view!=='perdido')view='perdido';
   if(routing)return;
   document.body.classList.remove('menu-open');
   if(push)history.pushState(null,'','#'+view);
@@ -1293,11 +1439,12 @@ if(HAS_GSAP && !REDUCED){
 
 /* arranque desde hash */
 if(location.hash && location.hash!=='#inicio'){
-  const v=location.hash.replace('#','');
+  const raw=location.hash.replace('#','');
+  const v=VIEWS.includes(raw)?raw:'perdido';
   document.querySelectorAll('.view').forEach(x=>x.classList.remove('current'));
-  document.getElementById('v-'+(VIEWS.includes(v)?v:'inicio')).classList.add('current');
+  document.getElementById('v-'+v).classList.add('current');
   document.querySelectorAll('nav.main a').forEach(a=>a.classList.toggle('active',a.dataset.go===v));
-  if(window.initReveals && HAS_GSAP && !REDUCED){ScrollTrigger.refresh();initReveals(VIEWS.includes(v)?v:'inicio');}
+  if(window.initReveals && HAS_GSAP && !REDUCED){ScrollTrigger.refresh();initReveals(v);}
 }
 
 /* ============ RAIL: drag ============ */
@@ -1364,6 +1511,117 @@ document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
     en.isIntersecting?v.play().catch(()=>{}):v.pause();
   }),{threshold:.05}).observe(v);
 })();
+
+/* ============ ANILLO 3D — carta visual ============ */
+const RING=[
+ {img:'ring-kokotxa.webp',  b:'Kokotxas de merluza al pilpil', s:'48 €',                go:'carta'},
+ {img:'ring-txangurro.webp',b:'Txangurro a la donostiarra',    s:'de temporada',        go:'carta'},
+ {img:'ring-tarta.webp',    b:'Tarta cuatro chocolates',       s:'obrador propio',      go:'carta'},
+ {img:'ring-babatxikis.webp',b:'Huevo, habitas y trufa',       s:'de la huerta',        go:'carta'},
+ {img:'ring-caserio.webp',  b:'El caserío',                    s:'siglo XV',            go:'restaurante'},
+ {img:'ring-sala.webp',     b:'La sala',                       s:'piedra y mantel',     go:'restaurante'},
+ {img:'ring-bodega.webp',   b:'La bodega',                     s:'350 referencias',     go:'restaurante'},
+ {img:'ring-terraza.webp',  b:'La terraza',                    s:'al caer la tarde',    go:'reservas'},
+ {img:'ring-bodas.webp',    b:'Celebraciones',                 s:'hasta 210 comensales',go:'eventos'},
+];
+(function(){
+  const scene=document.getElementById('ringScene'),track=document.getElementById('ringTrack');
+  if(!scene)return;
+  const n=RING.length, step=360/n;
+  let R=0,rot=0,vel=0,auto=REDUCED?0:.05,active=false,dragging=false,moved=false,lastX=0;
+  const cards=RING.map((d,i)=>{
+    const el=document.createElement('div');el.className='ring-card';
+    el.innerHTML=`<div class="rcc"><img src="assets/${d.img}" alt="${d.b}" loading="lazy"><div class="rci"><b>${d.b}</b><span>${d.s}</span></div></div>`;
+    el.addEventListener('click',()=>{if(!moved)go(d.go)});
+    track.appendChild(el);return el;
+  });
+  function layout(){
+    const w=cards[0].offsetWidth||240;
+    R=Math.round((w/2)/Math.tan(Math.PI/n)*1.18);
+    cards.forEach((el,i)=>{el.style.transform=`rotateY(${i*step}deg) translateZ(${R}px)`});
+  }
+  layout();addEventListener('resize',layout);
+  new IntersectionObserver(es=>es.forEach(en=>active=en.isIntersecting),{threshold:.05}).observe(scene);
+  scene.addEventListener('pointerdown',e=>{dragging=true;moved=false;lastX=e.clientX;scene.setPointerCapture(e.pointerId)});
+  scene.addEventListener('pointermove',e=>{if(!dragging)return;const dx=e.clientX-lastX;lastX=e.clientX;
+    if(Math.abs(dx)>2)moved=true;vel=dx*.18;rot+=dx*.18});
+  scene.addEventListener('pointerup',()=>dragging=false);
+  scene.addEventListener('pointercancel',()=>dragging=false);
+  (function loop(){
+    requestAnimationFrame(loop);
+    if(!active)return;
+    if(!dragging){rot+=auto+vel;vel*=.95;if(Math.abs(vel)<.01)vel=0;}
+    track.style.transform=`rotateY(${rot}deg)`;
+    cards.forEach((el,i)=>{
+      const a=((i*step+rot)%360+360)%360;
+      const c=Math.cos(a*Math.PI/180);          // 1 = delante
+      el.querySelector('.rcc').style.filter=`brightness(${.42+.58*(c+1)/2})`;
+      el.style.zIndex=Math.round((c+1)*50);
+    });
+  })();
+})();
+
+/* conmutador carta visual / clásica */
+(function(){
+  const mv=document.getElementById('modeVisual'),mc=document.getElementById('modeClasica');
+  const v=document.getElementById('cartaVisual'),c=document.getElementById('cartaClasica');
+  if(!mv)return;
+  function setMode(visual){
+    mv.classList.toggle('on',visual);mc.classList.toggle('on',!visual);
+    v.style.display=visual?'block':'none';c.style.display=visual?'none':'block';
+    if(HAS_GSAP && !REDUCED)ScrollTrigger.refresh();
+  }
+  mv.addEventListener('click',()=>setMode(true));
+  mc.addEventListener('click',()=>setMode(false));
+})();
+
+/* ============ CURSOR PERSONALIZADO + BOTONES MAGNÉTICOS ============ */
+if(matchMedia('(pointer:fine)').matches && !REDUCED){
+  const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
+  dot.style.opacity=0;ring.style.opacity=0;
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my,seen=false;
+  addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    if(!seen){seen=true;dot.style.opacity=1;ring.style.opacity=1;rx=mx;ry=my;}
+    dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  },{passive:true});
+  (function cur(){requestAnimationFrame(cur);
+    rx+=(mx-rx)*.16;ry+=(my-ry)*.16;
+    ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+  })();
+  document.addEventListener('mouseover',e=>{
+    if(e.target.closest('a,button,[data-go],.tab,.cmode'))ring.classList.add('big');
+  });
+  document.addEventListener('mouseout',e=>{
+    if(e.target.closest('a,button,[data-go],.tab,.cmode'))ring.classList.remove('big');
+  });
+  /* magnéticos */
+  document.querySelectorAll('.btn,.gate-btn,#sndToggle,#burger').forEach(el=>{
+    el.addEventListener('mousemove',e=>{
+      const r=el.getBoundingClientRect();
+      const dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);
+      el.style.transition='transform .1s';
+      el.style.transform=`translate(${dx*.22}px,${dy*.3}px)`;
+    });
+    el.addEventListener('mouseleave',()=>{
+      el.style.transition='transform .5s cubic-bezier(.22,.61,.36,1)';
+      el.style.transform='translate(0,0)';
+    });
+  });
+}
+
+/* ============ REJILLA PARALLAX ============ */
+if(!REDUCED){
+  const grids=[...document.querySelectorAll('.gridlayer')];
+  if(grids.length){
+    let gx=0,gy=0,pend=false;
+    addEventListener('mousemove',e=>{
+      gx=(e.clientX/innerWidth-.5)*16;gy=(e.clientY/innerHeight-.5)*16;
+      if(!pend){pend=true;requestAnimationFrame(()=>{
+        grids.forEach(g=>g.style.transform=`translate3d(${gx}px,${gy}px,0)`);pend=false;});}
+    },{passive:true});
+  }
+}
 
 /* ============ FORM RESERVAS → email ============ */
 document.getElementById('resForm').addEventListener('submit',e=>{
