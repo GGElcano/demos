@@ -5,542 +5,859 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>document.documentElement.classList.add('js');</script>
 <title>Boroa Jatetxea · Alta cocina vasca en un caserío del s.XV · Amorebieta</title>
-<meta name="description" content="Boroa Jatetxea, restaurante con estrella Michelin en un caserío del siglo XV en Amorebieta-Etxano. Alta cocina vasca y menús degustación. Reserva tu mesa online." />
+<meta name="description" content="Boroa Jatetxea, restaurante con estrella Michelin en un caserío del siglo XV en Amorebieta-Etxano. Alta cocina vasca, carta y menús degustación. Reserva tu mesa." />
 <link rel="icon" href="https://www.boroa.com/wp-content/uploads/sites/184/2022/03/boroa-25-logo.svg" />
 <meta property="og:title" content="Boroa Jatetxea · Estrella Michelin en Amorebieta" />
 <meta property="og:description" content="Paraíso gastronómico en plena naturaleza. Alta cocina vasca en un caserío del siglo XV." />
-<meta property="og:image" content="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/interiores.jpg" />
+<meta property="og:image" content="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/boroa.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --ink:#16100d;
-    --ink-2:#1f1714;
-    --umber:#422e2d;
-    --gold:#b89464;
-    --gold-soft:#cdb188;
-    --gold-deep:#8c6e44;
-    --cream:#f3ebdc;
-    --cream-2:#e7d9bf;
-    --paper:#ece2cf;
-    --line:rgba(184,148,100,.28);
-    --on-dark:#efe6d4;
-    --on-dark-soft:rgba(239,230,212,.62);
-    --serif:'Cormorant Garamond', Georgia, serif;
-    --sans:'Jost', system-ui, sans-serif;
+    --paper:#f2f1ec;
+    --paper-2:#eae7dd;
+    --paper-3:#e3ddcf;
+    --ink:#262626;
+    --umber:#3f2f2e;
+    --bronze:#7e6e50;
+    --bronze-deep:#5d5037;
+    --line:rgba(63,47,46,.16);
+    --line-soft:rgba(63,47,46,.09);
+    --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans:'Work Sans', system-ui, -apple-system, sans-serif;
     --ease:cubic-bezier(.22,.61,.36,1);
+    --ease-out:cubic-bezier(.16,1,.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  }
   body{
     font-family:var(--sans);
-    background:var(--ink);
-    color:var(--on-dark);
+    background:var(--paper);
+    color:var(--ink);
     font-weight:300;
     line-height:1.7;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  /* grain / atmosphere */
+  /* grano de papel */
   body::before{
-    content:"";position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.045;
+    content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  ::selection{background:var(--gold);color:var(--ink)}
-  a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.02;letter-spacing:.01em}
-  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
-  .eyebrow{font-family:var(--sans);font-weight:400;font-size:.74rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-soft)}
+  ::selection{background:var(--bronze);color:var(--paper)}
 
-  /* ---------- NAV ---------- */
-  header.nav{position:fixed;top:0;left:0;width:100%;z-index:8000;transition:background .5s var(--ease),padding .5s var(--ease),border-color .5s;
-    padding:26px 0;border-bottom:1px solid transparent}
-  header.nav.scrolled{background:rgba(16,11,9,.82);backdrop-filter:blur(14px);padding:16px 0;border-color:var(--line)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;flex-direction:column;line-height:.86}
-  .brand b{font-family:var(--serif);font-weight:600;font-size:1.7rem;letter-spacing:.16em;color:var(--on-dark)}
-  .brand span{font-family:var(--sans);font-weight:300;font-size:.6rem;letter-spacing:.55em;text-transform:uppercase;color:var(--gold-soft);margin-top:5px;margin-left:.18em}
-  .nav-links{display:flex;align-items:center;gap:38px}
-  .nav-links a{font-family:var(--sans);font-weight:400;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-soft);position:relative;transition:color .3s}
-  .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
-  .nav-links a:not(.btn):hover{color:var(--on-dark)}
-  .nav-links a:not(.btn):hover::after{width:100%}
-  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:400;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
-    padding:13px 26px;border:1px solid var(--gold);color:var(--gold-soft);border-radius:1px;transition:all .4s var(--ease);background:transparent;cursor:pointer}
-  .btn:hover{background:var(--gold);color:var(--ink);transform:translateY(-1px)}
-  .btn-solid{background:var(--gold);color:var(--ink);border-color:var(--gold)}
-  .btn-solid:hover{background:var(--gold-soft);border-color:var(--gold-soft)}
-  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
-  .burger span{width:26px;height:1.5px;background:var(--on-dark);transition:.3s}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  :focus-visible{outline:2px solid var(--bronze-deep);outline-offset:3px;border-radius:2px}
 
-  /* ---------- HERO ---------- */
-  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
-  .hero-bg{position:absolute;inset:0;z-index:0}
-  .hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:heroZoom 14s var(--ease) forwards}
-  @keyframes heroZoom{to{transform:scale(1)}}
-  .hero-bg::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(16,11,9,.55) 0%,rgba(16,11,9,.2) 35%,rgba(16,11,9,.78) 88%,var(--ink) 100%)}
-  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:8vh;padding-top:140px}
-  .hero .eyebrow{opacity:0;transform:translateY(20px);animation:rise .9s var(--ease) .3s forwards}
-  .hero h1{font-size:clamp(3.4rem,11vw,9.5rem);font-weight:500;color:var(--on-dark);margin:.12em 0 .1em;letter-spacing:.02em}
-  .hero h1 .ln{display:block;overflow:hidden}
-  .hero h1 .ln i{display:block;font-style:normal;transform:translateY(110%);animation:rise 1.1s var(--ease) forwards}
-  .hero h1 .ln:nth-child(1) i{animation-delay:.45s}
-  .hero h1 .ln:nth-child(2) i{animation-delay:.6s;font-style:italic;font-weight:400;color:var(--gold-soft)}
-  .hero-sub{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-top:34px;
-    opacity:0;animation:fade 1.2s ease .95s forwards}
-  .hero-sub p{max-width:42ch;font-size:1.05rem;color:var(--on-dark-soft);font-weight:300}
-  .hero-star{display:flex;align-items:center;gap:14px;font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-soft);white-space:nowrap}
-  .hero-star svg{width:20px;height:20px;fill:var(--gold)}
-  .scrollcue{position:absolute;left:32px;bottom:30px;z-index:3;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--on-dark-soft);
-    writing-mode:vertical-rl;opacity:0;animation:fade 1s ease 1.5s forwards;display:flex;align-items:center;gap:14px}
-  .scrollcue::after{content:"";width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation-name:cue;animation-duration:2.4s;animation-timing-function:ease-in-out;animation-iteration-count:infinite}
-  @keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
-  @keyframes rise{to{transform:translateY(0);opacity:1}}
-  @keyframes fade{to{opacity:1}}
+  .skip-link{
+    position:absolute;left:-9999px;top:0;z-index:200;
+    background:var(--ink);color:var(--paper);padding:.8rem 1.4rem;
+    font-size:.85rem;letter-spacing:.05em;text-decoration:none;
+  }
+  .skip-link:focus{left:0}
 
-  /* ---------- SECTION SHELL ---------- */
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(1.2rem,4vw,3rem)}
+
+  /* ============ HEADER ============ */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    transition:background .45s var(--ease), box-shadow .45s var(--ease);
+  }
+  .site-header.scrolled{
+    background:rgba(242,241,236,.92);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    box-shadow:0 1px 0 var(--line-soft);
+  }
+  .header-inner{
+    display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+    padding:1rem clamp(1.2rem,4vw,3rem);
+    max-width:1400px;margin:0 auto;
+    transition:padding .45s var(--ease);
+  }
+  .site-header.scrolled .header-inner{padding-top:.6rem;padding-bottom:.6rem}
+  .brand{display:flex;align-items:center;gap:.8rem;text-decoration:none}
+  .brand img{height:46px;width:auto;transition:height .45s var(--ease)}
+  .site-header.scrolled .brand img{height:38px}
+  .main-nav{display:flex;align-items:center;gap:clamp(1rem,2.5vw,2.2rem)}
+  .main-nav a{
+    text-decoration:none;font-size:.8rem;font-weight:400;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--umber);
+    position:relative;padding:.35rem 0;
+  }
+  .main-nav a::after{
+    content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+    background:var(--bronze);transform:scaleX(0);transform-origin:right;
+    transition:transform .4s var(--ease);
+  }
+  .main-nav a:hover::after,.main-nav a:focus-visible::after{transform:scaleX(1);transform-origin:left}
+  .header-cta{display:flex;align-items:center;gap:1.2rem}
+  .header-tel{
+    text-decoration:none;font-size:.82rem;letter-spacing:.06em;color:var(--umber);
+    border-bottom:1px solid transparent;transition:border-color .3s;
+    white-space:nowrap;
+  }
+  .header-tel:hover{border-color:var(--bronze)}
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    text-decoration:none;cursor:pointer;border:1px solid var(--umber);
+    background:var(--umber);color:var(--paper);
+    font-family:var(--sans);font-size:.78rem;font-weight:500;
+    letter-spacing:.16em;text-transform:uppercase;
+    padding:.85rem 1.7rem;border-radius:999px;
+    transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease),box-shadow .35s var(--ease);
+  }
+  .btn:hover{background:var(--bronze);border-color:var(--bronze);color:var(--paper);transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(63,47,46,.5)}
+  .btn:active{transform:translateY(0)}
+  .btn-ghost{background:transparent;color:var(--umber)}
+  .btn .arrow{transition:transform .35s var(--ease)}
+  .btn:hover .arrow{transform:translateX(4px)}
+  @media (max-width:900px){
+    .main-nav{display:none}
+    .header-tel{display:none}
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    padding:clamp(7rem,14vh,10rem) 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,5rem);
+    align-items:center;
+  }
+  .hero-kicker{
+    display:inline-flex;align-items:center;gap:.7rem;
+    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--bronze-deep);font-weight:500;margin-bottom:2rem;
+  }
+  .hero-kicker .star{color:var(--bronze);font-size:.9rem}
+  .hero h1{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(3rem,7.5vw,6.4rem);
+    line-height:1.02;letter-spacing:-.015em;color:var(--ink);
+  }
+  .hero h1 em{font-style:italic;color:var(--bronze-deep)}
+  .hero h1 .line{display:block;overflow:hidden}
+  .hero h1 .line > span{display:inline-block;transform:translateY(110%);animation:riseUp 1.1s var(--ease-out) forwards}
+  .hero h1 .line:nth-child(2) > span{animation-delay:.12s}
+  .hero h1 .line:nth-child(3) > span{animation-delay:.24s}
+  @keyframes riseUp{to{transform:translateY(0)}}
+  .hero-sub{
+    margin-top:2rem;max-width:34rem;
+    font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.8;color:var(--umber);
+    opacity:0;animation:fadeIn 1s var(--ease) .55s forwards;
+  }
+  .hero-actions{
+    display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.6rem;
+    opacity:0;animation:fadeIn 1s var(--ease) .75s forwards;
+  }
+  @keyframes fadeIn{to{opacity:1}}
+  .hero-figure{position:relative;margin:0;opacity:0;animation:fadeIn 1.4s var(--ease) .35s forwards}
+  .hero-figure img{
+    width:100%;height:auto;
+    mix-blend-mode:multiply; /* el cielo crema de la foto se funde con el papel */
+    will-change:transform;
+  }
+  .hero-figure figcaption{
+    margin-top:1rem;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--bronze-deep);display:flex;align-items:center;gap:.8rem;
+  }
+  .hero-figure figcaption::before{content:"";width:2.2rem;height:1px;background:var(--bronze)}
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-figure{order:-1;max-width:30rem}
+  }
+
+  /* marquesina de platos */
+  .marquee{
+    margin-top:clamp(3rem,7vh,5.5rem);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;white-space:nowrap;
+    padding:1.05rem 0;position:relative;
+  }
+  .marquee-track{display:inline-flex;gap:3rem;animation:slide 46s linear infinite;will-change:transform}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee span{
+    font-family:var(--serif);font-style:italic;font-size:1.18rem;color:var(--umber);
+    display:inline-flex;align-items:center;gap:3rem;
+  }
+  .marquee span::after{content:"◆";font-size:.45rem;color:var(--bronze);font-style:normal}
+  @keyframes slide{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none}
+    .hero h1 .line > span{transform:none;animation:none}
+    .hero-sub,.hero-actions,.hero-figure{opacity:1;animation:none}
+  }
+
+  /* ============ SECCIONES ============ */
   section{position:relative}
-  .pad{padding:clamp(90px,13vw,170px) 0}
-  .reveal{transition:opacity .95s var(--ease),transform .95s var(--ease)}
-  .reveal.in{opacity:1;transform:none}
-  .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
-  html.js .reveal:not(.in){opacity:0;transform:translateY(40px)}
-  .lead{font-family:var(--serif);font-size:clamp(1.6rem,3.2vw,2.5rem);font-weight:400;line-height:1.34;color:var(--on-dark);letter-spacing:.005em}
-  .lead em{font-style:italic;color:var(--gold-soft)}
-
-  /* ---------- HISTORIA (split) ---------- */
-  .split{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
-  .split.flip{grid-template-columns:1fr 1.05fr}
-  .figure{position:relative;overflow:hidden}
-  .figure img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
-  .figure:hover img{transform:scale(1.05)}
-  .figure .tag{position:absolute;left:0;bottom:0;background:var(--ink);color:var(--gold-soft);font-family:var(--sans);
-    font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;padding:12px 20px;border-top:1px solid var(--line);border-right:1px solid var(--line)}
-  .col h2{font-size:clamp(2.3rem,5vw,4rem);margin:18px 0 26px}
-  .col p{color:var(--on-dark-soft);margin-bottom:18px;max-width:52ch}
-  .rule{width:54px;height:1px;background:var(--gold);margin:30px 0}
-
-  /* ---------- COCINA / quote band ---------- */
-  .band{background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .quote{max-width:980px;margin:0 auto;text-align:center}
-  .quote .lead{font-size:clamp(1.9rem,4vw,3.1rem)}
-  .quote cite{display:block;margin-top:30px;font-family:var(--sans);font-style:normal;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-soft)}
-
-  /* ---------- MENUS ---------- */
-  .sec-head{text-align:center;max-width:680px;margin:0 auto 64px}
-  .sec-head h2{font-size:clamp(2.4rem,5.5vw,4.4rem);margin:16px 0 18px}
-  .sec-head p{color:var(--on-dark-soft)}
-  .menus{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-  .menu-card{background:var(--ink);padding:46px 30px;transition:background .5s var(--ease);position:relative;min-height:340px;display:flex;flex-direction:column}
-  .menu-card:hover{background:var(--ink-2)}
-  .menu-card .no{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--gold);opacity:.8}
-  .menu-card h3{font-size:2.1rem;margin:14px 0 16px;color:var(--on-dark)}
-  .menu-card p{color:var(--on-dark-soft);font-size:.95rem;flex:1}
-  .menu-card .meta{margin-top:22px;font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);
-    border-top:1px solid var(--line);padding-top:18px}
-  .menus-note{text-align:center;margin-top:34px;color:var(--on-dark-soft);font-size:.92rem}
-
-  /* ---------- GALERIA ---------- */
-  .gallery{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:200px;gap:14px}
-  .gallery .g{overflow:hidden;position:relative}
-  .gallery .g img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s var(--ease),filter 1.3s var(--ease);filter:saturate(.92)}
-  .gallery .g:hover img{transform:scale(1.06);filter:saturate(1.05)}
-  .g.a{grid-column:span 4;grid-row:span 2}
-  .g.b{grid-column:span 2;grid-row:span 1}
-  .g.c{grid-column:span 2;grid-row:span 1}
-  .g.d{grid-column:span 3;grid-row:span 1}
-  .g.e{grid-column:span 3;grid-row:span 1}
-
-  /* ---------- RESERVAS ---------- */
-  #reservas{background:
-    linear-gradient(rgba(16,11,9,.82),rgba(16,11,9,.92)),
-    url("https://www.boroa.com/wp-content/uploads/sites/184/2018/11/interior-3-1.jpg") center/cover fixed}
-  .resv{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(40px,6vw,90px);align-items:center}
-  .resv-intro h2{font-size:clamp(2.4rem,5vw,4.2rem);margin:16px 0 22px}
-  .resv-intro p{color:var(--on-dark-soft);margin-bottom:18px;max-width:42ch}
-  .resv-intro .hours{margin-top:26px;font-family:var(--sans);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-soft)}
-  .resv-intro .hours b{color:var(--on-dark);font-weight:400}
-  .card{background:rgba(28,21,17,.72);backdrop-filter:blur(8px);border:1px solid var(--line);padding:clamp(28px,4vw,46px)}
-  .card h3{font-size:1.9rem;color:var(--on-dark);margin-bottom:6px}
-  .card .sub{font-size:.82rem;color:var(--on-dark-soft);margin-bottom:30px}
-  .field{margin-bottom:22px}
-  .field label{display:block;font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:10px}
-  .field input,.field select{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--on-dark);
-    font-family:var(--sans);font-weight:300;font-size:1rem;padding:9px 0;transition:border-color .35s}
-  .field input::placeholder{color:rgba(239,230,212,.34)}
-  .field input:focus,.field select:focus{outline:none;border-color:var(--gold)}
-  .field select{cursor:pointer}
-  .field select option{background:var(--ink-2);color:var(--on-dark)}
-  .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .pax{display:flex;align-items:center;gap:0;border-bottom:1px solid var(--line)}
-  .pax button{flex:0 0 auto;background:none;border:0;color:var(--gold-soft);font-size:1.3rem;cursor:pointer;width:34px;height:42px;transition:color .3s}
-  .pax button:hover{color:var(--on-dark)}
-  .pax input{text-align:center;border:0!important}
-  .card .btn{width:100%;justify-content:center;margin-top:10px;padding:16px}
-  .resv-ok{display:none;text-align:center;padding:20px 0}
-  .resv-ok.show{display:block;animation:fade .6s ease}
-  .resv-ok .check{width:54px;height:54px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
-  .resv-ok .check svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.5}
-  .resv-ok h3{margin-bottom:12px}
-  .resv-ok p{color:var(--on-dark-soft);max-width:34ch;margin:0 auto}
-  .resv-ok .small{margin-top:20px;font-size:.78rem;color:var(--gold-soft)}
-  .form-note{font-size:.72rem;color:var(--on-dark-soft);margin-top:16px;text-align:center}
-
-  /* ---------- VISITA ---------- */
-  .visita{display:grid;grid-template-columns:1fr 1.1fr;gap:0;border:1px solid var(--line)}
-  .visita-info{padding:clamp(36px,5vw,68px);background:var(--ink-2)}
-  .visita-info h2{font-size:clamp(2.2rem,4.5vw,3.6rem);margin:14px 0 30px}
-  .vrow{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
-  .vrow:last-of-type{border-bottom:1px solid var(--line)}
-  .vrow .k{flex:0 0 120px;font-family:var(--sans);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);padding-top:4px}
-  .vrow .v{color:var(--on-dark);font-weight:300}
-  .vrow .v a:hover{color:var(--gold-soft)}
-  .vsocial{display:flex;gap:18px;margin-top:30px}
-  .vsocial a{width:42px;height:42px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease)}
-  .vsocial a:hover{border-color:var(--gold);background:var(--gold)}
-  .vsocial svg{width:17px;height:17px;fill:var(--gold-soft);transition:fill .4s}
-  .vsocial a:hover svg{fill:var(--ink)}
-  .map{min-height:420px}
-  .map iframe{width:100%;height:100%;border:0;filter:grayscale(.4) contrast(.95) brightness(.9)}
-
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--ink);border-top:1px solid var(--line);padding:80px 0 40px;text-align:center}
-  footer .fbrand b{font-family:var(--serif);font-size:2.4rem;font-weight:600;letter-spacing:.18em;color:var(--on-dark)}
-  footer .fbrand span{display:block;font-size:.62rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold-soft);margin-top:8px}
-  footer .ftag{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--gold-soft);margin:26px 0 34px}
-  .flinks{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-soft)}
-  .flinks a:hover{color:var(--gold-soft)}
-  .fcopy{margin-top:40px;padding-top:26px;border-top:1px solid var(--line);font-size:.7rem;letter-spacing:.08em;color:rgba(239,230,212,.4)}
-  .fcopy a:hover{color:var(--gold-soft)}
-
-  /* ---------- RESPONSIVE ---------- */
-  @media(max-width:980px){
-    .split,.split.flip,.resv,.visita{grid-template-columns:1fr}
-    .split .figure{order:-1;min-height:340px}
-    .menus{grid-template-columns:1fr 1fr}
-    .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:170px}
-    .g.a,.g.b,.g.c,.g.d,.g.e{grid-column:span 1;grid-row:span 1}
-    .g.a{grid-column:span 2;grid-row:span 2}
-    .map{min-height:340px}
-    #reservas{background-attachment:scroll}
+  .section-pad{padding:clamp(5rem,11vh,8.5rem) 0}
+  .section-head{display:flex;align-items:baseline;gap:1.4rem;margin-bottom:clamp(2rem,5vh,3rem)}
+  .section-num{
+    font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--bronze-deep);
+    flex-shrink:0;
   }
-  @media(max-width:768px){
-    .hero{min-height:auto;height:auto;align-items:flex-start}
-    .hero-inner{padding-top:130px;padding-bottom:64px}
+  .section-head h2{
+    font-family:var(--serif);font-weight:400;
+    font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.08;letter-spacing:-.01em;
   }
-  @media(max-width:680px){
-    .wrap{padding:0 22px}
-    .nav-links{position:fixed;inset:0;background:rgba(16,11,9,.97);backdrop-filter:blur(10px);flex-direction:column;justify-content:center;gap:30px;
-      transform:translateX(100%);transition:transform .5s var(--ease)}
-    .nav-links.open{transform:none}
-    .nav-links a{font-size:1rem}
-    .burger{display:flex;z-index:10}
-    .menus{grid-template-columns:1fr}
-    .row3,.row2{grid-template-columns:1fr}
-    .hero-sub{flex-direction:column;align-items:flex-start;gap:22px}
-    .vrow{flex-direction:column;gap:6px}
+  .section-head h2 em{font-style:italic;color:var(--bronze-deep)}
+  .section-lede{max-width:38rem;color:var(--umber);font-size:1.02rem}
+
+  /* reveals genéricos */
+  .js .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .js .reveal.in{opacity:1;transform:none}
+  .js .reveal-d1{transition-delay:.1s}
+  .js .reveal-d2{transition-delay:.2s}
+  @media (prefers-reduced-motion: reduce){.js .reveal{opacity:1;transform:none}}
+
+  /* ============ EL CASERÍO ============ */
+  .caserio-grid{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2.5rem,6vw,6rem);
+    align-items:center;
   }
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important}
-    .reveal{opacity:1;transform:none}
-    .hero h1 .ln i{transform:none}
+  .caserio-text p{margin-bottom:1.4rem;color:var(--umber);font-size:1.04rem}
+  .caserio-text p strong{font-weight:500;color:var(--ink)}
+  .caserio-quote{
+    margin:2.2rem 0;padding-left:1.6rem;border-left:2px solid var(--bronze);
+    font-family:var(--serif);font-style:italic;font-size:1.45rem;line-height:1.45;color:var(--ink);
   }
+  .caserio-photos{position:relative;min-height:560px}
+  .caserio-photos figure{position:absolute;margin:0;box-shadow:0 30px 60px -30px rgba(63,47,46,.45);overflow:hidden}
+  .caserio-photos img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .caserio-photos figure:hover img{transform:scale(1.045)}
+  .ph-a{width:62%;top:0;left:0;aspect-ratio:4/5;z-index:2}
+  .ph-b{width:52%;bottom:0;right:0;aspect-ratio:4/5;z-index:1}
+  .caserio-photos::after{
+    content:"";position:absolute;right:8%;top:6%;width:34%;aspect-ratio:1;
+    border:1px solid var(--bronze);border-radius:50%;opacity:.5;z-index:0;
+  }
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin-top:clamp(3.5rem,8vh,5.5rem);list-style:none;
+  }
+  .stat{background:var(--paper);padding:2.2rem 1.4rem;text-align:center}
+  .stat b{
+    display:block;font-family:var(--serif);font-weight:500;
+    font-size:clamp(2rem,3.4vw,2.9rem);line-height:1;color:var(--ink);
+  }
+  .stat b em{font-style:italic;color:var(--bronze-deep)}
+  .stat span{
+    display:block;margin-top:.7rem;font-size:.72rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--bronze-deep);font-weight:500;
+  }
+  @media (max-width:900px){
+    .caserio-grid{grid-template-columns:1fr}
+    .caserio-photos{min-height:480px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ============ CARTA ============ */
+  .carta-section{background:linear-gradient(var(--paper) 0%, var(--paper-2) 8%, var(--paper-2) 92%, var(--paper) 100%)}
+  .carta-tabs{
+    display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(2.2rem,5vh,3.4rem);
+    border-bottom:1px solid var(--line);
+  }
+  .carta-tab{
+    appearance:none;border:none;background:none;cursor:pointer;
+    font-family:var(--sans);font-size:.8rem;font-weight:500;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-deep);
+    padding:.9rem 1.4rem;position:relative;transition:color .3s;
+  }
+  .carta-tab::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;
+    background:var(--umber);transform:scaleX(0);transition:transform .4s var(--ease);
+  }
+  .carta-tab[aria-selected="true"]{color:var(--ink)}
+  .carta-tab[aria-selected="true"]::after{transform:scaleX(1)}
+  .carta-tab:hover{color:var(--ink)}
+  .js .carta-panel[hidden]{display:none}
+  .carta-panel{outline:none;animation:panelIn .6s var(--ease)}
+  @keyframes panelIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .dish-list{list-style:none;max-width:56rem}
+  .dish{
+    display:flex;align-items:baseline;gap:1rem;
+    padding:1.15rem 0;border-bottom:1px solid var(--line-soft);
+    transition:padding-left .35s var(--ease);
+  }
+  .dish:hover{padding-left:.6rem}
+  .dish-name{
+    font-family:var(--serif);font-size:clamp(1.18rem,1.8vw,1.42rem);
+    font-weight:500;line-height:1.35;color:var(--ink);
+  }
+  .dish-name small{
+    display:block;font-family:var(--sans);font-size:.82rem;font-weight:300;
+    color:var(--umber);margin-top:.15rem;letter-spacing:.01em;
+  }
+  .dish-dots{flex:1;border-bottom:1px dotted rgba(94,80,55,.5);transform:translateY(-4px);min-width:2rem}
+  .dish-price{
+    font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--bronze-deep);
+    white-space:nowrap;
+  }
+  .dish-price small{font-size:.85rem}
+  .dish-group{
+    margin:2.4rem 0 1rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--bronze-deep);font-weight:500;display:flex;align-items:center;gap:1rem;
+  }
+  .dish-group::after{content:"";flex:1;height:1px;background:var(--line);max-width:8rem}
+  .carta-note{
+    margin-top:2.6rem;font-size:.82rem;color:var(--bronze-deep);letter-spacing:.04em;
+    display:flex;flex-wrap:wrap;gap:.4rem 2rem;
+  }
+  /* ilustraciones flotantes */
+  .float-ing{
+    position:absolute;pointer-events:none;width:clamp(90px,11vw,160px);
+    opacity:.9;mix-blend-mode:multiply;will-change:transform;z-index:1;
+  }
+  .ing-1{top:8%;right:4%}
+  .ing-2{top:42%;right:12%}
+  .ing-3{bottom:14%;right:5%}
+  .ing-4{bottom:4%;left:3%}
+  @media (max-width:1100px){.float-ing{display:none}}
+
+  /* ============ MENÚS ============ */
+  .menu-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,2.5vw,2rem);margin-top:3rem}
+  .menu-card{
+    background:var(--paper-2);border:1px solid var(--line-soft);
+    padding:clamp(1.8rem,3vw,2.6rem);display:flex;flex-direction:column;
+    position:relative;overflow:hidden;
+    transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+  }
+  .menu-card:hover{transform:translateY(-6px);box-shadow:0 32px 60px -36px rgba(63,47,46,.5);border-color:var(--bronze)}
+  .menu-card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--bronze),var(--bronze-deep));
+    transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease);
+  }
+  .menu-card:hover::before{transform:scaleX(1)}
+  .menu-card.featured{background:var(--umber);color:var(--paper);border-color:var(--umber)}
+  .menu-card.featured .menu-kicker{color:#cdb88f}
+  .menu-card.featured .menu-price b{color:var(--paper)}
+  .menu-card.featured .menu-meta{color:rgba(242,241,236,.78)}
+  .menu-card.featured summary{color:#cdb88f}
+  .menu-card.featured .menu-dishes li{color:rgba(242,241,236,.88);border-color:rgba(242,241,236,.14)}
+  .menu-card.featured .menu-dishes li.md-group{color:#cdb88f}
+  .menu-kicker{
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--bronze-deep);font-weight:500;margin-bottom:1rem;
+  }
+  .menu-card h3{
+    font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,2.6vw,2.2rem);
+    line-height:1.1;letter-spacing:-.01em;
+  }
+  .menu-card h3 em{font-style:italic}
+  .menu-price{margin:1.4rem 0 .4rem;display:flex;align-items:baseline;gap:.6rem}
+  .menu-price b{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,4vw,3.2rem);line-height:1;color:var(--ink)}
+  .menu-price span{font-size:.8rem;letter-spacing:.06em}
+  .menu-meta{font-size:.85rem;line-height:1.65;color:var(--umber);margin-bottom:1.4rem}
+  .menu-dishes-details{margin-top:auto}
+  .menu-dishes-details summary{
+    cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:.6rem;
+    font-size:.78rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--bronze-deep);padding:.4rem 0;
+  }
+  .menu-dishes-details summary::-webkit-details-marker{display:none}
+  .menu-dishes-details summary::after{content:"+";font-size:1.1rem;transition:transform .3s var(--ease)}
+  .menu-dishes-details[open] summary::after{transform:rotate(45deg)}
+  .menu-dishes{list-style:none;margin-top:1rem}
+  .menu-dishes li{
+    font-family:var(--serif);font-size:1.04rem;line-height:1.5;color:var(--umber);
+    padding:.55rem 0;border-bottom:1px solid var(--line-soft);
+  }
+  .menu-dishes li.md-group{
+    font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--bronze-deep);font-weight:500;border-bottom:none;padding-top:1.1rem;
+  }
+  .menus-foot{
+    margin-top:2.6rem;font-size:.82rem;color:var(--bronze-deep);letter-spacing:.04em;
+    display:flex;flex-wrap:wrap;gap:.4rem 2rem;
+  }
+  @media (max-width:980px){.menu-cards{grid-template-columns:1fr;max-width:34rem}}
+
+  /* ============ VISÍTANOS ============ */
+  .visit-section{background:linear-gradient(var(--paper),var(--paper-3))}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5rem);align-items:start}
+  .visit-block h3{
+    font-family:var(--serif);font-weight:500;font-size:1.5rem;margin-bottom:1.2rem;
+    display:flex;align-items:center;gap:1rem;
+  }
+  .visit-block h3::after{content:"";flex:1;height:1px;background:var(--line);max-width:6rem}
+  .horario-table{width:100%;border-collapse:collapse}
+  .horario-table caption{text-align:left;font-size:.85rem;color:var(--umber);margin-bottom:1rem}
+  .horario-table th,.horario-table td{
+    text-align:left;padding:.78rem .6rem;border-bottom:1px solid var(--line-soft);
+    font-size:.95rem;font-weight:300;
+  }
+  .horario-table th{font-weight:500;color:var(--ink)}
+  .horario-table td:last-child{text-align:right;font-family:var(--serif);font-style:italic;font-size:1.05rem}
+  tr.horario-hoy th,tr.horario-hoy td{
+    color:var(--paper);background:var(--bronze-deep);font-weight:500;
+  }
+  tr.horario-hoy th{border-radius:3px 0 0 3px}
+  tr.horario-hoy td{border-radius:0 3px 3px 0}
+  tr.horario-hoy .hoy-tag{
+    display:inline-block;margin-left:.6rem;font-size:.62rem;letter-spacing:.18em;
+    text-transform:uppercase;background:var(--paper);color:var(--bronze-deep);
+    padding:.15rem .5rem;border-radius:999px;font-weight:600;vertical-align:middle;
+  }
+  .visit-list{list-style:none}
+  .visit-list li{
+    display:flex;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line-soft);
+    font-size:.96rem;color:var(--umber);align-items:baseline;
+  }
+  .visit-list .ico{color:var(--bronze-deep);flex-shrink:0;font-size:.8rem;transform:translateY(-1px)}
+  .visit-list a{text-decoration:none;border-bottom:1px solid var(--line);transition:border-color .3s,color .3s}
+  .visit-list a:hover{color:var(--ink);border-color:var(--bronze)}
+  .visit-cta{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+  .map-frame{
+    margin-top:clamp(3rem,7vh,4.5rem);
+    border:1px solid var(--line);box-shadow:0 30px 60px -40px rgba(63,47,46,.5);
+    overflow:hidden;
+  }
+  .map-frame iframe{display:block;width:100%;height:440px;border:0;filter:grayscale(.35) sepia(.12)}
+  @media (max-width:900px){.visit-grid{grid-template-columns:1fr}}
+
+  /* ============ FOOTER ============ */
+  .site-footer{background:var(--umber);color:rgba(242,241,236,.85);padding:clamp(3.5rem,8vh,5rem) 0 2.2rem}
+  .footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2.5rem;align-items:flex-start}
+  .footer-brand img{height:60px;filter:invert(1) brightness(1.6);opacity:.95}
+  .footer-brand p{margin-top:1.2rem;font-size:.88rem;max-width:20rem;line-height:1.7}
+  .footer-col h4{
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:#cdb88f;font-weight:500;margin-bottom:1.1rem;
+  }
+  .footer-col ul{list-style:none}
+  .footer-col li{margin-bottom:.55rem;font-size:.9rem}
+  .footer-col a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
+  .footer-col a:hover{border-color:#cdb88f}
+  .footer-base{
+    margin-top:3rem;padding-top:1.6rem;border-top:1px solid rgba(242,241,236,.14);
+    display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;
+    font-size:.78rem;color:rgba(242,241,236,.6);
+  }
+  .footer-base a{color:#cdb88f;text-decoration:none}
+  .footer-base a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
 
-<!-- NAV -->
-<header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a href="#top" class="brand"><b>BOROA</b><span>Jatetxea · 1503</span></a>
-    <nav class="nav-links" id="menu">
-      <a href="#historia">Historia</a>
-      <a href="#cocina">Cocina</a>
+<header class="site-header" id="header">
+  <div class="header-inner">
+    <a class="brand" href="#" aria-label="Boroa Jatetxea — inicio">
+      <img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/03/boroa-25-logo.svg" alt="Boroa Jatetxea, 25 aniversario" width="120" height="46" />
+    </a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#caserio">El Caserío</a>
+      <a href="#carta">Carta</a>
       <a href="#menus">Menús</a>
-      <a href="#visita">Visita</a>
-      <a href="#reservas" class="btn btn-solid">Reservar mesa</a>
+      <a href="#visita">Visítanos</a>
     </nav>
-    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+    <div class="header-cta">
+      <a class="header-tel" href="tel:+34946734747">+34 946 734 747</a>
+      <a class="btn" href="tel:+34946734747">Reservar</a>
+    </div>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-bg">
-    <img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/interiores.jpg" alt="Interior del caserío restaurado de Boroa Jatetxea" />
-  </div>
-  <div class="wrap hero-inner">
-    <span class="eyebrow">Amorebieta-Etxano · Bizkaia</span>
-    <h1>
-      <span class="ln"><i>Boroa</i></span>
-      <span class="ln"><i>Jatetxea</i></span>
-    </h1>
-    <div class="hero-sub">
-      <p>Paraíso gastronómico en plena naturaleza. Alta cocina vasca en un caserío del siglo XV, restaurado con respeto por su arquitectura original.</p>
-      <div class="hero-star">
-        <svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.3L21 9l-5 4.4L17.6 21 12 17.3 6.4 21 8 13.4 3 9l6.4-.7z"/></svg>
-        Estrella Michelin
+<main id="contenido">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="hero-kicker"><span class="star" aria-hidden="true">✦</span> Estrella Michelin · Amorebieta-Etxano, Bizkaia</p>
+          <h1 id="hero-title">
+            <span class="line"><span>Paraíso</span></span>
+            <span class="line"><span><em>gastronómico</em></span></span>
+            <span class="line"><span>en plena naturaleza</span></span>
+          </h1>
+          <p class="hero-sub">Alta cocina vasca en un caserío del siglo XV restaurado con un escrupuloso respeto hacia su arquitectura original. Más de veinticinco años redescubriendo la cocina vizcaína arraigada.</p>
+          <div class="hero-actions">
+            <a class="btn" href="tel:+34946734747">Reservar mesa <span class="arrow" aria-hidden="true">⟶</span></a>
+            <a class="btn btn-ghost" href="#carta">Ver la carta</a>
+          </div>
+        </div>
+        <figure class="hero-figure">
+          <img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/boroa.jpg" alt="Caserío del siglo XV que alberga el restaurante Boroa Jatetxea, rodeado de jardines" width="1500" height="1850" fetchpriority="high" />
+          <figcaption>Caserío Boroa · San Pedro de Boroa, Amorebieta</figcaption>
+        </figure>
       </div>
     </div>
-  </div>
-  <div class="scrollcue">Descubrir</div>
-</section>
-
-<!-- HISTORIA -->
-<section class="pad" id="historia">
-  <div class="wrap split">
-    <div class="col reveal">
-      <span class="eyebrow">El caserío · Desde el s.XV</span>
-      <h2>Cinco siglos<br>de piedra y fuego</h2>
-      <div class="rule"></div>
-      <p>Boroa Jatetxea ocupa un caserío vizcaíno del siglo XV, restaurado con un respeto escrupuloso hacia su arquitectura original: muros de mampostería, vigas de roble y el sosiego del valle de Amorebieta.</p>
-      <p>Entre encinas y campas, la casa conserva la calma de los caseríos de antaño y la convierte en el escenario de una experiencia gastronómica pausada, donde el tiempo se mide en platos.</p>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <span>Kokotxas de merluza al pilpil</span>
+        <span>Vieiras en asado breve sobre arroz de plancton</span>
+        <span>Cochinillo asado al horno y manzana de Boroa</span>
+        <span>Tartar de atún rojo “Balfego”</span>
+        <span>Cheesecake de Idiazabal</span>
+        <span>Pichón en asado breve y crema de foie</span>
+      </div>
     </div>
-    <div class="figure reveal d1">
-      <img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/boroa.jpg" alt="Caserío del siglo XV que alberga Boroa Jatetxea" />
-      <span class="tag">El caserío</span>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- COCINA quote band -->
-<section class="band pad" id="cocina">
-  <div class="wrap quote reveal">
-    <span class="eyebrow">La cocina</span>
-    <p class="lead" style="margin-top:24px">Una <em>alta cocina vasca</em> de producto, en la que la técnica desaparece para dejar que cada ingrediente diga lo que tiene que decir.</p>
-    <cite>Cocina de raíz · Memoria y temporada</cite>
-  </div>
-</section>
-
-<!-- COCINA split -->
-<section class="pad">
-  <div class="wrap split flip">
-    <div class="figure reveal">
-      <img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/Cervatillo-en-asado-breve-bellotas-de-castana-y-frutos-del-bosque-1920x1281.jpg" alt="Cervatillo en asado breve con bellotas de castaña y frutos del bosque" />
-      <span class="tag">De temporada</span>
+  <!-- ============ EL CASERÍO ============ -->
+  <section class="section-pad" id="caserio" aria-labelledby="caserio-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-num" aria-hidden="true">— 01</span>
+        <h2 id="caserio-title">Un caserío del <em>siglo XV</em></h2>
+      </div>
+      <div class="caserio-grid">
+        <div class="caserio-text reveal">
+          <p><strong>Boroa Jatetxea</strong> está ubicado en un caserío del siglo XV restaurado con un escrupuloso respeto hacia su arquitectura original, en plena naturaleza y a quince minutos de Bilbao.</p>
+          <blockquote class="caserio-quote">«Nuestra misión es hacer que el cliente disfrute y sienta una atención exquisita gracias a un servicio personalizado y de calidad.»</blockquote>
+          <p>Ven a probar nuestra carta con productos únicos y una elaboración perfecta. Y déjate llevar por la bodega: el vino nos despierta mil y una sensaciones — su olor, color, sabor y texturas evocan distintas emociones y experiencias.</p>
+        </div>
+        <div class="caserio-photos reveal reveal-d1" role="group" aria-label="Fotografías del restaurante">
+          <figure class="ph-a"><img loading="lazy" src="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/interiores.jpg" alt="Mesa vestida con mantel blanco, flores y vajilla en el comedor de Boroa" /></figure>
+          <figure class="ph-b"><img loading="lazy" src="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/bodega.jpg" alt="Botellas de vino reposando en la bodega de Boroa Jatetxea" /></figure>
+        </div>
+      </div>
+      <ul class="stats reveal">
+        <li class="stat"><b>S.<em>XV</em></b><span>Caserío restaurado</span></li>
+        <li class="stat"><b>1<em>★</em></b><span>Estrella Michelin</span></li>
+        <li class="stat"><b>25<em>+</em></b><span>Años de cocina</span></li>
+        <li class="stat"><b>210</b><span>Comensales</span></li>
+      </ul>
     </div>
-    <div class="col reveal d1">
-      <span class="eyebrow">Producto y temporada</span>
-      <h2>Lo de aquí,<br>en su punto</h2>
-      <div class="rule"></div>
-      <p>Pescados del Cantábrico, verduras de la huerta cercana, caza y setas cuando llega su momento. La carta cambia con las estaciones porque la despensa manda.</p>
-      <p>Kokotxas, parrilla y guisos pacientes conviven con elaboraciones más libres en unos menús degustación pensados para dejarse llevar.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- MENUS -->
-<section class="band pad" id="menus">
+  <!-- ============ CARTA ============ -->
+  <section class="carta-section section-pad" id="carta" aria-labelledby="carta-title">
+    <img class="float-ing ing-1" data-speed="0.06" src="https://www.boroa.com/wp-content/uploads/sites/184/2022/03/menu-guisantes-lagrima.png" alt="" loading="lazy" />
+    <img class="float-ing ing-2" data-speed="-0.04" src="https://www.boroa.com/wp-content/uploads/sites/184/2022/03/menu-hongo-beltza.png" alt="" loading="lazy" />
+    <img class="float-ing ing-3" data-speed="0.05" src="https://www.boroa.com/wp-content/uploads/sites/184/2022/03/menu-pimiento-verde.png" alt="" loading="lazy" />
+    <img class="float-ing ing-4" data-speed="-0.05" src="https://www.boroa.com/wp-content/uploads/sites/184/2022/03/menu-cebolla-morada.png" alt="" loading="lazy" />
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-num" aria-hidden="true">— 02</span>
+        <h2 id="carta-title">Cocina vizcaína <em>arraigada</em></h2>
+      </div>
+      <p class="section-lede reveal">Más de veinte años redescubriendo y evolucionando platos propios de toda la vida, en una búsqueda continua de innovar y sorprender a los comensales.</p>
+
+      <div class="reveal" style="margin-top:2.5rem">
+        <div class="carta-tabs" role="tablist" aria-label="Categorías de la carta">
+          <button class="carta-tab" role="tab" id="tab-entrantes" aria-controls="panel-entrantes" aria-selected="true">Entrantes</button>
+          <button class="carta-tab" role="tab" id="tab-pescados" aria-controls="panel-pescados" aria-selected="false" tabindex="-1">Pescados</button>
+          <button class="carta-tab" role="tab" id="tab-carnes" aria-controls="panel-carnes" aria-selected="false" tabindex="-1">Carnes</button>
+          <button class="carta-tab" role="tab" id="tab-postres" aria-controls="panel-postres" aria-selected="false" tabindex="-1">Postres</button>
+        </div>
+
+        <div class="carta-panel" role="tabpanel" id="panel-entrantes" aria-labelledby="tab-entrantes" tabindex="0">
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Ostra “Gillardeau” nº2</span><span class="dish-dots"></span><span class="dish-price">7,00 € <small>/ud.</small></span></li>
+            <li class="dish"><span class="dish-name">Gambas blancas de Huelva a la plancha</span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+            <li class="dish"><span class="dish-name">Cecina de Angus, arbequina y pan con tomate</span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+            <li class="dish"><span class="dish-name">Caviar de Beluga 100% 000 <small>Mar Caspio · 10 g</small></span><span class="dish-dots"></span><span class="dish-price">48,00 €</span></li>
+            <li class="dish"><span class="dish-name">Mollejitas de cordero salteadas <small>sobre risotto de trigo trufado y texturas de zanahorias</small></span><span class="dish-dots"></span><span class="dish-price">36,00 €</span></li>
+            <li class="dish"><span class="dish-name">Tartar de atún rojo “Balfego” <small>crocante de algas y emulsión de jengibre y mostaza antigua</small></span><span class="dish-dots"></span><span class="dish-price">36,00 €</span></li>
+            <li class="dish"><span class="dish-name">Vieiras en asado breve <small>sobre arroz de plancton, hinojo y caviar</small></span><span class="dish-dots"></span><span class="dish-price">36,00 €</span></li>
+            <li class="dish"><span class="dish-name">Pulpo de “Os Miñarzos” a la brasa <small>texturas de patata y gel de ajo negro</small></span><span class="dish-dots"></span><span class="dish-price">36,00 €</span></li>
+          </ul>
+          <p class="dish-group">En raciones cortas, para realzar su esencia</p>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Royal de espárragos de Navarra <small>anguila ahumada y mahonesa de trigueros</small></span><span class="dish-dots"></span><span class="dish-price">24,00 €</span></li>
+            <li class="dish"><span class="dish-name">Bombón de foie relleno de txakoli “Urezti” <small>palomitas y pan de chocolate y especias</small></span><span class="dish-dots"></span><span class="dish-price">24,00 €</span></li>
+            <li class="dish"><span class="dish-name">Carabinero al carbón <small>sobre teja crocante de su coral y yema de huevo “Telletxe”</small></span><span class="dish-dots"></span><span class="dish-price">29,00 €</span></li>
+            <li class="dish"><span class="dish-name">Habitas de temporada <small>huevo de caserío y velo de trufa negra</small></span><span class="dish-dots"></span><span class="dish-price">28,00 €</span></li>
+          </ul>
+        </div>
+
+        <div class="carta-panel" role="tabpanel" id="panel-pescados" aria-labelledby="tab-pescados" tabindex="0" hidden>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Tataki de atún rojo “Balfego” <small>sésamo negro y gel de soja</small></span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+            <li class="dish"><span class="dish-name">Kokotxas de merluza al pilpil</span><span class="dish-dots"></span><span class="dish-price">48,00 €</span></li>
+            <li class="dish"><span class="dish-name">Degustación de bacalao <small>vizcaína, pilpil y brasa</small></span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+            <li class="dish"><span class="dish-name">Merluza del Golfo de Bizkaia a la parrilla <small>con almejas en salsa verde</small></span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+          </ul>
+        </div>
+
+        <div class="carta-panel" role="tabpanel" id="panel-carnes" aria-labelledby="tab-carnes" tabindex="0" hidden>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Solomillo a la parrilla <small>arroz de hongos y merengue de trufa</small></span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+            <li class="dish"><span class="dish-name">Chuleta de ganado mayor <small>40 días de maduración, a la brasa, con ensalada y patatas</small></span><span class="dish-dots"></span><span class="dish-price">95,00 € <small>/kg</small></span></li>
+            <li class="dish"><span class="dish-name">Cochinillo asado al horno <small>patata asada y manzana de Boroa</small></span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+            <li class="dish"><span class="dish-name">Paleta de cordero lechal al horno <small>con patatas en su jugo y ensalada</small></span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+            <li class="dish"><span class="dish-name">Pichón en asado breve <small>crema de foie, crumble de maíz y texturas de zanahorias</small></span><span class="dish-dots"></span><span class="dish-price">40,00 €</span></li>
+          </ul>
+        </div>
+
+        <div class="carta-panel" role="tabpanel" id="panel-postres" aria-labelledby="tab-postres" tabindex="0" hidden>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Albaricoque, miel y oveja <small>albaricoque fermentado, cremoso de oveja, sorbete de miel y lima con soda de albaricoque</small></span><span class="dish-dots"></span><span class="dish-price">16,00 €</span></li>
+            <li class="dish"><span class="dish-name">Gazta <small>degustación de quesos artesanales: oveja, vaca y mezcla</small></span><span class="dish-dots"></span><span class="dish-price">18,00 €</span></li>
+            <li class="dish"><span class="dish-name">Torrija caramelo <small>pan brioche, leche frita, caramelo salado, naranja y toffee</small></span><span class="dish-dots"></span><span class="dish-price">16,00 €</span></li>
+            <li class="dish"><span class="dish-name">Tarta de queso <small>cheesecake de Idiazabal, fresas, pimienta rosa y ruibarbo</small></span><span class="dish-dots"></span><span class="dish-price">16,00 €</span></li>
+            <li class="dish"><span class="dish-name">Nuestro Mojito <small>gel de ron, espuma de lima y limón y helado de hierbabuena</small></span><span class="dish-dots"></span><span class="dish-price">16,00 €</span></li>
+            <li class="dish"><span class="dish-name">Coulant <small>cereza, chocolate negro y pistacho</small></span><span class="dish-dots"></span><span class="dish-price">18,00 €</span></li>
+            <li class="dish"><span class="dish-name">Surtido de repostería <small>4 bocados de repostería con 2 helados caseros · recomendado para 2 personas</small></span><span class="dish-dots"></span><span class="dish-price">24,00 €</span></li>
+          </ul>
+        </div>
+
+        <p class="carta-note"><span>10 % IVA incluido</span><span>Producto de temporada</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENÚS DEGUSTACIÓN ============ -->
+  <section class="section-pad" id="menus" aria-labelledby="menus-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-num" aria-hidden="true">— 03</span>
+        <h2 id="menus-title">Menús <em>degustación</em></h2>
+      </div>
+      <p class="section-lede reveal">Tres recorridos por nuestra cocina, servidos a mesa completa. El maridaje recomendado acompaña cada pase con bodegas escogidas.</p>
+
+      <div class="menu-cards">
+        <article class="menu-card reveal" aria-labelledby="menu-veg-t">
+          <p class="menu-kicker">Verde y de temporada</p>
+          <h3 id="menu-veg-t">Menú <em>Vegetariano</em></h3>
+          <div class="menu-price"><b>90 €</b><span>IVA incl.</span></div>
+          <p class="menu-meta">Con maridaje recomendado, 140 € IVA incl. Un recorrido por la huerta y el producto de temporada.</p>
+        </article>
+
+        <article class="menu-card featured reveal reveal-d1" aria-labelledby="menu-mug-t">
+          <p class="menu-kicker">El clásico de la casa</p>
+          <h3 id="menu-mug-t">Menú <em>Mugarra</em></h3>
+          <div class="menu-price"><b>110 €</b><span>IVA incl.</span></div>
+          <p class="menu-meta">Maridaje recomendado +50 € · Reservas de hasta 12 comensales.</p>
+          <details class="menu-dishes-details">
+            <summary>Ver los platos</summary>
+            <ul class="menu-dishes">
+              <li class="md-group">Aperitivos</li>
+              <li>Ajoblanco y albahaca</li>
+              <li>Gamba roja, kimchee y encurtidos</li>
+              <li>Ostra Gillardeau al natural bañada en leche de tigre</li>
+              <li class="md-group">Menú</li>
+              <li>Royal de espárragos de Navarra, anguila ahumada y mahonesa de trigueros</li>
+              <li>Yema de huevo de caserío, boletus de primavera y trufa de temporada</li>
+              <li>Vieira en asado breve sobre arroz de algas, hinojo y caviar</li>
+              <li>Merluza a la parrilla con almejas en salsa de txakoli Itsasmendi</li>
+              <li>Cochinillo asado al horno, patata asada y manzana de Boroa</li>
+              <li class="md-group">Dulces</li>
+              <li>Nuestro Mojito</li>
+              <li>Cheesecake de Idiazabal, fresas, pimienta rosa y ruibarbo</li>
+              <li>Café y sus petit fours · Agua Km0 Boroa</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="menu-card reveal reveal-d2" aria-labelledby="menu-txi-t">
+          <p class="menu-kicker">La gran experiencia · 19 pases</p>
+          <h3 id="menu-txi-t">Menú <em>Txindoki</em></h3>
+          <div class="menu-price"><b>170 €</b><span>IVA incl.</span></div>
+          <p class="menu-meta">Maridaje recomendado +80 € · Reserva con 24 h de antelación, hasta 12 comensales. Servicio de 13:00 a 14:30.</p>
+          <details class="menu-dishes-details">
+            <summary>Ver los platos</summary>
+            <ul class="menu-dishes">
+              <li>Ajoblanco y albahaca</li>
+              <li>Brioche de gamba roja, kimchee y encurtidos</li>
+              <li>Nube de Idiazabal, nueces y hierbas aromáticas</li>
+              <li>Amanita y trufa en huevo de cristal</li>
+              <li>Buñuelo de bacalao y vizcaína</li>
+              <li>Bombón de foie, txakoli Urezti, chocolate y especias</li>
+              <li>Ostra Gillardeau al natural con leche de tigre</li>
+              <li>Espárragos de Navarra y anguila ahumada</li>
+              <li>Guisantes lágrima y caviar Beluga</li>
+              <li>Atún rojo “Balfego”, mostaza y jengibre</li>
+              <li>Huevo, coliflor, chocolate blanco y trufa</li>
+              <li>Vieira, arroz, algas e hinojo</li>
+              <li>Perretxikos, parmentine y foie</li>
+              <li>Merluza del Cantábrico con su kokotxa al pilpil</li>
+              <li>Pichón, maíz y zanahorias</li>
+              <li>Nuestro Mojito</li>
+              <li>Idiazabal, fresas y pimienta</li>
+              <li>Cereza, chocolate negro y pistacho</li>
+              <li>Café y sus petit fours · Agua Km0 Boroa</li>
+            </ul>
+          </details>
+        </article>
+      </div>
+      <p class="menus-foot reveal"><span>Los menús se sirven a mesa completa</span><span>10 % IVA incluido</span><span>Celebraciones y grupos: capacidad máxima 210 comensales</span></p>
+    </div>
+  </section>
+
+  <!-- ============ VISÍTANOS ============ -->
+  <section class="visit-section section-pad" id="visita" aria-labelledby="visita-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="section-num" aria-hidden="true">— 04</span>
+        <h2 id="visita-title">Ven a <em>conocernos</em></h2>
+      </div>
+      <div class="visit-grid">
+        <div class="visit-block reveal">
+          <h3>Horario de comidas</h3>
+          <table class="horario-table" id="horarioTable">
+            <caption>Servicio de comidas, de lunes a domingo</caption>
+            <tbody>
+              <tr data-dia="1"><th scope="row">Lunes</th><td>13:00 – 15:30</td></tr>
+              <tr data-dia="2"><th scope="row">Martes</th><td>13:00 – 15:30</td></tr>
+              <tr data-dia="3"><th scope="row">Miércoles</th><td>13:00 – 15:30</td></tr>
+              <tr data-dia="4"><th scope="row">Jueves</th><td>13:00 – 15:30</td></tr>
+              <tr data-dia="5"><th scope="row">Viernes</th><td>13:00 – 15:30</td></tr>
+              <tr data-dia="6"><th scope="row">Sábado</th><td>13:00 – 15:30</td></tr>
+              <tr data-dia="0"><th scope="row">Domingo</th><td>13:00 – 15:30</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="visit-block reveal reveal-d1">
+          <h3>Contacto</h3>
+          <ul class="visit-list">
+            <li><span class="ico" aria-hidden="true">◆</span><span>San Pedro de Boroa 11 · 48340 Amorebieta-Etxano, Bizkaia</span></li>
+            <li><span class="ico" aria-hidden="true">◆</span><a href="tel:+34946734747">+34 946 734 747</a></li>
+            <li><span class="ico" aria-hidden="true">◆</span><a href="mailto:boroa@boroa.com">boroa@boroa.com</a></li>
+            <li><span class="ico" aria-hidden="true">◆</span><span>Local adaptado para personas con discapacidad</span></li>
+            <li><span class="ico" aria-hidden="true">◆</span><span>Aceptamos las principales tarjetas de crédito</span></li>
+          </ul>
+          <div class="visit-cta">
+            <a class="btn" href="tel:+34946734747">Reservar mesa <span class="arrow" aria-hidden="true">⟶</span></a>
+            <a class="btn btn-ghost" href="https://www.google.com/maps?q=Boroa+Jatetxea,+San+Pedro+de+Boroa+11,+Amorebieta" target="_blank" rel="noopener">Cómo llegar</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-frame reveal">
+        <iframe title="Mapa de Google con la ubicación de Boroa Jatetxea en Amorebieta-Etxano" src="https://www.google.com/maps?q=Boroa+Jatetxea,+San+Pedro+de+Boroa+11,+Amorebieta&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">La propuesta</span>
-      <h2>Menús degustación</h2>
-      <p>Cuatro recorridos por la cocina de Boroa. Déjate aconsejar por la sala para el maridaje.</p>
-    </div>
-    <div class="menus">
-      <div class="menu-card reveal">
-        <span class="no">I</span><h3>Mugarra</h3>
-        <p>El gran recorrido. La expresión más amplia de la temporada, plato a plato, sin prisa.</p>
-        <span class="meta">Degustación larga</span>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/03/boroa-25-logo.svg" alt="Boroa Jatetxea" width="140" height="60" loading="lazy" />
+        <p>Alta cocina vasca en un caserío del siglo XV. Paraíso gastronómico en plena naturaleza, a quince minutos de Bilbao.</p>
       </div>
-      <div class="menu-card reveal d1">
-        <span class="no">II</span><h3>Txindoki</h3>
-        <p>Una degustación más concisa, con los imprescindibles de la casa y los platos del momento.</p>
-        <span class="meta">Degustación</span>
+      <div class="footer-col">
+        <h4>El restaurante</h4>
+        <ul>
+          <li><a href="#caserio">El Caserío</a></li>
+          <li><a href="#carta">Carta</a></li>
+          <li><a href="#menus">Menús degustación</a></li>
+          <li><a href="#visita">Horario y contacto</a></li>
+        </ul>
       </div>
-      <div class="menu-card reveal d2">
-        <span class="no">III</span><h3>Vegetariano</h3>
-        <p>La huerta como protagonista absoluta: verdura, raíz y temporada en un menú propio.</p>
-        <span class="meta">Degustación verde</span>
-      </div>
-      <div class="menu-card reveal d3">
-        <span class="no">IV</span><h3>Bizkargi</h3>
-        <p>La forma más cómoda de descubrir Boroa cualquier día laborable, al mediodía.</p>
-        <span class="meta">Entre semana</span>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li>San Pedro de Boroa 11</li>
+          <li>48340 Amorebieta-Etxano</li>
+          <li><a href="tel:+34946734747">+34 946 734 747</a></li>
+          <li><a href="mailto:boroa@boroa.com">boroa@boroa.com</a></li>
+        </ul>
       </div>
     </div>
-    <p class="menus-note reveal">Composición y precios según mercado del día. Consúltanos al reservar.</p>
-  </div>
-</section>
-
-<!-- GALERIA -->
-<section class="pad">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">El lugar</span>
-      <h2>Una mesa con vistas al valle</h2>
+    <div class="footer-base">
+      <p>© Boroa Jatetxea · Todos los derechos reservados</p>
+      <p>Demostración de diseño web creada por <a href="mailto:raul@ggelcano.com">G&amp;G Elcano</a> · Fotografías y textos de boroa.com</p>
     </div>
-    <div class="gallery reveal">
-      <div class="g a"><img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/Alcachofas-con-habitas-de-Aroa-foie-gras-y-espuma-de-Parmentine--1920x1293.jpg" alt="Alcachofas con habitas, foie gras y espuma de parmentier" /></div>
-      <div class="g b"><img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/03/kokotxa.jpg" alt="Kokotxas, plato emblemático de Boroa Jatetxea" /></div>
-      <div class="g c"><img src="https://www.boroa.com/wp-content/uploads/sites/184/2022/02/bodega.jpg" alt="Bodega de vinos de Boroa Jatetxea" /></div>
-    </div>
-  </div>
-</section>
-
-<!-- RESERVAS -->
-<section class="pad" id="reservas">
-  <div class="wrap resv">
-    <div class="resv-intro reveal">
-      <span class="eyebrow">Reserva online</span>
-      <h2>Tu mesa<br>en Boroa</h2>
-      <p>Elige día, número de comensales y hora. Te confirmamos la reserva en cuestión de minutos.</p>
-      <p>Para grupos grandes o eventos especiales, escríbenos y lo organizamos contigo.</p>
-      <div class="hours">Horario · <b>Lunes a domingo · 13:00 – 15:30</b><br>Servicio de comidas</div>
-    </div>
-
-    <div class="card reveal d1">
-      <form id="resvForm" novalidate>
-        <h3>Solicitar reserva</h3>
-        <p class="sub">Sin compromiso. Recibirás la confirmación por teléfono o email.</p>
-        <div class="row2">
-          <div class="field">
-            <label for="fecha">Fecha</label>
-            <input type="date" id="fecha" required />
-          </div>
-          <div class="field">
-            <label for="hora">Hora</label>
-            <select id="hora" required>
-              <option value="" disabled selected>Elegir</option>
-              <option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label>Comensales</label>
-          <div class="pax">
-            <button type="button" id="minus" aria-label="Quitar comensal">–</button>
-            <input type="text" id="pax" value="2" readonly aria-label="Número de comensales" />
-            <button type="button" id="plus" aria-label="Añadir comensal">+</button>
-          </div>
-        </div>
-        <div class="field">
-          <label for="nombre">Nombre y apellidos</label>
-          <input type="text" id="nombre" placeholder="Tu nombre" required />
-        </div>
-        <div class="row2">
-          <div class="field">
-            <label for="tel">Teléfono</label>
-            <input type="tel" id="tel" placeholder="6XX XXX XXX" required />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="tu@email.com" required />
-          </div>
-        </div>
-        <button type="submit" class="btn btn-solid">Solicitar reserva</button>
-        <p class="form-note">Al enviar aceptas nuestra política de privacidad.</p>
-      </form>
-
-      <div class="resv-ok" id="resvOk">
-        <div class="check"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
-        <h3>Solicitud recibida</h3>
-        <p id="okMsg">Gracias. Hemos recibido tu solicitud de reserva y te confirmaremos en breve.</p>
-        <p class="small">Boroa Jatetxea · +34 946 734 747</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VISITA -->
-<section class="pad">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Cómo llegar</span>
-      <h2>Visítanos</h2>
-    </div>
-    <div class="visita reveal">
-      <div class="visita-info">
-        <span class="eyebrow">Boroa Jatetxea</span>
-        <h2>En el corazón<br>de Bizkaia</h2>
-        <div class="vrow"><div class="k">Dirección</div><div class="v">San Pedro de Boroa, 11<br>48340 Amorebieta-Etxano, Bizkaia</div></div>
-        <div class="vrow"><div class="k">Teléfono</div><div class="v"><a href="tel:+34946734747">+34 946 734 747</a></div></div>
-        <div class="vrow"><div class="k">Email</div><div class="v"><a href="mailto:boroa@boroa.com">boroa@boroa.com</a></div></div>
-        <div class="vrow"><div class="k">Horario</div><div class="v">Lunes a domingo · 13:00 – 15:30</div></div>
-        <div class="vsocial">
-          <a href="https://www.instagram.com/boroa_jatetxea/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.42.4.68.8.9 1.4.17.4.36 1 .42 2.2.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2a3.8 3.8 0 0 1-.9 1.4c-.4.42-.8.68-1.4.9-.4.17-1 .36-2.2.42-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.9-1.4c-.17-.4-.36-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.22-.6.48-1 .9-1.4.4-.42.8-.68 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.32-.43.17-.74.37-1.06.7-.32.31-.52.62-.7 1.05-.12.3-.28.8-.32 1.7C3.45 9 3.44 9.4 3.44 12s0 3 .07 4.2c.04.9.2 1.4.32 1.7.17.43.37.74.7 1.06.31.32.62.52 1.05.7.3.12.8.28 1.7.32 1.2.06 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.32.43-.17.74-.37 1.06-.7.32-.31.52-.62.7-1.05.12-.3.28-.8.32-1.7.06-1.2.07-1.6.07-4.2s0-3-.07-4.2c-.04-.9-.2-1.4-.32-1.7a2.8 2.8 0 0 0-.7-1.06 2.8 2.8 0 0 0-1.05-.7c-.3-.12-.8-.28-1.7-.32C15.5 4 15.1 4 12 4zm0 3.06A4.94 4.94 0 1 1 12 17a4.94 4.94 0 0 1 0-9.88zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28zM17.1 6.9a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/BoroaJatetxea/" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3 0-1.3-.1-2.45-.1-2.4 0-4.05 1.46-4.05 4.16v2.34H7.9V13h2.65v8z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="map">
-        <iframe src="https://www.google.com/maps?q=Boroa+Jatetxea,+San+Pedro+de+Boroa+11,+Amorebieta&output=embed" loading="lazy" title="Mapa de Boroa Jatetxea"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="fbrand"><b>BOROA</b><span>Jatetxea</span></div>
-    <p class="ftag">Paraíso gastronómico en plena naturaleza</p>
-    <div class="flinks">
-      <a href="#historia">Historia</a>
-      <a href="#menus">Menús</a>
-      <a href="#reservas">Reservas</a>
-      <a href="tel:+34946734747">+34 946 734 747</a>
-      <a href="https://www.instagram.com/boroa_jatetxea/" target="_blank" rel="noopener">Instagram</a>
-    </div>
-    <p class="fcopy">San Pedro de Boroa 11, 48340 Amorebieta-Etxano (Bizkaia) · Estrella Michelin<br>
-    Demostración de diseño web creada por G&amp;G Elcano · <a href="https://ggelcano.com" target="_blank" rel="noopener">ggelcano.com</a></p>
   </div>
 </footer>
 
 <script>
 (function(){
-  "use strict";
-  // nav scroll state
-  var nav=document.getElementById('nav');
-  var onScroll=function(){ nav.classList.toggle('scrolled', window.scrollY>40); };
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  'use strict';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // mobile menu
-  var burger=document.getElementById('burger'), menu=document.getElementById('menu');
-  burger.addEventListener('click',function(){ menu.classList.toggle('open'); });
-  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ menu.classList.remove('open'); }); });
+  /* Header al hacer scroll */
+  var header = document.getElementById('header');
+  var onScrollHeader = function(){
+    header.classList.toggle('scrolled', window.scrollY > 24);
+  };
+  window.addEventListener('scroll', onScrollHeader, {passive:true});
+  onScrollHeader();
 
-  // scroll reveals — robusto: visible por defecto sin JS; fallback por timer para
-  // pestañas cargadas en segundo plano (donde IntersectionObserver no dispara).
-  var reveals=[].slice.call(document.querySelectorAll('.reveal'));
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
-  reveals.forEach(function(el){ io.observe(el); });
-  setTimeout(function(){ reveals.forEach(function(el){ el.classList.add('in'); }); },2800);
+  /* Día actual destacado en el horario */
+  function highlightToday(){
+    var hoy = new Date().getDay();
+    var fila = document.querySelector('#horarioTable tr[data-dia="' + hoy + '"]');
+    if (fila){
+      fila.classList.add('horario-hoy');
+      var th = fila.querySelector('th');
+      var tag = document.createElement('span');
+      tag.className = 'hoy-tag';
+      tag.textContent = 'Hoy';
+      th.appendChild(tag);
+    }
+  }
+  highlightToday();
 
-  // reservation: date min = today
-  var fecha=document.getElementById('fecha');
-  if(fecha){
-    var t=new Date(); var off=t.getTimezoneOffset(); var local=new Date(t.getTime()-off*60000);
-    fecha.min=local.toISOString().slice(0,10);
+  /* Reveals con IntersectionObserver */
+  if ('IntersectionObserver' in window && !reduced){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
 
-  // pax stepper
-  var pax=document.getElementById('pax'), minus=document.getElementById('minus'), plus=document.getElementById('plus');
-  var setPax=function(n){ n=Math.max(1,Math.min(12,n)); pax.value=n; };
-  minus.addEventListener('click',function(){ setPax(parseInt(pax.value,10)-1); });
-  plus.addEventListener('click',function(){ setPax(parseInt(pax.value,10)+1); });
+  /* Parallax sutil: foto del hero + ilustraciones de la carta */
+  if (!reduced){
+    var heroImg = document.querySelector('.hero-figure img');
+    var floats = Array.prototype.slice.call(document.querySelectorAll('.float-ing'));
+    var ticking = false;
+    var parallax = function(){
+      var y = window.scrollY;
+      if (heroImg && y < window.innerHeight * 1.5){
+        heroImg.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+      }
+      floats.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0){
+          var sp = parseFloat(el.dataset.speed || '0.05');
+          el.style.transform = 'translateY(' + ((r.top - window.innerHeight/2) * sp * -1) + 'px) rotate(' + (sp * 80) + 'deg)';
+        }
+      });
+      ticking = false;
+    };
+    window.addEventListener('scroll', function(){
+      if (!ticking){ window.requestAnimationFrame(parallax); ticking = true; }
+    }, {passive:true});
+    parallax();
+  }
 
-  // submit -> confirmation (demo)
-  var form=document.getElementById('resvForm'), ok=document.getElementById('resvOk'), okMsg=document.getElementById('okMsg');
-  form.addEventListener('submit',function(ev){
-    ev.preventDefault();
-    if(!form.checkValidity()){ form.reportValidity(); return; }
-    var nombre=document.getElementById('nombre').value.trim().split(' ')[0]||'';
-    var f=fecha.value, h=document.getElementById('hora').value, p=pax.value;
-    var fechaTxt=f;
-    try{ fechaTxt=new Date(f+'T00:00:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}); }catch(e){}
-    okMsg.textContent=(nombre?nombre+', ':'')+'tu solicitud para el '+fechaTxt+' a las '+h+' · '+p+' comensales ha quedado registrada. Te confirmamos en breve.';
-    form.style.display='none';
-    ok.classList.add('show');
+  /* Marquesina: duplicar contenido para bucle continuo */
+  var track = document.getElementById('marqueeTrack');
+  if (track && !reduced){
+    track.innerHTML += track.innerHTML;
+  }
+
+  /* Pestañas de la carta, accesibles con teclado */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.carta-tab'));
+  function selectTab(tab){
+    tabs.forEach(function(t){
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){ selectTab(tab); });
+    tab.addEventListener('keydown', function(ev){
+      var dir = ev.key === 'ArrowRight' ? 1 : ev.key === 'ArrowLeft' ? -1 : 0;
+      if (ev.key === 'Home'){ ev.preventDefault(); tabs[0].focus(); selectTab(tabs[0]); return; }
+      if (ev.key === 'End'){ ev.preventDefault(); tabs[tabs.length-1].focus(); selectTab(tabs[tabs.length-1]); return; }
+      if (dir){
+        ev.preventDefault();
+        var next = tabs[(i + dir + tabs.length) % tabs.length];
+        next.focus(); selectTab(next);
+      }
+    });
   });
 })();
 </script>
