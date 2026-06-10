@@ -625,7 +625,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 .wheel-scene{height:clamp(380px,52vh,520px);perspective:1300px;position:relative;cursor:grab;touch-action:pan-y}
 .wheel-scene:active{cursor:grabbing}
 #wheelTrack{position:absolute;top:50%;left:50%;transform-style:preserve-3d;will-change:transform}
-.w-card{position:absolute;width:clamp(180px,19vw,260px);aspect-ratio:4/5;transform-style:preserve-3d;
+.w-card{cursor:pointer;position:absolute;width:clamp(180px,19vw,260px);aspect-ratio:4/5;transform-style:preserve-3d;
   margin-left:calc(clamp(180px,19vw,260px) / -2);margin-top:calc(clamp(180px,19vw,260px) * 1.25 / -2)}
 .w-card .wc{position:absolute;inset:0;overflow:hidden;border-radius:6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);
   background:var(--ink);transition:outline .3s;outline:1px solid transparent}
@@ -2149,7 +2149,7 @@ if(!REDUCED){
   const cards=DATA.map((d,i)=>{
     const el=document.createElement('div');el.className='w-card';
     el.innerHTML=`<div class="wc"><img src="${d.img}" alt="" loading="lazy"><div class="wi"><b>${d.title.replace(/<[^>]+>/g,' ')}</b><span>${d.kicker}</span></div></div>`;
-    el.addEventListener('click',()=>{if(!moved)select(i)});
+    el._idx=i;
     track.appendChild(el);return el;
   });
   function layout(){
@@ -2186,15 +2186,29 @@ if(!REDUCED){
     },180);
   }
   new IntersectionObserver(es=>es.forEach(en=>active=en.isIntersecting),{threshold:.05}).observe(scene);
-  scene.addEventListener('pointerdown',e=>{dragging=true;moved=false;lastX=e.clientX;scene.setPointerCapture(e.pointerId)});
-  scene.addEventListener('pointermove',e=>{if(!dragging)return;const dx=e.clientX-lastX;lastX=e.clientX;
-    if(Math.abs(dx)>4)moved=true;vel=dx*.18;rot+=dx*.18});
-  scene.addEventListener('pointerup',()=>dragging=false);
-  scene.addEventListener('pointercancel',()=>dragging=false);
+  let downX=0,downY=0,dragOn=false,hovering=false;
+  scene.addEventListener('mouseenter',()=>hovering=true);
+  scene.addEventListener('mouseleave',()=>hovering=false);
+  let downCard=null;
+  scene.addEventListener('pointerdown',e=>{dragging=true;dragOn=false;moved=false;
+    downCard=e.target.closest('.w-card');
+    downX=e.clientX;downY=e.clientY;lastX=e.clientX;scene.setPointerCapture(e.pointerId)});
+  scene.addEventListener('pointermove',e=>{
+    if(!dragging)return;
+    const dx=e.clientX-lastX;lastX=e.clientX;
+    if(!dragOn && Math.hypot(e.clientX-downX,e.clientY-downY)>14){dragOn=true;moved=true;}
+    if(dragOn){vel=dx*.18;rot+=dx*.18;}     /* el micro-jitter de un clic ya no gira la rueda */
+  });
+  scene.addEventListener('pointerup',()=>{
+    dragging=false;
+    if(!dragOn && downCard)select(downCard._idx);   /* clic limpio = seleccionar */
+    downCard=null;
+  });
+  scene.addEventListener('pointercancel',()=>{dragging=false;downCard=null});
   (function loop(){
     requestAnimationFrame(loop);
     if(!active)return;
-    if(!dragging){rot+=auto+vel;vel*=.95;if(Math.abs(vel)<.01)vel=0;}
+    if(!dragging){rot+=(hovering?auto*.2:auto)+vel;vel*=.95;if(Math.abs(vel)<.01)vel=0;}
     track.style.transform=`rotateY(${rot}deg)`;
     cards.forEach((el,i)=>{
       const a=((i*step+rot)%360+360)%360;
