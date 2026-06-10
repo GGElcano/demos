@@ -537,7 +537,7 @@ footer{background:var(--noche);color:rgba(249,247,240,.6);padding:clamp(54px,7vw
 #v-perdido .btn{margin-top:34px}
 
 /* ============ CINCO SIGLOS EN UN SCROLL ============ */
-#siglos{position:relative;height:430svh}
+#siglos{position:relative;height:520svh}
 .siglos-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--paper);transition:none}
 #siglosCanvas{position:absolute;inset:0;width:100%;height:100%}
 .siglos-cap{position:absolute;left:clamp(24px,7vw,110px);top:50%;transform:translateY(-50%);max-width:340px;
@@ -1781,13 +1781,44 @@ if(!REDUCED){
     return pts;
   });
 
+  /* —— el ave (fénix de Boroa): 2 poses muestreadas de webp —— */
+  const birdPts=[null,null];
+  ['ave-up.webp','ave-down.webp'].forEach((f,k)=>{
+    const im=new Image();im.src='assets/'+f;
+    im.onload=()=>{
+      const oc=document.createElement('canvas');oc.width=OW;oc.height=OH;
+      const o=oc.getContext('2d');
+      const s=Math.min(OW/im.width,OH/im.height);
+      o.drawImage(im,(OW-im.width*s)/2,(OH-im.height*s)/2,im.width*s,im.height*s);
+      const d=o.getImageData(0,0,OW,OH).data,pts=[];
+      for(let y=0;y<OH;y+=3)for(let x=0;x<OW;x+=3){
+        const idx=(y*OW+x)*4;
+        if(d[idx]<100 && d[idx+3]>128)pts.push([x-OW/2,y-OH/2]);
+      }
+      if(pts.length>50)birdPts[k]=pts;
+    };
+  });
+
+  /* —— segmentos: capítulo → vuelo → capítulo… —— */
+  const SEG=[
+    {type:'ch', i:0, a:0,   b:.17},
+    {type:'fly',i:0, a:.17, b:.27},
+    {type:'ch', i:1, a:.27, b:.44},
+    {type:'fly',i:1, a:.44, b:.54},
+    {type:'ch', i:2, a:.54, b:.71},
+    {type:'fly',i:2, a:.71, b:.81},
+    {type:'ch', i:3, a:.81, b:1.01},
+  ];
+  function segAt(p){for(const s of SEG)if(p>=s.a&&p<s.b)return s;return SEG[SEG.length-1];}
+
   /* —— partículas —— */
   const P=Array.from({length:N},()=>({x:(Math.random()-.5)*600,y:(Math.random()-.5)*500,
     vx:0,vy:0,tx:0,ty:0,s:.7+Math.random()*1.7,ph:Math.random()*6.28}));
-  let chapter=-1;
-  function assign(ch){
-    chapter=ch;const pts=targets[ch];
-    P.forEach((p,i)=>{const t=pts[(i*7)%pts.length];p.tx=t[0];p.ty=t[1];});
+  let curKey='';
+  function setTargets(pts,mirror){
+    P.forEach((p,i)=>{const t=pts[(i*7)%pts.length];p.tx=mirror?-t[0]:t[0];p.ty=t[1];});
+  }
+  function setDots(ch){
     document.querySelectorAll('#siglosDots span').forEach((s,i)=>s.classList.toggle('on',i<=ch));
   }
   function resize(){
@@ -1814,27 +1845,52 @@ if(!REDUCED){
     const r=wrap.getBoundingClientRect();
     const total=r.height-H;
     const p=Math.max(0,Math.min(1,-r.top/total));
-    const ch=Math.min(3,Math.floor(p*4));
-    if(ch!==chapter)assign(ch);
+    const seg=segAt(p);
+    const st=(p-seg.a)/(seg.b-seg.a);            // 0..1 dentro del segmento
+    let ax=cx,ay=cy,as=scale,ch=seg.i,fg;
+
+    if(seg.type==='ch' || !birdPts[0]){
+      const key='ch'+seg.i;
+      if(key!==curKey){curKey=key;setTargets(targets[seg.i],false);}
+      fg=CH_FG[seg.i];
+      setDots(seg.i);
+    }else{
+      /* —— VUELO: el enjambre se hace golondrina y cruza la escena —— */
+      const dir=seg.i%2?-1:1;
+      const pose=Math.floor(t/620)%2;             // aleteo lento, da tiempo a formarse
+      const mirror=dir<0;                          // pose abajo mira a la derecha
+      const key='fly'+pose+(mirror?'m':'');
+      if(key!==curKey){curKey=key;setTargets(birdPts[pose]||birdPts[1]||targets[seg.i],pose===0?!mirror:mirror);}
+      ax=W*.5+Math.sin(st*Math.PI)*W*.2*dir;
+      ay=cy-Math.sin(st*Math.PI*2)*H*.07+Math.sin(t*.012)*9;
+      as=scale*.6;
+      ch=st>.5?Math.min(3,seg.i+1):seg.i;
+      fg=CH_FG[ch];
+      setDots(ch);
+    }
+
     /* fondo */
     const[br,bg2,bb]=bgAt(p);
     stage.style.background=`rgb(${br|0},${bg2|0},${bb|0})`;
     stage.classList.toggle('dark-ch',CH_DARK[ch]);
-    /* captions */
+    /* captions: visibles solo en el centro de su capítulo */
     caps.forEach((c,i)=>{
-      const center=(i+.5)/4,d=Math.abs(p-center);
-      const a=Math.max(0,1-d*7);
+      const s=SEG.find(x=>x.type==='ch'&&x.i===i);
+      const center=(s.a+s.b)/2,d=Math.abs(p-center);
+      const a=Math.max(0,1-d*9);
       c.style.opacity=a;
       c.style.transform=(MOBILE?'':'translateY(-50%) ')+`translateY(${(1-a)*18}px)`;
     });
     /* partículas */
     ctx.clearRect(0,0,W,H);
-    ctx.fillStyle=CH_FG[ch];
+    ctx.fillStyle=fg;
     const time=t*.001;
+    const k=seg.type==='fly'?.11:.045;            // en vuelo persiguen mucho más rápido
+    const damp=seg.type==='fly'?.8:.86;
     for(const q of P){
       const wob=Math.sin(time*1.4+q.ph)*1.6;
-      q.vx=(q.vx+(q.tx*scale+cx-q.x)*.045)*.86;
-      q.vy=(q.vy+(q.ty*scale+cy-q.y)*.045)*.86;
+      q.vx=(q.vx+(q.tx*as+ax-q.x)*k)*damp;
+      q.vy=(q.vy+(q.ty*as+ay-q.y)*k)*damp;
       q.x+=q.vx;q.y+=q.vy;
       ctx.fillRect(q.x+wob,q.y+Math.cos(time+q.ph)*1.6,q.s,q.s);
     }
