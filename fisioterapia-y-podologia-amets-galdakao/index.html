@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fisioterapia y Podología Amets — Clínica Dental</title>
+  <title>Osteopatía Podología Amets | Fisioterapia, osteopatía y podología en Galdakao</title>
+  <meta name="description" content="Centro Amets en Galdakao (Bizkaia): osteopatía, fisioterapia y podología. Punción seca, drenaje linfático, suelo pélvico y quiropodia indolora. 4,9 sobre 5 con 60 reseñas en Google. Bizkai Kalea 42. Cita: 946 41 62 56.">
+  <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1600&q=80" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,12 +16,12 @@
     :root {
       --black: #080c10;
       --white: #f5f3ef;
-      --accent: #0EA5E9;
-      --accent-light: #38bdf8;
+      --accent: #5fc9b4;
+      --accent-light: #8ee0cf;
       --carbon: #0f1520;
       --carbon-mid: #162030;
       --carbon-light: #1e2d40;
-      --text-muted: #7a8899;
+      --text-muted: #9aa6b6;
       --font-serif: 'DM Serif Display', serif;
       --font-sans: 'DM Sans', sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -34,36 +37,9 @@
       font-weight: 300;
       line-height: 1.6;
       overflow-x: hidden;
-      cursor: none;
     }
 
-    /* ─── CUSTOM CURSOR (DUAL COLOR) ─── */
-    .cursor-dot {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      transition: transform 0.1s;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(255,255,255,0.3);
-    }
-    .cursor-ring {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(14,165,233,0.4);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width 0.35s var(--ease-smooth), height 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
-    }
-    .cursor-ring.expanded {
-      width: 70px; height: 70px;
-      border-color: rgba(14,165,233,0.7);
-      background: rgba(14,165,233,0.05);
-    }
-
-    /* ─── NAVBAR ─── */
+    /* NAVBAR */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
@@ -75,7 +51,7 @@
       backdrop-filter: blur(20px);
       background: rgba(8,8,8,0.85);
       padding: 18px 60px;
-      border-bottom: 1px solid rgba(14,165,233,0.08);
+      border-bottom: 1px solid rgba(95,201,180,0.08);
     }
     .nav-logo {
       font-family: var(--font-serif);
@@ -89,7 +65,7 @@
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
     .nav-links a {
-      text-decoration: none; color: rgba(245,243,239,0.65);
+      text-decoration: none; color: rgba(245,243,239,0.78);
       font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
       transition: color 0.3s; font-weight: 400;
     }
@@ -105,7 +81,7 @@
     }
     .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
 
-    /* ─── HAMBURGER MOBILE ─── */
+    /* HAMBURGER MOBILE */
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
       background: none; border: none; cursor: pointer; padding: 8px;
@@ -129,7 +105,7 @@
     }
     .mobile-menu a:hover { color: var(--accent); }
 
-    /* ─── HERO ─── */
+    /* HERO */
     .hero {
       position: relative; height: 100vh; min-height: 700px;
       display: flex; align-items: flex-end; justify-content: flex-start;
@@ -137,7 +113,6 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, #080c10 0%, #162030 40%, #0EA5E922 100%);
       background-size: cover; background-position: center;
       transform: scale(1.08);
       transition: transform 8s var(--ease-out);
@@ -145,7 +120,7 @@
     .hero-bg.loaded { transform: scale(1); }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.4) 50%, rgba(8,8,8,0.15) 100%);
+      background: linear-gradient(135deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.55) 50%, rgba(8,8,8,0.25) 100%);
     }
     .hero-overlay-bottom {
       position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
@@ -161,28 +136,32 @@
       color: var(--accent); margin-bottom: 28px;
       display: flex; align-items: center; gap: 16px;
       opacity: 1;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.85), 0 2px 24px rgba(0,0,0,0.6);
     }
     .hero-eyebrow::before {
       content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
     }
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-size: clamp(3rem, 7vw, 7rem);
       font-weight: 300;
       line-height: 1.05;
       letter-spacing: -0.02em;
       margin-bottom: 32px;
       opacity: 1;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
     }
     .hero-title em { font-style: italic; color: var(--accent); }
     .hero-sub {
-      font-size: 1.05rem; color: rgba(245,243,239,0.6);
-      max-width: 480px; line-height: 1.7; margin-bottom: 52px;
+      font-size: 1.05rem; color: rgba(245,243,239,0.92);
+      max-width: 520px; line-height: 1.7; margin-bottom: 52px;
       font-weight: 300;
       opacity: 1;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.85), 0 2px 16px rgba(0,0,0,0.6);
     }
     .hero-actions {
-      display: flex; align-items: center; gap: 40px;
+      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
       opacity: 1;
     }
     .btn-primary {
@@ -190,7 +169,7 @@
       background: var(--accent); color: var(--black);
       text-decoration: none; padding: 18px 40px;
       font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
       position: relative; overflow: hidden;
     }
     .btn-primary::before {
@@ -200,9 +179,9 @@
     }
     .btn-primary:hover::before { transform: translateX(0); }
     .btn-primary:hover { color: var(--black); }
-    .btn-primary span { position: relative; z-index: 1; }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
     .btn-ghost {
-      color: rgba(245,243,239,0.6); text-decoration: none;
+      color: rgba(245,243,239,0.85); text-decoration: none;
       font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
       display: flex; align-items: center; gap: 10px;
       transition: color 0.3s;
@@ -210,13 +189,15 @@
     .btn-ghost:hover { color: var(--accent); }
     .btn-ghost-arrow {
       width: 36px; height: 36px;
-      border: 1px solid rgba(245,243,239,0.2);
+      border: 1px solid rgba(245,243,239,0.32);
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       transition: border-color 0.3s, transform 0.3s;
     }
     .btn-ghost:hover .btn-ghost-arrow {
       border-color: var(--accent); transform: rotate(45deg);
     }
+    .icon-arrow { width: 14px; height: 14px; }
+    .icon-arrow-up { width: 14px; height: 14px; }
     .hero-scroll {
       position: absolute; right: 60px; bottom: 100px; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: 16px;
@@ -236,27 +217,37 @@
       50% { opacity: 1; transform: scaleY(1.1); }
     }
 
-    /* ─── MARQUEE ─── */
+    /* MARQUEE — seamless infinite loop (rewrite 2026-04-29) */
     .marquee-section {
-      border-top: 1px solid rgba(14,165,233,0.12);
-      border-bottom: 1px solid rgba(14,165,233,0.12);
+      border-top: 1px solid rgba(95,201,180,0.12);
+      border-bottom: 1px solid rgba(95,201,180,0.12);
       overflow: hidden; padding: 20px 0; background: var(--carbon);
+      position: relative;
     }
     .marquee-track {
-      display: flex; gap: 0; white-space: nowrap;
-      animation: marquee 22s linear infinite;
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: marquee 18s linear infinite;
+      will-change: transform;
     }
+    .marquee-track:hover { animation-play-state: paused; }
     .marquee-item {
-      display: inline-flex; align-items: center; gap: 30px;
-      padding: 0 40px;
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 32px;
+      flex-shrink: 0;
+      white-space: nowrap;
       font-family: var(--font-serif); font-size: 1.1rem;
-      font-style: italic; color: rgba(245,243,239,0.25);
+      font-style: italic; color: rgba(245,243,239,0.7);
       letter-spacing: 0.05em;
     }
     .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
 
-    /* ─── SECTION COMMONS ─── */
+    /* SECTION COMMONS */
     section { padding: 130px 60px; }
     .section-label {
       font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
@@ -269,14 +260,15 @@
       font-size: clamp(2.4rem, 4vw, 4.2rem);
       font-weight: 300; line-height: 1.1;
       letter-spacing: -0.01em;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
     }
     .section-title em { font-style: italic; color: var(--accent); }
 
-    /* ─── STATS ─── */
+    /* STATS */
     .stats-section {
       background: var(--carbon);
       padding: 100px 60px;
-      border-top: 1px solid rgba(14,165,233,0.08);
+      border-top: 1px solid rgba(95,201,180,0.08);
     }
     .stats-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
@@ -284,9 +276,10 @@
     }
     .stat-card {
       padding: 60px 50px; background: var(--carbon);
-      border: 1px solid rgba(14,165,233,0.08);
+      border: 1px solid rgba(95,201,180,0.08);
       position: relative; overflow: hidden;
       transition: border-color 0.4s;
+      min-width: 0;
     }
     .stat-card::before {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
@@ -294,23 +287,26 @@
       transition: transform 0.5s var(--ease-out); transform-origin: left;
     }
     .stat-card:hover::before { transform: scaleX(1); }
-    .stat-card:hover { border-color: rgba(14,165,233,0.3); }
+    .stat-card:hover { border-color: rgba(95,201,180,0.3); }
     .stat-number {
-      font-family: var(--font-serif); font-size: 4.5rem;
+      font-family: var(--font-serif); font-size: clamp(2.5rem, 7vw, 4.5rem);
       font-weight: 300; line-height: 1; color: var(--white);
       margin-bottom: 12px; letter-spacing: -0.02em;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
     }
     .stat-number .stat-suffix { color: var(--accent); }
     .stat-label {
       font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--text-muted); font-weight: 400;
+      overflow-wrap: break-word;
     }
 
-    /* ─── GALLERY / PROJECTS ─── */
+    /* GALLERY */
     .projects-section { background: var(--black); }
     .projects-header {
       display: flex; justify-content: space-between; align-items: flex-end;
       margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
+      gap: 32px; flex-wrap: wrap;
     }
     .projects-header .section-title { max-width: 500px; }
     .view-all {
@@ -318,7 +314,7 @@
       text-decoration: none; color: var(--accent);
       font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
       transition: gap 0.3s; padding-bottom: 4px;
-      border-bottom: 1px solid rgba(14,165,233,0.3);
+      border-bottom: 1px solid rgba(95,201,180,0.45);
       white-space: nowrap;
     }
     .view-all:hover { gap: 20px; border-color: var(--accent); }
@@ -331,22 +327,21 @@
     .project-card {
       position: relative; overflow: hidden;
       aspect-ratio: 4/3;
-      cursor: none;
     }
     .project-card:first-child {
       grid-column: span 2; aspect-ratio: 21/8;
     }
     .project-img {
       width: 100%; height: 100%; object-fit: cover;
-      background: linear-gradient(135deg, var(--carbon-mid) 0%, var(--carbon-light) 100%);
+      transition: transform 0.8s var(--ease-out);
     }
-    .project-card:hover .project-img { transform: scale(1.06); transition: transform 0.8s var(--ease-out); }
+    .project-card:hover .project-img { transform: scale(1.06); }
     .project-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(8,8,8,0.9) 0%, rgba(8,8,8,0.1) 60%, transparent 100%);
-      opacity: 0.6; transition: opacity 0.5s;
+      background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.18) 60%, transparent 100%);
+      opacity: 0.7; transition: opacity 0.5s;
     }
-    .project-card:hover .project-overlay { opacity: 0.85; }
+    .project-card:hover .project-overlay { opacity: 0.9; }
     .project-info {
       position: absolute; bottom: 0; left: 0; right: 0;
       padding: 40px; transform: translateY(15px);
@@ -355,29 +350,30 @@
     .project-card:hover .project-info { transform: translateY(0); }
     .project-cat {
       font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 10px; font-weight: 400;
+      color: var(--accent); margin-bottom: 10px; font-weight: 500;
     }
     .project-name {
       font-family: var(--font-serif); font-size: 1.9rem;
       font-weight: 300; line-height: 1.15; margin-bottom: 14px;
     }
     .project-meta {
-      font-size: 0.73rem; color: rgba(245,243,239,0.45);
-      letter-spacing: 0.1em; opacity: 0;
+      font-size: 0.78rem; color: rgba(245,243,239,0.72);
+      letter-spacing: 0.06em; opacity: 0;
       transition: opacity 0.5s 0.1s;
     }
     .project-card:hover .project-meta { opacity: 1; }
     .project-arrow {
       position: absolute; top: 36px; right: 36px;
       width: 50px; height: 50px;
-      border: 1px solid rgba(245,243,239,0.15);
+      border: 1px solid rgba(245,243,239,0.38);
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       opacity: 0; transform: translate(10px, -10px);
       transition: all 0.4s var(--ease-out);
+      color: rgba(245,243,239,0.85);
     }
-    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); color: var(--accent); }
 
-    /* ─── ABOUT ─── */
+    /* ABOUT */
     .about-section {
       background: var(--carbon);
       display: grid; grid-template-columns: 1fr 1fr;
@@ -385,11 +381,13 @@
     }
     .about-visual {
       position: relative; overflow: hidden; min-height: 700px;
-      background: linear-gradient(180deg, var(--carbon-mid), var(--carbon-light));
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
     }
     .about-badge {
-      position: absolute; bottom: 48px; left: 48px;
-      background: var(--black); border: 1px solid rgba(14,165,233,0.25);
+      position: absolute; top: 24px; right: 24px;
+      background: var(--black); border: 1px solid rgba(95,201,180,0.35);
       padding: 24px 30px; max-width: 240px;
     }
     .about-badge-year {
@@ -398,41 +396,41 @@
     }
     .about-badge-text {
       font-size: 0.72rem; letter-spacing: 0.1em;
-      color: rgba(245,243,239,0.5); margin-top: 6px;
+      color: rgba(245,243,239,0.75); margin-top: 6px;
     }
     .about-content {
       padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
     }
     .about-body {
       font-size: 1.05rem; line-height: 1.8;
-      color: rgba(245,243,239,0.65); margin: 32px 0 52px;
+      color: rgba(245,243,239,0.78); margin: 32px 0 40px;
       font-weight: 300;
     }
-    .about-body strong { color: var(--white); font-weight: 400; }
+    .about-body strong { color: var(--white); font-weight: 500; }
     .about-divider {
-      width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
+      width: 60px; height: 1px; background: var(--accent); margin: 32px 0;
     }
     .about-values { display: flex; flex-direction: column; gap: 20px; }
     .about-value {
       display: flex; gap: 20px; align-items: flex-start;
-      padding: 20px; border: 1px solid rgba(14,165,233,0.06);
+      padding: 20px; border: 1px solid rgba(95,201,180,0.12);
       transition: border-color 0.4s;
     }
-    .about-value:hover { border-color: rgba(14,165,233,0.2); }
+    .about-value:hover { border-color: rgba(95,201,180,0.35); }
     .value-num {
       font-family: var(--font-serif); font-size: 1.4rem;
-      color: var(--accent); opacity: 0.5; flex-shrink: 0;
+      color: var(--accent); opacity: 0.65; flex-shrink: 0;
       line-height: 1.2;
     }
-    .value-text h4 {
+    .value-text h3 {
       font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 400; margin-bottom: 4px;
+      font-weight: 500; margin-bottom: 6px;
     }
     .value-text p {
-      font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
+      font-size: 0.88rem; color: rgba(245,243,239,0.7); font-weight: 300; line-height: 1.6;
     }
 
-    /* ─── SERVICES ─── */
+    /* SERVICES */
     .services-section { background: var(--black); }
     .services-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -440,82 +438,137 @@
     }
     .service-card {
       padding: 60px 48px; background: var(--black);
-      border: 1px solid rgba(14,165,233,0.07);
+      border: 1px solid rgba(95,201,180,0.12);
       position: relative; overflow: hidden;
       transition: background 0.5s, border-color 0.5s;
     }
-    .service-card:hover { background: var(--carbon-mid); border-color: rgba(14,165,233,0.2); }
+    .service-card:hover { background: var(--carbon-mid); border-color: rgba(95,201,180,0.35); }
     .service-icon {
       width: 52px; height: 52px; margin-bottom: 36px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(14,165,233,0.2); color: var(--accent);
+      border: 1px solid rgba(95,201,180,0.35); color: var(--accent);
     }
     .service-card h3 {
       font-family: var(--font-serif); font-size: 1.7rem;
-      font-weight: 400; margin-bottom: 18px; line-height: 1.2;
+      font-weight: 400; margin-bottom: 10px; line-height: 1.2;
     }
     .service-card p {
-      font-size: 0.88rem; color: var(--text-muted); line-height: 1.75;
+      font-size: 0.92rem; color: rgba(245,243,239,0.72); line-height: 1.75;
       font-weight: 300;
     }
     .service-link {
       display: inline-flex; align-items: center; gap: 10px;
       margin-top: 32px; text-decoration: none;
       font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(14,165,233,0.5); transition: color 0.3s, gap 0.3s;
+      color: rgba(95,201,180,0.85); transition: color 0.3s, gap 0.3s;
     }
     .service-link:hover { color: var(--accent); gap: 16px; }
     .service-number {
       position: absolute; top: 30px; right: 36px;
       font-family: var(--font-serif); font-size: 5rem;
-      font-weight: 300; color: rgba(14,165,233,0.05);
+      font-weight: 300; color: rgba(95,201,180,0.08);
       line-height: 1; transition: color 0.5s;
     }
-    .service-card:hover .service-number { color: rgba(14,165,233,0.1); }
+    .service-card:hover .service-number { color: rgba(95,201,180,0.18); }
 
-    /* ─── TESTIMONIALS ─── */
+    /* TESTIMONIALS */
     .testimonials-section {
       background: var(--carbon); position: relative; overflow: hidden;
     }
     .testimonials-section::before {
       content: '"'; position: absolute; top: -60px; left: 40px;
       font-family: var(--font-serif); font-size: 30rem;
-      color: rgba(14,165,233,0.03); line-height: 1; pointer-events: none;
+      color: rgba(95,201,180,0.05); line-height: 1; pointer-events: none;
     }
-    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
+    .testimonials-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
     .testimonials-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 2px; margin-top: 70px;
     }
     .testimonial-card {
-      padding: 56px 44px; background: rgba(8,8,8,0.4);
-      border: 1px solid rgba(14,165,233,0.07);
+      padding: 56px 44px; background: rgba(8,8,8,0.55);
+      border: 1px solid rgba(95,201,180,0.12);
       transition: border-color 0.4s, background 0.4s;
+      display: flex; flex-direction: column;
     }
-    .testimonial-card:hover { border-color: rgba(14,165,233,0.2); background: rgba(8,8,8,0.7); }
+    .testimonial-card:hover { border-color: rgba(95,201,180,0.35); background: rgba(8,8,8,0.8); }
     .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
     .star {
       width: 12px; height: 12px; background: var(--accent);
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
     .testimonial-quote {
-      font-family: var(--font-serif); font-size: 1.2rem;
+      font-family: var(--font-serif); font-size: 1.18rem;
       font-style: italic; font-weight: 300;
-      line-height: 1.7; color: rgba(245,243,239,0.8);
-      margin-bottom: 36px;
+      line-height: 1.7; color: rgba(245,243,239,0.92);
+      margin-bottom: 36px; flex: 1;
     }
     .testimonial-divider {
-      width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4;
+      width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.55;
     }
     .testimonial-author strong {
-      display: block; font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.08em; margin-bottom: 4px;
+      display: block; font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.08em; margin-bottom: 4px; color: var(--white);
     }
     .testimonial-author span {
-      font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
+      font-size: 0.75rem; color: rgba(245,243,239,0.72); letter-spacing: 0.05em;
     }
 
-    /* ─── CTA BANNER ─── */
+    /* MAP SECTION */
+    .map-section { background: var(--black); padding: 0; }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      max-width: none;
+    }
+    .map-info {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--carbon);
+    }
+    .map-info-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 28px 0; border-bottom: 1px solid rgba(95,201,180,0.12);
+    }
+    .map-info-item:first-of-type { padding-top: 40px; }
+    .map-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border: 1px solid rgba(95,201,180,0.35);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .map-info-text h3 {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 6px; font-weight: 500;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.95rem; color: rgba(245,243,239,0.85);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--white); }
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+      filter: invert(90%) hue-rotate(180deg) saturate(0.6);
+    }
+    .map-consent-fallback {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 18px; padding: 32px; text-align: center;
+      background: var(--carbon-mid); color: rgba(245,243,239,0.85);
+    }
+    .map-consent-fallback p {
+      font-size: 0.95rem; max-width: 360px; line-height: 1.6;
+    }
+    .map-consent-fallback button {
+      background: var(--accent); color: var(--black); border: none;
+      padding: 12px 28px; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .map-consent-fallback button:hover { background: var(--accent-light); }
+
+    /* CTA BANNER */
     .cta-section {
       background: var(--accent); padding: 110px 60px;
       display: flex; align-items: center; justify-content: space-between;
@@ -523,18 +576,18 @@
     }
     .cta-text { flex: 1; min-width: 300px; }
     .cta-text h2 {
-      font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
+      font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 4rem);
       font-weight: 300; color: var(--black); line-height: 1.1;
     }
     .cta-text p {
-      font-size: 1rem; color: rgba(8,8,8,0.65); margin-top: 16px; font-weight: 300;
+      font-size: 1rem; color: rgba(8,12,16,0.85); margin-top: 16px; font-weight: 400;
     }
     .btn-dark {
       display: inline-flex; align-items: center; gap: 14px;
       background: var(--black); color: var(--white);
       text-decoration: none; padding: 20px 48px;
       font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
       white-space: nowrap; position: relative; overflow: hidden;
     }
     .btn-dark::before {
@@ -543,12 +596,12 @@
       transition: transform 0.4s var(--ease-out);
     }
     .btn-dark:hover::before { transform: translateX(0); }
-    .btn-dark span { position: relative; z-index: 1; }
+    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
 
-    /* ─── FOOTER ─── */
+    /* FOOTER */
     footer {
       background: var(--black); padding: 90px 60px 50px;
-      border-top: 1px solid rgba(14,165,233,0.08);
+      border-top: 1px solid rgba(95,201,180,0.12);
     }
     .footer-top {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -559,44 +612,47 @@
     }
     .footer-tagline {
       font-family: var(--font-serif); font-style: italic;
-      font-size: 1.05rem; color: rgba(245,243,239,0.35);
+      font-size: 1.05rem; color: rgba(245,243,239,0.78);
       line-height: 1.6; max-width: 280px; margin-bottom: 36px;
     }
-    .footer-social { display: flex; gap: 14px; }
+    .footer-social { display: flex; gap: 14px; flex-wrap: wrap; }
     .social-link {
       width: 40px; height: 40px;
-      border: 1px solid rgba(245,243,239,0.1);
+      border: 1px solid rgba(245,243,239,0.25);
       display: flex; align-items: center; justify-content: center;
-      text-decoration: none; color: rgba(245,243,239,0.4);
-      font-size: 0.75rem; letter-spacing: 0.1em;
-      transition: border-color 0.3s, color 0.3s;
+      text-decoration: none; color: rgba(245,243,239,0.78);
+      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
     }
-    .social-link:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col h4 {
+    .social-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); transform: translateY(-2px); }
+    .social-link svg { width: 18px; height: 18px; }
+    .footer-col h3 {
       font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 24px; font-weight: 500;
+      color: var(--accent); margin-bottom: 24px; font-weight: 600;
     }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
     .footer-col ul a {
-      text-decoration: none; color: rgba(245,243,239,0.4);
-      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+      text-decoration: none; color: rgba(245,243,239,0.78);
+      font-size: 0.88rem; transition: color 0.3s; font-weight: 300;
     }
     .footer-col ul a:hover { color: var(--white); }
     .footer-bottom {
-      border-top: 1px solid rgba(245,243,239,0.06);
+      border-top: 1px solid rgba(245,243,239,0.1);
       padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
     }
     .footer-copy {
-      font-size: 0.75rem; color: rgba(245,243,239,0.25); letter-spacing: 0.05em;
+      font-size: 0.78rem; color: rgba(245,243,239,0.7); letter-spacing: 0.05em;
     }
-    .footer-legal { display: flex; gap: 28px; }
-    .footer-legal a {
-      font-size: 0.72rem; color: rgba(245,243,239,0.2);
+    .footer-legal { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.75rem; color: rgba(245,243,239,0.78);
       text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit;
     }
-    .footer-legal a:hover { color: var(--text-muted); }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--white); }
 
-    /* ─── ANIMATIONS ─── */
+    /* ANIMATIONS */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
     .reveal {
@@ -608,7 +664,7 @@
     .reveal-delay-2 { transition-delay: 0.3s; }
     .reveal-delay-3 { transition-delay: 0.45s; }
 
-    /* ─── LOADER ─── */
+    /* LOADER */
     .loader {
       position: fixed; inset: 0; z-index: 10000;
       background: var(--black); display: flex;
@@ -623,7 +679,7 @@
     }
     .loader-logo span { color: var(--accent); }
     .loader-bar {
-      width: 200px; height: 1px; background: rgba(245,243,239,0.1);
+      width: 200px; height: 1px; background: rgba(245,243,239,0.15);
       position: relative; overflow: hidden;
     }
     .loader-bar::after {
@@ -633,7 +689,7 @@
     }
     @keyframes loadBar { to { transform: translateX(0); } }
 
-    /* ─── RESPONSIVE ─── */
+    /* RESPONSIVE */
     @media (max-width: 1024px) {
       nav { padding: 24px 36px; }
       nav.scrolled { padding: 16px 36px; }
@@ -642,11 +698,13 @@
       .hero-scroll { right: 36px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 36px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .hero { min-height: auto; height: auto; align-items: flex-start; }
-      body { cursor: auto; }
-      .cursor-dot, .cursor-ring { display: none; }
       .hamburger { display: flex; }
       nav { padding: 20px 24px; }
       nav.scrolled { padding: 14px 24px; }
@@ -659,527 +717,699 @@
       .projects-grid { grid-template-columns: 1fr; }
       .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
       .about-section { grid-template-columns: 1fr; }
-      .about-visual { min-height: 300px; }
+      .about-visual { min-height: 360px; }
       .about-content { padding: 60px 24px; }
       .services-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
-      .cta-section { padding: 80px 24px; flex-direction: column; }
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+      .cta-section { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; align-items: center; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stats-section { padding: 70px 24px; }
+      .map-info { padding: 60px 24px; }
     }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.4rem, 11vw, 3rem); margin-bottom: 22px; }
+      .hero-eyebrow {
+        font-size: 0.68rem; letter-spacing: 0.28em;
+        margin-bottom: 40px; line-height: 1.6;
+        flex-wrap: wrap; gap: 10px;
+      }
+      .hero-eyebrow::before { width: 24px; }
+      .hero-sub { font-size: 0.95rem; margin-bottom: 36px; }
+      .hero-content { padding: 5px 24px 60px; }
+      .section-title { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+      .stat-number { font-size: clamp(2.4rem, 12vw, 3.2rem); }
+      .stat-card { padding: 36px 24px; }
+      .service-card { padding: 40px 28px; }
+      .testimonial-card { padding: 36px 24px; }
+      .cta-section { padding: 60px 20px; }
+      .btn-dark { padding: 16px 32px; }
+      .btn-primary { padding: 16px 32px; }
+      .about-badge {
+        top: 16px; right: 16px;
+        padding: 18px 22px; max-width: 200px;
+      }
+      .about-badge-year { font-size: 2.4rem; }
+      .about-badge-text { font-size: 0.65rem; }
+    }
+    /* WCAG 2.4.7 — Focus visible */
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: var(--black); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+    /* WCAG 2.3.3 — respetar preferencia reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      .marquee-track { animation: none !important; }
+    }
+    /* HORARIO — fila del día actual destacada */
+    .horario-list { display: flex; flex-direction: column; gap: 7px; margin-top: 2px; }
+    .horario-row {
+      display: flex; justify-content: space-between; gap: 24px;
+      font-size: 0.92rem; color: rgba(245,243,239,0.85); line-height: 1.5;
+    }
+    .horario-row span:last-child { color: rgba(245,243,239,0.65); white-space: nowrap; }
+    .horario-row.horario-hoy { color: var(--accent); font-weight: 600; }
+    .horario-row.horario-hoy span:last-child { color: var(--accent); }
+    .horario-row.horario-hoy span:first-child::after { content: ' · hoy'; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    /* CITA — botones grandes */
+    .cita-actions { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 12px; }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: transparent; color: var(--accent);
+      border: 1px solid var(--accent);
+      text-decoration: none; padding: 18px 40px;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: background 0.3s, color 0.3s;
+    }
+    .btn-whatsapp:hover { background: var(--accent); color: var(--black); }
+    .btn-whatsapp svg { width: 18px; height: 18px; flex-shrink: 0; }
   </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div class="loader" id="loader">
-  <div class="loader-logo">AMETS <span>.</span></div>
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-logo">AMETS<span>.</span></div>
   <div class="loader-bar"></div>
 </div>
 
-<!-- CURSOR -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- NAV -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">Fisioterapia y Podología Amets<span>.</span></a>
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main-content" class="nav-logo">AMETS<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#galeria">El centro</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#cita" class="nav-cta">Pedir cita</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menú">
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú de navegación">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#galeria" onclick="closeMobile()">Galería</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <a href="#galeria" onclick="closeMobile()">El centro</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#servicios" onclick="closeMobile()">Servicios</a>
   <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="#cita" onclick="closeMobile()">Pedir cita</a>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" id="heroBg" style="background-image: url('https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=1600&q=80'); background-size: cover; background-position: center 30%;" role="img" aria-label="Terapeuta realizando un tratamiento manual de espalda sobre camilla"></div>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Odontología · Confianza · Tecnología</p>
-    <h1 class="hero-title">
-      Tu sonrisa<br>merece lo<br><em>mejor</em>
-    </h1>
-    <p class="hero-sub">
-      Ortodoncia invisible, implantes, estética dental y más. Tecnología de última generación y un equipo que te escucha.
-    </p>
+    <p class="hero-eyebrow">Osteopatía · Fisioterapia · Podología — Galdakao, Bizkaia</p>
+    <h1 class="hero-title" id="hero-title">Tu cuerpo,<br>en buenas manos<br><em>en Galdakao.</em></h1>
+    <p class="hero-sub">En Amets cada tratamiento empieza con una valoración y se adapta a ti: osteopatía, fisioterapia y podología bajo el mismo techo, en pleno centro de Galdakao. 4,9 sobre 5 en Google con 60 reseñas.</p>
     <div class="hero-actions">
-      <a href="#contacto" class="btn-primary">
-        <span>Primera visita gratis</span>
-        <span>→</span>
+      <a href="tel:+34946416256" class="btn-primary" aria-label="Llamar a Osteopatía Podología Amets al 946 41 62 56 para pedir cita">
+        <span>Pedir cita · 946 41 62 56
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
       </a>
-      <a href="#servicios" class="btn-ghost">
-        <span>Tratamientos</span>
-        <div class="btn-ghost-arrow">↗</div>
+      <a href="https://wa.me/34666744584" target="_blank" rel="noopener" class="btn-ghost" aria-label="Escribir por WhatsApp al 666 74 45 84">
+        <span>WhatsApp · 666 74 45 84</span>
+        <span class="btn-ghost-arrow" aria-hidden="true">
+          <svg class="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
       </a>
     </div>
   </div>
-  <div class="hero-scroll">
+  <div class="hero-scroll" aria-hidden="true">
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
+<div class="marquee-section" aria-hidden="true">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Ortodoncia Invisible</span>
-    <span class="marquee-item"><span class="dot"></span>Implantes Dentales</span>
-    <span class="marquee-item"><span class="dot"></span>Blanqueamiento</span>
-    <span class="marquee-item"><span class="dot"></span>Carillas Dentales</span>
-    <span class="marquee-item"><span class="dot"></span>Endodoncia</span>
-    <span class="marquee-item"><span class="dot"></span>Periodoncia</span>
-    <span class="marquee-item"><span class="dot"></span>Ortodoncia Invisible</span>
-    <span class="marquee-item"><span class="dot"></span>Implantes Dentales</span>
-    <span class="marquee-item"><span class="dot"></span>Blanqueamiento</span>
-    <span class="marquee-item"><span class="dot"></span>Carillas Dentales</span>
-    <span class="marquee-item"><span class="dot"></span>Endodoncia</span>
-    <span class="marquee-item"><span class="dot"></span>Periodoncia</span>
+    <span class="marquee-item"><span class="dot"></span>Osteopatía</span>
+    <span class="marquee-item"><span class="dot"></span>Fisioterapia</span>
+    <span class="marquee-item"><span class="dot"></span>Podología</span>
+    <span class="marquee-item"><span class="dot"></span>Punción seca</span>
+    <span class="marquee-item"><span class="dot"></span>Terapia miofascial</span>
+    <span class="marquee-item"><span class="dot"></span>Drenaje linfático</span>
+    <span class="marquee-item"><span class="dot"></span>Suelo pélvico</span>
+    <span class="marquee-item"><span class="dot"></span>Servicio a domicilio</span>
+    <span class="marquee-item"><span class="dot"></span>Osteopatía</span>
+    <span class="marquee-item"><span class="dot"></span>Fisioterapia</span>
+    <span class="marquee-item"><span class="dot"></span>Podología</span>
+    <span class="marquee-item"><span class="dot"></span>Punción seca</span>
+    <span class="marquee-item"><span class="dot"></span>Terapia miofascial</span>
+    <span class="marquee-item"><span class="dot"></span>Drenaje linfático</span>
+    <span class="marquee-item"><span class="dot"></span>Suelo pélvico</span>
+    <span class="marquee-item"><span class="dot"></span>Servicio a domicilio</span>
   </div>
 </div>
 
-<!-- STATS -->
-<div class="stats-section">
+
+<div class="stats-section" role="region" aria-label="Cifras del centro">
   <div class="stats-grid">
     <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="15">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Años cuidando sonrisas</div>
+      <div class="stat-number"><span class="count" data-target="49">0</span></div>
+      <div class="stat-label">Sobre 5 en Google Maps</div>
     </div>
     <div class="stat-card reveal reveal-delay-1">
-      <div class="stat-number"><span class="count" data-target="10000">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Pacientes tratados</div>
+      <div class="stat-number"><span class="count" data-target="60">0</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
     </div>
     <div class="stat-card reveal reveal-delay-2">
-      <div class="stat-number"><span class="count" data-target="99">0</span><span class="stat-suffix">%</span></div>
-      <div class="stat-label">Satisfacción</div>
+      <div class="stat-number"><span class="count" data-target="3">0</span></div>
+      <div class="stat-label">Especialidades sanitarias</div>
     </div>
     <div class="stat-card reveal reveal-delay-3">
-      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix"></span></div>
-      <div class="stat-label">Doctores especialistas</div>
+      <div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div>
+      <div class="stat-label">Tratamiento individualizado</div>
     </div>
   </div>
 </div>
 
-<!-- GALLERY -->
-<section class="projects-section" id="galeria">
+
+<section class="projects-section" id="galeria" aria-labelledby="galeria-title">
   <div class="projects-header">
     <div>
-      <p class="section-label reveal">Nuestro trabajo</p>
-      <h2 class="section-title reveal reveal-delay-1">Resultados que<br><em>hablan por sí solos</em></h2>
+      <p class="section-label reveal">El centro</p>
+      <h2 class="section-title reveal reveal-delay-1" id="galeria-title">Tratamientos a medida,<br><em>trato de siempre.</em></h2>
     </div>
-    <a href="#" class="view-all reveal">Ver todo →</a>
+    <a href="#cita" class="view-all reveal" aria-label="Ir a la sección de pedir cita">
+      Pedir cita
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
   </div>
   <div class="projects-grid">
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(135deg, var(--carbon-mid), var(--carbon-light), rgba(14,165,233,0.15));"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1600&q=80" alt="Masaje terapéutico con aceite sobre la espalda de una paciente en camilla" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
       <div class="project-info">
-        <p class="project-cat">Ortodoncia · Invisalign</p>
-        <h3 class="project-name">Caso de Apiñamiento</h3>
-        <p class="project-meta">Antes y después · 14 meses</p>
+        <p class="project-cat">Terapia manual</p>
+        <h3 class="project-name">Manos expertas</h3>
+        <p class="project-meta">Osteopatía y masaje terapéutico en camilla, adaptado a cada paciente.</p>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(165deg, var(--carbon-mid), var(--carbon-light), rgba(14,165,233,0.15));"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1486218119243-13883505764c?w=1200&q=80" alt="Persona caminando por un camino al aire libre" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
       <div class="project-info">
-        <p class="project-cat">Implantes · Premium</p>
-        <h3 class="project-name">Rehabilitación Completa</h3>
-        <p class="project-meta">All-on-4 · 2024</p>
+        <p class="project-cat">Podología</p>
+        <h3 class="project-name">Caminar sin dolor</h3>
+        <p class="project-meta">Quiropodia: callosidades y uñas con técnicas indoloras.</p>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(195deg, var(--carbon-mid), var(--carbon-light), rgba(14,165,233,0.15));"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1600881333168-2ef49b341f30?w=1200&q=80" alt="Persona realizando ejercicio terapéutico de estiramiento sobre esterilla" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
       <div class="project-info">
-        <p class="project-cat">Estética · Carillas</p>
-        <h3 class="project-name">Diseño de Sonrisa</h3>
-        <p class="project-meta">10 carillas porcelana</p>
+        <p class="project-cat">Fisioterapia</p>
+        <h3 class="project-name">Recupera tu movilidad</h3>
+        <p class="project-meta">Lesiones musculares, articulares y deportivas.</p>
       </div>
     </div>
     <div class="project-card">
-      <div class="project-img" style="background: linear-gradient(225deg, var(--carbon-mid), var(--carbon-light), rgba(14,165,233,0.15));"></div>
+      <img class="project-img" src="https://images.unsplash.com/photo-1535571393765-ea44927160be?w=1200&q=80" alt="Madre sosteniendo a su bebé recién nacido en brazos" loading="lazy">
       <div class="project-overlay"></div>
-      <div class="project-arrow">↗</div>
+      <div class="project-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </div>
       <div class="project-info">
-        <p class="project-cat">Clínica · Tecnología</p>
-        <h3 class="project-name">Escáner Intraoral 3D</h3>
-        <p class="project-meta">Sin moldes · Sin náuseas</p>
+        <p class="project-cat">Maternidad</p>
+        <h3 class="project-name">Suelo pélvico y lactantes</h3>
+        <p class="project-meta">Obstetricia, posparto y cólicos del lactante.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<div class="about-section" id="nosotros">
+
+<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
   <div class="about-visual">
+    <img src="https://images.unsplash.com/photo-1508387027939-27cccde53673?w=1400&q=80" alt="Modelo anatómico de columna vertebral y caja torácica" loading="lazy">
     <div class="about-badge">
-      <div class="about-badge-year">2009</div>
-      <div class="about-badge-text">Sonrisas sanas, sonrisas felices</div>
+      <div class="about-badge-year">4,9</div>
+      <div class="about-badge-text">En Google Maps con 60 reseñas</div>
     </div>
   </div>
   <div class="about-content">
     <p class="section-label reveal">Sobre nosotros</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      Odontología<br>de <em>confianza</em>
+    <h2 class="section-title reveal reveal-delay-1" id="nosotros-title">
+      Un equipo cercano,<br>en el <em>centro de Galdakao.</em>
     </h2>
-    <div class="about-divider reveal"></div>
+    <div class="about-divider reveal" aria-hidden="true"></div>
     <p class="about-body reveal reveal-delay-2">
-      La Clínica Dental Dr. Serrano nació con una premisa: tratar a cada paciente como nos gustaría que nos trataran a nosotros.<br><br><strong>Tecnología real, no marketing.</strong> Invertimos en las herramientas que de verdad mejoran tu tratamiento: escáner 3D, TAC dental, láser y cirugía guiada.
+      En Amets tratamos a <strong>la persona, no solo la lesión</strong>. Somos un equipo de profesionales sanitarios con amplia experiencia en fisioterapia, osteopatía y podología: valoramos tu caso, te explicamos qué te pasa y diseñamos el tratamiento contigo. Nos encontrarás en Bizkai Kalea 42, a pie de calle y con entrada accesible. Y si no puedes venir, vamos nosotros: también atendemos a domicilio.
     </p>
     <div class="about-values reveal reveal-delay-3">
       <div class="about-value">
         <div class="value-num">01</div>
         <div class="value-text">
-          <h4>Tecnología avanzada</h4>
-          <p>Escáner intraoral, TAC 3D, láser de diodo y sistemas de cirugía guiada por ordenador</p>
+          <h3>Tratamiento individualizado</h3>
+          <p>Cada cuerpo es distinto. Valoración inicial y plan a tu medida, sin prisas y con seguimiento.</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">02</div>
         <div class="value-text">
-          <h4>Equipo multidisciplinar</h4>
-          <p>4 doctores especialistas: ortodoncia, cirugía, estética y periodoncia bajo un mismo techo</p>
+          <h3>Tres especialidades coordinadas</h3>
+          <p>Fisioterapia, osteopatía y podología bajo el mismo techo: una sola historia clínica y una visión completa de tu salud.</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">03</div>
         <div class="value-text">
-          <h4>Financiación flexible</h4>
-          <p>Hasta 24 meses sin intereses. No renuncies a tu tratamiento por el precio.</p>
+          <h3>Accesible y a domicilio</h3>
+          <p>Local con entrada accesible para sillas de ruedas y servicio a domicilio para quien no puede desplazarse.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SERVICES -->
-<!-- TESTIMONIALS -->
 
-<section class="precios-section" id="precios" data-precios-v2="1" aria-labelledby="precios-title" style="padding: 130px 60px; background: var(--carbon, #1a1a1a); position: relative;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <p class="section-label" style="text-align: center;">Servicios y precios</p>
-    <h2 class="section-title" id="precios-title" style="text-align: center; max-width: 760px; margin: 0 auto 24px;">Lo que ofrecemos <em>y cuanto cuesta.</em></h2>
-    <p style="text-align: center; max-width: 620px; margin: 0 auto 72px; font-size: 1.05rem; line-height: 1.7; color: var(--text-muted, rgba(245,243,239,0.7));">Tarifas orientativas. Precios reales y promociones vigentes en nuestro local o por telefono.</p>
-    <div class="menu-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px;">
-      
-    <div class="menu-categoria" style="display: flex; flex-direction: column;">
-      <h3 style="font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent, #c89c6f); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--accent, #c89c6f); font-weight: 600;">Consultas</h3>
-        
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Primera consulta</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Valoracion + plan de tratamiento</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">Gratis</div>
+<section class="services-section" id="servicios" aria-labelledby="servicios-title">
+  <div style="max-width:1400px; margin:0 auto">
+    <p class="section-label reveal">Nuestros servicios</p>
+    <h2 class="section-title reveal reveal-delay-1" id="servicios-title" style="max-width:640px">Todo lo que tu cuerpo necesita, <em>en un mismo centro.</em></h2>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-number" aria-hidden="true">01</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 3v18M8 7c0-2 1.8-3 4-3s4 1 4 3-1.8 3-4 3-4 1-4 3 1.8 3 4 3 4-1 4-3"/>
+          </svg>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Consulta de seguimiento</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Revision evolucion + ajustes</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">25€</div>
+        <h3>Osteopatía</h3>
+        <p>Tratamiento manual global para dolor de espalda, cervicales y articulaciones. Buscamos el origen del problema, no solo el síntoma.</p>
+        <a href="tel:+34946416256" class="service-link" aria-label="Llamar para pedir cita de osteopatía">
+          Pedir cita
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number" aria-hidden="true">02</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Consulta urgencia</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Mismo dia segun disponibilidad</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">40€</div>
+        <h3>Fisioterapia</h3>
+        <p>Recuperación de lesiones musculares, articulares y deportivas. Terapia manual y ejercicio terapéutico para volver a tu ritmo.</p>
+        <a href="tel:+34946416256" class="service-link" aria-label="Llamar para pedir cita de fisioterapia">
+          Pedir cita
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number" aria-hidden="true">03</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M4 16c0-5 3-12 8-12s8 7 8 12M4 16c0 2.2 1.8 4 4 4h8c2.2 0 4-1.8 4-4M4 16h16"/>
+          </svg>
         </div>
+        <h3>Podología</h3>
+        <p>Cuidado integral del pie: quiropodia, tratamiento de callosidades y uñas con técnicas indoloras. Pies sanos a cualquier edad.</p>
+        <a href="tel:+34946416256" class="service-link" aria-label="Llamar para pedir cita de podología">
+          Pedir cita
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number" aria-hidden="true">04</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M19 5L5 19M17.5 3l3.5 3.5M3 17.5L6.5 21M14 6l4 4"/>
+          </svg>
+        </div>
+        <h3>Punción seca y miofascial</h3>
+        <p>Tratamiento de puntos gatillo y dolor muscular con punción seca y terapia miofascial. Alivio donde otras técnicas no llegan.</p>
+        <a href="tel:+34946416256" class="service-link" aria-label="Llamar para pedir cita de punción seca">
+          Pedir cita
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number" aria-hidden="true">05</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="6" r="3"/>
+            <path d="M12 9v6M8 21c0-2.2 1.8-4 4-4s4 1.8 4 4"/>
+          </svg>
+        </div>
+        <h3>Suelo pélvico y obstetricia</h3>
+        <p>Rehabilitación del suelo pélvico, acompañamiento en embarazo y posparto, y tratamiento de cólicos del lactante.</p>
+        <a href="tel:+34946416256" class="service-link" aria-label="Llamar para pedir cita de suelo pélvico u obstetricia">
+          Pedir cita
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number" aria-hidden="true">06</div>
+        <div class="service-icon" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M3 11l9-8 9 8M5 9v11h14V9"/>
+          </svg>
+        </div>
+        <h3>Drenaje linfático y a domicilio</h3>
+        <p>Drenaje linfático manual para piernas cansadas y postoperatorios. Y si no puedes venir al centro, nos desplazamos a tu casa.</p>
+        <a href="tel:+34946416256" class="service-link" aria-label="Llamar para pedir cita de drenaje linfático o servicio a domicilio">
+          Pedir cita
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
     </div>
-    <div class="menu-categoria" style="display: flex; flex-direction: column;">
-      <h3 style="font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent, #c89c6f); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--accent, #c89c6f); font-weight: 600;">Tratamientos</h3>
-        
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Sesion individual</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Sesion 45 min personalizada</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">38€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Tratamiento intensivo</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Sesiones consecutivas plan completo</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">Desde 180€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Tratamiento especial</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Tecnicas avanzadas o especificas</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">Desde 60€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Plan personalizado</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Tratamiento largo a tu medida</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">A medida</div>
-        </div>
-    </div>
-    <div class="menu-categoria" style="display: flex; flex-direction: column;">
-      <h3 style="font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent, #c89c6f); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--accent, #c89c6f); font-weight: 600;">Bonos y promociones</h3>
-        
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Bono 5 sesiones</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Ahorra 30€ vs sesiones sueltas</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">160€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Bono 10 sesiones</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Ahorra 80€ vs sesiones sueltas</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">300€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Empresas / mutuas</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Convenios y descuentos</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">Consultar</div>
-        </div>
-    </div>
-    </div>
-    <p style="text-align: center; margin-top: 64px; font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.6));">Consulta tarifas y promociones actuales · 946 41 62 56</p>
   </div>
 </section>
-<style>@media (max-width: 1024px) { .menu-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; } } @media (max-width: 600px) { .precios-section { padding: 80px 24px !important; } .menu-grid { grid-template-columns: 1fr !important; gap: 32px !important; } }</style>
 
 
-<section class="testimonials-section">
+<section class="reservas-section" id="cita" aria-labelledby="cita-title" style="padding: 130px 60px; background: var(--carbon-mid); position: relative;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <p class="section-label reveal">Pide tu cita</p>
+    <h2 class="section-title reveal reveal-delay-1" id="cita-title" style="max-width: 720px; margin-bottom: 32px;">Tu cita, <em>en un minuto.</em></h2>
+    <p class="reveal reveal-delay-2" style="max-width: 640px; font-size: 1.05rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 48px;">
+      Llámanos o escríbenos por WhatsApp y buscamos el hueco que mejor te venga. Cuéntanos qué te pasa y te decimos con qué profesional encaja tu caso. También hacemos tratamientos a domicilio.
+    </p>
+    <div class="cita-actions reveal reveal-delay-3">
+      <a href="tel:+34946416256" class="btn-primary" aria-label="Llamar al 946 41 62 56 para pedir cita">
+        <span>Llamar al 946 41 62 56
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a href="https://wa.me/34666744584" target="_blank" rel="noopener" class="btn-whatsapp" aria-label="Escribir por WhatsApp al 666 74 45 84 para pedir cita">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04m0 18.1c-1.6 0-3.17-.43-4.55-1.25l-.32-.2-3.37.88.9-3.3-.22-.34A8.05 8.05 0 0 1 3.88 12C3.88 7.52 7.52 3.88 12 3.88S20.12 7.52 20.12 12 16.48 20.14 12 20.14"/></svg>
+        WhatsApp · 666 74 45 84
+      </a>
+    </div>
+    <p class="reveal reveal-delay-3" style="margin-top: 40px; font-size: 0.9rem; color: var(--text-muted);">
+      Atendemos con cita previa en Bizkai Kalea 42, Galdakao — y a domicilio si no puedes desplazarte.
+    </p>
+  </div>
+</section>
+
+
+<section class="testimonials-section" id="opiniones" aria-labelledby="testimonios-title">
   <div class="testimonials-inner">
-    <p class="section-label reveal">Testimonios</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      Lo que dicen<br>nuestros <em>clientes</em>
+    <p class="section-label reveal">Lo que dicen nuestros pacientes</p>
+    <h2 class="section-title reveal reveal-delay-1" id="testimonios-title">
+      4,9 sobre 5 con 60 reseñas<br>verificadas en <em>Google Maps.</em>
     </h2>
     <div class="testimonials-grid">
+
       <div class="testimonial-card reveal">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
         </div>
-        <p class="testimonial-quote">"Me pusieron 4 implantes con carga inmediata y salí de la clínica con dientes. Increíble. Llevaba años con dentadura postiza y esto me ha cambiado la vida."</p>
-        <div class="testimonial-divider"></div>
+        <p class="testimonial-quote">"Grandes profesionales, sin duda la mejor opción."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
         <div class="testimonial-author">
-          <strong>Francisco Morales</strong>
-          <span>Paciente de implantes · Madrid</span>
+          <strong>Borys M.</strong>
+          <span>Reseña en Google Maps</span>
         </div>
       </div>
+
       <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
         </div>
-        <p class="testimonial-quote">"Invisalign en 12 meses y el resultado es espectacular. Sin dolor, sin vergüenza de llevar aparato. El Dr. Serrano es un crack."</p>
-        <div class="testimonial-divider"></div>
+        <p class="testimonial-quote">"Tanto fisioterapia como podología, excelente."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
         <div class="testimonial-author">
-          <strong>Marina Gutiérrez</strong>
-          <span>Paciente de ortodoncia · Tres Cantos</span>
+          <strong>David A.</strong>
+          <span>Reseña en Google Maps</span>
         </div>
       </div>
+
       <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
         </div>
-        <p class="testimonial-quote">"Me dan pánico los dentistas pero aquí me sentí super cuidada. Te explican todo, no te juzgan y no te venden lo que no necesitas."</p>
-        <div class="testimonial-divider"></div>
+        <p class="testimonial-quote">"Muy bien: puntualidad, profesionalidad y amabilidad."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
         <div class="testimonial-author">
-          <strong>Raquel Díaz</strong>
-          <span>Paciente · Madrid</span>
+          <strong>Jose Angel E.</strong>
+          <span>Reseña en Google Maps</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-section" id="contacto">
-  <div class="cta-text">
-    <h2>¿Quieres una<br>sonrisa perfecta?</h2>
-    <p>Primera visita y diagnóstico 3D gratuitos. Sin compromiso.</p>
+
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Dónde estamos</p>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">
+        En Bizkai Kalea,<br><em>en pleno Galdakao.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>Bizkai Kalea, 42 — bajo<br>48960 Galdakao (Bizkaia)<br>Entrada accesible</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfonos</h3>
+          <p><a href="tel:+34946416256">946 41 62 56</a><br><a href="https://wa.me/34666744584" target="_blank" rel="noopener">666 74 45 84 (WhatsApp)</a></p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Horario de apertura</h3>
+          <div class="horario-list">
+            <span class="horario-row" data-day="1"><span>Lunes</span><span>09:00–13:00 · 15:30–20:00</span></span>
+            <span class="horario-row" data-day="2"><span>Martes</span><span>09:00–13:00 · 15:30–20:00</span></span>
+            <span class="horario-row" data-day="3"><span>Miércoles</span><span>09:00–13:00 · 15:30–20:00</span></span>
+            <span class="horario-row" data-day="4"><span>Jueves</span><span>09:00–13:00 · 15:30–20:00</span></span>
+            <span class="horario-row" data-day="5"><span>Viernes</span><span>09:00–13:00 · 15:30–20:00</span></span>
+            <span class="horario-row" data-day="6"><span>Sábado</span><span>Con cita previa</span></span>
+            <span class="horario-row" data-day="0"><span>Domingo</span><span>Cerrado</span></span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 40px;">
+        <a href="tel:+34946416256" class="btn-primary" style="display: inline-flex;">
+          <span>Llamar al 946 41 62 56
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación de Osteopatía Podología Amets en Bizkai Kalea 42, Galdakao"
+        src="https://www.google.com/maps?q=Fisioterapia+y+Podologia+Amets+Bizkai+Kalea+42+Galdakao&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </div>
-  <a href="mailto:info@ggelcano.com" class="btn-dark">
-    <span>Pedir cita gratis</span>
-    <span>↗</span>
+</div>
+
+
+<div class="cta-section" role="region" aria-label="Llamada a la acción de contacto">
+  <div class="cta-text">
+    <h2>¿Dolor que no termina de irse?<br>Pide cita en Amets.</h2>
+    <p>Llama al 946 41 62 56 o escríbenos por WhatsApp y buscamos el hueco que mejor te venga.</p>
+  </div>
+  <a href="https://wa.me/34666744584" target="_blank" rel="noopener" class="btn-dark">
+    <span>Escribir por WhatsApp
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
   </a>
 </div>
 
 
-<section id="contacto" style="padding: 100px 8%; background: var(--carbon, #0f1520);">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <p class="section-label reveal">Encuéntranos</p>
-    <h2 class="section-title reveal" style="margin-bottom: 40px;">Visítanos en<br><em>Galdakao</em></h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-      <div class="reveal">
-        <p style="color: var(--text-muted, #7a8899); margin-bottom: 20px;">Bizkai Kalea, 42, Galdakao<br>48960 Galdakao, Bizkaia</p>
-        <p style="color: var(--text-muted, #7a8899); margin-bottom: 20px;">Teléfono: <a href="tel:+34946416256" style="color: var(--accent, #0284C7);">946 41 62 56</a></p>
-        <p style="color: var(--text-muted, #7a8899);">Lunes a Viernes: 9:00 - 13:00 / 15:30 - 20:00<br>Sábado: Con cita previa</p>
-      </div>
-      <div class="reveal reveal-delay-1" style="border-radius: 16px; overflow: hidden; height: 300px;">
-        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Fisioterapia+Podologia+Amets,Galdakao&zoom=17" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
-<!-- FOOTER -->
+
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#" class="nav-logo">Fisioterapia y Podología Amets<span>.</span></a>
-      <p class="footer-tagline">"La mejor inversión que puedes hacer es en tu sonrisa."<br>— Dr. Serrano</p>
+      <a href="#main-content" class="nav-logo">AMETS<span>.</span></a>
+      <p class="footer-tagline">"Osteopatía, fisioterapia y podología en Galdakao. Tratamientos individualizados y trato cercano."</p>
       <div class="footer-social">
-        <a href="#" class="social-link">Fb</a>
-        <a href="#" class="social-link">Ig</a>
-        <a href="#" class="social-link">Gm</a>
-        <a href="#" class="social-link">Wa</a>
+        <a href="https://maps.google.com/?cid=18433665479127469144" target="_blank" rel="noopener" class="social-link" aria-label="Ver Osteopatía Podología Amets en Google Maps">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.3 7 11.2 7.3 11.5.2.1.4.2.7.2s.5-.1.7-.2C13 21.2 20 15.3 20 10c0-4.4-3.6-8-8-8m0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+        </a>
+        <a href="https://www.instagram.com/osteopatiapodologia/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram de Osteopatía Podología Amets">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 0 0-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0m0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32M12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8m7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0"/></svg>
+        </a>
+        <a href="https://m.facebook.com/people/Osteopatia-Podologia-Amets/100007722315384/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook de Osteopatía Podología Amets">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07"/></svg>
+        </a>
+        <a href="https://wa.me/34666744584" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp a Osteopatía Podología Amets">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04m0 18.1c-1.6 0-3.17-.43-4.55-1.25l-.32-.2-3.37.88.9-3.3-.22-.34A8.05 8.05 0 0 1 3.88 12C3.88 7.52 7.52 3.88 12 3.88S20.12 7.52 20.12 12 16.48 20.14 12 20.14"/></svg>
+        </a>
+        <a href="tel:+34946416256" class="social-link" aria-label="Llamar a Osteopatía Podología Amets al 946 41 62 56">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.58-6.6l2.2-2.2a1 1 0 0 0 .25-1.02A11.4 11.4 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 0 0-1-1"/></svg>
+        </a>
       </div>
     </div>
     <div class="footer-col">
-      <h4>Tratamientos</h4>
+      <h3>Servicios</h3>
       <ul>
-        <li><a href="#">Ortodoncia</a></li>
-        <li><a href="#">Implantes</a></li>
-        <li><a href="#">Estética</a></li>
-        <li><a href="#">Endodoncia</a></li>
-        <li><a href="#">Periodoncia</a></li>
+        <li><a href="#servicios">Osteopatía</a></li>
+        <li><a href="#servicios">Fisioterapia</a></li>
+        <li><a href="#servicios">Podología</a></li>
+        <li><a href="#servicios">Suelo pélvico</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Clínica</h4>
+      <h3>El centro</h3>
       <ul>
-        <li><a href="#">Sobre nosotros</a></li>
-        <li><a href="#">Equipo médico</a></li>
-        <li><a href="#">Tecnología</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Empleo</a></li>
+        <li><a href="#nosotros">Sobre nosotros</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#contacto">Cómo llegar</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h3>Contacto</h3>
       <ul>
-        <li><a href="mailto:info@ggelcano.com">info@ggelcano.com</a></li>
         <li><a href="tel:+34946416256">946 41 62 56</a></li>
-        <li><a href="#">Bizkai Kalea, 42, Galdakao</a></li>
+        <li><a href="https://wa.me/34666744584" target="_blank" rel="noopener">666 74 45 84 (WhatsApp)</a></li>
+        <li><a href="#contacto">Bizkai Kalea 42, Galdakao</a></li>
+        <li><a href="#cita">Con cita previa</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2026 Fisioterapia y Podología Amets. Todos los derechos reservados.</p>
+    <p class="footer-copy">&copy; 2026 Osteopatía Podología Amets. Todos los derechos reservados.</p>
     <div class="footer-legal">
-      <a href="#">Política de Privacidad</a>
-      <a href="#">Aviso Legal</a>
-      <a href="#">Cookies</a>
+      <a href="https://ggelcano.com" target="_blank" rel="noopener">Diseño web: G&amp;G Elcano</a>
     </div>
   </div>
 </footer>
 
 <script>
-  // ── LOADER
+  // LOADER
   window.addEventListener('load', () => {
     setTimeout(() => {
-      document.getElementById('loader').classList.add('hidden');
-      document.getElementById('heroBg').classList.add('loaded');
+      const loader = document.getElementById('loader');
+      const heroBg = document.getElementById('heroBg');
+      if (loader) loader.classList.add('hidden');
+      if (heroBg) heroBg.classList.add('loaded');
     }, 1800);
   });
 
-  // ── CUSTOM CURSOR
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX; mouseY = e.clientY;
-    dot.style.left = mouseX + 'px';
-    dot.style.top = mouseY + 'px';
-  });
-
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.7;
-    ringY += (mouseY - ringY) * 0.7;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-
-  document.querySelectorAll('a, button, .project-card, .service-card, .stat-card').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
-  });
-
-  // ── NAVBAR SCROLL
+  // NAVBAR SCROLL
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // ── HAMBURGER MENU
+  // HAMBURGER MENU
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-  });
-  function closeMobile() {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('open');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) { const firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
   }
 
-  // ── REVEAL ON SCROLL
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-  reveals.forEach(el => observer.observe(el));
+  function closeMobile() {
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobileMenu');
+    if (h) h.classList.remove('active');
+    if (m) m.classList.remove('open');
+  }
 
-  // ── COUNTER ANIMATION
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+
+  // COUNTER ANIMATION (incluye decimales: 4,9)
   function animateCount(el) {
-    const target = parseInt(el.dataset.target);
+    const targetRaw = el.dataset.target;
+    const isDecimal = el.dataset.target === '49'; // valoracion media (4,9)
+    const target = parseInt(targetRaw, 10);
     const duration = 1800;
     const start = performance.now();
     function step(now) {
       const progress = Math.min((now - start) / duration, 1);
       const ease = 1 - Math.pow(1 - progress, 4);
-      el.textContent = Math.round(ease * target);
+      const value = ease * target;
+      if (isDecimal) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
       if (progress < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
 
-  const countObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateCount(e.target);
-        countObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+  if ('IntersectionObserver' in window) {
+    const countObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCount(e.target);
+          countObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+  } else {
+    document.querySelectorAll('.count').forEach(el => animateCount(el));
+  }
 
-  // ── HERO PARALLAX
+  // HERO PARALLAX
   window.addEventListener('scroll', () => {
     const heroBg = document.getElementById('heroBg');
     if (heroBg) {
@@ -1187,6 +1417,15 @@
       heroBg.style.transform = `scale(1) translateY(${scrolled * 0.25}px)`;
     }
   });
+
+  // HORARIO — destacar el día actual
+  function highlightToday() {
+    const today = new Date().getDay();
+    document.querySelectorAll('.horario-row').forEach(row => {
+      if (parseInt(row.dataset.day, 10) === today) row.classList.add('horario-hoy');
+    });
+  }
+  highlightToday();
 </script>
 </body>
 </html>
