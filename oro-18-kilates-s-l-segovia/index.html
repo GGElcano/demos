@@ -159,6 +159,7 @@ body.menu-open #mnav a{opacity:1;transform:none}
 #mnav a:nth-child(2){transition-delay:.05s}#mnav a:nth-child(3){transition-delay:.1s}
 #mnav a:nth-child(4){transition-delay:.15s}#mnav a:nth-child(5){transition-delay:.2s}
 #mnav a:nth-child(6){transition-delay:.25s}#mnav a:nth-child(7){transition-delay:.3s}
+#mnav a:nth-child(8){transition-delay:.35s}
 #mnav .m-tel{margin-top:24px;font-family:var(--sans);font-size:13px;letter-spacing:.22em;color:var(--oro-light)}
 
 /* ════════════ HERO ════════════ */
@@ -349,6 +350,44 @@ h2.display em{font-style:italic;color:var(--oro-light)}
 .muro-card p{margin-top:16px;font-size:14px;color:rgba(27,21,12,.7);line-height:1.85}
 .muro-card .btn{margin-top:26px}
 
+/* ════════════ COTIZACIÓN ════════════ */
+#cotizacion{background:var(--noir-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  position:relative;overflow:hidden}
+#cotizacion::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 90% at 50% 110%,rgba(201,162,39,.1),transparent 70%)}
+.cot-inner{max-width:1100px;margin:0 auto;position:relative;z-index:2;text-align:center}
+.cot-live-tag{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.42em;
+  text-transform:uppercase;color:var(--oro);font-weight:500}
+.cot-live-tag .pulse{width:7px;height:7px;border-radius:50%;background:var(--oro-light);position:relative;flex:none}
+.cot-live-tag .pulse::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--oro-light);
+  animation:cotPulse 2.2s var(--ease) infinite}
+@keyframes cotPulse{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.6);opacity:0}}
+#cotizacion h2.display{margin-top:18px}
+.cot-grid{display:grid;grid-template-columns:1fr 1.35fr 1fr;align-items:stretch;
+  margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cot-cell{padding:clamp(30px,4vw,52px) 18px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.cot-cell+.cot-cell{border-left:1px solid var(--line)}
+.cot-k{font-size:9.5px;letter-spacing:.38em;text-transform:uppercase;color:var(--marfil-mute);font-weight:500}
+.cot-v{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.2vw,44px);color:var(--marfil);line-height:1.05;
+  font-variant-numeric:tabular-nums}
+.cot-v small{font-size:.5em;font-style:italic;color:var(--oro-light);margin-left:4px}
+.cot-cell.main .cot-k{color:var(--oro)}
+.cot-cell.main .cot-v{font-size:clamp(46px,6.2vw,86px);color:var(--oro-light)}
+.cot-sub{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--marfil-mute);opacity:.7}
+.cot-meta{margin-top:26px;font-size:12px;color:var(--marfil-mute);letter-spacing:.06em}
+.cot-meta b{color:var(--oro-light);font-weight:500}
+.cot-note{margin-top:8px;font-family:var(--serif);font-style:italic;font-size:15px;color:rgba(243,234,216,.6)}
+.cot-fallback{display:none;margin-top:clamp(40px,5vw,64px);padding:clamp(30px,4vw,48px);border:1px solid var(--line)}
+.cot-fallback p{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.2vw,26px);color:var(--marfil-soft)}
+#cotizacion.cot-fail .cot-grid,#cotizacion.cot-fail .cot-meta{display:none}
+#cotizacion.cot-fail .cot-fallback{display:block}
+@media(max-width:760px){
+  .cot-grid{grid-template-columns:1fr 1fr}
+  .cot-cell.main{grid-column:1 / -1;order:-1;border-bottom:1px solid var(--line)}
+  .cot-cell+.cot-cell{border-left:none}
+  .cot-cell:nth-child(1){border-right:1px solid var(--line)}
+}
+
 /* ════════════ RAIL ════════════ */
 #vitrina{background:var(--noir);padding:clamp(72px,9vw,124px) 0;overflow-x:clip}
 .rail-head{max-width:1280px;margin:0 auto;padding:0 clamp(22px,5vw,72px);display:flex;
@@ -518,6 +557,7 @@ footer{overflow-x:clip;background:var(--noir);color:rgba(243,234,216,.6);
   <nav class="main" aria-label="Navegación principal">
     <a href="#decadas">Historia</a>
     <a href="#servicios">Servicios</a>
+    <a href="#cotizacion">Cotización</a>
     <a href="#vitrina">Vitrina</a>
     <a href="#opiniones">Opiniones</a>
     <a href="#tiendas">Tiendas</a>
@@ -533,6 +573,7 @@ footer{overflow-x:clip;background:var(--noir);color:rgba(243,234,216,.6);
   <a href="#inicio">Inicio</a>
   <a href="#decadas">Historia</a>
   <a href="#servicios">Servicios</a>
+  <a href="#cotizacion">Cotización</a>
   <a href="#vitrina">Vitrina</a>
   <a href="#opiniones">Opiniones</a>
   <a href="#tiendas">Tiendas</a>
@@ -748,6 +789,37 @@ footer{overflow-x:clip;background:var(--noir);color:rgba(243,234,216,.6);
     </div>
   </div>
 </div>
+
+<!-- ════════════ COTIZACIÓN ════════════ -->
+<section class="sec" id="cotizacion" aria-labelledby="cot-title">
+  <div class="gridlayer" aria-hidden="true"></div>
+  <div class="cot-inner">
+    <div class="cot-live-tag rv"><span class="pulse" aria-hidden="true"></span>Mercado en directo</div>
+    <h2 class="display rv" id="cot-title">Hoy, el oro<br>cotiza <em>así.</em></h2>
+    <div class="cot-grid rv">
+      <div class="cot-cell">
+        <div class="cot-k">Onza troy · XAU</div>
+        <div class="cot-v"><span id="cotOz">—</span><small>€</small></div>
+        <div class="cot-sub">31,10 gramos de oro fino</div>
+      </div>
+      <div class="cot-cell main">
+        <div class="cot-k">Gramo de oro 18 quilates</div>
+        <div class="cot-v"><span id="cotG18">—</span><small>€</small></div>
+        <div class="cot-sub">La ley de nuestra casa · 750 milésimas</div>
+      </div>
+      <div class="cot-cell">
+        <div class="cot-k">Gramo de oro fino · 24 K</div>
+        <div class="cot-v"><span id="cotG24">—</span><small>€</small></div>
+        <div class="cot-sub">999,9 milésimas</div>
+      </div>
+    </div>
+    <div class="cot-meta rv"><b id="cotTime">Consultando mercado…</b> · Cotización internacional orientativa</div>
+    <p class="cot-note rv">El precio de compra final depende del peso y el quilataje exactos — lo calculamos delante de ti, en tienda.</p>
+    <div class="cot-fallback">
+      <p>«El oro cotiza cada minuto. Llámanos al <a href="tel:+34921461671" style="color:var(--oro-light);text-decoration:none">921 46 16 71</a> y te damos el precio del día al momento.»</p>
+    </div>
+  </div>
+</section>
 
 <!-- ════════════ VITRINA (rail) ════════════ -->
 <section id="vitrina" aria-labelledby="vitrina-title">
@@ -1373,6 +1445,51 @@ if(MOTION){
   function arm(){ if(timer) clearInterval(timer); if(!REDUCED) timer = setInterval(next, 6500); }
   dots.forEach(function(d, i){ d.addEventListener('click', function(){ show(i); arm(); }); });
   arm();
+})();
+
+/* ───── Cotización del oro en directo ───── */
+(function cotizacion(){
+  var sec = document.getElementById('cotizacion');
+  if(!sec || typeof fetch === 'undefined') return;
+  var GRAMS_PER_OZ = 31.1034768;
+  function getJSON(url){
+    return fetch(url, {signal: (AbortSignal.timeout ? AbortSignal.timeout(9000) : undefined)})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+  }
+  function setVal(id, value, decimals){
+    var el = document.getElementById(id);
+    var fmt = function(v){ return new Intl.NumberFormat('es-ES',
+      {minimumFractionDigits: decimals, maximumFractionDigits: decimals}).format(v); };
+    if(MOTION){
+      var obj = {v: value * .82};
+      gsap.to(obj, {v: value, duration: 1.6, ease: 'power3.out',
+        onUpdate: function(){ el.textContent = fmt(obj.v); }});
+    } else {
+      el.textContent = fmt(value);
+    }
+  }
+  getJSON('https://api.gold-api.com/price/XAU').then(function(gold){
+    if(!gold || !gold.price) throw new Error('sin precio');
+    return getJSON('https://open.er-api.com/v6/latest/USD')
+      .then(function(fx){ return fx.rates.EUR; })
+      .catch(function(){
+        return getJSON('https://api.frankfurter.dev/v1/latest?base=USD&symbols=EUR')
+          .then(function(fx){ return fx.rates.EUR; });
+      })
+      .then(function(rate){
+        var oz = gold.price * rate;
+        var g24 = oz / GRAMS_PER_OZ;
+        var g18 = g24 * 0.75;
+        setVal('cotOz', oz, 0);
+        setVal('cotG24', g24, 2);
+        setVal('cotG18', g18, 2);
+        var at = gold.updatedAt ? new Date(gold.updatedAt) : new Date();
+        document.getElementById('cotTime').textContent =
+          'Actualizado a las ' + at.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
+      });
+  }).catch(function(){
+    sec.classList.add('cot-fail');
+  });
 })();
 
 /* ───── Horario: destacar hoy ───── */
