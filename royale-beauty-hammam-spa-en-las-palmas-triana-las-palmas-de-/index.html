@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royale Beauty Hammam &amp; Spa | Hammam Privado en Las Palmas de Gran Canaria</title>
+  <meta name="description" content="Royale Beauty Hammam &amp; Spa: tu santuario privado de bienestar en Triana, Las Palmas. Solo 4 invitados al día. Hammam ancestral, masajes de autor y estética avanzada. 4,9/5 en Google.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0c0b09;
+      --black-soft: #141210;
+      --carbon: #1a1714;
+      --carbon-mid: #231f1a;
+      --carbon-light: #2c2620;
+      --white: #ede5d8;
+      --white-pure: #f5f0e8;
+      --accent: #c9a96e;
+      --accent-light: #dcc08a;
+      --accent-dark: #a8893f;
+      --sand: #c4a882;
+      --text-muted: #8a7e6e;
+      --font-display: 'Cinzel Decorative', serif;
+      --font-body: 'Raleway', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══════════════ LOADER ═══════════════ */
+    .loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s var(--ease-smooth), visibility 0.6s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--accent);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════ NAVBAR ═══════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(12,11,9,0.88);
+      padding: 18px 60px;
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(237,229,216,0.7);
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      padding: 10px 28px !important;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px; height: 1.5px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.1rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+      font-weight: 300;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ═══════════════ HERO ═══════════════ */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end; justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('hero.jpg') center/cover no-repeat;
+      transform: scale(1.05);
+      transition: transform 6s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(12,11,9,0.88) 0%, rgba(12,11,9,0.5) 40%, rgba(12,11,9,0.2) 70%, rgba(12,11,9,0.55) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 60px 100px;
+      max-width: 850px;
+    }
+    .hero-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.85);
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.9);
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(237,229,216,0.88);
+      max-width: 500px; line-height: 1.8; margin-bottom: 48px;
+      font-weight: 300;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.85);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 36px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 14px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 17px 38px;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--white-pure); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--black); }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
+    .btn-ghost {
+      color: rgba(237,229,216,0.8); text-decoration: none;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(237,229,216,0.3);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow {
+      border-color: var(--accent); transform: rotate(45deg);
+    }
+    .icon-arrow { width: 14px; height: 14px; }
+
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 100px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .hero-scroll span {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--text-muted); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2.5s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ═══════════════ MARQUEE ═══════════════ */
+    .marquee-section {
+      border-top: 1px solid rgba(201,169,110,0.1);
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+      overflow: hidden; padding: 18px 0; background: var(--carbon);
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: marquee 18s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 30px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      font-family: var(--font-display); font-size: 0.95rem;
+      font-style: italic; color: rgba(237,229,216,0.55);
+      letter-spacing: 0.06em;
+    }
+    .marquee-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* ═══════════════ SECTION COMMONS ═══════════════ */
+    section { padding: 120px 60px; }
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3.6rem);
+      font-weight: 400; line-height: 1.15;
+      letter-spacing: 0.01em;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* ═══════════════ STATS ═══════════════ */
+    .stats-section {
+      background: var(--carbon);
+      padding: 90px 60px;
+      border-top: 1px solid rgba(201,169,110,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; max-width: 1200px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 50px 40px; background: var(--carbon);
+      border: 1px solid rgba(201,169,110,0.08);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.5s var(--ease-out); transform-origin: left;
+    }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(201,169,110,0.25); }
+    .stat-number {
+      font-family: var(--font-display); font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 400; line-height: 1; color: var(--white);
+      margin-bottom: 10px;
+      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
+    }
+    .stat-number .stat-suffix { color: var(--accent); }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════ ABOUT ═══════════════ */
+    .about-section {
+      background: var(--black);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .about-text p {
+      font-size: 1.05rem; color: rgba(237,229,216,0.82);
+      margin-bottom: 22px; line-height: 1.85;
+    }
+    .about-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+    .about-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .about-visual:hover img { transform: scale(1.04); }
+    .about-badge {
+      position: absolute; top: 24px; right: 24px;
+      background: var(--accent); color: var(--black);
+      padding: 14px 20px; text-align: center;
+      font-family: var(--font-display);
+    }
+    .about-badge .badge-number { font-size: 2rem; line-height: 1; display: block; }
+    .about-badge .badge-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-top: 4px; }
+
+    /* ═══════════════ SERVICES ═══════════════ */
+    .services-section { background: var(--carbon); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 2px; max-width: 1200px; margin: 50px auto 0;
+    }
+    .service-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 1/1;
+      cursor: default;
+    }
+    .service-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s var(--ease-out);
+    }
+    .service-card:hover img { transform: scale(1.06); }
+    .service-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,11,9,0.92) 0%, rgba(12,11,9,0.3) 50%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 40px;
+      transition: background 0.4s;
+    }
+    .service-card:hover .service-card-overlay {
+      background: linear-gradient(to top, rgba(12,11,9,0.95) 0%, rgba(12,11,9,0.5) 60%, rgba(12,11,9,0.2) 100%);
+    }
+    .service-card-number {
+      font-family: var(--font-display); font-size: 0.7rem;
+      color: var(--accent); letter-spacing: 0.3em;
+      margin-bottom: 12px;
+    }
+    .service-card h3 {
+      font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 400; color: var(--white);
+      margin-bottom: 12px; letter-spacing: 0.03em;
+    }
+    .service-card p {
+      font-size: 0.88rem; color: rgba(237,229,216,0.7);
+      line-height: 1.7; max-width: 380px;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .service-card:hover p { opacity: 1; transform: translateY(0); }
+
+    /* ═══════════════ EXPERIENCE ═══════════════ */
+    .experience-section {
+      background: var(--black);
+    }
+    .experience-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      max-width: 1200px; margin: 50px auto 0;
+    }
+    .experience-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .experience-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .experience-text h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 400; margin-bottom: 20px;
+      color: var(--white); letter-spacing: 0.02em;
+    }
+    .experience-text p {
+      font-size: 1rem; color: rgba(237,229,216,0.78);
+      line-height: 1.85; margin-bottom: 16px;
+    }
+    .experience-highlight {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(201,169,110,0.15);
+      margin-top: 24px;
+    }
+    .experience-highlight .hl-icon {
+      width: 48px; height: 48px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .experience-highlight .hl-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; }
+    .experience-highlight .hl-text {
+      font-size: 0.85rem; color: rgba(237,229,216,0.72);
+      line-height: 1.6;
+    }
+    .experience-highlight .hl-text strong { color: var(--accent); font-weight: 600; }
+
+    /* ═══════════════ GALLERY ═══════════════ */
+    .gallery-section { background: var(--black); padding-bottom: 0; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+      margin-top: 50px;
+    }
+    .gallery-item {
+      aspect-ratio: 1/1; overflow: hidden;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    /* ═══════════════ REVIEWS ═══════════════ */
+    .reviews-section {
+      background: var(--carbon);
+    }
+    .reviews-header {
+      text-align: center; margin-bottom: 60px;
+    }
+    .reviews-header .section-label { justify-content: center; }
+    .reviews-header .section-label::before { display: none; }
+    .reviews-rating {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin-top: 20px;
+    }
+    .reviews-rating .rating-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem; color: var(--accent);
+    }
+    .reviews-rating .rating-info {
+      text-align: left;
+    }
+    .reviews-rating .rating-stars {
+      color: var(--accent); font-size: 1rem; letter-spacing: 2px;
+    }
+    .reviews-rating .rating-count {
+      font-size: 0.75rem; color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 30px; max-width: 1200px; margin: 0 auto;
+    }
+    .review-card {
+      background: var(--carbon-mid);
+      border: 1px solid rgba(201,169,110,0.08);
+      padding: 40px 32px;
+      position: relative;
+      transition: border-color 0.4s;
+    }
+    .review-card:hover { border-color: rgba(201,169,110,0.2); }
+    .review-card::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 4rem; color: rgba(201,169,110,0.15);
+      position: absolute; top: 16px; left: 24px; line-height: 1;
+    }
+    .review-card .review-text {
+      font-size: 0.95rem; color: rgba(237,229,216,0.8);
+      line-height: 1.8; margin-bottom: 24px;
+      font-style: italic;
+      position: relative; z-index: 1;
+    }
+    .review-card .review-author {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .review-card .review-author-initial {
+      width: 40px; height: 40px;
+      background: var(--accent);
+      color: var(--black);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+    }
+    .review-card .review-author-info strong {
+      display: block; font-size: 0.85rem; color: var(--white);
+      font-weight: 500;
+    }
+    .review-card .review-author-info span {
+      font-size: 0.7rem; color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ═══════════════ HORARIO + CONTACTO ═══════════════ */
+    .contact-section {
+      background: var(--black);
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; max-width: 1200px; margin: 50px auto 0;
+      align-items: start;
+    }
+    .horario-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+    .horario-table tr {
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+      transition: background 0.3s;
+    }
+    .horario-table td {
+      padding: 14px 0;
+      font-size: 0.9rem;
+      color: rgba(237,229,216,0.75);
+    }
+    .horario-table td:first-child {
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    .horario-table td:last-child {
+      text-align: right;
+      font-weight: 300;
+    }
+    .horario-hoy {
+      background: rgba(201,169,110,0.08);
+    }
+    .horario-hoy td {
+      color: var(--accent) !important;
+      font-weight: 600 !important;
+    }
+
+    .contact-info-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .contact-info-item .ci-icon {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(201,169,110,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info-item .ci-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; }
+    .contact-info-item .ci-text { font-size: 0.9rem; color: rgba(237,229,216,0.78); }
+    .contact-info-item .ci-text a {
+      color: var(--accent); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-info-item .ci-text a:hover { color: var(--accent-light); }
+
+    .contact-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; margin-top: 12px;
+      transition: background 0.3s;
+    }
+    .contact-cta:hover { background: var(--accent-light); }
+
+    /* ═══════════════ MAP ═══════════════ */
+    .map-section {
+      padding: 0;
+      background: var(--black);
+    }
+    .map-container {
+      width: 100%; height: 450px;
+      position: relative;
+    }
+    .map-container iframe {
+      width: 100%; height: 100%; border: 0;
+      filter: grayscale(0.3) contrast(1.05);
+    }
+
+    /* ═══════════════ FOOTER ═══════════════ */
+    footer {
+      background: var(--carbon);
+      border-top: 1px solid rgba(201,169,110,0.08);
+      padding: 60px 60px 40px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 40px; flex-wrap: wrap;
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.1rem; color: var(--white);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .footer-brand span { color: var(--accent); }
+    .footer-tagline {
+      font-size: 0.82rem; color: var(--text-muted);
+      max-width: 300px; line-height: 1.6;
+    }
+    .footer-links {
+      display: flex; gap: 40px;
+    }
+    .footer-links a {
+      font-size: 0.72rem; color: var(--text-muted);
+      text-decoration: none; letter-spacing: 0.12em;
+      text-transform: uppercase; transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-social {
+      display: flex; gap: 16px; align-items: center;
+    }
+    .footer-social a {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(201,169,110,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, background 0.3s;
+      text-decoration: none;
+    }
+    .footer-social a:hover { border-color: var(--accent); background: rgba(201,169,110,0.08); }
+    .footer-social a svg { width: 16px; height: 16px; fill: var(--text-muted); transition: fill 0.3s; }
+    .footer-social a:hover svg { fill: var(--accent); }
+    .footer-bottom {
+      max-width: 1200px; margin: 40px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(201,169,110,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.7rem; color: rgba(138,126,110,0.6);
+      letter-spacing: 0.08em;
+    }
+    .footer-legal {
+      display: flex; gap: 24px;
+    }
+    .footer-legal a {
+      font-size: 0.68rem; color: rgba(138,126,110,0.6);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .footer-legal a:hover { color: var(--accent); }
+
+    /* ═══════════════ REVEAL ANIMATION ═══════════════ */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+    }
+    .reveal.hidden-init {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ═══════════════ RESPONSIVE ═══════════════ */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .about-section { grid-template-columns: 1fr; gap: 50px; }
+      .experience-grid { grid-template-columns: 1fr; gap: 40px; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: auto;
+        height: auto;
+        align-items: flex-start;
+      }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 80px 24px; }
+      .hero-content {
+        padding: 140px 24px 80px;
+        max-width: 100%;
+      }
+      .hero-bg {
+        position: absolute; inset: 0;
+        min-height: 100vh;
+      }
+      .hero-scroll { display: none; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-section { padding: 60px 24px; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { aspect-ratio: 4/3; }
+      .service-card p { opacity: 1; transform: translateY(0); }
+
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .reviews-grid { grid-template-columns: 1fr; }
+      .review-card { padding: 32px 24px; }
+
+      .footer-inner { flex-direction: column; }
+      .footer-links { flex-direction: column; gap: 16px; }
+      footer { padding: 50px 24px 30px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-card { padding: 30px 24px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <span class="loader-text">Royale Beauty</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" role="navigation" aria-label="Principal">
+    <a href="#" class="nav-logo"><span>Royale</span> Beauty</a>
+    <ul class="nav-links">
+      <li><a href="#filosofía">Filosofía</a></li>
+      <li><a href="#tratamientos">Tratamientos</a></li>
+      <li><a href="#galería">Galería</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+      <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu de navegación">
+    <a href="#filosofía" class="mobile-link">Filosofía</a>
+    <a href="#tratamientos" class="mobile-link">Tratamientos</a>
+    <a href="#galería" class="mobile-link">Galería</a>
+    <a href="#opiniones" class="mobile-link">Opiniones</a>
+    <a href="#contacto" class="mobile-link">Reservar</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-overlay-bottom"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Hammam privado en Triana</p>
+      <h1 class="hero-title">Tu santuario de <em>bienestar</em></h1>
+      <p class="hero-sub">Solo cuatro invitados al día acceden a nuestro Hammam Spa. Ritual ancestral, manos expertas y productos orgánicos de alta pureza en el corazón de Las Palmas.</p>
+      <div class="hero-actions">
+        <a href="tel:+34683393154" class="btn-primary">
+          <span>Reservar cita
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </a>
+        <a href="#tratamientos" class="btn-ghost">
+          Descubrir
+          <span class="btn-ghost-arrow">
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="dot"></span>Hammam Ancestral</span>
+      <span class="marquee-item"><span class="dot"></span>Korean Head Spa</span>
+      <span class="marquee-item"><span class="dot"></span>Masajes de Autor</span>
+      <span class="marquee-item"><span class="dot"></span>Drenaje Linfático</span>
+      <span class="marquee-item"><span class="dot"></span>Estética Avanzada</span>
+      <span class="marquee-item"><span class="dot"></span>Exfoliación Integral</span>
+      <span class="marquee-item"><span class="dot"></span>Envolturas Organicas</span>
+      <span class="marquee-item"><span class="dot"></span>Rituales Corporales</span>
+      <span class="marquee-item"><span class="dot"></span>Hammam Ancestral</span>
+      <span class="marquee-item"><span class="dot"></span>Korean Head Spa</span>
+      <span class="marquee-item"><span class="dot"></span>Masajes de Autor</span>
+      <span class="marquee-item"><span class="dot"></span>Drenaje Linfático</span>
+      <span class="marquee-item"><span class="dot"></span>Estética Avanzada</span>
+      <span class="marquee-item"><span class="dot"></span>Exfoliación Integral</span>
+      <span class="marquee-item"><span class="dot"></span>Envolturas Organicas</span>
+      <span class="marquee-item"><span class="dot"></span>Rituales Corporales</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">4<span class="stat-suffix">,9</span></div>
+        <div class="stat-label">Valoración en Google</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">54<span class="stat-suffix">+</span></div>
+        <div class="stat-label">Reseñas verificadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Invitados al día</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">N.º<span class="stat-suffix">3</span></div>
+        <div class="stat-label">Top spas en Las Palmas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT / FILOSOFIA -->
+  <section id="filosofía">
+    <div class="about-section">
+      <div class="about-text">
+        <p class="section-label">Nuestra filosofía</p>
+        <h2 class="section-title">Donde la tradición oriental se funde con el <em>diseño contemporáneo</em></h2>
+        <p>En Royale Beauty Hammam &amp; Spa, cada detalle esta pensado para que sientas el lujo en el silencio, en el orden y en el cuidado absoluto.</p>
+        <p>La pureza de nuestros espacios, preparados meticulosamente para cada visita, refleja un compromiso con la perfección que notaras desde el primer contacto.</p>
+        <p>Nuestro equipo lo forman Eva, especialista en terapias manuales y masajes de autor, y Chaymaa, experta en estética integral avanzada. Juntas combinan profesionalidad y una sensibilidad especial para que cada sesión sea irrepetible.</p>
+      </div>
+      <div class="about-visual">
+        <img src="servicio1.jpg" alt="Equipo de Royale Beauty Hammam y Spa asesorando a una clienta en su sala de espera" width="768" height="768" loading="lazy">
+        <div class="about-badge">
+          <span class="badge-number">4</span>
+          <span class="badge-label">Invitados/día</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="tratamientos">
+    <p class="section-label">Tratamientos</p>
+    <h2 class="section-title">Rituales que <em>transforman</em></h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="servicio3.jpg" alt="Interior del hammam con bañera negra, techo estrellado y jardin vertical" width="768" height="768" loading="lazy">
+        <div class="service-card-overlay">
+          <span class="service-card-number">01</span>
+          <h3>Hammam Ancestral</h3>
+          <p>Ritual completo de exfoliación integral y envolturas con productos orgánicos de alta pureza. Un viaje sensorial bajo nuestro cielo estrellado.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="equipo.webp" alt="Terapeuta realizando un tratamiento de exfoliación sobre la mesa del hammam" width="768" height="768" loading="lazy">
+        <div class="service-card-overlay">
+          <span class="service-card-number">02</span>
+          <h3>Masajes de Autor</h3>
+          <p>Eva personaliza cada masaje, dedicando el tiempo y la pericia necesarios para responder a lo que tu cuerpo necesita.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="detalle1.jpg" alt="Tratamiento facial con cosmetica avanzada en Royale Beauty Spa" width="768" height="768" loading="lazy">
+        <div class="service-card-overlay">
+          <span class="service-card-number">03</span>
+          <h3>Estética Avanzada</h3>
+          <p>Tratamientos dermoestéticos de última generación, respaldados por la marca lider del sector, para quienes buscan la excelencia en el cuidado de la piel.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="servicio4.jpg" alt="Productos y accesorios orientales de los rituales de hammam" width="768" height="768" loading="lazy">
+        <div class="service-card-overlay">
+          <span class="service-card-number">04</span>
+          <h3>Korean Head Spa</h3>
+          <p>Una experiencia profundamente relajante para el cuero cabelludo y la mente. Considerado por nuestros clientes como un momento de desconexión absoluta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="experience-section">
+    <div class="experience-grid">
+      <div class="experience-img">
+        <img src="interior2.jpg" alt="Sala de masajes de Royale Beauty con iluminación ambiental calida y decoracion oriental" width="768" height="768" loading="lazy">
+      </div>
+      <div class="experience-text">
+        <p class="section-label">La experiencia</p>
+        <h3>Un santuario privado pensado para el disfrute absoluto</h3>
+        <p>Para garantizar una experiencia absolutamente privada y personalizada, limitamos el acceso a cuatro invitados al día. Sin prisas, sin ruidos, sin interrupciones.</p>
+        <p>Cada ritual se lleva a cabo en un espacio que combina el tadelakt tradiciónal, iluminación envolvente y un cielo de estrellas que transforma la sesión en un viaje sensorial completo.</p>
+        <div class="experience-highlight">
+          <div class="hl-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="hl-text"><strong>Productos orgánicos certificados</strong><br>Exfoliantes, envolturas y aceites de alta pureza seleccionados para tu bienestar.</div>
+        </div>
+        <div class="experience-highlight">
+          <div class="hl-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="hl-text"><strong>Sin limite de tiempo</strong><br>Cada terapeuta dedica a tu sesión el tiempo que tu cuerpo necesita, sin reloj.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="galería">
+    <p class="section-label">Galería</p>
+    <h2 class="section-title">Nuestro <em>espacio</em></h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="hammam.jpg" alt="Vista exterior del hammam con bañera negra retroiluminada y techo de estrellas" width="768" height="768" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="interior1.jpg" alt="Detalle del interior del hammam con iluminación dorada ambiental" width="768" height="768" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="servicio2.jpg" alt="Hammam preparado con petalos de rosa para un ritual de bienestar" width="768" height="768" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="servicio5.jpg" alt="Vista panoramica del hammam Royale Beauty con cielo estrellado" width="768" height="768" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews-section" id="opiniones">
+    <div class="reviews-header">
+      <p class="section-label">Opiniones reales</p>
+      <h2 class="section-title">Lo que dicen nuestros <em>invitados</em></h2>
+      <div class="reviews-rating">
+        <span class="rating-number">4,9</span>
+        <div class="rating-info">
+          <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <span class="rating-count">54 reseñas en Google</span>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <p class="review-text">Una experiencia única; nunca imaginé que existiera un lugar así en Las Palmas. Lo recomiendo al 100%.</p>
+        <div class="review-author">
+          <span class="review-author-initial">E</span>
+          <div class="review-author-info">
+            <strong>Estrella V.</strong>
+            <span>TripAdvisor</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <p class="review-text">Desde el momento en que entras, el ambiente transmite calma, intimidad y una desconexión total del estrés diario.</p>
+        <div class="review-author">
+          <span class="review-author-initial">S</span>
+          <div class="review-author-info">
+            <strong>Silvia</strong>
+            <span>TripAdvisor</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <p class="review-text">Nunca había tenido una experiencia Hammam y ahora creo que no puedo vivir sin ella. Estoy obsesiónada.</p>
+        <div class="review-author">
+          <span class="review-author-initial">L</span>
+          <div class="review-author-info">
+            <strong>Layla M.</strong>
+            <span>TripAdvisor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIO + CONTACTO -->
+  <section class="contact-section" id="contacto">
+    <div class="contact-grid">
+      <div>
+        <p class="section-label">Horario</p>
+        <h2 class="section-title" style="margin-bottom:36px;">Cuándo <em>visitarnos</em></h2>
+        <table class="horario-table" aria-label="Horario semanal de Royale Beauty">
+          <tr id="row-lun"><td>Lunes</td><td>11:00 - 19:00</td></tr>
+          <tr id="row-mar"><td>Martes</td><td>11:00 - 19:00</td></tr>
+          <tr id="row-mie"><td>Miércoles</td><td>11:00 - 19:00</td></tr>
+          <tr id="row-jue"><td>Jueves</td><td>11:00 - 19:00</td></tr>
+          <tr id="row-vie"><td>Viernes</td><td>11:00 - 19:00</td></tr>
+          <tr id="row-sab"><td>Sábado</td><td>11:00 - 19:00</td></tr>
+          <tr id="row-dom"><td>Domingo</td><td>Cerrado</td></tr>
+        </table>
+      </div>
+      <div>
+        <p class="section-label">Contacto</p>
+        <h2 class="section-title" style="margin-bottom:36px;">Reserva tu <em>ritual</em></h2>
+        <div class="contact-info-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="ci-text">C. Francisco Gourie, 4<br>35002 Las Palmas de Gran Canaria</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="ci-text"><a href="tel:+34683393154">683 39 31 54</a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="ci-text"><a href="mailto:info@royalebeauty.es">info@royalebeauty.es</a></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon">
+            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div class="ci-text"><a href="https://www.instagram.com/royalelaspalmas/" target="_blank" rel="noopener">@royalelaspalmas</a></div>
+        </div>
+        <a href="https://wa.me/34683393154?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20cita" class="contact-cta" target="_blank" rel="noopener">
+          Reservar por WhatsApp
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <div class="map-section" id="ubicación">
+    <div class="map-container" data-consent="terceros" data-fallback="El mapa requiere cookies de terceros. Activalas para verlo.">
+      <template data-consent-payload>
+        <iframe src="https://maps.google.com/maps?q=C.+Francisco+Gouri%C3%A9,+4,+35002+Las+Palmas+de+Gran+Canaria&output=embed" title="Ubicación de Royale Beauty Hammam y Spa en Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </template>
+    </div>
+    <noscript>
+      <iframe src="https://maps.google.com/maps?q=C.+Francisco+Gouri%C3%A9,+4,+35002+Las+Palmas+de+Gran+Canaria&output=embed" title="Ubicación de Royale Beauty Hammam y Spa en Google Maps" loading="lazy" width="100%" height="450" style="border:0" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </noscript>
+    <iframe src="https://maps.google.com/maps?q=C.+Francisco+Gouri%C3%A9,+4,+35002+Las+Palmas+de+Gran+Canaria&output=embed" title="Ubicación de Royale Beauty en Google Maps" loading="lazy" width="100%" height="450" style="border:0;display:block" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span>Royale</span> Beauty</div>
+        <p class="footer-tagline">Tu santuario privado de bienestar en el corazón de Triana, Las Palmas de Gran Canaria.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#filosofía">Filosofía</a>
+        <a href="#tratamientos">Tratamientos</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/royalelaspalmas/" target="_blank" rel="noopener" aria-label="Instagram de Royale Beauty">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">Royale Beauty Hammam &amp; Spa (Ocean Rocks S.L.)</span>
+      <div class="footer-legal">
+        <a href="legal/aviso-legal.html">Aviso legal</a>
+        <a href="legal/politica-privacidad.html">Privacidad</a>
+        <a href="legal/politica-cookies.html">Cookies</a>
+        <button type="button" style="background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:0;text-decoration:none;font-size:0.68rem;color:rgba(138,126,110,0.6);" onclick="if(window.GGConsent)window.GGConsent.open()">Configurar cookies</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- COOKIE BANNER -->
+  <script src="legal/cookie-banner.js"></script>
+
+  <!-- JS -->
+  <script>
+  (function(){
+    'use strict';
+
+    /* Loader */
+    var loader = document.getElementById('loader');
+    window.addEventListener('load', function(){
+      setTimeout(function(){ loader.classList.add('hidden'); }, 600);
+    });
+
+    /* Hero BG zoom */
+    var heroBg = document.getElementById('heroBg');
+    setTimeout(function(){ heroBg.classList.add('loaded'); }, 100);
+
+    /* Navbar scroll */
+    var navbar = document.getElementById('navbar');
+    var lastY = 0;
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      if(y > 80) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+      lastY = y;
+    }, {passive:true});
+
+    /* Hamburger */
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', function(){
+      var open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    var mobileLinks = mobileMenu.querySelectorAll('.mobile-link');
+    for(var i=0;i<mobileLinks.length;i++){
+      mobileLinks[i].addEventListener('click', function(){
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded','false');
+        document.body.style.overflow = '';
+      });
+    }
+
+    /* Reveal on scroll */
+    function initReveals(){
+      var els = document.querySelectorAll('.reveal');
+      if(!('IntersectionObserver' in window)){
+        return;
+      }
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      },{threshold:0.15});
+      els.forEach(function(el){
+        el.classList.add('hidden-init');
+        observer.observe(el);
+      });
+    }
+    initReveals();
+
+    /* Highlight today in horario */
+    function highlightToday(){
+      var dayMap = ['row-dom','row-lun','row-mar','row-mie','row-jue','row-vie','row-sab'];
+      var today = new Date().getDay();
+      var rowId = dayMap[today];
+      var row = document.getElementById(rowId);
+      if(row) row.classList.add('horario-hoy');
+    }
+    highlightToday();
+
+  })();
+  </script>
+
+</body>
+</html>
