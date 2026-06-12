@@ -247,6 +247,14 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .pie a:hover,.pie button:hover{color:var(--azul-cl)}
 .pie button{background:none;border:none;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0}
 
+/* ── SENSACIONES: estela de imágenes del porfolio ── */
+.sensaciones{position:relative;min-height:82svh;display:grid;place-items:center;text-align:center;padding:clamp(7rem,15vh,11rem) var(--pad);overflow:hidden}
+.sensaciones h2{font-size:clamp(2.3rem,6vw,5rem);max-width:16ch;position:relative;z-index:2;pointer-events:none}
+.sensaciones__pista{position:absolute;bottom:clamp(2rem,6vh,4rem);left:50%;transform:translateX(-50%);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--crema-3);z-index:2;pointer-events:none}
+.estela-img{position:absolute;width:clamp(9rem,16vw,15rem);aspect-ratio:3/4;overflow:hidden;pointer-events:none;will-change:transform,opacity;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+.estela-img img{width:100%;height:100%;object-fit:cover}
+@media(pointer:coarse){.sensaciones__pista{display:none}}
+
 [data-reveal]{visibility:hidden}
 
 @media(max-width:768px){
@@ -406,6 +414,12 @@ img{display:block;width:100%;height:100%;object-fit:cover}
         </figure>
       </div>
     </div>
+  </section>
+
+  <!-- ════════ SENSACIONES: estela de imágenes del porfolio ════════ -->
+  <section class="sensaciones" aria-label="Porfolio en movimiento">
+    <h2 data-reveal data-split="lines">Tres décadas mirando <em>Soria</em>.</h2>
+    <p class="sensaciones__pista">Mueve el ratón</p>
   </section>
 
   <!-- ════════ ZOOM ════════ -->
@@ -695,6 +709,33 @@ if (FINE_POINTER && !REDUCE) (function cursor(){
   let ticking = false;
   addEventListener('scroll', () => {
     if (!ticking) { requestAnimationFrame(() => { cab.classList.toggle('scrolled', scrollY > 60); ticking = false; }); ticking = true; }
+  }, { passive: true });
+})();
+
+/* ── SENSACIONES: estela de imágenes del porfolio real ── */
+if (FINE_POINTER && !REDUCE) (function estelaImagenes(){
+  const zona = document.querySelector('.sensaciones');
+  if (!zona) return;
+  const POOL = ['img/hero-boda.jpg','img/novios-cascada.jpg','img/boda-catedral.jpg',
+                'img/novia-artistica.jpg','img/novios-puente.jpg','img/novios-sotos.jpg',
+                'img/paisaje-canon.jpg','img/ia-foto.jpg'];
+  POOL.forEach(src => { const im = new Image(); im.src = src; });
+  let idx = 0, acumulado = 0, px = null, py = null, vivas = 0;
+  zona.addEventListener('pointermove', (e) => {
+    if (px !== null) acumulado += Math.hypot(e.clientX - px, e.clientY - py);
+    px = e.clientX; py = e.clientY;
+    if (acumulado < 110 || vivas > 12) return;
+    acumulado = 0;
+    const r = zona.getBoundingClientRect();
+    const fig = document.createElement('figure');
+    fig.className = 'estela-img';
+    fig.innerHTML = '<img src="' + POOL[idx++ % POOL.length] + '" alt="">';
+    zona.appendChild(fig);
+    vivas++;
+    gsap.set(fig, { left: e.clientX - r.left, top: e.clientY - r.top, xPercent: -50, yPercent: -50, rotation: gsap.utils.random(-9, 9) });
+    gsap.timeline({ onComplete: () => { fig.remove(); vivas--; } })
+      .fromTo(fig, { scale: 0.55, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.35, ease: 'power3.out' })
+      .to(fig, { yPercent: -85, scale: 1.04, autoAlpha: 0, duration: 0.9, ease: 'power2.in' }, 0.45);
   }, { passive: true });
 })();
 

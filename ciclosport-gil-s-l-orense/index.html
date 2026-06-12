@@ -467,6 +467,29 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .pie a:hover, .pie button:hover{ color: var(--verde); }
 .pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
 
+/* ── TIENDA: destacados con precios reales de ciclosportgil.es ── */
+.tienda{ padding: clamp(7rem,15vh,11rem) var(--pad); max-width: 78rem; margin: 0 auto; }
+.tienda__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3rem; }
+.tienda__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.tienda__cab p{ color: var(--piedra); font-size:.76rem; letter-spacing:.22em; text-transform:uppercase; }
+.tienda__grid{ display:grid; gap: clamp(1.3rem,2.4vw,2rem); grid-template-columns: repeat(auto-fit, minmax(min(15rem,100%), 1fr)); }
+.producto{
+  border:1px solid var(--linea); background: var(--oscuro-2);
+  padding: 1.9rem 1.6rem; position:relative;
+  display:flex; flex-direction:column; gap:.55rem;
+}
+.producto__dto{
+  position:absolute; top:-0.75rem; right:1.2rem;
+  background: var(--verde); color: var(--oscuro);
+  font: 700 .68rem/1 var(--sans); letter-spacing:.1em;
+  padding:.42rem .8rem; border-radius:999px;
+}
+.producto h3{ font-family: var(--display); font-size: 1.2rem; }
+.producto p{ color: var(--texto-2); font-size:.84rem; flex:1; }
+.producto__antes{ color: var(--piedra); text-decoration: line-through; font-size:.92rem; }
+.producto__precio{ font-family: var(--display); font-size: clamp(1.8rem,3.4vw,2.5rem); color: var(--verde); }
+.tienda__nota{ margin-top: 2rem; color: var(--piedra); font-size:.86rem; font-style: italic; }
+
 [data-reveal]{ visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce){
@@ -660,6 +683,45 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
         <p>Bicis de montaña y carretera listas para descubrir Ourense y su provincia. Ideal para el Camino de Santiago o rutas por la Ribeira Sacra.</p>
       </div>
     </div>
+  </section>
+
+  <!-- ════════ TIENDA: destacados con precios reales de ciclosportgil.es ════════ -->
+  <section class="tienda" id="tienda">
+    <div class="tienda__cab">
+      <h2 data-reveal data-split="lines">Ofertas <em>reales</em>, ahora mismo</h2>
+      <p data-reveal>Catálogo Giant · precios de ciclosportgil.es</p>
+    </div>
+    <div class="tienda__grid">
+      <div class="producto" data-reveal>
+        <span class="producto__dto">-15%</span>
+        <h3>Giant Anthem Advanced 29 1</h3>
+        <p>Doble suspensión de carbono para XC. La nave insignia.</p>
+        <span class="producto__antes">7.999,00 €</span>
+        <span class="producto__precio">6.799,15 €</span>
+      </div>
+      <div class="producto" data-reveal>
+        <span class="producto__dto">-25%</span>
+        <h3>Giant Trance X E+ 3</h3>
+        <p>E-bike de trail con motor SyncDrive. Montaña sin límites.</p>
+        <span class="producto__antes">4.999,00 €</span>
+        <span class="producto__precio">3.749,25 €</span>
+      </div>
+      <div class="producto" data-reveal>
+        <span class="producto__dto">-20%</span>
+        <h3>Giant Stance E+ 0 Pro</h3>
+        <p>Doble eléctrica lista para todo. Autonomía y garantía oficial.</p>
+        <span class="producto__antes">5.499,00 €</span>
+        <span class="producto__precio">4.399,20 €</span>
+      </div>
+      <div class="producto" data-reveal>
+        <span class="producto__dto">-15%</span>
+        <h3>Giant Talon E+ 3</h3>
+        <p>La puerta de entrada al e-MTB. Ligera, fiable, divertida.</p>
+        <span class="producto__antes">1.999,00 €</span>
+        <span class="producto__precio">1.699,15 €</span>
+      </div>
+    </div>
+    <p class="tienda__nota" data-reveal>Precios del catálogo online oficial. Taller propio multimarca: presupuesto sin compromiso en el momento.</p>
   </section>
 
   <!-- ════════ RESEÑAS reales (Google Maps) ════════ -->
