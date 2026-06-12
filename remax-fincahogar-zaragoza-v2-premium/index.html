@@ -496,17 +496,17 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
     </div>
   </section>
 
-  <!-- ════════ CASA 3D — Blender + Three.js scrubbed ════════ -->
-  <section class="casa3d" aria-label="Recorrido 3D alrededor de una vivienda">
+  <!-- ════════ LA CASA SE CONSTRUYE — vídeo Kling scrubeado frame a frame ════════ -->
+  <section class="casa3d" aria-label="La construcción de una vivienda, controlada por tu scroll">
     <div class="casa3d__pin">
       <canvas id="casa-gl" aria-hidden="true"></canvas>
-      <div class="casa3d__poster" aria-hidden="true"><img src="assets/casa-poster.png" alt=""></div>
+      <div class="casa3d__poster" aria-hidden="true"><img src="assets/casa-poster.jpg" alt=""></div>
       <div class="casa3d__hud">
         <div class="casa3d__cab">
-          <h2 class="casa3d__titulo">Así enseñamos <em>tu casa</em></h2>
+          <h2 class="casa3d__titulo">Tu casa, construida con tu <em>scroll</em></h2>
           <div class="casa3d__num"><span data-casa-num>0</span><i>%</i></div>
         </div>
-        <p class="casa3d__fase" data-casa-fase>La llegada — a pie de calle</p>
+        <p class="casa3d__fase" data-casa-fase>La estructura — hormigón y grúa</p>
       </div>
     </div>
   </section>
@@ -626,12 +626,6 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
 <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
-<script type="importmap">
-{ "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/" } }
-</script>
-
 <script>
 'use strict';
 
@@ -914,94 +908,91 @@ document.fonts.ready.then(() => {
 });
 </script>
 
-<!-- ════════ CASA 3D: GLB de Blender scrubeado con Three.js ════════ -->
-<script type="module">
-const REDUCE3D = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const seccion = document.querySelector('.casa3d');
+<!-- ════════ LA CASA SE CONSTRUYE: secuencia de frames de Kling scrubeada
+     (patrón Apple del PLAYBOOK §Capa 3a: canvas 2D + frames WebP) ════════ -->
+<script>
+(function casaFrames(){
+  const REDUCE3D = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const seccion = document.querySelector('.casa3d');
+  if (REDUCE3D) { seccion.classList.add('casa3d--fallback'); return; }
 
-if (REDUCE3D) {
-  seccion.classList.add('casa3d--fallback');
-} else {
-  try {
-    const THREE = await import('three');
-    const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+  const TOTAL = 97;
+  const ruta = (i) => `assets/obra/f${String(i + 1).padStart(3, '0')}.webp`;
 
-    const canvas = document.getElementById('casa-gl');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
+  const canvas = document.getElementById('casa-gl');
+  const ctx = canvas.getContext('2d');
+  const pinEl = document.querySelector('.casa3d__pin');
+  const elNum  = document.querySelector('[data-casa-num]');
+  const elFase = document.querySelector('[data-casa-fase]');
+  const fases = [
+    [0.00, 'La estructura — hormigón y grúa'],
+    [0.35, 'Cerramientos y cristales'],
+    [0.65, 'La piscina se llena'],
+    [0.88, 'Luces encendidas: lista para vivir'],
+  ];
 
-    const scene = new THREE.Scene();
-    scene.add(new THREE.HemisphereLight(0xdfe9f5, 0x8a9a6f, 1.5));
-    const sol = new THREE.DirectionalLight(0xfff1dd, 2.2);
-    sol.position.set(14, 22, 10);
-    scene.add(sol);
-
-    const gltf = await new Promise((res, rej) => new GLTFLoader().load('assets/casa.glb', res, undefined, rej));
-    scene.add(gltf.scene);
-
-    const camera = gltf.cameras[0];
-    const mixer = new THREE.AnimationMixer(gltf.scene);
-    /* scrubear TODAS las pistas (cámara horneada + target) con el mismo mixer */
-    const acciones = gltf.animations.map((clip) => {
-      const a = mixer.clipAction(clip);
-      a.play(); a.paused = true;            /* play ANTES de paused o el clip no evalúa */
-      return { a, dur: clip.duration };
-    });
-
-    const pinEl = document.querySelector('.casa3d__pin');
-    function encuadrar(){
-      const w = pinEl.clientWidth, h = pinEl.clientHeight;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      pintar(progreso.p);
-    }
-
-    const elNum  = document.querySelector('[data-casa-num]');
-    const elFase = document.querySelector('[data-casa-fase]');
-    const fases = [
-      [0.00, 'La llegada — a pie de calle'],
-      [0.30, 'El porche y la cristalera'],
-      [0.62, 'Piscina y jardín privado'],
-      [0.85, 'La parcela completa, a vista de dron'],
-    ];
-
-    function pintar(p){
-      acciones.forEach(({ a, dur }) => { a.time = p * (dur - 0.0001); });
-      mixer.update(0);
-      renderer.render(scene, camera);
-      elNum.textContent = Math.round(p * 100);
-      let fase = fases[0][1];
-      for (const [u, n] of fases) if (p >= u) fase = n;
-      if (elFase.textContent !== fase) elFase.textContent = fase;
-    }
-
-    const progreso = { p: 0 };
-    gsap.to(progreso, {
-      p: 1,
-      ease: 'none',
-      onUpdate: () => pintar(progreso.p),
-      scrollTrigger: {
-        trigger: seccion,
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: pinEl,
-        pinSpacing: false,
-        scrub: 1,
-        anticipatePin: 1,
-        refreshPriority: 1,        /* doc-anterior al zoom pero creada después: prioridad */
-      },
-    });
-
-    addEventListener('resize', encuadrar);
-    encuadrar();
-    ScrollTrigger.refresh();
-  } catch (e) {
-    seccion.classList.add('casa3d--fallback');   /* sin WebGL/CDN: póster renderizado en Cycles */
+  /* precarga en 2 fases: primeros 12 ya, el resto en segundo plano */
+  const frames = new Array(TOTAL);
+  let cargados = 0, fallo = false;
+  function carga(i){
+    const im = new Image();
+    im.onload = () => { frames[i] = im; cargados++; if (i === 0) pintar(0, true); };
+    im.onerror = () => { fallo = true; if (cargados === 0) seccion.classList.add('casa3d--fallback'); };
+    im.src = ruta(i);
   }
-}
+  for (let i = 0; i < Math.min(12, TOTAL); i++) carga(i);
+  setTimeout(() => { for (let i = 12; i < TOTAL; i++) carga(i); }, 800);
+
+  const DPRC = Math.min(devicePixelRatio || 1, 2);
+  function redimensionar(){
+    canvas.width = pinEl.clientWidth * DPRC;
+    canvas.height = pinEl.clientHeight * DPRC;
+    pintar(progreso.p, true);
+  }
+
+  let ultimo = -1;
+  function pintar(p, forzar){
+    let idx = Math.min(TOTAL - 1, Math.round(p * (TOTAL - 1)));   /* off-by-one del final */
+    /* si ese frame aún no está, usa el más cercano cargado hacia atrás */
+    while (idx > 0 && !frames[idx]) idx--;
+    if (!frames[idx]) return;
+    if (!forzar && idx === ultimo) return;
+    ultimo = idx;
+
+    const im = frames[idx];
+    const cw = canvas.width, ch = canvas.height;
+    /* cover: el frame llena el lienzo recortando lo que sobre */
+    const esc = Math.max(cw / im.width, ch / im.height);
+    const w = im.width * esc, h = im.height * esc;
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+
+    elNum.textContent = Math.round(p * 100);
+    let fase = fases[0][1];
+    for (const [u, n] of fases) if (p >= u) fase = n;
+    if (elFase.textContent !== fase) elFase.textContent = fase;
+  }
+
+  const progreso = { p: 0 };
+  gsap.to(progreso, {
+    p: 1,
+    ease: 'none',                       /* la suavidad la pone el scrub */
+    onUpdate: () => pintar(progreso.p),
+    scrollTrigger: {
+      trigger: seccion,
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: pinEl,
+      pinSpacing: false,
+      scrub: 0.6,
+      anticipatePin: 1,
+      refreshPriority: 1,
+    },
+  });
+
+  addEventListener('resize', redimensionar);
+  redimensionar();
+})();
 </script>
 <script defer src="legal/cookie-banner.js"></script>
 </body>
