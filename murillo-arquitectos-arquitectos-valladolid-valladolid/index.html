@@ -1,1237 +1,1556 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Murillo Arquitectos | Estudio de Arquitectura en Valladolid</title>
-  <meta name="description" content="Murillo Arquitectos es un estudio de arquitectura en Valladolid especializado en clínicas dentales, viviendas y hostelería. Sergio Murillo y David Hernández crean espacios funcionales, sostenibles y con atención al detalle. 5/5 en Google con 61 reseñas.">
-  <meta name="robots" content="index, follow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="legal/cookie-banner.css">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murillo Arquitectos | Arquitectura e interiorismo en Valladolid</title>
+<meta name="description" content="Murillo Arquitectos: estudio de arquitectura e interiorismo en Valladolid. Sergio Murillo y David Hernández crean espacios funcionales, sostenibles y cuidados al detalle. Especialistas en clínicas dentales, viviendas y hostelería. 5,0/5 en Google con 61 reseñas.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23a89880'/%3E%3C/svg%3E">
 
-    :root {
-      --black: #0A0A0A;
-      --white: #F7F6F3;
-      --cream: #EFEDE8;
-      --warm-gray: #D4CFC6;
-      --stone: #8C7E6A;
-      --stone-light: #A89B86;
-      --text: #1A1A1A;
-      --text-mid: #555550;
-      --text-light: #8A8880;
-      --border: rgba(10,10,10,0.08);
-      --border-hover: rgba(10,10,10,0.2);
-      --font-serif: 'Cormorant Garamond', 'Georgia', serif;
-      --font-sans: 'Inter', -apple-system, sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    }
+<!-- ============================================================
+     MURILLO ARQUITECTOS — propuesta premium (G&G Elcano)
+     Marca real verificada en murilloarquitectos.com + SVG logo:
+       · Logo: #040405 puro (wordmark negro minimal)
+       · Tipografias: Cormorant Garamond (display) + Inter (UI)
+       · Paleta: negro profundo + crema calido + piedra/arena (acento)
+     Base tecnica: demo BTTEstudio v2-premium adaptada.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal/cookie-banner.css">
 
-    html { scroll-behavior: smooth; }
+<style>
+:root{
+  --bg:        #0e0e0d;
+  --bg-2:      #151412;
+  --crema:     #f2efea;
+  --piedra:    #9a938a;
+  --arena:     #a89880;
+  --arena-luz: #c4b49a;
+  --arena-suave: rgba(168,152,128,.55);
+  --linea:     rgba(242,239,234,.12);
+  --serif:     "Cormorant Garamond", Georgia, serif;
+  --sans:      "Inter", system-ui, sans-serif;
+  --pad:       clamp(1.5rem, 5vw, 6rem);
+}
 
-    body {
-      background: var(--white);
-      color: var(--text);
-      font-family: var(--font-sans);
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scrollbar-width: thin; scrollbar-color: var(--arena) var(--bg); }
+html, body{ background: var(--bg); }
 
-    /* =========================================
-       LOADER
-       ========================================= */
-    .loader {
-      position: fixed; inset: 0; z-index: 10000;
-      background: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 24px;
-      transition: opacity 0.8s, visibility 0.8s;
-    }
-    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .loader-logo {
-      font-family: var(--font-serif);
-      font-size: 1.8rem; font-weight: 400;
-      letter-spacing: 0.15em; color: var(--black);
-      text-transform: uppercase;
-    }
-    .loader-bar {
-      width: 160px; height: 1px; background: var(--warm-gray);
-      position: relative; overflow: hidden;
-    }
-    .loader-bar::after {
-      content: ''; position: absolute; inset: 0;
-      background: var(--black);
-      transform: translateX(-100%);
-      animation: loadBar 1.4s var(--ease-out) 0.3s forwards;
-    }
-    @keyframes loadBar { to { transform: translateX(0); } }
+body{
+  color: var(--crema);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-    /* =========================================
-       NAVBAR
-       ========================================= */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 60px;
-      transition: background 0.5s, padding 0.4s, box-shadow 0.5s;
-    }
-    nav.scrolled {
-      background: rgba(247,246,243,0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 18px 60px;
-      box-shadow: 0 1px 0 var(--border);
-    }
-    .nav-logo {
-      font-family: var(--font-serif);
-      font-size: 1.2rem; font-weight: 400;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      text-decoration: none; color: var(--black);
-      transition: opacity 0.3s;
-    }
-    .nav-logo:hover { opacity: 0.7; }
-    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: var(--text-mid);
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      transition: color 0.3s; font-weight: 400;
-    }
-    .nav-links a:hover { color: var(--black); }
-    .nav-cta {
-      border: 1px solid var(--black) !important;
-      color: var(--black) !important;
-      padding: 10px 26px !important;
-      transition: background 0.3s, color 0.3s !important;
-    }
-    .nav-cta:hover { background: var(--black) !important; color: var(--white) !important; }
+::selection{ background: var(--arena); color: var(--bg); }
 
-    /* HAMBURGER */
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 8px;
-    }
-    .hamburger span {
-      width: 24px; height: 1.5px; background: var(--black);
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    .mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--white); z-index: 999;
-      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      text-decoration: none; color: var(--black);
-      font-family: var(--font-serif); font-size: 1.8rem;
-      font-weight: 300; letter-spacing: 0.05em;
-      transition: color 0.3s;
-    }
-    .mobile-menu a:hover { color: var(--stone); }
+h1,h2,h3{ font-family: var(--serif); font-weight: 400; line-height: 1.04; }
+em{ font-style: italic; color: var(--arena-luz); }
 
-    /* =========================================
-       HERO
-       ========================================= */
-    .hero {
-      position: relative; height: 100vh; min-height: 700px;
-      display: flex; align-items: flex-end;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center 40%;
-      transform: scale(1.05);
-      transition: transform 6s var(--ease-out);
-    }
-    .hero-bg.loaded { transform: scale(1); }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(10,10,10,0.85) 0%,
-        rgba(10,10,10,0.4) 40%,
-        rgba(10,10,10,0.15) 70%,
-        rgba(10,10,10,0.1) 100%
-      );
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      padding: 0 60px 90px;
-      max-width: 860px;
-      color: #F7F6F3;
-    }
-    .hero-eyebrow {
-      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--warm-gray); margin-bottom: 24px;
-      display: flex; align-items: center; gap: 16px;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 36px; height: 1px; background: var(--stone-light);
-    }
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 6.5vw, 6.5rem);
-      font-weight: 300; line-height: 1.05;
-      letter-spacing: -0.02em; margin-bottom: 28px;
-    }
-    .hero-title em {
-      font-style: italic; color: var(--warm-gray);
-    }
-    .hero-sub {
-      font-size: 1rem; color: rgba(247,246,243,0.82);
-      max-width: 500px; line-height: 1.75; margin-bottom: 48px;
-      font-weight: 300;
-    }
-    .hero-actions {
-      display: flex; align-items: center; gap: 36px; flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: #F7F6F3; color: var(--black);
-      text-decoration: none; padding: 16px 36px;
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      font-weight: 500; transition: all 0.35s var(--ease-smooth);
-      position: relative; overflow: hidden;
-    }
-    .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--stone); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary:hover { color: #F7F6F3; }
-    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
-    .btn-ghost {
-      color: rgba(247,246,243,0.75); text-decoration: none;
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-      transition: color 0.3s;
-    }
-    .btn-ghost:hover { color: #F7F6F3; }
-    .icon-arrow { width: 14px; height: 14px; }
-    .hero-scroll {
-      position: absolute; right: 60px; bottom: 90px; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 14px;
-      opacity: 0; animation: fadeIn 1s 2s ease forwards;
-    }
-    .hero-scroll span {
-      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(247,246,243,0.45); writing-mode: vertical-rl;
-    }
-    .scroll-line {
-      width: 1px; height: 60px;
-      background: linear-gradient(to bottom, var(--stone-light), transparent);
-      animation: scrollPulse 2.5s infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; }
-    }
-    @keyframes fadeIn { to { opacity: 1; } }
+a{ color: inherit; text-decoration: none; }
+ul{ list-style: none; }
+img{ display:block; width:100%; height:100%; object-fit: cover; }
 
-    /* =========================================
-       INTRO STRIP
-       ========================================= */
-    .intro-strip {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      border-bottom: 1px solid var(--border);
-    }
-    .intro-item {
-      padding: 48px 40px;
-      border-right: 1px solid var(--border);
-      text-align: center;
-    }
-    .intro-item:last-child { border-right: none; }
-    .intro-number {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 300; line-height: 1; color: var(--black);
-      margin-bottom: 8px;
-    }
-    .intro-label {
-      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-light); font-weight: 400;
-    }
+#fondo-gl{ position: fixed; inset: 0; width:100%; height:100%; z-index: 0; pointer-events: none; }
+main{ position: relative; z-index: 1; }
 
-    /* =========================================
-       SECTION COMMONS
-       ========================================= */
-    section { padding: 130px 60px; }
-    .section-label {
-      font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--stone); margin-bottom: 20px;
-      display: flex; align-items: center; gap: 14px;
-      font-weight: 500;
-    }
-    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--stone); }
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 4vw, 3.8rem);
-      font-weight: 300; line-height: 1.12;
-      letter-spacing: -0.01em; color: var(--black);
-    }
-    .section-title em { font-style: italic; color: var(--stone); }
-    .section-desc {
-      font-size: 1rem; color: var(--text-mid); line-height: 1.8;
-      max-width: 540px; margin-top: 24px; font-weight: 300;
-    }
+#fluid{
+  position: fixed; inset: 0; width:100%; height:100%;
+  z-index: 9000; pointer-events: none;
+  mix-blend-mode: screen;
+}
+#fluid canvas{ width:100%; height:100%; display:block; }
+.cursor-dot, .cursor-ring{
+  position: fixed; top:0; left:0; z-index: 9500;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+}
+.cursor-dot { width:6px;  height:6px;  background: var(--arena-luz); }
+.cursor-ring{ width:38px; height:38px; border:1px solid var(--arena-suave); }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot,.cursor-ring,#fluid{ display:none; }
+}
 
-    /* =========================================
-       PROJECTS / PORTFOLIO
-       ========================================= */
-    .projects-section { background: var(--white); }
-    .projects-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 60px; max-width: 1400px; margin-left: auto; margin-right: auto;
-      gap: 32px; flex-wrap: wrap;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      grid-template-rows: auto auto;
-      gap: 4px;
-      max-width: 1400px; margin: 0 auto;
-    }
-    .project-card {
-      position: relative; overflow: hidden;
-    }
-    .project-card--tall { grid-row: span 2; aspect-ratio: 3/4; }
-    .project-card--wide { aspect-ratio: 16/10; }
-    .project-card--square { aspect-ratio: 16/10; }
-    .project-img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.8s var(--ease-out);
-    }
-    .project-card:hover .project-img { transform: scale(1.04); }
-    .project-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 55%);
-      opacity: 0; transition: opacity 0.5s;
-    }
-    .project-card:hover .project-overlay { opacity: 1; }
-    .project-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 32px; color: #F7F6F3;
-      transform: translateY(10px); opacity: 0;
-      transition: transform 0.5s var(--ease-out), opacity 0.4s;
-    }
-    .project-card:hover .project-info { transform: translateY(0); opacity: 1; }
-    .project-cat {
-      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--warm-gray); margin-bottom: 6px; font-weight: 500;
-    }
-    .project-name {
-      font-family: var(--font-serif); font-size: 1.5rem;
-      font-weight: 300; line-height: 1.2;
-    }
-    .project-meta {
-      font-size: 0.75rem; color: rgba(247,246,243,0.65);
-      margin-top: 6px; letter-spacing: 0.04em;
-    }
+/* -- PRELOADER -- */
+.preloader{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: end start;
+  padding: var(--pad);
+}
+.preloader__curtain{ position:absolute; inset:0; background:#0b0b0a; z-index:-1; }
+.preloader__brand{
+  position: absolute; top: var(--pad); left: var(--pad);
+  font-family: var(--serif); font-size: 1.15rem; letter-spacing: .35em;
+  text-transform: uppercase; color: var(--piedra);
+  overflow: hidden;
+}
+.preloader__brand span{ display:inline-block; }
+.preloader__brand b{ font-weight: 500; color: var(--crema); }
+.preloader__counter{ overflow: hidden; line-height: 1; }
+.preloader__num{
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  font-variant-numeric: tabular-nums;
+  color: var(--crema);
+}
+.preloader__num i{ font-style: normal; color: var(--arena-luz); font-size: .35em; vertical-align: super; }
 
-    /* =========================================
-       ABOUT / PHILOSOPHY
-       ========================================= */
-    .about-section {
-      background: var(--cream);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0; padding: 0;
-    }
-    .about-visual {
-      position: relative; overflow: hidden; min-height: 680px;
-    }
-    .about-visual img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .about-content {
-      padding: 100px 80px;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .about-body {
-      font-size: 1.05rem; line-height: 1.85;
-      color: var(--text-mid); margin: 28px 0 40px;
-      font-weight: 300;
-    }
-    .about-body strong { color: var(--black); font-weight: 500; }
-    .about-divider {
-      width: 50px; height: 1px; background: var(--stone); margin: 28px 0;
-    }
-    .about-quote {
-      font-family: var(--font-serif);
-      font-size: 1.35rem; font-style: italic;
-      line-height: 1.55; color: var(--black);
-      margin: 0; padding-left: 24px;
-      border-left: 2px solid var(--stone);
-    }
+/* -- CABECERA -- */
+.cabecera{
+  position: fixed; top:0; left:0; right:0; z-index: 50;
+  display:flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem var(--pad);
+  mix-blend-mode: difference;
+}
+.cabecera__logo{
+  display: flex; align-items: center; gap: .8rem;
+}
+.cabecera__logo img{
+  height: 2.2rem; width: auto; filter: invert(1);
+}
+.cabecera__nav{ display:flex; gap: 2.2rem; font-size:.78rem; letter-spacing:.16em; text-transform: uppercase; }
+@media (max-width: 720px){ .cabecera__nav{ display:none; } }
 
-    /* =========================================
-       SPECIALIZATION (Dental Clinics)
-       ========================================= */
-    .spec-section { background: var(--black); color: #F7F6F3; }
-    .spec-inner {
-      max-width: 1400px; margin: 0 auto;
-    }
-    .spec-header { margin-bottom: 70px; }
-    .spec-header .section-label { color: var(--stone-light); }
-    .spec-header .section-label::before { background: var(--stone-light); }
-    .spec-header .section-title { color: #F7F6F3; }
-    .spec-header .section-title em { color: var(--stone-light); }
-    .spec-header .section-desc { color: rgba(247,246,243,0.65); }
-    .spec-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-    }
-    .spec-card {
-      padding: 56px 44px;
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: border-color 0.4s, background 0.4s;
-      position: relative;
-    }
-    .spec-card:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.03); }
-    .spec-number {
-      font-family: var(--font-serif); font-size: 3.5rem;
-      font-weight: 300; color: rgba(140,126,106,0.25);
-      line-height: 1; margin-bottom: 24px;
-    }
-    .spec-card h3 {
-      font-family: var(--font-serif); font-size: 1.5rem;
-      font-weight: 400; margin-bottom: 12px; line-height: 1.2;
-    }
-    .spec-card p {
-      font-size: 0.88rem; color: rgba(247,246,243,0.6);
-      line-height: 1.7; font-weight: 300;
-    }
+.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
+.roll>span{ display:inline-block; transition: transform .5s cubic-bezier(.76,0,.24,1); }
+.roll::after{
+  content: attr(data-text);
+  position:absolute; left:0; top:100%; display:inline-block;
+  color: var(--arena-luz);
+  transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+@media (hover:hover) and (pointer:fine){
+  .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
+}
 
-    /* =========================================
-       SERVICES
-       ========================================= */
-    .services-section { background: var(--white); }
-    .services-inner { max-width: 1400px; margin: 0 auto; }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 0; margin-top: 60px;
-    }
-    .service-item {
-      padding: 48px 0;
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 80px 1fr auto;
-      align-items: start; gap: 32px;
-      transition: border-color 0.4s;
-    }
-    .service-item:hover { border-color: var(--stone); }
-    .service-num {
-      font-family: var(--font-serif); font-size: 1.1rem;
-      color: var(--stone); font-weight: 300;
-    }
-    .service-item h3 {
-      font-family: var(--font-serif); font-size: 1.6rem;
-      font-weight: 400; margin-bottom: 8px; line-height: 1.2;
-    }
-    .service-item p {
-      font-size: 0.88rem; color: var(--text-mid);
-      line-height: 1.7; font-weight: 300; max-width: 380px;
-    }
-    .services-list {
-      display: flex; flex-direction: column;
-      margin-top: 60px;
-    }
-    .services-list .service-item {
-      display: grid; grid-template-columns: 60px 1fr;
-      gap: 24px; padding: 36px 0;
-    }
+/* -- HERO -- */
+.hero{
+  min-height: 100svh;
+  position: relative;
+  display:flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 var(--pad) clamp(3rem, 8vh, 6rem);
+  overflow: hidden;
+}
+.hero__media{ position:absolute; inset:0; z-index:0; }
+.hero__media::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(14,14,13,.46) 0%, rgba(14,14,13,.18) 45%, rgba(14,14,13,.88) 100%);
+}
+.hero__media img{ will-change: transform; }
+.hero__contenido{ position: relative; z-index: 1; }
+.hero__kicker{
+  font-size: .78rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--crema); opacity:.85; margin-bottom: 1.6rem;
+}
+.hero__titulo{
+  font-size: clamp(2.9rem, 9.5vw, 8.6rem);
+  letter-spacing: -.015em;
+  max-width: 14ch;
+}
+.hero__pie{
+  display:flex; justify-content: space-between; align-items:flex-end;
+  gap: 2rem; margin-top: 2.6rem; flex-wrap: wrap;
+}
+.hero__sub{ max-width: 40ch; color: var(--crema); opacity:.82; font-size: 1.05rem; }
+.hero__scroll{
+  font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--crema); opacity:.7; display:flex; align-items:center; gap:.8rem;
+}
+.hero__scroll::after{
+  content:""; display:block; width:1px; height:3.4rem; background: var(--arena-luz);
+  transform-origin: top;
+  animation: gota 2.2s cubic-bezier(.76,0,.24,1) infinite;
+}
+@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
+                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
 
-    /* =========================================
-       PROCESS - Cómo trabajamos
-       ========================================= */
-    .process-section { background: var(--cream); }
-    .process-inner { max-width: 1100px; margin: 0 auto; }
-    .process-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2px; margin-top: 60px;
-    }
-    .process-step {
-      padding: 48px 36px;
-      background: var(--white);
-      position: relative;
-      transition: background 0.4s;
-    }
-    .process-step:hover { background: rgba(255,255,255,0.8); }
-    .process-num {
-      font-family: var(--font-serif); font-size: 2.8rem;
-      font-weight: 300; color: var(--stone);
-      line-height: 1; margin-bottom: 20px;
-      opacity: 0.5;
-    }
-    .process-step h3 {
-      font-family: var(--font-serif); font-size: 1.2rem;
-      font-weight: 500; margin-bottom: 10px; line-height: 1.3;
-    }
-    .process-step p {
-      font-size: 0.85rem; color: var(--text-mid);
-      line-height: 1.7; font-weight: 300;
-    }
+[data-hero-reveal]{ visibility: hidden; }
 
-    /* =========================================
-       MARQUEE
-       ========================================= */
-    .marquee-section {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden; padding: 18px 0;
-      background: var(--white);
-    }
-    .marquee-track {
-      display: flex; width: max-content; align-items: center;
-      animation: marquee 16s linear infinite;
-      will-change: transform;
-    }
-    .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item {
-      display: inline-flex; align-items: center; gap: 14px;
-      padding: 0 36px; flex-shrink: 0; white-space: nowrap;
-      font-family: var(--font-serif); font-size: 1.05rem;
-      font-style: italic; color: var(--text-light);
-      letter-spacing: 0.04em;
-    }
-    .marquee-item .dot {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: var(--stone); flex-shrink: 0;
-    }
-    @keyframes marquee {
-      0% { transform: translate3d(0,0,0); }
-      100% { transform: translate3d(-50%,0,0); }
-    }
+/* -- MARQUEE -- */
+.marquee{
+  overflow:hidden; white-space:nowrap;
+  border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  padding: 1.1rem 0;
+  background: var(--bg);
+  position: relative; z-index: 2;
+}
+.marquee-track{ display:inline-flex; gap:0; animation: marquee 16s linear infinite; will-change: transform; width: max-content; }
+.marquee-item{
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 0 24px; flex-shrink: 0; white-space: nowrap;
+  font-family: var(--serif); font-size: 1.3rem; color: var(--piedra);
+}
+.marquee-item .dot{ width: 5px; height: 5px; border-radius: 50%; background: var(--arena); flex-shrink: 0; }
+@keyframes marquee{
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
 
-    /* =========================================
-       MAP + CONTACT
-       ========================================= */
-    .map-section { background: var(--white); padding: 0; }
-    .map-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-    }
-    .map-info {
-      padding: 100px 80px;
-      display: flex; flex-direction: column; justify-content: center;
-      background: var(--white);
-    }
-    .map-info-item {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .map-info-item:first-of-type { padding-top: 36px; }
-    .map-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
-      border: 1px solid var(--border-hover);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--stone);
-    }
-    .map-info-text h3 {
-      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--stone); margin-bottom: 4px; font-weight: 500;
-    }
-    .map-info-text p, .map-info-text a {
-      font-size: 0.92rem; color: var(--text);
-      text-decoration: none; transition: color 0.3s; line-height: 1.6;
-    }
-    .map-info-text a:hover { color: var(--stone); }
-    .map-frame { min-height: 500px; position: relative; }
-    .map-frame iframe {
-      width: 100%; height: 100%; min-height: 500px;
-      border: none; display: block;
-      filter: grayscale(0.7) contrast(1.05);
-    }
+/* -- PROGRESO LATERAL -- */
+.progreso{
+  position: fixed; right: 1.3rem; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 9rem; background: var(--linea);
+  z-index: 60; pointer-events: none;
+}
+.progreso span{
+  position:absolute; inset:0; background: var(--arena-luz);
+  transform: scaleY(0); transform-origin: top;
+}
+@media (max-width: 820px){ .progreso{ display:none; } }
 
-    /* =========================================
-       CTA
-       ========================================= */
-    .cta-section {
-      background: var(--black); padding: 110px 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 60px; flex-wrap: wrap;
-    }
-    .cta-text { flex: 1; min-width: 300px; }
-    .cta-text h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 300; color: #F7F6F3; line-height: 1.12;
-    }
-    .cta-text h2 em { font-style: italic; color: var(--stone-light); }
-    .cta-text p {
-      font-size: 0.95rem; color: rgba(247,246,243,0.6);
-      margin-top: 16px; font-weight: 300;
-    }
-    .btn-light {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: #F7F6F3; color: var(--black);
-      text-decoration: none; padding: 18px 44px;
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      font-weight: 500; transition: all 0.35s var(--ease-smooth);
-      position: relative; overflow: hidden;
-    }
-    .btn-light::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--stone); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .btn-light:hover::before { transform: translateX(0); }
-    .btn-light:hover { color: #F7F6F3; }
-    .btn-light span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+/* -- MANIFIESTO -- */
+.manifiesto{
+  position: relative;
+  padding: clamp(9rem,20vh,15rem) var(--pad);
+}
+.manifiesto p{
+  position: relative; z-index: 2;
+  max-width: 22ch;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3.8vw, 3.1rem);
+  line-height: 1.28;
+}
+.flotante{
+  position: absolute; z-index: 1;
+  width: clamp(7rem, 15vw, 16rem);
+  overflow: hidden;
+  will-change: transform;
+}
+.flotante img{ aspect-ratio: 3/4; }
+.flotante--1{ top: 4%;  right: 8%;  width: clamp(9rem, 18vw, 19rem); }
+.flotante--2{ bottom: 2%; right: 28%; }
+.flotante--3{ top: 38%; left: 58%; width: clamp(6rem, 11vw, 12rem); opacity:.75; }
+@media (max-width: 720px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; } }
 
-    /* =========================================
-       FOOTER
-       ========================================= */
-    footer {
-      background: var(--black); padding: 80px 60px 50px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      color: #F7F6F3;
-    }
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 60px; margin-bottom: 60px;
-    }
-    .footer-brand .nav-logo { color: #F7F6F3; font-size: 1.4rem; margin-bottom: 18px; display: inline-block; }
-    .footer-tagline {
-      font-family: var(--font-serif); font-style: italic;
-      font-size: 1rem; color: rgba(247,246,243,0.55);
-      line-height: 1.6; max-width: 280px; margin-bottom: 28px;
-    }
-    .footer-social { display: flex; gap: 12px; }
-    .social-link {
-      width: 38px; height: 38px;
-      border: 1px solid rgba(255,255,255,0.15);
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; color: rgba(247,246,243,0.6);
-      transition: border-color 0.3s, color 0.3s, background 0.3s;
-    }
-    .social-link:hover { background: var(--stone); color: var(--black); border-color: var(--stone); }
-    .social-link svg { width: 16px; height: 16px; }
-    .footer-col h3 {
-      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--stone-light); margin-bottom: 20px; font-weight: 500;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul a {
-      text-decoration: none; color: rgba(247,246,243,0.6);
-      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
-    }
-    .footer-col ul a:hover { color: #F7F6F3; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 28px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-    }
-    .footer-copy {
-      font-size: 0.75rem; color: rgba(247,246,243,0.4); letter-spacing: 0.04em;
-    }
-    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
-    .footer-legal a, .footer-legal button {
-      font-size: 0.72rem; color: rgba(247,246,243,0.5);
-      text-decoration: none; letter-spacing: 0.04em; transition: color 0.3s;
-      background: none; border: none; padding: 0; cursor: pointer; font-family: inherit;
-    }
-    .footer-legal a:hover, .footer-legal button:hover { color: #F7F6F3; }
+/* -- CIFRAS -- */
+.cifras{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(11rem,1fr));
+  gap: 2rem; padding: 0 var(--pad) clamp(7rem,14vh,11rem);
+}
+.cifra{ border-top:1px solid var(--linea); padding-top: 1.4rem; }
+.cifra__valor{
+  font-family: var(--serif); font-size: clamp(2.6rem,6vw,4.6rem);
+  font-variant-numeric: tabular-nums;
+}
+.cifra__valor i{ font-style:normal; color: var(--arena-luz); font-size:.5em; margin-left:.08em; }
+.cifra p{ color: var(--piedra); font-size:.85rem; margin-top:.4rem; }
 
-    /* =========================================
-       REVEAL ANIMATIONS
-       ========================================= */
-    .reveal {
-      opacity: 1; transform: translateY(0);
-      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.12s; }
-    .reveal-delay-2 { transition-delay: 0.24s; }
-    .reveal-delay-3 { transition-delay: 0.36s; }
+/* -- EL PROCESO — line-draw canvas -- */
+.proceso{ height: 350vh; position: relative; }
+.proceso__pin{
+  position: relative;
+  height: 100vh; height: 100svh;
+  overflow: hidden;
+  display: grid;
+}
+.proceso__lienzo{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.proceso__hud{
+  position: relative; z-index: 2;
+  display:flex; flex-direction:column; justify-content: space-between;
+  padding: clamp(5rem, 12vh, 7rem) var(--pad) clamp(2.5rem, 6vh, 4rem);
+  pointer-events: none;
+}
+.proceso__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; }
+.proceso__titulo{ font-size: clamp(1.8rem, 4vw, 3.2rem); }
+.proceso__num{
+  font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.proceso__num i{ font-style:normal; color: var(--arena-luz); font-size:.45em; }
+.proceso__fase{
+  font-size:.78rem; letter-spacing:.28em; text-transform:uppercase; color: var(--piedra);
+  border-left: 2px solid var(--arena-luz); padding-left: 1rem;
+}
+@media (prefers-reduced-motion: reduce){
+  .proceso{ height:auto; }
+  .proceso__pin{ height:100svh; }
+}
 
-    /* =========================================
-       ACCESSIBILITY
-       ========================================= */
-    :focus-visible { outline: 2px solid var(--stone); outline-offset: 3px; border-radius: 2px; }
-    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--stone); color: #F7F6F3; padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+/* -- ZOOM INMERSIVO -- */
+.zoom{ height: 300vh; position: relative; }
+.zoom__pin{
+  position: relative;
+  height: 100vh; height: 100svh;
+  overflow: hidden;
+  display: grid; place-items: center;
+}
+.zoom__marco{
+  position:absolute; inset:0;
+  clip-path: inset(38% 32% 38% 32%);
+  will-change: clip-path;
+}
+.zoom__marco img{ will-change: transform; }
+.zoom__marco::after{
+  content:""; position:absolute; inset:0;
+  background: rgba(14,14,13,.34);
+}
+.zoom__texto{
+  position: relative; z-index: 2;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5.5vw, 4.8rem);
+  line-height: 1.15;
+  text-align: center; max-width: 16ch;
+  padding: 0 var(--pad);
+  text-shadow: 0 2px 30px rgba(0,0,0,.45);
+}
+.zoom__texto .palabra{ display:inline-block; opacity: 0; transform: translateY(.5em); }
+@media (prefers-reduced-motion: reduce){
+  .zoom{ height:auto; }
+  .zoom__pin{ height:100svh; }
+  .zoom__marco{ clip-path: none; }
+  .zoom__texto .palabra{ opacity:1; transform:none; }
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-      .marquee-track { animation: none !important; }
-    }
+/* -- TIRAS a contra-scroll -- */
+.tiras{
+  overflow:hidden; padding: clamp(5rem,10vh,8rem) 0;
+  display:grid; gap:.4rem;
+}
+.tira{
+  white-space: nowrap; will-change: transform;
+  font-family: var(--serif); font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1.05; color: transparent;
+  -webkit-text-stroke: 1px rgba(242,239,234,.22);
+}
+.tira em{ color: var(--arena); -webkit-text-stroke: 0; opacity:.8; }
+.tira--llena{ color: rgba(242,239,234,.12); -webkit-text-stroke: 0; }
 
-    /* =========================================
-       RESPONSIVE
-       ========================================= */
-    @media (max-width: 1024px) {
-      nav { padding: 24px 36px; }
-      nav.scrolled { padding: 16px 36px; }
-      section { padding: 100px 36px; }
-      .hero-content { padding: 0 36px 70px; }
-      .hero-scroll { right: 36px; }
-      .intro-strip { grid-template-columns: repeat(2, 1fr); }
-      .projects-grid { grid-template-columns: 1fr 1fr; }
-      .project-card--tall { grid-row: span 1; aspect-ratio: 16/10; }
-      .spec-grid { grid-template-columns: repeat(2, 1fr); }
-      .process-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .about-content { padding: 80px 48px; }
-      .map-inner { grid-template-columns: 1fr; }
-      .map-info { padding: 80px 36px; }
-    }
-    @media (max-width: 768px) {
-      .hero { min-height: auto; height: auto; align-items: flex-start; }
-      .hamburger { display: flex; }
-      .nav-links { display: none; }
-      nav { padding: 20px 24px; }
-      nav.scrolled { padding: 14px 24px; }
-      section { padding: 80px 24px; }
-      .hero-content { padding: 140px 24px 60px; }
-      .hero-scroll { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .intro-strip { grid-template-columns: 1fr 1fr; }
-      .intro-item { padding: 32px 24px; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card--tall { aspect-ratio: 4/3; }
-      .project-overlay { opacity: 1; }
-      .project-info { opacity: 1; transform: none; }
-      .about-section { grid-template-columns: 1fr; }
-      .about-visual { min-height: 320px; }
-      .about-content { padding: 60px 24px; }
-      .spec-grid { grid-template-columns: 1fr; }
-      .services-list .service-item { grid-template-columns: 40px 1fr; gap: 16px; }
-      .process-grid { grid-template-columns: 1fr 1fr; }
-      .cta-section { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
-      .footer-top { grid-template-columns: 1fr; gap: 36px; }
-      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; align-items: center; }
-      .map-info { padding: 60px 24px; }
-    }
-    @media (max-width: 480px) {
-      .hero-title { font-size: clamp(2.2rem, 10vw, 2.8rem); }
-      .hero-sub { font-size: 0.92rem; }
-      .section-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
-      .intro-number { font-size: clamp(1.6rem, 10vw, 2.2rem); }
-      .intro-item { padding: 24px 16px; }
-      .spec-card { padding: 36px 24px; }
-      .process-step { padding: 32px 24px; }
-      .process-grid { grid-template-columns: 1fr; }
-      .about-quote { font-size: 1.15rem; }
-      .btn-primary { padding: 14px 28px; }
-      .btn-light { padding: 14px 28px; }
-    }
-  </style>
+/* -- PROYECTOS — galeria horizontal pineada -- */
+.proyectos{ position: relative; }
+.proyectos__pin{
+  height: 100vh; height: 100svh;
+  overflow: hidden;
+  display:flex; flex-direction: column; justify-content: center;
+}
+.proyectos__cab{
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding: clamp(5rem,10vh,6.5rem) var(--pad) 2.2rem; gap:2rem;
+}
+.proyectos__cab h2{ font-size: clamp(2rem, 4.5vw, 3.6rem); }
+.proyectos__indice{
+  font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.proyectos__indice b{ font-weight: 400; color: var(--crema); }
+.proyectos__track{
+  display:flex; gap: clamp(1.5rem,3vw,3rem);
+  padding: 0 var(--pad);
+  align-items: stretch;
+  will-change: transform;
+}
+.panel{ flex: 0 0 auto; width: clamp(20rem, 44vw, 44rem); }
+.panel--alto{ width: clamp(16rem, 30vw, 30rem); }
+.panel__marco{ overflow:hidden; position:relative; height: clamp(20rem, 56vh, 34rem); }
+.panel__marco img{ will-change: transform; }
+.panel__num{
+  position:absolute; top:1rem; left:1.2rem; z-index:1;
+  font-family: var(--serif); font-size: 1rem; letter-spacing:.18em;
+  color: var(--crema); text-shadow: 0 1px 12px rgba(0,0,0,.5);
+}
+.panel__meta{ display:flex; justify-content:space-between; margin-top: 1rem; align-items:baseline; gap:1rem; }
+.panel__meta h3{ font-size: clamp(1.3rem, 2.2vw, 1.8rem); white-space: nowrap; }
+.panel__meta span{ color: var(--piedra); font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; }
+
+@media (max-width: 820px){
+  .proyectos__pin{ height:auto; overflow:visible; }
+  .proyectos__track{ flex-direction: column; }
+  .panel, .panel--alto{ width: 100%; }
+}
+
+/* -- COMO TRABAJAMOS -- */
+.metodo{ padding: clamp(7rem,16vh,12rem) var(--pad); }
+.metodo__cab{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 4rem; gap:2rem; flex-wrap:wrap; }
+.metodo__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.5rem); }
+.metodo__cab p{ color: var(--piedra); font-size:.85rem; letter-spacing:.2em; text-transform:uppercase; }
+.metodo__grid{
+  display:grid; gap: clamp(2rem,4vw,3.5rem) clamp(1.5rem,3vw,2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem,100%), 1fr));
+  perspective: 1200px;
+}
+.paso{ border-top: 1px solid var(--linea); padding-top: 1.3rem; }
+.paso h3{ font-size: 1.7rem; margin-bottom:.5rem; }
+.paso h3 i{ font-style: normal; font-family: var(--sans); font-size:.72rem; letter-spacing:.2em; color: var(--arena-luz); vertical-align: super; margin-right:.5rem; }
+.paso strong{ display:block; font-weight: 500; font-size:.95rem; margin-bottom:.3rem; }
+.paso p{ color: var(--piedra); font-size:.95rem; }
+
+/* -- SERVICIOS -- */
+.servicios{ padding: 0 var(--pad) clamp(7rem,16vh,12rem); }
+.servicios__cab{ margin-bottom: 3.5rem; }
+.servicios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.5rem); max-width: 16ch; }
+.servicio{
+  display:grid; grid-template-columns: 6rem 1fr auto; gap: 1.5rem; align-items: baseline;
+  border-top: 1px solid var(--linea);
+  padding: 1.9rem 0;
+  position: relative;
+}
+.servicio:last-child{ border-bottom: 1px solid var(--linea); }
+.servicio__num{ font-family: var(--serif); color: var(--piedra); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.servicio__nombre{ font-family: var(--serif); font-size: clamp(1.5rem, 3.4vw, 2.6rem); transition: color .4s ease, transform .5s cubic-bezier(.22,1,.36,1); }
+.servicio__desc{ grid-column: 2; max-width: 46ch; color: var(--piedra); font-size: .95rem; }
+.servicio__tag{ font-size:.72rem; letter-spacing:.2em; text-transform: uppercase; color: var(--piedra); }
+@media (hover:hover) and (pointer:fine){
+  .servicio:hover .servicio__nombre{ color: var(--arena-luz); transform: translateX(.6rem); }
+}
+@media (max-width: 720px){
+  .servicio{ grid-template-columns: 3rem 1fr; }
+  .servicio__tag{ display:none; }
+  .servicio__desc{ grid-column: 2; }
+}
+.servicios__preview{
+  position: fixed; top:0; left:0; z-index: 40;
+  width: 20rem; aspect-ratio: 4/3;
+  pointer-events: none; overflow: hidden;
+  opacity: 0;
+}
+
+/* -- GOOGLE BADGE + CONTACTO -- */
+.contacto{
+  min-height: 92svh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; gap: 2.6rem; padding: 6rem var(--pad) 4rem;
+  border-top: 1px solid var(--linea);
+}
+.contacto__estado{
+  font-size:.74rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
+  display:flex; align-items:center; gap:.7rem;
+}
+.contacto__estado::before{
+  content:""; width:.55rem; height:.55rem; border-radius:50%;
+  background: var(--arena-luz); box-shadow: 0 0 12px var(--arena-luz);
+  animation-name: latido; animation-duration: 2.4s; animation-timing-function: ease-in-out; animation-iteration-count: infinite;
+}
+@keyframes latido{ 50%{ opacity:.35; } }
+.contacto h2{ font-size: clamp(2.6rem, 8vw, 6.6rem); max-width: 13ch; }
+
+.google{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-size:.85rem; letter-spacing:.1em; color: var(--piedra);
+  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+}
+.google b{ color: var(--crema); font-weight: 500; }
+.google i{ font-style:normal; color: var(--arena-luz); letter-spacing:.18em; }
+
+.magnetico{
+  display:inline-flex; align-items:center; gap:.9rem;
+  font: 400 .92rem/1 var(--sans); letter-spacing:.14em; text-transform:uppercase;
+  color: var(--crema);
+  border:1px solid var(--arena-suave); border-radius: 999px;
+  padding: 1.35rem 2.6rem;
+  background: transparent; cursor: pointer;
+  transition: background-color .45s ease, color .45s ease, border-color .45s ease;
+}
+.magnetico:hover{ background: var(--arena); border-color: var(--arena); color: #0f1316; }
+.magnetico .magnetico__label{ display:inline-block; }
+
+.contacto__datos{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr));
+  gap: 2rem; width: min(64rem, 100%); margin-top: 2.5rem;
+  text-align:left; font-size:.95rem;
+}
+.dato{ border-top:1px solid var(--linea); padding-top: 1.1rem; }
+.dato h4{ font: 400 .72rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
+.dato a:hover{ color: var(--arena-luz); }
+.horario{ display:grid; gap:.25rem; }
+.horario > div{ display:flex; justify-content:space-between; gap:1rem; color: var(--piedra); }
+.horario .horario-hoy{ color: var(--arena-luz); font-weight: 400; }
+
+.mapa{ width: 100%; padding: 0 var(--pad) 3rem; }
+.mapa iframe{ width:100%; height: 340px; border:0; border-radius: 4px; filter: grayscale(.85) invert(.92) contrast(1.1); }
+
+.pie{
+  display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap;
+  padding: 2rem var(--pad) 2.6rem;
+  color: var(--piedra); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+  border-top: 1px solid var(--linea);
+}
+.pie nav{ display:flex; gap:1.4rem; flex-wrap:wrap; }
+.pie a:hover, .pie button:hover{ color: var(--arena-luz); }
+.pie button{
+  background:none; border:none; cursor:pointer; color:inherit;
+  font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0;
+}
+
+[data-reveal]{ visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
+  .preloader{ display:none; }
+  .marquee-track{ animation:none; }
+  .progreso{ display:none; }
+}
+
+/* Mobile overrides */
+@media (max-width: 768px){
+  .hero{ min-height: auto; height: auto; align-items: flex-start; padding-top: 7rem; padding-bottom: 3rem; }
+}
+</style>
 </head>
 <body>
 
-<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
-  <div class="loader-logo">Murillo</div>
-  <div class="loader-bar"></div>
+<!-- ======== PRELOADER ======== -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span><b>Murillo</b> Arquitectos</span></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
 </div>
 
-<nav id="navbar" aria-label="Navegación principal">
-  <a href="#main-content" class="nav-logo">Murillo Arquitectos</a>
-  <ul class="nav-links">
-    <li><a href="#proyectos">Proyectos</a></li>
-    <li><a href="#estudio">Estudio</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menu de navegación">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<!-- ======== CAPAS DECORATIVAS ======== -->
+<canvas id="fondo-gl" aria-hidden="true"></canvas>
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
 
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
-  <a href="#proyectos" onclick="closeMobile()">Proyectos</a>
-  <a href="#estudio" onclick="closeMobile()">Estudio</a>
-  <a href="#servicios" onclick="closeMobile()">Servicios</a>
-  <a href="#contacto" onclick="closeMobile()">Contacto</a>
-</div>
-
-<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
-<main id="main-content">
-
-<!-- ========== HERO ========== -->
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-bg" id="heroBg" style="background-image: url('https://murilloarquitectos.com/wp-content/uploads/2025/08/murillo-arquitectos-clinica-dental-urgel-valladolid-sala-de-espera-scaled.jpg');" role="img" aria-label="Sala de espera de la Clínica Dental Urgel diseñada por Murillo Arquitectos en Valladolid"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Estudio de arquitectura en Valladolid</p>
-    <h1 class="hero-title" id="hero-title">Arquitectura que piensa<br>en el <em>detalle.</em></h1>
-    <p class="hero-sub">Creamos espacios funcionales, sostenibles y cuidados al milímetro. Desde clínicas dentales hasta viviendas y proyectos de hostelería, cada proyecto parte de escuchar y entender lo que necesitas.</p>
-    <div class="hero-actions">
-      <a href="tel:+34662511348" class="btn-primary" aria-label="Llamar a Murillo Arquitectos al 662 51 13 48">
-        <span>Llamar al 662 51 13 48
-          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-      <a href="#proyectos" class="btn-ghost">
-        <span>Ver proyectos</span>
-        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-      </a>
-    </div>
-  </div>
-  <div class="hero-scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- ========== INTRO STRIP ========== -->
-<div class="intro-strip" role="region" aria-label="Cifras del estudio">
-  <div class="intro-item reveal">
-    <div class="intro-number"><span class="count" data-target="50">0</span><span>+</span></div>
-    <div class="intro-label">Proyectos realizados</div>
-  </div>
-  <div class="intro-item reveal reveal-delay-1">
-    <div class="intro-number"><span class="count" data-target="50" data-decimal="true">0</span></div>
-    <div class="intro-label">Sobre 5 en Google</div>
-  </div>
-  <div class="intro-item reveal reveal-delay-2">
-    <div class="intro-number"><span class="count" data-target="61">0</span></div>
-    <div class="intro-label">Reseñas verificadas</div>
-  </div>
-  <div class="intro-item reveal reveal-delay-3">
-    <div class="intro-number"><span class="count" data-target="8">0</span></div>
-    <div class="intro-label">Provincias de actuación</div>
-  </div>
-</div>
-
-<!-- ========== MARQUEE ========== -->
-<div class="marquee-section" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Clínicas dentales</span>
-    <span class="marquee-item"><span class="dot"></span>Viviendas</span>
-    <span class="marquee-item"><span class="dot"></span>Hostelería</span>
-    <span class="marquee-item"><span class="dot"></span>Reformas integrales</span>
-    <span class="marquee-item"><span class="dot"></span>Farmacias</span>
-    <span class="marquee-item"><span class="dot"></span>Oficinas</span>
-    <span class="marquee-item"><span class="dot"></span>Interiorismo</span>
-    <span class="marquee-item"><span class="dot"></span>Obra nueva</span>
-    <span class="marquee-item"><span class="dot"></span>Clínicas dentales</span>
-    <span class="marquee-item"><span class="dot"></span>Viviendas</span>
-    <span class="marquee-item"><span class="dot"></span>Hostelería</span>
-    <span class="marquee-item"><span class="dot"></span>Reformas integrales</span>
-    <span class="marquee-item"><span class="dot"></span>Farmacias</span>
-    <span class="marquee-item"><span class="dot"></span>Oficinas</span>
-    <span class="marquee-item"><span class="dot"></span>Interiorismo</span>
-    <span class="marquee-item"><span class="dot"></span>Obra nueva</span>
-  </div>
-</div>
-
-<!-- ========== PROJECTS ========== -->
-<section class="projects-section" id="proyectos" aria-labelledby="proyectos-title">
-  <div class="projects-header">
-    <div>
-      <p class="section-label reveal">Proyectos seleccionados</p>
-      <h2 class="section-title reveal reveal-delay-1" id="proyectos-title">Espacios que hablan<br>por <em>sí mismos.</em></h2>
-    </div>
-  </div>
-  <div class="projects-grid">
-    <div class="project-card project-card--tall reveal">
-      <img class="project-img" src="https://murilloarquitectos.com/wp-content/uploads/2025/12/24_serna-dental-valladolid-murillo-arquitectos-scaled.jpg" alt="Interior minimalista de la Clínica Serna Dental en Valladolid, diseñada por Murillo Arquitectos" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <p class="project-cat">Clínica dental</p>
-        <h3 class="project-name">Clínica Serna Dental</h3>
-        <p class="project-meta">Valladolid</p>
-      </div>
-    </div>
-    <div class="project-card project-card--wide reveal reveal-delay-1">
-      <img class="project-img" src="https://murilloarquitectos.com/wp-content/uploads/2025/08/murillo-arquitectos-vivienda-bl-exterior-3-scaled.jpg" alt="Fachada exterior contemporánea de Vivienda BL en Valladolid, obra de Murillo Arquitectos" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <p class="project-cat">Residencial</p>
-        <h3 class="project-name">Vivienda BL</h3>
-        <p class="project-meta">Valladolid</p>
-      </div>
-    </div>
-    <div class="project-card project-card--square reveal reveal-delay-2">
-      <img class="project-img" src="https://murilloarquitectos.com/wp-content/uploads/2025/08/murillo-arquitectos-charcuteria-restaurante-joselitos-acceso.jpg" alt="Fachada del restaurante y charcuteria Joselitos diseñado por Murillo Arquitectos" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <p class="project-cat">Hostelería</p>
-        <h3 class="project-name">Joselito's</h3>
-        <p class="project-meta">Restaurante y charcutería</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="projects-grid" style="margin-top: 4px;">
-    <div class="project-card project-card--wide reveal">
-      <img class="project-img" src="https://murilloarquitectos.com/wp-content/uploads/2025/07/murillo-arquitectos-clinica-dental-jalon-recepcion-scaled.jpg" alt="Recepción de la Clínica Dental Jalón en Valladolid, interiorismo de Murillo Arquitectos" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <p class="project-cat">Clínica dental</p>
-        <h3 class="project-name">Clínica Dental Jalón</h3>
-        <p class="project-meta">Barrio Pinar de Jalón, Valladolid</p>
-      </div>
-    </div>
-    <div class="project-card project-card--wide reveal reveal-delay-1">
-      <img class="project-img" src="https://murilloarquitectos.com/wp-content/uploads/2025/08/murillo-arquitectos-vivienda-tinajas-exterior.jpg" alt="Fachada exterior de Vivienda Tinajas con patio central en Valladolid, obra de Murillo Arquitectos" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <p class="project-cat">Residencial</p>
-        <h3 class="project-name">Vivienda Tinajas</h3>
-        <p class="project-meta">Valladolid</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== ABOUT / PHILOSOPHY ========== -->
-<div class="about-section" id="estudio" role="region" aria-labelledby="estudio-title">
-  <div class="about-visual">
-    <img src="https://murilloarquitectos.com/wp-content/uploads/2025/07/murillo-arquitectos-clinica-dental-vega-detalle-recepcion.jpg" alt="Detalle de recepción de la Clínica Dental Vega en Salamanca, diseño de interiores por Murillo Arquitectos" loading="lazy">
-  </div>
-  <div class="about-content">
-    <p class="section-label reveal">El estudio</p>
-    <h2 class="section-title reveal reveal-delay-1" id="estudio-title">Sergio Murillo y<br>David Hernández</h2>
-    <div class="about-divider reveal" aria-hidden="true"></div>
-    <p class="about-body reveal reveal-delay-2">
-      Murillo Arquitectos nace de la convicción de que cada espacio debe <strong>eliminar lo superfluo para destacar lo esencial</strong>. Desde Valladolid, trabajamos en toda España creando clínicas dentales, viviendas, establecimientos de hostelería y reformas integrales con una atención meticulosa a cada detalle.<br><br>
-      Somos <strong>profesores en el Máster MBA Dental</strong>, lo que nos ha dado un conocimiento profundo de los requisitos específicos de espacios sanitarios. Nuestro trabajo ha sido publicado en la <strong>revista Diseño Interior</strong>.
-    </p>
-    <blockquote class="about-quote reveal reveal-delay-3">
-      La arquitectura es un reflejo de la vida que queremos vivir.
-    </blockquote>
-  </div>
-</div>
-
-<!-- ========== SPECIALIZATION: DENTAL ========== -->
-<section class="spec-section" aria-labelledby="spec-title">
-  <div class="spec-inner">
-    <div class="spec-header">
-      <p class="section-label reveal">Especialización</p>
-      <h2 class="section-title reveal reveal-delay-1" id="spec-title">Referentes en arquitectura<br>de <em>clínicas dentales.</em></h2>
-      <p class="section-desc reveal reveal-delay-2">Transformamos locales con geometrías complejas en espacios sanitarios luminosos, funcionales y acogedores. De Valladolid a Bilbao, de Cádiz a Huesca.</p>
-    </div>
-    <div class="spec-grid">
-      <div class="spec-card reveal">
-        <div class="spec-number">01</div>
-        <h3>Iluminación estratégica</h3>
-        <p>Locales profundos y estrechos se convierten en interiores diáfanos gracias a un trabajo preciso con la luz natural y artificial.</p>
-      </div>
-      <div class="spec-card reveal reveal-delay-1">
-        <div class="spec-number">02</div>
-        <h3>Materiales nobles</h3>
-        <p>Superficies que transmiten limpieza e higiene sin renunciar a la calidez. Madera, piedra y texturas que acogen al paciente.</p>
-      </div>
-      <div class="spec-card reveal reveal-delay-2">
-        <div class="spec-number">03</div>
-        <h3>Flujos de trabajo</h3>
-        <p>Distribución pensada para que el equipo clínico se mueva con eficiencia y el paciente se sienta cómodo en cada paso del recorrido.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SERVICES ========== -->
-<section class="services-section" id="servicios" aria-labelledby="servicios-title">
-  <div class="services-inner">
-    <p class="section-label reveal">Servicios</p>
-    <h2 class="section-title reveal reveal-delay-1" id="servicios-title">Qué <em>hacemos.</em></h2>
-    <div class="services-list">
-      <div class="service-item reveal">
-        <div class="service-num">01</div>
-        <div>
-          <h3>Clínicas dentales</h3>
-          <p>Diseño integral de clínicas: distribución, iluminación, materiales y normativa sanitaria. Más de 20 clínicas proyectadas en toda España.</p>
-        </div>
-      </div>
-      <div class="service-item reveal reveal-delay-1">
-        <div class="service-num">02</div>
-        <div>
-          <h3>Viviendas</h3>
-          <p>Obra nueva y reformas residenciales. Hogares que priorizan la luz, la funcionalidad y los materiales que envejecen bien.</p>
-        </div>
-      </div>
-      <div class="service-item reveal reveal-delay-2">
-        <div class="service-num">03</div>
-        <div>
-          <h3>Hostelería y comercio</h3>
-          <p>Restaurantes, charcuterías, farmacias y locales comerciales. Espacios donde la marca se vive desde la puerta de entrada.</p>
-        </div>
-      </div>
-      <div class="service-item reveal reveal-delay-3">
-        <div class="service-num">04</div>
-        <div>
-          <h3>Reformas integrales</h3>
-          <p>Adaptación de espacios existentes con criterio arquitectónico. Transformar limitaciones en oportunidades de diseño.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== PROCESS - Cómo trabajamos ========== -->
-<section class="process-section" aria-labelledby="proceso-title">
-  <div class="process-inner">
-    <p class="section-label reveal">Cómo trabajamos</p>
-    <h2 class="section-title reveal reveal-delay-1" id="proceso-title">Cuatro fases, un <em>objetivo.</em></h2>
-    <div class="process-grid">
-      <div class="process-step reveal">
-        <div class="process-num">01</div>
-        <h3>Escuchar</h3>
-        <p>Nos reunimos contigo para entender tu actividad, tus necesidades y tu presupuesto. No hay dos proyectos iguales y no empezamos a dibujar hasta entender el problema.</p>
-      </div>
-      <div class="process-step reveal reveal-delay-1">
-        <div class="process-num">02</div>
-        <h3>Proyectar</h3>
-        <p>Desarrollamos el anteproyecto con plantas, volúmenes y materiales. Te mostramos el resultado antes de mover un ladrillo para que puedas ajustar sin sorpresas.</p>
-      </div>
-      <div class="process-step reveal reveal-delay-2">
-        <div class="process-num">03</div>
-        <h3>Construir</h3>
-        <p>Dirigimos la obra con seguimiento continuo. Controlamos plazos, costes y calidad para que el resultado final sea fiel al proyecto aprobado.</p>
-      </div>
-      <div class="process-step reveal reveal-delay-3">
-        <div class="process-num">04</div>
-        <h3>Entregar</h3>
-        <p>Repasamos cada detalle antes de darte las llaves. El proyecto no termina hasta que estas satisfecho con lo que ves, tocas y habitas.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== MAP + CONTACT ========== -->
-<div class="map-section" id="contacto">
-  <div class="map-inner">
-    <div class="map-info">
-      <p class="section-label reveal">Contacto</p>
-      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">
-        Hablemos de tu <em>proyecto.</em>
-      </h2>
-      <div class="map-info-item reveal">
-        <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <div class="map-info-text">
-          <h3>Dirección</h3>
-          <p>C/ Padre Francisco Suárez 11, 3.o Izq.<br>47006 Valladolid</p>
-        </div>
-      </div>
-      <div class="map-info-item reveal reveal-delay-1">
-        <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-          </svg>
-        </div>
-        <div class="map-info-text">
-          <h3>Teléfono</h3>
-          <a href="tel:+34662511348">662 51 13 48</a>
-        </div>
-      </div>
-      <div class="map-info-item reveal reveal-delay-2">
-        <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </div>
-        <div class="map-info-text">
-          <h3>Email</h3>
-          <a href="mailto:info@murilloarquitectos.com">info@murilloarquitectos.com</a>
-        </div>
-      </div>
-      <div style="margin-top: 36px;" class="reveal reveal-delay-3">
-        <a href="tel:+34662511348" class="btn-primary" style="display: inline-flex; background: var(--black); color: var(--white);">
-          <span>Llamar al estudio
-            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
-        </a>
-      </div>
-    </div>
-    <div class="map-frame">
-      <iframe
-        title="Mapa de ubicación de Murillo Arquitectos en C/ Padre Francisco Suárez 11, Valladolid"
-        src="https://www.google.com/maps?q=Murillo+Arquitectos+C+Padre+Francisco+Suárez+11+Valladolid&output=embed"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </div>
-</div>
-
-<!-- ========== CTA ========== -->
-<div class="cta-section" role="region" aria-label="Llamada a la acción">
-  <div class="cta-text">
-    <h2>Tienes un espacio.<br>Nosotros tenemos <em>el proyecto.</em></h2>
-    <p>Cuéntanos qué necesitas y te decimos cómo podemos ayudarte. Sin compromiso.</p>
-  </div>
-  <a href="tel:+34662511348" class="btn-light">
-    <span>662 51 13 48
-      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-    </span>
+<header class="cabecera">
+  <a class="cabecera__logo" href="#">
+    <img src="img/logo.svg" alt="Murillo Arquitectos" loading="eager">
   </a>
-</div>
+  <nav class="cabecera__nav" aria-label="principal">
+    <a class="roll" href="#proyectos" data-text="Proyectos"><span>Proyectos</span></a>
+    <a class="roll" href="#estudio"   data-text="Estudio"><span>Estudio</span></a>
+    <a class="roll" href="#servicios" data-text="Servicios"><span>Servicios</span></a>
+    <a class="roll" href="#contacto"  data-text="Contacto"><span>Contacto</span></a>
+  </nav>
+</header>
 
-</main>
-
-<!-- ========== FOOTER ========== -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="#main-content" class="nav-logo">Murillo Arquitectos</a>
-      <p class="footer-tagline">La arquitectura es un reflejo de la vida que queremos vivir.</p>
-      <div class="footer-social">
-        <a href="https://www.instagram.com/murillo_arquitectos/" target="_blank" rel="noopener" class="social-link" aria-label="Ver Murillo Arquitectos en Instagram">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/murillo-arquitectos/" target="_blank" rel="noopener" class="social-link" aria-label="Ver Murillo Arquitectos en LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="mailto:info@murilloarquitectos.com" class="social-link" aria-label="Enviar correo a info@murilloarquitectos.com">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2m0 4l-8 5-8-5V6l8 5 8-5z"/></svg>
-        </a>
-        <a href="tel:+34662511348" class="social-link" aria-label="Llamar a Murillo Arquitectos">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 00-1.02.24l-2.2 2.2a15.07 15.07 0 01-6.58-6.6l2.2-2.2a1 1 0 00.25-1.02A11.4 11.4 0 018.5 4a1 1 0 00-1-1H4a1 1 0 00-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 00-1-1"/></svg>
-        </a>
+<main>
+  <!-- ======== HERO ======== -->
+  <section class="hero">
+    <div class="hero__media" aria-hidden="true">
+      <img src="img/hero-urgel.jpg" alt="Clínica Dental Urgel, proyecto de Murillo Arquitectos en Valladolid" loading="eager" data-hero-parallax>
+    </div>
+    <div class="hero__contenido">
+      <p class="hero__kicker" data-hero-reveal>Arquitectura e interiorismo en Valladolid</p>
+      <h1 class="hero__titulo" data-hero-reveal>
+        Arquitectura que piensa en <em>detalle</em>.
+      </h1>
+      <div class="hero__pie">
+        <p class="hero__sub" data-hero-reveal>
+          Sergio Murillo y David Hernández. Dos arquitectos que combinan funcionalidad,
+          sostenibilidad y un cuidado obsesivo por cada acabado.
+        </p>
+        <p class="hero__scroll" data-hero-reveal>Baja despacio</p>
       </div>
     </div>
-    <div class="footer-col">
-      <h3>Servicios</h3>
-      <ul>
-        <li><a href="#servicios">Clínicas dentales</a></li>
-        <li><a href="#servicios">Viviendas</a></li>
-        <li><a href="#servicios">Hostelería</a></li>
-        <li><a href="#servicios">Reformas</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h3>Estudio</h3>
-      <ul>
-        <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#estudio">Filosofía</a></li>
-        <li><a href="#contacto">Dónde estamos</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h3>Contacto</h3>
-      <ul>
-        <li><a href="tel:+34662511348">662 51 13 48</a></li>
-        <li><a href="mailto:info@murilloarquitectos.com">info@murilloarquitectos.com</a></li>
-        <li><a href="#contacto">Valladolid</a></li>
-      </ul>
+  </section>
+
+  <!-- ======== MARQUEE ======== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="dot"></span> Arquitectura</span>
+      <span class="marquee-item"><span class="dot"></span> Interiorismo</span>
+      <span class="marquee-item"><span class="dot"></span> Clínicas dentales</span>
+      <span class="marquee-item"><span class="dot"></span> Viviendas</span>
+      <span class="marquee-item"><span class="dot"></span> Hostelería</span>
+      <span class="marquee-item"><span class="dot"></span> Valladolid</span>
+      <span class="marquee-item"><span class="dot"></span> 5,0 en Google</span>
+      <span class="marquee-item"><span class="dot"></span> 61 reseñas</span>
+      <span class="marquee-item"><span class="dot"></span> Arquitectura</span>
+      <span class="marquee-item"><span class="dot"></span> Interiorismo</span>
+      <span class="marquee-item"><span class="dot"></span> Clínicas dentales</span>
+      <span class="marquee-item"><span class="dot"></span> Viviendas</span>
+      <span class="marquee-item"><span class="dot"></span> Hostelería</span>
+      <span class="marquee-item"><span class="dot"></span> Valladolid</span>
+      <span class="marquee-item"><span class="dot"></span> 5,0 en Google</span>
+      <span class="marquee-item"><span class="dot"></span> 61 reseñas</span>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Murillo Arquitectos. Todos los derechos reservados.</p>
-    <div class="footer-legal">
+
+  <!-- ======== MANIFIESTO ======== -->
+  <section class="manifiesto" id="estudio">
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="img/clinica-urgel-volumen.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="img/clinica-fuentes.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="img/clinica-md-bilbao.jpg" alt="" loading="lazy"></figure>
+    <p data-manifiesto>
+      La buena arquitectura no solo es estética. Es funcionalidad y bienestar.
+      Cada espacio que proyectamos resuelve necesidades reales bajo un concepto
+      actual, cuidando lo que se ve y lo que no.
+    </p>
+  </section>
+
+  <!-- ======== CIFRAS ======== -->
+  <section class="cifras">
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="5">0</span><i>,0</i></div>
+      <p>en Google Maps</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="61">0</span></div>
+      <p>reseñas de clientes</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="2">0</span></div>
+      <p>oficinas (Valladolid y Córdoba)</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="176">0</span><i>m2</i></div>
+      <p>la Clínica Dental Urgel</p>
+    </div>
+  </section>
+
+  <!-- ======== EL PROCESO — fachada que se dibuja con el scroll ======== -->
+  <section class="proceso" aria-label="El proceso de trabajo, dibujado línea a línea">
+    <div class="proceso__pin">
+      <canvas class="proceso__lienzo" aria-hidden="true"></canvas>
+      <div class="proceso__hud">
+        <div class="proceso__cab">
+          <h2 class="proceso__titulo">De la idea al espacio, <em>línea a línea</em></h2>
+          <div class="proceso__num"><span data-proceso-num>0</span><i>%</i></div>
+        </div>
+        <p class="proceso__fase" data-proceso-fase>Fase I: Escuchar</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== PROYECTOS — scroll horizontal pineado ======== -->
+  <section class="proyectos" id="proyectos" aria-label="Proyectos destacados">
+    <div class="proyectos__pin">
+      <div class="proyectos__cab">
+        <h2>Proyectos <em>destacados</em></h2>
+        <p class="proyectos__indice"><b data-proy-num>01</b> / 07</p>
+      </div>
+      <div class="proyectos__track">
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">01</span>
+            <img src="img/policlinica-palencia.jpg" alt="Policlínica Dental Palencia, interior" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Policlínica Dental Palencia</h3><span>Salud · Palencia</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">02</span>
+            <img src="img/vivienda-bl.jpg" alt="Vivienda BL, exterior" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Vivienda BL</h3><span>Residencial</span></div>
+        </article>
+        <article class="panel panel--alto">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">03</span>
+            <img src="img/joselitos.jpg" alt="Restaurante Joselitos, barra" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Restaurante Joselitos</h3><span>Hostelería</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">04</span>
+            <img src="img/clinica-vega.jpg" alt="Clínica Dental Vega, recepción" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Clínica Dental Vega</h3><span>Salud</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">05</span>
+            <img src="img/clinica-serna.jpg" alt="Serna Dental, interior" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Serna Dental</h3><span>Salud · Valladolid</span></div>
+        </article>
+        <article class="panel panel--alto">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">06</span>
+            <img src="img/vivienda-tinajas.jpg" alt="Vivienda Tinajas, exterior" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Vivienda Tinajas</h3><span>Residencial</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">07</span>
+            <img src="img/clinica-jalon.jpg" alt="Clínica Dental Jalón, recepción" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Clínica Dental Jalón</h3><span>Salud</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== ZOOM INMERSIVO ======== -->
+  <section class="zoom" aria-label="Detalle de obra">
+    <div class="zoom__pin">
+      <div class="zoom__marco"><img src="img/joselitos-acceso.jpg" alt="Restaurante Joselitos, fachada de acceso" loading="lazy"></div>
+      <p class="zoom__texto" data-zoom-texto>Lo que no se ve <em>también cuenta</em>.</p>
+    </div>
+  </section>
+
+  <!-- ======== COMO TRABAJAMOS ======== -->
+  <section class="metodo">
+    <div class="metodo__cab">
+      <h2 data-reveal data-split="lines">Cómo <em>trabajamos</em></h2>
+      <p data-reveal>04 fases</p>
+    </div>
+    <div class="metodo__grid">
+      <div class="paso">
+        <h3><i>01</i>Escuchar.</h3>
+        <strong>Entender antes de trazar.</strong>
+        <p>Antes de dibujar una sola línea, dedicamos el tiempo necesario a comprender las necesidades, el presupuesto y el modo de vida del cliente.</p>
+      </div>
+      <div class="paso">
+        <h3><i>02</i>Proyectar.</h3>
+        <strong>Visualización avanzada.</strong>
+        <p>Combinamos técnicas clásicas con software de última generación para que el cliente vea su proyecto antes de construirlo y tome decisiones con conocimiento real.</p>
+      </div>
+      <div class="paso">
+        <h3><i>03</i>Ejecutar.</h3>
+        <strong>Precisión en cada encuentro.</strong>
+        <p>Dirección de obra rigurosa con atención al detalle en cada junta, cada luz, cada material. Lo que no se ve también importa.</p>
+      </div>
+      <div class="paso">
+        <h3><i>04</i>Entregar.</h3>
+        <strong>Sin sorpresas.</strong>
+        <p>Respetamos plazos y presupuesto. Acompañamos al cliente hasta la entrega final y más allá, porque una buena relación no termina con la obra.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SERVICIOS ======== -->
+  <section class="servicios" id="servicios">
+    <div class="servicios__cab">
+      <h2 data-reveal data-split="lines">Del concepto a la entrega, <em>sin intermediarios</em>.</h2>
+    </div>
+    <div class="servicios__lista">
+      <div class="servicio" data-reveal data-preview="img/hero-urgel.jpg">
+        <span class="servicio__num">01 / 06</span>
+        <h3 class="servicio__nombre">Proyectos de arquitectura</h3>
+        <span class="servicio__tag">Proyecto</span>
+        <p class="servicio__desc">Obra nueva, rehabilitación y reformas integrales. Desde el anteproyecto hasta el proyecto de ejecución.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="img/clinica-vega.jpg">
+        <span class="servicio__num">02 / 06</span>
+        <h3 class="servicio__nombre">Diseño de clínicas dentales</h3>
+        <span class="servicio__tag">Especialidad</span>
+        <p class="servicio__desc">Profesores del Master MBA Dental. Conocimiento profundo de los requisitos específicos de cada clinica.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="img/vivienda-bl.jpg">
+        <span class="servicio__num">03 / 06</span>
+        <h3 class="servicio__nombre">Interiorismo</h3>
+        <span class="servicio__tag">Interior</span>
+        <p class="servicio__desc">Espacios pensados para el bienestar: materiales, iluminación y mobiliario integrados en el proyecto.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="img/joselitos.jpg">
+        <span class="servicio__num">04 / 06</span>
+        <h3 class="servicio__nombre">Hostelería y comercio</h3>
+        <span class="servicio__tag">Comercial</span>
+        <p class="servicio__desc">Restaurantes, bares y locales comerciales en los que la arquitectura refuerza la identidad del negocio.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="img/clinica-serna.jpg">
+        <span class="servicio__num">05 / 06</span>
+        <h3 class="servicio__nombre">Dirección de obra</h3>
+        <span class="servicio__tag">Obra</span>
+        <p class="servicio__desc">Control de calidad, plazos y presupuesto. Supervisión técnica hasta el último acabado.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="img/vivienda-tinajas.jpg">
+        <span class="servicio__num">06 / 06</span>
+        <h3 class="servicio__nombre">Certificados y licencias</h3>
+        <span class="servicio__tag">Trámites</span>
+        <p class="servicio__desc">Certificados energéticos, licencias de actividad y comunicaciones. Toda la gestión técnica resuelta.</p>
+      </div>
+    </div>
+    <div class="servicios__preview" aria-hidden="true"><img src="" alt=""></div>
+  </section>
+
+  <!-- ======== TIRAS a contra-scroll ======== -->
+  <div class="tiras" aria-hidden="true">
+    <p class="tira" data-tira="-1">Arquitectura <em>/</em> Interiorismo <em>/</em> Clínicas dentales <em>/</em> Arquitectura <em>/</em> Interiorismo <em>/</em> Clínicas dentales</p>
+    <p class="tira tira--llena" data-tira="1">Valladolid <em>/</em> Detalle <em>/</em> Funcionalidad <em>/</em> Valladolid <em>/</em> Detalle <em>/</em> Funcionalidad</p>
+  </div>
+
+  <!-- ======== CONTACTO ======== -->
+  <section class="contacto" id="contacto">
+    <p class="contacto__estado" data-reveal>Aceptando proyectos</p>
+    <h2 data-reveal data-split="lines">Hablemos de tu próximo <em>proyecto</em>.</h2>
+    <p class="google" data-reveal><i><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg></i> <b>5,0</b> · 61 reseñas en Google</p>
+    <a class="magnetico" href="tel:+34662511348" data-magnetico>
+      <span class="magnetico__label">Llamar al 662 51 13 48</span>
+    </a>
+    <div class="contacto__datos">
+      <div class="dato" data-reveal>
+        <h4>Estudio Valladolid</h4>
+        <p>C/ Padre Francisco Suarez 11, 3 Izq.<br>47006 Valladolid</p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Estudio Córdoba</h4>
+        <p>C/ Teniente Sanz Pera 23<br>14270 Hinojosa del Duque</p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Contacto</h4>
+        <p><a href="tel:+34662511348">662 51 13 48</a><br>
+        <a href="mailto:info@murilloarquitectos.com">info@murilloarquitectos.com</a></p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Horario</h4>
+        <div class="horario">
+          <div data-dias="1,2,3,4"><span>Lun a Jue</span><span>09:00 a 19:00</span></div>
+          <div data-dias="5"><span>Viernes</span><span>09:00 a 19:00</span></div>
+          <div data-dias="6,0"><span>Sab y Dom</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== MAPA ======== -->
+  <div class="mapa">
+    <iframe src="https://maps.google.com/maps?q=C/+Padre+Francisco+Su%C3%A1rez+11+47006+Valladolid&output=embed" loading="lazy" title="Ubicación de Murillo Arquitectos en Valladolid" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+
+  <footer class="pie">
+    <span>2026 Murillo Arquitectos · Valladolid</span>
+    <nav>
       <a href="legal/aviso-legal.html">Aviso legal</a>
       <a href="legal/politica-privacidad.html">Privacidad</a>
       <a href="legal/politica-cookies.html">Cookies</a>
       <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
-    </div>
-  </div>
-</footer>
+    </nav>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
+  </footer>
+</main>
+
+<!-- ======== DEPENDENCIAS ======== -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
 
 <script>
-  // LOADER
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var loader = document.getElementById('loader');
-      var heroBg = document.getElementById('heroBg');
-      if (loader) loader.classList.add('hidden');
-      if (heroBg) heroBg.classList.add('loaded');
-    }, 1600);
-  });
+'use strict';
 
-  // NAVBAR SCROLL
-  var navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', function() {
-    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
-  // HAMBURGER MENU
-  var hamburger = document.getElementById('hamburger');
-  var mobileMenu = document.getElementById('mobileMenu');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function() {
-      var isOpen = hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen);
-      if (isOpen) { var firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.focus();
-      }
-    });
+CustomEase.create('hop',  '0.56, 0, 0.35, 0.98');
+CustomEase.create('osmo', '0.625, 0.05, 0, 1');
+
+const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+const DPR          = Math.min(devicePixelRatio || 1, 2);
+
+/* -- 1) LENIS + SCROLLTRIGGER -- */
+let lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  window.lenis = lenis;
+}
+
+/* -- 2) FONDO WEBGL — simplex noise, paleta piedra/arena Murillo -- */
+(function fondoGL(){
+  const canvas = document.getElementById('fondo-gl');
+  const gl = canvas.getContext('webgl', { antialias:false, alpha:false });
+  if (!gl) { canvas.style.background = 'radial-gradient(120% 90% at 30% 10%, #151412, #0e0e0d)'; return; }
+
+  const OCTAVAS = FINE_POINTER ? 4 : 2;
+  const BG_DPR  = Math.min(DPR, 1.5);
+
+  const vsrc = `
+    attribute vec2 aPos;
+    void main(){ gl_Position = vec4(aPos, 0.0, 1.0); }`;
+
+  const fsrc = `
+    precision highp float;
+    uniform float uTime;
+    uniform vec2  uRes;
+    uniform vec2  uMouse;
+    uniform float uReposo;
+
+    vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec4 mod289(vec4 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec4 permute(vec4 x){ return mod289(((x*34.0)+1.0)*x); }
+    vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }
+    float snoise(vec3 v){
+      const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+      const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+      vec3 i  = floor(v + dot(v, C.yyy));
+      vec3 x0 = v - i + dot(i, C.xxx);
+      vec3 g  = step(x0.yzx, x0.xyz);
+      vec3 l  = 1.0 - g;
+      vec3 i1 = min(g.xyz, l.zxy);
+      vec3 i2 = max(g.xyz, l.zxy);
+      vec3 x1 = x0 - i1 + C.xxx;
+      vec3 x2 = x0 - i2 + C.yyy;
+      vec3 x3 = x0 - D.yyy;
+      i = mod289(i);
+      vec4 p = permute(permute(permute(
+            i.z + vec4(0.0, i1.z, i2.z, 1.0))
+          + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+          + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+      float n_ = 0.142857142857;
+      vec3 ns = n_ * D.wyz - D.xzx;
+      vec4 j  = p - 49.0 * floor(p * ns.z * ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_);
+      vec4 x  = x_ * ns.x + ns.yyyy;
+      vec4 y  = y_ * ns.x + ns.yyyy;
+      vec4 h  = 1.0 - abs(x) - abs(y);
+      vec4 b0 = vec4(x.xy, y.xy);
+      vec4 b1 = vec4(x.zw, y.zw);
+      vec4 s0 = floor(b0)*2.0 + 1.0;
+      vec4 s1 = floor(b1)*2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+      vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+      vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+      vec3 p0 = vec3(a0.xy, h.x);
+      vec3 p1 = vec3(a0.zw, h.y);
+      vec3 p2 = vec3(a1.xy, h.z);
+      vec3 p3 = vec3(a1.zw, h.w);
+      vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+      p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+      vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+      m = m * m;
+      return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+    }
+
+    float fbm(vec3 p){
+      float v = 0.0, a = 0.5;
+      for (int i = 0; i < ${OCTAVAS}; i++){ v += a * snoise(p); p *= 2.0; a *= 0.5; }
+      return v;
+    }
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453); }
+
+    void main(){
+      vec2 uv = gl_FragCoord.xy / uRes;
+      float aspecto = uRes.x / uRes.y;
+      vec2 p = uv * vec2(aspecto, 1.0);
+
+      float t = uTime * 0.05;
+
+      vec2 raton = mix(uMouse, vec2(0.4, 0.65), uReposo) * vec2(aspecto, 1.0);
+      vec2 haciaRaton = (raton - p) * 0.2;
+
+      float warp = fbm(vec3(p * 1.2 + haciaRaton, t));
+      float n    = fbm(vec3(p * 1.8 + warp * 0.85 + haciaRaton * 0.5, t + 10.0));
+      n = n * 0.5 + 0.5;
+
+      float halo = smoothstep(0.75, 0.0, distance(p, raton));
+      n += halo * 0.14;
+
+      /* paleta Murillo: negro profundo, tierra, arena calida */
+      vec3 c1 = vec3(0.055, 0.055, 0.051);
+      vec3 c2 = vec3(0.082, 0.078, 0.071);
+      vec3 c3 = vec3(0.180, 0.160, 0.130);
+      vec3 c4 = vec3(0.420, 0.380, 0.310);
+      vec3 col = mix(c1, c2, smoothstep(0.20, 0.55, n));
+      col = mix(col, c3, smoothstep(0.55, 0.84, n));
+      col = mix(col, c4, smoothstep(0.90, 1.00, n));
+
+      float vig = smoothstep(1.3, 0.35, distance(uv, vec2(0.5)));
+      col *= mix(0.72, 1.0, vig);
+      col += (hash(gl_FragCoord.xy + fract(uTime) * 100.0) - 0.5) * 0.05;
+
+      gl_FragColor = vec4(col, 1.0);
+    }`;
+
+  function compilar(tipo, src){
+    const s = gl.createShader(tipo);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compilar(gl.VERTEX_SHADER, vsrc));
+  gl.attachShader(prog, compilar(gl.FRAGMENT_SHADER, fsrc));
+  gl.linkProgram(prog); gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const locPos = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(locPos);
+  gl.vertexAttribPointer(locPos, 2, gl.FLOAT, false, 0, 0);
+
+  const uni = {
+    time:  gl.getUniformLocation(prog, 'uTime'),
+    res:   gl.getUniformLocation(prog, 'uRes'),
+    mouse: gl.getUniformLocation(prog, 'uMouse'),
+    reposo:gl.getUniformLocation(prog, 'uReposo'),
+  };
+
+  function redimensionar(){
+    canvas.width  = Math.round(innerWidth  * BG_DPR);
+    canvas.height = Math.round(innerHeight * BG_DPR);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  redimensionar();
+  addEventListener('resize', redimensionar);
+
+  const objetivo = { x: 0.4, y: 0.65 };
+  const suave    = { x: 0.4, y: 0.65 };
+  let reposo = 1, objetivoReposo = 1;
+  if (FINE_POINTER) {
+    addEventListener('pointermove', (e) => {
+      objetivo.x = e.clientX / innerWidth;
+      objetivo.y = 1 - e.clientY / innerHeight;
+      objetivoReposo = 0;
+    }, { passive: true });
   }
 
-  function closeMobile() {
-    var h = document.getElementById('hamburger');
-    var m = document.getElementById('mobileMenu');
-    if (h) h.classList.remove('active');
-    if (m) m.classList.remove('open');
-    if (h) h.setAttribute('aria-expanded', 'false');
+  let ultimo = 0;
+  function pintar(ms){
+    const t  = (ms * 0.001) % 3600;
+    const dt = Math.min((ms - ultimo) * 0.001, 1/30);
+    ultimo = ms;
+
+    const k = 1 - Math.exp(-5.0 * dt);
+    suave.x += (objetivo.x - suave.x) * k;
+    suave.y += (objetivo.y - suave.y) * k;
+    reposo  += (objetivoReposo - reposo) * k * 0.6;
+
+    gl.uniform1f(uni.time, t);
+    gl.uniform2f(uni.res, canvas.width, canvas.height);
+    gl.uniform2f(uni.mouse, suave.x, suave.y);
+    gl.uniform1f(uni.reposo, reposo);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
-  // REVEAL ON SCROLL
-  var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    reveals.forEach(function(el) { observer.observe(el); });
+  if (REDUCE) {
+    pintar(0);
   } else {
-    reveals.forEach(function(el) { el.classList.add('visible'); });
+    let rafId = null;
+    const loop = (ms) => { pintar(ms); rafId = requestAnimationFrame(loop); };
+    rafId = requestAnimationFrame(loop);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { cancelAnimationFrame(rafId); rafId = null; }
+      else if (!rafId)     { ultimo = performance.now(); rafId = requestAnimationFrame(loop); }
+    });
+  }
+})();
+
+/* -- 3) ESTELA FLUIDA — Navier-Stokes (webgl-fluid-enhanced) -- */
+if (FINE_POINTER && !REDUCE) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then((mod) => {
+    const WebGLFluidEnhanced = mod.default;
+    const cont = document.getElementById('fluid');
+    const sim = new WebGLFluidEnhanced(cont);
+    Object.assign(cont.style, {
+      position: 'fixed', inset: '0', width: '100%', height: '100%',
+      zIndex: '9000', pointerEvents: 'none',
+    });
+    dispatchEvent(new Event('resize'));
+    sim.setConfig({
+      simResolution: 128,
+      dyeResolution: 1024,
+      densityDissipation: 2.2,
+      velocityDissipation: 1.4,
+      pressureIterations: 10,
+      curl: 28,
+      splatRadius: 0.1,
+      splatForce: 5000,
+      hover: false,
+      colorful: false,
+      colorPalette: ['#a89880', '#c4b49a', '#d4cfc6'],
+      transparent: true,
+      bloom: false,
+      sunrays: false,
+    });
+    sim.start();
+
+    let lastX = null, lastY = null;
+    addEventListener('pointermove', (e) => {
+      if (lastX !== null) {
+        const dx = (e.clientX - lastX) * 2.5;
+        const dy = (e.clientY - lastY) * 2.5;
+        if (Math.abs(dx) + Math.abs(dy) > 4)
+          sim.splatAtLocation(e.clientX, e.clientY, dx, dy);
+      }
+      lastX = e.clientX; lastY = e.clientY;
+    }, { passive: true });
+
+    window.__fluidBurst = () => {
+      const W = innerWidth, H = innerHeight;
+      for (let i = 0; i <= 5; i++) {
+        const t = i / 5;
+        setTimeout(() => {
+          sim.splatAtLocation(W * (0.15 + t * 0.7), H * (0.6 - Math.sin(t * Math.PI) * 0.22),
+                              180 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
+        }, i * 70);
+      }
+    };
+
+    document.addEventListener('visibilitychange', () => { sim.pause(); });
+  }).catch(() => {});
+}
+
+/* -- Cursor dot + ring -- */
+if (FINE_POINTER && !REDUCE) (function cursor(){
+  const dot  = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  const dx = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
+  const dy = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
+  const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+  let visto = false;
+  addEventListener('pointermove', (e) => {
+    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
+    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
+  }, { passive: true });
+  document.querySelectorAll('a, button, .servicio').forEach((el) => {
+    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }));
+    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }));
+  });
+})();
+
+/* -- 3b) EL PROCESO — plano arquitectonico que se dibuja con el scroll -- */
+(function procesoCanvas(){
+  const seccion = document.querySelector('.proceso');
+  const pinEl   = document.querySelector('.proceso__pin');
+  const canvas  = document.querySelector('.proceso__lienzo');
+  const ctx     = canvas.getContext('2d');
+  const elNum   = document.querySelector('[data-proceso-num]');
+  const elFase  = document.querySelector('[data-proceso-fase]');
+
+  const CREMA = '#f2efea', ARENA = '#c4b49a', TENUE = 'rgba(242,239,234,0.35)';
+  const trazos = [
+    // FASE I — Escuchar (0 -0.16): linea de terreno + entorno
+    { t:[0.00,0.08], w:1.2, c:TENUE, p:[[40,300],[300,260],[640,290],[960,250]] },
+    { t:[0.05,0.16], w:2.5, c:CREMA, p:[[60,540],[940,540]] },
+    // FASE II — Proyectar (0.16 -0.55): muros, cubierta, forjados
+    { t:[0.16,0.26], w:2.5, c:CREMA, p:[[260,540],[260,160]] },
+    { t:[0.18,0.28], w:2.5, c:CREMA, p:[[740,540],[740,160]] },
+    { t:[0.26,0.34], w:2.5, c:CREMA, p:[[240,150],[500,110],[760,150]] },
+    { t:[0.30,0.36], w:1.3, c:TENUE, p:[[240,170],[760,170]] },
+    { t:[0.34,0.42], w:1.5, c:TENUE, p:[[260,400],[740,400]] },
+    { t:[0.38,0.46], w:1.5, c:TENUE, p:[[260,280],[740,280]] },
+    { t:[0.42,0.50], w:1.0, c:TENUE, p:[[420,160],[420,540]] },
+    { t:[0.44,0.52], w:1.0, c:TENUE, p:[[580,160],[580,540]] },
+    // FASE III — Ejecutar (0.55 -0.84): puerta, ventanas, balcon
+    { t:[0.55,0.64], w:2.0, c:CREMA, p:[[460,540],[460,440],[540,440],[540,540]] },
+    { t:[0.60,0.68], w:1.8, c:CREMA, p:[[295,310],[395,310],[395,380],[295,380],[295,310]] },
+    { t:[0.62,0.70], w:1.8, c:CREMA, p:[[610,310],[710,310],[710,380],[610,380],[610,310]] },
+    { t:[0.64,0.72], w:1.8, c:CREMA, p:[[305,195],[395,195],[395,260],[305,260],[305,195]] },
+    { t:[0.66,0.74], w:1.8, c:CREMA, p:[[445,195],[555,195],[555,260],[445,260],[445,195]] },
+    { t:[0.70,0.78], w:1.8, c:CREMA, p:[[610,195],[700,195],[700,260],[610,260],[610,195]] },
+    { t:[0.74,0.80], w:1.2, c:ARENA, p:[[440,420],[560,420]] },
+    // FASE IV — Entregar (0.84 -1): sol, cota, rubrica
+    { t:[0.84,0.91], w:2.0, c:ARENA, circulo:[870,100,40] },
+    { t:[0.88,0.96], w:1.2, c:ARENA, p:[[260,575],[740,575]], cota:'C/ P. Francisco Suarez, 11 — Valladolid' },
+    { t:[0.93,1.00], w:1.5, c:ARENA, p:[[70,595],[120,580],[165,598],[205,584]] },
+  ];
+  const fases = [
+    [0.00, 'Fase I: Escuchar'],
+    [0.16, 'Fase II: Proyectar'],
+    [0.55, 'Fase III: Ejecutar'],
+    [0.84, 'Fase IV: Entregar'],
+  ];
+
+  function longitudes(p){
+    const acc = [0];
+    for (let i = 1; i < p.length; i++)
+      acc.push(acc[i-1] + Math.hypot(p[i][0]-p[i-1][0], p[i][1]-p[i-1][1]));
+    return acc;
+  }
+  trazos.forEach(tr => { if (tr.p) tr.len = longitudes(tr.p); });
+
+  let escala = 1, offX = 0, offY = 0;
+  function redimensionar(){
+    const w = pinEl.clientWidth, h = pinEl.clientHeight;
+    canvas.width = w * DPR; canvas.height = h * DPR;
+    escala = Math.min(w / 1000, h / 620) * 0.86;
+    offX = (w - 1000 * escala) / 2;
+    offY = (h - 620 * escala) / 2 + h * 0.03;
+    pintar(progreso.valor, true);
   }
 
-  // COUNTER ANIMATION
-  function animateCount(el) {
-    var target = parseInt(el.dataset.target, 10);
-    var isDecimal = el.dataset.decimal === 'true';
-    var duration = 1600;
-    var start = performance.now();
-    function step(now) {
-      var progress = Math.min((now - start) / duration, 1);
-      var ease = 1 - Math.pow(1 - progress, 4);
-      var value = ease * target;
-      if (isDecimal) {
-        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+  function polilineaParcial(p, len, f){
+    const objetivo = len[len.length-1] * f;
+    ctx.beginPath();
+    ctx.moveTo(p[0][0], p[0][1]);
+    for (let i = 1; i < p.length; i++){
+      if (len[i] <= objetivo) { ctx.lineTo(p[i][0], p[i][1]); continue; }
+      const resto = (objetivo - len[i-1]) / (len[i] - len[i-1]);
+      if (resto > 0)
+        ctx.lineTo(p[i-1][0] + (p[i][0]-p[i-1][0]) * resto,
+                   p[i-1][1] + (p[i][1]-p[i-1][1]) * resto);
+      break;
+    }
+    ctx.stroke();
+  }
+
+  let ultimoPintado = -1;
+  function pintar(t, forzar){
+    const tick = Math.round(t * 800);
+    if (!forzar && tick === ultimoPintado) return;
+    ultimoPintado = tick;
+
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.clearRect(0, 0, canvas.width / DPR, canvas.height / DPR);
+    ctx.translate(offX, offY);
+    ctx.scale(escala, escala);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+    const aGrid = Math.min(t * 4, 1) * 0.05;
+    if (aGrid > 0.004){
+      ctx.strokeStyle = 'rgba(242,239,234,' + aGrid.toFixed(3) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let x = 0; x <= 1000; x += 100){ ctx.moveTo(x, 0); ctx.lineTo(x, 620); }
+      for (let y = 0; y <= 620; y += 100){ ctx.moveTo(0, y); ctx.lineTo(1000, y); }
+      ctx.stroke();
+    }
+
+    for (const tr of trazos){
+      const f = gsap.utils.clamp(0, 1, (t - tr.t[0]) / (tr.t[1] - tr.t[0]));
+      if (f <= 0) continue;
+      ctx.strokeStyle = tr.c;
+      ctx.lineWidth = tr.w;
+      if (tr.circulo){
+        const [cx, cy, r] = tr.circulo;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, -Math.PI/2, -Math.PI/2 + Math.PI*2*f);
+        ctx.stroke();
       } else {
-        el.textContent = Math.round(value);
+        polilineaParcial(tr.p, tr.len, f);
+        if (tr.cota && f >= 1){
+          ctx.fillStyle = ARENA;
+          ctx.font = '300 21px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(tr.cota, 500, 568);
+        }
       }
-      if (progress < 1) requestAnimationFrame(step);
     }
-    requestAnimationFrame(step);
+
+    elNum.textContent = Math.round(t * 100);
+    let fase = fases[0][1];
+    for (const [umbral, nombre] of fases) if (t >= umbral) fase = nombre;
+    if (elFase.textContent !== fase) elFase.textContent = fase;
   }
 
-  if ('IntersectionObserver' in window) {
-    var countObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
-  } else {
-    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+  const progreso = { valor: REDUCE ? 1 : 0 };
+  if (!REDUCE){
+    gsap.to(progreso, {
+      valor: 1,
+      ease: 'none',
+      onUpdate: () => pintar(progreso.valor),
+      scrollTrigger: {
+        trigger: seccion,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: pinEl,
+        pinSpacing: false,
+        scrub: 1,
+        anticipatePin: 1,
+      },
+    });
   }
 
-  // HERO PARALLAX
-  window.addEventListener('scroll', function() {
-    var heroBg = document.getElementById('heroBg');
-    if (heroBg && window.scrollY < window.innerHeight) {
-      heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.2) + 'px)';
-    }
+  addEventListener('resize', redimensionar);
+  redimensionar();
+})();
+
+/* -- 4) Horario: fila de HOY destacada -- */
+(function highlightToday(){
+  const hoy = new Date().getDay();
+  document.querySelectorAll('.horario [data-dias]').forEach((fila) => {
+    if (fila.dataset.dias.split(',').map(Number).includes(hoy)) fila.classList.add('horario-hoy');
   });
+})();
+
+/* -- 5) REVELADOS, SCRUBS Y COREOGRAFIA -- */
+document.fonts.ready.then(() => {
+  const mm = gsap.matchMedia();
+
+  mm.add({
+    motionOK:  '(prefers-reduced-motion: no-preference)',
+    reduce:    '(prefers-reduced-motion: reduce)',
+    isDesktop: '(min-width: 821px)',
+  }, (ctx) => {
+    if (ctx.conditions.reduce) {
+      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
+      document.querySelectorAll('[data-cuenta]').forEach((el) => {
+        el.textContent = (+el.dataset.target).toLocaleString('es-ES');
+      });
+      document.querySelector('.preloader').style.display = 'none';
+      return;
+    }
+
+    /* 5.1 Reveal del hero */
+    function revealHero(){
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      tl.set('[data-hero-reveal]', { visibility: 'visible' });
+
+      tl.fromTo('.hero__media', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
+      tl.fromTo('.hero__media img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+
+      const splitTitulo = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
+      tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.45);
+
+      const splitSub = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
+      tl.from(splitSub.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.7);
+
+      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.6);
+      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 1.0);
+      return tl;
+    }
+
+    /* 5.2 Preloader */
+    const num = document.querySelector('.preloader__num');
+    const progreso = { v: 0 };
+    const cargaMinima = new Promise(res => {
+      gsap.to(progreso, {
+        v: 100, duration: 1.9, ease: 'steps(14)',
+        onUpdate: () => { num.firstChild.textContent = Math.round(progreso.v); },
+        onComplete: res,
+      });
+    });
+    const cargaReal = new Promise(res => {
+      if (document.readyState === 'complete') res();
+      else addEventListener('load', res, { once: true });
+    });
+
+    Promise.all([cargaMinima, cargaReal]).then(() => {
+      gsap.timeline()
+        .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
+        .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
+        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
+        .set('.preloader', { display: 'none' })
+        .add(revealHero(), '-=0.75')
+        .call(() => lenis && lenis.start(), null, '-=1.2')
+        .call(() => window.__fluidBurst && window.__fluidBurst(), null, '-=0.9');
+    });
+
+    /* 5.3 Hero parallax */
+    gsap.to('[data-hero-parallax]', {
+      yPercent: 14, scale: 1.12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+    gsap.to('.hero__contenido', {
+      yPercent: -14, autoAlpha: 0.25, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
+    });
+
+    /* Barra de progreso */
+    gsap.to('.progreso span', {
+      scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
+    });
+
+    /* Tiras a contra-scroll */
+    document.querySelectorAll('[data-tira]').forEach((el) => {
+      const dir = +el.dataset.tira;
+      gsap.fromTo(el, { xPercent: dir * 6 }, {
+        xPercent: dir * -6, ease: 'none',
+        scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* Fotos del manifiesto flotando */
+    gsap.utils.toArray('.flotante').forEach((el) => {
+      const sp = +el.dataset.speed || 1;
+      gsap.fromTo(el, { yPercent: 16 * sp }, {
+        yPercent: -16 * sp, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* Cifras */
+    gsap.utils.toArray('.cifra').forEach((el, i) => {
+      gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
+        y: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
+      });
+    });
+
+    /* Marquee vivo */
+    {
+      const trackM = document.querySelector('.marquee-track');
+      trackM.style.animation = 'none';
+      const marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 26, repeat: -1 });
+      marq.totalTime(26 * 1000);
+      let objetivoTS = 1;
+      ScrollTrigger.create({
+        onUpdate: (self) => {
+          const v = self.getVelocity();
+          objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
+        },
+      });
+      gsap.ticker.add(() => {
+        marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
+        objetivoTS += (1 - objetivoTS) * 0.04;
+      });
+    }
+
+    /* Como trabajamos: tarjetas 3D */
+    gsap.utils.toArray('.paso').forEach((el, i) => {
+      gsap.fromTo(el, { rotationX: -35, autoAlpha: 0, y: 50, transformOrigin: 'top center' }, {
+        rotationX: 0, autoAlpha: 1, y: 0, duration: 1.1, ease: 'expo.out', delay: (i % 3) * 0.1,
+        scrollTrigger: { trigger: el, start: 'top 86%', once: true },
+      });
+    });
+
+    /* 5.4 Manifiesto scrubado */
+    SplitText.create('[data-manifiesto]', {
+      type: 'words',
+      onSplit: (self) => gsap.from(self.words, {
+        opacity: 0.13,
+        stagger: 0.05,
+        ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
+      }),
+    });
+
+    /* 5.5 Galeria horizontal pineada */
+    let tweenHorizontal = null;
+    if (ctx.conditions.isDesktop) {
+      const track = document.querySelector('.proyectos__track');
+      const proyNum = document.querySelector('[data-proy-num]');
+      const total = document.querySelectorAll('.panel').length;
+      const distancia = () => track.scrollWidth - innerWidth + (innerWidth * 0.06);
+
+      const skewTo = gsap.quickTo(track, 'skewX', { duration: 0.5, ease: 'power3' });
+      const clampSkew = gsap.utils.clamp(-5, 5);
+
+      tweenHorizontal = gsap.to(track, {
+        x: () => -distancia(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.proyectos',
+          start: 'top top',
+          end: () => '+=' + distancia(),
+          pin: '.proyectos__pin',
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (st) => {
+            const i = Math.min(total, Math.max(1, Math.round(st.progress * (total - 1)) + 1));
+            proyNum.textContent = String(i).padStart(2, '0');
+            skewTo(clampSkew(st.getVelocity() / -400));
+          },
+        },
+      });
+      ScrollTrigger.addEventListener('scrollEnd', () => skewTo(0));
+
+      gsap.utils.toArray('.panel__marco img').forEach((img) => {
+        gsap.fromTo(img, { xPercent: -7, scale: 1.16 }, {
+          xPercent: 7, scale: 1.16, ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.panel'),
+            containerAnimation: tweenHorizontal,
+            start: 'left right', end: 'right left', scrub: true,
+          },
+        });
+      });
+    }
+
+    /* 5.5b Zoom inmersivo */
+    {
+      const zsplit = SplitText.create('[data-zoom-texto]', { type: 'words' });
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.zoom',
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: '.zoom__pin',
+          pinSpacing: false,
+          scrub: 1,
+          anticipatePin: 1,
+        },
+      })
+      .fromTo('.zoom__marco', { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0)
+      .fromTo('.zoom__marco img', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 0.85 }, 0)
+      .fromTo(zsplit.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
+    }
+
+    /* 5.6 Reveals genericos */
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (el.dataset.split === 'lines') {
+        SplitText.create(el, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit: (self) => {
+            gsap.set(el, { visibility: 'visible' });
+            return gsap.from(self.lines, {
+              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
+              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
+            });
+          },
+        });
+      } else {
+        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
+          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        });
+      }
+    });
+
+    /* 5.7 Imagenes de la galeria */
+    gsap.utils.toArray('[data-img-reveal]').forEach((marco) => {
+      const visual = marco.querySelector('img');
+      const enGaleria = ctx.conditions.isDesktop && tweenHorizontal;
+      const st = enGaleria
+        ? { trigger: marco, containerAnimation: tweenHorizontal, start: 'left 95%', once: true }
+        : { trigger: marco, start: 'top 88%', once: true };
+      const tl = gsap.timeline({
+        scrollTrigger: st,
+        defaults: { duration: 1.2, ease: 'power4.out' },
+      })
+      .fromTo(marco, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)' });
+      if (!enGaleria) tl.fromTo(visual, { scale: 1.18 }, { scale: 1 }, 0);
+    });
+
+    /* 5.8 Count-up */
+    document.querySelectorAll('[data-cuenta]').forEach((el) => {
+      const objetivo = +el.dataset.target;
+      const c = { v: 0 };
+      gsap.to(c, {
+        v: objetivo, duration: 2, ease: 'power2.out',
+        snap: { v: 1 },
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: () => { el.textContent = Math.round(c.v).toLocaleString('es-ES'); },
+      });
+    });
+
+    /* 5.9 Imagen flotante en servicios */
+    if (FINE_POINTER) {
+      const preview = document.querySelector('.servicios__preview');
+      const previewImg = preview.querySelector('img');
+      gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0.92 });
+      const px = gsap.quickTo(preview, 'x', { duration: 0.5, ease: 'power3.out' });
+      const py = gsap.quickTo(preview, 'y', { duration: 0.5, ease: 'power3.out' });
+      document.querySelectorAll('.servicio').forEach((fila) => {
+        fila.addEventListener('mouseenter', () => {
+          previewImg.src = fila.dataset.preview;
+          gsap.to(preview, { opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out' });
+        });
+        fila.addEventListener('mouseleave', () => {
+          gsap.to(preview, { opacity: 0, scale: 0.92, duration: 0.35, ease: 'power3.out' });
+        });
+      });
+      addEventListener('pointermove', (e) => { px(e.clientX); py(e.clientY); }, { passive: true });
+    }
+
+    /* 5.10 Boton magnetico */
+    if (FINE_POINTER) {
+      document.querySelectorAll('[data-magnetico]').forEach((el) => {
+        const label = el.querySelector('.magnetico__label');
+        const xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
+        const yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
+        const lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
+        const ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          const dx = e.clientX - (r.left + r.width / 2);
+          const dy = e.clientY - (r.top + r.height / 2);
+          xTo(dx * 0.35); yTo(dy * 0.35);
+          lx(dx * 0.5);  ly(dy * 0.5);
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
+        });
+      });
+    }
+
+    ScrollTrigger.refresh();
+  });
+});
 </script>
 <script defer src="legal/cookie-banner.js"></script>
 </body>
