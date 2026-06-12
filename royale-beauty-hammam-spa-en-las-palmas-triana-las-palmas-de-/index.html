@@ -1,1181 +1,1401 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Royale Beauty Hammam &amp; Spa | Hammam Privado en Las Palmas de Gran Canaria</title>
-  <meta name="description" content="Royale Beauty Hammam &amp; Spa: tu santuario privado de bienestar en Triana, Las Palmas. Solo 4 invitados al día. Hammam ancestral, masajes de autor y estética avanzada. 4,9/5 en Google.">
-  <meta name="robots" content="index, follow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="legal/cookie-banner.css">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Royale Beauty Hammam &amp; Spa — Lujo y bienestar exclusivo en Triana, Las Palmas</title>
+<meta name="description" content="Royale Beauty Hammam &amp; Spa: rituales ancestrales de hammam marroquí, Korean Head Spa y masajes de autor en el corazón de Triana. Solo 4 personas al día. 4,9 en Google.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23C9A96E'/%3E%3C/svg%3E">
 
-    :root {
-      --black: #0c0b09;
-      --black-soft: #141210;
-      --carbon: #1a1714;
-      --carbon-mid: #231f1a;
-      --carbon-light: #2c2620;
-      --white: #ede5d8;
-      --white-pure: #f5f0e8;
-      --accent: #c9a96e;
-      --accent-light: #dcc08a;
-      --accent-dark: #a8893f;
-      --sand: #c4a882;
-      --text-muted: #8a7e6e;
-      --font-display: 'Cinzel Decorative', serif;
-      --font-body: 'Raleway', sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    }
+<!-- ============================================================
+     ROYALE BEAUTY HAMMAM & SPA — propuesta premium (G&G Elcano)
+     Marca real verificada en royalebeauty.es + fotos del espacio:
+       · negro cálido #12100E · oro #C9A96E · crema #F3EDE6
+       · CinzelDecorative (marca) + Cormorant Garamond + Jost
+     Datos reales: C. Francisco Gourié 4, 35002 Las Palmas ·
+     683 39 31 54 · info@royalebeauty.es · Solo 4 personas/día ·
+     Chaymaa (estética avanzada) + Eva (masajes de autor) ·
+     Google 4,9 (54 reseñas) · TripAdvisor 5,0 (24 reseñas).
+     Pieza singular: vapor/steam canvas (partículas doradas que
+     ascienden como el vapor del hammam y reaccionan al cursor).
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal/cookie-banner.css">
 
-    html { scroll-behavior: smooth; }
+<style>
+:root{
+  --crema:    #F3EDE6;
+  --crema-2:  #E8E0D5;
+  --tinta:    #12100E;
+  --tinta-2:  #2A2622;
+  --piedra:   #847A6E;
+  --oro:      #C9A96E;
+  --oro-osc:  #A68B4B;
+  --oro-luz:  #D9C28E;
+  --linea:    rgba(18,16,14,.14);
+  --brand: "Cinzel Decorative", "Cormorant Garamond", Georgia, serif;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans:  "Jost", system-ui, sans-serif;
+  --pad: clamp(1.5rem, 5vw, 6rem);
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scrollbar-width: thin; scrollbar-color: var(--oro) var(--crema); }
+html, body{ background: var(--crema); }
 
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--font-body);
-      font-weight: 300;
-      line-height: 1.7;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
+body{
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-    /* ═══════════════ LOADER ═══════════════ */
-    .loader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: var(--black);
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.6s var(--ease-smooth), visibility 0.6s;
-    }
-    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .loader-text {
-      font-family: var(--font-display);
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      color: var(--accent);
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-    }
+::selection{ background: var(--oro); color: var(--crema); }
 
-    /* ═══════════════ NAVBAR ═══════════════ */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 60px;
-      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
-    }
-    nav.scrolled {
-      backdrop-filter: blur(20px);
-      background: rgba(12,11,9,0.88);
-      padding: 18px 60px;
-      border-bottom: 1px solid rgba(201,169,110,0.1);
-    }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-decoration: none;
-      color: var(--white);
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: rgba(237,229,216,0.7);
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      transition: color 0.3s; font-weight: 400;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-cta {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent) !important;
-      padding: 10px 28px !important;
-      font-size: 0.7rem !important;
-      letter-spacing: 0.25em !important;
-      transition: background 0.3s, color 0.3s !important;
-    }
-    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+h1,h2,h3{ font-family: var(--serif); font-weight: 400; line-height: 1.05; color: var(--tinta); }
+em{ font-style: italic; color: var(--oro-osc); }
 
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
-    }
-    .hamburger span {
-      width: 24px; height: 1.5px; background: var(--white);
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    .mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--black); z-index: 999;
-      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      text-decoration: none; color: var(--white); font-size: 1.1rem;
-      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
-      font-weight: 300;
-    }
-    .mobile-menu a:hover { color: var(--accent); }
+a{ color: inherit; text-decoration: none; }
+ul{ list-style: none; }
+img{ display:block; width:100%; height:100%; object-fit: cover; }
 
-    /* ═══════════════ HERO ═══════════════ */
-    .hero {
-      position: relative; height: 100vh; min-height: 700px;
-      display: flex; align-items: flex-end; justify-content: flex-start;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: url('hero.jpg') center/cover no-repeat;
-      transform: scale(1.05);
-      transition: transform 6s var(--ease-out);
-    }
-    .hero-bg.loaded { transform: scale(1); }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(160deg, rgba(12,11,9,0.88) 0%, rgba(12,11,9,0.5) 40%, rgba(12,11,9,0.2) 70%, rgba(12,11,9,0.55) 100%);
-    }
-    .hero-overlay-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 45%;
-      background: linear-gradient(to top, var(--black), transparent);
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      padding: 0 60px 100px;
-      max-width: 850px;
-    }
-    .hero-eyebrow {
-      font-size: 0.68rem; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 28px;
-      display: flex; align-items: center; gap: 16px;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.85);
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
-    }
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 6vw, 5.5rem);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-      margin-bottom: 28px;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.9);
-      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
-    }
-    .hero-title em { font-style: italic; color: var(--accent); }
-    .hero-sub {
-      font-size: 1.05rem; color: rgba(237,229,216,0.88);
-      max-width: 500px; line-height: 1.8; margin-bottom: 48px;
-      font-weight: 300;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.85);
-    }
-    .hero-actions {
-      display: flex; align-items: center; gap: 36px; flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 14px;
-      background: var(--accent); color: var(--black);
-      text-decoration: none; padding: 17px 38px;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-weight: 600; transition: all 0.35s var(--ease-smooth);
-      position: relative; overflow: hidden;
-    }
-    .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--white-pure); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary:hover { color: var(--black); }
-    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
-    .btn-ghost {
-      color: rgba(237,229,216,0.8); text-decoration: none;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-      transition: color 0.3s;
-    }
-    .btn-ghost:hover { color: var(--accent); }
-    .btn-ghost-arrow {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(237,229,216,0.3);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .btn-ghost:hover .btn-ghost-arrow {
-      border-color: var(--accent); transform: rotate(45deg);
-    }
-    .icon-arrow { width: 14px; height: 14px; }
+#vapor{ position: fixed; inset: 0; width:100%; height:100%; z-index: 0; pointer-events: none; }
+main{ position: relative; z-index: 1; }
 
-    .hero-scroll {
-      position: absolute; right: 60px; bottom: 100px; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 16px;
-    }
-    .hero-scroll span {
-      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--text-muted); writing-mode: vertical-rl;
-    }
-    .scroll-line {
-      width: 1px; height: 60px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: scrollPulse 2.5s infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
-    }
+#fluid{
+  position: fixed; inset: 0; width:100%; height:100%;
+  z-index: 9000; pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: .5;
+}
+#fluid.fluid--screen{ mix-blend-mode: screen; opacity: .9; }
+#fluid canvas{ width:100%; height:100%; display:block; }
 
-    /* ═══════════════ MARQUEE ═══════════════ */
-    .marquee-section {
-      border-top: 1px solid rgba(201,169,110,0.1);
-      border-bottom: 1px solid rgba(201,169,110,0.1);
-      overflow: hidden; padding: 18px 0; background: var(--carbon);
-    }
-    .marquee-track {
-      display: flex;
-      width: max-content;
-      align-items: center;
-      animation: marquee 18s linear infinite;
-      will-change: transform;
-    }
-    .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item {
-      display: inline-flex; align-items: center; gap: 14px;
-      padding: 0 30px;
-      flex-shrink: 0;
-      white-space: nowrap;
-      font-family: var(--font-display); font-size: 0.95rem;
-      font-style: italic; color: rgba(237,229,216,0.55);
-      letter-spacing: 0.06em;
-    }
-    .marquee-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    @keyframes marquee {
-      0%   { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-50%, 0, 0); }
-    }
+.cursor-dot, .cursor-ring{
+  position: fixed; top:0; left:0; z-index: 9500;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+}
+.cursor-dot { width:6px;  height:6px;  background: var(--oro); }
+.cursor-ring{ width:38px; height:38px; border:1px solid rgba(201,169,110,.6); }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot,.cursor-ring,#fluid{ display:none; }
+}
 
-    /* ═══════════════ SECTION COMMONS ═══════════════ */
-    section { padding: 120px 60px; }
-    .section-label {
-      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 18px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3.5vw, 3.6rem);
-      font-weight: 400; line-height: 1.15;
-      letter-spacing: 0.01em;
-      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
-    }
-    .section-title em { font-style: italic; color: var(--accent); }
+.progreso{
+  position: fixed; right: 1.3rem; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 9rem; background: var(--linea);
+  z-index: 60; pointer-events: none;
+}
+.progreso span{ position:absolute; inset:0; background: var(--oro-osc); transform: scaleY(0); transform-origin: top; }
+@media (max-width: 820px){ .progreso{ display:none; } }
 
-    /* ═══════════════ STATS ═══════════════ */
-    .stats-section {
-      background: var(--carbon);
-      padding: 90px 60px;
-      border-top: 1px solid rgba(201,169,110,0.08);
-    }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; max-width: 1200px; margin: 0 auto;
-    }
-    .stat-card {
-      padding: 50px 40px; background: var(--carbon);
-      border: 1px solid rgba(201,169,110,0.08);
-      position: relative; overflow: hidden;
-      transition: border-color 0.4s;
-    }
-    .stat-card::before {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 2px; background: var(--accent); transform: scaleX(0);
-      transition: transform 0.5s var(--ease-out); transform-origin: left;
-    }
-    .stat-card:hover::before { transform: scaleX(1); }
-    .stat-card:hover { border-color: rgba(201,169,110,0.25); }
-    .stat-number {
-      font-family: var(--font-display); font-size: clamp(2.5rem, 7vw, 4.5rem);
-      font-weight: 400; line-height: 1; color: var(--white);
-      margin-bottom: 10px;
-      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
-    }
-    .stat-number .stat-suffix { color: var(--accent); }
-    .stat-label {
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text-muted);
-    }
+.preloader{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: end start;
+  padding: var(--pad);
+}
+.preloader__curtain{ position:absolute; inset:0; background:#0D0B09; z-index:-1; }
+.preloader__brand{
+  position: absolute; top: var(--pad); left: var(--pad);
+  font-family: var(--brand); font-size: .95rem; letter-spacing: .28em;
+  text-transform: uppercase; color: #9a8a72;
+  overflow: hidden;
+}
+.preloader__brand span{ display:inline-block; }
+.preloader__brand b{ font-weight: 400; color: #F3EDE6; }
+.preloader__counter{ overflow: hidden; line-height: 1; }
+.preloader__num{
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  font-variant-numeric: tabular-nums;
+  color: #F3EDE6;
+}
+.preloader__num i{ font-style: normal; color: var(--oro); font-size: .35em; vertical-align: super; }
 
-    /* ═══════════════ ABOUT ═══════════════ */
-    .about-section {
-      background: var(--black);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-      max-width: 1400px; margin: 0 auto;
-    }
-    .about-text p {
-      font-size: 1.05rem; color: rgba(237,229,216,0.82);
-      margin-bottom: 22px; line-height: 1.85;
-    }
-    .about-visual {
-      position: relative;
-      aspect-ratio: 4/5;
-      overflow: hidden;
-    }
-    .about-visual img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s var(--ease-out);
-    }
-    .about-visual:hover img { transform: scale(1.04); }
-    .about-badge {
-      position: absolute; top: 24px; right: 24px;
-      background: var(--accent); color: var(--black);
-      padding: 14px 20px; text-align: center;
-      font-family: var(--font-display);
-    }
-    .about-badge .badge-number { font-size: 2rem; line-height: 1; display: block; }
-    .about-badge .badge-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; display: block; margin-top: 4px; }
+.cabecera{
+  position: fixed; top:0; left:0; right:0; z-index: 50;
+  display:flex; justify-content: space-between; align-items: center;
+  padding: 1.3rem var(--pad);
+  mix-blend-mode: multiply;
+}
+.cabecera__logo{ font-family: var(--brand); font-size: 1.05rem; letter-spacing: .18em; text-transform: uppercase; color: var(--tinta); }
+.cabecera__logo b{ font-weight: 700; }
+.cabecera__der{ display:flex; align-items:center; gap: 2rem; }
+.cabecera__nav{ display:flex; gap: 2rem; font-size:.76rem; letter-spacing:.16em; text-transform: uppercase; }
+@media (max-width: 820px){ .cabecera__nav{ display:none; } }
 
-    /* ═══════════════ SERVICES ═══════════════ */
-    .services-section { background: var(--carbon); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 2px; max-width: 1200px; margin: 50px auto 0;
-    }
-    .service-card {
-      position: relative; overflow: hidden;
-      aspect-ratio: 1/1;
-      cursor: default;
-    }
-    .service-card img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.7s var(--ease-out);
-    }
-    .service-card:hover img { transform: scale(1.06); }
-    .service-card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(12,11,9,0.92) 0%, rgba(12,11,9,0.3) 50%, transparent 100%);
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 40px;
-      transition: background 0.4s;
-    }
-    .service-card:hover .service-card-overlay {
-      background: linear-gradient(to top, rgba(12,11,9,0.95) 0%, rgba(12,11,9,0.5) 60%, rgba(12,11,9,0.2) 100%);
-    }
-    .service-card-number {
-      font-family: var(--font-display); font-size: 0.7rem;
-      color: var(--accent); letter-spacing: 0.3em;
-      margin-bottom: 12px;
-    }
-    .service-card h3 {
-      font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-      font-weight: 400; color: var(--white);
-      margin-bottom: 12px; letter-spacing: 0.03em;
-    }
-    .service-card p {
-      font-size: 0.88rem; color: rgba(237,229,216,0.7);
-      line-height: 1.7; max-width: 380px;
-      opacity: 0; transform: translateY(10px);
-      transition: opacity 0.4s, transform 0.4s;
-    }
-    .service-card:hover p { opacity: 1; transform: translateY(0); }
+.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
+.roll>span{ display:inline-block; transition: transform .5s cubic-bezier(.76,0,.24,1); }
+.roll::after{
+  content: attr(data-text);
+  position:absolute; left:0; top:100%; display:inline-block;
+  color: var(--oro-osc);
+  transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+@media (hover:hover) and (pointer:fine){
+  .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
+}
 
-    /* ═══════════════ EXPERIENCE ═══════════════ */
-    .experience-section {
-      background: var(--black);
-    }
-    .experience-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
-      max-width: 1200px; margin: 50px auto 0;
-    }
-    .experience-img {
-      aspect-ratio: 3/4;
-      overflow: hidden;
-    }
-    .experience-img img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .experience-text h3 {
-      font-family: var(--font-display);
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 400; margin-bottom: 20px;
-      color: var(--white); letter-spacing: 0.02em;
-    }
-    .experience-text p {
-      font-size: 1rem; color: rgba(237,229,216,0.78);
-      line-height: 1.85; margin-bottom: 16px;
-    }
-    .experience-highlight {
-      display: flex; align-items: center; gap: 16px;
-      padding: 20px 0;
-      border-top: 1px solid rgba(201,169,110,0.15);
-      margin-top: 24px;
-    }
-    .experience-highlight .hl-icon {
-      width: 48px; height: 48px;
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .experience-highlight .hl-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; }
-    .experience-highlight .hl-text {
-      font-size: 0.85rem; color: rgba(237,229,216,0.72);
-      line-height: 1.6;
-    }
-    .experience-highlight .hl-text strong { color: var(--accent); font-weight: 600; }
+.musica{
+  display:inline-flex; align-items:center; gap:.6rem;
+  background:none; border:1px solid var(--linea); border-radius:999px;
+  padding:.55rem 1.1rem; cursor:pointer;
+  font: 300 .72rem/1 var(--sans); letter-spacing:.18em; text-transform:uppercase;
+  color: var(--tinta);
+  transition: border-color .4s ease, color .4s ease;
+}
+.musica:hover{ border-color: var(--oro-osc); color: var(--oro-osc); }
+.musica__barras{ display:inline-flex; align-items:flex-end; gap:2px; height:12px; }
+.musica__barras i{
+  width:2px; height:4px; background: currentColor; border-radius:1px;
+  transition: height .3s ease;
+}
+.musica[aria-pressed="true"] .musica__barras i{ animation: baile 1.1s cubic-bezier(.42,0,.58,1) infinite; }
+.musica[aria-pressed="true"] .musica__barras i:nth-child(2){ animation-delay:.2s; }
+.musica[aria-pressed="true"] .musica__barras i:nth-child(3){ animation-delay:.45s; }
+@keyframes baile{ 0%,100%{height:4px} 50%{height:12px} }
 
-    /* ═══════════════ GALLERY ═══════════════ */
-    .gallery-section { background: var(--black); padding-bottom: 0; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 3px;
-      margin-top: 50px;
-    }
-    .gallery-item {
-      aspect-ratio: 1/1; overflow: hidden;
-      position: relative;
-    }
-    .gallery-item img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s var(--ease-out);
-    }
-    .gallery-item:hover img { transform: scale(1.08); }
+.hero{
+  min-height: 100svh;
+  position: relative;
+  display:grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: end;
+  gap: clamp(1.5rem,4vw,4rem);
+  padding: clamp(7rem,14vh,9rem) var(--pad) clamp(3rem, 8vh, 5rem);
+}
+.hero__kicker{
+  font-size: .76rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--piedra); margin-bottom: 1.5rem;
+}
+.hero__titulo{
+  font-size: clamp(2.7rem, 7.4vw, 6.6rem);
+  letter-spacing: -.01em;
+  max-width: 13ch;
+}
+.hero__pie{ display:flex; align-items:flex-end; gap:2.5rem; margin-top: 2.4rem; flex-wrap:wrap; }
+.hero__sub{ max-width: 38ch; color: var(--tinta-2); font-size: 1.02rem; }
+.hero__scroll{
+  font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--piedra); display:flex; align-items:center; gap:.8rem;
+}
+.hero__scroll::after{
+  content:""; display:block; width:1px; height:3.2rem; background: var(--oro-osc);
+  transform-origin: top;
+  animation: gota 2.4s cubic-bezier(.76,0,.24,1) infinite;
+}
+@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
+                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
+.hero__media{
+  position: relative;
+  height: clamp(22rem, 64vh, 38rem);
+  border-radius: 50vw 50vw 0 0;
+  overflow: hidden;
+}
+.hero__media img{ will-change: transform; }
+@media (max-width: 820px){
+  .hero{ grid-template-columns: 1fr; align-items:start; min-height: auto; height: auto; }
+  .hero__media{ order:-1; height: 38svh; margin-top: 1rem; }
+}
+@media (max-width: 768px){
+  .hero{ min-height: auto; height: auto; align-items: flex-start; }
+}
+[data-hero-reveal]{ visibility: hidden; }
 
-    /* ═══════════════ REVIEWS ═══════════════ */
-    .reviews-section {
-      background: var(--carbon);
-    }
-    .reviews-header {
-      text-align: center; margin-bottom: 60px;
-    }
-    .reviews-header .section-label { justify-content: center; }
-    .reviews-header .section-label::before { display: none; }
-    .reviews-rating {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      margin-top: 20px;
-    }
-    .reviews-rating .rating-number {
-      font-family: var(--font-display);
-      font-size: 2.5rem; color: var(--accent);
-    }
-    .reviews-rating .rating-info {
-      text-align: left;
-    }
-    .reviews-rating .rating-stars {
-      color: var(--accent); font-size: 1rem; letter-spacing: 2px;
-    }
-    .reviews-rating .rating-count {
-      font-size: 0.75rem; color: var(--text-muted);
-      letter-spacing: 0.1em;
-    }
-    .reviews-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 30px; max-width: 1200px; margin: 0 auto;
-    }
-    .review-card {
-      background: var(--carbon-mid);
-      border: 1px solid rgba(201,169,110,0.08);
-      padding: 40px 32px;
-      position: relative;
-      transition: border-color 0.4s;
-    }
-    .review-card:hover { border-color: rgba(201,169,110,0.2); }
-    .review-card::before {
-      content: '\201C';
-      font-family: var(--font-display);
-      font-size: 4rem; color: rgba(201,169,110,0.15);
-      position: absolute; top: 16px; left: 24px; line-height: 1;
-    }
-    .review-card .review-text {
-      font-size: 0.95rem; color: rgba(237,229,216,0.8);
-      line-height: 1.8; margin-bottom: 24px;
-      font-style: italic;
-      position: relative; z-index: 1;
-    }
-    .review-card .review-author {
-      display: flex; align-items: center; gap: 12px;
-    }
-    .review-card .review-author-initial {
-      width: 40px; height: 40px;
-      background: var(--accent);
-      color: var(--black);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
-    }
-    .review-card .review-author-info strong {
-      display: block; font-size: 0.85rem; color: var(--white);
-      font-weight: 500;
-    }
-    .review-card .review-author-info span {
-      font-size: 0.7rem; color: var(--text-muted);
-      letter-spacing: 0.08em;
-    }
+.marquee{
+  overflow:hidden; white-space:nowrap;
+  border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  padding: 1.05rem 0;
+  background: var(--crema);
+  position: relative; z-index: 2;
+}
+.marquee__track{ display:inline-flex; gap:3rem; will-change: transform; }
+.marquee__group{ display:inline-flex; gap:3rem; }
+.marquee__group span{ font-family: var(--serif); font-size: 1.25rem; color: var(--piedra); }
+.marquee__group i{ font-style: normal; color: var(--oro-osc); }
 
-    /* ═══════════════ HORARIO + CONTACTO ═══════════════ */
-    .contact-section {
-      background: var(--black);
-    }
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; max-width: 1200px; margin: 50px auto 0;
-      align-items: start;
-    }
-    .horario-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 40px;
-    }
-    .horario-table tr {
-      border-bottom: 1px solid rgba(201,169,110,0.1);
-      transition: background 0.3s;
-    }
-    .horario-table td {
-      padding: 14px 0;
-      font-size: 0.9rem;
-      color: rgba(237,229,216,0.75);
-    }
-    .horario-table td:first-child {
-      font-weight: 500;
-      letter-spacing: 0.05em;
-    }
-    .horario-table td:last-child {
-      text-align: right;
-      font-weight: 300;
-    }
-    .horario-hoy {
-      background: rgba(201,169,110,0.08);
-    }
-    .horario-hoy td {
-      color: var(--accent) !important;
-      font-weight: 600 !important;
-    }
+.manifiesto{ position: relative; padding: clamp(9rem,20vh,15rem) var(--pad); }
+.manifiesto p{
+  position: relative; z-index: 2;
+  max-width: 24ch;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3.7vw, 3rem);
+  line-height: 1.3;
+}
+.flotante{
+  position: absolute; z-index: 1;
+  width: clamp(7rem, 15vw, 16rem);
+  overflow: hidden; border-radius: 50vw 50vw 0 0;
+  will-change: transform;
+  box-shadow: 0 24px 60px rgba(18,16,14,.22);
+}
+.flotante img{ aspect-ratio: 3/4; }
+.flotante--1{ top: 6%;  right: 9%;  width: clamp(9rem, 17vw, 18rem); }
+.flotante--2{ bottom: 4%; right: 30%; }
+.flotante--3{ top: 42%; left: 60%; width: clamp(6rem, 11vw, 12rem); opacity:.85; }
+@media (max-width: 720px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; } }
 
-    .contact-info-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      margin-bottom: 24px;
-    }
-    .contact-info-item .ci-icon {
-      width: 44px; height: 44px;
-      border: 1px solid rgba(201,169,110,0.2);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .contact-info-item .ci-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; }
-    .contact-info-item .ci-text { font-size: 0.9rem; color: rgba(237,229,216,0.78); }
-    .contact-info-item .ci-text a {
-      color: var(--accent); text-decoration: none;
-      transition: color 0.3s;
-    }
-    .contact-info-item .ci-text a:hover { color: var(--accent-light); }
+.cifras{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
+  gap: 2rem; padding: 0 var(--pad) clamp(7rem,14vh,11rem);
+}
+.cifra{ border-top:1px solid var(--linea); padding-top: 1.3rem; }
+.cifra__valor{
+  font-family: var(--serif); font-size: clamp(2.5rem,5.5vw,4.4rem);
+  font-variant-numeric: tabular-nums; color: var(--tinta);
+}
+.cifra__valor i{ font-style:normal; color: var(--oro-osc); font-size:.5em; margin-left:.06em; }
+.cifra p{ color: var(--piedra); font-size:.85rem; margin-top:.35rem; }
 
-    .contact-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--accent); color: var(--black);
-      text-decoration: none; padding: 16px 36px;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-weight: 600; margin-top: 12px;
-      transition: background 0.3s;
-    }
-    .contact-cta:hover { background: var(--accent-light); }
+.ritual{ height: 340vh; position: relative; }
+.ritual__pin{
+  position: relative; height: 100vh; height: 100svh;
+  overflow: hidden; display: grid;
+  background: var(--crema-2);
+}
+.ritual__lienzo{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.ritual__hud{
+  position: relative; z-index: 2;
+  display:flex; flex-direction:column; justify-content: space-between;
+  padding: clamp(5rem, 12vh, 7rem) var(--pad) clamp(2.5rem, 6vh, 4rem);
+  pointer-events: none;
+}
+.ritual__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; }
+.ritual__titulo{ font-size: clamp(1.8rem, 4vw, 3.2rem); }
+.ritual__num{
+  font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.ritual__num i{ font-style:normal; color: var(--oro-osc); font-size:.45em; }
+.ritual__fase{
+  font-size:.76rem; letter-spacing:.28em; text-transform:uppercase; color: var(--tinta-2);
+  border-left: 2px solid var(--oro-osc); padding-left: 1rem;
+}
+@media (prefers-reduced-motion: reduce){
+  .ritual{ height:auto; } .ritual__pin{ height:100svh; }
+}
 
-    /* ═══════════════ MAP ═══════════════ */
-    .map-section {
-      padding: 0;
-      background: var(--black);
-    }
-    .map-container {
-      width: 100%; height: 450px;
-      position: relative;
-    }
-    .map-container iframe {
-      width: 100%; height: 100%; border: 0;
-      filter: grayscale(0.3) contrast(1.05);
-    }
+.expe{ position: relative; }
+.expe__pin{
+  height: 100vh; height: 100svh; overflow: hidden;
+  display:flex; flex-direction: column; justify-content: center;
+}
+.expe__cab{
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding: clamp(5rem,10vh,6.5rem) var(--pad) 2rem; gap:2rem;
+}
+.expe__cab h2{ font-size: clamp(2rem, 4.5vw, 3.6rem); }
+.expe__indice{
+  font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.expe__indice b{ font-weight: 400; color: var(--tinta); }
+.expe__track{
+  display:flex; gap: clamp(1.5rem,3vw,3rem);
+  padding: 0 var(--pad);
+  align-items: stretch;
+  will-change: transform;
+}
+.panel{ flex: 0 0 auto; width: clamp(19rem, 38vw, 38rem); }
+.panel__marco{
+  overflow:hidden; position:relative; height: clamp(19rem, 54vh, 32rem);
+}
+.panel:nth-child(odd) .panel__marco{ border-radius: 50vw 50vw 0 0; }
+.panel__marco img{ will-change: transform; }
+.panel__num{
+  position:absolute; top:1rem; left:1.3rem; z-index:1;
+  font-family: var(--serif); font-size: 1rem; letter-spacing:.18em;
+  color: #F3EDE6; text-shadow: 0 1px 14px rgba(0,0,0,.55);
+}
+.panel__meta{ display:flex; justify-content:space-between; margin-top: 1rem; align-items:baseline; gap:1rem; }
+.panel__meta h3{ font-size: clamp(1.25rem, 2vw, 1.7rem); }
+.panel__meta span{ color: var(--piedra); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; white-space:nowrap; }
+@media (max-width: 820px){
+  .expe__pin{ height:auto; overflow:visible; }
+  .expe__track{ flex-direction: column; }
+  .panel{ width: 100%; }
+}
 
-    /* ═══════════════ FOOTER ═══════════════ */
-    footer {
-      background: var(--carbon);
-      border-top: 1px solid rgba(201,169,110,0.08);
-      padding: 60px 60px 40px;
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 40px; flex-wrap: wrap;
-    }
-    .footer-brand {
-      font-family: var(--font-display);
-      font-size: 1.1rem; color: var(--white);
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    .footer-brand span { color: var(--accent); }
-    .footer-tagline {
-      font-size: 0.82rem; color: var(--text-muted);
-      max-width: 300px; line-height: 1.6;
-    }
-    .footer-links {
-      display: flex; gap: 40px;
-    }
-    .footer-links a {
-      font-size: 0.72rem; color: var(--text-muted);
-      text-decoration: none; letter-spacing: 0.12em;
-      text-transform: uppercase; transition: color 0.3s;
-    }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-social {
-      display: flex; gap: 16px; align-items: center;
-    }
-    .footer-social a {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(201,169,110,0.15);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.3s, background 0.3s;
-      text-decoration: none;
-    }
-    .footer-social a:hover { border-color: var(--accent); background: rgba(201,169,110,0.08); }
-    .footer-social a svg { width: 16px; height: 16px; fill: var(--text-muted); transition: fill 0.3s; }
-    .footer-social a:hover svg { fill: var(--accent); }
-    .footer-bottom {
-      max-width: 1200px; margin: 40px auto 0;
-      padding-top: 24px;
-      border-top: 1px solid rgba(201,169,110,0.06);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-    }
-    .footer-copy {
-      font-size: 0.7rem; color: rgba(138,126,110,0.6);
-      letter-spacing: 0.08em;
-    }
-    .footer-legal {
-      display: flex; gap: 24px;
-    }
-    .footer-legal a {
-      font-size: 0.68rem; color: rgba(138,126,110,0.6);
-      text-decoration: none; transition: color 0.3s;
-    }
-    .footer-legal a:hover { color: var(--accent); }
+.sensaciones{
+  position: relative;
+  min-height: 86svh;
+  display:grid; place-items:center; text-align:center;
+  padding: clamp(7rem,16vh,11rem) var(--pad);
+  overflow: hidden;
+}
+.sensaciones h2{ font-size: clamp(2.4rem, 6.5vw, 5.4rem); max-width: 15ch; position:relative; z-index:2; pointer-events:none; }
+.sensaciones__pista{
+  position:absolute; bottom: clamp(2rem,6vh,4rem); left:50%; transform:translateX(-50%);
+  font-size:.7rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
+  z-index:2; pointer-events:none;
+}
+.estela-img{
+  position:absolute; width: clamp(9rem, 16vw, 15rem); aspect-ratio: 3/4;
+  overflow:hidden; border-radius: 50vw 50vw 0 0;
+  pointer-events:none; will-change: transform, opacity;
+  box-shadow: 0 18px 50px rgba(18,16,14,.25);
+}
+@media (pointer: coarse){ .sensaciones__pista{ display:none; } }
 
-    /* ═══════════════ REVEAL ANIMATION ═══════════════ */
-    .reveal {
-      opacity: 1; transform: translateY(0);
-    }
-    .reveal.hidden-init {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-    }
-    .reveal.visible {
-      opacity: 1; transform: translateY(0);
-    }
+.zoom{ height: 300vh; position: relative; }
+.zoom__pin{
+  position: relative; height: 100vh; height: 100svh;
+  overflow: hidden; display: grid; place-items: center;
+  background: #0D0B09;
+}
+.zoom__marco{ position:absolute; inset:0; clip-path: inset(38% 32% 38% 32%); will-change: clip-path; }
+.zoom__marco img{ will-change: transform; }
+.zoom__marco::after{ content:""; position:absolute; inset:0; background: rgba(13,11,9,.42); }
+.zoom__texto{
+  position: relative; z-index: 2;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5.5vw, 4.8rem);
+  line-height: 1.15; color: #F3EDE6;
+  text-align: center; max-width: 16ch;
+  padding: 0 var(--pad);
+  text-shadow: 0 2px 30px rgba(0,0,0,.5);
+}
+.zoom__texto em{ color: var(--oro); }
+@media (prefers-reduced-motion: reduce){
+  .zoom{ height:auto; } .zoom__pin{ height:100svh; }
+  .zoom__marco{ clip-path:none; }
+}
 
-    /* ═══════════════ RESPONSIVE ═══════════════ */
-    @media (max-width: 1024px) {
-      .services-grid { grid-template-columns: 1fr 1fr; }
-      .about-section { grid-template-columns: 1fr; gap: 50px; }
-      .experience-grid { grid-template-columns: 1fr; gap: 40px; }
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-      .contact-grid { grid-template-columns: 1fr; gap: 50px; }
-    }
+.tiras{ overflow:hidden; padding: clamp(5rem,10vh,8rem) 0 clamp(3rem,6vh,5rem); display:grid; gap:.4rem; }
+.tira{
+  white-space: nowrap; will-change: transform;
+  font-family: var(--serif); font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1.05; color: transparent;
+  -webkit-text-stroke: 1px rgba(201,169,110,.35);
+}
+.tira em{ color: var(--oro); -webkit-text-stroke: 0; }
+.tira--llena{ color: rgba(201,169,110,.16); -webkit-text-stroke: 0; }
 
-    @media (max-width: 768px) {
-      .hero {
-        min-height: auto;
-        height: auto;
-        align-items: flex-start;
-      }
-      nav { padding: 20px 24px; }
-      nav.scrolled { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      section { padding: 80px 24px; }
-      .hero-content {
-        padding: 140px 24px 80px;
-        max-width: 100%;
-      }
-      .hero-bg {
-        position: absolute; inset: 0;
-        min-height: 100vh;
-      }
-      .hero-scroll { display: none; }
+.testimonios{ padding: 0 var(--pad) clamp(7rem,14vh,11rem); max-width: 72rem; }
+.testimonios__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.2rem; }
+.testimonios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.google{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-size:.82rem; letter-spacing:.08em; color: var(--piedra);
+  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+}
+.google i{ font-style:normal; color: var(--oro-osc); letter-spacing:.16em; }
+.cita{ border-left: 1px solid rgba(201,169,110,.55); padding: .4rem 0 .4rem 1.8rem; margin-bottom: 2.6rem; }
+.cita blockquote{ font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.8rem); line-height: 1.45; color: var(--tinta-2); }
+.cita figcaption{ margin-top: .8rem; color: var(--piedra); font-size:.8rem; letter-spacing:.14em; text-transform: uppercase; }
 
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-section { padding: 60px 24px; }
+.mapa{
+  width: 100%; height: clamp(16rem, 36vh, 24rem);
+  border: 0; border-top: 1px solid var(--linea);
+  filter: grayscale(.85) contrast(1.05);
+  transition: filter .6s ease;
+}
+.mapa:hover{ filter: grayscale(0) contrast(1); }
 
-      .services-grid { grid-template-columns: 1fr; }
-      .service-card { aspect-ratio: 4/3; }
-      .service-card p { opacity: 1; transform: translateY(0); }
+.contacto{
+  min-height: 92svh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; gap: 2.4rem; padding: 6rem var(--pad) 4rem;
+  border-top: 1px solid var(--linea);
+}
+.contacto__estado{
+  font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
+  display:flex; align-items:center; gap:.7rem;
+}
+.contacto__estado::before{
+  content:""; width:.55rem; height:.55rem; border-radius:50%;
+  background: var(--oro-osc); box-shadow: 0 0 12px var(--oro);
+  animation: latido 2.6s cubic-bezier(.42,0,.58,1) infinite;
+}
+@keyframes latido{ 50%{ opacity:.35; } }
+.contacto h2{ font-size: clamp(2.5rem, 7.5vw, 6.2rem); max-width: 14ch; }
 
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+.magnetico{
+  display:inline-flex; align-items:center; gap:.9rem;
+  font: 400 .9rem/1 var(--sans); letter-spacing:.14em; text-transform:uppercase;
+  color: var(--crema);
+  border:1px solid var(--oro-osc); border-radius: 999px;
+  padding: 1.3rem 2.5rem;
+  background: var(--oro-osc); cursor: pointer;
+  transition: background-color .45s ease, border-color .45s ease;
+}
+.magnetico:hover{ background: var(--oro); border-color: var(--oro); }
+.magnetico .magnetico__label{ display:inline-block; }
+.contacto__secundario{ font-size:.85rem; color: var(--piedra); }
+.contacto__secundario a{ border-bottom:1px solid var(--linea); padding-bottom:.1em; }
+.contacto__secundario a:hover{ color: var(--oro-osc); border-color: var(--oro-osc); }
 
-      .reviews-grid { grid-template-columns: 1fr; }
-      .review-card { padding: 32px 24px; }
+.contacto__datos{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr));
+  gap: 2rem; width: min(64rem, 100%); margin-top: 2.2rem;
+  text-align:left; font-size:.95rem;
+}
+.dato{ border-top:1px solid var(--linea); padding-top: 1.1rem; }
+.dato h4{ font: 400 .7rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
+.dato a:hover{ color: var(--oro-osc); }
+.horario{ display:grid; gap:.25rem; }
+.horario > div{ display:flex; justify-content:space-between; gap:1rem; color: var(--piedra); }
+.horario .horario-hoy{ color: var(--oro-osc); font-weight: 400; }
 
-      .footer-inner { flex-direction: column; }
-      .footer-links { flex-direction: column; gap: 16px; }
-      footer { padding: 50px 24px 30px; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-    }
+.pie{
+  display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap;
+  padding: 2rem var(--pad) 2.6rem;
+  color: var(--piedra); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+  border-top: 1px solid var(--linea);
+}
+.pie nav{ display:flex; gap:1.4rem; flex-wrap:wrap; }
+.pie a:hover, .pie button:hover{ color: var(--oro-osc); }
+.pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
 
-    @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr; }
-      .stat-card { padding: 30px 24px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
+[data-reveal]{ visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
+  .preloader{ display:none; }
+  .progreso{ display:none; }
+}
+</style>
 </head>
 <body>
 
-  <!-- LOADER -->
-  <div class="loader" id="loader">
-    <span class="loader-text">Royale Beauty</span>
-  </div>
+<!-- ════════ PRELOADER ════════ -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span><b>Royale Beauty</b> · Hammam &amp; Spa</span></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
+</div>
 
-  <!-- NAVBAR -->
-  <nav id="navbar" role="navigation" aria-label="Principal">
-    <a href="#" class="nav-logo"><span>Royale</span> Beauty</a>
-    <ul class="nav-links">
-      <li><a href="#filosofía">Filosofía</a></li>
-      <li><a href="#tratamientos">Tratamientos</a></li>
-      <li><a href="#galería">Galería</a></li>
-      <li><a href="#opiniones">Opiniones</a></li>
-      <li><a href="#contacto" class="nav-cta">Reservar</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+<!-- ════════ CAPAS DECORATIVAS ════════ -->
+<canvas id="vapor" aria-hidden="true"></canvas>
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
+
+<header class="cabecera">
+  <a class="cabecera__logo" href="#"><b>Royale</b>&nbsp;Beauty</a>
+  <div class="cabecera__der">
+    <nav class="cabecera__nav" aria-label="principal">
+      <a class="roll" href="#experiencias" data-text="Experiencias"><span>Experiencias</span></a>
+      <a class="roll" href="#el-espacio"   data-text="El espacio"><span>El espacio</span></a>
+      <a class="roll" href="#contacto"     data-text="Reservar"><span>Reservar</span></a>
+    </nav>
+    <button class="musica" type="button" aria-pressed="false" aria-label="Activar música ambiente" data-musica>
+      <span class="musica__barras" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span data-musica-label>Ambiente</span>
     </button>
-  </nav>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu de navegación">
-    <a href="#filosofía" class="mobile-link">Filosofía</a>
-    <a href="#tratamientos" class="mobile-link">Tratamientos</a>
-    <a href="#galería" class="mobile-link">Galería</a>
-    <a href="#opiniones" class="mobile-link">Opiniones</a>
-    <a href="#contacto" class="mobile-link">Reservar</a>
   </div>
+</header>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-overlay-bottom"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Hammam privado en Triana</p>
-      <h1 class="hero-title">Tu santuario de <em>bienestar</em></h1>
-      <p class="hero-sub">Solo cuatro invitados al día acceden a nuestro Hammam Spa. Ritual ancestral, manos expertas y productos orgánicos de alta pureza en el corazón de Las Palmas.</p>
-      <div class="hero-actions">
-        <a href="tel:+34683393154" class="btn-primary">
-          <span>Reservar cita
-            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
-        <a href="#tratamientos" class="btn-ghost">
-          Descubrir
-          <span class="btn-ghost-arrow">
-            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </span>
-        </a>
+<main>
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="hero__contenido">
+      <p class="hero__kicker" data-hero-reveal>Hammam &amp; Spa · Triana · Las Palmas de Gran Canaria</p>
+      <h1 class="hero__titulo" data-hero-reveal>
+        Tu santuario de <em>bienestar</em> en Triana.
+      </h1>
+      <div class="hero__pie">
+        <p class="hero__sub" data-hero-reveal>
+          Solo cuatro personas al día. Rituales ancestrales con productos
+          orgánicos de la más alta pureza, donde cada detalle está pensado para ti.
+        </p>
+        <p class="hero__scroll" data-hero-reveal>Descubre</p>
       </div>
     </div>
-    <div class="hero-scroll" aria-hidden="true">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+    <div class="hero__media" data-hero-media>
+      <img src="assets/hero.jpg" alt="Sala del hammam en Royale Beauty con bañera oval, cielo estrellado e iluminación cálida" loading="eager" data-hero-parallax>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-section" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item"><span class="dot"></span>Hammam Ancestral</span>
-      <span class="marquee-item"><span class="dot"></span>Korean Head Spa</span>
-      <span class="marquee-item"><span class="dot"></span>Masajes de Autor</span>
-      <span class="marquee-item"><span class="dot"></span>Ventosas Terapéuticas</span>
-      <span class="marquee-item"><span class="dot"></span>Estética Avanzada</span>
-      <span class="marquee-item"><span class="dot"></span>Exfoliación Integral</span>
-      <span class="marquee-item"><span class="dot"></span>Envolturas Orgánicas</span>
-      <span class="marquee-item"><span class="dot"></span>Rituales Corporales</span>
-      <span class="marquee-item"><span class="dot"></span>Hammam Ancestral</span>
-      <span class="marquee-item"><span class="dot"></span>Korean Head Spa</span>
-      <span class="marquee-item"><span class="dot"></span>Masajes de Autor</span>
-      <span class="marquee-item"><span class="dot"></span>Ventosas Terapéuticas</span>
-      <span class="marquee-item"><span class="dot"></span>Estética Avanzada</span>
-      <span class="marquee-item"><span class="dot"></span>Exfoliación Integral</span>
-      <span class="marquee-item"><span class="dot"></span>Envolturas Orgánicas</span>
-      <span class="marquee-item"><span class="dot"></span>Rituales Corporales</span>
-    </div>
-  </div>
-
-  <!-- STATS -->
-  <div class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">4<span class="stat-suffix">,9</span></div>
-        <div class="stat-label">Valoración en Google</div>
+  <!-- ════════ MARQUEE ════════ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Hammam marroquí <i>·</i></span><span>Korean Head Spa <i>·</i></span>
+        <span>Masajes de autor <i>·</i></span><span>Solo 4 personas al día <i>·</i></span>
+        <span>Triana, Las Palmas <i>·</i></span><span>4,9 en Google <i>·</i></span>
       </div>
-      <div class="stat-card">
-        <div class="stat-number">54<span class="stat-suffix">+</span></div>
-        <div class="stat-label">Reseñas verificadas</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">4</div>
-        <div class="stat-label">Invitados al día</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">100<span class="stat-suffix">%</span></div>
-        <div class="stat-label">Productos orgánicos</div>
+      <div class="marquee__group" aria-hidden="true">
+        <span>Hammam marroquí <i>·</i></span><span>Korean Head Spa <i>·</i></span>
+        <span>Masajes de autor <i>·</i></span><span>Solo 4 personas al día <i>·</i></span>
+        <span>Triana, Las Palmas <i>·</i></span><span>4,9 en Google <i>·</i></span>
       </div>
     </div>
   </div>
 
-  <!-- ABOUT / FILOSOFIA -->
-  <section id="filosofía">
-    <div class="about-section">
-      <div class="about-text">
-        <p class="section-label">Nuestra filosofía</p>
-        <h2 class="section-title">Donde la tradición oriental se funde con el <em>diseño contemporáneo</em></h2>
-        <p>En Royale Beauty Hammam &amp; Spa, cada detalle está pensado para que sientas el lujo en el silencio, en el orden y en el cuidado absoluto.</p>
-        <p>La pureza de nuestros espacios, preparados meticulosamente para cada visita, refleja un compromiso con la perfección que notarás desde el primer contacto.</p>
-        <p>Nuestro equipo lo forman Eva, especialista en terapias manuales y masajes de autor, y Chaymaa, experta en estética integral avanzada. Juntas combinan profesionalidad y una sensibilidad especial para que cada sesión sea irrepetible.</p>
-      </div>
-      <div class="about-visual">
-        <img src="servicio1.jpg" alt="Equipo de Royale Beauty Hammam y Spa asesorando a una clienta en su sala de espera" width="768" height="768" loading="lazy">
-        <div class="about-badge">
-          <span class="badge-number">4</span>
-          <span class="badge-label">Invitados/día</span>
+  <!-- ════════ MANIFIESTO ════════ -->
+  <section class="manifiesto" id="el-espacio">
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="assets/flotante3.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="assets/flotante1.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="assets/flotante2.jpg" alt="" loading="lazy"></figure>
+    <p data-manifiesto>
+      Somos Chaymaa y Eva. Unimos <em>tradición oriental</em> y diseño
+      contemporáneo para crear un espacio donde la sofisticación se vive
+      a escala humana: atención al detalle, excelencia en cada gesto y
+      productos orgánicos de la más alta pureza.
+    </p>
+  </section>
+
+  <!-- ════════ CIFRAS (reales de Google y TripAdvisor) ════════ -->
+  <section class="cifras">
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="4">0</span></div>
+      <p>personas al día, máximo</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="54">0</span><i>+</i></div>
+      <p>reseñas en Google</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="4" data-final="4,9">0</span></div>
+      <p>valoración media en Google</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="5">0</span><i>,0</i></div>
+      <p>en TripAdvisor</p>
+    </div>
+  </section>
+
+  <!-- ════════ EL RITUAL — vapor del hammam dibujado por tu scroll ════════ -->
+  <section class="ritual" aria-label="El ritual del hammam, paso a paso">
+    <div class="ritual__pin">
+      <canvas class="ritual__lienzo" aria-hidden="true"></canvas>
+      <div class="ritual__hud">
+        <div class="ritual__cab">
+          <h2 class="ritual__titulo">Tu ritual, <em>paso a paso</em></h2>
+          <div class="ritual__num"><span data-ritual-num>0</span><i>%</i></div>
         </div>
+        <p class="ritual__fase" data-ritual-fase>I — Acogida</p>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="services-section" id="tratamientos">
-    <p class="section-label">Tratamientos</p>
-    <h2 class="section-title">Rituales que <em>transforman</em></h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="servicio3.jpg" alt="Interior del hammam con bañera negra, techo estrellado y jardin vertical" width="768" height="768" loading="lazy">
-        <div class="service-card-overlay">
-          <span class="service-card-number">01</span>
-          <h3>Hammam Ancestral</h3>
-          <p>Ritual completo de exfoliación integral y envolturas con productos orgánicos de alta pureza. Un viaje sensorial bajo nuestro cielo estrellado.</p>
-        </div>
+  <!-- ════════ EXPERIENCIAS — galería horizontal ════════ -->
+  <section class="expe" id="experiencias" aria-label="Experiencias y rituales">
+    <div class="expe__pin">
+      <div class="expe__cab">
+        <h2>Experiencias <em>únicas</em></h2>
+        <p class="expe__indice"><b data-expe-num>01</b> / 05</p>
       </div>
-      <div class="service-card">
-        <img src="equipo.webp" alt="Terapeuta realizando un tratamiento de exfoliación sobre la mesa del hammam" width="768" height="768" loading="lazy">
-        <div class="service-card-overlay">
-          <span class="service-card-number">02</span>
-          <h3>Masajes de Autor</h3>
-          <p>Eva personaliza cada masaje, dedicando el tiempo y la pericia necesarios para responder a lo que tu cuerpo necesita.</p>
-        </div>
-      </div>
-      <div class="service-card">
-        <img src="detalle1.jpg" alt="Tratamiento facial con cosmetica avanzada en Royale Beauty Spa" width="768" height="768" loading="lazy">
-        <div class="service-card-overlay">
-          <span class="service-card-number">03</span>
-          <h3>Estética Avanzada</h3>
-          <p>Tratamientos dermoestéticos de última generación, respaldados por la marca líder del sector, para quienes buscan la excelencia en el cuidado de la piel.</p>
-        </div>
-      </div>
-      <div class="service-card">
-        <img src="servicio4.jpg" alt="Productos y accesorios orientales de los rituales de hammam" width="768" height="768" loading="lazy">
-        <div class="service-card-overlay">
-          <span class="service-card-number">04</span>
-          <h3>Korean Head Spa</h3>
-          <p>Una experiencia profundamente relajante para el cuero cabelludo y la mente. Considerado por nuestros clientes como un momento de desconexión absoluta.</p>
-        </div>
+      <div class="expe__track">
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">01</span>
+            <img src="assets/img3.jpg" alt="Sala del hammam marroquí con bañera oval y cielo de estrellas" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Ritual Hammam Marroquí</h3><span>Tradición ancestral</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">02</span>
+            <img src="assets/img1.jpg" alt="Bañera del hammam con pétalos de rosa y velas" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Korean Head Spa</h3><span>Relajación profunda</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">03</span>
+            <img src="assets/img5.jpg" alt="Masaje relajante con velas aromáticas en Royale Beauty" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Masajes de Autor</h3><span>Lomi-Lomi y más</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">04</span>
+            <img src="assets/img2.jpg" alt="Tratamiento de masaje corporal profesional" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Estética Avanzada</h3><span>Drenaje linfático</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">05</span>
+            <img src="assets/img4.jpg" alt="Chaymaa atendiendo a una clienta en la recepción de Royale Beauty" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Consulta Personalizada</h3><span>A tu medida</span></div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section class="experience-section">
-    <div class="experience-grid">
-      <div class="experience-img">
-        <img src="interior2.jpg" alt="Sala de masajes de Royale Beauty con iluminación ambiental calida y decoracion oriental" width="768" height="768" loading="lazy">
-      </div>
-      <div class="experience-text">
-        <p class="section-label">La experiencia</p>
-        <h3>Un santuario privado pensado para el disfrute absoluto</h3>
-        <p>Para garantizar una experiencia absolutamente privada y personalizada, limitamos el acceso a cuatro invitados al día. Sin prisas, sin ruidos, sin interrupciones.</p>
-        <p>Cada ritual se lleva a cabo en un espacio que combina el tadelakt tradicional, iluminación envolvente y un cielo de estrellas que transforma la sesión en un viaje sensorial completo.</p>
-        <div class="experience-highlight">
-          <div class="hl-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="hl-text"><strong>Productos orgánicos certificados</strong><br>Exfoliantes, envolturas y aceites de alta pureza seleccionados para tu bienestar.</div>
-        </div>
-        <div class="experience-highlight">
-          <div class="hl-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div class="hl-text"><strong>Sin limite de tiempo</strong><br>Cada terapeuta dedica a tu sesión el tiempo que tu cuerpo necesita, sin reloj.</div>
-        </div>
-      </div>
+  <!-- ════════ SENSACIONES — estela de imágenes ════════ -->
+  <section class="sensaciones" aria-label="Galería de sensaciones">
+    <h2 data-reveal data-split="lines">Una experiencia que <em>transforma</em>.</h2>
+    <p class="sensaciones__pista">Mueve el ratón</p>
+  </section>
+
+  <!-- ════════ ZOOM INMERSIVO (oscuro) ════════ -->
+  <section class="zoom" aria-label="El hammam">
+    <div class="zoom__pin">
+      <div class="zoom__marco"><img src="assets/img6.jpg" alt="Recepción de Royale Beauty con suelo de mármol oscuro y sofá capitoné" loading="lazy"></div>
+      <p class="zoom__texto" data-zoom-texto>Solo cuatro almas <em>al día</em>.</p>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section class="gallery-section" id="galería">
-    <p class="section-label">Galería</p>
-    <h2 class="section-title">Nuestro <em>espacio</em></h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="hammam.jpg" alt="Vista exterior del hammam con bañera negra retroiluminada y techo de estrellas" width="768" height="768" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="interior1.jpg" alt="Detalle del interior del hammam con iluminación dorada ambiental" width="768" height="768" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="servicio2.jpg" alt="Hammam preparado con petalos de rosa para un ritual de bienestar" width="768" height="768" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="servicio5.jpg" alt="Vista panoramica del hammam Royale Beauty con cielo estrellado" width="768" height="768" loading="lazy">
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="reviews-section" id="opiniones">
-    <div class="reviews-header">
-      <p class="section-label">Opiniones reales</p>
-      <h2 class="section-title">Lo que dicen nuestros <em>invitados</em></h2>
-      <div class="reviews-rating">
-        <span class="rating-number">4,9</span>
-        <div class="rating-info">
-          <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <span class="rating-count">54 reseñas en Google</span>
-        </div>
-      </div>
-    </div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <p class="review-text">Una experiencia única; nunca imaginé que existiera un lugar así en Las Palmas. Lo recomiendo al 100%.</p>
-        <div class="review-author">
-          <span class="review-author-initial">E</span>
-          <div class="review-author-info">
-            <strong>Estrella V.</strong>
-            <span>TripAdvisor</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <p class="review-text">Desde el momento en que entras, el ambiente transmite calma, intimidad y una desconexión total del estrés diario.</p>
-        <div class="review-author">
-          <span class="review-author-initial">S</span>
-          <div class="review-author-info">
-            <strong>Silvia</strong>
-            <span>TripAdvisor</span>
-          </div>
-        </div>
-      </div>
-      <div class="review-card">
-        <p class="review-text">Nunca había tenido una experiencia Hammam y ahora creo que no puedo vivir sin ella. Estoy obsesionada.</p>
-        <div class="review-author">
-          <span class="review-author-initial">L</span>
-          <div class="review-author-info">
-            <strong>Layla M.</strong>
-            <span>TripAdvisor</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HORARIO + CONTACTO -->
-  <section class="contact-section" id="contacto">
-    <div class="contact-grid">
-      <div>
-        <p class="section-label">Horario</p>
-        <h2 class="section-title" style="margin-bottom:36px;">Cuándo <em>visitarnos</em></h2>
-        <table class="horario-table" aria-label="Horario semanal de Royale Beauty">
-          <tr id="row-lun"><td>Lunes</td><td>11:00 - 19:00</td></tr>
-          <tr id="row-mar"><td>Martes</td><td>11:00 - 19:00</td></tr>
-          <tr id="row-mie"><td>Miércoles</td><td>11:00 - 19:00</td></tr>
-          <tr id="row-jue"><td>Jueves</td><td>11:00 - 19:00</td></tr>
-          <tr id="row-vie"><td>Viernes</td><td>11:00 - 19:00</td></tr>
-          <tr id="row-sab"><td>Sábado</td><td>11:00 - 19:00</td></tr>
-          <tr id="row-dom"><td>Domingo</td><td>Cerrado</td></tr>
-        </table>
-      </div>
-      <div>
-        <p class="section-label">Contacto</p>
-        <h2 class="section-title" style="margin-bottom:36px;">Reserva tu <em>ritual</em></h2>
-        <div class="contact-info-item">
-          <div class="ci-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="ci-text">C. Francisco Gourie, 4<br>35002 Las Palmas de Gran Canaria</div>
-        </div>
-        <div class="contact-info-item">
-          <div class="ci-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div class="ci-text"><a href="tel:+34683393154">683 39 31 54</a></div>
-        </div>
-        <div class="contact-info-item">
-          <div class="ci-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div class="ci-text"><a href="mailto:info@royalebeauty.es">info@royalebeauty.es</a></div>
-        </div>
-        <div class="contact-info-item">
-          <div class="ci-icon">
-            <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </div>
-          <div class="ci-text"><a href="https://www.instagram.com/royalelaspalmas/" target="_blank" rel="noopener">@royalelaspalmas</a></div>
-        </div>
-        <a href="https://wa.me/34683393154?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20una%20cita" class="contact-cta" target="_blank" rel="noopener">
-          Reservar por WhatsApp
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- MAP -->
-  <div class="map-section" id="ubicación">
-    <div class="map-container" data-consent="terceros" data-fallback="El mapa requiere cookies de terceros. Activalas para verlo.">
-      <template data-consent-payload>
-        <iframe src="https://maps.google.com/maps?q=C.+Francisco+Gouri%C3%A9,+4,+35002+Las+Palmas+de+Gran+Canaria&output=embed" title="Ubicación de Royale Beauty Hammam y Spa en Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-      </template>
-    </div>
-    <noscript>
-      <iframe src="https://maps.google.com/maps?q=C.+Francisco+Gouri%C3%A9,+4,+35002+Las+Palmas+de+Gran+Canaria&output=embed" title="Ubicación de Royale Beauty Hammam y Spa en Google Maps" loading="lazy" width="100%" height="450" style="border:0" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-    </noscript>
-    <iframe src="https://maps.google.com/maps?q=C.+Francisco+Gouri%C3%A9,+4,+35002+Las+Palmas+de+Gran+Canaria&output=embed" title="Ubicación de Royale Beauty en Google Maps" loading="lazy" width="100%" height="450" style="border:0;display:block" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  <!-- ════════ TIRAS ════════ -->
+  <div class="tiras" aria-hidden="true">
+    <p class="tira" data-tira="-1">Hammam <em>·</em> Bienestar <em>·</em> Tradición <em>·</em> Hammam <em>·</em> Bienestar <em>·</em> Tradición <em>·</em> Hammam <em>·</em> Bienestar <em>·</em> Tradición</p>
+    <p class="tira tira--llena" data-tira="1">Las Palmas <em>·</em> Exclusividad <em>·</em> Armonía <em>·</em> Las Palmas <em>·</em> Exclusividad <em>·</em> Armonía</p>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand"><span>Royale</span> Beauty</div>
-        <p class="footer-tagline">Tu santuario privado de bienestar en el corazón de Triana, Las Palmas de Gran Canaria.</p>
+  <!-- ════════ TESTIMONIOS (reseñas reales de TripAdvisor/Google) ════════ -->
+  <section class="testimonios">
+    <div class="testimonios__cab">
+      <h2 data-reveal data-split="lines">Lo que cuentan al <em>salir</em>.</h2>
+      <p class="google" data-reveal><i>4,9 / 5</i> Reseñas reales en Google</p>
+    </div>
+    <figure class="cita">
+      <blockquote>«Una experiencia única; nunca imaginé que existiera un lugar así en Las Palmas. Entré con mucho estrés y salí completamente relajada. Lo recomiendo al 100%.»</blockquote>
+      <figcaption>Estrella V.</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>«Tuve el placer de experimentar algo absolutamente maravilloso en Royale Beauty. La atención de Chaymaa y Eva fue impecable y de gran profesionalidad. Altamente recomendable.»</blockquote>
+      <figcaption>Virginia F.</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>«Nuestra experiencia fue muy agradable y relajante. El servicio fue excelente y el hammam marroquí increíble desde el primer momento. La limpieza y la organización son impecables.»</blockquote>
+      <figcaption>Faten E.</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>«He visitado el centro dos veces para probar diferentes tratamientos. La dedicación de Chaymaa y la experiencia de Eva en masajes son excepcionales. Un verdadero refugio del estrés diario.»</blockquote>
+      <figcaption>Silvia</figcaption>
+    </figure>
+  </section>
+
+  <!-- ════════ MAPA ════════ -->
+  <iframe class="mapa" src="https://www.google.com/maps?q=Royale+Beauty+Hammam+Spa+C+Francisco+Gourie+4+Las+Palmas+de+Gran+Canaria&output=embed" loading="lazy" title="Ubicación de Royale Beauty Hammam y Spa en Google Maps" allowfullscreen></iframe>
+
+  <!-- ════════ CONTACTO ════════ -->
+  <section class="contacto" id="contacto">
+    <p class="contacto__estado" data-reveal>Reserva previa · Triana, Las Palmas</p>
+    <h2 data-reveal data-split="lines">Tu momento empieza <em>aquí</em>.</h2>
+    <a class="magnetico" href="https://wa.me/34683393154" target="_blank" rel="noopener" data-magnetico>
+      <span class="magnetico__label">Reservar por WhatsApp</span>
+    </a>
+    <p class="contacto__secundario" data-reveal>o llama al <a href="tel:+34683393154">683 39 31 54</a> · <a href="mailto:info@royalebeauty.es">info@royalebeauty.es</a></p>
+    <div class="contacto__datos">
+      <div class="dato" data-reveal>
+        <h4>El espacio</h4>
+        <p>C. Francisco Gourié, 4<br>35002 Las Palmas<br>de Gran Canaria</p>
       </div>
-      <div class="footer-links">
-        <a href="#filosofía">Filosofía</a>
-        <a href="#tratamientos">Tratamientos</a>
-        <a href="#opiniones">Opiniones</a>
-        <a href="#contacto">Contacto</a>
+      <div class="dato" data-reveal>
+        <h4>Contacto</h4>
+        <p><a href="tel:+34683393154">683 39 31 54</a><br>
+        <a href="mailto:info@royalebeauty.es">info@royalebeauty.es</a></p>
       </div>
-      <div class="footer-social">
-        <a href="https://www.instagram.com/royalelaspalmas/" target="_blank" rel="noopener" aria-label="Instagram de Royale Beauty">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-        </a>
+      <div class="dato" data-reveal>
+        <h4>Horario</h4>
+        <div class="horario">
+          <div data-dias="1"><span>Lunes</span><span>11:00 — 19:00</span></div>
+          <div data-dias="2"><span>Martes</span><span>11:00 — 19:00</span></div>
+          <div data-dias="3"><span>Miércoles</span><span>11:00 — 19:00</span></div>
+          <div data-dias="4"><span>Jueves</span><span>11:00 — 19:00</span></div>
+          <div data-dias="5"><span>Viernes</span><span>11:00 — 19:00</span></div>
+          <div data-dias="6"><span>Sábado</span><span>11:00 — 19:00</span></div>
+          <div data-dias="0"><span>Domingo</span><span>Cerrado</span></div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">Royale Beauty Hammam &amp; Spa (Ocean Rocks S.L.)</span>
-      <div class="footer-legal">
-        <a href="legal/aviso-legal.html">Aviso legal</a>
-        <a href="legal/politica-privacidad.html">Privacidad</a>
-        <a href="legal/politica-cookies.html">Cookies</a>
-        <button type="button" style="background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:0;text-decoration:none;font-size:0.68rem;color:rgba(138,126,110,0.6);" onclick="if(window.GGConsent)window.GGConsent.open()">Configurar cookies</button>
-      </div>
-    </div>
+  </section>
+
+  <footer class="pie">
+    <span>© 2026 Royale Beauty Hammam &amp; Spa · Las Palmas</span>
+    <nav>
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </nav>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
   </footer>
+</main>
 
-  <!-- COOKIE BANNER -->
-  <script src="legal/cookie-banner.js"></script>
+<!-- ════════ DEPENDENCIAS ════════ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
 
-  <!-- JS -->
-  <script>
-  (function(){
-    'use strict';
+<script>
+'use strict';
 
-    /* Loader */
-    var loader = document.getElementById('loader');
-    window.addEventListener('load', function(){
-      setTimeout(function(){ loader.classList.add('hidden'); }, 600);
-    });
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
 
-    /* Hero BG zoom */
-    var heroBg = document.getElementById('heroBg');
-    setTimeout(function(){ heroBg.classList.add('loaded'); }, 100);
+const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+const DPR          = Math.min(devicePixelRatio || 1, 2);
 
-    /* Navbar scroll */
-    var navbar = document.getElementById('navbar');
-    var lastY = 0;
-    window.addEventListener('scroll', function(){
-      var y = window.scrollY;
-      if(y > 80) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-      lastY = y;
-    }, {passive:true});
+/* ── 1) LENIS + SCROLLTRIGGER ── */
+var lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  window.lenis = lenis;
+}
 
-    /* Hamburger */
-    var hamburger = document.getElementById('hamburger');
-    var mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', function(){
-      var open = mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('active');
-      hamburger.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    var mobileLinks = mobileMenu.querySelectorAll('.mobile-link');
-    for(var i=0;i<mobileLinks.length;i++){
-      mobileLinks[i].addEventListener('click', function(){
-        mobileMenu.classList.remove('open');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded','false');
-        document.body.style.overflow = '';
+/* ════════════════════════════════════════════════════════════════════════
+   2) PARTÍCULAS DORADAS — motas de luz flotando como vapor de hammam.
+   ════════════════════════════════════════════════════════════════════════ */
+(function vaporCanvas(){
+  var canvas = document.getElementById('vapor');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var BG_DPR = Math.min(DPR, 1.5);
+  var W = 0, H = 0;
+
+  var raton = { x: -9999, y: -9999 };
+  if (FINE_POINTER) addEventListener('pointermove', function(e){ raton.x = e.clientX; raton.y = e.clientY; }, { passive: true });
+
+  var MOTAS = [];
+  var TOTAL = 60;
+
+  function sembrar(){
+    MOTAS.length = 0;
+    var s = 42;
+    var rnd = function(){ s = (s * 16807) % 2147483647; return s / 2147483647; };
+    for (var i = 0; i < TOTAL; i++){
+      MOTAS.push({
+        x: rnd() * W, y: rnd() * H,
+        r: 1 + rnd() * 2.4,
+        vel: 0.12 + rnd() * 0.22,
+        fase: rnd() * Math.PI * 2,
+        amp: 0.3 + rnd() * 0.5,
+        freq: 0.3 + rnd() * 0.4,
+        alpha: 0.08 + rnd() * 0.16,
+        dorado: rnd() > 0.4,
+        vx: 0, vy: 0
       });
     }
+  }
 
-    /* Reveal on scroll */
-    function initReveals(){
-      var els = document.querySelectorAll('.reveal');
-      if(!('IntersectionObserver' in window)){
-        return;
-      }
-      var observer = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting){
-            e.target.classList.add('visible');
-            observer.unobserve(e.target);
+  function redimensionar(){
+    W = innerWidth; H = innerHeight;
+    canvas.width = W * BG_DPR; canvas.height = H * BG_DPR;
+    ctx.setTransform(BG_DPR, 0, 0, BG_DPR, 0, 0);
+    sembrar();
+    if (REDUCE) pintar(0, 0);
+  }
+
+  function pintar(t, dt){
+    ctx.clearRect(0, 0, W, H);
+    for (var k = 0; k < MOTAS.length; k++){
+      var m = MOTAS[k];
+      if (dt > 0){
+        m.y -= m.vel * dt * 40;
+        m.x += Math.sin(t * 0.001 * m.freq + m.fase) * m.amp * dt * 18;
+        if (FINE_POINTER){
+          var dx = m.x - raton.x, dy = m.y - raton.y;
+          var d = Math.hypot(dx, dy);
+          if (d < 120 && d > 0){
+            var f = (1 - d / 120) * 1.8;
+            m.vx += (dx / d) * f;
+            m.vy += (dy / d) * f;
           }
+        }
+        m.x += m.vx; m.y += m.vy;
+        m.vx *= 0.92; m.vy *= 0.92;
+        if (m.y < -10) { m.y = H + 10; m.x = Math.random() * W; }
+        if (m.x < -10) m.x = W + 10;
+        if (m.x > W + 10) m.x = -10;
+      }
+      var pulso = 0.7 + 0.3 * Math.sin(t * 0.002 + m.fase);
+      var a = m.alpha * pulso;
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+      ctx.fillStyle = m.dorado
+        ? 'rgba(201,169,110,' + a + ')'
+        : 'rgba(166,139,75,' + (a * 0.7) + ')';
+      ctx.fill();
+    }
+  }
+
+  redimensionar();
+  addEventListener('resize', redimensionar);
+
+  if (!REDUCE){
+    var ultimo = 0, rafId = null;
+    var loop = function(ms){
+      var dt = Math.min((ms - ultimo) * 0.001, 1/30);
+      ultimo = ms;
+      pintar(ms, dt);
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden) { cancelAnimationFrame(rafId); rafId = null; }
+      else if (!rafId) { ultimo = performance.now(); rafId = requestAnimationFrame(loop); }
+    });
+  }
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   3) ESTELA FLUIDA — webgl-fluid-enhanced v0.8 (modo dual)
+   ════════════════════════════════════════════════════════════════════════ */
+if (FINE_POINTER && !REDUCE) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then(function(mod){
+    var cont = document.getElementById('fluid');
+    if (!cont) return;
+    var sim = new mod.default(cont);
+    Object.assign(cont.style, {
+      position: 'fixed', inset: '0', width: '100%', height: '100%',
+      zIndex: '9000', pointerEvents: 'none',
+    });
+    dispatchEvent(new Event('resize'));
+    sim.setConfig({
+      simResolution: 128, dyeResolution: 1024,
+      densityDissipation: 2.2, velocityDissipation: 1.4,
+      pressureIterations: 10, curl: 28,
+      splatRadius: 0.1, splatForce: 5000,
+      hover: false, colorful: false,
+      colorPalette: ['#C9A96E', '#A68B4B', '#847A6E'],
+      transparent: true, bloom: false, sunrays: false,
+    });
+    sim.start();
+
+    var lastX = null, lastY = null;
+    addEventListener('pointermove', function(e){
+      if (lastX !== null) {
+        var dx = (e.clientX - lastX) * 2.5, dy = (e.clientY - lastY) * 2.5;
+        if (Math.abs(dx) + Math.abs(dy) > 4) sim.splatAtLocation(e.clientX, e.clientY, dx, dy);
+      }
+      lastX = e.clientX; lastY = e.clientY;
+    }, { passive: true });
+
+    window.__fluidBurst = function(){
+      var W = innerWidth, H = innerHeight;
+      for (var i = 0; i <= 5; i++) {
+        (function(j){
+          var t = j / 5;
+          setTimeout(function(){
+            sim.splatAtLocation(W * (0.15 + t * 0.7), H * (0.6 - Math.sin(t * Math.PI) * 0.22),
+                                180 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
+          }, j * 70);
+        })(i);
+      }
+    };
+    document.addEventListener('visibilitychange', function(){ sim.pause(); });
+  }).catch(function(){});
+}
+
+/* ── Cursor dot + ring ── */
+if (FINE_POINTER && !REDUCE) (function cursor(){
+  var dot  = document.querySelector('.cursor-dot');
+  var ring = document.querySelector('.cursor-ring');
+  if (!dot || !ring) return;
+  var dxQ = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
+  var dyQ = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
+  var rxQ = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  var ryQ = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+  var visto = false;
+  addEventListener('pointermove', function(e){
+    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
+    dxQ(e.clientX); dyQ(e.clientY); rxQ(e.clientX); ryQ(e.clientY);
+  }, { passive: true });
+  document.querySelectorAll('a, button').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }); });
+    el.addEventListener('mouseleave', function(){ gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }); });
+  });
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   4) MÚSICA AMBIENTE — pad + agua + cuencos (0 assets, 0 copyright)
+   ════════════════════════════════════════════════════════════════════════ */
+(function musica(){
+  var btn = document.querySelector('[data-musica]');
+  var label = document.querySelector('[data-musica-label]');
+  if (!btn || !label) return;
+  var actx = null, master = null, campanaTimer = null;
+
+  function construir(){
+    actx = new (window.AudioContext || window.webkitAudioContext)();
+    master = actx.createGain(); master.gain.value = 0; master.connect(actx.destination);
+    var padGain = actx.createGain(); padGain.gain.value = 0.05;
+    var lp = actx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 520; lp.Q.value = 0.4;
+    [['triangle', 82.4, -3], ['sine', 123.5, 4], ['sine', 164.8, -2]].forEach(function(cfg){
+      var o = actx.createOscillator(); o.type = cfg[0]; o.frequency.value = cfg[1]; o.detune.value = cfg[2];
+      o.connect(lp); o.start();
+    });
+    lp.connect(padGain); padGain.connect(master);
+    var lfo = actx.createOscillator(); lfo.frequency.value = 0.04;
+    var lfoG = actx.createGain(); lfoG.gain.value = 0.02;
+    lfo.connect(lfoG); lfoG.connect(padGain.gain); lfo.start();
+    var dur = 4, sr = actx.sampleRate;
+    var buf = actx.createBuffer(1, dur * sr, sr); var data = buf.getChannelData(0); var last = 0;
+    for (var i = 0; i < data.length; i++){ var blanco = Math.random() * 2 - 1; last = (last + 0.02 * blanco) / 1.02; data[i] = last * 3.2; }
+    var ruido = actx.createBufferSource(); ruido.buffer = buf; ruido.loop = true;
+    var bp = actx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 380; bp.Q.value = 0.6;
+    var shelf = actx.createBiquadFilter(); shelf.type = 'highshelf'; shelf.frequency.value = 2000; shelf.gain.value = 6;
+    var olaGain = actx.createGain(); olaGain.gain.value = 0.04;
+    ruido.connect(bp); bp.connect(shelf); shelf.connect(olaGain); olaGain.connect(master); ruido.start();
+    var lfo2 = actx.createOscillator(); lfo2.frequency.value = 0.06;
+    var lfo2G = actx.createGain(); lfo2G.gain.value = 0.025;
+    lfo2.connect(lfo2G); lfo2G.connect(olaGain.gain); lfo2.start();
+    var eco = actx.createDelay(1.2); eco.delayTime.value = 0.55;
+    var ecoG = actx.createGain(); ecoG.gain.value = 0.28;
+    eco.connect(ecoG); ecoG.connect(eco); ecoG.connect(master);
+    var NOTAS = [261.6, 329.6, 392, 523.25, 659.25];
+    function campana(){
+      if (!actx || actx.state !== 'running') return;
+      var o = actx.createOscillator(); o.type = 'sine';
+      o.frequency.value = NOTAS[Math.floor(Math.random() * NOTAS.length)] / 2;
+      var g = actx.createGain(); var t = actx.currentTime;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.04, t + 0.05);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 4);
+      o.connect(g); g.connect(master); g.connect(eco); o.start(t); o.stop(t + 4.2);
+      campanaTimer = setTimeout(campana, 10000 + Math.random() * 10000);
+    }
+    campanaTimer = setTimeout(campana, 3000);
+  }
+  function encender(){
+    if (!actx) construir(); actx.resume();
+    master.gain.cancelScheduledValues(actx.currentTime);
+    master.gain.linearRampToValueAtTime(1.0, actx.currentTime + 2.2);
+    btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', 'Silenciar música ambiente');
+    label.textContent = 'Sonando'; try { localStorage.setItem('rb-musica', '1'); } catch(e){}
+  }
+  function apagar(){
+    if (master) master.gain.linearRampToValueAtTime(0, actx.currentTime + 0.8);
+    btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Activar música ambiente');
+    label.textContent = 'Ambiente'; try { localStorage.setItem('rb-musica', '0'); } catch(e){}
+  }
+  btn.addEventListener('click', function(){ btn.getAttribute('aria-pressed') === 'true' ? apagar() : encender(); });
+  try {
+    if (localStorage.getItem('rb-musica') === '1')
+      gsap.fromTo(btn, { boxShadow: '0 0 0 0 rgba(201,169,110,.5)' },
+        { boxShadow: '0 0 0 12px rgba(201,169,110,0)', duration: 1.6, repeat: 3, ease: 'power2.out', delay: 3 });
+  } catch(e){}
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   5) EL RITUAL — vapor del hammam (pinned canvas, scrub)
+   ════════════════════════════════════════════════════════════════════════ */
+(function ritualCanvas(){
+  var seccion = document.querySelector('.ritual');
+  var pinEl   = document.querySelector('.ritual__pin');
+  var canvas  = document.querySelector('.ritual__lienzo');
+  var elNum   = document.querySelector('[data-ritual-num]');
+  var elFase  = document.querySelector('[data-ritual-fase]');
+  if (!seccion || !pinEl || !canvas || !elNum || !elFase) return;
+  var ctx = canvas.getContext('2d');
+
+  var ORO = '#C9A96E', ORO_T = 'rgba(201,169,110,.4)', PIEDRA = 'rgba(132,122,110,.5)';
+
+  function vapor(x0, y0, alto, ondas, n){
+    n = n || 24; ondas = ondas || 3; var pts = [];
+    for (var i = 0; i <= n; i++){ var u = i / n; pts.push([x0 + Math.sin(u * Math.PI * ondas) * 18 * (1 - u * 0.3), y0 - alto * u]); }
+    return pts;
+  }
+  function arco(cx, cy, r, startDeg, endDeg, n){
+    n = n || 20; var pts = [];
+    for (var i = 0; i <= n; i++){ var u = i / n; var a = (startDeg + (endDeg - startDeg) * u) * Math.PI / 180; pts.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]); }
+    return pts;
+  }
+
+  var trazos = [
+    { t:[0.00,0.10], w:2.0, c:PIEDRA, p:[[120,520],[360,510],[640,514],[880,520]] },
+    { t:[0.04,0.14], w:1.4, c:PIEDRA, p:[[200,540],[420,532],[720,536],[840,542]] },
+    { t:[0.10,0.22], w:1.3, c:ORO_T,  p: vapor(300, 480, 160, 2.5) },
+    { t:[0.14,0.24], w:1.3, c:ORO_T,  p: vapor(700, 475, 180, 3) },
+    { t:[0.22,0.34], w:1.8, c:ORO_T,  p: vapor(200, 490, 240, 2) },
+    { t:[0.26,0.38], w:1.6, c:ORO_T,  p: vapor(500, 485, 260, 3.5) },
+    { t:[0.30,0.42], w:1.5, c:ORO_T,  p: vapor(800, 488, 220, 2.8) },
+    { t:[0.34,0.46], w:1.2, c:PIEDRA, p: vapor(380, 492, 200, 4) },
+    { t:[0.46,0.58], w:1.8, c:ORO, circulo:[500, 290, 100] },
+    { t:[0.52,0.64], w:1.5, c:ORO_T,  p: arco(500, 300, 140, -160, -20) },
+    { t:[0.58,0.70], w:1.5, c:ORO_T,  p: arco(500, 300, 180, -150, -30) },
+    { t:[0.62,0.74], w:1.3, c:PIEDRA, p: vapor(420, 400, 160, 2) },
+    { t:[0.66,0.76], w:1.3, c:PIEDRA, p: vapor(580, 400, 170, 2.5) },
+    { t:[0.76,0.86], w:2.0, c:ORO, circulo:[500, 240, 50] },
+    { t:[0.82,0.90], w:1.4, c:ORO, p:[[500,180],[500,145]] },
+    { t:[0.84,0.91], w:1.4, c:ORO, p:[[500,340],[500,370]] },
+    { t:[0.86,0.93], w:1.4, c:ORO, p:[[430,240],[400,240]] },
+    { t:[0.88,0.95], w:1.4, c:ORO, p:[[570,240],[600,240]] },
+    { t:[0.92,0.98], w:1.2, c:ORO, p:[[280,580],[720,580]], cota:'C. Francisco Gourié, 4 — Las Palmas' }
+  ];
+  var fases = [
+    [0.00, 'I — Acogida'],
+    [0.22, 'II — Ritual de vapor'],
+    [0.46, 'III — Exfoliación y masaje'],
+    [0.76, 'IV — Renacer']
+  ];
+
+  function longitudes(p){
+    var acc = [0];
+    for (var i = 1; i < p.length; i++) acc.push(acc[i-1] + Math.hypot(p[i][0]-p[i-1][0], p[i][1]-p[i-1][1]));
+    return acc;
+  }
+  trazos.forEach(function(tr){ if (tr.p) tr.len = longitudes(tr.p); });
+
+  var escala = 1, offX = 0, offY = 0;
+  function redimensionar(){
+    var w = pinEl.clientWidth, h = pinEl.clientHeight;
+    canvas.width = w * DPR; canvas.height = h * DPR;
+    escala = Math.min(w / 1000, h / 640) * 0.86;
+    offX = (w - 1000 * escala) / 2;
+    offY = (h - 640 * escala) / 2 + h * 0.02;
+    pintar(progreso.valor, true);
+  }
+
+  function polilineaParcial(p, len, f){
+    var objetivo = len[len.length-1] * f;
+    ctx.beginPath(); ctx.moveTo(p[0][0], p[0][1]);
+    for (var i = 1; i < p.length; i++){
+      if (len[i] <= objetivo) { ctx.lineTo(p[i][0], p[i][1]); continue; }
+      var resto = (objetivo - len[i-1]) / (len[i] - len[i-1]);
+      if (resto > 0) ctx.lineTo(p[i-1][0] + (p[i][0]-p[i-1][0]) * resto, p[i-1][1] + (p[i][1]-p[i-1][1]) * resto);
+      break;
+    }
+    ctx.stroke();
+  }
+
+  var ultimoPintado = -1;
+  function pintar(t, forzar){
+    var tick = Math.round(t * 800);
+    if (!forzar && tick === ultimoPintado) return;
+    ultimoPintado = tick;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.clearRect(0, 0, canvas.width / DPR, canvas.height / DPR);
+    ctx.translate(offX, offY); ctx.scale(escala, escala);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    for (var k = 0; k < trazos.length; k++){
+      var tr = trazos[k];
+      var f = gsap.utils.clamp(0, 1, (t - tr.t[0]) / (tr.t[1] - tr.t[0]));
+      if (f <= 0) continue;
+      ctx.strokeStyle = tr.c; ctx.lineWidth = tr.w;
+      if (tr.circulo){
+        ctx.beginPath(); ctx.arc(tr.circulo[0], tr.circulo[1], tr.circulo[2], -Math.PI/2, -Math.PI/2 + Math.PI*2*f); ctx.stroke();
+      } else {
+        polilineaParcial(tr.p, tr.len, f);
+        if (tr.cota && f >= 1){ ctx.fillStyle = ORO; ctx.font = '300 21px Jost, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(tr.cota, 500, 576); }
+      }
+    }
+    elNum.textContent = Math.round(t * 100);
+    var fase = fases[0][1];
+    for (var j = 0; j < fases.length; j++) if (t >= fases[j][0]) fase = fases[j][1];
+    if (elFase.textContent !== fase) elFase.textContent = fase;
+  }
+
+  var progreso = { valor: REDUCE ? 1 : 0 };
+  if (!REDUCE){
+    gsap.to(progreso, {
+      valor: 1, ease: 'none',
+      onUpdate: function(){ pintar(progreso.valor); },
+      scrollTrigger: { trigger: seccion, start: 'top top', end: 'bottom bottom', pin: pinEl, pinSpacing: false, scrub: 1, anticipatePin: 1 },
+    });
+  }
+  addEventListener('resize', redimensionar);
+  redimensionar();
+})();
+
+/* ── Horario: fila de HOY destacada ── */
+(function highlightToday(){
+  var hoy = new Date().getDay();
+  document.querySelectorAll('.horario [data-dias]').forEach(function(fila){
+    if (fila.dataset.dias.split(',').map(Number).includes(hoy)) fila.classList.add('horario-hoy');
+  });
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   6) COREOGRAFÍA DE SCROLL
+   ════════════════════════════════════════════════════════════════════════ */
+document.fonts.ready.then(function(){
+  var mm = gsap.matchMedia();
+
+  mm.add({
+    motionOK:  '(prefers-reduced-motion: no-preference)',
+    reduce:    '(prefers-reduced-motion: reduce)',
+    isDesktop: '(min-width: 821px)',
+  }, function(ctx){
+    if (ctx.conditions.reduce) {
+      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
+      document.querySelectorAll('[data-cuenta]').forEach(function(el){
+        el.textContent = el.dataset.final || (+el.dataset.target).toLocaleString('es-ES');
+      });
+      var pl = document.querySelector('.preloader'); if (pl) pl.style.display = 'none';
+      return;
+    }
+
+    /* 6.1 Reveal del hero */
+    function revealHero(){
+      var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      tl.set('[data-hero-reveal]', { visibility: 'visible' });
+      tl.fromTo('[data-hero-media]', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
+      tl.fromTo('[data-hero-media] img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+      var splitTitulo = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
+      tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.4);
+      var splitSub = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
+      tl.from(splitSub.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.65);
+      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.55);
+      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 0.95);
+      tl.from('.cabecera', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
+      return tl;
+    }
+
+    /* 6.2 Preloader */
+    var num = document.querySelector('.preloader__num');
+    var prog = { v: 0 };
+    var cargaMinima = new Promise(function(res){
+      gsap.to(prog, {
+        v: 100, duration: 1.9, ease: 'steps(14)',
+        onUpdate: function(){ num.firstChild.textContent = Math.round(prog.v); },
+        onComplete: res,
+      });
+    });
+    var cargaReal = new Promise(function(res){
+      if (document.readyState === 'complete') res();
+      else addEventListener('load', res, { once: true });
+    });
+    Promise.all([cargaMinima, cargaReal]).then(function(){
+      gsap.timeline()
+        .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
+        .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
+        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
+        .set('.preloader', { display: 'none' })
+        .add(revealHero(), '-=0.75')
+        .call(function(){ if (lenis) lenis.start(); }, null, '-=1.2')
+        .call(function(){ if (window.__fluidBurst) window.__fluidBurst(); }, null, '-=0.9');
+    });
+
+    /* 6.3 Salida del hero + barra de progreso */
+    gsap.to('[data-hero-parallax]', {
+      yPercent: 14, scale: 1.12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+    gsap.to('.hero__contenido', {
+      yPercent: -12, autoAlpha: 0.3, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
+    });
+    gsap.to('.progreso span', {
+      scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
+    });
+
+    /* 6.4 Manifiesto + flotantes */
+    SplitText.create('[data-manifiesto]', {
+      type: 'words',
+      onSplit: function(self){ return gsap.from(self.words, {
+        opacity: 0.13, stagger: 0.05, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
+      }); },
+    });
+    gsap.utils.toArray('.flotante').forEach(function(el){
+      var sp = +el.dataset.speed || 1;
+      gsap.fromTo(el, { yPercent: 16 * sp }, {
+        yPercent: -16 * sp, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* 6.5 Cifras */
+    gsap.utils.toArray('.cifra').forEach(function(el, i){
+      gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
+        y: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
+      });
+    });
+    document.querySelectorAll('[data-cuenta]').forEach(function(el){
+      var final = el.dataset.final;
+      var objetivo = +el.dataset.target;
+      var c = { v: 0 };
+      gsap.to(c, {
+        v: objetivo, duration: 2, ease: 'power2.out', snap: { v: final ? 0.1 : 1 },
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: function(){ el.textContent = final || Math.round(c.v).toLocaleString('es-ES'); },
+        onComplete: function(){ if (final) el.textContent = final; },
+      });
+    });
+
+    /* 6.6 Marquee vivo */
+    (function(){
+      var trackM = document.querySelector('.marquee__track');
+      if (!trackM) return;
+      var marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 30, repeat: -1 });
+      marq.totalTime(30 * 1000);
+      var objetivoTS = 1;
+      ScrollTrigger.create({
+        onUpdate: function(self){
+          var v = self.getVelocity();
+          objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
+        },
+      });
+      gsap.ticker.add(function(){
+        marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
+        objetivoTS += (1 - objetivoTS) * 0.04;
+      });
+    })();
+
+    /* 6.7 Galería horizontal + skew + parallax */
+    var tweenHorizontal = null;
+    if (ctx.conditions.isDesktop) {
+      var track = document.querySelector('.expe__track');
+      var expeNum = document.querySelector('[data-expe-num]');
+      var total = document.querySelectorAll('.panel').length;
+      var distancia = function(){ return track.scrollWidth - innerWidth + (innerWidth * 0.06); };
+      var skewTo = gsap.quickTo(track, 'skewX', { duration: 0.5, ease: 'power3' });
+      var clampSkew = gsap.utils.clamp(-4, 4);
+
+      tweenHorizontal = gsap.to(track, {
+        x: function(){ return -distancia(); },
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.expe', start: 'top top',
+          end: function(){ return '+=' + distancia(); },
+          pin: '.expe__pin', scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
+          onUpdate: function(st){
+            var i = Math.min(total, Math.max(1, Math.round(st.progress * (total - 1)) + 1));
+            expeNum.textContent = String(i).padStart(2, '0');
+            skewTo(clampSkew(st.getVelocity() / -450));
+          },
+        },
+      });
+      ScrollTrigger.addEventListener('scrollEnd', function(){ skewTo(0); });
+
+      gsap.utils.toArray('.panel__marco img').forEach(function(img){
+        gsap.fromTo(img, { xPercent: -7, scale: 1.16 }, {
+          xPercent: 7, scale: 1.16, ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.panel'), containerAnimation: tweenHorizontal,
+            start: 'left right', end: 'right left', scrub: true,
+          },
         });
-      },{threshold:0.15});
-      els.forEach(function(el){
-        el.classList.add('hidden-init');
-        observer.observe(el);
       });
     }
-    initReveals();
 
-    /* Highlight today in horario */
-    function highlightToday(){
-      var dayMap = ['row-dom','row-lun','row-mar','row-mie','row-jue','row-vie','row-sab'];
-      var today = new Date().getDay();
-      var rowId = dayMap[today];
-      var row = document.getElementById(rowId);
-      if(row) row.classList.add('horario-hoy');
+    /* 6.8 Reveals de imagen (clip) */
+    gsap.utils.toArray('[data-img-reveal]').forEach(function(marco){
+      var visual = marco.querySelector('img');
+      var enGaleria = ctx.conditions.isDesktop && tweenHorizontal;
+      var st = enGaleria
+        ? { trigger: marco, containerAnimation: tweenHorizontal, start: 'left 95%', once: true }
+        : { trigger: marco, start: 'top 88%', once: true };
+      var tl = gsap.timeline({ scrollTrigger: st, defaults: { duration: 1.2, ease: 'power4.out' } })
+        .fromTo(marco, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)' });
+      if (!enGaleria) tl.fromTo(visual, { scale: 1.18 }, { scale: 1 }, 0);
+    });
+
+    /* 6.9 SENSACIONES — estela de imágenes */
+    if (FINE_POINTER) {
+      var zona = document.querySelector('.sensaciones');
+      if (zona) {
+        var POOL = ['assets/hero.jpg','assets/img1.jpg','assets/img2.jpg','assets/img3.jpg','assets/img4.jpg','assets/img5.jpg','assets/img6.jpg'];
+        POOL.forEach(function(src){ var im = new Image(); im.src = src; });
+        var idx = 0, acumulado = 0, px = null, py = null, vivas = 0;
+        zona.addEventListener('pointermove', function(e){
+          if (px !== null) acumulado += Math.hypot(e.clientX - px, e.clientY - py);
+          px = e.clientX; py = e.clientY;
+          if (acumulado < 110 || vivas > 12) return;
+          acumulado = 0;
+          var r = zona.getBoundingClientRect();
+          var fig = document.createElement('figure');
+          fig.className = 'estela-img';
+          fig.innerHTML = '<img src="' + POOL[idx++ % POOL.length] + '" alt="">';
+          zona.appendChild(fig);
+          vivas++;
+          var x = e.clientX - r.left, y = e.clientY - r.top;
+          gsap.set(fig, { left: x, top: y, xPercent: -50, yPercent: -50, rotation: gsap.utils.random(-9, 9) });
+          gsap.timeline({ onComplete: function(){ fig.remove(); vivas--; } })
+            .fromTo(fig, { scale: 0.55, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.35, ease: 'power3.out' })
+            .to(fig, { yPercent: -85, scale: 1.04, autoAlpha: 0, duration: 0.9, ease: 'power2.in' }, 0.45);
+        }, { passive: true });
+      }
     }
-    highlightToday();
 
-  })();
-  </script>
+    /* 6.10 ZOOM inmersivo + fluido screen */
+    (function(){
+      var fluidEl = document.getElementById('fluid');
+      var zoomTexto = document.querySelector('[data-zoom-texto]');
+      if (!zoomTexto) return;
+      var zsplit = SplitText.create(zoomTexto, { type: 'words' });
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.zoom', start: 'top top', end: 'bottom bottom',
+          pin: '.zoom__pin', pinSpacing: false, scrub: 1, anticipatePin: 1,
+          onToggle: function(self){ if (fluidEl) fluidEl.classList.toggle('fluid--screen', self.isActive); },
+        },
+      })
+      .fromTo('.zoom__marco', { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0)
+      .fromTo('.zoom__marco img', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 0.85 }, 0)
+      .fromTo(zsplit.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
+    })();
 
+    /* 6.11 Tiras a contra-scroll */
+    document.querySelectorAll('[data-tira]').forEach(function(el){
+      var dir = +el.dataset.tira;
+      gsap.fromTo(el, { xPercent: dir * 6 }, {
+        xPercent: dir * -6, ease: 'none',
+        scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* 6.12 Citas cosidas al scroll */
+    gsap.utils.toArray('.cita').forEach(function(el, i){
+      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, {
+        x: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 60%', scrub: 1 },
+      });
+    });
+
+    /* 6.13 Reveals genéricos */
+    document.querySelectorAll('[data-reveal]').forEach(function(el){
+      if (el.dataset.split === 'lines') {
+        SplitText.create(el, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit: function(self){
+            gsap.set(el, { visibility: 'visible' });
+            return gsap.from(self.lines, {
+              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
+              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
+            });
+          },
+        });
+      } else {
+        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
+          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        });
+      }
+    });
+
+    /* 6.14 Botón magnético */
+    if (FINE_POINTER) {
+      document.querySelectorAll('[data-magnetico]').forEach(function(el){
+        var label = el.querySelector('.magnetico__label');
+        if (!label) return;
+        var xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
+        var yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
+        var lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
+        var ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
+        el.addEventListener('mousemove', function(e){
+          var r = el.getBoundingClientRect();
+          var dx = e.clientX - (r.left + r.width / 2);
+          var dy = e.clientY - (r.top + r.height / 2);
+          xTo(dx * 0.35); yTo(dy * 0.35); lx(dx * 0.5); ly(dy * 0.5);
+        });
+        el.addEventListener('mouseleave', function(){
+          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
+        });
+      });
+    }
+
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+<script defer src="legal/cookie-banner.js"></script>
 </body>
 </html>
