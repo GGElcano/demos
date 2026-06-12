@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTTEstudio — Arquitectura, interiorismo y construcción · Valencia</title>
+<meta name="description" content="BTTEstudio: estudio integral de arquitectura, interiorismo y construcción en Valencia. 14 años, 648 proyectos ejecutados, constructora propia. De la primera idea a la entrega de llaves.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23698397'/%3E%3C/svg%3E">
+
+<!-- ============================================================
+     BTTESTUDIO — propuesta premium "storytelling" (G&G Elcano)
+     Marca real verificada en bttestudio.es:
+       · Tipografías: Cormorant Garamond (display) + Jost (UI)
+       · Paleta: carbón #32373c · crema #f5f2ec · azul acero #698397
+     Base técnica: PLAYBOOK webs premium (estilo Noomo) + demo ALDATZ.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal/cookie-banner.css">
+
+<style>
+:root{
+  --bg:        #15181b;            /* carbón BTT, profundizado para la experiencia */
+  --bg-2:      #1b2026;
+  --crema:     #f5f2ec;            /* texto principal (el crema de su web real) */
+  --piedra:    #98a3ac;            /* texto secundario */
+  --acero:     #698397;            /* acento de marca */
+  --acero-luz: #8db1cb;
+  --acero-suave: rgba(105,131,151,.55);
+  --linea:     rgba(245,242,236,.14);
+  --serif:     "Cormorant Garamond", Georgia, serif;
+  --sans:      "Jost", system-ui, sans-serif;
+  --pad:       clamp(1.5rem, 5vw, 6rem);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scrollbar-width: thin; scrollbar-color: var(--acero) var(--bg); }
+html, body{ background: var(--bg); }
+
+body{
+  color: var(--crema);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection{ background: var(--acero); color: var(--bg); }
+
+h1,h2,h3{ font-family: var(--serif); font-weight: 400; line-height: 1.04; }
+em{ font-style: italic; color: var(--acero-luz); }
+
+a{ color: inherit; text-decoration: none; }
+ul{ list-style: none; }
+img{ display:block; width:100%; height:100%; object-fit: cover; }
+
+/* Capas: fondo WebGL (0) < contenido (1) < HUD/cursor (encima) */
+#fondo-gl{ position: fixed; inset: 0; width:100%; height:100%; z-index: 0; pointer-events: none; }
+main{ position: relative; z-index: 1; }
+
+#estela{
+  position: fixed; inset: 0; width:100%; height:100%;
+  z-index: 9000; pointer-events: none;
+  mix-blend-mode: screen;
+}
+.cursor-dot, .cursor-ring{
+  position: fixed; top:0; left:0; z-index: 9500;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+}
+.cursor-dot { width:6px;  height:6px;  background: var(--acero-luz); }
+.cursor-ring{ width:38px; height:38px; border:1px solid var(--acero-suave); }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot,.cursor-ring,#estela{ display:none; }
+}
+
+/* ── PRELOADER ── */
+.preloader{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: end start;
+  padding: var(--pad);
+}
+.preloader__curtain{ position:absolute; inset:0; background:#101316; z-index:-1; }
+.preloader__brand{
+  position: absolute; top: var(--pad); left: var(--pad);
+  font-family: var(--serif); font-size: 1.15rem; letter-spacing: .35em;
+  text-transform: uppercase; color: var(--piedra);
+  overflow: hidden;
+}
+.preloader__brand span{ display:inline-block; }
+.preloader__brand b{ font-weight: 500; color: var(--crema); }
+.preloader__counter{ overflow: hidden; line-height: 1; }
+.preloader__num{
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  font-variant-numeric: tabular-nums;
+  color: var(--crema);
+}
+.preloader__num i{ font-style: normal; color: var(--acero-luz); font-size: .35em; vertical-align: super; }
+
+/* ── CABECERA ── */
+.cabecera{
+  position: fixed; top:0; left:0; right:0; z-index: 50;
+  display:flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem var(--pad);
+  mix-blend-mode: difference;
+}
+.cabecera__logo{ font-family: var(--serif); font-size: 1.3rem; letter-spacing: .22em; text-transform: uppercase; }
+.cabecera__logo b{ font-weight: 500; }
+.cabecera__nav{ display:flex; gap: 2.2rem; font-size:.78rem; letter-spacing:.16em; text-transform: uppercase; }
+@media (max-width: 720px){ .cabecera__nav{ display:none; } }
+
+.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
+.roll>span{ display:inline-block; transition: transform .5s cubic-bezier(.76,0,.24,1); }
+.roll::after{
+  content: attr(data-text);
+  position:absolute; left:0; top:100%; display:inline-block;
+  color: var(--acero-luz);
+  transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+@media (hover:hover) and (pointer:fine){
+  .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
+}
+
+/* ── HERO (foto real a sangre + titular gigante) ── */
+.hero{
+  min-height: 100svh;
+  position: relative;
+  display:flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 var(--pad) clamp(3rem, 8vh, 6rem);
+  overflow: hidden;
+}
+.hero__media{ position:absolute; inset:0; z-index:0; }
+.hero__media::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(21,24,27,.46) 0%, rgba(21,24,27,.18) 45%, rgba(21,24,27,.88) 100%);
+}
+.hero__media img{ will-change: transform; }
+.hero__contenido{ position: relative; z-index: 1; }
+.hero__kicker{
+  font-size: .78rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--crema); opacity:.85; margin-bottom: 1.6rem;
+}
+.hero__titulo{
+  font-size: clamp(2.9rem, 9.5vw, 8.6rem);
+  letter-spacing: -.015em;
+  max-width: 14ch;
+}
+.hero__pie{
+  display:flex; justify-content: space-between; align-items:flex-end;
+  gap: 2rem; margin-top: 2.6rem; flex-wrap: wrap;
+}
+.hero__sub{ max-width: 40ch; color: var(--crema); opacity:.82; font-size: 1.05rem; }
+.hero__scroll{
+  font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--crema); opacity:.7; display:flex; align-items:center; gap:.8rem;
+}
+.hero__scroll::after{
+  content:""; display:block; width:1px; height:3.4rem; background: var(--acero-luz);
+  transform-origin: top;
+  animation: gota 2.2s cubic-bezier(.76,0,.24,1) infinite;
+}
+@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
+                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
+
+[data-hero-reveal]{ visibility: hidden; }
+
+/* ── MARQUEE ── */
+.marquee{
+  overflow:hidden; white-space:nowrap;
+  border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  padding: 1.1rem 0;
+  background: var(--bg);
+  position: relative; z-index: 2;
+}
+.marquee__track{ display:inline-flex; gap:3rem; animation: marquee 28s linear infinite; will-change: transform; }
+.marquee__group{ display:inline-flex; gap:3rem; }
+.marquee__group span{ font-family: var(--serif); font-size: 1.3rem; color: var(--piedra); }
+.marquee__group i{ font-style: normal; color: var(--acero); }
+@keyframes marquee{ to{ transform: translateX(calc(-50% - 1.5rem)); } }
+
+/* ── MANIFIESTO ── */
+.manifiesto{ padding: clamp(7rem,16vh,12rem) var(--pad) clamp(4rem,8vh,6rem); max-width: 62rem; }
+.manifiesto p{
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3.8vw, 3.1rem);
+  line-height: 1.28;
+}
+
+/* ── CIFRAS ── */
+.cifras{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(11rem,1fr));
+  gap: 2rem; padding: 0 var(--pad) clamp(7rem,14vh,11rem);
+}
+.cifra{ border-top:1px solid var(--linea); padding-top: 1.4rem; }
+.cifra__valor{
+  font-family: var(--serif); font-size: clamp(2.6rem,6vw,4.6rem);
+  font-variant-numeric: tabular-nums;
+}
+.cifra__valor i{ font-style:normal; color: var(--acero-luz); font-size:.5em; margin-left:.08em; }
+.cifra p{ color: var(--piedra); font-size:.85rem; margin-top:.4rem; }
+
+/* ── PROYECTOS — galería horizontal pineada (el centro de la experiencia) ── */
+.proyectos{ position: relative; }
+.proyectos__pin{
+  height: 100vh; height: 100svh;
+  overflow: hidden;
+  display:flex; flex-direction: column; justify-content: center;
+}
+.proyectos__cab{
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding: clamp(5rem,10vh,6.5rem) var(--pad) 2.2rem; gap:2rem;
+}
+.proyectos__cab h2{ font-size: clamp(2rem, 4.5vw, 3.6rem); }
+.proyectos__indice{
+  font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.proyectos__indice b{ font-weight: 400; color: var(--crema); }
+.proyectos__track{
+  display:flex; gap: clamp(1.5rem,3vw,3rem);
+  padding: 0 var(--pad);
+  align-items: stretch;
+  will-change: transform;
+}
+.panel{ flex: 0 0 auto; width: clamp(20rem, 44vw, 44rem); }
+.panel--alto{ width: clamp(16rem, 30vw, 30rem); }
+.panel__marco{ overflow:hidden; position:relative; height: clamp(20rem, 56vh, 34rem); }
+.panel__marco img{ will-change: transform; transition: transform .8s cubic-bezier(.22,1,.36,1); }
+@media (hover:hover) and (pointer:fine){
+  .panel:hover .panel__marco img{ transform: scale(1.05); }
+}
+.panel__num{
+  position:absolute; top:1rem; left:1.2rem; z-index:1;
+  font-family: var(--serif); font-size: 1rem; letter-spacing:.18em;
+  color: var(--crema); text-shadow: 0 1px 12px rgba(0,0,0,.5);
+}
+.panel__meta{ display:flex; justify-content:space-between; margin-top: 1rem; align-items:baseline; gap:1rem; }
+.panel__meta h3{ font-size: clamp(1.3rem, 2.2vw, 1.8rem); white-space: nowrap; }
+.panel__meta span{ color: var(--piedra); font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; }
+
+/* Móvil: la galería pasa a columna normal (sin pin) */
+@media (max-width: 820px){
+  .proyectos__pin{ height:auto; overflow:visible; }
+  .proyectos__track{ flex-direction: column; }
+  .panel, .panel--alto{ width: 100%; }
+}
+
+/* ── RAZONES (¿Por qué nosotros? — 06) ── */
+.razones{ padding: clamp(7rem,16vh,12rem) var(--pad); }
+.razones__cab{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 4rem; gap:2rem; flex-wrap:wrap; }
+.razones__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.5rem); }
+.razones__cab p{ color: var(--piedra); font-size:.85rem; letter-spacing:.2em; text-transform:uppercase; }
+.razones__grid{
+  display:grid; gap: clamp(2rem,4vw,3.5rem) clamp(1.5rem,3vw,2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem,100%), 1fr));
+}
+.razon{ border-top: 1px solid var(--linea); padding-top: 1.3rem; }
+.razon h3{ font-size: 1.7rem; margin-bottom:.5rem; }
+.razon h3 i{ font-style: normal; font-family: var(--sans); font-size:.72rem; letter-spacing:.2em; color: var(--acero-luz); vertical-align: super; margin-right:.5rem; }
+.razon strong{ display:block; font-weight: 500; font-size:.95rem; margin-bottom:.3rem; }
+.razon p{ color: var(--piedra); font-size:.95rem; }
+
+/* ── SERVICIOS (filas numeradas + imagen flotante en hover) ── */
+.servicios{ padding: 0 var(--pad) clamp(7rem,16vh,12rem); }
+.servicios__cab{ margin-bottom: 3.5rem; }
+.servicios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.5rem); max-width: 16ch; }
+.servicio{
+  display:grid; grid-template-columns: 6rem 1fr auto; gap: 1.5rem; align-items: baseline;
+  border-top: 1px solid var(--linea);
+  padding: 1.9rem 0;
+  position: relative;
+}
+.servicio:last-child{ border-bottom: 1px solid var(--linea); }
+.servicio__num{ font-family: var(--serif); color: var(--piedra); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.servicio__nombre{ font-family: var(--serif); font-size: clamp(1.5rem, 3.4vw, 2.6rem); transition: color .4s ease, transform .5s cubic-bezier(.22,1,.36,1); }
+.servicio__desc{ grid-column: 2; max-width: 46ch; color: var(--piedra); font-size: .95rem; }
+.servicio__tag{ font-size:.72rem; letter-spacing:.2em; text-transform: uppercase; color: var(--piedra); }
+@media (hover:hover) and (pointer:fine){
+  .servicio:hover .servicio__nombre{ color: var(--acero-luz); transform: translateX(.6rem); }
+}
+@media (max-width: 720px){
+  .servicio{ grid-template-columns: 3rem 1fr; }
+  .servicio__tag{ display:none; }
+  .servicio__desc{ grid-column: 2; }
+}
+/* imagen que persigue al cursor sobre la lista (solo puntero fino) */
+.servicios__preview{
+  position: fixed; top:0; left:0; z-index: 40;
+  width: 20rem; aspect-ratio: 4/3;
+  pointer-events: none; overflow: hidden;
+  opacity: 0;
+}
+
+/* ── TESTIMONIOS ── */
+.testimonios{ padding: 0 var(--pad) clamp(7rem,14vh,11rem); max-width: 72rem; }
+.testimonios__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.5rem; }
+.testimonios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.google{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-size:.85rem; letter-spacing:.1em; color: var(--piedra);
+  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+}
+.google b{ color: var(--crema); font-weight: 500; }
+.google i{ font-style:normal; color: var(--acero-luz); letter-spacing:.18em; }
+.cita{ border-left: 1px solid var(--acero-suave); padding: .4rem 0 .4rem 1.8rem; margin-bottom: 2.8rem; }
+.cita blockquote{
+  font-family: var(--serif); font-size: clamp(1.3rem, 2.6vw, 1.9rem); line-height: 1.4;
+}
+.cita figcaption{ margin-top: .9rem; color: var(--piedra); font-size:.82rem; letter-spacing:.14em; text-transform: uppercase; }
+
+/* ── CONTACTO ── */
+.contacto{
+  min-height: 92svh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; gap: 2.6rem; padding: 6rem var(--pad) 4rem;
+  border-top: 1px solid var(--linea);
+}
+.contacto__estado{
+  font-size:.74rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
+  display:flex; align-items:center; gap:.7rem;
+}
+.contacto__estado::before{
+  content:""; width:.55rem; height:.55rem; border-radius:50%;
+  background: var(--acero-luz); box-shadow: 0 0 12px var(--acero-luz);
+  animation: latido 2.4s ease-in-out infinite;
+}
+@keyframes latido{ 50%{ opacity:.35; } }
+.contacto h2{ font-size: clamp(2.6rem, 8vw, 6.6rem); max-width: 13ch; }
+
+.magnetico{
+  display:inline-flex; align-items:center; gap:.9rem;
+  font: 400 .92rem/1 var(--sans); letter-spacing:.14em; text-transform:uppercase;
+  color: var(--crema);
+  border:1px solid var(--acero-suave); border-radius: 999px;
+  padding: 1.35rem 2.6rem;
+  background: transparent; cursor: pointer;
+  transition: background-color .45s ease, color .45s ease, border-color .45s ease;
+}
+.magnetico:hover{ background: var(--acero); border-color: var(--acero); color: #0f1316; }
+.magnetico .magnetico__label{ display:inline-block; }
+
+.contacto__datos{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr));
+  gap: 2rem; width: min(64rem, 100%); margin-top: 2.5rem;
+  text-align:left; font-size:.95rem;
+}
+.dato{ border-top:1px solid var(--linea); padding-top: 1.1rem; }
+.dato h4{ font: 400 .72rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
+.dato a:hover{ color: var(--acero-luz); }
+.horario{ display:grid; gap:.25rem; }
+.horario > div{ display:flex; justify-content:space-between; gap:1rem; color: var(--piedra); }
+.horario .horario-hoy{ color: var(--acero-luz); font-weight: 400; }
+
+.pie{
+  display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap;
+  padding: 2rem var(--pad) 2.6rem;
+  color: var(--piedra); font-size:.74rem; letter-spacing:.1em; text-transform:uppercase;
+  border-top: 1px solid var(--linea);
+}
+.pie nav{ display:flex; gap:1.4rem; flex-wrap:wrap; }
+.pie a:hover, .pie button:hover{ color: var(--acero-luz); }
+.pie button{
+  background:none; border:none; cursor:pointer; color:inherit;
+  font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0;
+}
+
+[data-reveal]{ visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
+  .preloader{ display:none; }
+  .marquee__track{ animation:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ PRELOADER ════════ -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span><b>BTT</b>estudio</span></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
+</div>
+
+<!-- ════════ CAPAS DECORATIVAS ════════ -->
+<canvas id="fondo-gl" aria-hidden="true"></canvas>
+<canvas id="estela" aria-hidden="true"></canvas>
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<header class="cabecera">
+  <a class="cabecera__logo" href="#"><b>BTT</b>estudio</a>
+  <nav class="cabecera__nav" aria-label="principal">
+    <a class="roll" href="#proyectos" data-text="Proyectos"><span>Proyectos</span></a>
+    <a class="roll" href="#estudio"   data-text="Estudio"><span>Estudio</span></a>
+    <a class="roll" href="#servicios" data-text="Servicios"><span>Servicios</span></a>
+    <a class="roll" href="#contacto"  data-text="Contacto"><span>Contacto</span></a>
+  </nav>
+</header>
+
+<main>
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="hero__media" aria-hidden="true">
+      <img src="assets/gulliver.jpg" alt="" loading="eager" data-hero-parallax>
+    </div>
+    <div class="hero__contenido">
+      <p class="hero__kicker" data-hero-reveal>Arquitectura · Interiorismo · Construcción — Valencia</p>
+      <h1 class="hero__titulo" data-hero-reveal>
+        De la primera idea a la <em>entrega de llaves</em>.
+      </h1>
+      <div class="hero__pie">
+        <p class="hero__sub" data-hero-reveal>
+          Estudio integral con constructora propia. Un único equipo
+          y un solo interlocutor, del primer trazo al último acabado.
+        </p>
+        <p class="hero__scroll" data-hero-reveal>Baja despacio</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ MARQUEE ════════ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Arquitectura <i>—</i></span><span>Interiorismo <i>—</i></span>
+        <span>Constructora propia <i>—</i></span><span>Llave en mano <i>—</i></span>
+        <span>Valencia <i>—</i></span><span>5,0 en Google <i>—</i></span>
+      </div>
+      <div class="marquee__group" aria-hidden="true">
+        <span>Arquitectura <i>—</i></span><span>Interiorismo <i>—</i></span>
+        <span>Constructora propia <i>—</i></span><span>Llave en mano <i>—</i></span>
+        <span>Valencia <i>—</i></span><span>5,0 en Google <i>—</i></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ MANIFIESTO ════════ -->
+  <section class="manifiesto" id="estudio">
+    <p data-manifiesto>
+      Arquitectura concebida y ejecutada por un único equipo.
+      Control total del proceso: sin plantillas, sin intermediarios,
+      sin sorpresas. Lo que no se ve también cuenta.
+    </p>
+  </section>
+
+  <!-- ════════ CIFRAS (reales de bttestudio.es) ════════ -->
+  <section class="cifras">
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor"><span data-cuenta data-target="14">0</span></div>
+      <p>años de experiencia</p>
+    </div>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor"><span data-cuenta data-target="648">0</span></div>
+      <p>proyectos ejecutados</p>
+    </div>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor"><span data-cuenta data-target="374">0</span></div>
+      <p>clientes satisfechos</p>
+    </div>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor"><span data-cuenta data-target="20000">0</span><i>+m²</i></div>
+      <p>construidos</p>
+    </div>
+  </section>
+
+  <!-- ════════ PROYECTOS — scroll horizontal pineado ════════ -->
+  <section class="proyectos" id="proyectos" aria-label="Proyectos destacados">
+    <div class="proyectos__pin">
+      <div class="proyectos__cab">
+        <h2>Proyectos <em>destacados</em></h2>
+        <p class="proyectos__indice"><b data-proy-num>01</b> / 08</p>
+      </div>
+      <div class="proyectos__track">
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">01</span>
+            <img src="assets/gulliver.jpg" alt="La Casa de Gulliver" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>La Casa de Gulliver</h3><span>Vivienda · Valencia</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">02</span>
+            <img src="assets/clero12.jpg" alt="Edificio Clero 12" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Edificio Clero 12</h3><span>Edificio · Valencia</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">03</span>
+            <img src="assets/ensanche.jpg" alt="La Casa del Ensanche" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>La Casa del Ensanche</h3><span>Vivienda · Valencia</span></div>
+        </article>
+        <article class="panel panel--alto">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">04</span>
+            <img src="assets/misericordia.jpg" alt="La Casa de la Misericordia" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>La Casa de la Misericordia</h3><span>Vivienda · Valencia</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">05</span>
+            <img src="assets/rocafort.jpg" alt="La Casa de Rocafort AC56" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>La Casa de Rocafort AC56</h3><span>Vivienda · Valencia</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">06</span>
+            <img src="assets/dunas.jpg" alt="La Casa de las Dunas" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>La Casa de las Dunas</h3><span>Vivienda · Valencia</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">07</span>
+            <img src="assets/trinitarios.jpg" alt="Edificio Trinitarios" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Edificio Trinitarios</h3><span>Edificio · Valencia</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <span class="panel__num">08</span>
+            <img src="assets/rc41.jpg" alt="Casa RC41" loading="lazy">
+          </div>
+          <div class="panel__meta"><h3>Casa RC41</h3><span>Vivienda · Valencia</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ RAZONES ════════ -->
+  <section class="razones">
+    <div class="razones__cab">
+      <h2 data-reveal data-split="lines">¿Por qué <em>nosotros</em>?</h2>
+      <p data-reveal>06 razones</p>
+    </div>
+    <div class="razones__grid">
+      <div class="razon" data-reveal>
+        <h3><i>01</i>Diseño.</h3>
+        <strong>Cada proyecto es único.</strong>
+        <p>Arquitectura e interiorismo concebido desde cero, sin plantillas ni soluciones genéricas.</p>
+      </div>
+      <div class="razon" data-reveal>
+        <h3><i>02</i>Equipo.</h3>
+        <strong>Personal técnico y operarios propios.</strong>
+        <p>Control directo de principio a fin. Un solo interlocutor para todo el proceso.</p>
+      </div>
+      <div class="razon" data-reveal>
+        <h3><i>03</i>Detalle.</h3>
+        <strong>Cuidamos cada acabado.</strong>
+        <p>Precisión en cada encuentro: enchufes, luces, juntas. Lo que no se ve también cuenta.</p>
+      </div>
+      <div class="razon" data-reveal>
+        <h3><i>04</i>Innovación.</h3>
+        <strong>Diseño con software avanzado.</strong>
+        <p>Ves tu proyecto antes de construirlo. Decisiones tomadas con conocimiento real.</p>
+      </div>
+      <div class="razon" data-reveal>
+        <h3><i>05</i>Confianza.</h3>
+        <strong>Clientes que repiten.</strong>
+        <p>Trabajo claro, sin sorpresas. La mayoría de nuestros encargos vienen por recomendación.</p>
+      </div>
+      <div class="razon" data-reveal>
+        <h3><i>06</i>Experiencia.</h3>
+        <strong>Más de una década nos avala.</strong>
+        <p>Residencial, turístico y locales comerciales. Trayectoria con resultados medibles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SERVICIOS ════════ -->
+  <section class="servicios" id="servicios">
+    <div class="servicios__cab">
+      <h2 data-reveal data-split="lines">Un servicio integral, de la idea inicial a la <em>entrega final</em>.</h2>
+    </div>
+    <div class="servicios__lista">
+      <div class="servicio" data-reveal data-preview="assets/serv-proyecto.jpg">
+        <span class="servicio__num">01 / 06</span>
+        <h3 class="servicio__nombre">Proyectos de arquitectura e interiorismo</h3>
+        <span class="servicio__tag">Proyecto</span>
+        <p class="servicio__desc">Anteproyecto, proyecto básico y de ejecución. Diseño técnico completo en cada fase, desarrollado desde cero.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/serv-llave.jpg">
+        <span class="servicio__num">02 / 06</span>
+        <h3 class="servicio__nombre">Llave en mano</h3>
+        <span class="servicio__tag">Integral</span>
+        <p class="servicio__desc">Proyecto y construcción con constructora propia. Un solo interlocutor de la idea a la entrega de llaves.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/serv-reforma.jpg">
+        <span class="servicio__num">03 / 06</span>
+        <h3 class="servicio__nombre">Reformas integrales y rehabilitación</h3>
+        <span class="servicio__tag">Reforma</span>
+        <p class="servicio__desc">Renovación completa de inmuebles y edificios, y puesta en valor del espacio.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/serv-obra.jpg">
+        <span class="servicio__num">04 / 06</span>
+        <h3 class="servicio__nombre">Construcción integral</h3>
+        <span class="servicio__tag">Obra</span>
+        <p class="servicio__desc">Para clientes con proyectos ya redactados. Constructora propia y personal técnico experto.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/serv-direccion.jpg">
+        <span class="servicio__num">05 / 06</span>
+        <h3 class="servicio__nombre">Dirección de obra nueva</h3>
+        <span class="servicio__tag">Dirección</span>
+        <p class="servicio__desc">Dirección facultativa, control de calidad, plazos y presupuesto. Atención al detalle hasta el final de obra.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/serv-inversion.jpg">
+        <span class="servicio__num">06 / 06</span>
+        <h3 class="servicio__nombre">Inversión inmobiliaria</h3>
+        <span class="servicio__tag">Consultoría</span>
+        <p class="servicio__desc">Asesoramiento para inversores y compradores de vivienda. Viabilidad, tramitación y decisiones rentables.</p>
+      </div>
+    </div>
+    <div class="servicios__preview" aria-hidden="true"><img src="" alt=""></div>
+  </section>
+
+  <!-- ════════ TESTIMONIOS (reseñas reales de Google) ════════ -->
+  <section class="testimonios">
+    <div class="testimonios__cab">
+      <h2 data-reveal data-split="lines">Gracias por confiar en <em>nosotros</em>.</h2>
+      <p class="google" data-reveal><i>★★★★★</i> <b>5,0</b> · 59 reseñas en Google</p>
+    </div>
+    <figure class="cita" data-reveal>
+      <blockquote>«Cuidan los detalles como nadie. Hasta los enchufes y las luces están colocados con una lógica y estética impecables.»</blockquote>
+      <figcaption>Itziar — Vivienda unifamiliar</figcaption>
+    </figure>
+    <figure class="cita" data-reveal>
+      <blockquote>«Es la tercera casa que nos hacen a la familia. Encantadísimos con el resultado.»</blockquote>
+      <figcaption>Sebastián Benítez</figcaption>
+    </figure>
+    <figure class="cita" data-reveal>
+      <blockquote>«Nos acaban de publicar nuestra vivienda en una revista de diseño. Les confiaría cualquier proyecto sin dudarlo.»</blockquote>
+      <figcaption>Ferran Maimir</figcaption>
+    </figure>
+    <figure class="cita" data-reveal>
+      <blockquote>«Excelentes profesionales. Cumplen perfectamente con el diseño acordado, respetando presupuesto y plazo.»</blockquote>
+      <figcaption>Michel Gandarillas — Obra con presupuesto y plazo</figcaption>
+    </figure>
+  </section>
+
+  <!-- ════════ CONTACTO ════════ -->
+  <section class="contacto" id="contacto">
+    <p class="contacto__estado" data-reveal>Disponibles ahora</p>
+    <h2 data-reveal data-split="lines">Hablemos de tu próximo <em>proyecto</em>.</h2>
+    <a class="magnetico" href="mailto:info@bttestudio.com" data-magnetico>
+      <span class="magnetico__label">Empezar conversación</span>
+    </a>
+    <div class="contacto__datos">
+      <div class="dato" data-reveal>
+        <h4>Estudio</h4>
+        <p>Calle Embajador Vich Nº3<br>2ºP 2ºO · 46002 Valencia</p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Contacto</h4>
+        <p><a href="tel:+34960055332">960 05 53 32</a><br>
+        <a href="mailto:info@bttestudio.com">info@bttestudio.com</a></p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Horario</h4>
+        <div class="horario">
+          <div data-dias="1,2,3,4"><span>Lun — Jue</span><span>08:30 — 18:30</span></div>
+          <div data-dias="5"><span>Viernes</span><span>08:30 — 15:30</span></div>
+          <div data-dias="6,0"><span>Sáb — Dom</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>© 2026 BTT Estudio · Valencia</span>
+    <nav>
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </nav>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
+  </footer>
+</main>
+
+<!-- ════════ DEPENDENCIAS (PLAYBOOK §B) ════════ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+
+<script>
+'use strict';
+
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+
+CustomEase.create('hop',  '0.56, 0, 0.35, 0.98');
+CustomEase.create('osmo', '0.625, 0.05, 0, 1');
+
+const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+const DPR          = Math.min(devicePixelRatio || 1, 2);
+
+/* ── 1) LENIS ↔ SCROLLTRIGGER: un solo rAF ── */
+let lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  window.lenis = lenis;
+}
+
+/* ── 2) FONDO WEBGL — simplex noise + domain warping, paleta acero BTT ── */
+(function fondoGL(){
+  const canvas = document.getElementById('fondo-gl');
+  const gl = canvas.getContext('webgl', { antialias:false, alpha:false });
+  if (!gl) { canvas.style.background = 'radial-gradient(120% 90% at 30% 10%, #1b2026, #15181b)'; return; }
+
+  const OCTAVAS = FINE_POINTER ? 4 : 2;
+  const BG_DPR  = Math.min(DPR, 1.5);
+
+  const vsrc = `
+    attribute vec2 aPos;
+    void main(){ gl_Position = vec4(aPos, 0.0, 1.0); }`;
+
+  /* Simplex noise 3D de Ashima/McEwan (MIT) */
+  const fsrc = `
+    precision highp float;
+    uniform float uTime;
+    uniform vec2  uRes;
+    uniform vec2  uMouse;
+    uniform float uReposo;
+
+    vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec4 mod289(vec4 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec4 permute(vec4 x){ return mod289(((x*34.0)+1.0)*x); }
+    vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }
+    float snoise(vec3 v){
+      const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+      const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+      vec3 i  = floor(v + dot(v, C.yyy));
+      vec3 x0 = v - i + dot(i, C.xxx);
+      vec3 g  = step(x0.yzx, x0.xyz);
+      vec3 l  = 1.0 - g;
+      vec3 i1 = min(g.xyz, l.zxy);
+      vec3 i2 = max(g.xyz, l.zxy);
+      vec3 x1 = x0 - i1 + C.xxx;
+      vec3 x2 = x0 - i2 + C.yyy;
+      vec3 x3 = x0 - D.yyy;
+      i = mod289(i);
+      vec4 p = permute(permute(permute(
+            i.z + vec4(0.0, i1.z, i2.z, 1.0))
+          + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+          + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+      float n_ = 0.142857142857;
+      vec3 ns = n_ * D.wyz - D.xzx;
+      vec4 j  = p - 49.0 * floor(p * ns.z * ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_);
+      vec4 x  = x_ * ns.x + ns.yyyy;
+      vec4 y  = y_ * ns.x + ns.yyyy;
+      vec4 h  = 1.0 - abs(x) - abs(y);
+      vec4 b0 = vec4(x.xy, y.xy);
+      vec4 b1 = vec4(x.zw, y.zw);
+      vec4 s0 = floor(b0)*2.0 + 1.0;
+      vec4 s1 = floor(b1)*2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+      vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+      vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+      vec3 p0 = vec3(a0.xy, h.x);
+      vec3 p1 = vec3(a0.zw, h.y);
+      vec3 p2 = vec3(a1.xy, h.z);
+      vec3 p3 = vec3(a1.zw, h.w);
+      vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+      p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+      vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+      m = m * m;
+      return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+    }
+
+    float fbm(vec3 p){
+      float v = 0.0, a = 0.5;
+      for (int i = 0; i < ${OCTAVAS}; i++){ v += a * snoise(p); p *= 2.0; a *= 0.5; }
+      return v;
+    }
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453); }
+
+    void main(){
+      vec2 uv = gl_FragCoord.xy / uRes;
+      float aspecto = uRes.x / uRes.y;
+      vec2 p = uv * vec2(aspecto, 1.0);
+
+      float t = uTime * 0.05;
+
+      vec2 raton = mix(uMouse, vec2(0.4, 0.65), uReposo) * vec2(aspecto, 1.0);
+      vec2 haciaRaton = (raton - p) * 0.2;
+
+      float warp = fbm(vec3(p * 1.2 + haciaRaton, t));
+      float n    = fbm(vec3(p * 1.8 + warp * 0.85 + haciaRaton * 0.5, t + 10.0));
+      n = n * 0.5 + 0.5;
+
+      float halo = smoothstep(0.75, 0.0, distance(p, raton));
+      n += halo * 0.14;
+
+      /* paleta BTT: carbón → pizarra → azul acero (acentos escasos) */
+      vec3 c1 = vec3(0.067, 0.078, 0.090);
+      vec3 c2 = vec3(0.106, 0.125, 0.145);
+      vec3 c3 = vec3(0.231, 0.298, 0.353);
+      vec3 c4 = vec3(0.553, 0.694, 0.796);
+      vec3 col = mix(c1, c2, smoothstep(0.20, 0.55, n));
+      col = mix(col, c3, smoothstep(0.55, 0.84, n));
+      col = mix(col, c4, smoothstep(0.90, 1.00, n));
+
+      float vig = smoothstep(1.3, 0.35, distance(uv, vec2(0.5)));
+      col *= mix(0.72, 1.0, vig);
+      col += (hash(gl_FragCoord.xy + fract(uTime) * 100.0) - 0.5) * 0.05;
+
+      gl_FragColor = vec4(col, 1.0);
+    }`;
+
+  function compilar(tipo, src){
+    const s = gl.createShader(tipo);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compilar(gl.VERTEX_SHADER, vsrc));
+  gl.attachShader(prog, compilar(gl.FRAGMENT_SHADER, fsrc));
+  gl.linkProgram(prog); gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const locPos = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(locPos);
+  gl.vertexAttribPointer(locPos, 2, gl.FLOAT, false, 0, 0);
+
+  const uni = {
+    time:  gl.getUniformLocation(prog, 'uTime'),
+    res:   gl.getUniformLocation(prog, 'uRes'),
+    mouse: gl.getUniformLocation(prog, 'uMouse'),
+    reposo:gl.getUniformLocation(prog, 'uReposo'),
+  };
+
+  function redimensionar(){
+    canvas.width  = Math.round(innerWidth  * BG_DPR);
+    canvas.height = Math.round(innerHeight * BG_DPR);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  redimensionar();
+  addEventListener('resize', redimensionar);
+
+  const objetivo = { x: 0.4, y: 0.65 };
+  const suave    = { x: 0.4, y: 0.65 };
+  let reposo = 1, objetivoReposo = 1;
+  if (FINE_POINTER) {
+    addEventListener('pointermove', (e) => {
+      objetivo.x = e.clientX / innerWidth;
+      objetivo.y = 1 - e.clientY / innerHeight;
+      objetivoReposo = 0;
+    }, { passive: true });
+  }
+
+  let ultimo = 0;
+  function pintar(ms){
+    const t  = (ms * 0.001) % 3600;
+    const dt = Math.min((ms - ultimo) * 0.001, 1/30);
+    ultimo = ms;
+
+    const k = 1 - Math.exp(-5.0 * dt);
+    suave.x += (objetivo.x - suave.x) * k;
+    suave.y += (objetivo.y - suave.y) * k;
+    reposo  += (objetivoReposo - reposo) * k * 0.6;
+
+    gl.uniform1f(uni.time, t);
+    gl.uniform2f(uni.res, canvas.width, canvas.height);
+    gl.uniform2f(uni.mouse, suave.x, suave.y);
+    gl.uniform1f(uni.reposo, reposo);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  if (REDUCE) {
+    pintar(0);
+  } else {
+    let rafId = null;
+    const loop = (ms) => { pintar(ms); rafId = requestAnimationFrame(loop); };
+    rafId = requestAnimationFrame(loop);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { cancelAnimationFrame(rafId); rafId = null; }
+      else if (!rafId)     { ultimo = performance.now(); rafId = requestAnimationFrame(loop); }
+    });
+  }
+})();
+
+/* ── 3) ESTELA DE CURSOR (canvas 2D, tinta azul acero) ── */
+if (FINE_POINTER && !REDUCE) (function estela(){
+  const canvas = document.getElementById('estela');
+  const ctx = canvas.getContext('2d');
+  function redimensionar(){
+    canvas.width  = innerWidth  * DPR;
+    canvas.height = innerHeight * DPR;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  redimensionar();
+  addEventListener('resize', redimensionar);
+
+  const N = 26;
+  const pts = Array.from({ length: N }, () => ({ x: innerWidth/2, y: innerHeight/2 }));
+  const raton = { x: innerWidth/2, y: innerHeight/2 };
+  const vel = { x: 0, y: 0 };
+  let energia = 0;
+  let activo = false;
+
+  addEventListener('pointermove', (e) => {
+    raton.x = e.clientX; raton.y = e.clientY;
+    if (!activo) { pts.forEach(p => { p.x = e.clientX; p.y = e.clientY; }); activo = true; }
+  }, { passive: true });
+
+  const RIGIDEZ = 0.16, FRICCION = 0.72;
+  function loop(){
+    requestAnimationFrame(loop);
+    if (document.hidden) return;
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    if (!activo) return;
+
+    vel.x += (raton.x - pts[0].x) * RIGIDEZ;
+    vel.y += (raton.y - pts[0].y) * RIGIDEZ;
+    vel.x *= FRICCION; vel.y *= FRICCION;
+    pts[0].x += vel.x; pts[0].y += vel.y;
+
+    for (let i = 1; i < N; i++){
+      pts[i].x += (pts[i-1].x - pts[i].x) * 0.42;
+      pts[i].y += (pts[i-1].y - pts[i].y) * 0.42;
+    }
+
+    const rapidez = Math.hypot(vel.x, vel.y);
+    energia += ((rapidez > 1.2 ? 1 : 0) - energia) * 0.08;
+    if (energia < 0.01) return;
+
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.globalCompositeOperation = 'lighter';
+    for (let i = 1; i < N; i++){
+      const t = 1 - i / N;
+      ctx.strokeStyle = `rgba(141, 177, 203, ${(t * t * 0.5 * energia).toFixed(3)})`;
+      ctx.lineWidth = 9 * t * energia + 0.3;
+      ctx.beginPath();
+      ctx.moveTo(pts[i-1].x, pts[i-1].y);
+      ctx.lineTo(pts[i].x, pts[i].y);
+      ctx.stroke();
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  }
+  loop();
+})();
+
+/* ── Cursor dot + ring con quickTo ── */
+if (FINE_POINTER && !REDUCE) (function cursor(){
+  const dot  = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  const dx = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
+  const dy = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
+  const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+  let visto = false;
+  addEventListener('pointermove', (e) => {
+    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
+    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
+  }, { passive: true });
+  document.querySelectorAll('a, button, .servicio').forEach((el) => {
+    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }));
+    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }));
+  });
+})();
+
+/* ── 4) Horario: fila de HOY destacada ── */
+(function highlightToday(){
+  const hoy = new Date().getDay();
+  document.querySelectorAll('.horario [data-dias]').forEach((fila) => {
+    if (fila.dataset.dias.split(',').map(Number).includes(hoy)) fila.classList.add('horario-hoy');
+  });
+})();
+
+/* ── 5) REVELADOS, SCRUBS Y COREOGRAFÍA — tras document.fonts.ready ── */
+document.fonts.ready.then(() => {
+  const mm = gsap.matchMedia();
+
+  mm.add({
+    motionOK:  '(prefers-reduced-motion: no-preference)',
+    reduce:    '(prefers-reduced-motion: reduce)',
+    isDesktop: '(min-width: 821px)',
+  }, (ctx) => {
+    if (ctx.conditions.reduce) {
+      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
+      document.querySelectorAll('[data-cuenta]').forEach((el) => {
+        el.textContent = (+el.dataset.target).toLocaleString('es-ES');
+      });
+      document.querySelector('.preloader').style.display = 'none';
+      return;
+    }
+
+    /* 5.1 Reveal del hero (encadenado al preloader) */
+    function revealHero(){
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      tl.set('[data-hero-reveal]', { visibility: 'visible' });
+
+      tl.fromTo('.hero__media', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
+      tl.fromTo('.hero__media img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+
+      const splitTitulo = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
+      tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.45);
+
+      const splitSub = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
+      tl.from(splitSub.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.7);
+
+      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.6);
+      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 1.0);
+      return tl;
+    }
+
+    /* 5.2 Preloader: contador steps(14) → cortina → hero */
+    const num = document.querySelector('.preloader__num');
+    const progreso = { v: 0 };
+    const cargaMinima = new Promise(res => {
+      gsap.to(progreso, {
+        v: 100, duration: 1.9, ease: 'steps(14)',
+        onUpdate: () => { num.firstChild.textContent = Math.round(progreso.v); },
+        onComplete: res,
+      });
+    });
+    const cargaReal = new Promise(res => {
+      if (document.readyState === 'complete') res();
+      else addEventListener('load', res, { once: true });
+    });
+
+    Promise.all([cargaMinima, cargaReal]).then(() => {
+      gsap.timeline()
+        .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
+        .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
+        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
+        .set('.preloader', { display: 'none' })
+        .add(revealHero(), '-=0.75')
+        .call(() => lenis && lenis.start(), null, '-=1.2');
+    });
+
+    /* 5.3 Parallax sutil de la foto del hero al hacer scroll */
+    gsap.to('[data-hero-parallax]', {
+      yPercent: 14, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+
+    /* 5.4 Manifiesto: des-tapado palabra a palabra con scrub */
+    SplitText.create('[data-manifiesto]', {
+      type: 'words',
+      onSplit: (self) => gsap.from(self.words, {
+        opacity: 0.13,
+        stagger: 0.05,
+        ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
+      }),
+    });
+
+    /* 5.5 Galería horizontal pineada (solo pantallas anchas) */
+    let tweenHorizontal = null;
+    if (ctx.conditions.isDesktop) {
+      const track = document.querySelector('.proyectos__track');
+      const proyNum = document.querySelector('[data-proy-num]');
+      const total = document.querySelectorAll('.panel').length;
+      const distancia = () => track.scrollWidth - innerWidth + (innerWidth * 0.06);
+
+      tweenHorizontal = gsap.to(track, {
+        x: () => -distancia(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.proyectos',
+          start: 'top top',
+          end: () => '+=' + distancia(),
+          pin: '.proyectos__pin',
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (st) => {
+            const i = Math.min(total, Math.max(1, Math.round(st.progress * (total - 1)) + 1));
+            proyNum.textContent = String(i).padStart(2, '0');
+          },
+        },
+      });
+    }
+
+    /* 5.6 Reveals genéricos */
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (el.dataset.split === 'lines') {
+        SplitText.create(el, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit: (self) => {
+            gsap.set(el, { visibility: 'visible' });
+            return gsap.from(self.lines, {
+              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
+              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
+            });
+          },
+        });
+      } else {
+        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
+          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        });
+      }
+    });
+
+    /* 5.7 Imágenes de la galería: clip-path + escala interior.
+       En desktop los paneles viajan en X dentro del track pineado →
+       el trigger necesita containerAnimation; en móvil (columna) es vertical. */
+    gsap.utils.toArray('[data-img-reveal]').forEach((marco) => {
+      const visual = marco.querySelector('img');
+      const st = ctx.conditions.isDesktop && tweenHorizontal
+        ? { trigger: marco, containerAnimation: tweenHorizontal, start: 'left 95%', once: true }
+        : { trigger: marco, start: 'top 88%', once: true };
+      gsap.timeline({
+        scrollTrigger: st,
+        defaults: { duration: 1.2, ease: 'power4.out' },
+      })
+      .fromTo(marco,  { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)' })
+      .fromTo(visual, { scale: 1.18 }, { scale: 1 }, 0);
+    });
+
+    /* 5.8 Count-up */
+    document.querySelectorAll('[data-cuenta]').forEach((el) => {
+      const objetivo = +el.dataset.target;
+      const c = { v: 0 };
+      gsap.to(c, {
+        v: objetivo, duration: 2, ease: 'power2.out',
+        snap: { v: 1 },
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: () => { el.textContent = Math.round(c.v).toLocaleString('es-ES'); },
+      });
+    });
+
+    /* 5.9 Imagen flotante que sigue al cursor sobre los servicios */
+    if (FINE_POINTER) {
+      const preview = document.querySelector('.servicios__preview');
+      const previewImg = preview.querySelector('img');
+      gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0.92 });
+      const px = gsap.quickTo(preview, 'x', { duration: 0.5, ease: 'power3.out' });
+      const py = gsap.quickTo(preview, 'y', { duration: 0.5, ease: 'power3.out' });
+      document.querySelectorAll('.servicio').forEach((fila) => {
+        fila.addEventListener('mouseenter', () => {
+          previewImg.src = fila.dataset.preview;
+          gsap.to(preview, { opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out' });
+        });
+        fila.addEventListener('mouseleave', () => {
+          gsap.to(preview, { opacity: 0, scale: 0.92, duration: 0.35, ease: 'power3.out' });
+        });
+      });
+      addEventListener('pointermove', (e) => { px(e.clientX); py(e.clientY); }, { passive: true });
+    }
+
+    /* 5.10 Botón magnético */
+    if (FINE_POINTER) {
+      document.querySelectorAll('[data-magnetico]').forEach((el) => {
+        const label = el.querySelector('.magnetico__label');
+        const xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
+        const yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
+        const lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
+        const ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          const dx = e.clientX - (r.left + r.width / 2);
+          const dy = e.clientY - (r.top + r.height / 2);
+          xTo(dx * 0.35); yTo(dy * 0.35);
+          lx(dx * 0.5);  ly(dy * 0.5);
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
+        });
+      });
+    }
+
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
