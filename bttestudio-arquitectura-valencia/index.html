@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTTEstudio | Arquitectura, Interiorismo y Construcción en Valencia</title>
+  <meta name="description" content="BTTEstudio es un estudio de arquitectura, interiorismo, diseño y construcción en Valencia. Más de 10 años de experiencia, 200 proyectos ejecutados y constructora propia. 5/5 en Google con 59 reseñas.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f2ec;
+      --cream-dark: #ece8e0;
+      --white: #fdfcfa;
+      --charcoal: #333e48;
+      --charcoal-light: #4a5560;
+      --blue: #698397;
+      --blue-light: #8db1cb;
+      --blue-pale: #b8cdd9;
+      --text: #333e48;
+      --text-muted: #7a8690;
+      --border: rgba(105,131,151,0.15);
+      --font-sans: 'Jost', sans-serif;
+      --font-serif: 'Cormorant Garamond', serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── LOADER ── */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--charcoal);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      transition: opacity 0.9s var(--ease), visibility 0.9s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-text {
+      font-family: var(--font-sans);
+      font-size: 1.1rem; font-weight: 300;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--cream);
+    }
+    .loader-text span { color: var(--blue-light); }
+    .loader-bar {
+      width: 180px; height: 1px; background: rgba(245,242,236,0.12);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--blue-light);
+      transform: translateX(-100%);
+      animation: loadBar 1.6s var(--ease) 0.2s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 32px 64px;
+      transition: background 0.5s, padding 0.4s, backdrop-filter 0.5s;
+    }
+    nav.scrolled {
+      background: rgba(245,242,236,0.92);
+      backdrop-filter: blur(16px);
+      padding: 18px 64px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 40px; width: auto; border-radius: 4px;
+    }
+    .nav-logo-text {
+      font-family: var(--font-sans);
+      font-size: 1.2rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--charcoal);
+    }
+    .nav-logo-text span { font-weight: 300; color: var(--blue); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: var(--charcoal);
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 400; transition: color 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--blue);
+      transform: scaleX(0); transition: transform 0.4s var(--ease);
+      transform-origin: left;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--charcoal) !important; color: var(--cream) !important;
+      padding: 12px 28px !important; font-weight: 500 !important;
+      letter-spacing: 0.15em !important;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--blue) !important; transform: translateY(-1px); }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1002;
+    }
+    .hamburger span {
+      width: 24px; height: 1.5px; background: var(--charcoal);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: var(--cream); z-index: 1001;
+      flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--charcoal);
+      font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 400; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.05);
+      transition: transform 10s var(--ease);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(51,62,72,0.88) 0%,
+        rgba(51,62,72,0.45) 40%,
+        rgba(51,62,72,0.15) 70%,
+        rgba(51,62,72,0.08) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 64px 90px;
+      max-width: 850px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--blue-light); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 40px; height: 1px; background: var(--blue-light);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 6.5vw, 6.5rem);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--cream); margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--blue-light);
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,242,236,0.88);
+      max-width: 520px; line-height: 1.8; font-weight: 300;
+      margin-bottom: 48px;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--cream); color: var(--charcoal);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--blue-light); transform: translateX(-102%);
+      transition: transform 0.45s var(--ease);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { color: var(--cream); }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+    .btn-ghost {
+      color: rgba(245,242,236,0.85); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px; font-weight: 400;
+      transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--blue-light); }
+    .icon-arrow { width: 14px; height: 14px; }
+
+    .hero-scroll {
+      position: absolute; right: 64px; bottom: 90px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      opacity: 0; animation: fadeIn 1s 2s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--blue-pale); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--blue-light), transparent);
+      animation: scrollPulse 2.5s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* ── MARQUEE ── */
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; padding: 18px 0;
+      background: var(--white);
+    }
+    .marquee-track {
+      display: flex; width: max-content; align-items: center;
+      animation: marquee 22s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 36px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-serif); font-size: 1.05rem;
+      font-style: italic; color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .marquee-item .dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--blue); flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translate3d(0,0,0); }
+      100% { transform: translate3d(-50%,0,0); }
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 140px 64px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 16px; font-weight: 500;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--blue); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300; line-height: 1.12;
+      letter-spacing: -0.01em; color: var(--charcoal);
+    }
+    .section-title em { font-style: italic; color: var(--blue); }
+
+    /* ── STATS ── */
+    .stats-section {
+      background: var(--white);
+      padding: 100px 64px;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; max-width: 1200px; margin: 0 auto;
+      background: var(--border);
+    }
+    .stat-card {
+      padding: 56px 40px; background: var(--white);
+      text-align: center;
+      transition: background 0.4s;
+    }
+    .stat-card:hover { background: var(--cream); }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 300; line-height: 1; color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+    .stat-number .accent { color: var(--blue); }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 400;
+    }
+
+    /* ── PROJECTS GALLERY ── */
+    .projects-section { background: var(--cream); }
+    .projects-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 64px; max-width: 1200px; margin-left: auto; margin-right: auto;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-rows: auto auto;
+      gap: 8px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      background: var(--charcoal);
+    }
+    .project-card:nth-child(1) { grid-row: span 2; }
+    .project-card:nth-child(1) .project-img { aspect-ratio: 3/4; }
+    .project-card:nth-child(2) .project-img,
+    .project-card:nth-child(3) .project-img { aspect-ratio: 4/3; }
+    .project-card:nth-child(4) { grid-column: span 2; }
+    .project-card:nth-child(4) .project-img { aspect-ratio: 21/9; }
+    .project-img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.9s var(--ease);
+    }
+    .project-card:hover .project-img { transform: scale(1.04); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(51,62,72,0.8) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px; transform: translateY(10px);
+      transition: transform 0.5s var(--ease), opacity 0.5s;
+      opacity: 0;
+    }
+    .project-card:hover .project-info { transform: translateY(0); opacity: 1; }
+    .project-cat {
+      font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--blue-light); margin-bottom: 8px; font-weight: 500;
+    }
+    .project-name {
+      font-family: var(--font-serif); font-size: 1.6rem;
+      font-weight: 300; color: var(--cream); line-height: 1.2;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 680px;
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-badge {
+      position: absolute; top: 24px; right: 24px;
+      background: var(--charcoal); padding: 24px 28px;
+      max-width: 220px;
+    }
+    .about-badge-big {
+      font-family: var(--font-serif); font-size: 2.8rem;
+      color: var(--blue-light); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.7rem; letter-spacing: 0.1em;
+      color: rgba(245,242,236,0.75); margin-top: 4px;
+    }
+    .about-content {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.02rem; line-height: 1.85;
+      color: var(--charcoal-light); margin: 28px 0 36px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--charcoal); font-weight: 500; }
+    .about-divider {
+      width: 50px; height: 1px; background: var(--blue); margin: 28px 0;
+    }
+    .about-values { display: flex; flex-direction: column; gap: 16px; }
+    .about-value {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px; border: 1px solid var(--border);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .about-value:hover { border-color: var(--blue-pale); background: rgba(141,177,203,0.04); }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.3rem;
+      color: var(--blue); opacity: 0.6; flex-shrink: 0; line-height: 1.2;
+    }
+    .value-text h3 {
+      font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; margin-bottom: 4px; color: var(--charcoal);
+    }
+    .value-text p {
+      font-size: 0.88rem; color: var(--charcoal-light); font-weight: 300; line-height: 1.6;
+    }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--cream); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1200px; margin: 56px auto 0;
+      background: var(--border);
+    }
+    .service-card {
+      padding: 52px 40px; background: var(--cream);
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .service-card:hover { background: var(--white); }
+    .service-icon {
+      width: 48px; height: 48px; margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--blue-pale); color: var(--blue);
+      transition: background 0.3s, color 0.3s;
+    }
+    .service-card:hover .service-icon {
+      background: var(--blue); color: var(--cream);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.5rem;
+      font-weight: 400; margin-bottom: 10px; line-height: 1.2;
+      color: var(--charcoal);
+    }
+    .service-card p {
+      font-size: 0.9rem; color: var(--charcoal-light); line-height: 1.75; font-weight: 300;
+    }
+    .service-number {
+      position: absolute; top: 24px; right: 28px;
+      font-family: var(--font-serif); font-size: 4rem;
+      font-weight: 300; color: rgba(105,131,151,0.07);
+      line-height: 1; transition: color 0.4s;
+    }
+    .service-card:hover .service-number { color: rgba(105,131,151,0.14); }
+
+    /* ── PROCESO / CÓMO TRABAJAMOS ── */
+    .process-section {
+      background: var(--charcoal);
+      padding: 140px 64px;
+    }
+    .process-section .section-label { color: var(--blue-light); }
+    .process-section .section-label::before { background: var(--blue-light); }
+    .process-section .section-title { color: var(--cream); }
+    .process-section .section-title em { color: var(--blue-light); }
+    .process-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 1px; max-width: 1200px; margin: 64px auto 0;
+      background: rgba(105,131,151,0.15);
+    }
+    .process-card {
+      padding: 44px 28px; background: var(--charcoal);
+      position: relative;
+      transition: background 0.4s;
+    }
+    .process-card:hover { background: rgba(51,62,72,0.6); }
+    .process-num {
+      font-family: var(--font-serif); font-size: 3rem;
+      font-weight: 300; color: var(--blue-light); opacity: 0.4;
+      line-height: 1; margin-bottom: 20px;
+    }
+    .process-card h3 {
+      font-size: 0.9rem; font-weight: 500;
+      letter-spacing: 0.06em; color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .process-card p {
+      font-size: 0.82rem; color: rgba(245,242,236,0.6);
+      line-height: 1.65; font-weight: 300;
+    }
+    .process-line {
+      position: absolute; top: 64px; right: 0;
+      width: 20px; height: 1px; background: var(--blue-light); opacity: 0.3;
+    }
+    .process-card:last-child .process-line { display: none; }
+
+    /* ── MAP + CONTACT ── */
+    .map-section { background: var(--cream); padding: 0; }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .map-info {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--white);
+    }
+    .map-info-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid var(--border);
+    }
+    .map-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      border: 1px solid var(--blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue);
+    }
+    .map-info-text h3 {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 4px; font-weight: 500;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.92rem; color: var(--charcoal-light);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--blue); }
+
+    /* Horario table */
+    .horario-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.88rem; color: var(--charcoal-light);
+    }
+    .horario-table td {
+      padding: 6px 0; border-bottom: 1px solid rgba(105,131,151,0.08);
+    }
+    .horario-table td:first-child { font-weight: 500; color: var(--charcoal); width: 120px; }
+    .horario-hoy td { color: var(--blue) !important; font-weight: 500 !important; }
+
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+      filter: saturate(0.7) contrast(1.1);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--blue); padding: 110px 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 60px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.6rem);
+      font-weight: 300; color: var(--cream); line-height: 1.12;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(245,242,236,0.8);
+      margin-top: 14px; font-weight: 300;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--charcoal); color: var(--cream);
+      text-decoration: none; padding: 18px 44px;
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; transition: all 0.35s var(--ease-smooth);
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--cream); transform: translateX(-102%);
+      transition: transform 0.45s var(--ease);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark:hover { color: var(--charcoal); }
+    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal); padding: 80px 64px 48px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px; margin-bottom: 64px;
+    }
+    .footer-brand .nav-logo-text {
+      font-size: 1.3rem; margin-bottom: 18px; display: block;
+      color: var(--cream);
+    }
+    .footer-brand .nav-logo-text span { color: var(--blue-light); }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1rem; color: rgba(245,242,236,0.65);
+      line-height: 1.6; max-width: 280px; margin-bottom: 32px;
+    }
+    .footer-social { display: flex; gap: 12px; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(245,242,236,0.2);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(245,242,236,0.7);
+      transition: all 0.3s;
+    }
+    .social-link:hover {
+      background: var(--blue); color: var(--cream);
+      border-color: var(--blue); transform: translateY(-2px);
+    }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h3 {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--blue-light); margin-bottom: 20px; font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(245,242,236,0.65);
+      font-size: 0.86rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: var(--cream); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,242,236,0.08);
+      padding-top: 32px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(245,242,236,0.5); letter-spacing: 0.04em;
+    }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.72rem; color: rgba(245,242,236,0.6);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--cream); }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+    .reveal-delay-4 { transition-delay: 0.48s; }
+
+    /* ── FOCUS / A11Y ── */
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 2px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--blue); color: var(--cream); padding: 10px 18px; z-index: 99999; font-size: 1rem; }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .marquee-track { animation: none !important; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 36px; }
+      nav.scrolled { padding: 16px 36px; }
+      section { padding: 100px 36px; }
+      .hero-content { padding: 0 36px 80px; }
+      .hero-scroll { right: 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(3, 1fr); }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .project-card:nth-child(1) { grid-row: auto; }
+      .project-card:nth-child(1) .project-img { aspect-ratio: 4/3; }
+      .project-card:nth-child(4) { grid-column: span 2; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 64px 36px; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 400px; }
+      .about-content { padding: 64px 36px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .process-section { padding: 100px 36px; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      section { padding: 80px 24px; }
+      .hero-content { padding: 140px 24px 60px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 64px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card:nth-child(4) { grid-column: auto; }
+      .project-card:nth-child(4) .project-img { aspect-ratio: 4/3; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .process-card:last-child .process-line,
+      .process-line { display: none; }
+      .cta-section { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; align-items: center; }
+      .map-info { padding: 60px 24px; }
+      .process-section { padding: 80px 24px; }
+      /* Show overlays on mobile always for touch */
+      .project-overlay { opacity: 1; }
+      .project-info { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.4rem, 10vw, 3rem); }
+      .hero-content { padding: 130px 20px 50px; }
+      .hero-sub { font-size: 0.95rem; margin-bottom: 32px; }
+      .section-title { font-size: clamp(1.8rem, 7vw, 2.3rem); }
+      .stat-number { font-size: clamp(2.4rem, 10vw, 3rem); }
+      .stat-card { padding: 36px 20px; }
+      .service-card { padding: 36px 24px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-card { padding: 32px 24px; }
+      .cta-section { padding: 60px 20px; }
+      .btn-primary { padding: 14px 28px; }
+      .btn-dark { padding: 14px 32px; }
+      .about-badge { top: 16px; right: 16px; padding: 18px 22px; }
+      .about-badge-big { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-text">BTT<span>ESTUDIO</span></div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Navbar -->
+<nav id="navbar" aria-label="Navegacion principal">
+  <a href="#main-content" class="nav-logo">
+    <img src="https://bttestudio.es/wp-content/uploads/2025/11/cropped-bttestudio-logo.jpg" alt="Logo BTTEstudio" width="40" height="40">
+    <span class="nav-logo-text">BTT<span>ESTUDIO</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#estudio">Estudio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto" class="nav-cta">Contactar</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menu de navegacion">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de navegacion">
+  <a href="#proyectos" onclick="closeMobile()">Proyectos</a>
+  <a href="#estudio" onclick="closeMobile()">Estudio</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#proceso" onclick="closeMobile()">Proceso</a>
+  <a href="#contacto" onclick="closeMobile()">Contactar</a>
+</div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" id="heroBg" style="background-image: url('https://bttestudio.es/wp-content/uploads/2026/05/BTTESTUDIO_ARQUITECTURA_VIVIENDA_REFORMA_GULLIVER-1.jpg');" role="img" aria-label="Salon de la Casa de Gulliver, proyecto de BTTEstudio en Valencia"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Arquitectura e interiorismo en Valencia</p>
+    <h1 class="hero-title" id="hero-title">Arquitectura concebida<br>y construida por<br><em>un solo equipo.</em></h1>
+    <p class="hero-sub">BTTEstudio proyecta, diseña y ejecuta con constructora propia. Control total desde la primera idea hasta la entrega de llaves, sin intermediarios ni sorpresas.</p>
+    <div class="hero-actions">
+      <a href="tel:+34960055332" class="btn-primary" aria-label="Llamar a BTTEstudio al 960 05 53 32">
+        <span>Llamar al 960 05 53 32
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a href="#proyectos" class="btn-ghost">
+        <span>Ver proyectos</span>
+        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Arquitectura</span>
+    <span class="marquee-item"><span class="dot"></span>Interiorismo</span>
+    <span class="marquee-item"><span class="dot"></span>Reformas integrales</span>
+    <span class="marquee-item"><span class="dot"></span>Proyectos llave en mano</span>
+    <span class="marquee-item"><span class="dot"></span>Construcción</span>
+    <span class="marquee-item"><span class="dot"></span>Dirección de obra</span>
+    <span class="marquee-item"><span class="dot"></span>Inversión inmobiliaria</span>
+    <span class="marquee-item"><span class="dot"></span>Sostenibilidad</span>
+    <span class="marquee-item"><span class="dot"></span>Arquitectura</span>
+    <span class="marquee-item"><span class="dot"></span>Interiorismo</span>
+    <span class="marquee-item"><span class="dot"></span>Reformas integrales</span>
+    <span class="marquee-item"><span class="dot"></span>Proyectos llave en mano</span>
+    <span class="marquee-item"><span class="dot"></span>Construcción</span>
+    <span class="marquee-item"><span class="dot"></span>Dirección de obra</span>
+    <span class="marquee-item"><span class="dot"></span>Inversión inmobiliaria</span>
+    <span class="marquee-item"><span class="dot"></span>Sostenibilidad</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section" role="region" aria-label="Cifras del estudio">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="10">0</span><span class="accent">+</span></div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="200">0</span><span class="accent">+</span></div>
+      <div class="stat-label">Proyectos ejecutados</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="50">0</span></div>
+      <div class="stat-label">Sobre 5 en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="59">0</span></div>
+      <div class="stat-label">Reseñas en Google Maps</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="proyectos" aria-labelledby="proyectos-title">
+  <div class="projects-header">
+    <div>
+      <p class="section-label reveal">Proyectos</p>
+      <h2 class="section-title reveal reveal-delay-1" id="proyectos-title">Cada espacio cuenta<br><em>su propia historia.</em></h2>
+    </div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <img class="project-img" src="https://bttestudio.es/wp-content/uploads/2026/05/BTTESTUDIO_ARQUITECTURA_VIVIENDA_REFORMA_GULLIVER-15.jpg" alt="Cocina de la Casa de Gulliver con isla de piedra natural, frentes blancos y armarios superiores de madera" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Vivienda</p>
+        <h3 class="project-name">La Casa de Gulliver</h3>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-1">
+      <img class="project-img" src="https://bttestudio.es/wp-content/uploads/2025/11/BTTESTUDIO-ARQUITECTURA-E-INTERIORISMO-VALENCIA-CASA-MISERICORDIA-DONE-47.jpg" alt="Salon del duplex de la Casa de la Misericordia con tonos arena, madera natural y luz indirecta" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Vivienda</p>
+        <h3 class="project-name">La Casa de la Misericordia</h3>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-2">
+      <img class="project-img" src="https://bttestudio.es/wp-content/uploads/2025/11/BTTESTUDIO-ARQUITECTURA-E-INTERIORISMO-VALENCIA-CASA-MISERICORDIA-DONE-4.jpg" alt="Baño de la Casa de la Misericordia con piedra, latón envejecido y espejo retroiluminado" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Interiorismo</p>
+        <h3 class="project-name">Detalle de baño</h3>
+      </div>
+    </div>
+    <div class="project-card reveal reveal-delay-3">
+      <img class="project-img" src="https://bttestudio.es/wp-content/uploads/2026/05/BTTESTUDIO_ARQUITECTURA_VIVIENDA_REFORMA_GULLIVER-2.jpg" alt="Vista general del salon de la Casa de Gulliver con luz natural, tonos neutros y terraza al fondo" loading="lazy">
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <p class="project-cat">Reforma integral</p>
+        <h3 class="project-name">Salon Casa de Gulliver</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section" id="estudio" role="region" aria-labelledby="estudio-title">
+  <div class="about-visual">
+    <img src="https://bttestudio.es/wp-content/uploads/2025/11/BTTESTUDIO-ARQUITECTURA-E-INTERIORISMO-VALENCIA-CASA-MISERICORDIA-DONE-43.jpg" alt="Interior de la Casa de la Misericordia, proyecto de BTTEstudio en el centro historico de Valencia" loading="lazy">
+    <div class="about-badge">
+      <div class="about-badge-big">200<span style="color:var(--blue-pale)">+</span></div>
+      <div class="about-badge-text">Proyectos ejecutados en toda España</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">El estudio</p>
+    <h2 class="section-title reveal reveal-delay-1" id="estudio-title">
+      Diseño y construcción<br>bajo <em>un mismo techo.</em>
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-delay-2">
+      BTTEstudio nace como un equipo multidisciplinar que une <strong>arquitectura, interiorismo y construcción</strong> en una sola estructura. Con constructora propia integrada, gestionamos el proceso completo desde el primer boceto hasta la entrega de llaves bajo <strong>un único interlocutor</strong>. El equipo, formado por arquitectos con experiencia internacional en estudios de Londres, combina metodología rigurosa con una visión global del diseño contemporáneo. Trabajamos en toda España, con especial presencia en <strong>Comunitat Valenciana, Baleares y Madrid</strong>.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h3>Constructora propia</h3>
+          <p>Sin subcontratas intermedias. Coherencia total entre lo que se diseña y lo que se construye.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h3>Un solo interlocutor</h3>
+          <p>El mismo equipo que proyecta dirige y ejecuta la obra. Control de plazos, calidad y presupuesto.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h3>Visión internacional</h3>
+          <p>Experiencia en estudios de referencia en Londres que aporta metodología exigente y perspectiva global.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="servicios" aria-labelledby="servicios-title">
+  <div style="max-width:1200px;margin:0 auto;">
+    <p class="section-label reveal">Servicios</p>
+    <h2 class="section-title reveal reveal-delay-1" id="servicios-title">Del concepto a la llave,<br><em>todo en casa.</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg>
+      </div>
+      <div class="service-number">01</div>
+      <h3>Arquitectura e interiorismo</h3>
+      <p>Anteproyecto, proyecto básico y de ejecución. Diseño técnico personalizado desde la idea inicial hasta el último detalle de acabados.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3v4a1 1 0 001 1h4"/><path d="M18 17h-7a2 2 0 01-2-2V5a2 2 0 012-2h4l5 5v7a2 2 0 01-2 2z"/><path d="M16 17v2a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2h2"/></svg>
+      </div>
+      <div class="service-number">02</div>
+      <h3>Proyectos llave en mano</h3>
+      <p>Diseño y construcción integral con constructora propia. Un único presupuesto cerrado, un solo interlocutor, sin desviaciones.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <div class="service-number">03</div>
+      <h3>Reformas integrales</h3>
+      <p>Renovación completa de espacios existentes. Optimización de distribución, materiales e instalaciones para transformar cualquier vivienda o local.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M5 20V8l7-5 7 5v12"/><path d="M9 20v-4h6v4"/></svg>
+      </div>
+      <div class="service-number">04</div>
+      <h3>Construcción</h3>
+      <p>Ejecución de obra nueva y rehabilitación con equipo propio de construcción. Supervisión directa de calidad, plazos y costes en cada fase.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <div class="service-number">05</div>
+      <h3>Dirección de obra</h3>
+      <p>Supervisión tecnica, control de calidad y seguimiento de plazos y presupuesto durante toda la fase de construcción del proyecto.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      </div>
+      <div class="service-number">06</div>
+      <h3>Inversión inmobiliaria</h3>
+      <p>Asesoramiento técnico y estratégico para inversores. Análisis de viabilidad, valoración de activos y gestión integral de proyectos inmobiliarios.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="process-section" id="proceso" aria-labelledby="proceso-title">
+  <div style="max-width:1200px;margin:0 auto;">
+    <p class="section-label reveal">Cómo trabajamos</p>
+    <h2 class="section-title reveal reveal-delay-1" id="proceso-title">Cinco fases, <em>un equipo.</em></h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-card reveal">
+      <div class="process-num">01</div>
+      <div class="process-line"></div>
+      <h3>Anteproyecto</h3>
+      <p>Estudio de programa, espacio y normativa. Desarrollo de la idea con bocetos y estimación preliminar del coste.</p>
+    </div>
+    <div class="process-card reveal reveal-delay-1">
+      <div class="process-num">02</div>
+      <div class="process-line"></div>
+      <h3>Proyecto básico</h3>
+      <p>Plantas, alzados y secciones definitorias con cumplimiento normativo para tramitación administrativa.</p>
+    </div>
+    <div class="process-card reveal reveal-delay-2">
+      <div class="process-num">03</div>
+      <div class="process-line"></div>
+      <h3>Proyecto de ejecución</h3>
+      <p>Detalle completo de estructura, instalaciones y acabados. Presupuesto cerrado y mediciones definitivas.</p>
+    </div>
+    <div class="process-card reveal reveal-delay-3">
+      <div class="process-num">04</div>
+      <div class="process-line"></div>
+      <h3>Interiorismo</h3>
+      <p>Distribución, selección de materiales, iluminación, mobiliario y visualizaciones 3D del resultado final.</p>
+    </div>
+    <div class="process-card reveal reveal-delay-4">
+      <div class="process-num">05</div>
+      <h3>Sostenibilidad</h3>
+      <p>Eficiencia energética, materiales responsables y domótica para un menor impacto ambiental del proyecto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAP + CONTACT -->
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Contacto</p>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:8px;">
+        En el centro<br><em>de Valencia.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>C/ Embajador Vich nº3, 2ºP-O<br>46002 Valencia</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfono</h3>
+          <a href="tel:+34960055332">960 05 53 32</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Email</h3>
+          <a href="mailto:info@bttestudio.com">info@bttestudio.com</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Horario</h3>
+          <table class="horario-table" id="horarioTable">
+            <tr data-day="1"><td>Lunes</td><td>08:30 - 18:30</td></tr>
+            <tr data-day="2"><td>Martes</td><td>08:30 - 18:30</td></tr>
+            <tr data-day="3"><td>Miércoles</td><td>08:30 - 18:30</td></tr>
+            <tr data-day="4"><td>Jueves</td><td>08:30 - 18:30</td></tr>
+            <tr data-day="5"><td>Viernes</td><td>08:30 - 15:30</td></tr>
+            <tr data-day="6"><td>Sábado</td><td>Cerrado</td></tr>
+            <tr data-day="0"><td>Domingo</td><td>Cerrado</td></tr>
+          </table>
+        </div>
+      </div>
+      <div style="margin-top: 36px;">
+        <a href="tel:+34960055332" class="btn-primary" style="background:var(--charcoal);color:var(--cream);display:inline-flex;">
+          <span>Llamar al 960 05 53 32
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación de BTTEstudio en C/ Embajador Vich 3, Valencia"
+        src="https://www.google.com/maps?q=BTTEstudio+Embajador+Vich+3+Valencia&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" role="region" aria-label="Llamada a la accion">
+  <div class="cta-text">
+    <h2>¿Tienes un proyecto en mente?<br>Hablemos.</h2>
+    <p>Cuéntanos tu idea y te preparamos una propuesta sin compromiso. Arquitectura, interiorismo y construcción en un solo equipo.</p>
+  </div>
+  <a href="tel:+34960055332" class="btn-dark">
+    <span>960 05 53 32
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
+  </a>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="nav-logo-text">BTT<span>ESTUDIO</span></span>
+      <p class="footer-tagline">"Arquitectura concebida y ejecutada por un solo equipo. Control total desde la primera idea hasta la entrega de llaves."</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/bttestudio/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram de BTTEstudio">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/bttestudio/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook de BTTEstudio">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/bttestudio/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn de BTTEstudio">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.pinterest.com/bttestudio/" target="_blank" rel="noopener" class="social-link" aria-label="Pinterest de BTTEstudio">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641 0 12.017 0z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Servicios</h3>
+      <ul>
+        <li><a href="#servicios">Arquitectura</a></li>
+        <li><a href="#servicios">Interiorismo</a></li>
+        <li><a href="#servicios">Llave en mano</a></li>
+        <li><a href="#servicios">Reformas</a></li>
+        <li><a href="#servicios">Construcción</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Estudio</h3>
+      <ul>
+        <li><a href="#estudio">Equipo</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34960055332">960 05 53 32</a></li>
+        <li><a href="mailto:info@bttestudio.com">info@bttestudio.com</a></li>
+        <li><a href="#contacto">Valencia, España</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 BTTEstudio (BEHINDTHETEXTURE S.L.). Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('loader');
+      var heroBg = document.getElementById('heroBg');
+      if (loader) loader.classList.add('hidden');
+      if (heroBg) heroBg.classList.add('loaded');
+    }, 1800);
+  });
+
+  // NAVBAR SCROLL
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) { var fl = mobileMenu.querySelector('a'); if (fl) fl.focus(); }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+  function closeMobile() {
+    var h = document.getElementById('hamburger');
+    var m = document.getElementById('mobileMenu');
+    if (h) { h.classList.remove('active'); h.setAttribute('aria-expanded', 'false'); }
+    if (m) m.classList.remove('open');
+  }
+
+  // REVEAL ON SCROLL
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(function(el) { obs.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  // COUNTER
+  function animateCount(el) {
+    var target = parseInt(el.dataset.target, 10);
+    var duration = 1600;
+    var start = performance.now();
+    function step(now) {
+      var p = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - p, 4);
+      el.textContent = Math.round(ease * target);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window) {
+    var cObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { animateCount(e.target); cObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(function(el) { cObs.observe(el); });
+  } else {
+    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+  }
+
+  // HERO PARALLAX
+  window.addEventListener('scroll', function() {
+    var heroBg = document.getElementById('heroBg');
+    if (heroBg && window.scrollY < window.innerHeight) {
+      heroBg.style.transform = 'translateY(' + (window.scrollY * 0.2) + 'px)';
+    }
+  });
+
+  // HIGHLIGHT TODAY in horario
+  function highlightToday() {
+    var table = document.getElementById('horarioTable');
+    if (!table) return;
+    var today = new Date().getDay();
+    var rows = table.querySelectorAll('tr[data-day]');
+    rows.forEach(function(row) {
+      if (parseInt(row.getAttribute('data-day'), 10) === today) {
+        row.classList.add('horario-hoy');
+      }
+    });
+  }
+  highlightToday();
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
