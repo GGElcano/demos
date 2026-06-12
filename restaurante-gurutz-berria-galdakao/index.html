@@ -1,1449 +1,1134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gurutz Berria — Restaurante Familiar en Galdakao</title>
-  <meta name="description" content="Restaurante Gurutz Berria en Galdakao. Cocina casera vasca, menu del dia desde 16€, terraza en Plaza Santi Brouard. Reservas: 944 57 21 97">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gurutz Berria · Restaurante en Galdakao · Cocina casera vasca</title>
+<meta name="description" content="Restaurante Gurutz Berria en la Plaza Santi Brouard de Galdakao. Cocina casera vasca, menú del día a 16€, menú fin de semana a 22€, pintxos y terraza en la plaza. Reservas: 944 57 21 97.">
+<meta name="theme-color" content="#2A1F18">
 
-    :root {
-      --black: #1a0e0a;
-      --white: #FFF5E6;
-      --accent: #722F37;
-      --accent-light: #8B3A42;
-      --carbon: #2a1810;
-      --carbon-mid: #3E2723;
-      --carbon-light: #4E342E;
-      --text-muted: #b8a090;
-      --font-serif: 'Playfair Display', serif;
-      --font-sans: 'Source Sans 3', sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    }
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="Gurutz Berria · Restaurante en Galdakao">
+<meta property="og:description" content="Cocina casera vasca en la Plaza Santi Brouard. Menú del día 16€, fin de semana 22€, pintxos y terraza. Como comer en casa, pero mejor.">
+<meta property="og:url" content="https://ggelcano.github.io/demos/restaurante-gurutz-berria-galdakao/">
+<meta name="twitter:card" content="summary_large_image">
 
-    html { scroll-behavior: smooth; }
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='28' fill='%232A1F18'/%3E%3Ctext x='90' y='118' font-family='Georgia,serif' font-style='italic' font-size='100' font-weight='700' fill='%239E3A47' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232A1F18'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='38' font-weight='700' fill='%239E3A47' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
 
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--font-sans);
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-      cursor: none;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="img/loader.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="img/portada/foto.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="img/comedor/foto.jpg">
+<link rel="preload" as="image" href="img/cocina/alubias.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    .cursor-dot {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      transition: transform 0.1s;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 0 2px var(--black), 0 0 0 3px rgba(255,245,230,0.3);
-    }
-    .cursor-ring {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(114,47,55,0.4);
-      border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width 0.35s var(--ease-smooth), height 0.35s var(--ease-smooth), border-color 0.35s var(--ease-smooth);
-    }
-    .cursor-ring.expanded {
-      width: 70px; height: 70px;
-      border-color: rgba(114,47,55,0.7);
-      background: rgba(114,47,55,0.05);
-    }
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"Restaurante Gurutz Berria","servesCuisine":["Vasca","Casera","Pintxos"],"priceRange":"€€","telephone":"+34944572197","address":{"@type":"PostalAddress","streetAddress":"Santi Brouard Enparantza, s/n","addressLocality":"Galdakao","postalCode":"48960","addressCountry":"ES"}}
+</script>
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 60px;
-      backdrop-filter: blur(0px);
-      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
-    }
-    nav.scrolled {
-      backdrop-filter: blur(20px);
-      background: rgba(26,14,10,0.9);
-      padding: 18px 60px;
-      border-bottom: 1px solid rgba(114,47,55,0.15);
-    }
-    .nav-logo {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      color: var(--white);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: rgba(255,245,230,0.65);
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      transition: color 0.3s; font-weight: 400;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-cta {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent) !important;
-      padding: 10px 28px !important;
-      font-size: 0.72rem !important;
-      letter-spacing: 0.25em !important;
-      transition: background 0.3s, color 0.3s !important;
-    }
-    .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --crema:#F4EDE0;
+  --hueso:#FBF7EF;
+  --tierra:#2A1F18;
+  --tierra-2:#1B1310;
+  --carbon:#0F0A07;
+  --tinta:#1A140F;
+  --gris:#6B5F50;
+  --linea:#D8CDB6;
+  --brasa:#9E3A47;
+  --brasa-2:#732A34;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;background:var(--hueso);color:var(--tinta);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-weight:400}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration:none}
 
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 8px;
-    }
-    .hamburger span {
-      width: 24px; height: 2px; background: var(--white);
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    .mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--black); z-index: 999;
-      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      text-decoration: none; color: var(--white); font-size: 1.2rem;
-      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
-    }
-    .mobile-menu a:hover { color: var(--accent); }
+.topbar{background:var(--tierra-2);color:var(--crema);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;padding:9px 0;text-align:center;font-weight:500}
+.topbar b{color:var(--brasa);font-weight:700}
+.topbar span{margin:0 14px}
 
-    .hero {
-      position: relative; height: 100vh; min-height: 700px;
-      display: flex; align-items: flex-end; justify-content: flex-start;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-image: url('https://premierbilbao.es/img/900/restaurante-gurutz-berria.jpg');
-      background-size: cover; background-position: center;
-      transform: scale(1.08);
-      transition: transform 8s var(--ease-out);
-    }
-    .hero-bg.loaded { transform: scale(1); }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(26,14,10,0.92) 0%, rgba(26,14,10,0.55) 50%, rgba(26,14,10,0.3) 100%);
-    }
-    .hero-overlay-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
-      background: linear-gradient(to top, var(--black), transparent);
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      padding: 0 60px 100px;
-      max-width: 900px;
-    }
-    .hero-eyebrow {
-      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 28px;
-      display: flex; align-items: center; gap: 16px;
-      opacity: 1;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
-    }
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(3.2rem, 6.5vw, 6.5rem);
-      font-weight: 300;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 32px;
-      opacity: 1;
-    }
-    .hero-title em { font-style: italic; color: var(--accent); }
-    .hero-sub {
-      font-size: 1.05rem; color: rgba(255,245,230,0.6);
-      max-width: 480px; line-height: 1.7; margin-bottom: 52px;
-      font-weight: 300;
-      opacity: 1;
-    }
-    .hero-actions {
-      display: flex; align-items: center; gap: 40px;
-      opacity: 1;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 14px;
-      background: var(--accent); color: var(--white);
-      text-decoration: none; padding: 18px 40px;
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-weight: 500; transition: all 0.35s var(--ease-smooth);
-      position: relative; overflow: hidden;
-    }
-    .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--accent-light); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary span { position: relative; z-index: 1; }
-    .btn-ghost {
-      color: rgba(255,245,230,0.6); text-decoration: none;
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-      transition: color 0.3s;
-    }
-    .btn-ghost:hover { color: var(--accent); }
-    .btn-ghost-arrow {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(255,245,230,0.2);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .btn-ghost:hover .btn-ghost-arrow {
-      border-color: var(--accent); transform: rotate(45deg);
-    }
-    .hero-scroll {
-      position: absolute; right: 60px; bottom: 100px; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 16px;
-      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
-    }
-    .hero-scroll span {
-      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--text-muted); writing-mode: vertical-rl;
-    }
-    .scroll-line {
-      width: 1px; height: 70px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: scrollPulse 2s infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
-    }
+nav{position:sticky;top:0;background:rgba(251,247,239,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea);z-index:100}
+.nav-inner{max-width:1280px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{width:48px;height:48px;border:1.5px solid var(--tierra);color:var(--tierra);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:28px}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text b{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--tierra)}
+.brand-text small{font-size:9.5px;letter-spacing:.36em;color:var(--gris);margin-top:5px;text-transform:uppercase;font-weight:500}
+.brand-logo{height:54px;width:auto;display:block}
+.nav-links{display:flex;gap:30px;font-size:13px;letter-spacing:.04em;font-weight:500;color:var(--tierra)}
+.nav-links a{padding:6px 0;transition:.2s;border-bottom:1px solid transparent}
+.nav-links a:hover{color:var(--brasa-2);border-bottom-color:var(--brasa)}
+.nav-cta{background:var(--tierra);color:var(--crema);padding:12px 24px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;transition:.25s;border:1.5px solid var(--tierra);cursor:pointer;font-family:inherit}
+.nav-cta:hover{background:var(--brasa);border-color:var(--brasa);color:var(--tierra-2)}
 
-    .marquee-section {
-      border-top: 1px solid rgba(114,47,55,0.15);
-      border-bottom: 1px solid rgba(114,47,55,0.15);
-      overflow: hidden; padding: 20px 0; background: var(--carbon);
-    }
-    .marquee-track {
-      display: flex; gap: 0; white-space: nowrap;
-      animation: marquee 22s linear infinite;
-    }
-    .marquee-item {
-      display: inline-flex; align-items: center; gap: 30px;
-      padding: 0 40px;
-      font-family: var(--font-serif); font-size: 1.1rem;
-      font-style: italic; color: rgba(255,245,230,0.25);
-      letter-spacing: 0.05em;
-    }
-    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+/* Hamburger + menú móvil */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:10px;margin-left:8px}
+.hamburger span{width:22px;height:1.5px;background:var(--tierra);transition:transform .3s,opacity .3s,background-color .3s;display:block}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--tierra-2);background-image:url('img/loader.jpg');background-size:cover;background-position:center;z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:30px}
+.mobile-menu::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,20,15,.8) 0%,rgba(26,20,15,.92) 100%);pointer-events:none}
+.mobile-menu.open{display:flex}
+.mobile-menu a{position:relative;text-decoration:none;color:var(--crema);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;font-weight:500;letter-spacing:-.005em;transition:color .2s;padding:6px 0;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--brasa)}
+.mobile-menu a.mm-cta{background:var(--brasa);color:var(--tierra-2);padding:14px 32px;font-family:'Inter',sans-serif;font-style:normal;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-top:18px;border:1.5px solid var(--brasa);text-shadow:none}
+.mobile-menu a.mm-cta:hover,.mobile-menu a.mm-cta:active{background:transparent;color:var(--brasa)}
+.mobile-menu .mm-foot{position:absolute;bottom:30px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--brasa);font-weight:600;font-family:'Inter',sans-serif;font-style:normal;text-shadow:0 1px 8px rgba(0,0,0,.7)}
 
-    section { padding: 130px 60px; }
-    .section-label {
-      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 20px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.4rem, 4vw, 4.2rem);
-      font-weight: 300; line-height: 1.1;
-      letter-spacing: -0.01em;
-    }
-    .section-title em { font-style: italic; color: var(--accent); }
+/* HERO */
+.hero{position:relative;height:100vh;min-height:680px;overflow:hidden;background:linear-gradient(135deg,var(--tierra) 0%,var(--tierra-2) 50%,var(--carbon) 100%);display:flex;flex-direction:column;justify-content:flex-end}
+.hero-bg-radial{position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(158,58,71,.18) 0%,transparent 60%),radial-gradient(circle at 80% 80%,rgba(158,58,71,.12) 0%,transparent 60%);pointer-events:none;z-index:0}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroBreath 16s ease-in-out infinite alternate;z-index:1}
+.hero-photo[data-loaded] ~ .hero-watermark,.hero-photo[data-loaded] ~ .hero-photo-tag{display:none}
+.hero-photo[data-loaded] ~ .hero-img-overlay{opacity:1}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,20,15,.05) 0%,rgba(26,20,15,.1) 45%,rgba(26,20,15,.55) 78%,rgba(26,20,15,.95) 100%);z-index:2;opacity:0;transition:.3s}
+.hero-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(280px,40vw,560px);font-weight:600;color:rgba(158,58,71,.06);line-height:1;z-index:1;pointer-events:none}
+.hero-photo-tag{position:absolute;top:130px;right:80px;z-index:3;background:rgba(244,237,224,.08);border:1px dashed rgba(244,237,224,.35);color:var(--crema);padding:8px 16px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;backdrop-filter:blur(6px)}
+@keyframes heroBreath{from{transform:scale(1)}to{transform:scale(1.06)}}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,20,15,.05) 0%,rgba(26,20,15,.1) 45%,rgba(26,20,15,.55) 78%,rgba(26,20,15,.95) 100%)}
+.hero-frame{position:absolute;top:30px;left:30px;right:30px;bottom:30px;border:1px solid rgba(244,237,224,.22);pointer-events:none;z-index:2}
+.hero-meta{position:absolute;top:30px;right:30px;left:30px;display:flex;justify-content:flex-end;gap:14px;z-index:4;flex-wrap:wrap;padding:18px 28px}
+.hero-meta span{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--crema);background:rgba(26,20,15,.55);backdrop-filter:blur(6px);padding:8px 16px;border:1px solid rgba(244,237,224,.18);font-weight:600}
+.hero-meta b{color:var(--brasa);font-weight:700}
+.hero-tag{position:absolute;top:130px;left:80px;z-index:3;background:var(--brasa);color:var(--tierra-2);padding:9px 18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:14px;letter-spacing:.04em;box-shadow:0 14px 36px rgba(0,0,0,.4)}
+.hero-content{position:relative;z-index:3;color:var(--crema);padding:0 80px 90px;max-width:1280px;margin:0 auto;width:100%}
+.hero-eye{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--brasa);margin-bottom:6px;display:block;font-weight:500}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(54px,9vw,128px);line-height:.92;letter-spacing:-.015em;margin-bottom:24px;text-shadow:0 8px 40px rgba(0,0,0,.5)}
+.hero h1 em{font-style:italic;color:var(--brasa);font-weight:600;display:block}
+.hero p{font-size:clamp(15px,1.7vw,18px);max-width:580px;margin:0 0 36px;opacity:.92;font-weight:300;line-height:1.6}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:15px 32px;font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;transition:.25s;display:inline-flex;align-items:center;gap:10px;min-height:48px;cursor:pointer;border:1.5px solid transparent;font-family:inherit}
+.btn-primary{background:var(--brasa);color:var(--tierra-2);border-color:var(--brasa)}
+.btn-primary:hover{background:transparent;color:var(--brasa);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--crema);border-color:rgba(244,237,224,.4)}
+.btn-ghost:hover{background:var(--crema);color:var(--tierra-2);border-color:var(--crema)}
+.hero-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);color:var(--crema);font-size:10px;letter-spacing:.5em;text-transform:uppercase;opacity:.65;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;font-weight:500}
+.hero-scroll::after{content:"";width:1px;height:30px;background:var(--brasa);animation:sl 2s ease-in-out infinite}
+@keyframes sl{0%,100%{height:8px;opacity:.3}50%{height:30px;opacity:1}}
 
-    .stats-section {
-      background: var(--carbon);
-      padding: 100px 60px;
-      border-top: 1px solid rgba(114,47,55,0.1);
-    }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2px; max-width: 1400px; margin: 0 auto;
-    }
-    .stat-card {
-      padding: 60px 50px; background: var(--carbon);
-      border: 1px solid rgba(114,47,55,0.1);
-      position: relative; overflow: hidden;
-      transition: border-color 0.4s;
-    }
-    .stat-card::before {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; background: var(--accent); transform: scaleX(0);
-      transition: transform 0.5s var(--ease-out); transform-origin: left;
-    }
-    .stat-card:hover::before { transform: scaleX(1); }
-    .stat-card:hover { border-color: rgba(114,47,55,0.35); }
-    .stat-number {
-      font-family: var(--font-serif); font-size: 4.5rem;
-      font-weight: 300; line-height: 1; color: var(--white);
-      margin-bottom: 12px; letter-spacing: -0.02em;
-    }
-    .stat-number .stat-suffix { color: var(--accent); }
-    .stat-label {
-      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-muted); font-weight: 400;
-    }
+.stats{background:var(--tierra-2);color:var(--crema);padding:36px 28px;border-top:1px solid var(--brasa)}
+.stats-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat b{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:42px;color:var(--brasa);line-height:1;margin-bottom:6px}
+.stat span{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;opacity:.85;font-weight:600}
 
-    .projects-section { background: var(--black); }
-    .projects-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
-    }
-    .projects-header .section-title { max-width: 500px; }
-    .view-all {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--accent);
-      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
-      transition: gap 0.3s; padding-bottom: 4px;
-      border-bottom: 1px solid rgba(114,47,55,0.3);
-      white-space: nowrap;
-    }
-    .view-all:hover { gap: 20px; border-color: var(--accent); }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3px;
-      max-width: 1400px; margin: 0 auto;
-    }
-    .project-card {
-      position: relative; overflow: hidden;
-      aspect-ratio: 4/3;
-      cursor: none;
-    }
-    .project-card:first-child {
-      grid-column: span 2; aspect-ratio: 21/8;
-    }
-    .project-img {
-      width: 100%; height: 100%; object-fit: cover;
-      background: linear-gradient(135deg, var(--carbon-mid) 0%, var(--carbon-light) 100%);
-      transition: transform 0.8s var(--ease-out);
-    }
-    .project-card:hover .project-img { transform: scale(1.06); }
-    .project-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(26,14,10,0.9) 0%, rgba(26,14,10,0.1) 60%, transparent 100%);
-      opacity: 0.6; transition: opacity 0.5s;
-    }
-    .project-card:hover .project-overlay { opacity: 0.85; }
-    .project-info {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 40px; transform: translateY(15px);
-      transition: transform 0.5s var(--ease-out);
-    }
-    .project-card:hover .project-info { transform: translateY(0); }
-    .project-cat {
-      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 10px; font-weight: 400;
-    }
-    .project-name {
-      font-family: var(--font-serif); font-size: 1.9rem;
-      font-weight: 300; line-height: 1.15; margin-bottom: 14px;
-    }
-    .project-meta {
-      font-size: 0.73rem; color: rgba(255,245,230,0.45);
-      letter-spacing: 0.1em; opacity: 0;
-      transition: opacity 0.5s 0.1s;
-    }
-    .project-card:hover .project-meta { opacity: 1; }
-    .project-arrow {
-      position: absolute; top: 36px; right: 36px;
-      width: 50px; height: 50px;
-      border: 1px solid rgba(255,245,230,0.15);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      opacity: 0; transform: translate(10px, -10px);
-      transition: all 0.4s var(--ease-out);
-    }
-    .project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); border-color: var(--accent); }
+section{padding:130px 28px;position:relative}
+.wrap{max-width:1280px;margin:0 auto}
+.head{margin-bottom:80px;max-width:780px}
+.eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--brasa-2);display:block;margin-bottom:14px;font-weight:500;letter-spacing:.04em}
+.section-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-.018em;color:var(--tierra);margin-bottom:24px}
+.section-title em{font-style:italic;font-weight:600;color:var(--brasa-2)}
+.section-lead{font-size:17px;color:var(--gris);font-weight:400;line-height:1.65;max-width:620px}
 
-    .about-section {
-      background: var(--carbon);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0; padding: 0; max-width: none;
-    }
-    .about-visual {
-      position: relative; overflow: hidden; min-height: 700px;
-      background-image: url('https://weur-cdn.carta.menu/storage/media/company_gallery/112686121/conversions/contribution_gallery.jpg');
-      background-size: cover; background-position: center;
-    }
-    .about-badge {
-      position: absolute; bottom: 48px; left: 48px;
-      background: var(--black); border: 1px solid rgba(114,47,55,0.3);
-      padding: 24px 30px; max-width: 240px;
-    }
-    .about-badge-year {
-      font-family: var(--font-serif); font-size: 3rem;
-      color: var(--accent); line-height: 1;
-    }
-    .about-badge-text {
-      font-size: 0.72rem; letter-spacing: 0.1em;
-      color: rgba(255,245,230,0.5); margin-top: 6px;
-    }
-    .about-content {
-      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
-    }
-    .about-body {
-      font-size: 1.05rem; line-height: 1.8;
-      color: rgba(255,245,230,0.65); margin: 32px 0 52px;
-      font-weight: 300;
-    }
-    .about-body strong { color: var(--white); font-weight: 400; }
-    .about-divider {
-      width: 60px; height: 1px; background: var(--accent); margin: 40px 0;
-    }
-    .about-values { display: flex; flex-direction: column; gap: 20px; }
-    .about-value {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 20px; border: 1px solid rgba(114,47,55,0.08);
-      transition: border-color 0.4s;
-    }
-    .about-value:hover { border-color: rgba(114,47,55,0.25); }
-    .value-num {
-      font-family: var(--font-serif); font-size: 1.4rem;
-      color: var(--accent); opacity: 0.5; flex-shrink: 0;
-      line-height: 1.2;
-    }
-    .value-text h4 {
-      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 400; margin-bottom: 4px;
-    }
-    .value-text p {
-      font-size: 0.85rem; color: var(--text-muted); font-weight: 300;
-    }
+.pull{background:var(--crema);padding:130px 28px;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.pull-inner{max-width:920px;margin:0 auto;text-align:center}
+.pull-mark{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--brasa);font-size:88px;line-height:1;margin-bottom:-30px}
+.pull blockquote{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(28px,3.6vw,46px);line-height:1.18;color:var(--tierra);margin-bottom:36px}
+.pull blockquote b{font-style:normal;font-weight:600;color:var(--brasa-2)}
+.pull-author{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gris);font-weight:600}
+.pull-author::before{content:"";display:inline-block;width:30px;height:1px;background:var(--brasa);vertical-align:middle;margin-right:14px}
 
-    .services-section { background: var(--black); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; max-width: 1400px; margin: 60px auto 0;
-    }
-    .service-card {
-      padding: 60px 48px; background: var(--black);
-      border: 1px solid rgba(114,47,55,0.08);
-      position: relative; overflow: hidden;
-      transition: background 0.5s, border-color 0.5s;
-    }
-    .service-card:hover { background: var(--carbon-mid); border-color: rgba(114,47,55,0.25); }
-    .service-icon {
-      width: 52px; height: 52px; margin-bottom: 36px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(114,47,55,0.25); color: var(--accent);
-    }
-    .service-card h3 {
-      font-family: var(--font-serif); font-size: 1.7rem;
-      font-weight: 400; margin-bottom: 18px; line-height: 1.2;
-    }
-    .service-card p {
-      font-size: 0.88rem; color: var(--text-muted); line-height: 1.75;
-      font-weight: 300;
-    }
-    .service-link {
-      display: inline-flex; align-items: center; gap: 10px;
-      margin-top: 32px; text-decoration: none;
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(114,47,55,0.6); transition: color 0.3s, gap 0.3s;
-    }
-    .service-link:hover { color: var(--accent); gap: 16px; }
-    .service-number {
-      position: absolute; top: 30px; right: 36px;
-      font-family: var(--font-serif); font-size: 5rem;
-      font-weight: 300; color: rgba(114,47,55,0.06);
-      line-height: 1; transition: color 0.5s;
-    }
-    .service-card:hover .service-number { color: rgba(114,47,55,0.12); }
+.cocina{background:var(--hueso)}
+.cocina-feature{max-width:1100px;margin:0 auto 80px;position:relative;aspect-ratio:21/9;overflow:hidden;box-shadow:0 30px 80px rgba(42,31,24,.22)}
+.cocina-feature img{width:100%;height:100%;object-fit:cover;display:block}
+.cocina-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,20,15,.6) 100%);pointer-events:none}
+.cocina-feature .cf-tag{position:absolute;bottom:30px;left:36px;color:var(--crema);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:30px;text-shadow:0 2px 14px rgba(0,0,0,.6);z-index:2;line-height:1.05;letter-spacing:-.005em}
+.cocina-feature .cf-tag::before{content:"";display:block;width:40px;height:1.5px;background:var(--brasa);margin-bottom:10px}
+.cocina-feature .cf-tag em{font-style:italic;color:var(--brasa)}
+.cocina-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:60px 80px;margin-top:50px}
+.dish-card{display:flex;flex-direction:column;gap:8px}
+.dish-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;color:var(--brasa);font-size:14px;letter-spacing:.04em}
+.dish-card h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;color:var(--tierra);line-height:1.05}
+.dish-card h3 em{font-style:italic;color:var(--brasa-2);font-weight:600}
+.dish-card p{font-size:15px;color:var(--gris);line-height:1.65;margin-top:4px}
 
-    .carta-section {
-      padding: 140px 60px;
-      background: var(--carbon);
-      border-top: 1px solid rgba(114,47,55,0.1);
-    }
-    .carta-section:nth-child(even) { background: var(--black); }
-    .carta-section .section-inner {
-      max-width: 1200px; margin: 0 auto;
-    }
-    .carta-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      text-decoration: none; color: var(--accent);
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      margin-bottom: 40px; transition: gap 0.3s;
-    }
-    .carta-back:hover { gap: 14px; }
-    .carta-columns {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; margin-top: 60px;
-    }
-    .carta-category { margin-bottom: 48px; }
-    .carta-category h4 {
-      font-family: var(--font-serif); font-size: 1.3rem;
-      font-weight: 400; color: var(--white);
-      padding-bottom: 16px; margin-bottom: 24px;
-      border-bottom: 1px solid rgba(114,47,55,0.2);
-    }
-    .carta-item {
-      display: flex; justify-content: space-between;
-      align-items: baseline; padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-    .carta-item:last-child { border-bottom: none; }
-    .carta-item-name {
-      font-size: 0.92rem; font-weight: 400; color: var(--white);
-      flex: 1;
-    }
-    .carta-item-desc {
-      font-size: 0.78rem; color: var(--text-muted);
-      font-weight: 300; margin-top: 2px;
-    }
-    .carta-item-price {
-      font-family: var(--font-serif); font-size: 1rem;
-      color: var(--accent); white-space: nowrap;
-      margin-left: 20px; font-weight: 400;
-    }
-    .carta-highlight {
-      background: var(--carbon-mid); border: 1px solid rgba(114,47,55,0.12);
-      padding: 40px; margin-top: 40px;
-    }
-    .carta-highlight h4 {
-      font-family: var(--font-serif); font-size: 1.1rem;
-      font-weight: 400; color: var(--accent); margin-bottom: 16px;
-    }
-    .carta-highlight p {
-      font-size: 0.88rem; color: var(--text-muted);
-      line-height: 1.75; font-weight: 300;
-    }
-    .carta-cta {
-      display: inline-flex; align-items: center; gap: 12px;
-      margin-top: 48px; text-decoration: none;
-      padding: 18px 40px; border: 1px solid var(--accent);
-      color: var(--white); font-size: 0.72rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      transition: background 0.4s, gap 0.3s;
-    }
-    .carta-cta:hover { background: var(--accent); gap: 18px; }
-    @media (max-width: 768px) {
-      .hero { min-height: auto; height: auto; align-items: flex-start; }
-      .carta-section { padding: 80px 24px; }
-      .carta-columns { grid-template-columns: 1fr; gap: 40px; }
-    }
+/* Galería */
+.galeria{background:var(--crema)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:10px;margin-top:50px}
+.gal-item{position:relative;overflow:hidden;background:var(--tierra);box-shadow:0 14px 40px rgba(42,31,24,.12)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.gal-item:hover img{transform:scale(1.06)}
+.gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(26,20,15,.6) 100%);opacity:0;transition:.3s;pointer-events:none}
+.gal-item:hover::after{opacity:1}
+.gal-tall{grid-row:span 2}
+.gal-wide{grid-column:span 2}
+.gal-cap{position:absolute;bottom:18px;left:18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--crema);font-size:18px;text-shadow:0 2px 12px rgba(0,0,0,.7);z-index:2;letter-spacing:.01em;opacity:0;transition:.3s;pointer-events:none}
+.gal-cap::before{content:"";display:block;width:30px;height:1px;background:var(--brasa);margin-bottom:6px}
+.gal-item:hover .gal-cap{opacity:1}
+.gal-item.has-img .gal-cap{opacity:0}
+.gal-item.has-img:hover .gal-cap{opacity:1}
 
-    .testimonials-section {
-      background: var(--carbon); position: relative; overflow: hidden;
-    }
-    .testimonials-section::before {
-      content: '\201C'; position: absolute; top: -60px; left: 40px;
-      font-family: var(--font-serif); font-size: 30rem;
-      color: rgba(114,47,55,0.04); line-height: 1; pointer-events: none;
-    }
-    .testimonials-inner { max-width: 1400px; margin: 0 auto; }
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 70px;
-    }
-    .testimonial-card {
-      padding: 56px 44px; background: rgba(26,14,10,0.4);
-      border: 1px solid rgba(114,47,55,0.08);
-      transition: border-color 0.4s, background 0.4s;
-    }
-    .testimonial-card:hover { border-color: rgba(114,47,55,0.25); background: rgba(26,14,10,0.7); }
-    .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
-    .star {
-      width: 12px; height: 12px; background: var(--accent);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    }
-    .testimonial-quote {
-      font-family: var(--font-serif); font-size: 1.2rem;
-      font-style: italic; font-weight: 300;
-      line-height: 1.7; color: rgba(255,245,230,0.8);
-      margin-bottom: 36px;
-    }
-    .testimonial-divider {
-      width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.4;
-    }
-    .testimonial-author strong {
-      display: block; font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.08em; margin-bottom: 4px;
-    }
-    .testimonial-author span {
-      font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em;
-    }
+/* Placeholder cards cuando no hay foto */
+.gal-ph{background:linear-gradient(135deg,var(--tierra) 0%,var(--tierra-2) 100%);position:relative;cursor:default}
+.gal-ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(158,58,71,.18) 0%,transparent 60%);pointer-events:none}
+.gal-ph::after{display:none}
+.gal-ph .ph-tag{position:absolute;top:18px;left:18px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--brasa);background:rgba(158,58,71,.12);padding:5px 10px;border:1px solid rgba(158,58,71,.4);font-weight:700;z-index:2}
+.gal-ph .ph-title{position:absolute;bottom:24px;left:24px;right:24px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--crema);font-size:24px;line-height:1.1;z-index:2;letter-spacing:-.005em}
+.gal-ph .ph-title::before{content:"";display:block;width:36px;height:1px;background:var(--brasa);margin-bottom:8px}
+.gal-ph .ph-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:90px;font-weight:600;color:rgba(158,58,71,.25);line-height:1;z-index:1}
 
-    .map-section {
-      padding: 0; background: var(--black);
-      border-top: 1px solid rgba(114,47,55,0.1);
-    }
-    .map-section iframe {
-      width: 100%; height: 450px; border: 0; filter: grayscale(0.3) contrast(1.1);
-    }
+.gal-note{margin:50px auto 0;max-width:680px;text-align:center;background:#fff;border:1px dashed var(--linea);padding:24px 28px;font-size:14px;color:var(--gris);line-height:1.65}
+.gal-note b{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--brasa-2);font-size:18px;display:block;margin-bottom:6px;font-weight:600}
 
-    .cta-section {
-      background: var(--accent); padding: 110px 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 60px; flex-wrap: wrap;
-    }
-    .cta-text { flex: 1; min-width: 300px; }
-    .cta-text h2 {
-      font-family: var(--font-serif); font-size: clamp(2.4rem, 4vw, 4rem);
-      font-weight: 300; color: var(--white); line-height: 1.1;
-    }
-    .cta-text p {
-      font-size: 1rem; color: rgba(255,245,230,0.7); margin-top: 16px; font-weight: 300;
-    }
-    .btn-dark {
-      display: inline-flex; align-items: center; gap: 14px;
-      background: var(--black); color: var(--white);
-      text-decoration: none; padding: 20px 48px;
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-weight: 500; transition: all 0.35s var(--ease-smooth);
-      white-space: nowrap; position: relative; overflow: hidden;
-    }
-    .btn-dark::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--carbon-light); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .btn-dark:hover::before { transform: translateX(0); }
-    .btn-dark span { position: relative; z-index: 1; }
+/* ESPACIOS */
+.espacios{background:var(--crema)}
+.espacios-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+.espacios-pic{aspect-ratio:4/5;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(42,31,24,.22)}
+.espacios-pic img{width:100%;height:100%;object-fit:cover;display:block}
+.espacios-pic::before{content:"";position:absolute;inset:18px;border:1px solid rgba(244,237,224,.4);pointer-events:none;z-index:2}
+.espacios-pic-tag{position:absolute;bottom:30px;left:30px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--crema);font-size:24px;text-shadow:0 2px 14px rgba(0,0,0,.7);z-index:3;letter-spacing:-.005em}
+.espacios-pic-tag::before{content:"";display:block;width:40px;height:1.5px;background:var(--brasa);margin-bottom:8px}
+.espacios-text h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.4vw,52px);color:var(--tierra);margin-bottom:14px;line-height:1.05;letter-spacing:-.015em}
+.espacios-text h3 em{font-style:italic;font-weight:600;color:var(--brasa-2)}
+.espacios-text p{font-size:16px;color:var(--gris);margin-bottom:16px;line-height:1.7}
+.espacios-text strong{color:var(--tierra);font-weight:600}
+.espacios-list{margin-top:28px;display:flex;flex-direction:column}
+.espacios-list-item{display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid var(--linea);align-items:center}
+.espacios-list-item:last-child{border-bottom:1px solid var(--linea)}
+.espacios-list-item b{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:20px;color:var(--tierra)}
+.espacios-list-item span{font-size:13px;color:var(--gris);text-align:right;font-weight:500;letter-spacing:.04em}
 
-    footer {
-      background: var(--black); padding: 90px 60px 50px;
-      border-top: 1px solid rgba(114,47,55,0.1);
-    }
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 60px; margin-bottom: 70px;
-    }
-    .footer-brand .nav-logo {
-      font-size: 1.8rem; margin-bottom: 22px; display: inline-flex;
-    }
-    .footer-tagline {
-      font-family: var(--font-serif); font-style: italic;
-      font-size: 1.05rem; color: rgba(255,245,230,0.35);
-      line-height: 1.6; max-width: 280px; margin-bottom: 36px;
-    }
-    .footer-social { display: flex; gap: 14px; }
-    .social-link {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(255,245,230,0.1);
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; color: rgba(255,245,230,0.4);
-      font-size: 0.75rem; letter-spacing: 0.1em;
-      transition: border-color 0.3s, color 0.3s;
-    }
-    .social-link:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col h4 {
-      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 24px; font-weight: 500;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-col ul a {
-      text-decoration: none; color: rgba(255,245,230,0.4);
-      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
-    }
-    .footer-col ul a:hover { color: var(--white); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,245,230,0.06);
-      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-copy {
-      font-size: 0.75rem; color: rgba(255,245,230,0.25); letter-spacing: 0.05em;
-    }
-    .footer-legal { display: flex; gap: 28px; }
-    .footer-legal a {
-      font-size: 0.72rem; color: rgba(255,245,230,0.2);
-      text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
-    }
-    .footer-legal a:hover { color: var(--text-muted); }
+/* Galeria */
+.galeria{background:var(--hueso);padding:100px 28px 110px}
+.galeria-head{text-align:center;max-width:760px;margin:0 auto 60px}
+.galeria-head .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--brasa-2);display:block;margin-bottom:8px;font-weight:500;letter-spacing:.04em}
+.galeria-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.4vw,52px);color:var(--tierra);line-height:1.05;letter-spacing:-.015em}
+.galeria-head h3 em{font-style:italic;font-weight:600;color:var(--brasa-2)}
+.galeria-head p{font-size:16px;color:var(--gris);margin-top:14px;line-height:1.65}
+.galeria-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:14px}
+.galeria-item{position:relative;overflow:hidden;cursor:pointer;background:var(--linea)}
+.galeria-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.galeria-item:hover img{transform:scale(1.06)}
+.galeria-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(26,20,15,.78) 100%);pointer-events:none;opacity:0;transition:opacity .3s}
+.galeria-item:hover::after{opacity:1}
+.galeria-tag{position:absolute;bottom:18px;left:20px;right:20px;color:var(--crema);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;font-weight:600;line-height:1.2;z-index:2;text-shadow:0 2px 8px rgba(0,0,0,.5);opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s}
+.galeria-item:hover .galeria-tag{opacity:1;transform:translateY(0)}
+.galeria-item.big{grid-column:span 2;grid-row:span 2}
+.galeria-item.wide{grid-column:span 2;grid-row:span 1}
+.galeria-item.tall{grid-column:span 1;grid-row:span 1}
+.galeria-item.small{grid-column:span 1;grid-row:span 1}
 
-    .whatsapp-float {
-      position: fixed; bottom: 28px; right: 28px; z-index: 900;
-      width: 60px; height: 60px; border-radius: 50%;
-      background: #25D366; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
-    }
-    .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
-    .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
+@media(max-width:1024px){
+  .galeria{padding:70px 22px 80px}
+  .galeria-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}
+  .galeria-item.big{grid-column:span 2;grid-row:span 2}
+  .galeria-item.wide{grid-column:span 2;grid-row:span 1}
+  .galeria-item.tall,.galeria-item.small{grid-column:span 1;grid-row:span 1}
+}
+@media(max-width:560px){
+  .galeria{padding:55px 18px 65px}
+  .galeria-grid{grid-template-columns:1fr;grid-auto-rows:260px;gap:10px}
+  .galeria-item.big,.galeria-item.wide,.galeria-item.tall,.galeria-item.small{grid-column:span 1;grid-row:span 1}
+  .galeria-tag{opacity:1;transform:none}
+  .galeria-item::after{opacity:1}
+}
 
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { to { opacity: 1; } }
-    .reveal {
-      opacity: 1; transform: translateY(0);
-      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.15s; }
-    .reveal-delay-2 { transition-delay: 0.3s; }
-    .reveal-delay-3 { transition-delay: 0.45s; }
+/* Lightbox */
+.gx-back{position:fixed;inset:0;background:rgba(15,10,7,.94);z-index:300;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+.gx-back.open{display:flex}
+.gx-img{max-width:96vw;max-height:92vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.gx-close{position:absolute;top:22px;right:28px;background:transparent;border:none;color:var(--crema);font-size:36px;cursor:pointer;line-height:1;padding:6px}
+.gx-prev,.gx-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(244,237,224,.08);border:1px solid rgba(244,237,224,.25);color:var(--crema);width:54px;height:54px;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;cursor:pointer;transition:.25s}
+.gx-prev{left:24px}.gx-next{right:24px}
+.gx-prev:hover,.gx-next:hover{background:var(--brasa);border-color:var(--brasa);color:var(--tierra-2)}
+@media(max-width:560px){.gx-prev,.gx-next{width:44px;height:44px;font-size:24px}.gx-prev{left:10px}.gx-next{right:10px}}
 
-    .loader {
-      position: fixed; inset: 0; z-index: 10000;
-      background: var(--black); display: flex;
-      align-items: center; justify-content: center;
-      flex-direction: column; gap: 28px;
-      transition: opacity 0.8s, visibility 0.8s;
-    }
-    .loader.hidden { opacity: 0; visibility: hidden; }
-    .loader-logo {
-      font-family: var(--font-serif); font-size: 2.2rem;
-      letter-spacing: 0.2em; color: var(--white);
-    }
-    .loader-logo span { color: var(--accent); }
-    .loader-bar {
-      width: 200px; height: 1px; background: rgba(255,245,230,0.1);
-      position: relative; overflow: hidden;
-    }
-    .loader-bar::after {
-      content: ''; position: absolute; inset: 0;
-      background: var(--accent); transform: translateX(-100%);
-      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
-    }
-    @keyframes loadBar { to { transform: translateX(0); } }
+.menus{background:var(--tierra);color:var(--crema);padding:90px 28px;position:relative;overflow:hidden}
+.menus::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 30%,rgba(158,58,71,.16) 0%,transparent 60%)}
+.mq-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;position:relative}
+.mq-card{padding:50px 38px;border:1px solid rgba(244,237,224,.18);background:rgba(244,237,224,.03);transition:.3s}
+.mq-card:hover{transform:translateY(-4px);background:rgba(244,237,224,.06)}
+.mq-card.feat{background:var(--brasa);color:var(--tierra-2);border-color:var(--brasa)}
+.mq-card span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--brasa);font-weight:500}
+.mq-card.feat span{color:var(--tierra-2);opacity:.7}
+.mq-card h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;margin:6px 0 12px;line-height:1.1;color:var(--crema)}
+.mq-card.feat h4{color:var(--tierra-2)}
+.mq-card b{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:64px;color:var(--brasa);display:block;margin:18px 0 10px;line-height:1}
+.mq-card.feat b{color:var(--tierra-2)}
+.mq-card p{font-size:14px;opacity:.8;line-height:1.6}
+.mq-card.feat p{opacity:.85}
 
-    @media (max-width: 1024px) {
-      nav { padding: 24px 36px; }
-      nav.scrolled { padding: 16px 36px; }
-      section { padding: 100px 36px; }
-      .hero-content { padding: 110px 36px 80px; }
-      .hero-scroll { right: 36px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
-    }
-    @media (max-width: 768px) {
-      .hero { min-height: auto; height: auto; align-items: flex-start; }
-      body { cursor: auto; }
-      .cursor-dot, .cursor-ring { display: none; }
-      .hamburger { display: flex; }
-      nav { padding: 20px 24px; }
-      nav.scrolled { padding: 14px 24px; }
-      .nav-links { display: none; }
-      section { padding: 80px 24px; }
-      .hero-content { padding: 8px 24px 70px; }
-      .hero-scroll { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
-      .projects-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 40px; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card:first-child { grid-column: 1; aspect-ratio: 4/3; }
-      .about-section { grid-template-columns: 1fr; }
-      .about-visual { min-height: 300px; }
-      .about-content { padding: 60px 24px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .cta-section { padding: 80px 24px; flex-direction: column; }
-      .footer-top { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .stats-section { padding: 70px 24px; }
-      .map-section iframe { height: 300px; }
-    }
-  </style>
+/* CARTA */
+.carta{background:var(--hueso);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.carta-tabs{display:flex;justify-content:center;gap:0;margin:30px auto 60px;border-bottom:1px solid var(--linea);overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:1280px}
+.carta-tab{padding:18px 22px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;font-weight:500;color:var(--gris);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;transition:.2s;white-space:nowrap;letter-spacing:.02em}
+.carta-tab.active{color:var(--tierra);border-bottom-color:var(--brasa);font-weight:600}
+.carta-tab:hover{color:var(--tierra)}
+.carta-panel{display:none;animation:fade .35s}
+.carta-panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.carta-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 80px;max-width:1100px;margin:0 auto}
+.carta-grid.single{grid-template-columns:1fr;max-width:760px}
+.carta-section{margin-bottom:50px}
+.carta-section:last-child{margin-bottom:0}
+.carta-section h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--brasa-2);font-size:24px;margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid var(--linea);max-width:760px;margin-left:auto;margin-right:auto;text-align:center}
+.dish{padding-bottom:20px;border-bottom:1px dashed var(--linea)}
+.dish-head{display:flex;justify-content:space-between;gap:14px;align-items:baseline;margin-bottom:6px}
+.dish-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:var(--tierra);letter-spacing:.005em;line-height:1.25}
+.dish-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--brasa-2);font-size:19px;white-space:nowrap;flex-shrink:0}
+.dish-desc{font-size:13.5px;color:var(--gris);font-weight:400;line-height:1.55}
+.menu-fixed{background:#fff;padding:42px 44px;border:1px solid var(--linea);border-top:3px solid var(--brasa);max-width:680px;margin:0 auto 26px;box-shadow:0 18px 50px rgba(42,31,24,.08)}
+.menu-fixed:last-child{margin-bottom:0}
+.menu-fixed-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;padding-bottom:18px;border-bottom:1px dashed var(--linea);flex-wrap:wrap;gap:12px}
+.menu-fixed-head h4{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--tierra);font-size:30px;line-height:1.05}
+.menu-fixed-head h4 em{font-style:normal;font-weight:600;color:var(--brasa-2);display:block;font-size:16px;letter-spacing:.04em;margin-top:4px;font-style:italic}
+.menu-fixed-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:42px;color:var(--brasa);line-height:1}
+.menu-fixed h5{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--brasa-2);margin:18px 0 10px;font-style:normal}
+.menu-fixed h5:first-child{margin-top:0}
+.menu-fixed ul{list-style:none}
+.menu-fixed li{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--tierra);font-weight:500;padding:5px 0;line-height:1.4}
+.menu-fixed li small{display:block;font-size:11px;color:var(--gris);font-style:italic;letter-spacing:.04em;font-family:'Inter',sans-serif;font-weight:400;margin-top:1px}
+.menu-fixed-footer{margin-top:18px;padding-top:14px;border-top:1px dashed var(--linea);font-size:12.5px;color:var(--gris);line-height:1.6;font-style:italic;font-family:'Cormorant Garamond',serif}
+.menu-fixed-footer b{color:var(--tierra);font-weight:600;font-style:normal;font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:.04em}
+.carta-note{text-align:center;max-width:680px;margin:30px auto 0;font-size:13.5px;color:var(--gris);font-style:italic;line-height:1.6}
+
+.booking{background:linear-gradient(180deg,var(--crema) 0%,var(--hueso) 100%);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.booking-grid{display:flex;flex-direction:column;align-items:center;gap:50px;max-width:680px;margin:0 auto}
+.booking-head{text-align:center}
+.booking-head .eyebrow{display:block;margin-bottom:14px}
+.booking-head h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,5vw,60px);line-height:1.04;color:var(--tierra);letter-spacing:-.015em}
+.booking-head h2 em{font-style:italic;font-weight:600;color:var(--brasa-2)}
+.booking-form{width:100%}
+.booking-form{background:#fff;padding:48px 44px;box-shadow:0 30px 80px rgba(42,31,24,.15);border-top:3px solid var(--brasa)}
+.booking-form-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:30px;padding-bottom:20px;border-bottom:1px solid var(--linea)}
+.booking-form-head h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;color:var(--tierra)}
+.booking-form-head span{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--brasa-2);font-size:15px;font-weight:500}
+.bf-row{display:grid;gap:14px;margin-bottom:14px}
+.bf-row.cols-2{grid-template-columns:1fr 1fr}
+.bf-field{display:flex;flex-direction:column;gap:6px}
+.bf-field label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gris);font-weight:600}
+.bf-field input,.bf-field select,.bf-field textarea{font-family:'Inter',sans-serif;font-size:15px;padding:12px 14px;border:1px solid var(--linea);background:var(--hueso);color:var(--tinta);font-weight:500;outline:none;transition:.2s}
+.bf-field input:focus,.bf-field select:focus,.bf-field textarea:focus{border-color:var(--brasa);background:#fff;box-shadow:0 0 0 3px rgba(158,58,71,.12)}
+.bf-field textarea{resize:vertical;min-height:80px}
+.bf-field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%236B5F50' d='M6 8L0 0h12z'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.bf-people{display:flex;gap:6px;flex-wrap:wrap}
+.bf-chip{padding:9px 14px;border:1px solid var(--linea);background:#fff;color:var(--tinta);font-size:14px;font-weight:600;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif;min-width:42px}
+.bf-chip:hover{border-color:var(--brasa)}
+.bf-chip.active{background:var(--tierra);border-color:var(--tierra);color:var(--crema)}
+.bf-submit{width:100%;background:var(--brasa);color:var(--tierra-2);padding:16px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border:1.5px solid var(--brasa);cursor:pointer;transition:.25s;margin-top:14px}
+.bf-submit:hover:not(:disabled){background:transparent;color:var(--brasa)}
+.bf-submit:disabled{opacity:.65;cursor:wait}
+.bf-legal{font-size:11.5px;color:var(--gris);margin-top:14px;line-height:1.5;text-align:center;font-weight:400}
+.bf-legal a{color:var(--brasa-2);text-decoration:underline}
+.bf-status{padding:14px 18px;font-size:14px;border:1px solid;margin-bottom:18px;display:none;font-weight:500;line-height:1.5}
+.bf-status.show{display:block}
+.bf-status.success{background:rgba(63,82,54,.06);border-color:#3F7A4A;color:#3F7A4A}
+.bf-status.error{background:rgba(160,72,27,.06);border-color:var(--brasa-2);color:var(--brasa-2)}
+.bf-erp{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--gris);letter-spacing:.16em;text-transform:uppercase;margin-top:18px;padding-top:18px;border-top:1px dashed var(--linea);font-weight:600}
+.bf-erp::before{content:"";width:8px;height:8px;background:#3F7A4A;border-radius:50%;box-shadow:0 0 0 3px rgba(63,122,74,.2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(63,122,74,.2)}50%{box-shadow:0 0 0 6px rgba(63,122,74,.05)}}
+
+.contact{padding:0;background:var(--tierra-2)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.3fr;min-height:560px}
+.contact-side{padding:80px 60px;color:var(--crema);background:var(--tierra);display:flex;flex-direction:column;justify-content:center}
+.contact-side .eyebrow{color:var(--brasa)}
+.contact-side h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4.5vw,56px);line-height:1.05;margin-bottom:24px;color:var(--crema)}
+.contact-side h2 em{font-style:italic;font-weight:600;color:var(--brasa)}
+.contact-info{margin-top:14px;padding-top:32px;border-top:1px solid rgba(244,237,224,.18);display:flex;flex-direction:column;gap:18px}
+.contact-row{display:flex;gap:18px;align-items:flex-start}
+.contact-row .ico{width:42px;height:42px;border:1.5px solid var(--brasa);color:var(--brasa);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:18px;flex-shrink:0}
+.contact-row b{display:block;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--brasa);margin-bottom:4px;font-weight:700}
+.contact-row span,.contact-row a{font-size:15px;color:var(--crema);line-height:1.5}
+.contact-row a:hover{color:var(--brasa)}
+.contact-map{position:relative;background:#000;overflow:hidden}
+.contact-map iframe{width:100%;height:100%;border:0;min-height:560px}
+
+footer{background:#15100C;color:var(--crema);padding:70px 28px 30px}
+.foot-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+.foot-brand .brand-mark{margin-bottom:16px;border-color:var(--brasa);color:var(--brasa)}
+.foot-brand p{font-size:14px;opacity:.65;line-height:1.7;margin-top:14px;max-width:320px}
+.foot-col h5{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:20px;color:var(--brasa);margin-bottom:16px}
+.foot-col ul{list-style:none}
+.foot-col li{font-size:14px;opacity:.7;margin-bottom:9px;line-height:1.55}
+.foot-col a:hover{color:var(--brasa);opacity:1}
+.foot-bottom{max-width:1280px;margin:0 auto;padding-top:30px;border-top:1px solid rgba(244,237,224,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12px;opacity:.5}
+
+/* LOADER */
+.loader{position:fixed;inset:0;z-index:99999;background:var(--tierra-2) url('img/loader.jpg') center center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transition:opacity .6s ease,visibility .6s ease}
+.loader::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,20,15,.55) 0%,rgba(26,20,15,.7) 100%);pointer-events:none}
+.loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(40px,6vw,72px);color:var(--crema);font-weight:500;letter-spacing:.02em;line-height:1;opacity:0;transform:translateY(12px);animation:loaderIn .9s .15s cubic-bezier(.16,1,.3,1) forwards;text-shadow:0 4px 28px rgba(0,0,0,.7),0 1px 8px rgba(0,0,0,.9);z-index:2}
+.loader-logo em{font-style:italic;color:var(--brasa);font-weight:600}
+.loader-bar{position:relative;width:200px;height:1px;background:rgba(244,237,224,.25);overflow:hidden;opacity:0;animation:loaderIn .6s .4s ease forwards;z-index:2}
+.loader-bar::after{content:"";position:absolute;inset:0;background:var(--brasa);transform:translateX(-100%);animation:loaderBar 1.4s .6s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes loaderIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes loaderBar{0%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
+@media (prefers-reduced-motion: reduce){
+  .loader,.loader *{animation-duration:.01s !important;animation-delay:0s !important;transition-duration:.01s !important}
+}
+
+.modal-back{position:fixed;inset:0;background:rgba(26,20,15,.78);backdrop-filter:blur(6px);z-index:9998;opacity:0;visibility:hidden;transition:.25s}
+.modal-back.open{opacity:1;visibility:visible}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-48%) scale(.96);background:#fff;width:min(620px,92vw);max-height:92vh;overflow-y:auto;z-index:9999;box-shadow:0 40px 100px rgba(0,0,0,.5);opacity:0;visibility:hidden;transition:.3s}
+.modal.open{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1)}
+.modal-head{padding:32px 36px 18px;border-bottom:1px solid var(--linea);display:flex;justify-content:space-between;align-items:flex-start;gap:18px;background:var(--tierra);color:var(--crema)}
+.modal-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;line-height:1.1;color:var(--crema)}
+.modal-head h3 em{font-style:italic;color:var(--brasa);font-weight:600}
+.modal-head p{font-size:13px;opacity:.8;margin-top:4px;font-weight:300}
+.modal-close{background:transparent;border:1px solid rgba(244,237,224,.4);color:var(--crema);width:36px;height:36px;font-size:18px;cursor:pointer;font-family:inherit;flex-shrink:0;transition:.2s}
+.modal-close:hover{background:var(--brasa);border-color:var(--brasa);color:var(--tierra-2)}
+.modal-body{padding:32px 36px 36px}
+
+@media(max-width:1024px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .nav-cta{display:none}
+  .hero-content{padding:0 32px 70px}
+  .hero-tag{left:32px;top:120px;font-size:13px;padding:7px 14px}
+  .hero-frame{top:14px;left:14px;right:14px;bottom:14px}
+  .hero-meta{padding:14px 22px;gap:8px}
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:32px}
+  section{padding:90px 22px}
+  .head{margin-bottom:60px}
+  .cocina-grid{grid-template-columns:1fr;gap:40px}
+  .mq-inner{grid-template-columns:1fr;gap:18px}
+  .booking-grid{gap:36px}
+  .booking-form{padding:36px 26px}
+  .contact-wrap{grid-template-columns:1fr;min-height:auto}
+  .contact-side{padding:54px 32px}
+  .contact-map iframe{min-height:380px}
+  .foot-inner{grid-template-columns:1fr 1fr;gap:34px}
+  .pull{padding:90px 22px}
+  .menus{padding:60px 22px}
+  .cocina-feature{aspect-ratio:16/10;margin-bottom:50px}
+  .cocina-feature .cf-tag{font-size:22px;left:24px;bottom:24px}
+  .espacios-grid{grid-template-columns:1fr;gap:50px}
+  .espacios-pic{max-width:500px;margin:0 auto;aspect-ratio:4/3}
+  .espacios-pic-tag{font-size:20px}
+  .carta-grid{grid-template-columns:1fr;gap:24px}
+  .menu-fixed{padding:32px 26px}
+  .menu-fixed-head{flex-direction:row;align-items:center}
+  .menu-fixed-head h4{font-size:24px}
+  .menu-fixed-price{font-size:36px}
+  .modal-head{padding:24px 24px 14px}
+  .modal-head h3{font-size:24px}
+  .modal-body{padding:24px}
+}
+@media(max-width:480px){
+  .topbar{font-size:10px;padding:8px 0}
+  .topbar span{margin:0 7px}
+  .nav-inner{padding:14px 18px}
+  .brand-mark{width:42px;height:42px;font-size:23px}
+  .brand-logo{height:44px}
+  .brand-text b{font-size:20px}
+  .nav-cta{padding:10px 14px;font-size:11px}
+  .hero{min-height:88vh}
+  .hero-content{padding:0 22px 60px}
+  .hero h1{font-size:46px}
+  .hero-eye{font-size:18px}
+  .hero p{font-size:14.5px}
+  .hero-tag{display:none}
+  .hero-meta{padding:10px 18px;gap:6px;justify-content:flex-start}
+  .hero-meta span{padding:6px 10px;font-size:9px;letter-spacing:.14em}
+  .hero-scroll{display:none}
+  .stats{padding:28px 18px}
+  .stat b{font-size:32px}
+  .stat span{font-size:9.5px}
+  section{padding:70px 18px}
+  .pull{padding:70px 18px}
+  .pull-mark{font-size:60px;margin-bottom:-18px}
+  .head{margin-bottom:42px}
+  .menus{padding:50px 18px}
+  .mq-card{padding:36px 26px}
+  .mq-card b{font-size:48px}
+  .booking-form{padding:28px 22px}
+  .contact-side{padding:42px 22px}
+  .foot-inner{grid-template-columns:1fr;gap:30px}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .btn{padding:13px 22px;font-size:11px;letter-spacing:.14em}
+  .bf-row.cols-2{grid-template-columns:1fr}
+  .booking-form-head{flex-direction:column;gap:8px}
+  .dish-card h3{font-size:26px}
+}
+
+/* Carta integrada */
+.carta-home{background:var(--hueso);padding:100px 0 0}
+.carta-home-head{text-align:center;max-width:760px;margin:0 auto 50px;padding:0 28px}
+.carta-home-head .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--brasa-2);display:block;margin-bottom:8px;font-weight:500;letter-spacing:.04em}
+.carta-home-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.4vw,52px);color:var(--tierra);line-height:1.05;letter-spacing:-.015em}
+.carta-home-head h3 em{font-style:italic;font-weight:600;color:var(--brasa-2)}
+.carta-home-head p{font-size:16px;color:var(--gris);margin-top:14px;line-height:1.65}
+.carta-tabs{display:flex;justify-content:center;gap:0;margin:0 auto;border-bottom:1px solid var(--linea);overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--hueso);position:sticky;top:84px;z-index:50;padding:0 20px}
+.carta-tab{padding:18px 22px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;font-weight:500;color:var(--gris);cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;transition:.2s;white-space:nowrap;letter-spacing:.02em}
+.carta-tab.active{color:var(--tierra);border-bottom-color:var(--brasa);font-weight:600}
+.carta-tab:hover{color:var(--tierra)}
+.carta-main{padding:60px 28px 100px;background:var(--hueso)}
+.carta-wrap{max-width:1280px;margin:0 auto}
+.carta-panel{display:none;animation:cartaFade .35s}
+.carta-panel.active{display:block}
+@keyframes cartaFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.carta-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 80px;max-width:1100px;margin:0 auto}
+.carta-section{margin-bottom:60px}
+.carta-section:last-child{margin-bottom:0}
+.carta-section h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--brasa-2);font-size:32px;margin-bottom:30px;padding-bottom:14px;border-bottom:1px solid var(--linea);max-width:1100px;margin-left:auto;margin-right:auto;text-align:center;letter-spacing:-.005em}
+.dish{padding-bottom:20px;border-bottom:1px dashed var(--linea)}
+.dish-head{display:flex;justify-content:space-between;gap:14px;align-items:baseline;margin-bottom:6px}
+.dish-name{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:var(--tierra);letter-spacing:.005em;line-height:1.25}
+.dish-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--brasa-2);font-size:19px;white-space:nowrap;flex-shrink:0}
+.dish-desc{font-size:13.5px;color:var(--gris);font-weight:400;line-height:1.55}
+.noche-banner{background:var(--brasa);color:var(--tierra-2);padding:28px;text-align:center;max-width:680px;margin:0 auto 50px;border:1.5px solid var(--brasa-2)}
+.noche-banner b{font-family:'Inter',sans-serif;font-style:normal;letter-spacing:.18em;text-transform:uppercase;font-size:11.5px;display:block;margin-bottom:8px;font-weight:700}
+.noche-banner span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.4;font-weight:500;color:var(--tierra-2)}
+.carta-note{text-align:center;max-width:680px;margin:60px auto 0;font-size:13.5px;color:var(--gris);font-style:italic;line-height:1.6}
+.carta-note a{color:var(--brasa-2);font-weight:600}
+
+/* Menus integrados */
+.menus-home{background:var(--tierra);color:var(--crema);padding:100px 28px 110px;position:relative}
+.menus-home-head{text-align:center;max-width:760px;margin:0 auto 60px}
+.menus-home-head .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--brasa);display:block;margin-bottom:8px;font-weight:500;letter-spacing:.04em}
+.menus-home-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,4.4vw,52px);color:var(--crema);line-height:1.05;letter-spacing:-.015em}
+.menus-home-head h3 em{font-style:italic;font-weight:600;color:var(--brasa)}
+.menus-home-head p{font-size:16px;color:rgba(244,237,224,.75);margin-top:14px;line-height:1.65}
+.menus-grid{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:30px;max-width:1100px;margin:0 auto}
+.menu-fixed{background:var(--crema);color:var(--tinta);padding:42px 44px;border:1px solid var(--linea);border-top:3px solid var(--brasa);box-shadow:0 18px 50px rgba(0,0,0,.25);display:flex;flex-direction:column}
+.menu-fixed.featured{border-top-width:4px;background:linear-gradient(180deg,#fff 0%,#fdf8ef 100%)}
+.menu-fixed-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;padding-bottom:18px;border-bottom:1px dashed var(--linea);flex-wrap:wrap;gap:12px}
+.menu-fixed-head h4{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--tierra);font-size:30px;line-height:1.05}
+.menu-fixed-head h4 em{font-style:italic;font-weight:600;color:var(--brasa-2);display:block;font-size:15px;letter-spacing:.04em;margin-top:4px}
+.menu-fixed-price{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:42px;color:var(--brasa);line-height:1;white-space:nowrap}
+.menu-fixed h5{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brasa-2);margin:18px 0 10px}
+.menu-fixed h5:first-of-type{margin-top:0}
+.menu-fixed ul{list-style:none;margin-bottom:6px}
+.menu-fixed li{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--tierra);font-weight:500;padding:5px 0;line-height:1.4}
+.menu-fixed li small{display:block;font-size:11px;color:var(--gris);font-style:italic;letter-spacing:.04em;font-family:'Inter',sans-serif;font-weight:400;margin-top:1px}
+.menu-fixed-footer{margin-top:auto;padding-top:14px;border-top:1px dashed var(--linea);font-size:13px;color:var(--gris);line-height:1.6;font-style:italic;font-family:'Cormorant Garamond',serif}
+.menu-fixed-footer b{color:var(--tierra);font-weight:600;font-style:normal;font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:.04em}
+.menu-fixed-footer a{color:var(--brasa-2);font-weight:600}
+
+.allergens-intro{text-align:center;max-width:720px;margin:0 auto 48px;font-size:15px;color:var(--gris);line-height:1.7}
+.allergens-intro b{color:var(--tierra)}
+.allergens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:42px 24px;max-width:960px;margin:0 auto;padding:10px 0}
+.alg{text-align:center;position:relative}
+.alg-circle{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;position:relative;box-shadow:0 4px 14px rgba(42,31,24,.12)}
+.alg-num{position:absolute;top:-2px;left:50%;transform:translateX(-50%) translateY(-90%);background:var(--hueso);color:var(--tierra);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:16px;border:1.5px solid var(--linea)}
+.alg-icon{font-size:46px;line-height:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.18))}
+.alg-name{font-family:'Inter',sans-serif;font-weight:600;font-size:13px;color:var(--tinta);letter-spacing:.02em;text-transform:uppercase;line-height:1.3}
+.allergens-foot{max-width:720px;margin:54px auto 0;padding:22px 26px;background:var(--crema);border-left:3px solid var(--brasa);font-size:13.5px;color:var(--gris);line-height:1.7;font-style:italic;text-align:center}
+.allergens-foot b{color:var(--tierra);font-style:normal;font-weight:600}
+
+@media(max-width:1024px){
+  .carta-home{padding:70px 0 0}
+  .carta-grid{grid-template-columns:1fr;gap:24px}
+  .carta-tabs{top:78px}
+  .carta-section h2{font-size:26px}
+  .menus-home{padding:70px 22px 80px}
+  .menus-grid{grid-template-columns:1fr;gap:24px;grid-auto-rows:auto}
+  .menu-fixed{padding:32px 26px;min-height:520px}
+  .menu-fixed-head h4{font-size:24px}
+  .menu-fixed-price{font-size:36px}
+  .allergens-grid{grid-template-columns:repeat(4,1fr);gap:36px 16px}
+}
+@media(max-width:560px){
+  .carta-tab{padding:14px 14px;font-size:15px}
+  .carta-main{padding:40px 18px 70px}
+  .menus-home{padding:55px 18px 65px}
+  .menu-fixed{min-height:560px}
+  .allergens-grid{grid-template-columns:repeat(3,1fr);gap:32px 8px}
+  .alg-circle{width:82px;height:82px}
+  .alg-icon{font-size:38px}
+  .alg-name{font-size:11.5px}
+}
+
+/* Widget de reservas embebido */
+.booking-widget{width:100%;background:#fff;box-shadow:0 30px 80px rgba(42,31,24,.15);border-top:3px solid var(--brasa)}
+.booking-widget iframe{width:100%;min-height:760px;border:0;display:block;background:#fff}
+@media(max-width:560px){.booking-widget iframe{min-height:820px}}
+
+/* Horario: día de hoy destacado */
+.horario-dia{display:block}
+.horario-hoy{color:var(--brasa) !important;font-weight:700}
+.horario-hoy::after{content:" · hoy";font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+</style>
 </head>
 <body>
 
-<div class="loader" id="loader">
-  <div class="loader-logo">Gurutz Berria<span>.</span></div>
+<!-- LOADER -->
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-logo">Gurutz <em>Berria</em></div>
   <div class="loader-bar"></div>
 </div>
 
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<script>
+// Bloquear scroll hasta que la web esté lista
+document.body.style.overflow='hidden';
+function hideLoader(){
+  document.body.style.overflow='';
+  const l=document.getElementById('loader');
+  if(l){l.classList.add('hidden');setTimeout(()=>l.remove(),700)}
+}
+// Esconder cuando todo (incluida la imagen del hero) ha cargado
+window.addEventListener('load',()=>setTimeout(hideLoader,400));
+// Fallback por si tarda demasiado: máximo 4 segundos
+setTimeout(hideLoader,4000);
+</script>
 
-<nav id="navbar">
-  <a href="#" class="nav-logo">Gurutz Berria<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#galeria">Galeria</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#carta">Carta</a></li>
-    <li><a href="#contacto" class="nav-cta">Reservar</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+<div class="topbar"><span>COCINA <b>CASERA VASCA</b></span><span>·</span><span>MENÚ DEL DÍA <b>16€</b></span><span>·</span><span>FIN DE SEMANA <b>22€</b> · TERRAZA EN LA PLAZA</span></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <div class="brand-mark">G</div>
+      <div class="brand-text"><b>Gurutz Berria</b><small>Restaurante · Galdakao</small></div>
+    </a>
+    <div class="nav-links">
+      <a href="#cocina">La cocina</a>
+      <a href="#espacios">Espacios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#carta">Carta</a>
+      <a href="#menus">Menús</a>
+      <a href="#mapa">Cómo llegar</a>
+    </div>
+    <a href="#reservar" class="nav-cta">Reservar</a>
+    <button type="button" class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
+<!-- Menú móvil -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#galeria" onclick="closeMobile()">Galeria</a>
-  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
-  <a href="#carta" onclick="closeMobile()">Carta</a>
-  <a href="#contacto" onclick="closeMobile()">Reservar</a>
+  <a href="#cocina" data-mm-close>La cocina</a>
+  <a href="#espacios" data-mm-close>Espacios</a>
+  <a href="#galeria" data-mm-close>Galería</a>
+  <a href="#carta" data-mm-close>Carta</a>
+  <a href="#menus" data-mm-close>Menús</a>
+  <a href="#mapa" data-mm-close>Cómo llegar</a>
+  <a href="#reservar" class="mm-cta" data-mm-close>Reservar mesa</a>
+  <div class="mm-foot">Gurutz Berria · Galdakao</div>
 </div>
 
-<section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-overlay-bottom"></div>
+<header class="hero">
+  <div class="hero-bg-radial"></div>
+  <img class="hero-photo" alt="" data-folder="portada" onload="this.dataset.loaded=true">
+  <div class="hero-img-overlay"></div>
+  <div class="hero-watermark">M</div>
+  <div class="hero-frame"></div>
+  <div class="hero-meta">
+    <span>★ <b>4.2</b> · 238 RESEÑAS</span>
+    <span>MENÚ DEL DÍA <b>16€</b></span>
+    <span>PLAZA SANTI BROUARD</span>
+  </div>
+  <div class="hero-tag">En plena plaza de Galdakao</div>
+  <div class="hero-photo-tag">Foto de portada pendiente</div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Plaza Santi Brouard · Galdakao · Desde siempre</p>
-    <h1 class="hero-title">
-      Cocina casera<br>con <em>alma</em><br>vasca
-    </h1>
-    <p class="hero-sub">
-      Guisos de toda la vida, producto fresco de temporada y un trato familiar que te hace sentir como en casa. En plena plaza de Galdakao.
-    </p>
-    <div class="hero-actions">
-      <a href="tel:+34944572197" class="btn-primary">
-        <span>Reservar mesa</span>
-        <span>&rarr;</span>
-      </a>
-      <a href="#carta" class="btn-ghost">
-        <span>Ver carta</span>
-        <div class="btn-ghost-arrow">&nearr;</div>
-      </a>
+    <span class="hero-eye">guisos de toda la vida, terraza en la plaza</span>
+    <h1>Gurutz<br>Berria.<em>Cocina casera.</em></h1>
+    <p>El restaurante familiar de siempre, en plena Plaza Santi Brouard de Galdakao. Guisos caseros, producto fresco de temporada, pintxos en la barra y un trato cercano que te hace sentir como en casa.</p>
+    <div class="hero-ctas">
+      <a href="#reservar" class="btn btn-primary">Reservar online</a>
+      <a href="tel:+34944572197" class="btn btn-ghost">Llamar al restaurante</a>
     </div>
   </div>
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
+  <div class="hero-scroll">scroll</div>
+</header>
 
-<div class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Cocina Casera Vasca</span>
-    <span class="marquee-item"><span class="dot"></span>Menu del Dia 16&euro;</span>
-    <span class="marquee-item"><span class="dot"></span>Terraza en Plaza</span>
-    <span class="marquee-item"><span class="dot"></span>Pintxos Gourmet</span>
-    <span class="marquee-item"><span class="dot"></span>Menu Fin de Semana 22&euro;</span>
-    <span class="marquee-item"><span class="dot"></span>Eventos y Grupos</span>
-    <span class="marquee-item"><span class="dot"></span>Cocina Casera Vasca</span>
-    <span class="marquee-item"><span class="dot"></span>Menu del Dia 16&euro;</span>
-    <span class="marquee-item"><span class="dot"></span>Terraza en Plaza</span>
-    <span class="marquee-item"><span class="dot"></span>Pintxos Gourmet</span>
-    <span class="marquee-item"><span class="dot"></span>Menu Fin de Semana 22&euro;</span>
-    <span class="marquee-item"><span class="dot"></span>Eventos y Grupos</span>
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><b>4.2★</b><span>nota en Google</span></div>
+    <div class="stat"><b>238</b><span>opiniones reales</span></div>
+    <div class="stat"><b>16€</b><span>menú del día</span></div>
+    <div class="stat"><b>22€</b><span>menú fin de semana</span></div>
   </div>
 </div>
 
-<div class="stats-section">
-  <div class="stats-grid">
-    <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="4">0</span><span class="stat-suffix">.2&star;</span></div>
-      <div class="stat-label">Nota en Google</div>
-    </div>
-    <div class="stat-card reveal reveal-delay-1">
-      <div class="stat-number"><span class="count" data-target="238">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Opiniones reales</div>
-    </div>
-    <div class="stat-card reveal reveal-delay-2">
-      <div class="stat-number"><span class="count" data-target="16">0</span><span class="stat-suffix">&euro;</span></div>
-      <div class="stat-label">Menu del dia</div>
-    </div>
-    <div class="stat-card reveal reveal-delay-3">
-      <div class="stat-number"><span class="count" data-target="22">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Platos en carta</div>
-    </div>
+<div class="pull">
+  <div class="pull-inner">
+    <div class="pull-mark">"</div>
+    <blockquote>La mejor cocina es la que se hace con cariño y producto de verdad: <b>guisos caseros, pescado fresco y postres hechos en casa</b>. Sin artificios, sin prisa.</blockquote>
+    <div class="pull-author">Restaurante Gurutz Berria</div>
   </div>
 </div>
 
-<section class="projects-section" id="galeria">
-  <div class="projects-header">
-    <div>
-      <p class="section-label reveal">Nuestros platos</p>
-      <h2 class="section-title reveal reveal-delay-1">Sabores que<br><em>enamoran</em></h2>
+<section id="cocina" class="cocina">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">— la cocina</span>
+      <h2 class="section-title">Guisos, producto<br>y <em>recetas de casa</em>.</h2>
+      <p class="section-lead">Lo que mejor sabemos hacer y por lo que vienen los que repiten. Cocina honesta, producto fresco del día y las recetas de toda la vida.</p>
     </div>
-    <a href="#carta" class="view-all reveal">Ver carta completa &rarr;</a>
-  </div>
-  <div class="projects-grid">
-    <div class="project-card">
-      <img class="project-img" src="https://weur-cdn.carta.menu/storage/media/company_gallery/112686117/conversions/contribution_gallery.jpg" alt="Cocina vasca tradicional" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
-      <div class="project-info">
-        <p class="project-cat">Especialidad &middot; Tradición</p>
-        <h3 class="project-name">Costillas Asadas</h3>
-        <p class="project-meta">Al horno de lena &middot; Receta de la casa</p>
+    <div class="cocina-feature">
+      <img src="img/cocina/alubias.jpg" alt="Alubias con morcilla, especialidad de Gurutz Berria" loading="lazy" decoding="async">
+      <div class="cf-tag">Alubias con morcilla<em></em></div>
+    </div>
+    <div class="cocina-grid">
+      <div class="dish-card">
+        <span class="dish-num">— 01</span>
+        <h3>Alubias <em>con morcilla</em></h3>
+        <p>Receta tradicional vasca de cocción lenta. El plato estrella del menú del día y el favorito de los vecinos del pueblo. Como las de la ama.</p>
       </div>
-    </div>
-    <div class="project-card">
-      <img class="project-img" src="https://estaticosgn-cdn.deia.eus/clip/3869f226-5339-4e95-a595-fc00e97149dc_16-9-discover-aspect-ratio_default_0_x747y825.jpg" alt="Bacalao con pimientos" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
-      <div class="project-info">
-        <p class="project-cat">Pescado &middot; Clasico vasco</p>
-        <h3 class="project-name">Bacalao con Pimientos</h3>
-        <p class="project-meta">Pimientos asados &middot; Aceite de oliva</p>
+      <div class="dish-card">
+        <span class="dish-num">— 02</span>
+        <h3>Bacalao <em>con pimientos asados</em></h3>
+        <p>Especialidad de la casa. Pimientos asados en casa y un buen aceite de oliva. Pescado fresco según lonja: merluza en salsa verde, salmón a la plancha.</p>
       </div>
-    </div>
-    <div class="project-card">
-      <img class="project-img" src="https://weur-cdn.carta.menu/storage/media/company_gallery/112686118/conversions/contribution_gallery.jpg" alt="Ensalada de ventresca" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
-      <div class="project-info">
-        <p class="project-cat">Entrante &middot; Fresco</p>
-        <h3 class="project-name">Ensalada de Ventresca</h3>
-        <p class="project-meta">Producto de mercado &middot; Temporada</p>
+      <div class="dish-card">
+        <span class="dish-num">— 03</span>
+        <h3>Costillas <em>asadas al horno</em></h3>
+        <p>Receta de la casa, asadas despacio hasta que se separan del hueso. Y carnes a la plancha: solomillo de cerdo con queso Idiazabal, hamburguesa con huevo.</p>
       </div>
-    </div>
-    <div class="project-card">
-      <img class="project-img" src="https://weur-cdn.carta.menu/storage/media/company_gallery/112686120/conversions/contribution_gallery.jpg" alt="Interior restaurante familiar" loading="lazy">
-      <div class="project-overlay"></div>
-      <div class="project-arrow">&nearr;</div>
-      <div class="project-info">
-        <p class="project-cat">Espacio &middot; Terraza</p>
-        <h3 class="project-name">Nuestra Terraza</h3>
-        <p class="project-meta">Plaza Santi Brouard &middot; Galdakao</p>
+      <div class="dish-card">
+        <span class="dish-num">— 04</span>
+        <h3>Postres <em>caseros</em></h3>
+        <p>Arroz con leche, pastel de arroz, flan casero y tarta de queso. Hechos en casa cada día. El cierre que casi nadie se salta.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="about-section" id="nosotros">
-  <div class="about-visual">
-    <div class="about-badge">
-      <div class="about-badge-year">4.2&star;</div>
-      <div class="about-badge-text">238 opiniones en Google recomiendan nuestros guisos</div>
-    </div>
-  </div>
-  <div class="about-content">
-    <p class="section-label reveal">Sobre nosotros</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      Donde comer<br>es <em>sentirse en casa</em>
-    </h2>
-    <div class="about-divider reveal"></div>
-    <p class="about-body reveal reveal-delay-2">
-      En Gurutz Berria creemos que la mejor cocina es la que se hace con carino y producto de verdad. Ubicados en la <strong>Plaza Santi Brouard de Galdakao</strong>, somos el restaurante familiar de siempre: guisos caseros, carnes a la brasa, pescados frescos y un trato cercano que nos define.<br><br><strong>Cocina honesta, sin artificios.</strong> Nuestro menu del dia a 16&euro; es el favorito de los vecinos del pueblo. Los fines de semana, menu especial a 22&euro; con platos de temporada.
-    </p>
-    <div class="about-values reveal reveal-delay-3">
-      <div class="about-value">
-        <div class="value-num">01</div>
-        <div class="value-text">
-          <h4>Cocina casera de verdad</h4>
-          <p>Guisos, potajes y recetas tradicionales vascas elaborados cada dia con producto fresco</p>
-        </div>
+<!-- LOS ESPACIOS -->
+<section id="espacios" class="espacios">
+  <div class="wrap">
+    <div class="espacios-grid">
+      <div class="espacios-pic">
+        <img src="img/galeria/terraza-sol.jpg" alt="Terraza de Gurutz Berria al sol en la plaza" loading="lazy" decoding="async">
+        <div class="espacios-pic-tag">Terraza en la plaza</div>
       </div>
-      <div class="about-value">
-        <div class="value-num">02</div>
-        <div class="value-text">
-          <h4>Terraza en la plaza</h4>
-          <p>Disfruta al aire libre en la Plaza Santi Brouard, el corazon peatonal de Galdakao</p>
-        </div>
-      </div>
-      <div class="about-value">
-        <div class="value-num">03</div>
-        <div class="value-text">
-          <h4>Trato familiar</h4>
-          <p>Servicio atento y cercano. Aqui vienes a comer bien y a sentirte como en tu propia casa</p>
+      <div class="espacios-text">
+        <span class="eyebrow">— los espacios</span>
+        <h3>Comedor, barra<br>y <em>terraza en la plaza</em>.</h3>
+        <p>Estamos en <strong>plena Plaza Santi Brouard</strong>, el corazón peatonal de Galdakao. Comedor acogedor por dentro y terraza al sol por fuera, ideal para familias y grupos.</p>
+        <p>Ambiente familiar, decoración cuidada y una barra de pintxos para picar algo rápido con un buen vino.</p>
+        <div class="espacios-list">
+          <div class="espacios-list-item"><b>Comedor interior</b><span>Ambiente acogedor y familiar</span></div>
+          <div class="espacios-list-item"><b>Terraza en la plaza</b><span>Zona peatonal · ideal familias</span></div>
+          <div class="espacios-list-item"><b>Barra de pintxos</b><span>Para picar con un buen vino</span></div>
+          <div class="espacios-list-item"><b>Eventos y grupos</b><span>Menús cerrados a medida</span></div>
         </div>
       </div>
     </div>
   </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" class="galeria">
+  <div class="galeria-head">
+    <span class="eyebrow">— la casa por dentro —</span>
+    <h3>El <em>Gurutz Berria</em> en imágenes.</h3>
+    <p>Pintxos en la barra, guisos y platos de la carta, comedor acogedor y la terraza al sol en la Plaza Santi Brouard. Así se come en el corazón de Galdakao.</p>
+  </div>
+  <div class="galeria-grid">
+    <div class="galeria-item big" data-gx="img/galeria/pintxos-surtidos.jpg">
+      <img src="img/galeria/pintxos-surtidos.jpg" alt="Surtido de pintxos en la barra de Gurutz Berria" loading="lazy" decoding="async">
+      <div class="galeria-tag">Pintxos de la barra</div>
+    </div>
+    <div class="galeria-item wide" data-gx="img/terraza/foto.jpg">
+      <img src="img/terraza/foto.jpg" alt="Terraza de Gurutz Berria en la Plaza Santi Brouard" loading="lazy" decoding="async">
+      <div class="galeria-tag">Terraza en la plaza</div>
+    </div>
+    <div class="galeria-item tall" data-gx="img/cocina/costillas.jpg">
+      <img src="img/cocina/costillas.jpg" alt="Costillas asadas al horno, receta de la casa" loading="lazy" decoding="async">
+      <div class="galeria-tag">Costillas asadas</div>
+    </div>
+    <div class="galeria-item small" data-gx="img/galeria/croquetas.jpg">
+      <img src="img/galeria/croquetas.jpg" alt="Croquetas caseras de Gurutz Berria" loading="lazy" decoding="async">
+      <div class="galeria-tag">Croquetas caseras</div>
+    </div>
+    <div class="galeria-item wide" data-gx="img/cocina/bacalao.jpg">
+      <img src="img/cocina/bacalao.jpg" alt="Bacalao con pimientos asados, especialidad de la casa" loading="lazy" decoding="async">
+      <div class="galeria-tag">Bacalao con pimientos</div>
+    </div>
+    <div class="galeria-item small" data-gx="img/cocina/flan.jpg">
+      <img src="img/cocina/flan.jpg" alt="Flan casero de Gurutz Berria" loading="lazy" decoding="async">
+      <div class="galeria-tag">Flan casero</div>
+    </div>
+    <div class="galeria-item small" data-gx="img/comedor/foto.jpg">
+      <img src="img/comedor/foto.jpg" alt="Mesas del comedor de Gurutz Berria" loading="lazy" decoding="async">
+      <div class="galeria-tag">El comedor</div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="gx-back" id="gx-back" role="dialog" aria-modal="true" aria-label="Galería ampliada">
+  <button type="button" class="gx-close" id="gx-close" aria-label="Cerrar">&times;</button>
+  <button type="button" class="gx-prev" id="gx-prev" aria-label="Anterior">‹</button>
+  <img src="" alt="" class="gx-img" id="gx-img">
+  <button type="button" class="gx-next" id="gx-next" aria-label="Siguiente">›</button>
 </div>
 
-<section class="carta-section" id="carta-menu">
-  <div class="section-inner">
-    <a href="#carta" class="carta-back reveal">&larr; Volver a carta</a>
-    <p class="section-label reveal">De lunes a viernes</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      Menu del Dia <em>16&euro;</em>
-    </h2>
-    <div class="carta-columns">
-      <div>
-        <div class="carta-category reveal">
-          <h4>Primeros platos</h4>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Alubias con morcilla</div>
-              <div class="carta-item-desc">Receta tradicional vasca, coccion lenta</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Arroz con setas y jamón</div>
-              <div class="carta-item-desc">Setas de temporada, jamón curado</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Ensalada de pollo crujiente</div>
-              <div class="carta-item-desc">Mezclum, tomate cherry, vinagreta</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Crema de verduras</div>
-              <div class="carta-item-desc">Verdura fresca del dia</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Segundos platos</h4>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Solomillo de cerdo con queso</div>
-              <div class="carta-item-desc">A la plancha con salsa de queso Idiazabal</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Salmon a la plancha</div>
-              <div class="carta-item-desc">Con verduras salteadas</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Hamburguesa con huevo</div>
-              <div class="carta-item-desc">Pan artesano, lechuga, tomate, huevo frito</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Merluza en salsa verde</div>
-              <div class="carta-item-desc">Clasico vasco con almejas</div>
-            </div>
-          </div>
-        </div>
-        <div class="carta-highlight reveal reveal-delay-2">
-          <h4>Menu del Dia &mdash; 16&euro;</h4>
-          <p>Incluye primer plato + segundo plato + postre casero + pan + bebida. De lunes a viernes, comida y cena. Los platos varian cada dia segun producto de mercado.</p>
-        </div>
-      </div>
-    </div>
-    <a href="tel:+34944572197" class="carta-cta reveal">
-      <span>Reservar mesa</span><span>&rarr;</span>
-    </a>
+<!-- CARTA EN HOME -->
+<section id="carta" class="carta-home">
+  <div class="carta-home-head">
+    <span class="eyebrow">— la carta —</span>
+    <h3>Carta del <em>Gurutz Berria</em>.</h3>
+    <p>Entrantes y pintxos, pescados según lonja, carnes y platos fuertes, y postres caseros hechos cada día. Cocina casera vasca, sin artificios.</p>
   </div>
-</section>
 
-<section class="carta-section" id="carta-especialidades">
-  <div class="section-inner">
-    <a href="#carta" class="carta-back reveal">&larr; Volver a carta</a>
-    <p class="section-label reveal">Nuestras especialidades</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      Carta y <em>pintxos</em>
-    </h2>
-    <div class="carta-columns">
-      <div>
-        <div class="carta-category reveal">
-          <h4>Entrantes y Pintxos</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Gildas</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Tortilla de patata</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Croquetas caseras</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Rabas</div><div class="carta-item-desc">Calamares rebozados crujientes</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Ensalada de ventresca</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Mejillones a la marinera</div></div></div>
-        </div>
-        <div class="carta-category reveal">
-          <h4>Pescados</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Bacalao con pimientos asados</div><div class="carta-item-desc">Especialidad de la casa</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Merluza en salsa verde</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Salmon a la plancha</div></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Carnes y Platos Fuertes</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Costillas asadas</div><div class="carta-item-desc">Receta tradicional al horno</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Solomillo de cerdo con queso</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Hamburguesa gourmet con huevo</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Chuleton</div><div class="carta-item-desc">Consultar precio segun peso</div></div></div>
-        </div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Postres Caseros</h4>
-          <div class="carta-item"><div><div class="carta-item-name">Arroz con leche</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Pastel de arroz</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Flan casero</div></div></div>
-          <div class="carta-item"><div><div class="carta-item-name">Tarta de queso</div></div></div>
-        </div>
-        <div class="carta-highlight reveal reveal-delay-2">
-          <h4>Precios orientativos</h4>
-          <p>Carta disponible en el restaurante. Platos y precios pueden variar segun temporada y mercado. Pago en efectivo, tarjeta y ticket restaurante.</p>
-        </div>
-      </div>
-    </div>
-    <a href="tel:+34944572197" class="carta-cta reveal">
-      <span>Reservar mesa</span><span>&rarr;</span>
-    </a>
+  <div class="carta-tabs">
+    <button class="carta-tab active" data-carta="general">A la carta</button>
+    <button class="carta-tab" data-carta="postres">Postres</button>
+    <button class="carta-tab" data-carta="alergenos">Alérgenos</button>
   </div>
-</section>
 
-<section class="carta-section" id="carta-finde">
-  <div class="section-inner">
-    <a href="#carta" class="carta-back reveal">&larr; Volver a carta</a>
-    <p class="section-label reveal">Sabados, domingos y festivos</p>
-    <h2 class="section-title reveal reveal-delay-1" style="max-width:600px">
-      Menu Fin de <em>Semana &mdash; 22&euro;</em>
-    </h2>
-    <div class="carta-columns">
-      <div>
-        <div class="carta-category reveal">
-          <h4>Nuestro espacio</h4>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Comedor interior</div>
-              <div class="carta-item-desc">Ambiente acogedor y familiar, decoracion cuidada</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Terraza en la plaza</div>
-              <div class="carta-item-desc">Zona peatonal, ideal para familias y grupos</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Barra de pintxos</div>
-              <div class="carta-item-desc">Para picar algo rápido con un buen vino</div>
-            </div>
+  <div class="carta-main">
+    <div class="carta-wrap">
+
+      <!-- A LA CARTA -->
+      <div class="carta-panel active" data-carta-panel="general">
+        <div class="carta-section">
+          <h2>Entrantes y pintxos</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Gildas</span><span class="dish-price">2,50 €/ud</span></div><p class="dish-desc">Anchoa, piparra y aceituna.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Tortilla de patata</span><span class="dish-price">3,00 €/pintxo</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Croquetas caseras</span><span class="dish-price">9,00 €</span></div><p class="dish-desc">Pollo, jamón o boletus según mercado.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Rabas</span><span class="dish-price">10,00 €</span></div><p class="dish-desc">Calamares rebozados crujientes.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de ventresca</span><span class="dish-price">14,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Mejillones a la marinera</span><span class="dish-price">9,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Tabla de ibéricos</span><span class="dish-price">14,00 €</span></div><p class="dish-desc">Jamón ibérico, lomo y queso curado.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Ensalada de la casa</span><span class="dish-price">9,00 €</span></div><p class="dish-desc">Producto fresco, aliño suave.</p></div>
           </div>
         </div>
-        <div class="carta-highlight reveal reveal-delay-1">
-          <h4>Menu especial fin de semana &mdash; 22&euro;</h4>
-          <p>Primer plato + segundo plato + postre casero + pan + bebida. Platos mas elaborados que entre semana. Consultar opciones llamando al 944 57 21 97.</p>
+
+        <div class="carta-section">
+          <h2>Pescados</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Bacalao con pimientos asados</span><span class="dish-price">16,00 €</span></div><p class="dish-desc">Especialidad de la casa.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Merluza en salsa verde</span><span class="dish-price">15,00 €</span></div><p class="dish-desc">Clásico vasco, con almejas.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Salmón a la plancha</span><span class="dish-price">14,00 €</span></div><p class="dish-desc">Con verduras salteadas.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pescado del día</span><span class="dish-price">Consultar</span></div><p class="dish-desc">Según lonja y temporada.</p></div>
+          </div>
         </div>
-      </div>
-      <div>
-        <div class="carta-category reveal reveal-delay-1">
-          <h4>Eventos y grupos</h4>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Comidas familiares</div>
-              <div class="carta-item-desc">Comuniones, bautizos, cumpleaños</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Comidas de empresa</div>
-              <div class="carta-item-desc">Menus cerrados a medida</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Celebraciones</div>
-              <div class="carta-item-desc">Jubilaciones, despedidas, homenajes</div>
-            </div>
-          </div>
-          <div class="carta-item">
-            <div>
-              <div class="carta-item-name">Grupos grandes</div>
-              <div class="carta-item-desc">Menus especiales bajo peticion</div>
-            </div>
+
+        <div class="carta-section">
+          <h2>Carnes y platos fuertes</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Costillas asadas</span><span class="dish-price">14,00 €</span></div><p class="dish-desc">Receta tradicional al horno.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Solomillo de cerdo con queso</span><span class="dish-price">13,00 €</span></div><p class="dish-desc">A la plancha, con salsa de queso Idiazabal.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Hamburguesa gourmet con huevo</span><span class="dish-price">11,00 €</span></div><p class="dish-desc">Pan artesano, lechuga, tomate y huevo frito.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Entrecot a la plancha</span><span class="dish-price">18,00 €</span></div><p class="dish-desc">Con pimientos y patatas.</p></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Chuletón</span><span class="dish-price">Según peso</span></div><p class="dish-desc">Consultar precio en el restaurante.</p></div>
           </div>
         </div>
       </div>
-    </div>
-    <a href="tel:+34944572197" class="carta-cta reveal">
-      <span>Llamar para reservar</span><span>&rarr;</span>
-    </a>
-  </div>
-</section>
 
+      <!-- POSTRES -->
+      <div class="carta-panel" data-carta-panel="postres">
+        <div class="noche-banner" style="background:var(--hueso);border:1px solid var(--linea);color:var(--tierra)">
+          <b style="color:var(--brasa-2)">Todos caseros</b>
+          <span style="color:var(--tierra)">Hechos en casa cada día, con receta de siempre. El cierre que casi nadie se salta.</span>
+        </div>
 
-<section class="precios-section" id="precios" data-precios-v2="1" aria-labelledby="precios-title" style="padding: 130px 60px; background: var(--carbon, #1a1a1a); position: relative;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <p class="section-label" style="text-align: center;">Servicios y precios</p>
-    <h2 class="section-title" id="precios-title" style="text-align: center; max-width: 760px; margin: 0 auto 24px;">Lo que ofrecemos <em>y cuanto cuesta.</em></h2>
-    <p style="text-align: center; max-width: 620px; margin: 0 auto 72px; font-size: 1.05rem; line-height: 1.7; color: var(--text-muted, rgba(245,243,239,0.7));">Tarifas orientativas. Precios reales y promociones vigentes en nuestro local o por telefono.</p>
-    <div class="menu-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px;">
-      
-    <div class="menu-categoria" style="display: flex; flex-direction: column;">
-      <h3 style="font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent, #c89c6f); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--accent, #c89c6f); font-weight: 600;">Para empezar</h3>
-        
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Croquetas caseras</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Pollo, jamon o boletus segun mercado</div>
+        <div class="carta-section">
+          <h2>Postres caseros</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Arroz con leche</span><span class="dish-price">4,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Pastel de arroz</span><span class="dish-price">4,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Flan casero</span><span class="dish-price">4,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Tarta de queso</span><span class="dish-price">5,00 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Torrija</span><span class="dish-price">5,00 €</span></div></div>
           </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">4€</div>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Tabla de iberico</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Jamon iberico, lomo y queso curado</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">14€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Ensalada de la casa</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Producto fresco, aliño suave</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">9€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Pintxos surtidos</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Variedad rotativa segun temporada</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">3€</div>
-        </div>
-    </div>
-    <div class="menu-categoria" style="display: flex; flex-direction: column;">
-      <h3 style="font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent, #c89c6f); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--accent, #c89c6f); font-weight: 600;">Principales</h3>
-        
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Menu del dia</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Primero, segundo, postre y cafe (L-V)</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">14€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Carne a la brasa</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Entrecot, txuleta o solomillo</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">24€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Pescado del dia</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Bacalao, lubina o merluza segun mercado</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">22€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Risotto del chef</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Setas, marisco o vegetariano</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">16€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Bocadillos especiales</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Calamares, lomo, tortilla o vegetal</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">8€</div>
-        </div>
-    </div>
-    <div class="menu-categoria" style="display: flex; flex-direction: column;">
-      <h3 style="font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent, #c89c6f); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 2px solid var(--accent, #c89c6f); font-weight: 600;">Postres y bebidas</h3>
-        
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Postre casero</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Tarta de queso, torrija o flan</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">5€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Cafe y digestivos</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Cafe, infusion o licor</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">2€</div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px dotted rgba(255,255,255,0.12);">
-          <div>
-            <div style="font-family: var(--font-serif, serif); font-size: 1.1rem; color: var(--white, #fff); margin-bottom: 4px; line-height: 1.3;">Vino de la casa</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.65)); line-height: 1.4;">Tinto, blanco o rosado · copa</div>
-          </div>
-          <div style="font-family: var(--font-serif, serif); font-size: 1.25rem; color: var(--accent, #c89c6f); white-space: nowrap; font-weight: 500;">3€</div>
-        </div>
-    </div>
-    </div>
-    <p style="text-align: center; margin-top: 64px; font-size: 0.85rem; color: var(--text-muted, rgba(245,243,239,0.6));">Consulta tarifas y promociones actuales · 944 57 21 97</p>
-  </div>
-</section>
-<style>@media (max-width: 1024px) { .menu-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 40px !important; } } @media (max-width: 600px) { .precios-section { padding: 80px 24px !important; } .menu-grid { grid-template-columns: 1fr !important; gap: 32px !important; } }</style>
 
-
-<section class="testimonials-section">
-  <div class="testimonials-inner">
-    <p class="section-label reveal">Opiniones reales</p>
-    <h2 class="section-title reveal reveal-delay-1">
-      Lo que dicen<br>nuestros <em>clientes</em>
-    </h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-        </div>
-        <p class="testimonial-quote">"El menu del dia es una pasada por 16 euros. Los guisos caseros como los de la ama. Las alubias con morcilla espectaculares. Repetimos seguro."</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <strong>Ander Etxebarria</strong>
-          <span>Menu del dia &middot; Galdakao</span>
+        <div class="carta-section">
+          <h2>Cafés y bebidas</h2>
+          <div class="carta-grid">
+            <div class="dish"><div class="dish-head"><span class="dish-name">Café e infusiones</span><span class="dish-price">desde 1,50 €</span></div></div>
+            <div class="dish"><div class="dish-head"><span class="dish-name">Vino de la casa</span><span class="dish-price">3,00 €/copa</span></div><p class="dish-desc">Tinto, blanco o rosado.</p></div>
+          </div>
         </div>
       </div>
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-        </div>
-        <p class="testimonial-quote">"Fuimos a celebrar un cumpleaños y nos trataron fenomenal. El bacalao con pimientos estaba increible y los postres caseros de escandalo. Terraza preciosa."</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <strong>Miren Agirre</strong>
-          <span>Celebracion familiar &middot; Galdakao</span>
+
+      <div class="carta-panel" data-carta-panel="alergenos">
+        <div class="carta-section">
+          <h2>Tabla de alérgenos</h2>
+          <p class="allergens-intro">Cumplimos con el Reglamento <b>UE 1169/2011</b> sobre información alimentaria al consumidor. Si tienes alguna alergia o intolerancia, <b>avisa a tu camarero/a</b> antes de pedir y te indicaremos qué platos contienen cada alérgeno.</p>
+
+          <div class="allergens-grid">
+            <div class="alg"><div class="alg-circle" style="background:#F2C84B"><span class="alg-num">1</span><span class="alg-icon">🌾</span></div><div class="alg-name">Cereales<br>con gluten</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#B36540"><span class="alg-num">2</span><span class="alg-icon">🦀</span></div><div class="alg-name">Crustáceos</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#F0E36C"><span class="alg-num">3</span><span class="alg-icon">🥚</span></div><div class="alg-name">Huevos</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#9CC6E0"><span class="alg-num">4</span><span class="alg-icon">🐟</span></div><div class="alg-name">Pescado</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#7D7E3A"><span class="alg-num">5</span><span class="alg-icon">🥜</span></div><div class="alg-name">Cacahuetes</div></div>
+
+            <div class="alg"><div class="alg-circle" style="background:#BCD9E6"><span class="alg-num">6</span><span class="alg-icon">🥛</span></div><div class="alg-name">Leche</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#9C7A2A"><span class="alg-num">7</span><span class="alg-icon">🌰</span></div><div class="alg-name">Frutos secos</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#5FA83D"><span class="alg-num">8</span><span class="alg-icon">🌿</span></div><div class="alg-name">Apio</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#ECD440"><span class="alg-num">9</span><span class="alg-icon">🟡</span></div><div class="alg-name">Mostaza</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#4A4424"><span class="alg-num">10</span><span class="alg-icon">🫘</span></div><div class="alg-name">Altramuces</div></div>
+
+            <div class="alg"><div class="alg-circle" style="background:#94975A"><span class="alg-num">11</span><span class="alg-icon">🐚</span></div><div class="alg-name">Moluscos</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#C2D860"><span class="alg-num">12</span><span class="alg-icon">⚪</span></div><div class="alg-name">Semillas<br>de sésamo</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#7A4E7E"><span class="alg-num">13</span><span class="alg-icon">⚗️</span></div><div class="alg-name">Dióxido<br>de azufre</div></div>
+            <div class="alg"><div class="alg-circle" style="background:#86C94A"><span class="alg-num">14</span><span class="alg-icon">🫛</span></div><div class="alg-name">Soja</div></div>
+          </div>
+
+          <div class="allergens-foot"><b>Importante:</b> los 14 alérgenos de declaración obligatoria están identificados según la normativa europea. Para detalles por plato, pregunta a tu camarero/a. Disponemos también de información de trazas y contaminación cruzada bajo petición.</div>
         </div>
       </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars">
-          <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-        </div>
-        <p class="testimonial-quote">"Venimos todas las semanas desde que cambiaron la gestion. La atención es excelente, la comida casera de verdad y la relacion calidad-precio inmejorable."</p>
-        <div class="testimonial-divider"></div>
-        <div class="testimonial-author">
-          <strong>Koldo Uriarte</strong>
-          <span>Cliente habitual &middot; Galdakao</span>
-        </div>
-      </div>
+
+      <p class="carta-note">Precios orientativos con IVA incluido · Carta disponible en el restaurante · Platos y precios pueden variar según temporada y mercado · <a href="#" onclick="document.querySelector('.carta-tab[data-carta=alergenos]').click();return false;" style="color:var(--brasa-2);font-weight:600">Ver tabla de alérgenos</a></p>
+
     </div>
   </div>
 </section>
 
-<div class="map-section">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1452!2d-2.7714!3d43.2306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4fdf9bf30a6f%3A0x8a3f5e82c0e24b5a!2sRestaurante%20Gurutz%20Berria!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Restaurante Gurutz Berria en Google Maps"></iframe>
-</div>
-
-<div class="cta-section" id="contacto">
-  <div class="cta-text">
-    <h2>&iquest;Quedamos a<br>comer en la plaza?</h2>
-    <p>Reserva tu mesa en Gurutz Berria. Llama o escríbenos por WhatsApp.</p>
+<!-- MENÚS EN HOME -->
+<section id="menus" class="menus-home">
+  <div class="menus-home-head">
+    <span class="eyebrow">— los menús —</span>
+    <h3>Menús del <em>Gurutz Berria</em>.</h3>
+    <p>Menú del día entre semana, menú especial de fin de semana y menús cerrados para grupos y celebraciones. Para venir sin pensar mucho y comer bien.</p>
   </div>
-  <a href="https://wa.me/34944572197?text=Hola%2C%20me%20gustaria%20reservar%20mesa%20en%20Gurutz%20Berria" class="btn-dark">
-    <span>Reservar por WhatsApp</span>
-    <span>&nearr;</span>
-  </a>
-</div>
+
+  <div class="menus-grid">
+
+    <div class="menu-fixed featured">
+      <div class="menu-fixed-head">
+        <h4>Menú del día<em>de lunes a viernes</em></h4>
+        <span class="menu-fixed-price">16 €</span>
+      </div>
+      <h5>Primeros (a elegir)</h5>
+      <ul>
+        <li>Alubias con morcilla <small>receta tradicional, cocción lenta</small></li>
+        <li>Arroz con setas y jamón</li>
+        <li>Ensalada de pollo crujiente</li>
+        <li>Crema de verduras</li>
+      </ul>
+      <h5>Segundos (a elegir)</h5>
+      <ul>
+        <li>Solomillo de cerdo con queso Idiazabal</li>
+        <li>Merluza en salsa verde</li>
+        <li>Salmón a la plancha</li>
+        <li>Hamburguesa con huevo</li>
+      </ul>
+      <div class="menu-fixed-footer"><b>Incluye:</b> primero + segundo + postre casero + pan + bebida. Comida y cena de lunes a viernes. Los platos varían cada día según mercado. IVA incluido.</div>
+    </div>
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Menú fin de semana<em>sábados, domingos y festivos</em></h4>
+        <span class="menu-fixed-price">22 €</span>
+      </div>
+      <h5>Incluye</h5>
+      <ul>
+        <li>Primer plato de temporada</li>
+        <li>Segundo plato <small>platos más elaborados que entre semana</small></li>
+        <li>Postre casero</li>
+        <li>Pan y bebida</li>
+      </ul>
+      <div class="menu-fixed-footer"><b>Consultar opciones:</b> llamando al <a href="tel:+34944572197">944 57 21 97</a>. IVA incluido.</div>
+    </div>
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Eventos y grupos<em>menús concertados</em></h4>
+        <span class="menu-fixed-price">A medida</span>
+      </div>
+      <h5>Para grupos y celebraciones</h5>
+      <ul>
+        <li>Comidas familiares <small>comuniones, bautizos, cumpleaños</small></li>
+        <li>Comidas de empresa <small>menús cerrados a medida</small></li>
+        <li>Celebraciones <small>jubilaciones, despedidas, homenajes</small></li>
+        <li>Grupos grandes <small>menús especiales bajo petición</small></li>
+      </ul>
+      <div class="menu-fixed-footer"><b>Consultar disponibilidad:</b> <a href="tel:+34944572197">944 57 21 97</a> · WhatsApp <a href="https://wa.me/34944572197">944 57 21 97</a></div>
+    </div>
+
+    <div class="menu-fixed">
+      <div class="menu-fixed-head">
+        <h4>Para picar<em>en barra o terraza</em></h4>
+        <span class="menu-fixed-price">Pintxos</span>
+      </div>
+      <h5>De la barra</h5>
+      <ul>
+        <li>Pintxos surtidos <small>variedad rotativa según temporada</small></li>
+        <li>Gildas</li>
+        <li>Tortilla de patata</li>
+        <li>Croquetas caseras y rabas</li>
+      </ul>
+      <div class="menu-fixed-footer">Para picar algo rápido con un buen vino, en la barra o en la terraza de la plaza.</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="reservar" class="booking">
+  <div class="booking-grid">
+    <div class="booking-head">
+      <span class="eyebrow">— reservar online</span>
+      <h2>Reserva tu mesa<br>en <em>30 segundos</em>.</h2>
+    </div>
+
+    <div class="booking-widget">
+      <iframe
+        src="https://gg-reservas-admin.pages.dev/embed/gurutz-berria"
+        title="Reservar mesa en Gurutz Berria"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="mapa" class="contact">
+  <div class="contact-wrap">
+    <div class="contact-side">
+      <span class="eyebrow">— cómo llegar</span>
+      <h2>En la <em>Plaza Santi Brouard</em>.</h2>
+      <div class="contact-info">
+        <div class="contact-row">
+          <div class="ico">@</div>
+          <div><b>Dirección</b><span>Santi Brouard Enparantza, s/n<br>48960 Galdakao · Bizkaia</span></div>
+        </div>
+        <div class="contact-row">
+          <div class="ico">☏</div>
+          <div><b>Teléfono y reservas</b><a href="tel:+34944572197">944 57 21 97</a><br><span>WhatsApp: <a href="https://wa.me/34944572197" target="_blank" rel="noopener">944 57 21 97</a></span></div>
+        </div>
+        <div class="contact-row">
+          <div class="ico">⏱</div>
+          <div><b>Horario de apertura</b>
+            <span class="horario-dia" data-days="1,2,3,4">Lunes a jueves · 9:00–22:30</span>
+            <span class="horario-dia" data-days="5">Viernes · 9:00–00:00</span>
+            <span class="horario-dia" data-days="6">Sábado · 10:30–00:00</span>
+            <span class="horario-dia" data-days="0">Domingo · 11:00–17:00</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="ico">P</div>
+          <div><b>Servicios</b><span>Terraza en la plaza · Menú del día · Pintxos · Grupos y celebraciones · Zona peatonal</span></div>
+        </div>
+      </div>
+      <div style="margin-top:30px"><a href="https://www.google.com/maps/dir/?api=1&destination=Restaurante+Gurutz+Berria+Galdakao" target="_blank" rel="noopener" class="btn btn-primary">Abrir en Google Maps</a></div>
+    </div>
+    <div class="contact-map">
+      <iframe src="https://www.google.com/maps?q=Restaurante+Gurutz+Berria,+Santi+Brouard+Enparantza,+48960+Galdakao,+Bizkaia&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Ubicación Restaurante Gurutz Berria"></iframe>
+    </div>
+  </div>
+</section>
 
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="#" class="nav-logo">Gurutz Berria<span>.</span></a>
-      <p class="footer-tagline">"Cocina casera vasca en el corazon de Galdakao. Como comer en casa, pero mejor."</p>
-      <div class="footer-social">
-        <a href="https://www.google.com/maps/place/Restaurante+Gurutz+Berria" target="_blank" rel="noopener" class="social-link" title="Google Maps">Gm</a>
-        <a href="https://wa.me/34944572197" target="_blank" rel="noopener" class="social-link" title="WhatsApp">Wa</a>
-      </div>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="brand-mark">G</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--brasa);margin-bottom:4px">Gurutz Berria</div>
+      <div style="font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:rgba(244,237,224,.55);font-weight:600">Restaurante · Galdakao</div>
+      <p>Cocina casera vasca en el corazón de Galdakao. Como comer en casa, pero mejor. Menú del día, pintxos y terraza en la Plaza Santi Brouard.</p>
     </div>
-    <div class="footer-col">
-      <h4>Carta</h4>
+    <div class="foot-col">
+      <h5>El restaurante</h5>
       <ul>
-        <li><a href="#carta-menu">Menu del Dia</a></li>
-        <li><a href="#carta-especialidades">Pintxos y Carta</a></li>
-        <li><a href="#carta-finde">Fin de Semana</a></li>
+        <li><a href="#cocina">La cocina</a></li>
+        <li><a href="#carta">Carta completa</a></li>
+        <li><a href="#menus">Menús</a></li>
+        <li><a href="#reservar">Reservar online</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Restaurante</h4>
+    <div class="foot-col">
+      <h5>Reservas</h5>
       <ul>
-        <li><a href="#nosotros">Sobre nosotros</a></li>
-        <li><a href="#galeria">Galeria</a></li>
-        <li><a href="#carta-finde">Eventos</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contacto</h4>
-      <ul>
+        <li>Santi Brouard Enparantza, s/n<br>48960 Galdakao</li>
         <li><a href="tel:+34944572197">944 57 21 97</a></li>
-        <li><a href="https://wa.me/34944572197">WhatsApp</a></li>
-        <li><a href="https://www.google.com/maps/place/Restaurante+Gurutz+Berria" target="_blank" rel="noopener">Santi Brouard Enparantza, s/n<br>Galdakao, Bizkaia</a></li>
+        <li><a href="https://wa.me/34944572197" target="_blank" rel="noopener">WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Aviso legal</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Política de cookies</a></li>
+        <li><a href="https://gg-reservas-admin.pages.dev/login" target="_blank" rel="noopener">Acceso restaurante →</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Restaurante Gurutz Berria. Todos los derechos reservados.</p>
-    <div class="footer-legal">
-      <a href="#">Politica de Privacidad</a>
-      <a href="#">Aviso Legal</a>
-      <a href="#">Cookies</a>
-    </div>
+  <div class="foot-bottom">
+    <span>© 2026 Restaurante Gurutz Berria</span>
+    <span>Galdakao · Bizkaia</span>
   </div>
 </footer>
 
-<a href="https://wa.me/34944572197?text=Hola%2C%20me%20gustaria%20reservar%20mesa%20en%20Gurutz%20Berria" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+<script>
+// Hamburger / menú móvil
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');
+function toggleMobile(open){
+  const isOpen=open!==undefined?open:!mobileMenu.classList.contains('open');
+  mobileMenu.classList.toggle('open',isOpen);
+  hamburger.classList.toggle('active',isOpen);
+  hamburger.setAttribute('aria-expanded',isOpen?'true':'false');
+  document.body.style.overflow=isOpen?'hidden':'';
+}
+hamburger?.addEventListener('click',()=>toggleMobile());
+document.querySelectorAll('.mobile-menu [data-mm-close]').forEach(a=>a.addEventListener('click',()=>toggleMobile(false)));
+
+// Auto-cargar fotos: prueba varios nombres de archivo en cada carpeta hasta encontrar uno.
+function tryLoadFromFolder(folder,onSuccess){
+  const candidates=['foto.jpg','foto.jpeg','foto.png','foto.JPG','foto.JPEG','foto.PNG',`${folder}.jpg`,`${folder}.jpeg`,`${folder}.png`];
+  let i=0;
+  const probe=new Image();
+  probe.onload=()=>onSuccess(`img/${folder}/${candidates[i]}`);
+  probe.onerror=()=>{ i++; if(i<candidates.length){ probe.src=`img/${folder}/${candidates[i]}?t=${Date.now()}`; } };
+  probe.src=`img/${folder}/${candidates[0]}?t=${Date.now()}`;
+}
+
+// Hero
+const heroPhoto=document.querySelector('.hero-photo[data-folder]');
+if(heroPhoto){
+  tryLoadFromFolder(heroPhoto.dataset.folder,url=>{
+    heroPhoto.src=url;
+    heroPhoto.dataset.loaded='true';
+  });
+}
+
+/* Carta tabs */
+document.querySelectorAll('.carta-tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.carta-tab').forEach(function(x){x.classList.remove('active')});
+    document.querySelectorAll('.carta-panel').forEach(function(x){x.classList.remove('active')});
+    t.classList.add('active');
+    var p=document.querySelector('.carta-panel[data-carta-panel="'+t.dataset.carta+'"]');
+    if(p)p.classList.add('active');
+    var top=document.getElementById('carta').offsetTop-80;
+    window.scrollTo({top:top,behavior:'smooth'});
+  });
+});
+
+/* Horario: destacar el día de hoy */
+function highlightToday(){
+  var d=new Date().getDay(); // 0=domingo
+  document.querySelectorAll('.horario-dia').forEach(function(el){
+    var days=(el.dataset.days||'').split(',').map(Number);
+    if(days.indexOf(d)!==-1)el.classList.add('horario-hoy');
+  });
+}
+highlightToday();
+
+/* Galeria + Lightbox */
+(function(){
+  var items=[].slice.call(document.querySelectorAll('.galeria-item'));
+  var back=document.getElementById('gx-back');
+  var img=document.getElementById('gx-img');
+  var idx=0;
+  function open(i){idx=i;img.src=items[idx].dataset.gx;img.alt=items[idx].querySelector('img').alt;back.classList.add('open');document.body.style.overflow='hidden'}
+  function close(){back.classList.remove('open');document.body.style.overflow=''}
+  function prev(){idx=(idx-1+items.length)%items.length;img.src=items[idx].dataset.gx;img.alt=items[idx].querySelector('img').alt}
+  function next(){idx=(idx+1)%items.length;img.src=items[idx].dataset.gx;img.alt=items[idx].querySelector('img').alt}
+  items.forEach(function(el,i){el.addEventListener('click',function(){open(i)})});
+  document.getElementById('gx-close').addEventListener('click',close);
+  document.getElementById('gx-prev').addEventListener('click',function(e){e.stopPropagation();prev()});
+  document.getElementById('gx-next').addEventListener('click',function(e){e.stopPropagation();next()});
+  back.addEventListener('click',function(e){if(e.target===back||e.target===img)close()});
+  document.addEventListener('keydown',function(e){if(!back.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')prev();else if(e.key==='ArrowRight')next()});
+})();
+</script>
 
 <script>
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      document.getElementById('loader').classList.add('hidden');
-      document.getElementById('heroBg').classList.add('loaded');
-    }, 1800);
-  });
-
-  var dot = document.getElementById('cursorDot');
-  var ring = document.getElementById('cursorRing');
-  var mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-
-  document.addEventListener('mousemove', function(e) {
-    mouseX = e.clientX; mouseY = e.clientY;
-    dot.style.left = mouseX + 'px';
-    dot.style.top = mouseY + 'px';
-  });
-
-  function animateRing() {
-    ringX += (mouseX - ringX) * 0.7;
-    ringY += (mouseY - ringY) * 0.7;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
-    requestAnimationFrame(animateRing);
+(function(){
+  function eq(){
+    var cards=document.querySelectorAll('#menus .menu-fixed');
+    if(!cards.length)return;
+    cards.forEach(function(c){c.style.minHeight=''});
+    var max=0;
+    cards.forEach(function(c){if(c.offsetHeight>max)max=c.offsetHeight});
+    cards.forEach(function(c){c.style.minHeight=max+'px'});
   }
-  animateRing();
-
-  document.querySelectorAll('a, button, .project-card, .service-card, .stat-card').forEach(function(el) {
-    el.addEventListener('mouseenter', function() { ring.classList.add('expanded'); });
-    el.addEventListener('mouseleave', function() { ring.classList.remove('expanded'); });
-  });
-
-  var navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', function() {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  var hamburger = document.getElementById('hamburger');
-  var mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-  });
-  function closeMobile() {
-    hamburger.classList.remove('active');
-    mobileMenu.classList.remove('open');
-  }
-
-  var reveals = document.querySelectorAll('.reveal');
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-  reveals.forEach(function(el) { observer.observe(el); });
-
-  function animateCount(el) {
-    var target = parseInt(el.dataset.target);
-    var duration = 1800;
-    var start = performance.now();
-    function step(now) {
-      var progress = Math.min((now - start) / duration, 1);
-      var ease = 1 - Math.pow(1 - progress, 4);
-      el.textContent = Math.round(ease * target);
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  var countObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        animateCount(e.target);
-        countObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
-
-  window.addEventListener('scroll', function() {
-    var heroBg = document.getElementById('heroBg');
-    if (heroBg) {
-      var scrolled = window.scrollY;
-      heroBg.style.transform = 'scale(1) translateY(' + (scrolled * 0.25) + 'px)';
-    }
-  });
+  if(document.readyState!=='loading')eq();else document.addEventListener('DOMContentLoaded',eq);
+  window.addEventListener('load',eq);
+  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(eq,150)});
+})();
 </script>
+
 </body>
 </html>
