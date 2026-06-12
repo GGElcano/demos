@@ -462,6 +462,30 @@ main{ position: relative; z-index: 1; }
 .pie a:hover, .pie button:hover{ color: var(--oro-osc); }
 .pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
 
+/* ── TARIFAS (precios reales) ── */
+.tarifas{ padding: clamp(7rem,15vh,11rem) var(--pad); max-width: 76rem; margin: 0 auto; }
+.tarifas__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.2rem; }
+.tarifas__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.tarifas__cab p{ color: var(--piedra); font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; }
+.tarifas__grid{ display:grid; gap: clamp(1.4rem,2.5vw,2.2rem); grid-template-columns: repeat(auto-fit, minmax(min(17rem,100%), 1fr)); align-items: stretch; }
+.tarifa{
+  border:1px solid var(--linea); background: rgba(255,255,255,.5);
+  padding: 2.2rem 1.9rem; position: relative;
+  display:flex; flex-direction:column; gap:.8rem;
+}
+.tarifa--destacada{ border-color: var(--oro); background: rgba(201,169,110,.1); }
+.tarifa__sello{
+  position:absolute; top:-0.8rem; left:1.6rem;
+  background: var(--oro); color: var(--crema);
+  font: 500 .62rem/1 var(--sans); letter-spacing:.22em; text-transform:uppercase;
+  padding:.45rem .9rem; border-radius:999px;
+}
+.tarifa h3{ font-size: 1.45rem; }
+.tarifa__desc{ color: var(--piedra); font-size:.9rem; flex:1; }
+.tarifa__precio{ font-family: var(--serif); font-size: clamp(2.3rem,4.5vw,3.4rem); color: var(--tinta); }
+.tarifa__precio i{ font-style:normal; color: var(--oro-osc); font-size:.5em; }
+.tarifas__nota{ margin-top: 2.2rem; color: var(--piedra); font-size:.9rem; font-style: italic; }
+
 [data-reveal]{ visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce){
@@ -656,6 +680,33 @@ main{ position: relative; z-index: 1; }
     <p class="tira" data-tira="-1">Hammam <em>·</em> Bienestar <em>·</em> Tradición <em>·</em> Hammam <em>·</em> Bienestar <em>·</em> Tradición <em>·</em> Hammam <em>·</em> Bienestar <em>·</em> Tradición</p>
     <p class="tira tira--llena" data-tira="1">Las Palmas <em>·</em> Exclusividad <em>·</em> Armonía <em>·</em> Las Palmas <em>·</em> Exclusividad <em>·</em> Armonía</p>
   </div>
+
+  <!-- ════════ TARIFAS (precios reales de royalebeauty.es) ════════ -->
+  <section class="tarifas" id="tarifas">
+    <div class="tarifas__cab">
+      <h2 data-reveal data-split="lines">Rituales y <em>tarifas</em></h2>
+      <p data-reveal>Precios oficiales · Menú Hammam</p>
+    </div>
+    <div class="tarifas__grid">
+      <div class="tarifa" data-reveal>
+        <h3>Ritual de Purificación Royale</h3>
+        <p class="tarifa__desc">El hammam esencial: vapor, exfoliación, modelado facial y masaje relajante con espuma.</p>
+        <p class="tarifa__precio">79<i>€</i></p>
+      </div>
+      <div class="tarifa tarifa--destacada" data-reveal>
+        <span class="tarifa__sello">El favorito</span>
+        <h3>Hammam Prestige</h3>
+        <p class="tarifa__desc">El ritual completo con jacuzzi y bálsamo corporal de karité. La experiencia que nombran las reseñas.</p>
+        <p class="tarifa__precio">149<i>€</i></p>
+      </div>
+      <div class="tarifa" data-reveal>
+        <h3>Hammam Malaki (Royale)</h3>
+        <p class="tarifa__desc">La ceremonia mayor: todo lo anterior más masaje premium de 30 minutos. Solo cuatro personas al día.</p>
+        <p class="tarifa__precio">199<i>€</i></p>
+      </div>
+    </div>
+    <p class="tarifas__nota" data-reveal>Masajes y rituales de autor — Lomi Lomi, descontracturante, drenaje — desde 79 €.</p>
+  </section>
 
   <!-- ════════ TESTIMONIOS (reseñas reales de TripAdvisor/Google) ════════ -->
   <section class="testimonios">
