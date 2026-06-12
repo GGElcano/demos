@@ -229,7 +229,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .cifra p{ color: var(--piedra); font-size:.84rem; margin-top:.35rem; }
 
 /* ── CASA 3D (Blender + Three.js scrubbed) ── */
-.casa3d{ height: 380vh; position: relative; }
+.casa3d{ height: 520vh; position: relative; }
 .casa3d__pin{
   position: relative; height: 100vh; height: 100svh;
   overflow: hidden; display: grid;
@@ -506,7 +506,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
           <h2 class="casa3d__titulo">Tu casa, construida con tu <em>scroll</em></h2>
           <div class="casa3d__num"><span data-casa-num>0</span><i>%</i></div>
         </div>
-        <p class="casa3d__fase" data-casa-fase>La estructura — hormigón y grúa</p>
+        <p class="casa3d__fase" data-casa-fase>El plano — todo empieza en papel</p>
       </div>
     </div>
   </section>
@@ -916,7 +916,7 @@ document.fonts.ready.then(() => {
   const seccion = document.querySelector('.casa3d');
   if (REDUCE3D) { seccion.classList.add('casa3d--fallback'); return; }
 
-  const TOTAL = 97;
+  const TOTAL = 183;
   const ruta = (i) => `assets/obra/f${String(i + 1).padStart(3, '0')}.webp`;
 
   const canvas = document.getElementById('casa-gl');
@@ -925,10 +925,10 @@ document.fonts.ready.then(() => {
   const elNum  = document.querySelector('[data-casa-num]');
   const elFase = document.querySelector('[data-casa-fase]');
   const fases = [
-    [0.00, 'La estructura — hormigón y grúa'],
-    [0.35, 'Cerramientos y cristales'],
-    [0.65, 'La piscina se llena'],
-    [0.88, 'Luces encendidas: lista para vivir'],
+    [0.00, 'El plano — todo empieza en papel'],
+    [0.25, 'El replanteo — del papel al solar'],
+    [0.50, 'La obra — maquinaria y estructura'],
+    [0.75, 'Los acabados — lista para vivir'],
   ];
 
   /* precarga en 2 fases: primeros 12 ya, el resto en segundo plano */
