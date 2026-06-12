@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RE/MAX Finca Hogar | Inmobiliaria en Zaragoza</title>
+  <meta name="description" content="RE/MAX Finca Hogar, tu inmobiliaria de confianza en Zaragoza. Compraventa y alquiler de pisos, chalets y locales. 4,9 sobre 5 con 415 reseñas en Google. Paseo de Sagasta, 80.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #003DA5;
+      --navy-dark: #002B75;
+      --red: #DC1C2E;
+      --red-hover: #B51524;
+      --white: #FFFFFF;
+      --off-white: #F7F8FA;
+      --cream: #FAFBFD;
+      --text: #1A1F2B;
+      --text-light: #5A6275;
+      --text-muted: #8D95A6;
+      --border: #E2E6ED;
+      --border-light: #EEF1F5;
+      --font-sans: 'Montserrat', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── LOADER ── */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      transition: opacity 0.7s, visibility 0.7s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .loader-brand .balloon {
+      width: 32px; height: 44px;
+    }
+    .loader-text {
+      font-family: var(--font-sans);
+      font-size: 1.1rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--navy);
+    }
+    .loader-bar {
+      width: 180px; height: 2px;
+      background: var(--border);
+      position: relative; overflow: hidden;
+      border-radius: 2px;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--red);
+      transform: translateX(-100%);
+      animation: loadBar 1.4s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 60px;
+      background: transparent;
+      transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      padding: 16px 60px;
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--white);
+      transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--navy); }
+    .nav-logo .balloon { width: 24px; height: 34px; transition: filter 0.4s; }
+    nav:not(.scrolled) .nav-logo .balloon { filter: brightness(0) invert(1); }
+    .nav-logo-text {
+      font-weight: 700; font-size: 0.82rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .nav-logo-text small {
+      display: block; font-weight: 400; font-size: 0.62rem;
+      letter-spacing: 0.08em; opacity: 0.75;
+    }
+    .nav-links {
+      display: flex; gap: 40px; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,0.85);
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 500; transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--text-light); }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red) !important;
+      color: var(--white) !important;
+      padding: 10px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.18em !important;
+      transition: background 0.3s !important;
+      border: none;
+    }
+    .nav-cta:hover { background: var(--red-hover) !important; }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s, background 0.4s;
+    }
+    nav.scrolled .hamburger span { background: var(--text); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--white); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--text);
+      font-size: 1.1rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 500; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      transform: scale(1.05);
+      transition: transform 6s var(--ease-out);
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0,43,117,0.85) 0%,
+        rgba(0,61,165,0.65) 40%,
+        rgba(0,61,165,0.35) 70%,
+        rgba(0,43,117,0.5) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 160px 60px 120px;
+      max-width: 780px;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.8); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 14px; font-weight: 500;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 36px; height: 2px; background: var(--red);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+      font-weight: 500; line-height: 1.08;
+      letter-spacing: -0.02em; color: var(--white);
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic; color: rgba(255,255,255,0.7);
+      font-weight: 400;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.85);
+      max-width: 520px; line-height: 1.8; margin-bottom: 48px;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+    }
+    .btn-red {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--red); color: var(--white);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; border: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-red:hover { background: var(--red-hover); transform: translateY(-1px); }
+    .btn-red svg { width: 16px; height: 16px; }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--white); text-decoration: none;
+      padding: 16px 32px;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 500; border: 1px solid rgba(255,255,255,0.4);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .btn-outline-white:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-scroll {
+      position: absolute; right: 60px; bottom: 80px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      opacity: 0; animation: fadeIn 1s 2s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* ── MARQUEE ── */
+    .marquee-section {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; padding: 18px 0;
+      background: var(--white);
+    }
+    .marquee-track {
+      display: flex; width: max-content;
+      align-items: center;
+      animation: marquee 22s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 0 32px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-serif); font-size: 1rem;
+      font-style: italic; color: var(--text-light);
+      letter-spacing: 0.03em;
+    }
+    .marquee-item .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--red); flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translate3d(0,0,0); }
+      100% { transform: translate3d(-50%,0,0); }
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 120px 60px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 16px; font-weight: 600;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before {
+      content: ''; width: 28px; height: 2px; background: var(--red);
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+      font-weight: 500; line-height: 1.12;
+      color: var(--text);
+    }
+    .section-title em {
+      font-style: italic; color: var(--navy);
+    }
+
+    /* ── STATS ── */
+    .stats-section {
+      background: var(--navy);
+      padding: 0;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      max-width: 1400px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 56px 44px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      transition: background 0.4s;
+    }
+    .stat-card:last-child { border-right: none; }
+    .stat-card:hover { background: rgba(255,255,255,0.04); }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 500; line-height: 1; color: var(--white);
+      margin-bottom: 10px;
+    }
+    .stat-number .stat-suffix { color: var(--red); }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); font-weight: 500;
+    }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--off-white); }
+    .services-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 64px; max-width: 1400px; margin-left: auto; margin-right: auto;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1400px; margin: 64px auto 0;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 48px 40px;
+      border: 1px solid var(--border-light);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.3s;
+    }
+    .service-card:hover {
+      border-color: var(--navy);
+      box-shadow: 0 16px 48px rgba(0,61,165,0.08);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      width: 48px; height: 48px; margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--off-white);
+      border-radius: 12px;
+      color: var(--navy);
+      transition: background 0.3s, color 0.3s;
+    }
+    .service-card:hover .service-icon {
+      background: var(--navy); color: var(--white);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      font-weight: 500; margin-bottom: 12px; color: var(--text);
+    }
+    .service-card p {
+      font-size: 0.92rem; color: var(--text-light); line-height: 1.7;
+      font-weight: 400;
+    }
+    .service-number {
+      position: absolute; top: 20px; right: 28px;
+      font-family: var(--font-serif); font-size: 4.5rem;
+      font-weight: 500; color: var(--border-light);
+      line-height: 1; transition: color 0.4s;
+    }
+    .service-card:hover .service-number { color: rgba(0,61,165,0.08); }
+
+    /* ── GALLERY ── */
+    .gallery-section { background: var(--white); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+      max-width: 1400px; margin: 64px auto 0;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden;
+      border-radius: 4px;
+    }
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s var(--ease-out);
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px 28px 24px;
+      background: linear-gradient(to top, rgba(0,43,117,0.8), transparent);
+      color: var(--white);
+    }
+    .gallery-caption h3 {
+      font-family: var(--font-serif); font-size: 1.2rem;
+      font-weight: 500; margin-bottom: 4px;
+    }
+    .gallery-caption p {
+      font-size: 0.78rem; opacity: 0.8; letter-spacing: 0.05em;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0; max-width: none; background: var(--off-white);
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 640px;
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-badge {
+      position: absolute; top: 28px; right: 28px;
+      background: var(--white);
+      padding: 20px 26px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .about-badge-year {
+      font-family: var(--font-serif); font-size: 2.6rem;
+      color: var(--navy); line-height: 1; font-weight: 600;
+    }
+    .about-badge-text {
+      font-size: 0.68rem; letter-spacing: 0.08em;
+      color: var(--text-light); margin-top: 4px; font-weight: 500;
+    }
+    .about-content {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.02rem; line-height: 1.85;
+      color: var(--text-light); margin: 28px 0 36px; font-weight: 400;
+    }
+    .about-body strong { color: var(--text); font-weight: 600; }
+    .about-divider { width: 50px; height: 2px; background: var(--red); margin: 28px 0; }
+    .about-values { display: flex; flex-direction: column; gap: 16px; }
+    .about-value {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 20px; border: 1px solid var(--border-light);
+      background: var(--white);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .about-value:hover {
+      border-color: var(--navy);
+      box-shadow: 0 4px 16px rgba(0,61,165,0.06);
+    }
+    .value-num {
+      font-family: var(--font-serif); font-size: 1.3rem;
+      color: var(--red); flex-shrink: 0; font-weight: 500;
+    }
+    .value-text h3 {
+      font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 4px; color: var(--text);
+    }
+    .value-text p {
+      font-size: 0.88rem; color: var(--text-light); line-height: 1.6;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      background: var(--white); position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '\201C'; position: absolute; top: -40px; right: 60px;
+      font-family: var(--font-serif); font-size: 28rem;
+      color: var(--off-white); line-height: 1; pointer-events: none;
+    }
+    .testimonials-inner {
+      max-width: 1400px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 64px;
+    }
+    .testimonial-card {
+      padding: 44px 36px;
+      background: var(--off-white);
+      border: 1px solid var(--border-light);
+      transition: border-color 0.4s, box-shadow 0.4s;
+      display: flex; flex-direction: column;
+    }
+    .testimonial-card:hover {
+      border-color: var(--navy);
+      box-shadow: 0 12px 40px rgba(0,61,165,0.06);
+    }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 24px; }
+    .star {
+      width: 14px; height: 14px; background: #FBBF24;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif); font-size: 1.05rem;
+      font-style: italic; font-weight: 400;
+      line-height: 1.75; color: var(--text);
+      margin-bottom: 28px; flex: 1;
+    }
+    .testimonial-divider {
+      width: 28px; height: 2px; background: var(--red);
+      margin-bottom: 20px; opacity: 0.6;
+    }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.06em; color: var(--text);
+    }
+    .testimonial-author span {
+      font-size: 0.72rem; color: var(--text-muted);
+    }
+
+    /* ── SCHEDULE ── */
+    .schedule-section { background: var(--off-white); }
+    .schedule-table {
+      max-width: 600px; margin: 48px 0 0;
+      border-collapse: collapse; width: 100%;
+    }
+    .schedule-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .schedule-table td {
+      padding: 16px 20px; font-size: 0.95rem;
+    }
+    .schedule-table td:first-child {
+      font-weight: 600; color: var(--text);
+      width: 50%;
+    }
+    .schedule-table td:last-child {
+      color: var(--text-light);
+    }
+    .schedule-table .horario-hoy {
+      background: rgba(0,61,165,0.06);
+    }
+    .schedule-table .horario-hoy td:first-child {
+      color: var(--navy);
+      position: relative;
+      padding-left: 32px;
+    }
+    .schedule-table .horario-hoy td:first-child::before {
+      content: '';
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red);
+    }
+
+    /* ── MAP ── */
+    .map-section { background: var(--white); padding: 0; }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .map-info {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--navy);
+    }
+    .map-info .section-label { color: rgba(255,255,255,0.5); }
+    .map-info .section-label::before { background: var(--red); }
+    .map-info .section-title { color: var(--white); }
+    .map-info .section-title em { color: rgba(255,255,255,0.6); }
+    .map-info-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .map-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red);
+    }
+    .map-info-text h3 {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); margin-bottom: 4px; font-weight: 600;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.95rem; color: rgba(255,255,255,0.9);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--white); text-decoration: underline; }
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--red);
+      padding: 100px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 300px; }
+    .cta-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 500; color: var(--white); line-height: 1.12;
+    }
+    .cta-text p {
+      font-size: 1rem; color: rgba(255,255,255,0.85);
+      margin-top: 14px; font-weight: 400;
+    }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--white); color: var(--red);
+      text-decoration: none; padding: 18px 44px;
+      font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 600; white-space: nowrap;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-white:hover { background: var(--off-white); transform: translateY(-1px); }
+    .btn-white svg { width: 16px; height: 16px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text); padding: 80px 60px 44px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 60px;
+    }
+    .footer-brand .nav-logo { margin-bottom: 18px; display: inline-flex; }
+    .footer-brand .nav-logo { color: var(--white); }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 0.95rem; color: rgba(255,255,255,0.6);
+      line-height: 1.6; max-width: 280px; margin-bottom: 28px;
+    }
+    .footer-social { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(255,255,255,0.7);
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .social-link:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h3 {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 20px; font-weight: 600;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(255,255,255,0.6);
+      font-size: 0.88rem; transition: color 0.3s;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.72rem; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--white); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* ── FOCUS ── */
+    :focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 2px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--navy); color: var(--white); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 22px 36px; }
+      nav.scrolled { padding: 14px 36px; }
+      section { padding: 90px 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-card:nth-child(2) { border-right: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-row: auto; }
+      .testimonials-grid { grid-template-columns: 1fr; max-width: 600px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 36px; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 400px; }
+      .about-content { padding: 60px 36px; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      nav { padding: 18px 24px; }
+      nav.scrolled { padding: 14px 24px; }
+      section { padding: 72px 24px; }
+      .hero-content { padding: 140px 24px 80px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-red, .btn-outline-white { justify-content: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 72px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; align-items: center; }
+      .map-info { padding: 48px 24px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 10vw, 2.8rem); }
+      .hero-content { padding: 120px 20px 64px; }
+      .hero-sub { font-size: 0.95rem; margin-bottom: 36px; }
+      .section-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+      .stat-card { padding: 36px 24px; }
+      .stat-number { font-size: clamp(2.2rem, 10vw, 3rem); }
+      .service-card { padding: 36px 28px; }
+      .testimonial-card { padding: 32px 24px; }
+      .cta-section { padding: 56px 20px; }
+      .about-badge { top: 16px; right: 16px; padding: 16px 20px; }
+      .about-badge-year { font-size: 2rem; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .marquee-track { animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- RE/MAX Balloon SVG (inline, reusable) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="remax-balloon" viewBox="0 0 30 44">
+    <path d="M15 0C6.7 0 0 6.7 0 15c0 5.5 3 10.3 7.4 12.9L15 44l7.6-16.1C27 25.3 30 20.5 30 15 30 6.7 23.3 0 15 0z" fill="#DC1C2E"/>
+    <path d="M15 7c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z" fill="#fff"/>
+    <path d="M11.5 12h1.8l1.7 2.8L16.7 12h1.8v7h-1.5v-4.7l-2 3h-.1l-2-3V19h-1.4v-7z" fill="#003DA5"/>
+  </symbol>
+</svg>
+
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-brand">
+    <svg class="balloon"><use href="#remax-balloon"/></svg>
+    <span class="loader-text">Finca Hogar</span>
+  </div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main-content" class="nav-logo">
+    <svg class="balloon"><use href="#remax-balloon"/></svg>
+    <span class="nav-logo-text">Finca Hogar<small>Inmobiliaria Zaragoza</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="tel:+34876652651" class="nav-cta">876 65 26 51</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú de navegación">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="tel:+34876652651" onclick="closeMobile()">Llamar al 876 65 26 51</a>
+</div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<!-- ── HERO ── -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" id="heroBg" style="background-image: url('inauguration.jpg');" role="img" aria-label="Equipo de RE/MAX Finca Hogar en la inauguración de su nueva oficina en Paseo de Sagasta 80, Zaragoza"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">RE/MAX Finca Hogar &middot; Zaragoza &middot; Desde 2018</p>
+    <h1 class="hero-title" id="hero-title">Tu hogar en<br>Zaragoza empieza<br><em>con nosotros.</em></h1>
+    <p class="hero-sub">Somos la oficina RE/MAX con mejor valoración de Zaragoza. Ocho años ayudando a familias a comprar, vender y alquilar con la tranquilidad de un equipo profesional y una red mundial de más de 140.000 agentes.</p>
+    <div class="hero-actions">
+      <a href="tel:+34876652651" class="btn-red" aria-label="Llamar a RE/MAX Finca Hogar al 876 65 26 51">
+        Llamar al 876 65 26 51
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#servicios" class="btn-outline-white">
+        Nuestros servicios
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Compraventa</span>
+    <span class="marquee-item"><span class="dot"></span>Alquiler</span>
+    <span class="marquee-item"><span class="dot"></span>Valoraciones</span>
+    <span class="marquee-item"><span class="dot"></span>Asesoramiento hipotecario</span>
+    <span class="marquee-item"><span class="dot"></span>Pisos</span>
+    <span class="marquee-item"><span class="dot"></span>Chalets</span>
+    <span class="marquee-item"><span class="dot"></span>Locales</span>
+    <span class="marquee-item"><span class="dot"></span>Obra nueva</span>
+    <span class="marquee-item"><span class="dot"></span>Compraventa</span>
+    <span class="marquee-item"><span class="dot"></span>Alquiler</span>
+    <span class="marquee-item"><span class="dot"></span>Valoraciones</span>
+    <span class="marquee-item"><span class="dot"></span>Asesoramiento hipotecario</span>
+    <span class="marquee-item"><span class="dot"></span>Pisos</span>
+    <span class="marquee-item"><span class="dot"></span>Chalets</span>
+    <span class="marquee-item"><span class="dot"></span>Locales</span>
+    <span class="marquee-item"><span class="dot"></span>Obra nueva</span>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats-section" role="region" aria-label="Cifras de RE/MAX Finca Hogar">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="49" data-decimal="true">0</span><span class="stat-suffix">/5</span></div>
+      <div class="stat-label">Valoración en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="415">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="8">0</span></div>
+      <div class="stat-label">Años en Zaragoza</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="140">0</span><span class="stat-suffix">K</span></div>
+      <div class="stat-label">Agentes RE/MAX en el mundo</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="servicios" aria-labelledby="servicios-title">
+  <div class="services-header">
+    <div>
+      <p class="section-label reveal">Servicios</p>
+      <h2 class="section-title reveal reveal-delay-1" id="servicios-title">Todo lo que necesitas<br>para tu <em>operación inmobiliaria.</em></h2>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <span class="service-number" aria-hidden="true">01</span>
+      <h3>Compraventa de vivienda</h3>
+      <p>Te acompañamos en cada paso, desde la valoración inicial hasta la firma en notaría. Gestionamos la documentación, negociamos las condiciones y nos aseguramos de que todo sea transparente.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      </div>
+      <span class="service-number" aria-hidden="true">02</span>
+      <h3>Alquiler de inmuebles</h3>
+      <p>Seleccionamos inquilinos solventes, preparamos el contrato y nos ocupamos de que todo funcione desde el primer día. Tú solo cobras la renta.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <span class="service-number" aria-hidden="true">03</span>
+      <h3>Valoración gratuita</h3>
+      <p>Analizamos el mercado real de tu zona y te damos un precio objetivo. Sin compromiso y con datos actualizados del barrio, no estimaciones genéricas.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <span class="service-number" aria-hidden="true">04</span>
+      <h3>Asesoramiento hipotecario</h3>
+      <p>Trabajamos con las principales entidades bancarias para encontrar la hipoteca que mejor se adapte a tu situación. Te acompañamos hasta la aprobación.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </div>
+      <span class="service-number" aria-hidden="true">05</span>
+      <h3>Locales y oficinas</h3>
+      <p>Inmuebles comerciales en las mejores ubicaciones de Zaragoza. Venta y alquiler para negocios que buscan visibilidad y tráfico.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      </div>
+      <span class="service-number" aria-hidden="true">06</span>
+      <h3>Únete al equipo</h3>
+      <p>Si eres agente inmobiliario o quieres empezar en el sector, RE/MAX Finca Hogar te ofrece formación, herramientas y el respaldo de la red inmobiliaria número 1 del mundo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ── -->
+<section class="gallery-section" aria-labelledby="galeria-title">
+  <p class="section-label reveal">Inmuebles y oficina</p>
+  <h2 class="section-title reveal reveal-delay-1" id="galeria-title">Propiedades con <em>personalidad.</em></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal">
+      <img src="living-room.jpg" alt="Fachada exterior de vivienda unifamiliar gestionada por RE/MAX Finca Hogar" loading="lazy" width="800" height="531">
+      <div class="gallery-caption">
+        <h3>Viviendas unifamiliares</h3>
+        <p>Chalets y adosados en Zaragoza y provincia</p>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <img src="apartment.jpg" alt="Interior de un piso moderno con salon luminoso en Zaragoza" loading="lazy" width="600" height="400">
+      <div class="gallery-caption">
+        <h3>Pisos y apartamentos</h3>
+        <p>En todos los barrios de la ciudad</p>
+      </div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <img src="interior-home.jpg" alt="Salon de diseno con grandes ventanales y luz natural" loading="lazy" width="600" height="408">
+      <div class="gallery-caption">
+        <h3>Espacios con luz</h3>
+        <p>Inmuebles seleccionados con criterio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
+  <div class="about-visual">
+    <img src="inauguration.jpg" alt="Equipo de RE/MAX Finca Hogar durante la inauguración de su oficina en Paseo de Sagasta 80, Zaragoza" loading="lazy" width="800" height="546">
+    <div class="about-badge">
+      <div class="about-badge-year">2018</div>
+      <div class="about-badge-text">Presentes en Zaragoza</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre nosotros</p>
+    <h2 class="section-title reveal reveal-delay-1" id="nosotros-title">
+      Una oficina que crece<br>porque <em>sus clientes confían.</em>
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-delay-2">
+      RE/MAX Finca Hogar lleva <strong>ocho años</strong> trabajando en el mercado inmobiliario de Zaragoza. En ese tiempo hemos abierto <strong>tres oficinas</strong>, la última en el <strong>Paseo de Sagasta, 80</strong>, inaugurada en octubre de 2024 ante más de 300 profesionales del sector. Nuestro objetivo es superar los 50 agentes especializados en los próximos años y seguir siendo la referencia inmobiliaria de la ciudad.
+    </p>
+    <div class="about-values reveal reveal-delay-3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h3>Red mundial</h3>
+          <p>Pertenecemos a RE/MAX, la mayor red inmobiliaria del mundo. Acceso a compradores nacionales e internacionales.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h3>Agentes locales</h3>
+          <p>Nuestro equipo conoce cada barrio de Zaragoza. Asesoran con datos reales y trato personal.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h3>Resultados rápidos</h3>
+          <p>Ventas en días, no en meses. Marketing profesional, visitas virtuales y difusión en portales nacionales e internacionales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials-section" id="opiniones" aria-labelledby="testimonios-title">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen nuestros clientes</p>
+    <h2 class="section-title reveal reveal-delay-1" id="testimonios-title">
+      4,9 sobre 5 con más de 415<br>reseñas en <em>Google Maps.</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Profesionalidad, amabilidad, experiencia y sobre todo, las ganas de hacer las cosas bien. Les confías la venta de tu piso y te olvidas de todo."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Felipe E.</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Nos vendieron el piso en 3 días y el garaje en 2 días. Muy buena gestión, te informan de todo."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Mayte</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" role="img" aria-label="Valoración de 5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Total profesionalidad y trato impecable, gran trabajo y un gran equipo. Gracias por todo."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Nury R.</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCHEDULE ── -->
+<section class="schedule-section" aria-labelledby="horario-title">
+  <p class="section-label reveal">Horario de oficina</p>
+  <h2 class="section-title reveal reveal-delay-1" id="horario-title">Cuándo <em>puedes visitarnos.</em></h2>
+  <table class="schedule-table reveal reveal-delay-2">
+    <tbody>
+      <tr data-day="1"><td>Lunes</td><td>9:00 - 14:00 / 16:00 - 20:00</td></tr>
+      <tr data-day="2"><td>Martes</td><td>9:00 - 14:00 / 16:00 - 20:00</td></tr>
+      <tr data-day="3"><td>Miércoles</td><td>9:00 - 14:00 / 16:00 - 20:00</td></tr>
+      <tr data-day="4"><td>Jueves</td><td>9:00 - 14:00 / 16:00 - 20:00</td></tr>
+      <tr data-day="5"><td>Viernes</td><td>9:00 - 14:00 / 16:00 - 20:00</td></tr>
+      <tr data-day="6"><td>Sábado</td><td>Cerrado</td></tr>
+      <tr data-day="0"><td>Domingo</td><td>Cerrado</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ── MAP + CONTACT ── -->
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Dónde estamos</p>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">
+        Paseo de Sagasta, 80<br><em>Zaragoza.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>Paseo de Sagasta, 80<br>50006 Zaragoza</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.81.36 1.6.7 2.35a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.75.34 1.54.57 2.35.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfono</h3>
+          <a href="tel:+34876652651">876 65 26 51</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Email</h3>
+          <a href="mailto:fincahogar@remax.es">fincahogar@remax.es</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Horario</h3>
+          <p>Lunes a viernes: 9:00 - 14:00 / 16:00 - 20:00<br>Sábados y domingos: Cerrado</p>
+        </div>
+      </div>
+      <div style="margin-top: 36px;">
+        <a href="tel:+34876652651" class="btn-red" style="display:inline-flex;">
+          Llamar ahora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true" style="width:16px;height:16px;"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación de RE/MAX Finca Hogar en Paseo de Sagasta 80, Zaragoza"
+        src="https://www.google.com/maps?q=REMAX+Finca+Hogar+Paseo+Sagasta+80+Zaragoza&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA ── -->
+<div class="cta-section" role="region" aria-label="Llamada a la acción de contacto">
+  <div class="cta-text">
+    <h2>¿Quieres vender tu piso<br>al mejor precio?</h2>
+    <p>Pídenos una valoración gratuita. Analizamos tu inmueble, te damos un precio real y, si decides trabajar con nosotros, nos encargamos de todo.</p>
+  </div>
+  <a href="tel:+34876652651" class="btn-white">
+    876 65 26 51
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#main-content" class="nav-logo">
+        <svg class="balloon" style="width:24px;height:34px;"><use href="#remax-balloon"/></svg>
+        <span class="nav-logo-text">Finca Hogar<small>Inmobiliaria Zaragoza</small></span>
+      </a>
+      <p class="footer-tagline">"Ocho años ayudando a familias a encontrar su hogar en Zaragoza."</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/remax_fincahogar/" target="_blank" rel="noopener" class="social-link" aria-label="Seguir a RE/MAX Finca Hogar en Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c2.7 0 3 0 4.1.06 1 .05 1.5.2 1.9.35.5.18.8.4 1.15.75.36.35.57.66.75 1.15.14.38.3.9.35 1.9.05 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1-.2 1.5-.35 1.9-.18.5-.4.8-.75 1.15-.35.36-.66.57-1.15.75-.38.14-.9.3-1.9.35-1.1.05-1.4.06-4.1.06s-3 0-4.1-.06c-1-.05-1.5-.2-1.9-.35-.5-.18-.8-.4-1.15-.75-.36-.35-.57-.66-.75-1.15-.14-.38-.3-.9-.35-1.9C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1 .2-1.5.35-1.9.18-.5.4-.8.75-1.15.35-.36.66-.57 1.15-.75.38-.14.9-.3 1.9-.35C7 2.2 7.3 2.2 12 2.2M12 0C9.3 0 8.9 0 7.8.06 6.7.1 5.9.3 5.2.55c-.7.28-1.3.65-1.9 1.24-.6.6-.96 1.2-1.24 1.9C1.8 4.4 1.6 5.2 1.56 6.3 1.5 7.4 1.5 7.8 1.5 12s0 4.6.06 5.7c.04 1.1.24 1.9.5 2.6.27.7.64 1.3 1.23 1.9.6.6 1.2.96 1.9 1.24.7.26 1.5.46 2.6.5 1.1.06 1.5.06 4.2.06s3.1 0 4.2-.06c1.1-.04 1.9-.24 2.6-.5.7-.28 1.3-.65 1.9-1.24.6-.6.96-1.2 1.24-1.9.26-.7.46-1.5.5-2.6.06-1.1.06-1.5.06-4.2s0-3.1-.06-4.2c-.04-1.1-.24-1.9-.5-2.6-.28-.7-.65-1.3-1.24-1.9-.6-.6-1.2-.96-1.9-1.24C18.1.3 17.3.1 16.2.06 15.1 0 14.7 0 12 0zm0 5.84A6.16 6.16 0 1012 18.16 6.16 6.16 0 0012 5.84zM12 16a4 4 0 110-8 4 4 0 010 8zm7.8-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/remaxfincahogarzaragoza/" target="_blank" rel="noopener" class="social-link" aria-label="Seguir a RE/MAX Finca Hogar en Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.3l-.5 3.5h-2.8v8.4C19.6 23 24 18 24 12z"/></svg>
+        </a>
+        <a href="mailto:fincahogar@remax.es" class="social-link" aria-label="Enviar correo a fincahogar@remax.es">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2m0 4l-8 5-8-5V6l8 5 8-5z"/></svg>
+        </a>
+        <a href="tel:+34876652651" class="social-link" aria-label="Llamar al 876 65 26 51">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 00-1.02.24l-2.2 2.2a15.07 15.07 0 01-6.58-6.6l2.2-2.2a1 1 0 00.25-1.02A11.4 11.4 0 018.5 4a1 1 0 00-1-1H4a1 1 0 00-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 00-1-1"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Servicios</h3>
+      <ul>
+        <li><a href="#servicios">Compraventa</a></li>
+        <li><a href="#servicios">Alquiler</a></li>
+        <li><a href="#servicios">Valoraciones</a></li>
+        <li><a href="#servicios">Asesoramiento hipotecario</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Nosotros</h3>
+      <ul>
+        <li><a href="#nosotros">Quiénes somos</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#contacto">Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34876652651">876 65 26 51</a></li>
+        <li><a href="mailto:fincahogar@remax.es">fincahogar@remax.es</a></li>
+        <li><a href="#contacto">Pso. de Sagasta, 80</a></li>
+        <li><a href="#contacto">Lunes a viernes</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 RE/MAX Finca Hogar. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('loader');
+      var heroBg = document.getElementById('heroBg');
+      if (loader) loader.classList.add('hidden');
+      if (heroBg) heroBg.classList.add('loaded');
+    }, 1600);
+  });
+
+  // NAVBAR SCROLL
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) {
+        var firstLink = mobileMenu.querySelector('a');
+        if (firstLink) firstLink.focus();
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+
+  function closeMobile() {
+    var h = document.getElementById('hamburger');
+    var m = document.getElementById('mobileMenu');
+    if (h) h.classList.remove('active');
+    if (m) m.classList.remove('open');
+    if (h) h.setAttribute('aria-expanded', 'false');
+  }
+
+  // REVEAL ON SCROLL
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  // COUNTER ANIMATION
+  function animateCount(el) {
+    var targetRaw = parseInt(el.dataset.target, 10);
+    var isDecimal = el.dataset.decimal === 'true';
+    var duration = 1600;
+    var start = performance.now();
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 4);
+      var value = ease * targetRaw;
+      if (isDecimal) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var countObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
+  } else {
+    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+  }
+
+  // HERO PARALLAX
+  window.addEventListener('scroll', function() {
+    var heroBg = document.getElementById('heroBg');
+    if (heroBg && window.scrollY < window.innerHeight) {
+      heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.2) + 'px)';
+    }
+  });
+
+  // HIGHLIGHT TODAY
+  function highlightToday() {
+    var day = new Date().getDay();
+    var rows = document.querySelectorAll('.schedule-table tr[data-day]');
+    rows.forEach(function(row) {
+      if (parseInt(row.dataset.day, 10) === day) {
+        row.classList.add('horario-hoy');
+      }
+    });
+  }
+  highlightToday();
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
