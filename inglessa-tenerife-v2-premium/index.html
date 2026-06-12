@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inglessa — Academia de inglés y Centro Examinador Oficial · La Laguna · Santa Cruz de Tenerife</title>
+<meta name="description" content="Inglessa: academia de inglés en Tenerife y Centro Examinador Oficial Oxford Test of English y Marlins, preparador Cambridge y Linguaskill. +98% de aprobados, más de 5.000 alumnos certificados. La Laguna, Santa Cruz y online.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%232B5EA3'/%3E%3C/svg%3E">
+
+<!-- ============================================================
+     INGLESSA — propuesta premium "british editorial" (G&G Elcano)
+     Marca real verificada en inglessa.com (CSS del sitio):
+       · navy #001b54 · azul #2B5EA3 · celeste #0070af · rojo #E40E49
+     Piezas: letras inglesas flotantes que huyen del cursor · estela
+     fluida (receta aprobada, modo dual) · Big Ben que se construye
+     nivel a nivel con el scroll · estela de imágenes · galería
+     horizontal de niveles · zoom inmersivo del aula de examen.
+     Contenido 100% real: cursos, exámenes, sedes, cifras, reseñas.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,560;1,9..144,340&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal/cookie-banner.css">
+
+<style>
+:root{
+  --hielo:    #f4f7fa;
+  --hielo-2:  #e9eef5;
+  --navy:     #001b54;            /* marca real */
+  --navy-2:   #0a2766;
+  --azul:     #2B5EA3;            /* marca real */
+  --celeste:  #0070af;            /* marca real */
+  --rojo:     #E40E49;            /* acento CTA real */
+  --texto:    #14233f;
+  --texto-2:  #3c4a63;
+  --piedra:   #75829b;
+  --linea:    rgba(0,27,84,.14);
+  --serif: "Fraunces", Georgia, serif;
+  --sans:  "Inter", system-ui, sans-serif;
+  --pad: clamp(1.5rem, 5vw, 6rem);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scrollbar-width: thin; scrollbar-color: var(--azul) var(--hielo); }
+html, body{ background: var(--hielo); }
+
+body{
+  color: var(--texto);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection{ background: var(--azul); color: #fff; }
+
+h1,h2,h3{ font-family: var(--serif); font-weight: 400; line-height: 1.05; color: var(--navy); }
+em{ font-style: italic; color: var(--celeste); }
+
+a{ color: inherit; text-decoration: none; }
+ul{ list-style: none; }
+img{ display:block; width:100%; height:100%; object-fit: cover; }
+
+#letras{ position: fixed; inset: 0; width:100%; height:100%; z-index: 0; pointer-events: none; }
+main{ position: relative; z-index: 1; }
+
+#fluid{
+  position: fixed; inset: 0; width:100%; height:100%;
+  z-index: 9000; pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: .5;
+}
+#fluid.fluid--screen{ mix-blend-mode: screen; opacity: .9; }
+#fluid canvas{ width:100%; height:100%; display:block; }
+
+.cursor-dot, .cursor-ring{
+  position: fixed; top:0; left:0; z-index: 9500;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+}
+.cursor-dot { width:6px;  height:6px;  background: var(--rojo); }
+.cursor-ring{ width:38px; height:38px; border:1px solid rgba(43,94,163,.6); }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot,.cursor-ring,#fluid{ display:none; }
+}
+
+.progreso{
+  position: fixed; right: 1.3rem; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 9rem; background: var(--linea);
+  z-index: 60; pointer-events: none;
+}
+.progreso span{ position:absolute; inset:0; background: var(--rojo); transform: scaleY(0); transform-origin: top; }
+@media (max-width: 820px){ .progreso{ display:none; } }
+
+/* ── PRELOADER ── */
+.preloader{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: end start;
+  padding: var(--pad);
+}
+.preloader__curtain{ position:absolute; inset:0; background: var(--navy); z-index:-1; }
+.preloader__brand{
+  position: absolute; top: var(--pad); left: var(--pad);
+  font-family: var(--serif); font-size: 1.15rem; letter-spacing: .3em;
+  text-transform: uppercase; color: #8fa4cf;
+  overflow: hidden;
+}
+.preloader__brand span{ display:inline-block; }
+.preloader__brand b{ font-weight: 560; color: #fff; }
+.preloader__counter{ overflow: hidden; line-height: 1; }
+.preloader__num{
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+.preloader__num i{ font-style: normal; color: var(--rojo); font-size: .35em; vertical-align: super; }
+
+/* ── CABECERA ── */
+.cabecera{
+  position: fixed; top:0; left:0; right:0; z-index: 50;
+  display:flex; justify-content: space-between; align-items: center;
+  padding: 1.3rem var(--pad);
+  mix-blend-mode: multiply;
+}
+.cabecera__logo{ font-family: var(--serif); font-size: 1.3rem; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); }
+.cabecera__logo b{ font-weight: 560; }
+.cabecera__nav{ display:flex; gap: 2rem; font-size:.74rem; letter-spacing:.16em; text-transform: uppercase; }
+@media (max-width: 820px){ .cabecera__nav{ display:none; } }
+
+.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
+.roll>span{ display:inline-block; transition: transform .5s cubic-bezier(.76,0,.24,1); }
+.roll::after{
+  content: attr(data-text);
+  position:absolute; left:0; top:100%; display:inline-block;
+  color: var(--rojo);
+  transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+@media (hover:hover) and (pointer:fine){
+  .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
+}
+
+/* ── HERO ── */
+.hero{
+  min-height: 100svh;
+  position: relative;
+  display:grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: end;
+  gap: clamp(1.5rem,4vw,4rem);
+  padding: clamp(7rem,14vh,9rem) var(--pad) clamp(3rem, 8vh, 5rem);
+}
+.hero__kicker{
+  font-size: .74rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--piedra); margin-bottom: 1.4rem;
+}
+.hero__titulo{
+  font-size: clamp(2.7rem, 7.2vw, 6.4rem);
+  letter-spacing: -.012em;
+  max-width: 13ch;
+}
+.hero__pie{ display:flex; align-items:flex-end; gap:2.2rem; margin-top: 2.2rem; flex-wrap:wrap; }
+.hero__sub{ max-width: 40ch; color: var(--texto-2); font-size: 1rem; }
+.hero__badge{
+  display:inline-flex; align-items:baseline; gap:.5rem;
+  font-family: var(--serif); color: var(--navy);
+  border:1px solid var(--linea); border-radius:999px; padding:.55rem 1.2rem;
+  font-size:.95rem; background: rgba(255,255,255,.5);
+}
+.hero__badge b{ font-weight:560; color: var(--rojo); font-size:1.25em; }
+.hero__scroll{
+  font-size: .66rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--piedra); display:flex; align-items:center; gap:.8rem;
+}
+.hero__scroll::after{
+  content:""; display:block; width:1px; height:3.2rem; background: var(--rojo);
+  transform-origin: top;
+  animation: gota 2.4s cubic-bezier(.76,0,.24,1) infinite;
+}
+@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
+                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
+.hero__media{
+  position: relative;
+  height: clamp(22rem, 62vh, 37rem);
+  overflow: hidden;
+  border: 1px solid var(--linea);
+}
+.hero__media::after{
+  content:"EST. 2014 — TENERIFE";
+  position:absolute; right:1rem; bottom:1rem;
+  font: 400 .62rem/1 var(--sans); letter-spacing:.3em; color:#fff;
+  text-shadow: 0 1px 10px rgba(0,0,0,.6);
+}
+.hero__media img{ will-change: transform; }
+@media (max-width: 820px){
+  .hero{ grid-template-columns: 1fr; align-items:start; }
+  .hero__media{ order:-1; height: 36svh; margin-top: 1rem; }
+}
+[data-hero-reveal]{ visibility: hidden; }
+
+/* ── MARQUEE ── */
+.marquee{
+  overflow:hidden; white-space:nowrap;
+  border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  padding: 1.05rem 0;
+  background: var(--hielo);
+  position: relative; z-index: 2;
+}
+.marquee__track{ display:inline-flex; gap:3rem; will-change: transform; }
+.marquee__group{ display:inline-flex; gap:3rem; }
+.marquee__group span{ font-family: var(--serif); font-size: 1.25rem; color: var(--piedra); }
+.marquee__group i{ font-style: normal; color: var(--rojo); }
+
+/* ── MANIFIESTO ── */
+.manifiesto{ position: relative; padding: clamp(9rem,20vh,15rem) var(--pad); }
+.manifiesto p{
+  position: relative; z-index: 2;
+  max-width: 26ch;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3.6vw, 3rem);
+  line-height: 1.3;
+  color: var(--navy);
+}
+.flotante{
+  position: absolute; z-index: 1;
+  width: clamp(7rem, 15vw, 16rem);
+  overflow: hidden;
+  will-change: transform;
+  box-shadow: 0 24px 60px rgba(0,27,84,.22);
+}
+.flotante img{ aspect-ratio: 4/3; }
+.flotante--1{ top: 8%;  right: 8%;  width: clamp(9rem, 18vw, 19rem); }
+.flotante--2{ bottom: 4%; right: 28%; }
+.flotante--3{ top: 44%; left: 60%; width: clamp(6rem, 11vw, 12rem); opacity:.9; }
+@media (max-width: 720px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; } }
+
+/* ── CIFRAS ── */
+.cifras{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
+  gap: 2rem; padding: 0 var(--pad) clamp(7rem,14vh,11rem);
+}
+.cifra{ border-top:1px solid var(--linea); padding-top: 1.3rem; }
+.cifra__valor{
+  font-family: var(--serif); font-size: clamp(2.5rem,5.5vw,4.4rem);
+  font-variant-numeric: tabular-nums; color: var(--navy);
+}
+.cifra__valor i{ font-style:normal; color: var(--rojo); font-size:.5em; margin-left:.06em; }
+.cifra p{ color: var(--piedra); font-size:.84rem; margin-top:.35rem; }
+
+/* ── BIG BEN — se construye nivel a nivel (pinned + scrub) ── */
+.bigben{ height: 340vh; position: relative; }
+.bigben__pin{
+  position: relative; height: 100vh; height: 100svh;
+  overflow: hidden; display: grid;
+  background: var(--hielo-2);
+}
+.bigben__lienzo{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.bigben__hud{
+  position: relative; z-index: 2;
+  display:flex; flex-direction:column; justify-content: space-between;
+  padding: clamp(5rem, 12vh, 7rem) var(--pad) clamp(2.5rem, 6vh, 4rem);
+  pointer-events: none;
+}
+.bigben__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; }
+.bigben__titulo{ font-size: clamp(1.8rem, 4vw, 3.2rem); }
+.bigben__num{
+  font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.bigben__num i{ font-style:normal; color: var(--rojo); font-size:.45em; }
+.bigben__fase{
+  font-size:.74rem; letter-spacing:.28em; text-transform:uppercase; color: var(--texto-2);
+  border-left: 2px solid var(--rojo); padding-left: 1rem;
+}
+@media (prefers-reduced-motion: reduce){
+  .bigben{ height:auto; } .bigben__pin{ height:100svh; }
+}
+
+/* ── NIVELES — galería horizontal pineada ── */
+.niveles{ position: relative; }
+.niveles__pin{
+  height: 100vh; height: 100svh; overflow: hidden;
+  display:flex; flex-direction: column; justify-content: center;
+}
+.niveles__cab{
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding: clamp(5rem,10vh,6.5rem) var(--pad) 2rem; gap:2rem;
+}
+.niveles__cab h2{ font-size: clamp(2rem, 4.5vw, 3.6rem); }
+.niveles__indice{
+  font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.niveles__indice b{ font-weight: 400; color: var(--navy); }
+.niveles__track{
+  display:flex; gap: clamp(1.5rem,3vw,3rem);
+  padding: 0 var(--pad);
+  align-items: stretch;
+  will-change: transform;
+}
+.panel{ flex: 0 0 auto; width: clamp(19rem, 38vw, 38rem); }
+.panel__marco{ overflow:hidden; position:relative; height: clamp(19rem, 54vh, 32rem); border:1px solid var(--linea); }
+.panel__marco img{ will-change: transform; }
+.panel__marco::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,27,84,.08) 0%, rgba(0,27,84,.55) 100%);
+}
+.panel__nivel{
+  position:absolute; left:1.2rem; bottom:.6rem; z-index:1;
+  font-family: var(--serif); font-weight:560;
+  font-size: clamp(3.4rem, 7vw, 6rem); line-height:1;
+  color:#fff; text-shadow: 0 2px 22px rgba(0,0,0,.4);
+}
+.panel__meta{ display:flex; justify-content:space-between; margin-top: 1rem; align-items:baseline; gap:1rem; }
+.panel__meta h3{ font-size: clamp(1.2rem, 1.9vw, 1.6rem); }
+.panel__meta span{ color: var(--piedra); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap; }
+@media (max-width: 820px){
+  .niveles__pin{ height:auto; overflow:visible; }
+  .niveles__track{ flex-direction: column; }
+  .panel{ width: 100%; }
+}
+
+/* ── EXÁMENES — centro examinador oficial ── */
+.examenes{ padding: clamp(7rem,16vh,12rem) var(--pad); }
+.examenes__cab{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 3.6rem; gap:2rem; flex-wrap:wrap; }
+.examenes__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.5rem); max-width:18ch; }
+.examenes__cab p{ color: var(--piedra); font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; }
+.examenes__grid{
+  display:grid; gap: clamp(1.5rem,3vw,2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem,100%), 1fr));
+}
+.examen{
+  border:1px solid var(--linea); padding: 1.8rem 1.6rem;
+  background: rgba(255,255,255,.55);
+}
+.examen h3{ font-size: 1.55rem; margin-bottom:.4rem; }
+.examen strong{ display:block; font: 500 .68rem/1.4 var(--sans); letter-spacing:.18em; text-transform:uppercase; color: var(--rojo); margin-bottom:.9rem; }
+.examen p{ color: var(--texto-2); font-size:.92rem; }
+
+/* logos de partners/prensa reales */
+.sellos{ padding: 0 var(--pad) clamp(6rem,12vh,9rem); }
+.sellos p{ text-align:center; font-size:.7rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra); margin-bottom: 2rem; }
+.sellos__fila{ display:flex; justify-content:center; align-items:center; gap: clamp(2rem,5vw,4.5rem); flex-wrap:wrap; }
+.sellos__fila img{
+  width: clamp(5.5rem, 10vw, 8.5rem); height:auto; object-fit: contain;
+  filter: grayscale(1) opacity(.55); transition: filter .5s ease;
+}
+.sellos__fila img:hover{ filter: grayscale(0) opacity(1); }
+
+/* ── TV CANARIA (banda navy) ── */
+.tv{
+  background: var(--navy);
+  color:#e8edf7;
+  padding: clamp(6rem,12vh,9rem) var(--pad);
+  text-align:center;
+}
+.tv p.tv__kicker{ font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:#8fa4cf; margin-bottom:1.6rem; }
+.tv blockquote{
+  font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 3.2rem);
+  line-height: 1.3; max-width: 26ch; margin: 0 auto; color:#fff;
+}
+.tv blockquote em{ color: #9ec5e8; }
+.tv figcaption{ margin-top: 1.4rem; font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:#8fa4cf; }
+
+/* ── SENSACIONES — estela de imágenes ── */
+.sensaciones{
+  position: relative;
+  min-height: 80svh;
+  display:grid; place-items:center; text-align:center;
+  padding: clamp(7rem,16vh,11rem) var(--pad);
+  overflow: hidden;
+}
+.sensaciones h2{ font-size: clamp(2.4rem, 6.5vw, 5.2rem); max-width: 16ch; position:relative; z-index:2; pointer-events:none; }
+.sensaciones__pista{
+  position:absolute; bottom: clamp(2rem,6vh,4rem); left:50%; transform:translateX(-50%);
+  font-size:.68rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
+  z-index:2; pointer-events:none;
+}
+.estela-img{
+  position:absolute; width: clamp(9rem, 16vw, 15rem); aspect-ratio: 4/3;
+  overflow:hidden; border:1px solid var(--linea);
+  pointer-events:none; will-change: transform, opacity;
+  box-shadow: 0 18px 50px rgba(0,27,84,.25);
+}
+@media (pointer: coarse){ .sensaciones__pista{ display:none; } }
+
+/* ── ZOOM INMERSIVO (aula del examen) ── */
+.zoom{ height: 300vh; position: relative; }
+.zoom__pin{
+  position: relative; height: 100vh; height: 100svh;
+  overflow: hidden; display: grid; place-items: center;
+  background: var(--navy);
+}
+.zoom__marco{ position:absolute; inset:0; clip-path: inset(38% 32% 38% 32%); will-change: clip-path; }
+.zoom__marco img{ will-change: transform; }
+.zoom__marco::after{ content:""; position:absolute; inset:0; background: rgba(0,27,84,.5); }
+.zoom__texto{
+  position: relative; z-index: 2;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5.5vw, 4.6rem);
+  line-height: 1.15; color: #fff;
+  text-align: center; max-width: 17ch;
+  padding: 0 var(--pad);
+  text-shadow: 0 2px 30px rgba(0,0,0,.5);
+}
+.zoom__texto em{ color: #9ec5e8; }
+@media (prefers-reduced-motion: reduce){
+  .zoom{ height:auto; } .zoom__pin{ height:100svh; }
+  .zoom__marco{ clip-path:none; }
+}
+
+/* ── TIRAS ── */
+.tiras{ overflow:hidden; padding: clamp(5rem,10vh,8rem) 0 clamp(3rem,6vh,5rem); display:grid; gap:.4rem; }
+.tira{
+  white-space: nowrap; will-change: transform;
+  font-family: var(--serif); font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1.05; color: transparent;
+  -webkit-text-stroke: 1px rgba(0,27,84,.3);
+}
+.tira em{ color: var(--rojo); -webkit-text-stroke: 0; }
+.tira--llena{ color: rgba(0,27,84,.14); -webkit-text-stroke: 0; }
+
+/* ── TESTIMONIOS ── */
+.testimonios{ padding: 0 var(--pad) clamp(7rem,14vh,11rem); max-width: 72rem; }
+.testimonios__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.2rem; }
+.testimonios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.google{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-size:.8rem; letter-spacing:.08em; color: var(--piedra);
+  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+}
+.google i{ font-style:normal; color: var(--rojo); letter-spacing:.16em; }
+.cita{ border-left: 1px solid rgba(43,94,163,.5); padding: .4rem 0 .4rem 1.8rem; margin-bottom: 2.6rem; }
+.cita blockquote{ font-family: var(--serif); font-size: clamp(1.2rem, 2.3vw, 1.75rem); line-height: 1.45; color: var(--texto-2); }
+.cita figcaption{ margin-top: .8rem; color: var(--piedra); font-size:.78rem; letter-spacing:.14em; text-transform: uppercase; }
+
+/* ── CONTACTO ── */
+.contacto{
+  min-height: 92svh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; gap: 2.4rem; padding: 6rem var(--pad) 4rem;
+  border-top: 1px solid var(--linea);
+}
+.contacto__estado{
+  font-size:.7rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
+  display:flex; align-items:center; gap:.7rem;
+}
+.contacto__estado::before{
+  content:""; width:.55rem; height:.55rem; border-radius:50%;
+  background: var(--rojo); box-shadow: 0 0 12px rgba(228,14,73,.8);
+  animation: latido 2.6s ease-in-out infinite;
+}
+@keyframes latido{ 50%{ opacity:.35; } }
+.contacto h2{ font-size: clamp(2.5rem, 7.5vw, 6.2rem); max-width: 15ch; }
+
+.magnetico{
+  display:inline-flex; align-items:center; gap:.9rem;
+  font: 500 .88rem/1 var(--sans); letter-spacing:.14em; text-transform:uppercase;
+  color: #fff;
+  border:1px solid var(--rojo); border-radius: 999px;
+  padding: 1.3rem 2.5rem;
+  background: var(--rojo); cursor: pointer;
+  transition: background-color .45s ease, border-color .45s ease;
+}
+.magnetico:hover{ background: var(--navy); border-color: var(--navy); }
+.magnetico .magnetico__label{ display:inline-block; }
+.contacto__secundario{ font-size:.85rem; color: var(--piedra); }
+.contacto__secundario a{ border-bottom:1px solid var(--linea); padding-bottom:.1em; }
+.contacto__secundario a:hover{ color: var(--rojo); border-color: var(--rojo); }
+
+.contacto__datos{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr));
+  gap: 2rem; width: min(70rem, 100%); margin-top: 2.2rem;
+  text-align:left; font-size:.92rem;
+}
+.dato{ border-top:1px solid var(--linea); padding-top: 1.1rem; }
+.dato h4{ font: 500 .68rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
+.dato a:hover{ color: var(--rojo); }
+.horario{ display:grid; gap:.25rem; }
+.horario > div{ display:flex; justify-content:space-between; gap:1rem; color: var(--piedra); }
+.horario .horario-hoy{ color: var(--rojo); font-weight: 400; }
+
+.pie{
+  display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap;
+  padding: 2rem var(--pad) 2.6rem;
+  color: var(--piedra); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+  border-top: 1px solid var(--linea);
+}
+.pie nav{ display:flex; gap:1.4rem; flex-wrap:wrap; }
+.pie a:hover, .pie button:hover{ color: var(--rojo); }
+.pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
+
+[data-reveal]{ visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
+  .preloader{ display:none; }
+  .progreso{ display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ PRELOADER ════════ -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span><b>Inglessa</b> · Tenerife</span></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
+</div>
+
+<!-- ════════ CAPAS DECORATIVAS ════════ -->
+<canvas id="letras" aria-hidden="true"></canvas>
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
+
+<header class="cabecera">
+  <a class="cabecera__logo" href="#"><b>Ingles</b>sa</a>
+  <nav class="cabecera__nav" aria-label="principal">
+    <a class="roll" href="#niveles"  data-text="Cursos"><span>Cursos</span></a>
+    <a class="roll" href="#examenes" data-text="Exámenes"><span>Exámenes</span></a>
+    <a class="roll" href="#sobre"    data-text="La academia"><span>La academia</span></a>
+    <a class="roll" href="#contacto" data-text="Matrícula"><span>Matrícula</span></a>
+  </nav>
+</header>
+
+<main>
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="hero__contenido">
+      <p class="hero__kicker" data-hero-reveal>Academia de inglés · Centro Examinador Oficial — La Laguna · Santa Cruz · Online</p>
+      <h1 class="hero__titulo" data-hero-reveal>
+        Tu certificado oficial de inglés <em>empieza aquí</em>.
+      </h1>
+      <div class="hero__pie">
+        <p class="hero__sub" data-hero-reveal>
+          Cursos A1—C1 con profesores examinadores y preparación para
+          Oxford, Cambridge, Linguaskill y Marlins. Presencial y online.
+        </p>
+        <p class="hero__badge" data-hero-reveal><b>+98%</b> de aprobados en 2026</p>
+        <p class="hero__scroll" data-hero-reveal>Sube de nivel</p>
+      </div>
+    </div>
+    <div class="hero__media" data-hero-media>
+      <img src="assets/visita.jpg" alt="Academia Inglessa en La Laguna, Tenerife" loading="eager" data-hero-parallax>
+    </div>
+  </section>
+
+  <!-- ════════ MARQUEE ════════ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Oxford Test of English <i>·</i></span><span>Cambridge <i>·</i></span>
+        <span>Linguaskill <i>·</i></span><span>Marlins <i>·</i></span>
+        <span>+98% aprobados <i>·</i></span><span>La Laguna <i>·</i></span><span>Santa Cruz <i>·</i></span>
+      </div>
+      <div class="marquee__group" aria-hidden="true">
+        <span>Oxford Test of English <i>·</i></span><span>Cambridge <i>·</i></span>
+        <span>Linguaskill <i>·</i></span><span>Marlins <i>·</i></span>
+        <span>+98% aprobados <i>·</i></span><span>La Laguna <i>·</i></span><span>Santa Cruz <i>·</i></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ MANIFIESTO ════════ -->
+  <section class="manifiesto" id="sobre">
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="assets/academia.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="assets/aula-examen-1.jpeg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="assets/direccion.jpg" alt="" loading="lazy"></figure>
+    <p data-manifiesto>
+      Más de 10 años y 5.000 alumnos certificados en nuestras aulas.
+      Centro Examinador líder en Canarias, con método propio, materiales
+      de profesores examinadores y preparación enfocada en resultados reales.
+    </p>
+  </section>
+
+  <!-- ════════ CIFRAS (reales de inglessa.com) ════════ -->
+  <section class="cifras">
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="98">0</span><i>%+</i></div>
+      <p>de aprobados en exámenes oficiales</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="5000">0</span><i>+</i></div>
+      <p>alumnos con certificado oficial</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="10">0</span><i>+</i></div>
+      <p>años de experiencia</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="2">0</span><i>sedes</i></div>
+      <p>La Laguna y Santa Cruz, más online</p>
+    </div>
+  </section>
+
+  <!-- ════════ BIG BEN — tu nivel se construye con el scroll ════════ -->
+  <section class="bigben" aria-label="De cero al C1, dibujado">
+    <div class="bigben__pin">
+      <canvas class="bigben__lienzo" aria-hidden="true"></canvas>
+      <div class="bigben__hud">
+        <div class="bigben__cab">
+          <h2 class="bigben__titulo">De cero al C1, <em>piedra a piedra</em></h2>
+          <div class="bigben__num"><span data-bigben-num>0</span><i>%</i></div>
+        </div>
+        <p class="bigben__fase" data-bigben-fase>A2 — Los cimientos</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ NIVELES — galería horizontal ════════ -->
+  <section class="niveles" id="niveles" aria-label="Cursos por nivel">
+    <div class="niveles__pin">
+      <div class="niveles__cab">
+        <h2>Un curso para cada <em>nivel</em></h2>
+        <p class="niveles__indice"><b data-niveles-num>01</b> / 06</p>
+      </div>
+      <div class="niveles__track">
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/academia.jpg" alt="Curso de inglés básico A1-A2" loading="lazy">
+            <span class="panel__nivel">A1·A2</span>
+          </div>
+          <div class="panel__meta"><h3>Inglés Básico</h3><span>Presencial · Online · Intensivo</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/visita.jpg" alt="Curso de inglés B1" loading="lazy">
+            <span class="panel__nivel">B1</span>
+          </div>
+          <div class="panel__meta"><h3>B1 — PET · Oxford</h3><span>Presencial · Online · Intensivo</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/aula-examen-1.jpeg" alt="Curso de inglés B2" loading="lazy">
+            <span class="panel__nivel">B2</span>
+          </div>
+          <div class="panel__meta"><h3>B2 — FCE · Oxford</h3><span>Presencial · Online · Intensivo</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/aula-examen-2.jpeg" alt="Curso de inglés C1" loading="lazy">
+            <span class="panel__nivel">C1</span>
+          </div>
+          <div class="panel__meta"><h3>C1 — CAE · Oxford Advanced</h3><span>Presencial · Online · Intensivo</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/direccion.jpg" alt="Intensivos de verano online" loading="lazy">
+            <span class="panel__nivel">⚡</span>
+          </div>
+          <div class="panel__meta"><h3>Intensivos de Verano</h3><span>Online · Junio — Agosto · 8 semanas</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/academia.jpg" alt="Curso de inglés para Policía Nacional" loading="lazy">
+            <span class="panel__nivel">PN</span>
+          </div>
+          <div class="panel__meta"><h3>Policía Nacional</h3><span>Certificado oficial · Oposiciones</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ EXÁMENES — centro examinador ════════ -->
+  <section class="examenes" id="examenes">
+    <div class="examenes__cab">
+      <h2 data-reveal data-split="lines">Examínate donde te <em>preparas</em>.</h2>
+      <p data-reveal>Centro Examinador Oficial</p>
+    </div>
+    <div class="examenes__grid">
+      <div class="examen" data-reveal>
+        <h3>Oxford Test of English</h3>
+        <strong>Centro examinador oficial</strong>
+        <p>A2, B1, B2 y C1 certificados por la Universidad de Oxford. Convocatorias en Tenerife y Fuerteventura, resultados en días.</p>
+      </div>
+      <div class="examen" data-reveal>
+        <h3>Cambridge &amp; Linguaskill</h3>
+        <strong>Centro preparador</strong>
+        <p>PET, FCE, CAE y Linguaskill con profesores examinadores. Estrategias de examen, simulacros y correcciones individuales.</p>
+      </div>
+      <div class="examen" data-reveal>
+        <h3>Marlins</h3>
+        <strong>Examinador oficial · Inglés marítimo</strong>
+        <p>Certificación Marlins para profesionales del mar, online o presencial en Tenerife. Test de ejemplo y convocatorias oficiales.</p>
+      </div>
+      <div class="examen" data-reveal>
+        <h3>Policía Nacional</h3>
+        <strong>Curso con certificado oficial</strong>
+        <p>Preparación específica de inglés para la oposición, con el certificado oficial que necesitas para sumar puntos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SELLOS reales ════════ -->
+  <section class="sellos">
+    <p data-reveal>Certificaciones y colaboraciones</p>
+    <div class="sellos__fila" data-reveal>
+      <img src="assets/logo-oxford-cambridge.png" alt="Oxford Test of English y Cambridge" loading="lazy">
+      <img src="assets/logo-cambridge.png" alt="Cambridge" loading="lazy">
+      <img src="assets/logo-camara.png" alt="Cámara de Comercio" loading="lazy">
+      <img src="assets/logo-fundae.png" alt="FUNDAE — formación bonificada" loading="lazy">
+      <img src="assets/logo-tribuna.png" alt="Tribuna de Canarias" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ════════ TELEVISIÓN CANARIA ════════ -->
+  <section class="tv">
+    <p class="tv__kicker" data-reveal>Somos noticia en Televisión Canaria</p>
+    <blockquote data-reveal data-split="lines">«Inglessa reafirma su liderazgo en la enseñanza del inglés en Canarias con un método <em>innovador e híbrido</em>.»</blockquote>
+    <figcaption data-reveal>Entrevista a Alex, coordinadora de Inglessa · Televisión Canaria</figcaption>
+  </section>
+
+  <!-- ════════ SENSACIONES — estela de imágenes ════════ -->
+  <section class="sensaciones" aria-label="La academia por dentro">
+    <h2 data-reveal data-split="lines">Así se vive <em>Inglessa</em> por dentro.</h2>
+    <p class="sensaciones__pista">Mueve el ratón</p>
+  </section>
+
+  <!-- ════════ ZOOM INMERSIVO ════════ -->
+  <section class="zoom" aria-label="El aula del examen">
+    <div class="zoom__pin">
+      <div class="zoom__marco"><img src="assets/aula-examen-2.jpeg" alt="Aula del examen en Inglessa" loading="lazy"></div>
+      <p class="zoom__texto" data-zoom-texto>El próximo certificado lleva <em>tu nombre</em>.</p>
+    </div>
+  </section>
+
+  <!-- ════════ TIRAS ════════ -->
+  <div class="tiras" aria-hidden="true">
+    <p class="tira" data-tira="-1">A2 <em>→</em> B1 <em>→</em> B2 <em>→</em> C1 <em>·</em> A2 <em>→</em> B1 <em>→</em> B2 <em>→</em> C1 <em>·</em> A2 <em>→</em> B1 <em>→</em> B2 <em>→</em> C1</p>
+    <p class="tira tira--llena" data-tira="1">Oxford <em>·</em> Cambridge <em>·</em> Linguaskill <em>·</em> Marlins <em>·</em> Oxford <em>·</em> Cambridge <em>·</em> Linguaskill <em>·</em> Marlins</p>
+  </div>
+
+  <!-- ════════ TESTIMONIOS (reseñas reales de su web) ════════ -->
+  <section class="testimonios">
+    <div class="testimonios__cab">
+      <h2 data-reveal data-split="lines">Alumnos que ya lo <em>han conseguido</em>.</h2>
+      <p class="google" data-reveal><i>★★★★★</i> Opiniones de alumnos reales</p>
+    </div>
+    <figure class="cita">
+      <blockquote>«Gracias a los profesores y la academia conseguí aprobar el First Certificate de Cambridge (B2). Encantada con los resultados, las clases y la experiencia. 100% recomendable.»</blockquote>
+      <figcaption>Gara — Santa Cruz</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>«Estupenda academia con profesionales altamente cualificados. Aprendes estrategias y pautas para el examen Cambridge en muy poco tiempo, como en ningún otro lado.»</blockquote>
+      <figcaption>Bárbara — La Laguna</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>«Las clases de mi profesora Ann han sido fundamentales para superar el examen. Su implicación en todo momento ha jugado un papel importantísimo. La recomiendo al cien por cien.»</blockquote>
+      <figcaption>Yanet — Tenerife Sur</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>«Alexandra ha sido una de las mejores profesoras de inglés que he tenido, incluyendo colegio e instituto. Clases muy prácticas en las que se aprende más de lo que esperaba.»</blockquote>
+      <figcaption>Alejandro B.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ════════ CONTACTO ════════ -->
+  <section class="contacto" id="contacto">
+    <p class="contacto__estado" data-reveal>Matrícula abierta · Presencial y online</p>
+    <h2 data-reveal data-split="lines">Empieza hoy. Certifícate <em>este año</em>.</h2>
+    <a class="magnetico" href="https://wa.me/34611021207" target="_blank" rel="noopener" data-magnetico>
+      <span class="magnetico__label">Información por WhatsApp</span>
+    </a>
+    <p class="contacto__secundario" data-reveal>o llama al <a href="tel:+34611021207">611 021 207</a> · <a href="mailto:info@inglessa.com">info@inglessa.com</a></p>
+    <div class="contacto__datos">
+      <div class="dato" data-reveal>
+        <h4>La Laguna</h4>
+        <p>Avenida Trinidad 4<br>38202 San Cristóbal de La Laguna<br><span style="color:var(--piedra);font-size:.82rem">A 50 m de la parada del tranvía</span></p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Santa Cruz</h4>
+        <p>Calle Padre Anchieta 42<br>(esq. Av. La Salle)<br>38005 Santa Cruz de Tenerife</p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Contacto</h4>
+        <p><a href="tel:+34611021207">611 021 207</a><br>
+        <a href="mailto:info@inglessa.com">info@inglessa.com</a></p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Horario</h4>
+        <div class="horario">
+          <div data-dias="1,2,3,4,5"><span>Lun — Vie</span><span>10:30—13:00 · 16:00—20:30</span></div>
+          <div data-dias="6,0"><span>Sáb — Dom</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>© 2018—2026 Inglessa · Tenerife</span>
+    <nav>
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </nav>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
+  </footer>
+</main>
+
+<!-- ════════ DEPENDENCIAS (PLAYBOOK §B) ════════ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+
+<script>
+'use strict';
+
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
+
+const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+const DPR          = Math.min(devicePixelRatio || 1, 2);
+
+/* ── 1) LENIS ↔ SCROLLTRIGGER ── */
+let lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  window.lenis = lenis;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   2) LETRAS FLOTANTES — palabras y niveles ingleses derivan por el fondo
+   y HUYEN del cursor con física de muelle. Canvas 2D ligero.
+   ════════════════════════════════════════════════════════════════════════ */
+(function letras(){
+  const canvas = document.getElementById('letras');
+  const ctx = canvas.getContext('2d');
+  const BG_DPR = Math.min(DPR, 1.5);
+  let W = 0, H = 0;
+
+  const raton = { x: -9999, y: -9999 };
+  if (FINE_POINTER) addEventListener('pointermove', (e) => { raton.x = e.clientX; raton.y = e.clientY; }, { passive: true });
+
+  const PALABRAS = ['A2','B1','B2','C1','hello','speak','pass','Oxford','Cambridge','fluent','exam','yes!','listen','write','&'];
+  let motas = [];
+  let semilla = 11;
+  const rnd = () => { semilla = (semilla * 16807) % 2147483647; return semilla / 2147483647; };
+
+  function sembrar(){
+    motas = [];
+    const n = W < 821 ? 16 : 30;
+    for (let i = 0; i < n; i++){
+      const nivel = rnd();
+      motas.push({
+        hx: rnd() * W, hy: rnd() * H,              // "hogar" al que vuelve
+        x: 0, y: 0, vx: 0, vy: 0,                  // desplazamiento respecto al hogar
+        t: PALABRAS[Math.floor(rnd() * PALABRAS.length)],
+        s: 14 + nivel * 30,                        // tamaño
+        o: 0.05 + nivel * 0.09,                    // opacidad (profundidad)
+        deriva: 0.12 + rnd() * 0.3,
+        fase: rnd() * Math.PI * 2,
+        serif: rnd() > 0.4,
+      });
+    }
+  }
+
+  function redimensionar(){
+    W = innerWidth; H = innerHeight;
+    canvas.width = W * BG_DPR; canvas.height = H * BG_DPR;
+    ctx.setTransform(BG_DPR, 0, 0, BG_DPR, 0, 0);
+    sembrar();
+    if (REDUCE) pintar(0, 0);
+  }
+
+  function pintar(t, dt){
+    ctx.clearRect(0, 0, W, H);
+    for (const m of motas){
+      /* deriva perpetua del hogar */
+      const dx = Math.sin(t * 0.0002 * m.deriva + m.fase) * 30;
+      const dy = Math.cos(t * 0.00016 * m.deriva + m.fase * 1.7) * 24;
+      const bx = m.hx + dx, by = m.hy + dy;
+
+      if (dt > 0){
+        /* el cursor las empuja; el muelle las devuelve a su deriva */
+        const ddx = (bx + m.x) - raton.x, ddy = (by + m.y) - raton.y;
+        const d = Math.hypot(ddx, ddy);
+        const R = 180;
+        if (FINE_POINTER && d < R && d > 0.1){
+          const f = (1 - d / R) * 240 * dt;
+          m.vx += (ddx / d) * f; m.vy += (ddy / d) * f;
+        }
+        m.vx += (-m.x * 2.2 - m.vx * 2.4) * dt;
+        m.vy += (-m.y * 2.2 - m.vy * 2.4) * dt;
+        m.x += m.vx; m.y += m.vy;
+      }
+
+      ctx.font = `${m.serif ? 'italic 400' : '300'} ${m.s}px ${m.serif ? 'Fraunces, Georgia, serif' : 'Inter, sans-serif'}`;
+      ctx.fillStyle = `rgba(43, 94, 163, ${m.o})`;
+      ctx.fillText(m.t, bx + m.x, by + m.y);
+    }
+  }
+
+  redimensionar();
+  addEventListener('resize', redimensionar);
+
+  if (!REDUCE){
+    let ultimo = 0, rafId = null;
+    const loop = (ms) => {
+      const dt = Math.min((ms - ultimo) * 0.001, 1/30);
+      ultimo = ms;
+      pintar(ms, dt);
+      rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { cancelAnimationFrame(rafId); rafId = null; }
+      else if (!rafId) { ultimo = performance.now(); rafId = requestAnimationFrame(loop); }
+    });
+  }
+})();
+
+/* ── 3) ESTELA FLUIDA — receta aprobada, paleta azul Inglessa ── */
+if (FINE_POINTER && !REDUCE) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then((mod) => {
+    const cont = document.getElementById('fluid');
+    const sim = new mod.default(cont);
+    Object.assign(cont.style, {
+      position: 'fixed', inset: '0', width: '100%', height: '100%',
+      zIndex: '9000', pointerEvents: 'none',
+    });
+    dispatchEvent(new Event('resize'));
+    sim.setConfig({
+      simResolution: 128, dyeResolution: 1024,
+      densityDissipation: 2.2, velocityDissipation: 1.4,
+      pressureIterations: 10, curl: 28,
+      splatRadius: 0.1, splatForce: 5000,
+      hover: false, colorful: false,
+      colorPalette: ['#2B5EA3', '#0070af', '#7da7d9'],
+      transparent: true,
+      bloom: false,
+      sunrays: false,
+    });
+    sim.start();
+
+    let lastX = null, lastY = null;
+    addEventListener('pointermove', (e) => {
+      if (lastX !== null) {
+        const dx = (e.clientX - lastX) * 2.5, dy = (e.clientY - lastY) * 2.5;
+        if (Math.abs(dx) + Math.abs(dy) > 4) sim.splatAtLocation(e.clientX, e.clientY, dx, dy);
+      }
+      lastX = e.clientX; lastY = e.clientY;
+    }, { passive: true });
+
+    window.__fluidBurst = () => {
+      const W = innerWidth, H = innerHeight;
+      for (let i = 0; i <= 5; i++) {
+        const t = i / 5;
+        setTimeout(() => {
+          sim.splatAtLocation(W * (0.15 + t * 0.7), H * (0.6 - Math.sin(t * Math.PI) * 0.22),
+                              180 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
+        }, i * 70);
+      }
+    };
+    document.addEventListener('visibilitychange', () => sim.pause());
+  }).catch(() => {});
+}
+
+/* ── Cursor dot + ring ── */
+if (FINE_POINTER && !REDUCE) (function cursor(){
+  const dot  = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  const dx = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
+  const dy = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
+  const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+  let visto = false;
+  addEventListener('pointermove', (e) => {
+    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
+    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
+  }, { passive: true });
+  document.querySelectorAll('a, button').forEach((el) => {
+    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }));
+    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }));
+  });
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   4) BIG BEN — la torre se construye nivel a nivel con el scroll
+   ════════════════════════════════════════════════════════════════════════ */
+(function bigbenCanvas(){
+  const seccion = document.querySelector('.bigben');
+  const pinEl   = document.querySelector('.bigben__pin');
+  const canvas  = document.querySelector('.bigben__lienzo');
+  const ctx     = canvas.getContext('2d');
+  const elNum   = document.querySelector('[data-bigben-num]');
+  const elFase  = document.querySelector('[data-bigben-fase]');
+
+  const NAVY = 'rgba(0,27,84,.8)', ROJO = '#E40E49', TENUE = 'rgba(0,27,84,.34)';
+
+  const trazos = [
+    /* A2 — los cimientos (0 → 0.2): suelo, escalinata, base */
+    { t:[0.00,0.08], w:2.4, c:NAVY,  p:[[140,560],[860,560]] },
+    { t:[0.05,0.13], w:1.6, c:TENUE, p:[[330,560],[330,540],[670,540],[670,560]] },
+    { t:[0.09,0.20], w:2.0, c:NAVY,  p:[[370,540],[370,470],[630,470],[630,540]] },
+    { t:[0.13,0.20], w:1.3, c:TENUE, p:[[370,505],[630,505]] },
+    /* B1 — la torre (0.2 → 0.5): fuste, bandas, ventanas */
+    { t:[0.20,0.33], w:2.2, c:NAVY,  p:[[412,470],[412,250]] },
+    { t:[0.23,0.36], w:2.2, c:NAVY,  p:[[588,470],[588,250]] },
+    { t:[0.30,0.36], w:1.3, c:TENUE, p:[[412,400],[588,400]] },
+    { t:[0.33,0.39], w:1.3, c:TENUE, p:[[412,330],[588,330]] },
+    { t:[0.36,0.44], w:1.5, c:NAVY,  p:[[455,440],[455,415],[480,415],[480,440],[455,440]] },
+    { t:[0.39,0.47], w:1.5, c:NAVY,  p:[[520,440],[520,415],[545,415],[545,440],[520,440]] },
+    { t:[0.42,0.50], w:1.5, c:NAVY,  p:[[455,370],[455,345],[480,345],[480,370],[455,370]] },
+    { t:[0.44,0.50], w:1.5, c:NAVY,  p:[[520,370],[520,345],[545,345],[545,370],[520,370]] },
+    /* B2 — el reloj (0.5 → 0.78): cuerpo del reloj, esfera, agujas */
+    { t:[0.50,0.58], w:2.2, c:NAVY,  p:[[400,250],[400,160],[600,160],[600,250],[400,250]] },
+    { t:[0.56,0.68], w:2.0, c:ROJO,  circulo:[500,205,38] },
+    { t:[0.66,0.71], w:1.8, c:ROJO,  p:[[500,205],[500,180]] },
+    { t:[0.69,0.74], w:1.8, c:ROJO,  p:[[500,205],[518,212]] },
+    { t:[0.72,0.78], w:1.3, c:TENUE, p:[[400,160],[420,140],[580,140],[600,160]] },
+    /* C1 — la cima (0.78 → 1): aguja, bandera, cota, firma */
+    { t:[0.78,0.86], w:2.0, c:NAVY,  p:[[420,140],[500,60],[580,140]] },
+    { t:[0.84,0.89], w:1.8, c:NAVY,  p:[[500,60],[500,22]] },
+    { t:[0.88,0.94], w:1.8, c:ROJO,  p:[[500,22],[548,32],[500,44]] },
+    { t:[0.91,0.97], w:1.2, c:ROJO,  p:[[330,590],[670,590]], cota:'+98% de aprobados — Inglessa, Tenerife' },
+    { t:[0.95,1.00], w:1.5, c:ROJO,  p:[[80,600],[126,586],[168,602],[206,590]] },
+  ];
+  const fases = [
+    [0.00, 'A2 — Los cimientos'],
+    [0.20, 'B1 — La torre'],
+    [0.50, 'B2 — El reloj'],
+    [0.78, 'C1 — La cima'],
+  ];
+
+  function longitudes(p){
+    const acc = [0];
+    for (let i = 1; i < p.length; i++)
+      acc.push(acc[i-1] + Math.hypot(p[i][0]-p[i-1][0], p[i][1]-p[i-1][1]));
+    return acc;
+  }
+  trazos.forEach(tr => { if (tr.p) tr.len = longitudes(tr.p); });
+
+  let escala = 1, offX = 0, offY = 0;
+  function redimensionar(){
+    const w = pinEl.clientWidth, h = pinEl.clientHeight;
+    canvas.width = w * DPR; canvas.height = h * DPR;
+    escala = Math.min(w / 1000, h / 640) * 0.86;
+    offX = (w - 1000 * escala) / 2;
+    offY = (h - 640 * escala) / 2 + h * 0.02;
+    pintar(progreso.valor, true);
+  }
+
+  function polilineaParcial(p, len, f){
+    const objetivo = len[len.length-1] * f;
+    ctx.beginPath();
+    ctx.moveTo(p[0][0], p[0][1]);
+    for (let i = 1; i < p.length; i++){
+      if (len[i] <= objetivo) { ctx.lineTo(p[i][0], p[i][1]); continue; }
+      const resto = (objetivo - len[i-1]) / (len[i] - len[i-1]);
+      if (resto > 0)
+        ctx.lineTo(p[i-1][0] + (p[i][0]-p[i-1][0]) * resto,
+                   p[i-1][1] + (p[i][1]-p[i-1][1]) * resto);
+      break;
+    }
+    ctx.stroke();
+  }
+
+  let ultimoPintado = -1;
+  function pintar(t, forzar){
+    const tick = Math.round(t * 800);
+    if (!forzar && tick === ultimoPintado) return;
+    ultimoPintado = tick;
+
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.clearRect(0, 0, canvas.width / DPR, canvas.height / DPR);
+    ctx.translate(offX, offY);
+    ctx.scale(escala, escala);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+    /* retícula de plano, sutil */
+    const aGrid = Math.min(t * 4, 1) * 0.045;
+    if (aGrid > 0.004){
+      ctx.strokeStyle = `rgba(0,27,84,${aGrid.toFixed(3)})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let x = 0; x <= 1000; x += 100){ ctx.moveTo(x, 0); ctx.lineTo(x, 640); }
+      for (let y = 0; y <= 640; y += 100){ ctx.moveTo(0, y); ctx.lineTo(1000, y); }
+      ctx.stroke();
+    }
+
+    for (const tr of trazos){
+      const f = gsap.utils.clamp(0, 1, (t - tr.t[0]) / (tr.t[1] - tr.t[0]));
+      if (f <= 0) continue;
+      ctx.strokeStyle = tr.c;
+      ctx.lineWidth = tr.w;
+      if (tr.circulo){
+        const [cx, cy, r] = tr.circulo;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, -Math.PI/2, -Math.PI/2 + Math.PI*2*f);
+        ctx.stroke();
+      } else {
+        polilineaParcial(tr.p, tr.len, f);
+        if (tr.cota && f >= 1){
+          ctx.fillStyle = ROJO;
+          ctx.font = '400 21px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(tr.cota, 500, 582);
+        }
+      }
+    }
+
+    elNum.textContent = Math.round(t * 100);
+    let fase = fases[0][1];
+    for (const [umbral, nombre] of fases) if (t >= umbral) fase = nombre;
+    if (elFase.textContent !== fase) elFase.textContent = fase;
+  }
+
+  const progreso = { valor: REDUCE ? 1 : 0 };
+  if (!REDUCE){
+    gsap.to(progreso, {
+      valor: 1,
+      ease: 'none',
+      onUpdate: () => pintar(progreso.valor),
+      scrollTrigger: {
+        trigger: seccion,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: pinEl,
+        pinSpacing: false,
+        scrub: 1,
+        anticipatePin: 1,
+      },
+    });
+  }
+  addEventListener('resize', redimensionar);
+  redimensionar();
+})();
+
+/* ── Horario: fila de HOY destacada ── */
+(function highlightToday(){
+  const hoy = new Date().getDay();
+  document.querySelectorAll('.horario [data-dias]').forEach((fila) => {
+    if (fila.dataset.dias.split(',').map(Number).includes(hoy)) fila.classList.add('horario-hoy');
+  });
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   5) COREOGRAFÍA DE SCROLL — tras document.fonts.ready
+   ════════════════════════════════════════════════════════════════════════ */
+document.fonts.ready.then(() => {
+  const mm = gsap.matchMedia();
+
+  mm.add({
+    motionOK:  '(prefers-reduced-motion: no-preference)',
+    reduce:    '(prefers-reduced-motion: reduce)',
+    isDesktop: '(min-width: 821px)',
+  }, (ctx) => {
+    if (ctx.conditions.reduce) {
+      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
+      document.querySelectorAll('[data-cuenta]').forEach((el) => {
+        el.textContent = (+el.dataset.target).toLocaleString('es-ES');
+      });
+      document.querySelector('.preloader').style.display = 'none';
+      return;
+    }
+
+    /* 5.1 Reveal del hero */
+    function revealHero(){
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      tl.set('[data-hero-reveal]', { visibility: 'visible' });
+      tl.fromTo('[data-hero-media]', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
+      tl.fromTo('[data-hero-media] img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+      const splitTitulo = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
+      tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.4);
+      const splitSub = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
+      tl.from(splitSub.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.65);
+      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.55);
+      tl.from('.hero__badge',  { autoAlpha: 0, scale: .8, duration: 0.7, ease: 'back.out(1.6)' }, 0.85);
+      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 0.95);
+      tl.from('.cabecera', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
+      return tl;
+    }
+
+    /* 5.2 Preloader */
+    const num = document.querySelector('.preloader__num');
+    const progreso = { v: 0 };
+    const cargaMinima = new Promise(res => {
+      gsap.to(progreso, {
+        v: 100, duration: 1.9, ease: 'steps(14)',
+        onUpdate: () => { num.firstChild.textContent = Math.round(progreso.v); },
+        onComplete: res,
+      });
+    });
+    const cargaReal = new Promise(res => {
+      if (document.readyState === 'complete') res();
+      else addEventListener('load', res, { once: true });
+    });
+    Promise.all([cargaMinima, cargaReal]).then(() => {
+      gsap.timeline()
+        .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
+        .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
+        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
+        .set('.preloader', { display: 'none' })
+        .add(revealHero(), '-=0.75')
+        .call(() => lenis && lenis.start(), null, '-=1.2')
+        .call(() => window.__fluidBurst && window.__fluidBurst(), null, '-=0.9');
+    });
+
+    /* 5.3 Salida del hero + progreso */
+    gsap.to('[data-hero-parallax]', {
+      yPercent: 14, scale: 1.12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+    gsap.to('.hero__contenido', {
+      yPercent: -12, autoAlpha: 0.3, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
+    });
+    gsap.to('.progreso span', {
+      scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
+    });
+
+    /* 5.4 Manifiesto + flotantes */
+    SplitText.create('[data-manifiesto]', {
+      type: 'words',
+      onSplit: (self) => gsap.from(self.words, {
+        opacity: 0.13, stagger: 0.05, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
+      }),
+    });
+    gsap.utils.toArray('.flotante').forEach((el) => {
+      const sp = +el.dataset.speed || 1;
+      gsap.fromTo(el, { yPercent: 16 * sp }, {
+        yPercent: -16 * sp, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* 5.5 Cifras */
+    gsap.utils.toArray('.cifra').forEach((el, i) => {
+      gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
+        y: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
+      });
+    });
+    document.querySelectorAll('[data-cuenta]').forEach((el) => {
+      const objetivo = +el.dataset.target;
+      const c = { v: 0 };
+      gsap.to(c, {
+        v: objetivo, duration: 2, ease: 'power2.out', snap: { v: 1 },
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: () => { el.textContent = Math.round(c.v).toLocaleString('es-ES'); },
+      });
+    });
+
+    /* 5.6 Marquee vivo */
+    {
+      const trackM = document.querySelector('.marquee__track');
+      const marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 30, repeat: -1 });
+      marq.totalTime(30 * 1000);
+      let objetivoTS = 1;
+      ScrollTrigger.create({
+        onUpdate: (self) => {
+          const v = self.getVelocity();
+          objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
+        },
+      });
+      gsap.ticker.add(() => {
+        marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
+        objetivoTS += (1 - objetivoTS) * 0.04;
+      });
+    }
+
+    /* 5.7 Galería de niveles + skew + parallax interno */
+    let tweenHorizontal = null;
+    if (ctx.conditions.isDesktop) {
+      const track = document.querySelector('.niveles__track');
+      const nivNum = document.querySelector('[data-niveles-num]');
+      const total = document.querySelectorAll('.panel').length;
+      const distancia = () => track.scrollWidth - innerWidth + (innerWidth * 0.06);
+      const skewTo = gsap.quickTo(track, 'skewX', { duration: 0.5, ease: 'power3' });
+      const clampSkew = gsap.utils.clamp(-4, 4);
+
+      tweenHorizontal = gsap.to(track, {
+        x: () => -distancia(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.niveles',
+          start: 'top top',
+          end: () => '+=' + distancia(),
+          pin: '.niveles__pin',
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (st) => {
+            const i = Math.min(total, Math.max(1, Math.round(st.progress * (total - 1)) + 1));
+            nivNum.textContent = String(i).padStart(2, '0');
+            skewTo(clampSkew(st.getVelocity() / -450));
+          },
+        },
+      });
+      ScrollTrigger.addEventListener('scrollEnd', () => skewTo(0));
+
+      gsap.utils.toArray('.panel__marco img').forEach((img) => {
+        gsap.fromTo(img, { xPercent: -7, scale: 1.16 }, {
+          xPercent: 7, scale: 1.16, ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.panel'),
+            containerAnimation: tweenHorizontal,
+            start: 'left right', end: 'right left', scrub: true,
+          },
+        });
+      });
+    }
+
+    /* 5.8 Reveals de imagen */
+    gsap.utils.toArray('[data-img-reveal]').forEach((marco) => {
+      const visual = marco.querySelector('img');
+      const enGaleria = ctx.conditions.isDesktop && tweenHorizontal;
+      const st = enGaleria
+        ? { trigger: marco, containerAnimation: tweenHorizontal, start: 'left 95%', once: true }
+        : { trigger: marco, start: 'top 88%', once: true };
+      const tl = gsap.timeline({ scrollTrigger: st, defaults: { duration: 1.2, ease: 'power4.out' } })
+        .fromTo(marco, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)' });
+      if (!enGaleria) tl.fromTo(visual, { scale: 1.18 }, { scale: 1 }, 0);
+    });
+
+    /* 5.9 Estela de imágenes */
+    if (FINE_POINTER) {
+      const zona = document.querySelector('.sensaciones');
+      const POOL = ['assets/academia.jpg','assets/visita.jpg','assets/aula-examen-1.jpeg',
+                    'assets/aula-examen-2.jpeg','assets/direccion.jpg'];
+      POOL.forEach(src => { const im = new Image(); im.src = src; });
+      let idx = 0, acumulado = 0, px = null, py = null, vivas = 0;
+      zona.addEventListener('pointermove', (e) => {
+        if (px !== null) acumulado += Math.hypot(e.clientX - px, e.clientY - py);
+        px = e.clientX; py = e.clientY;
+        if (acumulado < 110 || vivas > 12) return;
+        acumulado = 0;
+        const r = zona.getBoundingClientRect();
+        const fig = document.createElement('figure');
+        fig.className = 'estela-img';
+        fig.innerHTML = `<img src="${POOL[idx++ % POOL.length]}" alt="">`;
+        zona.appendChild(fig);
+        vivas++;
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        gsap.set(fig, { left: x, top: y, xPercent: -50, yPercent: -50, rotation: gsap.utils.random(-9, 9) });
+        gsap.timeline({ onComplete: () => { fig.remove(); vivas--; } })
+          .fromTo(fig, { scale: 0.55, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.35, ease: 'power3.out' })
+          .to(fig, { yPercent: -85, scale: 1.04, autoAlpha: 0, duration: 0.9, ease: 'power2.in' }, 0.45);
+      }, { passive: true });
+    }
+
+    /* 5.10 ZOOM (navy) + fluido en modo screen mientras dura */
+    {
+      const fluidEl = document.getElementById('fluid');
+      const zsplit = SplitText.create('[data-zoom-texto]', { type: 'words' });
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.zoom',
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: '.zoom__pin',
+          pinSpacing: false,
+          scrub: 1,
+          anticipatePin: 1,
+          onToggle: (self) => fluidEl.classList.toggle('fluid--screen', self.isActive),
+        },
+      })
+      .fromTo('.zoom__marco', { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0)
+      .fromTo('.zoom__marco img', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 0.85 }, 0)
+      .fromTo(zsplit.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
+    }
+
+    /* 5.11 Tiras */
+    document.querySelectorAll('[data-tira]').forEach((el) => {
+      const dir = +el.dataset.tira;
+      gsap.fromTo(el, { xPercent: dir * 6 }, {
+        xPercent: dir * -6, ease: 'none',
+        scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* 5.12 Citas */
+    gsap.utils.toArray('.cita').forEach((el, i) => {
+      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, {
+        x: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 60%', scrub: 1 },
+      });
+    });
+
+    /* 5.13 Tarjetas de examen: caen en 3D */
+    gsap.set('.examenes__grid', { perspective: 1200 });
+    gsap.utils.toArray('.examen').forEach((el, i) => {
+      el.removeAttribute('data-reveal');
+      gsap.fromTo(el, { rotationX: -35, autoAlpha: 0, y: 50, transformOrigin: 'top center' }, {
+        rotationX: 0, autoAlpha: 1, y: 0, duration: 1.1, ease: 'expo.out', delay: (i % 2) * 0.1,
+        scrollTrigger: { trigger: el, start: 'top 86%', once: true },
+      });
+    });
+
+    /* 5.14 Reveals genéricos */
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (el.dataset.split === 'lines') {
+        SplitText.create(el, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit: (self) => {
+            gsap.set(el, { visibility: 'visible' });
+            return gsap.from(self.lines, {
+              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
+              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
+            });
+          },
+        });
+      } else {
+        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
+          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        });
+      }
+    });
+
+    /* 5.15 Botón magnético */
+    if (FINE_POINTER) {
+      document.querySelectorAll('[data-magnetico]').forEach((el) => {
+        const label = el.querySelector('.magnetico__label');
+        const xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
+        const yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
+        const lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
+        const ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          const dx = e.clientX - (r.left + r.width / 2);
+          const dy = e.clientY - (r.top + r.height / 2);
+          xTo(dx * 0.35); yTo(dy * 0.35);
+          lx(dx * 0.5);  ly(dy * 0.5);
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
+        });
+      });
+    }
+
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
