@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciclosport Gil | Tienda y taller de bicicletas en Ourense</title>
+  <meta name="description" content="Ciclosport Gil, tu tienda y taller de bicicletas en Ourense. Más de 20 años dedicados al ciclismo: venta, reparación, alquiler y equipamiento. 4,9 sobre 5 en Google con 287 reseñas."
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f0f0ec;
+      --accent: #8DC63F;
+      --accent-dark: #6FA830;
+      --accent-glow: rgba(141,198,63,0.15);
+      --grey-900: #111111;
+      --grey-800: #1a1a1a;
+      --grey-700: #252525;
+      --grey-600: #333333;
+      --grey-400: #888888;
+      --grey-300: #aaaaaa;
+      --font-display: 'Instrument Serif', serif;
+      --font-body: 'Space Grotesk', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ──────── LOADER ──────── */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-text {
+      font-family: var(--font-body);
+      font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--grey-400);
+    }
+    .loader-bar {
+      width: 180px; height: 2px; background: var(--grey-700);
+      border-radius: 2px; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; display: block; height: 100%;
+      background: var(--accent);
+      animation: loadProgress 1.4s var(--ease-out) 0.2s forwards;
+      transform: translateX(-100%);
+    }
+    @keyframes loadProgress { to { transform: translateX(0); } }
+
+    /* ──────── NAVBAR ──────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 56px;
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(10,10,10,0.88);
+      padding: 16px 56px;
+      border-bottom: 1px solid rgba(141,198,63,0.1);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--white);
+    }
+    .nav-logo img {
+      height: 36px; width: auto;
+      filter: brightness(1.1);
+    }
+    .nav-logo-text {
+      font-family: var(--font-body);
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .nav-logo-text span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(240,240,236,0.7);
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 400; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: var(--black) !important;
+      padding: 10px 28px !important;
+      font-weight: 600 !important;
+      transition: background 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent-dark) !important; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px; height: 2px; background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.1rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ──────── HERO ──────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .hero-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 140px 56px 100px 56px;
+      position: relative; z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 32px;
+      font-weight: 500;
+    }
+    .hero-badge::before {
+      content: ''; width: 32px; height: 2px; background: var(--accent);
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 5.5vw, 5.8rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(240,240,236,0.75);
+      max-width: 460px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+    }
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 6s var(--ease-out);
+    }
+    .hero-visual img.loaded { transform: scale(1); }
+    .hero-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--black) 0%, transparent 30%),
+                  linear-gradient(to top, var(--black) 0%, transparent 20%);
+    }
+    .hero-rating {
+      position: absolute; bottom: 56px; right: 56px; z-index: 3;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(141,198,63,0.2);
+      padding: 24px 28px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .hero-rating-stars { display: flex; gap: 4px; }
+    .hero-rating-stars .star-icon {
+      width: 14px; height: 14px; fill: var(--accent);
+    }
+    .hero-rating-text {
+      font-size: 0.72rem; color: var(--grey-300);
+      letter-spacing: 0.08em;
+    }
+    .hero-rating-text strong { color: var(--white); font-weight: 500; }
+
+    /* ──────── BUTTONS ──────── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent-dark);
+      transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      text-decoration: none; padding: 16px 32px;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; border: 1px solid rgba(141,198,63,0.4);
+      color: var(--accent); transition: all 0.3s;
+    }
+    .btn-outline:hover {
+      background: rgba(141,198,63,0.08);
+      border-color: var(--accent);
+    }
+    .icon-arrow { width: 14px; height: 14px; }
+
+    /* ──────── MARQUEE ──────── */
+    .marquee-section {
+      border-top: 1px solid rgba(141,198,63,0.12);
+      border-bottom: 1px solid rgba(141,198,63,0.12);
+      overflow: hidden; padding: 18px 0;
+      background: var(--grey-900);
+    }
+    .marquee-track {
+      display: flex; width: max-content; align-items: center;
+      animation: marquee 20s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 36px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-display);
+      font-size: 1.05rem; font-style: italic;
+      color: rgba(240,240,236,0.6);
+      letter-spacing: 0.04em;
+    }
+    .marquee-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* ──────── STATS ──────── */
+    .stats-section {
+      background: var(--grey-900);
+      padding: 80px 56px;
+      border-bottom: 1px solid rgba(141,198,63,0.08);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; max-width: 1300px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 48px 40px;
+      border: 1px solid rgba(141,198,63,0.08);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s;
+    }
+    .stat-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--accent);
+      transform: scaleX(0); transition: transform 0.5s var(--ease-out);
+      transform-origin: left;
+    }
+    .stat-card:hover::after { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(141,198,63,0.25); }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 400; line-height: 1;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .stat-suffix { color: var(--accent); }
+    .stat-label {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--grey-400); font-weight: 400;
+    }
+
+    /* ──────── SECTIONS COMMON ──────── */
+    section { padding: 120px 56px; }
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 14px;
+      font-weight: 500;
+    }
+    .section-label::before { content: ''; width: 28px; height: 2px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* ──────── PHOTO STRIP (horizontal scroll) ──────── */
+    .photo-strip {
+      background: var(--black);
+      padding: 120px 0 120px 56px;
+      overflow: hidden;
+    }
+    .photo-strip-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 56px; padding-right: 56px;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .photo-strip-scroll {
+      display: flex; gap: 3px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 20px;
+    }
+    .photo-strip-scroll::-webkit-scrollbar { display: none; }
+    .photo-card {
+      flex: 0 0 auto;
+      width: 420px;
+      aspect-ratio: 4/3;
+      position: relative; overflow: hidden;
+      scroll-snap-align: start;
+    }
+    .photo-card:first-child {
+      width: 640px;
+      aspect-ratio: 16/9;
+    }
+    .photo-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .photo-card:hover img { transform: scale(1.06); }
+    .photo-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%);
+      opacity: 0.6; transition: opacity 0.5s;
+    }
+    .photo-card:hover .photo-card-overlay { opacity: 0.85; }
+    .photo-card-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px;
+      transform: translateY(10px);
+      transition: transform 0.5s var(--ease-out);
+    }
+    .photo-card:hover .photo-card-info { transform: translateY(0); }
+    .photo-card-cat {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px; font-weight: 500;
+    }
+    .photo-card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 400; line-height: 1.2;
+    }
+
+    /* ──────── ABOUT ──────── */
+    .about-section {
+      background: var(--grey-900);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 650px;
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-year-badge {
+      position: absolute; top: 28px; left: 28px;
+      background: var(--black); border: 1px solid rgba(141,198,63,0.3);
+      padding: 20px 24px;
+    }
+    .about-year-num {
+      font-family: var(--font-display);
+      font-size: 2.6rem; color: var(--accent); line-height: 1;
+    }
+    .about-year-text {
+      font-size: 0.65rem; letter-spacing: 0.1em;
+      color: var(--grey-300); margin-top: 4px;
+    }
+    .about-content {
+      padding: 80px 72px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-body {
+      font-size: 1.02rem; line-height: 1.8;
+      color: rgba(240,240,236,0.75); margin: 28px 0 36px;
+      font-weight: 300;
+    }
+    .about-body strong { color: var(--white); font-weight: 500; }
+    .about-divider { width: 48px; height: 2px; background: var(--accent); margin: 28px 0; }
+    .about-values { display: flex; flex-direction: column; gap: 16px; }
+    .about-value {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px; border: 1px solid rgba(141,198,63,0.1);
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .about-value:hover { border-color: rgba(141,198,63,0.3); background: rgba(141,198,63,0.03); }
+    .value-num {
+      font-family: var(--font-display); font-size: 1.3rem;
+      color: var(--accent); opacity: 0.6; flex-shrink: 0; line-height: 1.2;
+    }
+    .value-text h3 {
+      font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; margin-bottom: 5px;
+    }
+    .value-text p {
+      font-size: 0.88rem; color: rgba(240,240,236,0.65); font-weight: 300; line-height: 1.6;
+    }
+
+    /* ──────── SERVICES ──────── */
+    .services-section { background: var(--black); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px; max-width: 1300px; margin: 56px auto 0;
+    }
+    .service-card {
+      padding: 52px 40px;
+      border: 1px solid rgba(141,198,63,0.1);
+      position: relative; overflow: hidden;
+      transition: background 0.5s, border-color 0.5s;
+    }
+    .service-card:hover { background: var(--grey-800); border-color: rgba(141,198,63,0.3); }
+    .service-icon {
+      width: 48px; height: 48px; margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(141,198,63,0.3);
+      color: var(--accent);
+    }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 400; margin-bottom: 10px; line-height: 1.2;
+    }
+    .service-card p {
+      font-size: 0.9rem; color: rgba(240,240,236,0.65); line-height: 1.7; font-weight: 300;
+    }
+    .service-number {
+      position: absolute; top: 24px; right: 28px;
+      font-family: var(--font-display); font-size: 4.5rem;
+      font-weight: 400; color: rgba(141,198,63,0.06);
+      line-height: 1; transition: color 0.5s;
+    }
+    .service-card:hover .service-number { color: rgba(141,198,63,0.14); }
+
+    /* ──────── TESTIMONIALS ──────── */
+    .testimonials-section {
+      background: var(--grey-900);
+      position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '\201C'; position: absolute; top: -40px; left: 30px;
+      font-family: var(--font-display); font-size: 28rem;
+      color: rgba(141,198,63,0.04); line-height: 1; pointer-events: none;
+    }
+    .testimonials-inner { max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 60px;
+    }
+    .testimonial-card {
+      padding: 48px 36px;
+      background: rgba(10,10,10,0.5);
+      border: 1px solid rgba(141,198,63,0.1);
+      transition: border-color 0.4s;
+      display: flex; flex-direction: column;
+    }
+    .testimonial-card:hover { border-color: rgba(141,198,63,0.3); }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 24px; }
+    .star {
+      width: 12px; height: 12px; background: var(--accent);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-display);
+      font-size: 1.12rem; font-style: italic; font-weight: 400;
+      line-height: 1.7; color: rgba(240,240,236,0.88);
+      margin-bottom: 32px; flex: 1;
+    }
+    .testimonial-divider { width: 28px; height: 1px; background: var(--accent); margin-bottom: 24px; opacity: 0.5; }
+    .testimonial-author strong {
+      display: block; font-family: var(--font-body);
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; margin-bottom: 3px; color: var(--white);
+    }
+    .testimonial-author span {
+      font-family: var(--font-body);
+      font-size: 0.72rem; color: var(--grey-400); letter-spacing: 0.05em;
+    }
+
+    /* ──────── HORARIO ──────── */
+    .horario-section {
+      background: var(--black);
+      padding: 100px 56px;
+    }
+    .horario-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: start;
+    }
+    .horario-table {
+      width: 100%; border-collapse: collapse; margin-top: 32px;
+    }
+    .horario-table tr {
+      border-bottom: 1px solid rgba(141,198,63,0.08);
+      transition: background 0.3s;
+    }
+    .horario-table td {
+      padding: 16px 0;
+      font-size: 0.92rem; color: rgba(240,240,236,0.75);
+      font-weight: 300;
+    }
+    .horario-table td:last-child { text-align: right; }
+    .horario-hoy {
+      background: rgba(141,198,63,0.06) !important;
+    }
+    .horario-hoy td {
+      color: var(--accent) !important;
+      font-weight: 500 !important;
+    }
+    .horario-closed td { color: var(--grey-400) !important; font-style: italic; }
+    .horario-contact h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 400; margin-bottom: 16px;
+    }
+    .horario-contact-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(141,198,63,0.08);
+    }
+    .horario-contact-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border: 1px solid rgba(141,198,63,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .horario-contact-text p, .horario-contact-text a {
+      font-size: 0.92rem; color: rgba(240,240,236,0.75);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .horario-contact-text a:hover { color: var(--accent); }
+    .horario-contact-text small {
+      font-size: 0.68rem; color: var(--grey-400);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      display: block; margin-bottom: 4px;
+    }
+
+    /* ──────── MAP ──────── */
+    .map-section { background: var(--grey-900); padding: 0; }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .map-info {
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .map-info-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(141,198,63,0.08);
+    }
+    .map-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid rgba(141,198,63,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .map-info-text h3 {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 5px; font-weight: 500;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.92rem; color: rgba(240,240,236,0.8);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--white); }
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+      filter: invert(90%) hue-rotate(180deg) saturate(0.5);
+    }
+
+    /* ──────── CTA ──────── */
+    .cta-section {
+      background: var(--accent);
+      padding: 100px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 280px; }
+    .cta-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3.4rem);
+      font-weight: 400; color: var(--black); line-height: 1.1;
+    }
+    .cta-text p {
+      font-size: 0.95rem; color: rgba(10,10,10,0.75);
+      margin-top: 14px; font-weight: 400;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--black); color: var(--white);
+      text-decoration: none; padding: 18px 44px;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s;
+      white-space: nowrap; position: relative; overflow: hidden;
+    }
+    .btn-dark::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--grey-700); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-dark:hover::before { transform: translateX(0); }
+    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
+
+    /* ──────── FOOTER ──────── */
+    footer {
+      background: var(--black);
+      padding: 80px 56px 44px;
+      border-top: 1px solid rgba(141,198,63,0.1);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px; margin-bottom: 60px;
+    }
+    .footer-brand .nav-logo { margin-bottom: 18px; display: inline-flex; }
+    .footer-tagline {
+      font-family: var(--font-display); font-style: italic;
+      font-size: 1rem; color: rgba(240,240,236,0.7);
+      line-height: 1.6; max-width: 260px; margin-bottom: 28px;
+    }
+    .footer-social { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(240,240,236,0.2);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(240,240,236,0.7);
+      transition: all 0.3s;
+    }
+    .social-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); transform: translateY(-2px); }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h3 {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px; font-weight: 600;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(240,240,236,0.7);
+      font-size: 0.85rem; transition: color 0.3s; font-weight: 300;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(240,240,236,0.08);
+      padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 0.75rem; color: rgba(240,240,236,0.5); letter-spacing: 0.05em; }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.72rem; color: rgba(240,240,236,0.6);
+      text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--white); }
+
+    /* ──────── REVEAL ──────── */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.12s; }
+    .reveal-d2 { transition-delay: 0.24s; }
+    .reveal-d3 { transition-delay: 0.36s; }
+
+    /* ──────── FOCUS / A11Y ──────── */
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: var(--black); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+
+    /* ──────── REDUCED MOTION ──────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .marquee-track { animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ──────── RESPONSIVE ──────── */
+    @media (max-width: 1024px) {
+      nav { padding: 22px 32px; }
+      nav.scrolled { padding: 14px 32px; }
+      section { padding: 90px 32px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 140px 32px 60px; }
+      .hero-visual { height: 50vh; min-height: 320px; }
+      .hero-visual::after {
+        background: linear-gradient(to top, var(--black) 5%, transparent 40%);
+      }
+      .hero-rating { bottom: 24px; right: 24px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-section { padding: 60px 32px; }
+      .photo-strip { padding: 90px 0 90px 32px; }
+      .photo-strip-header { padding-right: 32px; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 380px; }
+      .about-content { padding: 60px 32px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .horario-inner { grid-template-columns: 1fr; gap: 48px; }
+      .horario-section { padding: 80px 32px; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hamburger { display: flex; }
+      nav { padding: 18px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      section { padding: 70px 24px; }
+      .hero-content { padding: 120px 24px 48px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .hero-rating { display: none; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 48px 24px; }
+      .photo-strip { padding: 70px 0 70px 24px; }
+      .photo-strip-header { padding-right: 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .photo-card { width: 300px; }
+      .photo-card:first-child { width: 340px; aspect-ratio: 4/3; }
+      .about-content { padding: 48px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .horario-section { padding: 60px 24px; }
+      .map-info { padding: 48px 24px; }
+      .cta-section { padding: 60px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 60px 24px 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; align-items: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.6rem, 10vw, 3.2rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .stat-card { padding: 32px 20px; }
+      .stat-number { font-size: clamp(2.2rem, 10vw, 3rem); }
+      .service-card { padding: 36px 24px; }
+      .testimonial-card { padding: 32px 24px; }
+      .btn-primary { padding: 14px 28px; }
+      .btn-dark { padding: 14px 28px; }
+      .btn-outline { padding: 14px 24px; }
+      .section-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-text">Ciclosport Gil</div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main-content" class="nav-logo">
+    <img src="https://www.ciclosportgil.es/img/ciclosport-gil-bicicletas-online-logo-1602118963.jpg" alt="Ciclosport Gil" width="120" height="50" loading="eager">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#galeria">La tienda</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#horario">Horario</a></li>
+    <li><a href="#contacto" class="nav-cta">Contactar</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú de navegación">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <a href="#galeria" onclick="closeMobile()">La tienda</a>
+  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#horario" onclick="closeMobile()">Horario</a>
+  <a href="#contacto" onclick="closeMobile()">Contactar</a>
+</div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-content">
+    <p class="hero-badge">Ourense &middot; Desde hace más de 20 años</p>
+    <h1 class="hero-title" id="hero-title">Tu tienda de<br>bicicletas en<br><em>Ourense.</em></h1>
+    <p class="hero-sub">Venta, taller especializado y alquiler de bicicletas. Más de dos décadas al servicio de las dos ruedas, con las mejores marcas y un equipo que vive el ciclismo.</p>
+    <div class="hero-actions">
+      <a href="tel:+34988245308" class="btn-primary" aria-label="Llamar a Ciclosport Gil al 988 24 53 08">
+        <span>Llamar al 988 24 53 08
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </a>
+      <a href="#servicios" class="btn-outline">
+        Ver servicios
+        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img id="heroImg" src="https://www.ciclosportgil.es/modules/ps_imageslider/images/2108fac18fe3deae5565bdbb2cd90f2650085304_fotonu.jpg" alt="Ciclista cruzando un río con su bicicleta de montaña" width="960" height="640">
+    <div class="hero-rating" aria-label="Valoración en Google">
+      <div class="hero-rating-stars" role="img" aria-label="4,9 sobre 5 estrellas">
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="hero-rating-text"><strong>4,9/5</strong> en Google Maps (287 reseñas)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>Bicicletas de carretera</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Mountain bike</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>E-bikes</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Gravel</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Taller especializado</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Alquiler</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Accesorios</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Equipamiento</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Bicicletas de carretera</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Mountain bike</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>E-bikes</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Gravel</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Taller especializado</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Alquiler</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Accesorios</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Equipamiento</span>
+  </div>
+</div>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats-section" role="region" aria-label="Cifras destacadas">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="20">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat-card reveal reveal-d1">
+      <div class="stat-number"><span class="count" data-target="49" data-decimal="true">0</span></div>
+      <div class="stat-label">Sobre 5 en Google Maps</div>
+    </div>
+    <div class="stat-card reveal reveal-d2">
+      <div class="stat-number"><span class="count" data-target="287">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-d3">
+      <div class="stat-number">Giant</div>
+      <div class="stat-label">Distribuidor oficial</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GALERIA ═══ -->
+<div class="photo-strip" id="galeria">
+  <div class="photo-strip-header">
+    <div>
+      <p class="section-label reveal">La tienda</p>
+      <h2 class="section-title reveal reveal-d1">Ciclismo de verdad,<br><em>no solo bicis en un escaparate.</em></h2>
+    </div>
+  </div>
+  <div class="photo-strip-scroll">
+    <div class="photo-card">
+      <img src="https://www.ciclosportgil.es/modules/ps_imageslider/images/04dc3e9145872d03a87a8f790d8407f58ea948b6_5.jpg" alt="Logo de Ciclosport Gil junto a una bicicleta de montaña en paisaje de alta montaña" loading="lazy" width="640" height="360">
+      <div class="photo-card-overlay"></div>
+      <div class="photo-card-info">
+        <p class="photo-card-cat">Mountain bike</p>
+        <h3 class="photo-card-title">Las mejores marcas para cada terreno</h3>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img src="https://www.ciclosportgil.es/modules/ps_imageslider/images/17bb79b918a899213906e529d728328aa63975e8_MY23_launchbook_anthem_se_fr_102023pdf1920x1000px.jpg" alt="Bicicleta Giant Anthem de montaña en catálogo oficial" loading="lazy" width="420" height="315">
+      <div class="photo-card-overlay"></div>
+      <div class="photo-card-info">
+        <p class="photo-card-cat">Giant</p>
+        <h3 class="photo-card-title">Distribuidor oficial Giant</h3>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img src="https://www.ciclosportgil.es/modules/ps_imageslider/images/ac02463acface2f4d425dc410ec90994320570a4_IMG_3631.jpg" alt="Tres ciclistas con equipamiento completo junto a sus bicicletas de montaña" loading="lazy" width="420" height="315">
+      <div class="photo-card-overlay"></div>
+      <div class="photo-card-info">
+        <p class="photo-card-cat">Comunidad</p>
+        <h3 class="photo-card-title">Parte del club Duas Rodas</h3>
+      </div>
+    </div>
+    <div class="photo-card">
+      <img src="https://www.ciclosportgil.es/modules/ps_imageslider/images/1f3415f522c1d7819028b1ac277238601e9a5f01_IMG_3656.jpg" alt="Ciclista con el pulgar en alto levantando su bicicleta en un paisaje costero" loading="lazy" width="420" height="315">
+      <div class="photo-card-overlay"></div>
+      <div class="photo-card-info">
+        <p class="photo-card-cat">Pasión</p>
+        <h3 class="photo-card-title">Vivimos lo que vendemos</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div class="about-section" id="nosotros" role="region" aria-labelledby="nosotros-title">
+  <div class="about-visual">
+    <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=1200&q=80" alt="Interior de tienda de bicicletas con modelos expuestos en pared" loading="lazy" width="700" height="500">
+    <div class="about-year-badge">
+      <div class="about-year-num">20+</div>
+      <div class="about-year-text">años en Ourense</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre nosotros</p>
+    <h2 class="section-title reveal reveal-d1" id="nosotros-title">Dos décadas dedicados<br>a las <em>dos ruedas.</em></h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-d2">
+      Desde hace <strong>más de 20 años</strong>, Ciclosport Gil es la referencia ciclista de Ourense. No somos una tienda que vende bicis: somos ciclistas que además las venden, las reparan y las alquilan. Trabajamos con <strong>Giant</strong> como marca principal y ofrecemos un taller con mecánicos que conocen cada componente porque ruedan con ellos cada fin de semana. En la Plaza de las Mercedes, a cinco minutos del centro.
+    </p>
+    <div class="about-values reveal reveal-d3">
+      <div class="about-value">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h3>Asesoramiento real</h3>
+          <p>Te orientamos según tu nivel, tus rutas y tu presupuesto. No vendemos la bici más cara: vendemos la que necesitas.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h3>Taller de confianza</h3>
+          <p>Reparaciones, puestas a punto, montajes a medida. Mecánicos con años de experiencia y repuestos en stock.</p>
+        </div>
+      </div>
+      <div class="about-value">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h3>Comunidad ciclista</h3>
+          <p>Vinculados al club Duas Rodas, organizamos y participamos en rutas por toda Galicia. Aquí se vive el ciclismo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICIOS ═══ -->
+<section class="services-section" id="servicios" aria-labelledby="servicios-title">
+  <p class="section-label reveal">Qué hacemos</p>
+  <h2 class="section-title reveal reveal-d1" id="servicios-title">Todo lo que necesitas<br>para <em>rodar tranquilo.</em></h2>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+      </div>
+      <h3>Venta de bicicletas</h3>
+      <p>Carretera, MTB, gravel, urbanas, eléctricas e infantiles. Distribuidor oficial Giant con modelos en exposicion y bajo pedido.</p>
+      <div class="service-number" aria-hidden="true">01</div>
+    </div>
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3>Taller especializado</h3>
+      <p>Reparaciones, puestas a punto, cambio de componentes y montajes personalizados. Resolvemos averías el mismo día siempre que es posible.</p>
+      <div class="service-number" aria-hidden="true">02</div>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h3>Alquiler de bicis</h3>
+      <p>Si visitas Ourense o quieres probar antes de comprar, tenemos bicicletas de alquiler preparadas y revisadas para salir a rodar.</p>
+      <div class="service-number" aria-hidden="true">03</div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <h3>Accesorios y componentes</h3>
+      <p>Pedales, bombas, cadenas, rodillos, GPS, luces y todo lo que necesitas para equipar tu bici correctamente.</p>
+      <div class="service-number" aria-hidden="true">04</div>
+    </div>
+    <div class="service-card reveal reveal-d1">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+      </div>
+      <h3>Ropa y equipamiento</h3>
+      <p>Maillots, culottes, zapatillas, cascos, guantes, mochilas y nutrición deportiva. Todo lo que llevas encima, bien elegido.</p>
+      <div class="service-number" aria-hidden="true">05</div>
+    </div>
+    <div class="service-card reveal reveal-d2">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+      </div>
+      <h3>Bicicletas de segunda mano</h3>
+      <p>Modelos revisados y garantizados en nuestro taller. Una buena opción para empezar o renovar sin un gran desembolso.</p>
+      <div class="service-number" aria-hidden="true">06</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIOS ═══ -->
+<section class="testimonials-section" aria-labelledby="testimonios-title">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen nuestros clientes</p>
+    <h2 class="section-title reveal reveal-d1" id="testimonios-title">4,9 sobre 5 con 287 reseñas<br>verificadas en <em>Google Maps.</em></h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Gente muy profesional, con trato agradable y asesoramiento acertado. Muy recomendable para compra de bicicleta nueva como a la hora de reparar o solucionar averías."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Diego P.</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-d1">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Tienda con amplia experiencia en el sector de la bicicleta. Con las mejores marcas. Muy buen servicio de taller. Precios muy ajustados."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Antonio R.</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-d2">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Trato cordial y recibí muchas indicaciones para rutas, opciones, etc. Muy recomendable."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Jaime M.</strong>
+          <span>Reseña en Google Maps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HORARIO ═══ -->
+<section class="horario-section" id="horario" aria-labelledby="horario-title">
+  <div class="horario-inner">
+    <div>
+      <p class="section-label reveal">Horario</p>
+      <h2 class="section-title reveal reveal-d1" id="horario-title">Cuándo <em>encontrarnos.</em></h2>
+      <table class="horario-table reveal reveal-d2">
+        <tbody>
+          <tr data-day="1"><td>Lunes</td><td>09:00 - 20:00</td></tr>
+          <tr data-day="2"><td>Martes</td><td>09:00 - 20:00</td></tr>
+          <tr data-day="3"><td>Miércoles</td><td>09:00 - 20:00</td></tr>
+          <tr data-day="4"><td>Jueves</td><td>09:00 - 20:00</td></tr>
+          <tr data-day="5"><td>Viernes</td><td>09:00 - 20:00</td></tr>
+          <tr data-day="6"><td>Sábado</td><td>10:00 - 13:00</td></tr>
+          <tr data-day="0" class="horario-closed"><td>Domingo</td><td>Cerrado</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 class="horario-contact reveal">Contacta con nosotros</h3>
+      <div class="horario-contact-item reveal reveal-d1">
+        <div class="horario-contact-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.81.36 1.6.7 2.35a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.75.34 1.54.57 2.35.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="horario-contact-text">
+          <small>Teléfono</small>
+          <a href="tel:+34988245308">988 24 53 08</a>
+        </div>
+      </div>
+      <div class="horario-contact-item reveal reveal-d2">
+        <div class="horario-contact-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="horario-contact-text">
+          <small>Email</small>
+          <a href="mailto:ciclosportgil@gmail.com">ciclosportgil@gmail.com</a>
+        </div>
+      </div>
+      <div class="horario-contact-item reveal reveal-d3">
+        <div class="horario-contact-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2C6.5 2 2 6.5 2 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 10-4.5 10-10S17.5 2 12 2"/></svg>
+        </div>
+        <div class="horario-contact-text">
+          <small>WhatsApp</small>
+          <a href="https://wa.me/34988245308" target="_blank" rel="noopener">988 24 53 08</a>
+        </div>
+      </div>
+      <div style="margin-top: 32px;" class="reveal">
+        <a href="tel:+34988245308" class="btn-primary">
+          <span>Llamar ahora
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MAPA ═══ -->
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Dónde estamos</p>
+      <h2 class="section-title reveal reveal-d1" style="margin-bottom: 0;">
+        En el corazón<br><em>de Ourense.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>C/ Arturo Pérez Serantes, 5<br>Plaza de las Mercedes<br>32005 Ourense</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.81.36 1.6.7 2.35a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.75.34 1.54.57 2.35.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfono</h3>
+          <a href="tel:+34988245308">988 24 53 08</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Horario</h3>
+          <p>Lunes a viernes: 09:00 - 20:00<br>Sábados: 10:00 - 13:00<br>Domingos: cerrado</p>
+        </div>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Ubicación de Ciclosport Gil en la calle Arturo Pérez Serantes 5, Ourense"
+        src="https://www.google.com/maps?q=Ciclosport+Gil+Arturo+Perez+Serantes+5+Ourense&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta-section" role="region" aria-label="Llamada a la acción">
+  <div class="cta-text">
+    <h2>Necesitas una bici, una reparación o simplemente consejo?</h2>
+    <p>Llámanos o pásate por la tienda. Estamos en la Plaza de las Mercedes, en Ourense.</p>
+  </div>
+  <a href="tel:+34988245308" class="btn-dark">
+    <span>Llamar al 988 24 53 08
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+    </span>
+  </a>
+</div>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#main-content" class="nav-logo">
+        <img src="https://www.ciclosportgil.es/img/ciclosport-gil-bicicletas-online-logo-1602118963.jpg" alt="Ciclosport Gil" width="100" height="42" loading="lazy">
+      </a>
+      <p class="footer-tagline">"Más de 20 años dedicados al ciclismo en Ourense. Tu tienda y taller de confianza."</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/ciclosportgil" target="_blank" rel="noopener" class="social-link" aria-label="Ciclosport Gil en Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="https://instagram.com/ciclosport_gil" target="_blank" rel="noopener" class="social-link" aria-label="Ciclosport Gil en Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.youtube.com/user/ciclosportgil" target="_blank" rel="noopener" class="social-link" aria-label="Ciclosport Gil en YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.3 2.7 12 2.7 12 2.7s-3.3 0-6.8.2c-.6.1-1.9.1-3 1.3C1.3 5 1 7 1 7S.7 9.3.7 11.6v2.1c0 2.3.3 4.6.3 4.6s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.3C7.8 22.7 12 22.7 12 22.7s3.3 0 6.8-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.3.3-4.6v-2.1C23.3 9.3 23 7 23 7M9.8 15.9V8.6l6.5 3.6-6.5 3.7z"/></svg>
+        </a>
+        <a href="https://wa.me/34988245308" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp a Ciclosport Gil">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2C6.5 2 2 6.5 2 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 10-4.5 10-10S17.5 2 12 2"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Servicios</h3>
+      <ul>
+        <li><a href="#servicios">Venta de bicicletas</a></li>
+        <li><a href="#servicios">Taller especializado</a></li>
+        <li><a href="#servicios">Alquiler</a></li>
+        <li><a href="#servicios">Accesorios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>La tienda</h3>
+      <ul>
+        <li><a href="#nosotros">Quiénes somos</a></li>
+        <li><a href="#galeria">Fotos</a></li>
+        <li><a href="#horario">Horario</a></li>
+        <li><a href="#contacto">Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34988245308">988 24 53 08</a></li>
+        <li><a href="mailto:ciclosportgil@gmail.com">ciclosportgil@gmail.com</a></li>
+        <li><a href="#contacto">Ourense</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Ciclosport Gil, S.L. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('loader');
+      var heroImg = document.getElementById('heroImg');
+      if (loader) loader.classList.add('hidden');
+      if (heroImg) heroImg.classList.add('loaded');
+    }, 1600);
+  });
+
+  // NAVBAR SCROLL
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER MENU
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) { var fl = mobileMenu.querySelector('a'); if (fl) fl.focus(); }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+
+  function closeMobile() {
+    var h = document.getElementById('hamburger');
+    var m = document.getElementById('mobileMenu');
+    if (h) h.classList.remove('active');
+    if (m) m.classList.remove('open');
+    if (h) h.setAttribute('aria-expanded', 'false');
+  }
+
+  // REVEAL ON SCROLL
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(function(el) { revealObs.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  // COUNTER ANIMATION
+  function animateCount(el) {
+    var targetRaw = parseInt(el.dataset.target, 10);
+    var isDecimal = el.dataset.decimal === 'true';
+    var duration = 1800;
+    var start = performance.now();
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 4);
+      var value = ease * targetRaw;
+      if (isDecimal) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var countObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(function(el) { countObs.observe(el); });
+  } else {
+    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+  }
+
+  // HIGHLIGHT TODAY
+  function highlightToday() {
+    var today = new Date().getDay();
+    var rows = document.querySelectorAll('.horario-table tr[data-day]');
+    rows.forEach(function(row) {
+      if (parseInt(row.getAttribute('data-day'), 10) === today) {
+        row.classList.add('horario-hoy');
+      }
+    });
+  }
+  highlightToday();
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
