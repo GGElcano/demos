@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chalet en Fuentes Claras · 975.000 € · RFH-00782 — RE/MAX Finca Hogar</title>
+<meta name="description" content="Ejemplo de ficha de inmueble: chalet de 5 habitaciones en la Urbanización Fuentes Claras, Paseo Reyes de Aragón (Casablanca, Zaragoza). 295 m², piscina, jardín, certificación A. Ref. RFH-00782.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23DC1C2E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal/cookie-banner.css">
+
+<style>
+:root{
+  --blanco:#f7f8fa; --blanco-2:#edf0f4; --azul:#003DA5; --azul-osc:#062a6e;
+  --rojo:#DC1C2E; --texto:#14213d; --texto-2:#3d4a66; --piedra:#7a8499;
+  --linea:rgba(0,61,165,.16);
+  --serif:"Playfair Display", Georgia, serif; --sans:"Inter", system-ui, sans-serif;
+  --pad: clamp(1.5rem, 5vw, 6rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scrollbar-width:thin; scrollbar-color:var(--azul) var(--blanco); }
+html, body{ background:var(--blanco); }
+body{ color:var(--texto); font-family:var(--sans); font-weight:300; line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+::selection{ background:var(--rojo); color:#fff; }
+h1,h2,h3{ font-family:var(--serif); font-weight:400; line-height:1.08; }
+em{ font-style:italic; color:var(--azul); }
+a{ color:inherit; text-decoration:none; } ul{ list-style:none; }
+img{ display:block; width:100%; height:100%; object-fit:cover; }
+
+#fluid{ position:fixed; inset:0; width:100%; height:100%; z-index:9000; pointer-events:none; mix-blend-mode:multiply; opacity:.45; }
+#fluid canvas{ width:100%; height:100%; display:block; }
+.cursor-dot,.cursor-ring{ position:fixed; top:0; left:0; z-index:9500; pointer-events:none; border-radius:50%; transform:translate(-50%,-50%); opacity:0; }
+.cursor-dot{ width:6px; height:6px; background:var(--rojo); }
+.cursor-ring{ width:38px; height:38px; border:1px solid rgba(0,61,165,.55); }
+@media (pointer:coarse),(prefers-reduced-motion:reduce){ .cursor-dot,.cursor-ring,#fluid{ display:none; } }
+
+.cabecera{ position:fixed; top:0; left:0; right:0; z-index:50; display:flex; justify-content:space-between; align-items:center; padding:1.3rem var(--pad); mix-blend-mode:multiply; }
+.cabecera__logo{ font-family:var(--serif); font-size:1.2rem; letter-spacing:.1em; }
+.cabecera__logo b{ font-weight:500; color:var(--rojo); }
+.cabecera__nav{ display:flex; gap:2rem; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; }
+@media (max-width:820px){ .cabecera__nav{ display:none; } }
+.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
+.roll>span{ display:inline-block; transition:transform .5s cubic-bezier(.76,0,.24,1); }
+.roll::after{ content:attr(data-text); position:absolute; left:0; top:100%; display:inline-block; color:var(--rojo); transition:transform .5s cubic-bezier(.76,0,.24,1); }
+@media (hover:hover) and (pointer:fine){ .roll:hover>span,.roll:hover::after{ transform:translateY(-100%); } }
+
+/* HERO ficha */
+.ficha-hero{ min-height:100svh; position:relative; display:flex; flex-direction:column; justify-content:flex-end; padding:0 var(--pad) clamp(2.6rem,7vh,5rem); overflow:hidden; }
+.ficha-hero__media{ position:absolute; inset:0; }
+.ficha-hero__media::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,42,110,.3) 0%, rgba(6,42,110,.05) 40%, rgba(6,42,110,.85) 100%); }
+.ficha-hero__media img{ will-change:transform; }
+.ficha-hero__contenido{ position:relative; z-index:1; color:#fff; }
+.ficha-hero__ref{ font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; opacity:.85; margin-bottom:1.2rem; }
+.ficha-hero__titulo{ font-size:clamp(2.4rem,6.5vw,5.6rem); color:#fff; max-width:16ch; }
+.ficha-hero__titulo em{ color:#ffd9a0; }
+.ficha-hero__bajo{ display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; margin-top:2rem; flex-wrap:wrap; }
+.ficha-hero__precio{ font-family:var(--serif); font-size:clamp(2rem,4.5vw,3.6rem); }
+.ficha-hero__precio i{ font-style:normal; font-size:.45em; opacity:.8; vertical-align:.6em; margin-left:.3em; }
+.specs{ display:flex; gap:1.6rem; flex-wrap:wrap; font-size:.86rem; letter-spacing:.04em; }
+.specs span{ border:1px solid rgba(255,255,255,.4); border-radius:999px; padding:.5rem 1.1rem; backdrop-filter:blur(4px); }
+[data-hero-reveal]{ visibility:hidden; }
+
+/* DESCRIPCIÓN por plantas */
+.plantas{ padding:clamp(7rem,15vh,11rem) var(--pad); max-width:72rem; }
+.plantas__intro{ max-width:30ch; font-family:var(--serif); font-size:clamp(1.6rem,3.4vw,2.8rem); line-height:1.32; margin-bottom:4rem; }
+.planta{ display:grid; grid-template-columns:6rem 1fr; gap:1.5rem; border-top:1px solid var(--linea); padding:1.8rem 0; align-items:baseline; }
+.planta__num{ font-family:var(--serif); color:var(--piedra); font-size:1rem; }
+.planta h3{ font-size:clamp(1.4rem,2.8vw,2.1rem); margin-bottom:.4rem; }
+.planta p{ color:var(--texto-2); font-size:.95rem; max-width:56ch; }
+@media (max-width:720px){ .planta{ grid-template-columns:3rem 1fr; } }
+
+/* GALERÍA con parallax */
+.galeria{ padding:0 var(--pad) clamp(6rem,12vh,9rem); display:grid; gap:clamp(1.2rem,2.5vw,2rem); grid-template-columns:repeat(auto-fit,minmax(min(19rem,100%),1fr)); }
+.foto{ overflow:hidden; position:relative; aspect-ratio:4/3; }
+.foto:nth-child(4n+1){ grid-row:span 1; aspect-ratio:3/4; }
+.foto img{ will-change:transform; }
+
+/* CARACTERÍSTICAS */
+.rasgos{ padding:0 var(--pad) clamp(6rem,12vh,9rem); max-width:72rem; }
+.rasgos h2{ font-size:clamp(1.9rem,4.5vw,3.4rem); margin-bottom:2.2rem; }
+.rasgos__chips{ display:flex; flex-wrap:wrap; gap:.8rem; }
+.rasgos__chips span{ border:1px solid var(--linea); border-radius:999px; padding:.65rem 1.3rem; font-size:.85rem; color:var(--texto-2); background:#fff; }
+.rasgos__nota{ margin-top:2.4rem; font-size:.8rem; color:var(--piedra); max-width:70ch; }
+
+/* AGENTE a cargo */
+.acargo{ margin:0 var(--pad) clamp(7rem,14vh,10rem); border:1px solid var(--linea); background:#fff; display:grid; grid-template-columns:minmax(0,.42fr) minmax(0,.58fr); overflow:hidden; max-width:72rem; }
+.acargo__foto{ min-height:20rem; }
+.acargo__cuerpo{ padding:clamp(1.8rem,4vw,3.2rem); display:flex; flex-direction:column; justify-content:center; gap:1rem; }
+.acargo__cuerpo h2{ font-size:clamp(1.8rem,3.6vw,2.8rem); }
+.acargo__cuerpo p{ color:var(--texto-2); font-size:.95rem; max-width:46ch; }
+.acargo__cta{ display:inline-block; font:500 .74rem/1 var(--sans); letter-spacing:.18em; text-transform:uppercase; color:var(--rojo); border-bottom:1px solid var(--rojo); padding-bottom:.25em; width:max-content; }
+@media (max-width:760px){ .acargo{ grid-template-columns:1fr; } }
+
+/* CTA final */
+.cta-final{ min-height:70svh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:2.2rem; padding:5rem var(--pad); border-top:1px solid var(--linea); }
+.cta-final h2{ font-size:clamp(2.2rem,6.5vw,5rem); max-width:16ch; }
+.magnetico{ display:inline-flex; align-items:center; gap:.9rem; font:500 .88rem/1 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:#fff; border:1px solid var(--rojo); border-radius:999px; padding:1.3rem 2.5rem; background:var(--rojo); cursor:pointer; transition:background-color .45s ease,border-color .45s ease; }
+.magnetico:hover{ background:var(--azul); border-color:var(--azul); }
+.magnetico .magnetico__label{ display:inline-block; }
+.cta-final p{ font-size:.85rem; color:var(--piedra); }
+.cta-final p a{ border-bottom:1px solid var(--linea); }
+
+.pie{ display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap; padding:2rem var(--pad) 2.6rem; color:var(--piedra); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; border-top:1px solid var(--linea); }
+.pie nav{ display:flex; gap:1.4rem; flex-wrap:wrap; }
+.pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
+
+[data-reveal]{ visibility:hidden; }
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  [data-reveal],[data-hero-reveal]{ visibility:visible !important; }
+}
+</style>
+</head>
+<body>
+
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<header class="cabecera">
+  <a class="cabecera__logo" href="index.html"><b>RE/MAX</b> Finca Hogar</a>
+  <nav class="cabecera__nav" aria-label="principal">
+    <a class="roll" href="index.html"  data-text="Inicio"><span>Inicio</span></a>
+    <a class="roll" href="agente.html" data-text="Asociados"><span>Asociados</span></a>
+    <a class="roll" href="#contactar"  data-text="Contactar"><span>Contactar</span></a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO de la ficha -->
+  <section class="ficha-hero">
+    <div class="ficha-hero__media" aria-hidden="true">
+      <img src="assets/chalet-1.jpg" alt="" loading="eager" data-hero-parallax>
+    </div>
+    <div class="ficha-hero__contenido">
+      <p class="ficha-hero__ref" data-hero-reveal>Ref. RFH-00782 · Venta · Casablanca, Zaragoza · Ejemplo de ficha</p>
+      <h1 class="ficha-hero__titulo" data-hero-reveal>Chalet en la urbanización <em>Fuentes Claras</em></h1>
+      <div class="ficha-hero__bajo">
+        <p class="ficha-hero__precio" data-hero-reveal>975.000<i>EUR</i></p>
+        <div class="specs" data-hero-reveal>
+          <span>5 hab</span><span>4 baños</span><span>295 m²</span><span>402 m² parcela</span><span>Cert. A</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCRIPCIÓN por plantas (texto real del anuncio) -->
+  <section class="plantas">
+    <p class="plantas__intro" data-manifiesto>
+      Urbanización cerrada junto al Canal Imperial, en el Paseo Reyes de Aragón:
+      zonas verdes, control de acceso y vídeo vigilancia 24 h, a un paso de
+      Montearagón, Marianistas, el Stadium Casablanca y El Olivar.
+    </p>
+    <div class="planta" data-reveal>
+      <span class="planta__num">Sótano</span>
+      <div><h3>Garaje doble y multiusos</h3>
+      <p>Dos plazas amplias de garaje, trastero y espacio multiusos.</p></div>
+    </div>
+    <div class="planta" data-reveal>
+      <span class="planta__num">Baja</span>
+      <div><h3>Vida en torno al patio</h3>
+      <p>Salón-comedor, baño, dormitorio y cocina con acceso a un impresionante patio. Porche privado con salida directa a la piscina y al jardín.</p></div>
+    </div>
+    <div class="planta" data-reveal>
+      <span class="planta__num">Primera</span>
+      <div><h3>La planta de descanso</h3>
+      <p>Tres dormitorios, dos baños y terraza.</p></div>
+    </div>
+    <div class="planta" data-reveal>
+      <span class="planta__num">Superior</span>
+      <div><h3>Suite y espacio abierto</h3>
+      <p>Habitación con baño en suite y un amplio espacio multiusos.</p></div>
+    </div>
+  </section>
+
+  <!-- GALERÍA (fotos reales del anuncio) -->
+  <section class="galeria" aria-label="Galería de fotos">
+    <figure class="foto" data-img-reveal><img src="assets/chalet-2.jpg" alt="Chalet Fuentes Claras — exterior" loading="lazy"></figure>
+    <figure class="foto" data-img-reveal><img src="assets/chalet-3.jpg" alt="Salón" loading="lazy"></figure>
+    <figure class="foto" data-img-reveal><img src="assets/chalet-4.jpg" alt="Interior" loading="lazy"></figure>
+    <figure class="foto" data-img-reveal><img src="assets/chalet-5.jpg" alt="Cocina" loading="lazy"></figure>
+    <figure class="foto" data-img-reveal><img src="assets/chalet-6.jpg" alt="Piscina" loading="lazy"></figure>
+    <figure class="foto" data-img-reveal><img src="assets/chalet-7.jpg" alt="Jardín" loading="lazy"></figure>
+    <figure class="foto" data-img-reveal><img src="assets/chalet-8.jpg" alt="Dormitorio" loading="lazy"></figure>
+    <figure class="foto" data-img-reveal><img src="assets/chalet-1.jpg" alt="Fachada" loading="lazy"></figure>
+  </section>
+
+  <!-- CARACTERÍSTICAS -->
+  <section class="rasgos">
+    <h2 data-reveal data-split="lines">Lo que hace única <em>esta casa</em></h2>
+    <div class="rasgos__chips" data-reveal>
+      <span>Piscina</span><span>Jardín</span><span>Terraza</span><span>Patio</span>
+      <span>Porche privado</span><span>Armarios empotrados</span><span>Almacén</span>
+      <span>Garaje doble</span><span>Certificación energética A</span>
+      <span>Urbanización cerrada</span><span>Vigilancia 24 h</span>
+    </div>
+    <p class="rasgos__nota" data-reveal>
+      El precio no incluye impuestos ni gastos de compraventa. En Aragón, el ITP es el 8%
+      sobre el precio; registro, notaría y tasación suponen aprox. un 1,5–2% adicional.
+      RE/MAX Finca Hogar informará previamente de los servicios y honorarios. Transparencia total.
+    </p>
+  </section>
+
+  <!-- AGENTE A CARGO -->
+  <section class="acargo" data-reveal>
+    <div class="acargo__foto"><img src="assets/agente-angel.jpg" alt="Ángel Navalpotro" style="object-position:top"></div>
+    <div class="acargo__cuerpo">
+      <p style="font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color:var(--piedra)">Tu agente para esta casa</p>
+      <h2>Ángel Navalpotro</h2>
+      <p>Fotos y vídeo profesional, tour virtual, gestión con notarías y acompañamiento
+      hasta las llaves. El agente que las reseñas de la oficina mencionan una y otra vez.</p>
+      <a class="acargo__cta" href="agente.html">Ver su perfil completo →</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-final" id="contactar">
+    <h2 data-reveal data-split="lines">¿La vemos <em>juntos</em>?</h2>
+    <a class="magnetico" href="tel:+34658290461" data-magnetico>
+      <span class="magnetico__label">Pedir visita · 658 290 461</span>
+    </a>
+    <p data-reveal><a href="mailto:angel.navalpotro@remax.es">angel.navalpotro@remax.es</a> · Ref. RFH-00782 · RE/MAX Finca Hogar, Pº Sagasta 80, Zaragoza</p>
+  </section>
+
+  <footer class="pie">
+    <span>© 2026 RE/MAX Finca Hogar · Zaragoza</span>
+    <nav>
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </nav>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
+  </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script>
+'use strict';
+gsap.registerPlugin(ScrollTrigger, SplitText);
+const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+
+let lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  window.lenis = lenis;
+}
+
+if (FINE_POINTER && !REDUCE) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then((mod) => {
+    const cont = document.getElementById('fluid');
+    const sim = new mod.default(cont);
+    Object.assign(cont.style, { position:'fixed', inset:'0', width:'100%', height:'100%', zIndex:'9000', pointerEvents:'none' });
+    dispatchEvent(new Event('resize'));
+    sim.setConfig({ simResolution:128, dyeResolution:1024, densityDissipation:2.2, velocityDissipation:1.4,
+      pressureIterations:10, curl:28, splatRadius:0.1, splatForce:5000, hover:false, colorful:false,
+      colorPalette:['#003DA5','#3f72c4','#DC1C2E'], transparent:true, bloom:false, sunrays:false });
+    sim.start();
+    let lastX=null, lastY=null;
+    addEventListener('pointermove', (e) => {
+      if (lastX !== null) { const dx=(e.clientX-lastX)*2.5, dy=(e.clientY-lastY)*2.5;
+        if (Math.abs(dx)+Math.abs(dy)>4) sim.splatAtLocation(e.clientX, e.clientY, dx, dy); }
+      lastX=e.clientX; lastY=e.clientY;
+    }, { passive:true });
+    document.addEventListener('visibilitychange', () => sim.pause());
+  }).catch(()=>{});
+}
+
+if (FINE_POINTER && !REDUCE) (function(){
+  const dot=document.querySelector('.cursor-dot'), ring=document.querySelector('.cursor-ring');
+  const dx=gsap.quickTo(dot,'x',{duration:.12,ease:'power3'}), dy=gsap.quickTo(dot,'y',{duration:.12,ease:'power3'});
+  const rx=gsap.quickTo(ring,'x',{duration:.45,ease:'power3'}), ry=gsap.quickTo(ring,'y',{duration:.45,ease:'power3'});
+  let visto=false;
+  addEventListener('pointermove',(e)=>{ if(!visto){gsap.to([dot,ring],{opacity:1,duration:.4}); visto=true;}
+    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); },{passive:true});
+  document.querySelectorAll('a,button').forEach((el)=>{
+    el.addEventListener('mouseenter',()=>gsap.to(ring,{scale:1.9,duration:.35,ease:'power3.out'}));
+    el.addEventListener('mouseleave',()=>gsap.to(ring,{scale:1,duration:.35,ease:'power3.out'}));
+  });
+})();
+
+document.fonts.ready.then(() => {
+  const mm = gsap.matchMedia();
+  mm.add({ motionOK:'(prefers-reduced-motion: no-preference)', reduce:'(prefers-reduced-motion: reduce)' }, (ctx) => {
+    if (ctx.conditions.reduce) {
+      gsap.set('[data-reveal],[data-hero-reveal]', { clearProps:'all', autoAlpha:1, visibility:'visible' });
+      return;
+    }
+    /* entrada del hero de ficha */
+    const tl = gsap.timeline({ defaults:{ ease:'expo.out' } });
+    tl.set('[data-hero-reveal]', { visibility:'visible' });
+    tl.fromTo('.ficha-hero__media img', { scale:1.2 }, { scale:1, duration:1.8, ease:'power4.out' }, 0);
+    const st = SplitText.create('.ficha-hero__titulo', { type:'words, chars', mask:'chars' });
+    tl.from(st.chars, { yPercent:120, duration:1, stagger:0.012 }, 0.2);
+    tl.from('.ficha-hero__ref', { autoAlpha:0, y:16, duration:.8 }, 0.35);
+    tl.from('.ficha-hero__precio', { autoAlpha:0, y:24, duration:.9 }, 0.55);
+    tl.from('.specs span', { autoAlpha:0, y:18, stagger:.07, duration:.7 }, 0.7);
+    tl.from('.cabecera', { autoAlpha:0, y:-16, duration:.8 }, 0.3);
+
+    gsap.to('[data-hero-parallax]', { yPercent:14, scale:1.1, ease:'none',
+      scrollTrigger:{ trigger:'.ficha-hero', start:'top top', end:'bottom top', scrub:true } });
+
+    SplitText.create('[data-manifiesto]', { type:'words',
+      onSplit:(self)=>gsap.from(self.words,{ opacity:.13, stagger:.04, ease:'none',
+        scrollTrigger:{ trigger:'.plantas__intro', start:'top 75%', end:'bottom 55%', scrub:true } }) });
+
+    /* galería: reveal + parallax interno por foto */
+    gsap.utils.toArray('[data-img-reveal]').forEach((marco) => {
+      const img = marco.querySelector('img');
+      gsap.timeline({ scrollTrigger:{ trigger:marco, start:'top 88%', once:true },
+        defaults:{ duration:1.2, ease:'power4.out' } })
+        .fromTo(marco, { clipPath:'inset(100% 0 0 0)' }, { clipPath:'inset(0% 0 0 0)' })
+        .fromTo(img, { scale:1.2 }, { scale:1.12 }, 0);
+      gsap.fromTo(img, { yPercent:-6 }, { yPercent:6, ease:'none',
+        scrollTrigger:{ trigger:marco, start:'top bottom', end:'bottom top', scrub:1 } });
+    });
+
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (el.dataset.split === 'lines') {
+        SplitText.create(el, { type:'lines', mask:'lines', autoSplit:true,
+          onSplit:(self)=>{ gsap.set(el,{visibility:'visible'});
+            return gsap.from(self.lines, { yPercent:105, duration:.9, ease:'expo.out', stagger:.05,
+              scrollTrigger:{ trigger:el, start:'top 82%', once:true } }); } });
+      } else {
+        gsap.fromTo(el, { autoAlpha:0, y:26 }, { autoAlpha:1, y:0, duration:1, ease:'expo.out',
+          scrollTrigger:{ trigger:el, start:'top 85%', once:true } });
+      }
+    });
+
+    if (FINE_POINTER) {
+      document.querySelectorAll('[data-magnetico]').forEach((el) => {
+        const label = el.querySelector('.magnetico__label');
+        const xTo=gsap.quickTo(el,'x',{duration:.6,ease:'power3.out'}), yTo=gsap.quickTo(el,'y',{duration:.6,ease:'power3.out'});
+        const lx=gsap.quickTo(label,'x',{duration:.6,ease:'power3.out'}), ly=gsap.quickTo(label,'y',{duration:.6,ease:'power3.out'});
+        el.addEventListener('mousemove',(e)=>{ const r=el.getBoundingClientRect();
+          const dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+          xTo(dx*.35); yTo(dy*.35); lx(dx*.5); ly(dy*.5); });
+        el.addEventListener('mouseleave',()=>gsap.to([el,label],{x:0,y:0,duration:1,ease:'elastic.out(1,0.3)'}));
+      });
+    }
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
