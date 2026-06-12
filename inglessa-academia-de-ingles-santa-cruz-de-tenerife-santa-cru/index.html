@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inglessa | Academia de Inglés en Santa Cruz de Tenerife y La Laguna</title>
-  <meta name="description" content="Inglessa es la academia de inglés en Santa Cruz de Tenerife y La Laguna con 4,9/5 en Google. Cursos presenciales y online, preparación Cambridge y Oxford. Grupos reducidos con foco en speaking.">
+  <meta name="description" content="Inglessa: academia de inglés en Tenerife con 4,9/5 en Google. Cursos presenciales y online desde 49,99 euros/mes. Preparación Cambridge, Oxford, IELTS. Grupos reducidos y foco real en speaking.">
   <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="legal/cookie-banner.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,20 +17,23 @@
       --gold: #a59355;
       --gold-light: #c4b374;
       --gold-dark: #8a7a42;
-      --blue: #2d5d9b;
+      --gold-subtle: rgba(165,147,85,0.08);
+      --blue: #3b6fa8;
       --blue-light: #4a7ec4;
-      --navy: #1a2332;
-      --navy-light: #243347;
+      --navy: #0f1c2e;
+      --navy-mid: #1a2b42;
       --cream: #faf8f4;
-      --cream-mid: #f0ece4;
+      --cream-warm: #f5f1e8;
       --white: #ffffff;
       --text: #2c3040;
       --text-light: #5a6070;
       --text-muted: #8a8e9a;
+      --border: rgba(165,147,85,0.15);
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Inter', -apple-system, sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --radius: 2px;
     }
 
     html { scroll-behavior: smooth; }
@@ -50,23 +53,22 @@
       background: var(--navy);
       display: flex; align-items: center; justify-content: center;
       flex-direction: column; gap: 24px;
-      transition: opacity 0.8s, visibility 0.8s;
+      transition: opacity 0.7s, visibility 0.7s;
     }
-    .loader.hidden { opacity: 0; visibility: hidden; }
-    .loader-logo {
-      font-family: var(--font-serif);
-      font-size: 2.8rem; font-weight: 500;
-      letter-spacing: 0.08em; color: var(--gold);
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-brand {
+      display: flex; align-items: center; gap: 16px;
     }
+    .loader-brand img { height: 52px; width: auto; }
     .loader-bar {
-      width: 180px; height: 1px; background: rgba(165,147,85,0.25);
+      width: 160px; height: 1px; background: rgba(165,147,85,0.2);
       position: relative; overflow: hidden;
     }
     .loader-bar::after {
       content: ''; position: absolute; inset: 0;
       background: var(--gold);
       transform: translateX(-100%);
-      animation: loadBar 1.4s var(--ease-out) 0.3s forwards;
+      animation: loadBar 1.3s var(--ease-out) 0.3s forwards;
     }
     @keyframes loadBar { to { transform: translateX(0); } }
 
@@ -74,39 +76,42 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 24px 60px;
+      padding: 22px 56px;
       background: transparent;
       transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
     }
     nav.scrolled {
-      background: rgba(250,248,244,0.95);
-      backdrop-filter: blur(16px);
-      padding: 16px 60px;
-      box-shadow: 0 1px 0 rgba(165,147,85,0.15);
+      background: rgba(250,248,244,0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 14px 56px;
+      box-shadow: 0 1px 0 var(--border);
     }
     .nav-logo {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: 10px;
       text-decoration: none;
     }
-    .nav-logo img {
-      height: 38px; width: auto;
-    }
-    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-links { display: flex; gap: 38px; list-style: none; align-items: center; }
     .nav-links a {
       text-decoration: none; color: var(--text);
-      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-      font-weight: 500; transition: color 0.3s;
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 500; transition: color 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--gold); transform: scaleX(0);
+      transition: transform 0.3s var(--ease-out); transform-origin: left;
     }
     .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); }
     .nav-cta {
-      background: var(--gold) !important;
-      color: var(--white) !important;
-      padding: 10px 28px !important;
-      font-size: 0.75rem !important;
-      letter-spacing: 0.18em !important;
-      transition: background 0.3s !important;
+      background: var(--gold) !important; color: var(--white) !important;
+      padding: 10px 26px !important; font-size: 0.73rem !important;
+      letter-spacing: 0.16em !important; transition: background 0.3s !important;
       border: none;
     }
+    .nav-cta::after { display: none !important; }
     .nav-cta:hover { background: var(--gold-dark) !important; }
 
     /* HAMBURGER */
@@ -115,180 +120,209 @@
       background: none; border: none; cursor: pointer; padding: 8px;
     }
     .hamburger span {
-      width: 24px; height: 2px; background: var(--navy);
+      width: 22px; height: 1.5px; background: var(--navy);
       transition: transform 0.3s, opacity 0.3s;
     }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
 
     .mobile-menu {
       display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: var(--cream); z-index: 999;
-      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+      flex-direction: column; align-items: center; justify-content: center; gap: 28px;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      text-decoration: none; color: var(--navy); font-size: 1.1rem;
-      letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
-      transition: color 0.3s;
+      text-decoration: none; color: var(--navy);
+      font-family: var(--font-serif); font-size: 1.6rem;
+      font-weight: 400; transition: color 0.3s;
     }
     .mobile-menu a:hover { color: var(--gold); }
 
     /* ═══ HERO ═══ */
     .hero {
-      position: relative;
-      min-height: 100vh;
+      position: relative; min-height: 100vh;
       display: flex; align-items: center;
-      overflow: hidden;
-      background: var(--navy);
+      overflow: hidden; background: var(--navy);
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transform: scale(1.05);
-      transition: transform 6s var(--ease-out);
+      background-size: cover; background-position: center 40%;
+      transform: scale(1.06);
+      transition: transform 7s var(--ease-out);
     }
     .hero-bg.loaded { transform: scale(1); }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(26,35,50,0.88) 0%, rgba(26,35,50,0.55) 50%, rgba(26,35,50,0.35) 100%);
+      background: linear-gradient(
+        135deg,
+        rgba(15,28,46,0.92) 0%,
+        rgba(15,28,46,0.65) 40%,
+        rgba(15,28,46,0.40) 70%,
+        rgba(15,28,46,0.30) 100%
+      );
     }
-    .hero-overlay-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 35%;
+    .hero-bottom-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 30%;
       background: linear-gradient(to top, var(--navy), transparent);
     }
     .hero-content {
       position: relative; z-index: 2;
-      padding: 160px 60px 100px;
-      max-width: 860px;
+      padding: 160px 56px 100px;
+      max-width: 840px;
     }
     .hero-eyebrow {
-      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 28px;
-      display: flex; align-items: center; gap: 16px;
+      font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 26px;
+      display: flex; align-items: center; gap: 14px;
+      opacity: 0; animation: fadeUp 0.8s 1.8s var(--ease-out) forwards;
     }
     .hero-eyebrow::before {
-      content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+      content: ''; display: block; width: 36px; height: 1px; background: var(--gold);
     }
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 6vw, 5.5rem);
-      font-weight: 500; line-height: 1.08;
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      font-weight: 400; line-height: 1.08;
       letter-spacing: -0.01em;
-      margin-bottom: 28px; color: var(--white);
+      margin-bottom: 26px; color: var(--white);
+      opacity: 0; animation: fadeUp 0.9s 2s var(--ease-out) forwards;
     }
-    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
     .hero-sub {
-      font-size: 1.05rem; color: rgba(250,248,244,0.85);
-      max-width: 520px; line-height: 1.75; margin-bottom: 48px;
+      font-size: 1.02rem; color: rgba(250,248,244,0.82);
+      max-width: 500px; line-height: 1.75; margin-bottom: 44px;
       font-weight: 300;
+      opacity: 0; animation: fadeUp 0.9s 2.15s var(--ease-out) forwards;
     }
     .hero-actions {
-      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+      display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.9s 2.3s var(--ease-out) forwards;
     }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 12px;
       background: var(--gold); color: var(--white);
-      text-decoration: none; padding: 16px 36px;
-      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none; padding: 16px 34px;
+      font-size: 0.76rem; letter-spacing: 0.16em; text-transform: uppercase;
       font-weight: 600; transition: all 0.35s var(--ease-smooth);
-      border: none; cursor: pointer;
+      border: none; cursor: pointer; position: relative; overflow: hidden;
     }
-    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold-dark); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 12px; }
     .btn-ghost {
-      color: rgba(250,248,244,0.85); text-decoration: none;
-      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(250,248,244,0.8); text-decoration: none;
+      font-size: 0.76rem; letter-spacing: 0.16em; text-transform: uppercase;
       display: flex; align-items: center; gap: 10px;
       transition: color 0.3s; font-weight: 500;
     }
-    .btn-ghost:hover { color: var(--gold); }
+    .btn-ghost:hover { color: var(--gold-light); }
+    .btn-ghost-circle {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(250,248,244,0.3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-circle { border-color: var(--gold-light); transform: rotate(45deg); }
+
     .hero-scroll {
-      position: absolute; right: 60px; bottom: 80px; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 14px;
-      opacity: 0; animation: fadeIn 1s 1.5s ease forwards;
+      position: absolute; right: 56px; bottom: 80px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      opacity: 0; animation: fadeIn 1s 2.5s ease forwards;
     }
     .hero-scroll span {
-      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
       color: var(--text-muted); writing-mode: vertical-rl;
     }
     .scroll-line {
-      width: 1px; height: 60px;
+      width: 1px; height: 56px;
       background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollPulse 2s infinite;
+      animation: scrollPulse 2.5s infinite;
     }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
-    }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
+    .hero-eyebrow, .hero-title, .hero-sub, .hero-actions {
+      transform: translateY(20px);
+    }
 
     /* ═══ MARQUEE ═══ */
     .marquee-section {
-      border-top: 1px solid rgba(165,147,85,0.2);
-      border-bottom: 1px solid rgba(165,147,85,0.2);
-      overflow: hidden; padding: 18px 0;
+      border-top: 1px solid rgba(165,147,85,0.15);
+      border-bottom: 1px solid rgba(165,147,85,0.15);
+      overflow: hidden; padding: 16px 0;
       background: var(--navy);
     }
     .marquee-track {
       display: flex; width: max-content; align-items: center;
-      animation: marquee 20s linear infinite;
+      animation: marquee 22s linear infinite;
       will-change: transform;
     }
     .marquee-track:hover { animation-play-state: paused; }
     .marquee-item {
       display: inline-flex; align-items: center; gap: 14px;
-      padding: 0 36px; flex-shrink: 0; white-space: nowrap;
-      font-family: var(--font-serif); font-size: 1.05rem;
-      font-style: italic; color: rgba(250,248,244,0.65);
+      padding: 0 34px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-serif); font-size: 1rem;
+      font-style: italic; color: rgba(250,248,244,0.55);
       letter-spacing: 0.04em;
     }
-    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .marquee-item .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
     @keyframes marquee {
       0%   { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-50%, 0, 0); }
     }
 
     /* ═══ SECTIONS ═══ */
-    section { padding: 120px 60px; }
+    section { padding: 110px 56px; }
     .section-label {
-      font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 16px;
+      font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
       display: flex; align-items: center; gap: 14px;
       font-weight: 600;
     }
-    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+    .section-label::before { content: ''; width: 26px; height: 1px; background: var(--gold); }
     .section-title {
       font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      font-weight: 500; line-height: 1.12;
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 400; line-height: 1.14;
       color: var(--navy);
     }
     .section-title em { font-style: italic; color: var(--gold); }
+    .section-subtitle {
+      font-size: 0.95rem; color: var(--text-light);
+      max-width: 540px; margin-top: 16px; line-height: 1.75;
+      font-weight: 300;
+    }
 
     /* ═══ STATS ═══ */
     .stats-section {
       background: var(--white);
-      padding: 90px 60px;
-      border-bottom: 1px solid rgba(165,147,85,0.12);
+      padding: 80px 56px;
+      border-bottom: 1px solid var(--border);
     }
     .stats-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; max-width: 1200px; margin: 0 auto;
-      background: rgba(165,147,85,0.12);
+      gap: 1px; max-width: 1100px; margin: 0 auto;
+      background: var(--border);
     }
     .stat-card {
-      padding: 52px 40px; background: var(--white);
+      padding: 48px 36px; background: var(--white);
       text-align: center; transition: background 0.4s;
     }
     .stat-card:hover { background: var(--cream); }
     .stat-number {
-      font-family: var(--font-serif); font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 500; line-height: 1; color: var(--navy);
-      margin-bottom: 10px;
+      font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 400; line-height: 1; color: var(--navy);
+      margin-bottom: 8px;
     }
     .stat-number .stat-suffix { color: var(--gold); }
     .stat-label {
-      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--text-muted); font-weight: 500;
     }
 
@@ -299,110 +333,112 @@
       gap: 0; padding: 0;
     }
     .about-visual {
-      position: relative; overflow: hidden; min-height: 650px;
+      position: relative; overflow: hidden; min-height: 620px;
     }
     .about-visual img {
       width: 100%; height: 100%; object-fit: cover;
     }
     .about-badge {
       position: absolute; top: 24px; right: 24px;
-      background: var(--white); border: 1px solid rgba(165,147,85,0.25);
-      padding: 20px 28px; display: flex; align-items: center; gap: 16px;
+      background: var(--white); padding: 18px 24px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
-    .about-badge-icon {
-      width: 48px; height: 48px;
-    }
+    .about-badge-icon { height: 40px; width: auto; }
     .about-badge-text {
-      font-size: 0.72rem; letter-spacing: 0.08em;
+      font-size: 0.7rem; letter-spacing: 0.06em;
       color: var(--text-light); line-height: 1.5;
     }
-    .about-badge-text strong { color: var(--navy); display: block; font-size: 0.8rem; }
+    .about-badge-text strong { color: var(--navy); display: block; font-size: 0.78rem; }
     .about-content {
-      padding: 90px 80px;
+      padding: 80px 72px;
       display: flex; flex-direction: column; justify-content: center;
       background: var(--white);
     }
     .about-body {
-      font-size: 1rem; line-height: 1.85;
-      color: var(--text-light); margin: 28px 0 36px;
+      font-size: 0.98rem; line-height: 1.85;
+      color: var(--text-light); margin: 24px 0 32px;
       font-weight: 300;
     }
     .about-body strong { color: var(--navy); font-weight: 500; }
-    .about-divider { width: 50px; height: 1px; background: var(--gold); margin: 28px 0; }
-    .about-values { display: flex; flex-direction: column; gap: 18px; }
+    .about-divider { width: 44px; height: 1px; background: var(--gold); margin: 24px 0; }
+    .about-values { display: flex; flex-direction: column; gap: 14px; }
     .about-value {
-      display: flex; gap: 18px; align-items: flex-start;
-      padding: 18px; border: 1px solid rgba(165,147,85,0.15);
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px; border: 1px solid var(--border);
       transition: border-color 0.3s, background 0.3s;
     }
     .about-value:hover { border-color: rgba(165,147,85,0.4); background: var(--cream); }
     .value-num {
-      font-family: var(--font-serif); font-size: 1.3rem;
+      font-family: var(--font-serif); font-size: 1.2rem;
       color: var(--gold); flex-shrink: 0; line-height: 1.2;
       font-weight: 500;
     }
     .value-text h3 {
-      font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
-      font-weight: 600; margin-bottom: 4px; color: var(--navy);
+      font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 3px; color: var(--navy);
     }
     .value-text p {
-      font-size: 0.88rem; color: var(--text-light); font-weight: 300; line-height: 1.65;
+      font-size: 0.86rem; color: var(--text-light); font-weight: 300; line-height: 1.6;
     }
 
     /* ═══ COURSES ═══ */
     .courses-section { background: var(--cream); }
+    .courses-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      max-width: 1100px; margin: 0 auto 52px; gap: 32px; flex-wrap: wrap;
+    }
     .courses-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; max-width: 1200px; margin: 56px auto 0;
-      background: rgba(165,147,85,0.12);
+      gap: 1px; max-width: 1100px; margin: 0 auto;
+      background: var(--border);
     }
     .course-card {
-      padding: 52px 40px; background: var(--white);
+      padding: 48px 38px; background: var(--white);
       position: relative; overflow: hidden;
       transition: background 0.4s;
     }
     .course-card:hover { background: var(--cream); }
     .course-icon {
-      width: 48px; height: 48px; margin-bottom: 28px;
+      width: 44px; height: 44px; margin-bottom: 24px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(165,147,85,0.35); color: var(--gold);
+      border: 1px solid rgba(165,147,85,0.3); color: var(--gold);
     }
     .course-card h3 {
-      font-family: var(--font-serif); font-size: 1.5rem;
-      font-weight: 500; margin-bottom: 10px; line-height: 1.2;
+      font-family: var(--font-serif); font-size: 1.4rem;
+      font-weight: 500; margin-bottom: 8px; line-height: 1.2;
       color: var(--navy);
     }
     .course-card p {
-      font-size: 0.9rem; color: var(--text-light); line-height: 1.7;
+      font-size: 0.88rem; color: var(--text-light); line-height: 1.7;
       font-weight: 300;
     }
     .course-tag {
-      display: inline-block; margin-top: 20px;
-      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      display: inline-block; margin-top: 18px;
+      font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--gold); font-weight: 600;
-      padding: 6px 14px; border: 1px solid rgba(165,147,85,0.3);
+      padding: 5px 12px; border: 1px solid rgba(165,147,85,0.25);
     }
     .course-number {
-      position: absolute; top: 24px; right: 28px;
-      font-family: var(--font-serif); font-size: 4rem;
-      font-weight: 400; color: rgba(165,147,85,0.08);
+      position: absolute; top: 20px; right: 24px;
+      font-family: var(--font-serif); font-size: 3.5rem;
+      font-weight: 300; color: rgba(165,147,85,0.07);
       line-height: 1; transition: color 0.4s;
     }
-    .course-card:hover .course-number { color: rgba(165,147,85,0.18); }
+    .course-card:hover .course-number { color: rgba(165,147,85,0.15); }
 
     /* ═══ GALLERY ═══ */
     .gallery-section { background: var(--white); }
     .gallery-grid {
       display: grid; grid-template-columns: 2fr 1fr 1fr;
-      gap: 3px; max-width: 1200px; margin: 56px auto 0;
+      gap: 3px; max-width: 1100px; margin: 48px auto 0;
     }
     .gallery-card {
       position: relative; overflow: hidden;
       aspect-ratio: 4/3;
     }
     .gallery-card:first-child {
-      grid-row: span 2;
-      aspect-ratio: auto;
+      grid-row: span 2; aspect-ratio: auto;
     }
     .gallery-card img {
       width: 100%; height: 100%; object-fit: cover;
@@ -411,98 +447,134 @@
     .gallery-card:hover img { transform: scale(1.04); }
     .gallery-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(26,35,50,0.7) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(15,28,46,0.65) 0%, transparent 50%);
       opacity: 0; transition: opacity 0.4s;
     }
     .gallery-card:hover .gallery-overlay { opacity: 1; }
     .gallery-caption {
       position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 24px; color: var(--white);
-      transform: translateY(8px); opacity: 0;
+      padding: 20px; color: var(--white);
+      transform: translateY(6px); opacity: 0;
       transition: transform 0.4s var(--ease-out), opacity 0.4s;
-      font-size: 0.82rem; letter-spacing: 0.06em;
+      font-size: 0.8rem; letter-spacing: 0.05em; font-weight: 500;
     }
     .gallery-card:hover .gallery-caption { transform: translateY(0); opacity: 1; }
 
-    /* ═══ HOW WE WORK ═══ */
-    .process-section {
-      background: var(--navy);
-      color: var(--white);
+    /* ═══ TESTIMONIALS ═══ */
+    .testimonials-section {
+      background: var(--navy); color: var(--white);
+      position: relative; overflow: hidden;
     }
-    .process-section .section-title { color: var(--white); }
+    .testimonials-section::before {
+      content: '\201C'; position: absolute; top: -50px; left: 30px;
+      font-family: var(--font-serif); font-size: 28rem;
+      color: rgba(165,147,85,0.04); line-height: 1; pointer-events: none;
+    }
+    .testimonials-section .section-title { color: var(--white); }
+    .testimonials-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; margin-top: 52px;
+      background: rgba(165,147,85,0.1);
+    }
+    .testimonial-card {
+      padding: 44px 36px;
+      background: rgba(15,28,46,0.95);
+      border: 1px solid rgba(165,147,85,0.1);
+      transition: border-color 0.4s, background 0.4s;
+      display: flex; flex-direction: column;
+    }
+    .testimonial-card:hover { border-color: rgba(165,147,85,0.3); background: var(--navy-mid); }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 24px; }
+    .star {
+      width: 11px; height: 11px; background: var(--gold);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif); font-size: 1.08rem;
+      font-style: italic; font-weight: 300;
+      line-height: 1.7; color: rgba(250,248,244,0.88);
+      margin-bottom: 28px; flex: 1;
+    }
+    .testimonial-line { width: 28px; height: 1px; background: var(--gold); margin-bottom: 22px; opacity: 0.5; }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.06em; margin-bottom: 3px; color: var(--white);
+      font-family: var(--font-sans);
+    }
+    .testimonial-author span {
+      font-size: 0.72rem; color: rgba(250,248,244,0.5); letter-spacing: 0.04em;
+    }
+
+    /* ═══ PROCESS ═══ */
+    .process-section { background: var(--cream-warm); }
     .process-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2px; max-width: 1200px; margin: 56px auto 0;
+      gap: 1px; max-width: 1100px; margin: 52px auto 0;
+      background: var(--border);
     }
     .process-card {
-      padding: 48px 36px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(165,147,85,0.12);
-      transition: border-color 0.4s, background 0.4s;
+      padding: 44px 32px; background: var(--white);
+      transition: background 0.4s;
     }
-    .process-card:hover {
-      border-color: rgba(165,147,85,0.35);
-      background: rgba(255,255,255,0.08);
-    }
+    .process-card:hover { background: var(--cream); }
     .process-num {
-      font-family: var(--font-serif); font-size: 2.4rem;
-      color: var(--gold); margin-bottom: 20px; font-weight: 500;
+      font-family: var(--font-serif); font-size: 2rem;
+      color: var(--gold); margin-bottom: 18px; font-weight: 400;
     }
     .process-card h3 {
-      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
-      font-weight: 600; margin-bottom: 12px;
-      color: rgba(250,248,244,0.95);
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 10px; color: var(--navy);
     }
     .process-card p {
-      font-size: 0.88rem; color: rgba(250,248,244,0.65);
+      font-size: 0.86rem; color: var(--text-light);
       line-height: 1.7; font-weight: 300;
     }
 
-    /* ═══ CERTIFICATIONS ═══ */
-    .cert-section {
-      background: var(--white);
-      text-align: center;
-    }
-    .cert-logos {
+    /* ═══ PRICE BANNER ═══ */
+    .price-banner {
+      background: var(--gold); padding: 52px 56px;
       display: flex; align-items: center; justify-content: center;
-      gap: 60px; flex-wrap: wrap;
-      max-width: 800px; margin: 48px auto 0;
+      gap: 48px; flex-wrap: wrap; text-align: center;
     }
-    .cert-logos img {
-      height: 60px; width: auto; opacity: 0.7;
-      transition: opacity 0.3s;
-      filter: grayscale(30%);
+    .price-banner-text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 400; color: var(--white); line-height: 1.3;
     }
-    .cert-logos img:hover { opacity: 1; filter: grayscale(0%); }
+    .price-banner-text strong {
+      font-weight: 600;
+    }
+    .price-banner .btn-dark {
+      flex-shrink: 0;
+    }
 
     /* ═══ MAP ═══ */
     .map-section { background: var(--cream); padding: 0; }
-    .map-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-    }
+    .map-inner { display: grid; grid-template-columns: 1fr 1fr; }
     .map-info {
-      padding: 90px 80px;
+      padding: 80px 72px;
       display: flex; flex-direction: column; justify-content: center;
       background: var(--white);
     }
     .map-info-item {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 24px 0; border-bottom: 1px solid rgba(165,147,85,0.12);
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 20px 0; border-bottom: 1px solid var(--border);
     }
-    .map-info-item:first-of-type { padding-top: 36px; }
+    .map-info-item:first-of-type { padding-top: 32px; }
     .map-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
+      width: 38px; height: 38px; flex-shrink: 0;
       border: 1px solid rgba(165,147,85,0.3);
       display: flex; align-items: center; justify-content: center;
       color: var(--gold);
     }
     .map-info-text h3 {
-      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 4px; font-weight: 600;
+      font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 3px; font-weight: 600;
     }
     .map-info-text p, .map-info-text a {
-      font-size: 0.92rem; color: var(--text);
-      text-decoration: none; transition: color 0.3s; line-height: 1.65;
+      font-size: 0.9rem; color: var(--text);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
     }
     .map-info-text a:hover { color: var(--gold); }
     .map-frame { min-height: 500px; position: relative; }
@@ -514,13 +586,12 @@
     /* HORARIO TABLE */
     .horario-table {
       width: 100%; border-collapse: collapse;
-      font-size: 0.88rem; margin-top: 8px;
+      font-size: 0.86rem; margin-top: 6px;
     }
     .horario-table td {
-      padding: 6px 0; border: none;
-      color: var(--text);
+      padding: 5px 0; border: none; color: var(--text);
     }
-    .horario-table td:first-child { font-weight: 500; width: 110px; }
+    .horario-table td:first-child { font-weight: 500; width: 100px; }
     .horario-table td:last-child { color: var(--text-light); }
     .horario-hoy td {
       color: var(--gold-dark) !important; font-weight: 600 !important;
@@ -528,175 +599,206 @@
 
     /* ═══ CTA ═══ */
     .cta-section {
-      background: var(--gold);
-      padding: 100px 60px;
+      background: var(--navy); padding: 90px 56px;
       display: flex; align-items: center; justify-content: space-between;
       gap: 48px; flex-wrap: wrap;
     }
     .cta-text { flex: 1; min-width: 280px; }
     .cta-text h2 {
       font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3.4rem);
-      font-weight: 500; color: var(--white); line-height: 1.12;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: 400; color: var(--white); line-height: 1.12;
     }
+    .cta-text h2 em { font-style: italic; color: var(--gold-light); }
     .cta-text p {
-      font-size: 1rem; color: rgba(255,255,255,0.85);
-      margin-top: 14px; font-weight: 300;
+      font-size: 0.95rem; color: rgba(250,248,244,0.7);
+      margin-top: 12px; font-weight: 300;
     }
     .btn-dark {
       display: inline-flex; align-items: center; gap: 12px;
-      background: var(--navy); color: var(--white);
-      text-decoration: none; padding: 18px 44px;
-      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      background: var(--gold); color: var(--white);
+      text-decoration: none; padding: 16px 40px;
+      font-size: 0.76rem; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 600; transition: background 0.35s, transform 0.35s;
+      white-space: nowrap; border: none; cursor: pointer;
+    }
+    .btn-dark:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: var(--white);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase;
       font-weight: 600; transition: background 0.35s, transform 0.35s;
       white-space: nowrap;
     }
-    .btn-dark:hover { background: var(--navy-light); transform: translateY(-1px); }
+    .btn-whatsapp:hover { background: #1fba59; transform: translateY(-1px); }
 
     /* ═══ FOOTER ═══ */
     footer {
-      background: var(--navy); padding: 80px 60px 48px;
-      color: rgba(250,248,244,0.78);
+      background: var(--navy); padding: 72px 56px 44px;
+      color: rgba(250,248,244,0.7);
+      border-top: 1px solid rgba(165,147,85,0.12);
     }
     .footer-top {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px; margin-bottom: 60px;
+      gap: 48px; margin-bottom: 56px;
     }
-    .footer-brand .nav-logo { margin-bottom: 18px; display: inline-flex; }
-    .footer-brand .nav-logo img { height: 32px; filter: brightness(1.2); }
+    .footer-brand .nav-logo { margin-bottom: 16px; display: inline-flex; }
+    .footer-brand .nav-logo img { height: 30px; filter: brightness(1.15); }
     .footer-tagline {
       font-family: var(--font-serif); font-style: italic;
-      font-size: 1rem; color: rgba(250,248,244,0.65);
-      line-height: 1.65; max-width: 280px; margin-bottom: 28px;
+      font-size: 0.95rem; color: rgba(250,248,244,0.55);
+      line-height: 1.6; max-width: 260px; margin-bottom: 24px;
     }
-    .footer-social { display: flex; gap: 12px; }
+    .footer-social { display: flex; gap: 10px; }
     .social-link {
-      width: 38px; height: 38px;
-      border: 1px solid rgba(250,248,244,0.2);
+      width: 36px; height: 36px;
+      border: 1px solid rgba(250,248,244,0.18);
       display: flex; align-items: center; justify-content: center;
-      text-decoration: none; color: rgba(250,248,244,0.65);
+      text-decoration: none; color: rgba(250,248,244,0.55);
       transition: all 0.3s;
     }
     .social-link:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
-    .social-link svg { width: 16px; height: 16px; }
+    .social-link svg { width: 15px; height: 15px; }
     .footer-col h3 {
-      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 20px; font-weight: 600;
+      font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px; font-weight: 600;
     }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
     .footer-col ul a {
-      text-decoration: none; color: rgba(250,248,244,0.65);
-      font-size: 0.88rem; transition: color 0.3s; font-weight: 300;
+      text-decoration: none; color: rgba(250,248,244,0.55);
+      font-size: 0.86rem; transition: color 0.3s; font-weight: 300;
     }
     .footer-col ul a:hover { color: var(--white); }
     .footer-bottom {
-      border-top: 1px solid rgba(250,248,244,0.1);
-      padding-top: 32px;
+      border-top: 1px solid rgba(250,248,244,0.08);
+      padding-top: 28px;
       display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
+      flex-wrap: wrap; gap: 14px;
     }
-    .footer-copy { font-size: 0.78rem; color: rgba(250,248,244,0.5); }
-    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-copy { font-size: 0.75rem; color: rgba(250,248,244,0.4); }
+    .footer-legal { display: flex; gap: 22px; flex-wrap: wrap; }
     .footer-legal a, .footer-legal button {
-      font-size: 0.75rem; color: rgba(250,248,244,0.6);
+      font-size: 0.72rem; color: rgba(250,248,244,0.5);
       text-decoration: none; transition: color 0.3s;
       background: none; border: none; padding: 0; cursor: pointer;
       font-family: inherit;
     }
     .footer-legal a:hover, .footer-legal button:hover { color: var(--white); }
 
-    /* ═══ REVEAL ═══ */
+    /* ═══ REVEAL ANIMATIONS ═══ */
     .reveal {
       opacity: 1; transform: translateY(0);
       transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.12s; }
-    .reveal-delay-2 { transition-delay: 0.24s; }
-    .reveal-delay-3 { transition-delay: 0.36s; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
 
     /* ═══ RESPONSIVE ═══ */
     @media (max-width: 1024px) {
-      nav { padding: 20px 32px; }
+      nav { padding: 18px 32px; }
       nav.scrolled { padding: 14px 32px; }
-      section { padding: 90px 32px; }
+      section { padding: 80px 32px; }
       .hero-content { padding: 140px 32px 80px; }
+      .hero-scroll { right: 32px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .courses-grid { grid-template-columns: repeat(2, 1fr); }
       .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
       .map-inner { grid-template-columns: 1fr; }
-      .map-info { padding: 60px 32px; }
+      .map-info { padding: 56px 32px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-card:first-child { grid-row: auto; }
       .about-section { grid-template-columns: 1fr; }
-      .about-visual { min-height: 400px; }
-      .about-content { padding: 60px 32px; }
+      .about-visual { min-height: 380px; }
+      .about-content { padding: 56px 32px; }
+      .price-banner { padding: 40px 32px; gap: 28px; }
     }
     @media (max-width: 768px) {
-      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hero { min-height: auto; height: auto; }
       .hamburger { display: flex; }
       .nav-links { display: none; }
-      nav { padding: 18px 24px; }
-      nav.scrolled { padding: 14px 24px; }
-      section { padding: 72px 24px; }
-      .hero-content { padding: 120px 24px 64px; }
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      section { padding: 64px 24px; }
+      .hero-content { padding: 120px 24px 60px; }
       .hero-scroll { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .courses-grid { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
-      .cta-section { padding: 72px 24px; flex-direction: column; align-items: flex-start; }
-      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .cta-section { padding: 64px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .map-info { padding: 48px 24px; }
-      .cert-logos { gap: 32px; }
-      .cert-logos img { height: 44px; }
+      .price-banner { padding: 36px 24px; gap: 20px; flex-direction: column; }
+      .courses-header { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
     @media (max-width: 480px) {
-      .hero-title { font-size: clamp(2.2rem, 10vw, 2.8rem); }
-      .hero-eyebrow { font-size: 0.65rem; flex-wrap: wrap; gap: 8px; }
-      .section-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
-      .stat-card { padding: 36px 24px; }
+      .hero-title { font-size: clamp(2rem, 9vw, 2.6rem); }
+      .hero-eyebrow { font-size: 0.62rem; flex-wrap: wrap; gap: 6px; }
+      .section-title { font-size: clamp(1.7rem, 7vw, 2rem); }
+      .stat-card { padding: 32px 20px; }
       .process-grid { grid-template-columns: 1fr; }
-      .process-card { padding: 36px 24px; }
-      .btn-primary { padding: 14px 28px; }
-      .btn-dark { padding: 14px 32px; }
-      .about-badge { bottom: 16px; left: 16px; padding: 14px 18px; }
+      .process-card { padding: 32px 24px; }
+      .btn-primary, .btn-dark, .btn-whatsapp { padding: 14px 28px; font-size: 0.72rem; }
+      .about-badge { top: 12px; right: 12px; padding: 14px 16px; }
+      .testimonial-card { padding: 32px 24px; }
+      .course-card { padding: 36px 28px; }
     }
 
     /* WCAG */
-    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
-    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--gold); color: var(--white); padding: 10px 18px; z-index: 99999; font-size: 1rem; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: var(--radius); }
+    .sr-only-focusable {
+      position: absolute; left: -9999px; top: auto;
+      width: 1px; height: 1px; overflow: hidden;
+    }
+    .sr-only-focusable:focus {
+      position: fixed; top: 12px; left: 12px;
+      width: auto; height: auto; overflow: visible;
+      background: var(--gold); color: var(--white);
+      padding: 10px 18px; z-index: 99999; font-size: 1rem;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
-        animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important; scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
       .marquee-track { animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      .hero-eyebrow, .hero-title, .hero-sub, .hero-actions {
+        opacity: 1; transform: none;
+      }
     }
   </style>
 </head>
 <body>
 
 <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
-  <div class="loader-logo">Inglessa</div>
+  <div class="loader-brand">
+    <img src="logo-nuevo.png" alt="Inglessa" width="160" height="60">
+  </div>
   <div class="loader-bar"></div>
 </div>
 
 <nav id="navbar" aria-label="Navegación principal">
   <a href="#main-content" class="nav-logo">
-    <img src="https://inglessa.com/wp-content/uploads/2022/08/Inglessa-Logo-Nuevo-Transparente.png" alt="Inglessa - Academia de Inglés" width="160" height="60">
+    <img src="logo.png" alt="Inglessa - Academia de Inglés" width="160" height="43">
   </a>
   <ul class="nav-links">
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#cursos">Cursos</a></li>
     <li><a href="#metodo">Método</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-    <li><a href="tel:+34621390219" class="nav-cta">Llamar</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-cta">Contactar</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú de navegación">
     <span></span><span></span><span></span>
@@ -707,30 +809,33 @@
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#cursos" onclick="closeMobile()">Cursos</a>
   <a href="#metodo" onclick="closeMobile()">Método</a>
-  <a href="#contacto" onclick="closeMobile()">Contacto</a>
-  <a href="tel:+34621390219" onclick="closeMobile()">Llamar</a>
+  <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="#contacto" onclick="closeMobile()">Contactar</a>
 </div>
 
 <a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
 <main id="main-content">
 
-<!-- HERO -->
+<!-- ═══ HERO ═══ -->
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-bg" id="heroBg" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1920&q=80');" role="img" aria-label="Aula de academia de inglés con alumnos participando en clase"></div>
+  <div class="hero-bg" id="heroBg" style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1920&q=80');" role="img" aria-label="Aula de academia de inglés con alumnos participando activamente en clase"></div>
   <div class="hero-overlay"></div>
-  <div class="hero-overlay-bottom"></div>
+  <div class="hero-bottom-fade"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Academia de Inglés en Tenerife · Centro Cambridge y Oxford</p>
+    <p class="hero-eyebrow">Santa Cruz de Tenerife y La Laguna</p>
     <h1 class="hero-title" id="hero-title">Aprende inglés<br>con quien sabe<br><em>enseñarlo.</em></h1>
-    <p class="hero-sub">Grupos reducidos, foco real en speaking y preparación oficial Cambridge y Oxford. En Santa Cruz de Tenerife y La Laguna, con opción online para toda Canarias.</p>
+    <p class="hero-sub">Grupos reducidos, profesores examinadores oficiales y foco real en speaking. Preparación Cambridge, Oxford e IELTS con resultados que se notan.</p>
     <div class="hero-actions">
-      <a href="tel:+34621390219" class="btn-primary" aria-label="Llamar a Inglessa al 621 39 02 19">
-        Llamar al 621 39 02 19
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <a href="tel:+34611021207" class="btn-primary" aria-label="Llamar a Inglessa al 611 02 12 07">
+        <span>Llamar al 611 02 12 07
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
       </a>
       <a href="#cursos" class="btn-ghost">
-        Ver cursos
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        <span>Ver cursos</span>
+        <span class="btn-ghost-circle" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
       </a>
     </div>
   </div>
@@ -740,29 +845,29 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
+<!-- ═══ MARQUEE ═══ -->
 <div class="marquee-section" aria-hidden="true">
   <div class="marquee-track">
     <span class="marquee-item"><span class="dot"></span>Cambridge English</span>
     <span class="marquee-item"><span class="dot"></span>Oxford Test of English</span>
+    <span class="marquee-item"><span class="dot"></span>IELTS</span>
     <span class="marquee-item"><span class="dot"></span>Cursos intensivos</span>
     <span class="marquee-item"><span class="dot"></span>Grupos reducidos</span>
     <span class="marquee-item"><span class="dot"></span>Speaking real</span>
-    <span class="marquee-item"><span class="dot"></span>Presencial y online</span>
+    <span class="marquee-item"><span class="dot"></span>Campus virtual</span>
     <span class="marquee-item"><span class="dot"></span>Todos los niveles</span>
-    <span class="marquee-item"><span class="dot"></span>Adultos</span>
     <span class="marquee-item"><span class="dot"></span>Cambridge English</span>
     <span class="marquee-item"><span class="dot"></span>Oxford Test of English</span>
+    <span class="marquee-item"><span class="dot"></span>IELTS</span>
     <span class="marquee-item"><span class="dot"></span>Cursos intensivos</span>
     <span class="marquee-item"><span class="dot"></span>Grupos reducidos</span>
     <span class="marquee-item"><span class="dot"></span>Speaking real</span>
-    <span class="marquee-item"><span class="dot"></span>Presencial y online</span>
+    <span class="marquee-item"><span class="dot"></span>Campus virtual</span>
     <span class="marquee-item"><span class="dot"></span>Todos los niveles</span>
-    <span class="marquee-item"><span class="dot"></span>Adultos</span>
   </div>
 </div>
 
-<!-- STATS -->
+<!-- ═══ STATS ═══ -->
 <div class="stats-section" role="region" aria-label="Cifras de Inglessa">
   <div class="stats-grid">
     <div class="stat-card reveal">
@@ -778,20 +883,20 @@
       <div class="stat-label">Centros en Tenerife</div>
     </div>
     <div class="stat-card reveal reveal-delay-3">
-      <div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div>
-      <div class="stat-label">Profesorado cualificado</div>
+      <div class="stat-number">A1<span class="stat-suffix">-</span>C2</div>
+      <div class="stat-label">Todos los niveles</div>
     </div>
   </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ═══ ABOUT ═══ -->
 <div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
   <div class="about-visual">
     <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=1200&q=80" alt="Grupo de alumnos adultos en clase de inglés trabajando en equipo" loading="lazy">
     <div class="about-badge">
-      <img class="about-badge-icon" src="https://inglessa.com/wp-content/uploads/2022/08/Inglessa-Logo-Nuevo-Transparente.png" alt="" width="48" height="48">
+      <img class="about-badge-icon" src="logo-nuevo.png" alt="" width="40" height="40">
       <div class="about-badge-text">
-        <strong>Santa Cruz y La Laguna</strong>
+        <strong>4,9 sobre 5 en Google</strong>
         La academia más valorada de Tenerife
       </div>
     </div>
@@ -803,121 +908,170 @@
     </h2>
     <div class="about-divider reveal" aria-hidden="true"></div>
     <p class="about-body reveal reveal-delay-2">
-      En Inglessa creemos que aprender un idioma empieza por <strong>perder el miedo a hablarlo</strong>. Por eso nuestras clases giran en torno a la práctica oral real, con dinámicas pensadas para que cada alumno hable desde el primer día. Combinamos la cercanía de la formación presencial en nuestros centros de <strong>Santa Cruz de Tenerife</strong> y <strong>La Laguna</strong> con la flexibilidad de las clases online para toda Canarias. Un método híbrido que se adapta a tu ritmo, no al revés.
+      En Inglessa creemos que aprender un idioma empieza por <strong>perder el miedo a hablarlo</strong>. Por eso nuestras clases giran en torno a la práctica oral real, con dinámicas pensadas para que cada alumno participe desde el primer día. Nuestros profesores son <strong>examinadores oficiales</strong> de instituciones como Cambridge y Oxford: conocen los exámenes por dentro y diseñan cada sesión para que avances con solidez. Dos centros en Tenerife, en <strong>Santa Cruz</strong> y <strong>La Laguna</strong>, con opción online para toda Canarias.
     </p>
     <div class="about-values reveal reveal-delay-3">
       <div class="about-value">
         <div class="value-num">01</div>
         <div class="value-text">
           <h3>Speaking como eje</h3>
-          <p>Cada clase tiene un componente oral estructurado. No se trata solo de gramática: se trata de comunicar.</p>
+          <p>Cada clase tiene un componente oral estructurado. Se trata de comunicar, no solo de aprobar.</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">02</div>
         <div class="value-text">
           <h3>Grupos reducidos</h3>
-          <p>Atención individualizada para que cada alumno avance a su ritmo, con seguimiento real de su progreso.</p>
+          <p>Grupos de 4-5 alumnos para una atención individualizada real. Cada persona avanza a su ritmo.</p>
         </div>
       </div>
       <div class="about-value">
         <div class="value-num">03</div>
         <div class="value-text">
-          <h3>Certificaciones oficiales</h3>
-          <p>Centro preparador de Cambridge English y Oxford Test of English. Nuestros profesores conocen los exámenes por dentro.</p>
+          <h3>Campus virtual propio</h3>
+          <p>Material completo, exámenes simulacro y recursos digitales accesibles en cualquier momento.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- COURSES -->
+<!-- ═══ COURSES ═══ -->
 <section class="courses-section" id="cursos" aria-labelledby="cursos-title">
-  <p class="section-label reveal">Cursos</p>
-  <h2 class="section-title reveal reveal-delay-1" id="cursos-title">El nivel que necesitas,<br>al ritmo que <em>te va bien.</em></h2>
+  <div class="courses-header">
+    <div>
+      <p class="section-label reveal">Cursos</p>
+      <h2 class="section-title reveal reveal-delay-1" id="cursos-title">El nivel que necesitas,<br>al ritmo que <em>te va bien.</em></h2>
+    </div>
+  </div>
   <div class="courses-grid">
     <div class="course-card reveal">
       <div class="course-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
       </div>
       <h3>Inglés general</h3>
-      <p>Cursos de A1 a C1 con enfoque comunicativo. Presencial, online o formato híbrido para adaptarse a tu agenda.</p>
+      <p>Cursos de A1 a C2 con enfoque comunicativo. Presencial en Santa Cruz o La Laguna, online o formato híbrido.</p>
       <span class="course-tag">Todos los niveles</span>
       <div class="course-number" aria-hidden="true">01</div>
     </div>
     <div class="course-card reveal reveal-delay-1">
       <div class="course-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
       </div>
-      <h3>Preparación B2</h3>
-      <p>Cambridge First (FCE) u Oxford Test of English. Estrategias específicas para las cuatro destrezas del examen.</p>
-      <span class="course-tag">Cambridge · Oxford</span>
+      <h3>Preparación oficial</h3>
+      <p>Cambridge (B2 First, C1 Advanced), Oxford Test of English e IELTS. Estrategias específicas para cada destreza del examen.</p>
+      <span class="course-tag">Cambridge / Oxford / IELTS</span>
       <div class="course-number" aria-hidden="true">02</div>
     </div>
     <div class="course-card reveal reveal-delay-2">
       <div class="course-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       </div>
       <h3>Intensivos</h3>
-      <p>Cursos concentrados en periodos cortos para quienes necesitan resultados rápidos. Ideal para fechas de examen próximas.</p>
+      <p>Cursos concentrados para quienes necesitan resultados rápidos. Ideal para convocatorias próximas o metas laborales.</p>
       <span class="course-tag">Resultados rápidos</span>
       <div class="course-number" aria-hidden="true">03</div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY -->
+<!-- ═══ GALLERY ═══ -->
 <section class="gallery-section" aria-labelledby="galeria-title">
   <p class="section-label reveal">La academia</p>
   <h2 class="section-title reveal reveal-delay-1" id="galeria-title">Donde el inglés<br><em>cobra vida.</em></h2>
   <div class="gallery-grid">
     <div class="gallery-card reveal">
-      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80" alt="Grupo de estudiantes adultos conversando en inglés en clase" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80" alt="Grupo de estudiantes adultos conversando en inglés en una mesa de trabajo" loading="lazy">
       <div class="gallery-overlay"></div>
       <div class="gallery-caption">Práctica oral en grupos reducidos</div>
     </div>
     <div class="gallery-card reveal reveal-delay-1">
-      <img src="https://inglessa.com/wp-content/uploads/2022/08/Curso-Ingles-B2-Tenerife-Presencial-y-Semi-Presencial-1.png" alt="Curso de inglés B2 presencial y semi-presencial con certificaciones Cambridge y Oxford" loading="lazy">
+      <img src="academia-online.png" alt="Plataforma online de Inglessa para clases de inglés a distancia" loading="lazy">
       <div class="gallery-overlay"></div>
-      <div class="gallery-caption">Preparación Cambridge y Oxford</div>
+      <div class="gallery-caption">Campus virtual con recursos y simulacros</div>
     </div>
     <div class="gallery-card reveal reveal-delay-2">
-      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" alt="Alumno estudiando inglés con libros y material didáctico" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" alt="Alumna estudiando inglés con libros y material didáctico sobre la mesa" loading="lazy">
       <div class="gallery-overlay"></div>
       <div class="gallery-caption">Material didáctico actualizado</div>
     </div>
     <div class="gallery-card reveal reveal-delay-1">
-      <img src="https://inglessa.com/wp-content/uploads/2023/01/British-Flag.png" alt="Bandera británica, imagen de marca de Inglessa academia de inglés" loading="lazy">
+      <img src="british-flag.png" alt="Bandera británica, imagen institucional de Inglessa academia de inglés" loading="lazy">
       <div class="gallery-overlay"></div>
       <div class="gallery-caption">Inglés británico y americano</div>
     </div>
     <div class="gallery-card reveal reveal-delay-2">
-      <img src="https://images.unsplash.com/photo-1560439513-74b037a25d84?w=800&q=80" alt="Profesora de inglés explicando en una pizarra blanca" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1560439513-74b037a25d84?w=800&q=80" alt="Profesora de inglés explicando vocabulario junto a una pizarra blanca" loading="lazy">
       <div class="gallery-overlay"></div>
       <div class="gallery-caption">Profesorado cualificado y cercano</div>
     </div>
   </div>
 </section>
 
-<!-- HOW WE WORK -->
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials-section" id="opiniones" aria-labelledby="opiniones-title">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Lo que dicen nuestros alumnos</p>
+    <h2 class="section-title reveal reveal-delay-1" id="opiniones-title">
+      4,9 sobre 5 con 65 reseñas<br>verificadas en <em>Google.</em>
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Mucha calidad en la enseñanza, la estructura y metodología de las clases me parecen ideales."</p>
+        <div class="testimonial-line" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Juan H.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Excelentes profesores con trato personalizado. Obtuve B2 Oxford y C1 Cambridge."</p>
+        <div class="testimonial-line" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Juan Carlos T.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
+        </div>
+        <p class="testimonial-quote">"Grupos muy reducidos de 4-5 personas. Trato inmejorable en clase y secretaría."</p>
+        <div class="testimonial-line" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Cocina P.</strong>
+          <span>Reseña en Google</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
 <section class="process-section" id="metodo" aria-labelledby="metodo-title">
   <p class="section-label reveal">Cómo trabajamos</p>
-  <h2 class="section-title reveal reveal-delay-1" id="metodo-title">Cuatro pasos para que<br><em>tu inglés funcione.</em></h2>
+  <h2 class="section-title reveal reveal-delay-1" id="metodo-title">Cuatro pasos para que<br>tu inglés <em>funcione.</em></h2>
   <div class="process-grid">
     <div class="process-card reveal">
       <div class="process-num">01</div>
-      <h3>Diagnóstico de nivel</h3>
+      <h3>Prueba de nivel</h3>
       <p>Evaluamos tu punto de partida real con una prueba gratuita. Sabemos exactamente dónde estás y qué necesitas.</p>
     </div>
     <div class="process-card reveal reveal-delay-1">
       <div class="process-num">02</div>
       <h3>Plan a tu medida</h3>
-      <p>Elegimos juntos el formato que mejor te va: presencial en Santa Cruz o La Laguna, online, o la combinación de ambos.</p>
+      <p>Elegimos juntos el formato: presencial en Santa Cruz o La Laguna, online, o la combinación de ambos.</p>
     </div>
     <div class="process-card reveal reveal-delay-2">
       <div class="process-num">03</div>
-      <h3>Clases con práctica real</h3>
-      <p>Cada sesión tiene speaking estructurado, correcciones individuales y feedback de writing. Avanzas porque practicas, no porque memorizas.</p>
+      <h3>Práctica real</h3>
+      <p>Cada sesión incluye speaking estructurado, correcciones individuales y feedback de writing. Avanzas porque practicas.</p>
     </div>
     <div class="process-card reveal reveal-delay-3">
       <div class="process-num">04</div>
@@ -927,7 +1081,16 @@
   </div>
 </section>
 
-<!-- MAP / CONTACT -->
+<!-- ═══ PRICE BANNER ═══ -->
+<div class="price-banner" role="region" aria-label="Información de precios">
+  <p class="price-banner-text">Cursos presenciales desde <strong>49,99 euros/mes</strong>. Materiales propios incluidos.</p>
+  <a href="tel:+34611021207" class="btn-dark">
+    Consultar disponibilidad
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<!-- ═══ MAP / CONTACT ═══ -->
 <div class="map-section" id="contacto">
   <div class="map-inner">
     <div class="map-info">
@@ -937,7 +1100,7 @@
       </h2>
       <div class="map-info-item">
         <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
           </svg>
         </div>
@@ -948,18 +1111,18 @@
       </div>
       <div class="map-info-item">
         <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
         </div>
         <div class="map-info-text">
           <h3>Teléfono</h3>
-          <a href="tel:+34621390219">621 39 02 19</a>
+          <a href="tel:+34611021207">611 02 12 07</a>
         </div>
       </div>
       <div class="map-info-item">
         <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/>
           </svg>
         </div>
@@ -970,34 +1133,39 @@
       </div>
       <div class="map-info-item">
         <div class="map-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
           </svg>
         </div>
         <div class="map-info-text">
-          <h3>Horario (Santa Cruz)</h3>
+          <h3>Horario</h3>
           <table class="horario-table" id="horarioTable">
-            <tr data-day="1"><td>Lunes</td><td>16:00 - 20:30</td></tr>
-            <tr data-day="2"><td>Martes</td><td>16:00 - 20:30</td></tr>
-            <tr data-day="3"><td>Miércoles</td><td>16:00 - 20:30</td></tr>
-            <tr data-day="4"><td>Jueves</td><td>16:00 - 20:30</td></tr>
-            <tr data-day="5"><td>Viernes</td><td>Cerrado</td></tr>
+            <tr data-day="1"><td>Lunes</td><td>10:30 - 13:00 y 16:00 - 21:00</td></tr>
+            <tr data-day="2"><td>Martes</td><td>10:30 - 13:00 y 16:00 - 21:00</td></tr>
+            <tr data-day="3"><td>Miércoles</td><td>10:30 - 13:00 y 16:00 - 21:00</td></tr>
+            <tr data-day="4"><td>Jueves</td><td>10:30 - 13:00 y 16:00 - 21:00</td></tr>
+            <tr data-day="5"><td>Viernes</td><td>10:30 - 13:00</td></tr>
             <tr data-day="6"><td>Sábado</td><td>Cerrado</td></tr>
             <tr data-day="0"><td>Domingo</td><td>Cerrado</td></tr>
           </table>
         </div>
       </div>
-      <div style="margin-top: 36px;">
-        <a href="tel:+34621390219" class="btn-primary" style="display: inline-flex;">
-          Llamar al 621 39 02 19
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      <div style="margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap;">
+        <a href="tel:+34611021207" class="btn-primary" style="display: inline-flex;">
+          <span>Llamar
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+        <a href="https://wa.me/34611021207" target="_blank" rel="noopener" class="btn-whatsapp" aria-label="Escribir por WhatsApp a Inglessa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04"/></svg>
+          WhatsApp
         </a>
       </div>
     </div>
     <div class="map-frame">
       <iframe
         title="Mapa de ubicación de Inglessa en C/ Padre Anchieta, 42, Santa Cruz de Tenerife"
-        src="https://www.google.com/maps?q=Inglessa+Academia+de+Inglés+Santa+Cruz+de+Tenerife+Padre+Anchieta+42&output=embed"
+        src="https://www.google.com/maps?q=Inglessa+Academia+Ingles+Padre+Anchieta+42+Santa+Cruz+Tenerife&output=embed"
         allowfullscreen
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
@@ -1006,36 +1174,39 @@
   </div>
 </div>
 
-<!-- CTA -->
+<!-- ═══ CTA ═══ -->
 <div class="cta-section" role="region" aria-label="Llamada a la acción">
   <div class="cta-text">
-    <h2>¿Listo para dar el paso con tu inglés?</h2>
-    <p>Llámanos y te hacemos una prueba de nivel gratuita. Sin compromiso, sin presión.</p>
+    <h2>¿Listo para dar el paso<br>con tu <em>inglés?</em></h2>
+    <p>Prueba de nivel gratuita. Sin compromiso, sin presión. Llámanos o escríbenos por WhatsApp.</p>
   </div>
-  <a href="tel:+34621390219" class="btn-dark">
-    Llamar ahora
+  <a href="https://wa.me/34611021207" target="_blank" rel="noopener" class="btn-dark">
+    Escribir por WhatsApp
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
   </a>
 </div>
 
 </main>
 
-<!-- FOOTER -->
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
       <a href="#main-content" class="nav-logo">
-        <img src="https://inglessa.com/wp-content/uploads/2022/08/Inglessa-Logo-Nuevo-Transparente.png" alt="Inglessa" width="120" height="45">
+        <img src="logo.png" alt="Inglessa" width="120" height="33">
       </a>
       <p class="footer-tagline">"Tu academia de inglés en Tenerife. Presencial, online y con foco real en que hables."</p>
       <div class="footer-social">
         <a href="https://www.facebook.com/inglessatenerife/" target="_blank" rel="noopener" class="social-link" aria-label="Inglessa en Facebook">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </a>
-        <a href="https://wa.me/34621390219" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp a Inglessa">
+        <a href="https://www.instagram.com/inglessa_canarias/" target="_blank" rel="noopener" class="social-link" aria-label="Inglessa en Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.44.41.61.24 1.05.52 1.51.98.46.46.74.9.98 1.51.17.47.36 1.27.41 2.44.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.41 2.44a4.07 4.07 0 01-.98 1.51c-.46.46-.9.74-1.51.98-.47.17-1.27.36-2.44.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.44-.41a4.07 4.07 0 01-1.51-.98 4.07 4.07 0 01-.98-1.51c-.17-.47-.36-1.27-.41-2.44C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.97.41-2.44.24-.61.52-1.05.98-1.51a4.07 4.07 0 011.51-.98c.47-.17 1.27-.36 2.44-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.83 5.83 0 00-2.13 1.38A5.83 5.83 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.83 5.83 0 002.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.83 5.83 0 002.13-1.38 5.83 5.83 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.83 5.83 0 00-1.38-2.13A5.83 5.83 0 0019.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>
+        </a>
+        <a href="https://wa.me/34611021207" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp a Inglessa">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04"/></svg>
         </a>
-        <a href="tel:+34621390219" class="social-link" aria-label="Llamar a Inglessa">
+        <a href="tel:+34611021207" class="social-link" aria-label="Llamar a Inglessa">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 00-1.02.24l-2.2 2.2a15.07 15.07 0 01-6.58-6.6l2.2-2.2a1 1 0 00.25-1.02A11.4 11.4 0 018.5 4a1 1 0 00-1-1H4a1 1 0 00-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 00-1-1"/></svg>
         </a>
         <a href="mailto:info@inglessa.com" class="social-link" aria-label="Enviar correo a info@inglessa.com">
@@ -1047,7 +1218,7 @@
       <h3>Cursos</h3>
       <ul>
         <li><a href="#cursos">Inglés general</a></li>
-        <li><a href="#cursos">Preparación B2</a></li>
+        <li><a href="#cursos">Preparación oficial</a></li>
         <li><a href="#cursos">Intensivos</a></li>
         <li><a href="#cursos">Online</a></li>
       </ul>
@@ -1057,16 +1228,17 @@
       <ul>
         <li><a href="#nosotros">Sobre nosotros</a></li>
         <li><a href="#metodo">Nuestro método</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h3>Contacto</h3>
       <ul>
-        <li><a href="tel:+34621390219">621 39 02 19</a></li>
+        <li><a href="tel:+34611021207">611 02 12 07</a></li>
         <li><a href="mailto:info@inglessa.com">info@inglessa.com</a></li>
         <li><a href="#contacto">Santa Cruz de Tenerife</a></li>
-        <li><a href="#contacto">Lunes a jueves</a></li>
+        <li><a href="#contacto">Lunes a viernes</a></li>
       </ul>
     </div>
   </div>
@@ -1082,31 +1254,31 @@
 </footer>
 
 <script>
-  // LOADER
+  // ═══ LOADER ═══
   window.addEventListener('load', function() {
     setTimeout(function() {
       var loader = document.getElementById('loader');
       var heroBg = document.getElementById('heroBg');
       if (loader) loader.classList.add('hidden');
       if (heroBg) heroBg.classList.add('loaded');
-    }, 1600);
+    }, 1500);
   });
 
-  // NAVBAR SCROLL
+  // ═══ NAVBAR SCROLL ═══
   var navbar = document.getElementById('navbar');
   window.addEventListener('scroll', function() {
     if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // HAMBURGER MENU
+  // ═══ HAMBURGER ═══
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobileMenu');
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', function() {
       var isOpen = hamburger.classList.toggle('active');
       mobileMenu.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen);
-      if (isOpen) { var firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      if (isOpen) { var fl = mobileMenu.querySelector('a'); if (fl) fl.focus(); }
     });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
@@ -1121,57 +1293,57 @@
   function closeMobile() {
     var h = document.getElementById('hamburger');
     var m = document.getElementById('mobileMenu');
-    if (h) h.classList.remove('active');
+    if (h) { h.classList.remove('active'); h.setAttribute('aria-expanded', 'false'); }
     if (m) m.classList.remove('open');
-    if (h) h.setAttribute('aria-expanded', 'false');
   }
 
-  // REVEAL ON SCROLL
+  // ═══ REVEAL ON SCROLL ═══
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries) {
+    var revealObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    reveals.forEach(function(el) { observer.observe(el); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el) { revealObs.observe(el); });
   } else {
     reveals.forEach(function(el) { el.classList.add('visible'); });
   }
 
-  // COUNTER ANIMATION
+  // ═══ COUNTER ANIMATION ═══
   function animateCount(el) {
-    var targetRaw = el.dataset.target;
-    var isDecimal = targetRaw === '49';
-    var target = parseInt(targetRaw, 10);
-    var duration = 1600;
+    var raw = el.dataset.target;
+    if (!raw) return;
+    var isDecimal = (raw === '49');
+    var target = parseInt(raw, 10);
+    var dur = 1500;
     var start = performance.now();
     function step(now) {
-      var progress = Math.min((now - start) / duration, 1);
-      var ease = 1 - Math.pow(1 - progress, 4);
-      var value = ease * target;
+      var p = Math.min((now - start) / dur, 1);
+      var ease = 1 - Math.pow(1 - p, 4);
+      var v = ease * target;
       if (isDecimal) {
-        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+        el.textContent = (v / 10).toFixed(1).replace('.', ',');
       } else {
-        el.textContent = Math.round(value);
+        el.textContent = Math.round(v);
       }
-      if (progress < 1) requestAnimationFrame(step);
+      if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
 
   if ('IntersectionObserver' in window) {
-    var countObserver = new IntersectionObserver(function(entries) {
+    var countObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+        if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
       });
     }, { threshold: 0.5 });
-    document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
+    document.querySelectorAll('.count').forEach(function(el) { countObs.observe(el); });
   } else {
     document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
   }
 
-  // HIGHLIGHT TODAY
+  // ═══ HIGHLIGHT TODAY ═══
   function highlightToday() {
     var table = document.getElementById('horarioTable');
     if (!table) return;
@@ -1185,11 +1357,11 @@
   }
   highlightToday();
 
-  // HERO PARALLAX
+  // ═══ HERO PARALLAX ═══
   window.addEventListener('scroll', function() {
     var heroBg = document.getElementById('heroBg');
     if (heroBg && window.scrollY < window.innerHeight) {
-      heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.2) + 'px)';
+      heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.18) + 'px)';
     }
   });
 </script>
