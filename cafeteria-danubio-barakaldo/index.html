@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafetería Danubio · Barakaldo — Café, pintxos y buen ambiente</title>
+<meta name="description" content="Cafetería Danubio en Barakaldo: café de especialidad Oquendo, pintxos recién hechos, bollería casera y cañas Amstel Oro. Desayunos, almuerzos y el mejor ambiente de barrio.">
+<meta property="og:title" content="Cafetería Danubio · Barakaldo">
+<meta property="og:description" content="Café, pintxos y buen ambiente en el corazón de Barakaldo.">
+<meta property="og:type" content="restaurant.cafe">
+<meta property="og:image" content="assets/pintxos.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --espresso:#2a1a10;
+  --espresso-soft:#3d2718;
+  --cream:#f6efe2;
+  --cream-deep:#ede2cc;
+  --paper:#fbf7ee;
+  --gold:#b8893b;
+  --gold-bright:#d4a955;
+  --ink:#33271d;
+  --muted:#7a6a59;
+  --line:rgba(42,26,16,.14);
+  /* vidriera */
+  --vid-red:#c43b34;
+  --vid-yellow:#e8b93f;
+  --vid-blue:#2f8fb0;
+  --vid-green:#5a9e58;
+  --shadow:0 24px 60px -28px rgba(42,26,16,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:600;line-height:1.12;letter-spacing:.2px}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+.eyebrow{
+  font-family:'Inter',sans-serif;font-weight:600;font-size:.72rem;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
+  display:inline-flex;align-items:center;gap:.7em;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.6}
+
+/* ---------- NAV ---------- */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px clamp(18px,4vw,48px);
+  transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+}
+header.nav.scrolled{
+  background:rgba(251,247,238,.92);
+  backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--line);
+  padding:12px clamp(18px,4vw,48px);
+}
+.brand{display:flex;align-items:center;gap:12px;color:var(--cream);transition:color .4s}
+header.nav.scrolled .brand{color:var(--espresso)}
+.brand .mark{
+  width:38px;height:38px;flex:none;border-radius:50%;
+  display:grid;place-items:center;
+  background:conic-gradient(var(--vid-red) 0 25%,var(--vid-yellow) 0 50%,var(--vid-green) 0 75%,var(--vid-blue) 0 100%);
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.85), 0 0 0 1px var(--line);
+}
+.brand .mark span{
+  width:13px;height:13px;background:var(--paper);border-radius:50%;
+  box-shadow:0 0 0 2px rgba(42,26,16,.25);
+}
+.brand b{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;letter-spacing:.5px;line-height:1}
+.brand small{display:block;font-family:'Inter';font-size:.58rem;letter-spacing:.36em;text-transform:uppercase;opacity:.8;margin-top:2px}
+.navlinks{display:flex;gap:32px;align-items:center}
+.navlinks a{font-size:.82rem;letter-spacing:.04em;color:var(--cream);font-weight:500;transition:color .4s,opacity .25s;opacity:.92}
+header.nav.scrolled .navlinks a{color:var(--ink)}
+.navlinks a:hover{opacity:1;color:var(--gold-bright)}
+.nav-cta{
+  border:1px solid currentColor;border-radius:999px;padding:9px 20px !important;
+  color:var(--cream);font-weight:600;
+}
+header.nav.scrolled .nav-cta{color:var(--espresso);border-color:var(--gold)}
+.nav-cta:hover{background:var(--gold);border-color:var(--gold);color:#fff !important}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2px;background:var(--cream);transition:.3s}
+header.nav.scrolled .burger span{background:var(--espresso)}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:flex-end;
+  color:var(--cream);overflow:hidden;
+}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:kenburns 18s ease-out forwards}
+@keyframes kenburns{to{transform:scale(1)}}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(15,9,4,.78) 0%,rgba(15,9,4,.35) 45%,rgba(15,9,4,.1) 100%),
+    linear-gradient(180deg,rgba(15,9,4,.65) 0%,rgba(15,9,4,.25) 30%,rgba(15,9,4,.55) 65%,rgba(15,9,4,.9) 100%);
+}
+.hero-inner{padding-bottom:clamp(48px,9vh,110px);padding-top:140px}
+.hero h1{
+  font-size:clamp(3.4rem,11vw,8.5rem);font-weight:700;letter-spacing:1px;
+  text-shadow:0 14px 40px rgba(0,0,0,.45);
+}
+.hero h1 em{font-style:italic;color:var(--gold-bright);font-weight:500}
+.hero .sub{
+  font-size:clamp(1.05rem,2.4vw,1.5rem);max-width:46ch;margin-top:.6rem;
+  font-weight:300;opacity:.95;line-height:1.5;
+}
+.hero .eyebrow{color:var(--gold-bright)}
+.hero .eyebrow::before{background:var(--gold-bright)}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 30px;border-radius:999px;font-weight:600;font-size:.9rem;letter-spacing:.02em;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 14px 30px -12px rgba(184,137,59,.8)}
+.btn-gold:hover{transform:translateY(-3px);background:var(--gold-bright)}
+.btn-ghost{border:1px solid rgba(255,255,255,.55);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-3px)}
+.hero-strip{
+  position:absolute;bottom:0;left:0;right:0;z-index:1;
+  display:flex;justify-content:center;gap:clamp(20px,6vw,90px);flex-wrap:wrap;
+  padding:16px;background:rgba(20,12,6,.4);backdrop-filter:blur(4px);
+  border-top:1px solid rgba(255,255,255,.12);
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85);
+}
+.hero-strip span{display:inline-flex;align-items:center;gap:.6em}
+.hero-strip span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold-bright)}
+
+/* ---------- SECTION SHELL ---------- */
+section{padding:clamp(70px,11vh,140px) 0}
+.sec-head{max-width:760px;margin-bottom:54px}
+.sec-head h2{font-size:clamp(2.2rem,5vw,3.6rem);margin:14px 0 12px;color:var(--espresso)}
+.sec-head p{color:var(--muted);font-size:1.05rem;max-width:60ch}
+
+/* ---------- INTRO / ABOUT ---------- */
+.about{background:var(--cream);position:relative}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,80px);align-items:center}
+.about-copy p{color:var(--muted);margin-bottom:1.1rem;font-size:1.05rem}
+.about-copy p strong{color:var(--ink);font-weight:600}
+.about-figs{position:relative;height:clamp(380px,52vw,560px)}
+.about-figs img{position:absolute;border-radius:14px;box-shadow:var(--shadow);object-fit:cover}
+.about-figs .f1{width:64%;height:72%;top:0;left:0}
+.about-figs .f2{width:52%;height:56%;bottom:0;right:0;border:6px solid var(--paper)}
+.about-figs .tag{
+  position:absolute;bottom:14%;left:-6px;z-index:3;
+  background:var(--espresso);color:var(--cream);padding:14px 20px;border-radius:12px;
+  box-shadow:var(--shadow);
+}
+.about-figs .tag b{font-family:'Cormorant Garamond',serif;font-size:1.9rem;display:block;color:var(--gold-bright);line-height:1}
+.about-figs .tag small{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;opacity:.8}
+
+/* ---------- OFFERINGS ---------- */
+.offer{background:var(--paper)}
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.card{
+  background:var(--cream);border:1px solid var(--line);border-radius:16px;
+  padding:36px 30px;transition:transform .35s ease, box-shadow .35s ease;
+  position:relative;overflow:hidden;
+}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--vid-red),var(--vid-yellow),var(--vid-green),var(--vid-blue));
+  opacity:0;transition:opacity .35s}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.card:hover::before{opacity:1}
+.card .ic{font-size:2rem;margin-bottom:14px;display:block}
+.card h3{font-size:1.7rem;color:var(--espresso);margin-bottom:8px}
+.card p{color:var(--muted);font-size:.98rem}
+
+/* ---------- MENU ---------- */
+.menu{background:var(--espresso);color:var(--cream);position:relative;overflow:hidden}
+.menu .sec-head h2{color:#fff}
+.menu .sec-head p{color:rgba(246,239,226,.75)}
+.menu .eyebrow{color:var(--gold-bright)}
+.menu .eyebrow::before{background:var(--gold-bright)}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,6vw,80px)}
+.menu-col h3{font-size:1.7rem;color:var(--gold-bright);margin-bottom:6px;display:flex;align-items:baseline;gap:12px}
+.menu-col h3::after{content:"";flex:1;height:1px;background:rgba(212,169,85,.3)}
+.menu-col>small{display:block;color:rgba(246,239,226,.55);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px}
+.m-item{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px dashed rgba(246,239,226,.16)}
+.m-item:last-child{border-bottom:0}
+.m-item .n b{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:600;color:#fff}
+.m-item .n span{display:block;font-size:.84rem;color:rgba(246,239,226,.6);margin-top:1px}
+.m-item .p{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-bright);white-space:nowrap}
+.menu-note{margin-top:40px;text-align:center;font-size:.86rem;color:rgba(246,239,226,.55);font-style:italic;font-family:'Cormorant Garamond',serif}
+
+/* ---------- GALLERY ---------- */
+.gallery{background:var(--cream)}
+.grid-photos{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.grid-photos a{overflow:hidden;border-radius:12px;position:relative;display:block}
+.grid-photos img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.grid-photos a:hover img{transform:scale(1.08)}
+.grid-photos a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(42,26,16,.45));opacity:0;transition:.4s}
+.grid-photos a:hover::after{opacity:1}
+.g-big{grid-column:span 2;grid-row:span 2}
+.g-tall{grid-row:span 2}
+.g-wide{grid-column:span 2}
+
+/* ---------- HOURS + CONTACT ---------- */
+.visit{background:var(--paper)}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,64px)}
+.hours{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:clamp(28px,4vw,44px);box-shadow:var(--shadow)}
+.hours h3{font-size:2rem;color:var(--espresso);margin-bottom:6px}
+.hours .open-now{
+  display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:22px;
+}
+.open-now.is-open{background:rgba(90,158,88,.16);color:#3f7a3e}
+.open-now.is-closed{background:rgba(196,59,52,.14);color:#a8362f}
+.open-now .dot{width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.h-row{display:flex;justify-content:space-between;align-items:center;padding:14px 14px;border-radius:10px;transition:background .3s}
+.h-row+.h-row{border-top:1px solid var(--line)}
+.h-row .d{font-weight:500}
+.h-row .t{font-variant-numeric:tabular-nums;color:var(--muted)}
+.h-row.today{background:linear-gradient(90deg,rgba(184,137,59,.16),rgba(184,137,59,.04));border-top-color:transparent}
+.h-row.today .d{color:var(--espresso);font-weight:600;display:flex;align-items:center;gap:8px}
+.h-row.today .d::before{content:"Hoy";font-family:'Inter';font-size:.6rem;font-weight:700;letter-spacing:.12em;background:var(--gold);color:#fff;padding:3px 8px;border-radius:999px}
+.h-row.today .t{color:var(--espresso);font-weight:600}
+
+.contact h3{font-size:2rem;color:var(--espresso);margin-bottom:18px}
+.c-line{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.c-line .ic{width:42px;height:42px;flex:none;border-radius:50%;background:var(--cream);display:grid;place-items:center;font-size:1.1rem;border:1px solid var(--line)}
+.c-line .d small{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.c-line .d b{font-weight:500;color:var(--ink);font-size:1.05rem}
+.c-line .d b:hover{color:var(--gold)}
+.map{margin-top:22px;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+.map iframe{width:100%;height:240px;border:0;display:block;filter:saturate(.92)}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--espresso);color:rgba(246,239,226,.7);padding:60px 0 32px;text-align:center}
+footer .brand{justify-content:center;color:var(--cream);margin-bottom:16px}
+footer .fnav{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin:18px 0 26px;font-size:.85rem}
+footer .fnav a:hover{color:var(--gold-bright)}
+footer .fine{font-size:.76rem;opacity:.55;line-height:1.8}
+footer .fine a:hover{color:var(--gold-bright)}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:880px){
+  .navlinks{
+    position:fixed;inset:0 0 0 auto;width:min(78vw,320px);
+    background:var(--espresso);flex-direction:column;justify-content:center;align-items:flex-start;
+    padding:40px;gap:26px;transform:translateX(100%);transition:transform .4s ease;z-index:60;
+  }
+  .navlinks.open{transform:none}
+  .navlinks a,header.nav.scrolled .navlinks a{color:var(--cream);font-size:1.1rem}
+  .nav-cta,header.nav.scrolled .nav-cta{color:var(--cream);border-color:var(--gold-bright)}
+  .burger{display:flex;z-index:61}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);background:var(--cream)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);background:var(--cream)}
+  .about-grid,.menu-grid,.visit-grid{grid-template-columns:1fr}
+  .about-figs{height:64vw;max-height:480px;margin-top:10px}
+  .offer-grid{grid-template-columns:1fr}
+  .grid-photos{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .g-big{grid-column:span 2;grid-row:span 1}
+}
+@media(max-width:520px){
+  .hero-strip{gap:14px;font-size:.66rem}
+  .grid-photos{grid-auto-rows:140px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand">
+    <span class="mark"><span></span></span>
+    <span><b>Danubio</b><small>Cafetería · Barakaldo</small></span>
+  </a>
+  <nav class="navlinks" id="navlinks">
+    <a href="#sobre">El Danubio</a>
+    <a href="#carta">Carta</a>
+    <a href="#galeria">Galería</a>
+    <a href="#horario">Horario</a>
+    <a href="#contacto" class="nav-cta">Cómo llegar</a>
+  </nav>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"><img src="assets/barra-copas.jpeg" alt="Barra de Cafetería Danubio con copas y pintxos"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow reveal">Café · Pintxos · Buen ambiente</span>
+    <h1 class="reveal d1">Cafetería <em>Danubio</em></h1>
+    <p class="sub reveal d2">El rincón de toda la vida en el corazón de Barakaldo. Café recién hecho, pintxos del día y la mejor barra para empezar — o terminar — la jornada.</p>
+    <div class="hero-cta reveal d3">
+      <a href="#contacto" class="btn btn-gold">Cómo llegar →</a>
+      <a href="#carta" class="btn btn-ghost">Ver la carta</a>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <span>Café Oquendo</span>
+    <span>Pintxos caseros</span>
+    <span>Cañas Amstel Oro</span>
+    <span>Desayunos desde las 7:00</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow reveal">El Danubio</span>
+      <h2 class="serif reveal d1" style="font-size:clamp(2.2rem,5vw,3.6rem);color:var(--espresso);margin:14px 0 18px">Un clásico de barrio<br>con sabor de siempre</h2>
+      <p class="reveal d1">En el Danubio se respira <strong>cafetería de las de antes</strong>: maderas nobles, la vidriera de colores, las copas colgando sobre la barra y un mostrador que cambia a lo largo del día. Por la mañana, café y bollería recién horneada; al mediodía, la barra se llena de pintxos.</p>
+      <p class="reveal d2">Servimos <strong>café Oquendo</strong>, cañas <strong>Amstel Oro</strong> bien tiradas y una selección de vinos para acompañar. Un sitio para sentarse sin prisa, leer el periódico, quedar con los de siempre o hacer un alto en el camino.</p>
+      <p class="reveal d3">Estamos en plena calle de Barakaldo, con terraza a pie de acera para los días de sol. <strong>Te esperamos.</strong></p>
+    </div>
+    <div class="about-figs reveal d2">
+      <img class="f1" src="assets/barra-copas.jpeg" alt="Barra del Danubio con copas y pintxos">
+      <img class="f2" src="assets/cafe-cruasan.jpeg" alt="Café con leche y cruasán">
+      <div class="tag"><b>7:00</b><small>Abrimos cada día</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERINGS -->
+<section class="offer" id="oferta">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Qué te ofrecemos</span>
+      <h2 class="serif">Para cada momento del día</h2>
+      <p>Del primer café de la mañana al vino de antes de cenar, en el Danubio siempre hay algo recién hecho esperándote.</p>
+    </div>
+    <div class="offer-grid">
+      <div class="card reveal d1">
+        <span class="ic">☕</span>
+        <h3>Desayunos</h3>
+        <p>Café Oquendo como mandan los cánones, tostadas, cruasanes y bollería recién horneada. La mejor forma de arrancar el día.</p>
+      </div>
+      <div class="card reveal d2">
+        <span class="ic">🥖</span>
+        <h3>Pintxos &amp; almuerzos</h3>
+        <p>Mostrador lleno de pintxos fríos y calientes, tortilla, bocadillos y raciones. Recién preparados a lo largo de toda la mañana.</p>
+      </div>
+      <div class="card reveal d3">
+        <span class="ic">🍺</span>
+        <h3>Cañas &amp; vinos</h3>
+        <p>Amstel Oro a presión, vinos por copas y el aperitivo de siempre. La barra perfecta para el vermut o el pintxo-pote.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="carta">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">La carta</span>
+      <h2 class="serif">Una selección de la casa</h2>
+      <p>Una muestra de lo que encontrarás en la barra. Pregunta por los pintxos y sugerencias del día.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-col reveal d1">
+        <h3>Cafés &amp; desayunos</h3>
+        <small>Café Oquendo</small>
+        <div class="m-item"><div class="n"><b>Café con leche</b><span>Solo, cortado o americano</span></div><div class="p">1,60</div></div>
+        <div class="m-item"><div class="n"><b>Tostada con tomate</b><span>Pan, tomate y aceite de oliva</span></div><div class="p">2,20</div></div>
+        <div class="m-item"><div class="n"><b>Cruasán &amp; bollería</b><span>Recién horneada</span></div><div class="p">1,80</div></div>
+        <div class="m-item"><div class="n"><b>Desayuno completo</b><span>Café + tostada + zumo natural</span></div><div class="p">4,90</div></div>
+      </div>
+      <div class="menu-col reveal d2">
+        <h3>Pintxos &amp; barra</h3>
+        <small>Recién hechos</small>
+        <div class="m-item"><div class="n"><b>Pintxo del día</b><span>Pregunta por la pizarra</span></div><div class="p">2,00</div></div>
+        <div class="m-item"><div class="n"><b>Tortilla de patata</b><span>Pincho con su pan</span></div><div class="p">2,40</div></div>
+        <div class="m-item"><div class="n"><b>Caña Amstel Oro</b><span>Tirada al momento</span></div><div class="p">1,70</div></div>
+        <div class="m-item"><div class="n"><b>Vino por copa</b><span>Tinto, blanco o rosado</span></div><div class="p">1,80</div></div>
+      </div>
+    </div>
+    <p class="menu-note">Precios orientativos. Carta sujeta a disponibilidad del día.</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Galería</span>
+      <h2 class="serif">El ambiente del Danubio</h2>
+      <p>Pásate a vivirlo en persona. Así se ve un día cualquiera por aquí.</p>
+    </div>
+    <div class="grid-photos reveal">
+      <a class="g-big" href="assets/pintxos.jpeg" target="_blank"><img src="assets/pintxos.jpeg" alt="Mostrador de pintxos"></a>
+      <a class="g-tall" href="assets/barra-copas.jpeg" target="_blank"><img src="assets/barra-copas.jpeg" alt="Barra con copas colgando"></a>
+      <a href="assets/cafe-cruasan.jpeg" target="_blank"><img src="assets/cafe-cruasan.jpeg" alt="Café con leche y cruasán"></a>
+      <a href="assets/tiradores-amstel.jpeg" target="_blank"><img src="assets/tiradores-amstel.jpeg" alt="Tiradores de cerveza Amstel Oro"></a>
+      <a class="g-wide" href="assets/interior-salon.jpeg" target="_blank"><img src="assets/interior-salon.jpeg" alt="Salón interior del Danubio"></a>
+      <a href="assets/salon-gente.jpeg" target="_blank"><img src="assets/salon-gente.jpeg" alt="Clientes en el Danubio"></a>
+      <a href="assets/fachada.jpeg" target="_blank"><img src="assets/fachada.jpeg" alt="Fachada de la Cafetería Danubio"></a>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="horario">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Visítanos</span>
+      <h2 class="serif">Horario y ubicación</h2>
+      <p>Estamos abiertos todos los días. Ven a tomar algo cuando quieras.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="hours reveal d1" id="contacto">
+        <h3 class="serif">Horario de apertura</h3>
+        <span class="open-now" id="openNow"><span class="dot"></span><span id="openTxt">Comprobando…</span></span>
+        <div id="hoursList">
+          <div class="h-row" data-day="1"><span class="d">Lunes</span><span class="t">7:00 – 23:00</span></div>
+          <div class="h-row" data-day="2"><span class="d">Martes</span><span class="t">7:00 – 23:00</span></div>
+          <div class="h-row" data-day="3"><span class="d">Miércoles</span><span class="t">7:00 – 23:00</span></div>
+          <div class="h-row" data-day="4"><span class="d">Jueves</span><span class="t">7:00 – 23:00</span></div>
+          <div class="h-row" data-day="5"><span class="d">Viernes</span><span class="t">7:00 – 23:00</span></div>
+          <div class="h-row" data-day="6"><span class="d">Sábado</span><span class="t">7:30 – 23:30</span></div>
+          <div class="h-row" data-day="0"><span class="d">Domingo y festivos</span><span class="t">7:30 – 23:30</span></div>
+        </div>
+      </div>
+      <div class="contact reveal d2">
+        <h3 class="serif">Dónde estamos</h3>
+        <div class="c-line">
+          <span class="ic">📍</span>
+          <div class="d"><small>Dirección</small><b>Barakaldo, Bizkaia</b></div>
+        </div>
+        <a class="c-line" href="tel:+34944000000">
+          <span class="ic">📞</span>
+          <div class="d"><small>Teléfono</small><b>944 00 00 00</b></div>
+        </a>
+        <div class="c-line">
+          <span class="ic">🕖</span>
+          <div class="d"><small>Abierto</small><b>Todos los días desde las 7:00</b></div>
+        </div>
+        <div class="map">
+          <iframe loading="lazy" title="Mapa de Barakaldo" src="https://www.openstreetmap.org/export/embed.html?bbox=-2.998%2C43.293%2C-2.985%2C43.299&layer=mapnik&marker=43.296%2C-2.991"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <a href="#top" class="brand">
+      <span class="mark"><span></span></span>
+      <span><b>Danubio</b><small>Cafetería · Barakaldo</small></span>
+    </a>
+    <nav class="fnav">
+      <a href="#sobre">El Danubio</a>
+      <a href="#carta">Carta</a>
+      <a href="#galeria">Galería</a>
+      <a href="#horario">Horario</a>
+      <a href="#contacto">Cómo llegar</a>
+    </nav>
+    <p class="fine">
+      Cafetería Danubio · Barakaldo (Bizkaia) · Abierto todos los días<br>
+      © <span id="year"></span> Cafetería Danubio. Todos los derechos reservados.
+    </p>
+  </div>
+</footer>
+
+<script>
+// Nav scroll state
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+// Mobile menu
+const burger=document.getElementById('burger'),links=document.getElementById('navlinks');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');links.classList.toggle('open')});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');links.classList.remove('open')}));
+
+// Hero content reveals immediately on load (above the fold)
+requestAnimationFrame(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('in')));
+// Everything else reveals on scroll
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.16});
+document.querySelectorAll('.reveal:not(.hero .reveal)').forEach(el=>io.observe(el));
+
+// Year
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// Highlight today + open/closed (Europe/Madrid)
+(function(){
+  const now=new Date();
+  const day=now.getDay(); // 0=Dom ... 6=Sab
+  const rows=document.querySelectorAll('#hoursList .h-row');
+  rows.forEach(r=>{if(+r.dataset.day===day)r.classList.add('today')});
+  // schedule by day -> [openMin, closeMin]
+  const sched={1:[420,1380],2:[420,1380],3:[420,1380],4:[420,1380],5:[420,1380],6:[450,1410],0:[450,1410]};
+  const mins=now.getHours()*60+now.getMinutes();
+  const [o,c]=sched[day];
+  const open=mins>=o&&mins<c;
+  const badge=document.getElementById('openNow'),txt=document.getElementById('openTxt');
+  badge.classList.add(open?'is-open':'is-closed');
+  txt.textContent=open?'Abierto ahora':'Cerrado ahora';
+})();
+</script>
+</body>
+</html>
