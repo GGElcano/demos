@@ -185,16 +185,33 @@ section{padding:clamp(70px,11vh,140px) 0}
 .menu .sec-head p{color:rgba(246,239,226,.75)}
 .menu .eyebrow{color:var(--gold-bright)}
 .menu .eyebrow::before{background:var(--gold-bright)}
-.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,6vw,80px)}
-.menu-col h3{font-size:1.7rem;color:var(--gold-bright);margin-bottom:6px;display:flex;align-items:baseline;gap:12px}
-.menu-col h3::after{content:"";flex:1;height:1px;background:rgba(212,169,85,.3)}
-.menu-col>small{display:block;color:rgba(246,239,226,.55);font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:22px}
-.m-item{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px dashed rgba(246,239,226,.16)}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(30px,5vw,64px) clamp(34px,6vw,72px)}
+.menu-col h3{font-size:1.6rem;color:var(--gold-bright);margin-bottom:6px;display:flex;align-items:baseline;gap:12px}
+.menu-col h3 .ec{font-size:1.05rem;flex:none}
+.menu-col h3 .ln{content:"";flex:1;height:1px;background:rgba(212,169,85,.3)}
+.menu-col>small{display:block;color:rgba(246,239,226,.55);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+.m-item{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px dashed rgba(246,239,226,.16)}
 .m-item:last-child{border-bottom:0}
-.m-item .n b{font-family:'Cormorant Garamond',serif;font-size:1.28rem;font-weight:600;color:#fff}
-.m-item .n span{display:block;font-size:.84rem;color:rgba(246,239,226,.6);margin-top:1px}
-.m-item .p{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-bright);white-space:nowrap}
-.menu-note{margin-top:40px;text-align:center;font-size:.86rem;color:rgba(246,239,226,.55);font-style:italic;font-family:'Cormorant Garamond',serif}
+.m-item .n b{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;color:#fff}
+.m-item .n span{display:block;font-size:.82rem;color:rgba(246,239,226,.6);margin-top:1px}
+.m-item .p{font-family:'Cormorant Garamond',serif;font-size:1.24rem;color:var(--gold-bright);white-space:nowrap}
+/* pintxo-pote banner */
+.pote{
+  display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;
+  margin:0 0 clamp(36px,5vw,54px);padding:clamp(22px,3vw,30px) clamp(24px,4vw,40px);
+  border-radius:18px;position:relative;overflow:hidden;
+  background:linear-gradient(120deg,var(--espresso-soft),rgba(61,39,24,.4));
+  border:1px solid rgba(212,169,85,.3);
+}
+.pote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+  background:linear-gradient(180deg,var(--vid-red),var(--vid-yellow),var(--vid-green),var(--vid-blue))}
+.pote .pic{font-size:2.2rem;flex:none}
+.pote .ptxt b{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:#fff;display:block;line-height:1.1}
+.pote .ptxt span{color:rgba(246,239,226,.75);font-size:.95rem}
+.pote .pday{margin-left:auto;text-align:center;background:var(--gold);color:#fff;border-radius:14px;padding:12px 22px;flex:none}
+.pote .pday b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;display:block;line-height:1}
+.pote .pday small{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;opacity:.9}
+.menu-note{margin-top:44px;text-align:center;font-size:.86rem;color:rgba(246,239,226,.55);font-style:italic;font-family:'Cormorant Garamond',serif}
 
 /* ---------- GALLERY ---------- */
 .gallery{background:var(--cream)}
@@ -367,27 +384,96 @@ footer .fine a:hover{color:var(--gold-bright)}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">La carta</span>
-      <h2 class="serif">Una selección de la casa</h2>
-      <p>Una muestra de lo que encontrarás en la barra. Pregunta por los pintxos y sugerencias del día.</p>
+      <h2 class="serif">Lo que se cuece en el Danubio</h2>
+      <p>Desayunos, cafés Oquendo, pintxos, vinos, cervezas bien tiradas y los findes algo más. Pregunta siempre por la pizarra del día.</p>
     </div>
+
+    <!-- PINTXO-POTE -->
+    <div class="pote reveal">
+      <span class="pic">🍢</span>
+      <div class="ptxt">
+        <b>Todos los días, pintxo-poteo</b>
+        <span>Tu pote o caña + pintxo de la barra. El ritual de cada tarde.</span>
+      </div>
+      <div class="pday"><b>Jueves</b><small>Día del pincho-pote</small></div>
+    </div>
+
     <div class="menu-grid">
+
+      <!-- DESAYUNOS -->
       <div class="menu-col reveal d1">
-        <h3>Cafés &amp; desayunos</h3>
-        <small>Café Oquendo</small>
-        <div class="m-item"><div class="n"><b>Café con leche</b><span>Solo, cortado o americano</span></div><div class="p">1,60</div></div>
-        <div class="m-item"><div class="n"><b>Tostada con tomate</b><span>Pan, tomate y aceite de oliva</span></div><div class="p">2,20</div></div>
-        <div class="m-item"><div class="n"><b>Cruasán &amp; bollería</b><span>Recién horneada</span></div><div class="p">1,80</div></div>
-        <div class="m-item"><div class="n"><b>Desayuno completo</b><span>Café + tostada + zumo natural</span></div><div class="p">4,90</div></div>
+        <h3><span class="ec">🥐</span>Desayunos<span class="ln"></span></h3>
+        <small>Café Oquendo + lo que te apetezca</small>
+        <div class="m-item"><div class="n"><b>Desayuno con bollería</b><span>Café + cruasán, napolitana o palmera</span></div><div class="p">2,90</div></div>
+        <div class="m-item"><div class="n"><b>Desayuno con tostadas</b><span>Café + tostadas con tomate, mantequilla o mermelada</span></div><div class="p">3,20</div></div>
+        <div class="m-item"><div class="n"><b>Desayuno con pintxo</b><span>Café + pintxo de la barra</span></div><div class="p">3,60</div></div>
       </div>
+
+      <!-- CAFÉS -->
       <div class="menu-col reveal d2">
-        <h3>Pintxos &amp; barra</h3>
-        <small>Recién hechos</small>
-        <div class="m-item"><div class="n"><b>Pintxo del día</b><span>Pregunta por la pizarra</span></div><div class="p">2,00</div></div>
-        <div class="m-item"><div class="n"><b>Tortilla de patata</b><span>Pincho con su pan</span></div><div class="p">2,40</div></div>
-        <div class="m-item"><div class="n"><b>Caña Amstel Oro</b><span>Tirada al momento</span></div><div class="p">1,70</div></div>
-        <div class="m-item"><div class="n"><b>Vino por copa</b><span>Tinto, blanco o rosado</span></div><div class="p">1,80</div></div>
+        <h3><span class="ec">☕</span>Cafés<span class="ln"></span></h3>
+        <small>Marca Oquendo</small>
+        <div class="m-item"><div class="n"><b>Café con leche</b><span>Solo, cortado o manchado</span></div><div class="p">1,60</div></div>
+        <div class="m-item"><div class="n"><b>Americano &amp; capuchino</b><span>Como más te guste</span></div><div class="p">1,70</div></div>
+        <div class="m-item"><div class="n"><b>Carajillo</b><span>Con un toque de licor</span></div><div class="p">2,10</div></div>
+      </div>
+
+      <!-- INFUSIONES, TÉS Y FRÍOS -->
+      <div class="menu-col reveal d1">
+        <h3><span class="ec">🫖</span>Tés, infusiones &amp; fríos<span class="ln"></span></h3>
+        <small>Para cualquier momento</small>
+        <div class="m-item"><div class="n"><b>Tés e infusiones</b><span>Selección Oquendo</span></div><div class="p">1,70</div></div>
+        <div class="m-item"><div class="n"><b>Café con hielo</b><span>Para los días de calor</span></div><div class="p">1,70</div></div>
+        <div class="m-item"><div class="n"><b>Refrescos &amp; zumos naturales</b><span>Naranja recién exprimida</span></div><div class="p">2,20</div></div>
+      </div>
+
+      <!-- VINOS -->
+      <div class="menu-col reveal d2">
+        <h3><span class="ec">🍷</span>Vinos<span class="ln"></span></h3>
+        <small>Por copa o botella</small>
+        <div class="m-item"><div class="n"><b>Rosados</b><span>Fresco y ligero</span></div><div class="p">1,80</div></div>
+        <div class="m-item"><div class="n"><b>Blancos</b><span>Verdejo y txakoli</span></div><div class="p">1,80</div></div>
+        <div class="m-item"><div class="n"><b>Crianzas</b><span>Tinto de Rioja</span></div><div class="p">2,20</div></div>
+      </div>
+
+      <!-- CERVEZAS -->
+      <div class="menu-col reveal d1">
+        <h3><span class="ec">🍺</span>Cervezas<span class="ln"></span></h3>
+        <small>De barril y botella</small>
+        <div class="m-item"><div class="n"><b>Amstel Oro</b><span>Tirada al momento</span></div><div class="p">1,70</div></div>
+        <div class="m-item"><div class="n"><b>Estrella Galicia</b><span>Caña o botellín</span></div><div class="p">1,90</div></div>
+        <div class="m-item"><div class="n"><b>Alhambra · Voll-Damm</b><span>Para los más cerveceros</span></div><div class="p">2,20</div></div>
+      </div>
+
+      <!-- COPAS Y FINDE -->
+      <div class="menu-col reveal d2">
+        <h3><span class="ec">🍹</span>Cubatas &amp; copas<span class="ln"></span></h3>
+        <small>Fines de semana</small>
+        <div class="m-item"><div class="n"><b>Malibú piña</b><span>El clásico tropical</span></div><div class="p">6,00</div></div>
+        <div class="m-item"><div class="n"><b>Nordés &amp; tónica</b><span>Ginebra gallega</span></div><div class="p">6,50</div></div>
+        <div class="m-item"><div class="n"><b>Y muchos más…</b><span>Pregunta en la barra</span></div><div class="p">—</div></div>
+      </div>
+
+    </div>
+
+    <!-- RACIONES FINDE -->
+    <div class="menu-grid" style="margin-top:clamp(30px,5vw,52px)">
+      <div class="menu-col reveal" style="grid-column:1 / -1">
+        <h3><span class="ec">🍤</span>Raciones de fin de semana<span class="ln"></span></h3>
+        <small>Para compartir · viernes, sábado y domingo</small>
+        <div class="menu-grid" style="gap:0 clamp(34px,6vw,72px)">
+          <div>
+            <div class="m-item"><div class="n"><b>Rabas</b><span>Calamares a la andaluza</span></div><div class="p">9,50</div></div>
+            <div class="m-item"><div class="n"><b>Chopitos</b><span>Crujientes, recién fritos</span></div><div class="p">8,50</div></div>
+          </div>
+          <div>
+            <div class="m-item"><div class="n"><b>Patatas</b><span>Bravas o con alioli</span></div><div class="p">5,50</div></div>
+            <div class="m-item"><div class="n"><b>Alitas de pollo</b><span>Doradas y jugosas</span></div><div class="p">7,50</div></div>
+          </div>
+        </div>
       </div>
     </div>
+
     <p class="menu-note">Precios orientativos. Carta sujeta a disponibilidad del día.</p>
   </div>
 </section>
