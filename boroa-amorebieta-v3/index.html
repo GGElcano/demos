@@ -551,6 +551,27 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(249,247,240,.6);paddin
 .dish{transition:padding-left .4s var(--ease)}
 .dish:hover{padding-left:12px}
 .dish:hover .dn{color:var(--bronze-deep)}
+/* platos con foto: indicador (punto que se rellena) + cursor */
+.dish[data-img]{cursor:pointer}
+.dish[data-img] .dn{display:inline-flex;align-items:center;gap:10px}
+.dish[data-img] .dn::after{content:'';width:6px;height:6px;border-radius:50%;border:1px solid var(--bronze);
+  background:transparent;transition:.3s;flex:none}
+.dish[data-img]:hover .dn::after{background:var(--bronze)}
+/* previsualización flotante del plato */
+#dishPreview{position:fixed;z-index:4500;pointer-events:none;width:clamp(210px,22vw,300px);
+  opacity:0;transform:translateY(10px) scale(.96);transition:opacity .28s var(--ease),transform .28s var(--ease);will-change:transform,opacity}
+#dishPreview.on{opacity:1;transform:translateY(0) scale(1)}
+#dishPreview img{width:100%;display:block;border-radius:10px;box-shadow:0 30px 70px -18px rgba(0,0,0,.7);
+  border:1px solid rgba(200,173,127,.3)}
+#dishPreview .dp-name{margin-top:9px;text-align:center;font-family:var(--serif);font-style:italic;
+  font-size:14px;color:var(--cream);text-shadow:0 1px 4px rgba(0,0,0,.85)}
+@media(hover:none),(pointer:coarse){
+  #dishPreview{left:50%!important;top:50%!important;transform:translate(-50%,calc(-50% + 12px)) scale(.96);width:min(80vw,360px)}
+  #dishPreview.on{transform:translate(-50%,-50%) scale(1)}
+  #dishBackdrop{position:fixed;inset:0;z-index:4400;background:rgba(8,12,20,.62);backdrop-filter:blur(3px);
+    opacity:0;pointer-events:none;transition:opacity .28s var(--ease)}
+  #dishBackdrop.on{opacity:1;pointer-events:auto}
+}
 @media(max-width:880px){
   .mhead{grid-template-columns:64px 1fr auto}
   .mplus{display:none}
@@ -1079,12 +1100,12 @@ body::after {mix-blend-mode:screen;  opacity:.10}  /* grano sobre fondos oscuros
           <div class="dish"><div><div class="dn">Royal de espárragos de Navarra</div><div class="dd">anguila ahumada y mahonesa de trigueros</div></div><div class="dp">24 €</div></div>
           <div class="dish"><div><div class="dn">Bombón de foie relleno de txakoli “Urezti”</div><div class="dd">palomitas y pan de chocolate y especias</div></div><div class="dp">24 €</div></div>
           <div class="dish"><div><div class="dn">Carabinero al carbón</div><div class="dd">sobre teja crocante de su coral y yema de huevo “Telletxe”</div></div><div class="dp">29 €</div></div>
-          <div class="dish"><div><div class="dn">Habitas de temporada</div><div class="dd">huevo de caserío y velo de trufa negra</div></div><div class="dp">28 €</div></div>
+          <div class="dish" data-img="assets/dish-habitas.webp"><div><div class="dn">Habitas de temporada</div><div class="dd">huevo de caserío y velo de trufa negra</div></div><div class="dp">28 €</div></div>
         </div>
         <div class="course-group">
           <div class="cg-title">Pescados</div>
           <div class="dish"><div><div class="dn">Tataki de atún rojo “Balfegó”</div><div class="dd">sésamo negro y gel de soja</div></div><div class="dp">40 €</div></div>
-          <div class="dish"><div><div class="dn">Kokotxas de merluza al pilpil</div></div><div class="dp">48 €</div></div>
+          <div class="dish" data-img="assets/kokotxa-1400.webp"><div><div class="dn">Kokotxas de merluza al pilpil</div></div><div class="dp">48 €</div></div>
           <div class="dish"><div><div class="dn">Degustación de bacalao</div><div class="dd">vizcaína, pilpil y brasa</div></div><div class="dp">40 €</div></div>
           <div class="dish"><div><div class="dn">Merluza del Golfo de Bizkaia a la parrilla</div><div class="dd">con almejas en salsa verde</div></div><div class="dp">40 €</div></div>
         </div>
@@ -1094,7 +1115,7 @@ body::after {mix-blend-mode:screen;  opacity:.10}  /* grano sobre fondos oscuros
           <div class="dish"><div><div class="dn">Chuleta de ganado mayor</div><div class="dd">40 días de maduración, a la brasa, con ensalada y patatas</div></div><div class="dp">95 €/kg</div></div>
           <div class="dish"><div><div class="dn">Cochinillo asado al horno</div><div class="dd">patata asada y manzana de Boroa</div></div><div class="dp">40 €</div></div>
           <div class="dish"><div><div class="dn">Paleta de cordero lechal al horno</div><div class="dd">con patatas en su jugo y ensalada</div></div><div class="dp">40 €</div></div>
-          <div class="dish"><div><div class="dn">Pichón en asado breve</div><div class="dd">crema de foie, crumble de maíz y texturas de zanahorias</div></div><div class="dp">40 €</div></div>
+          <div class="dish" data-img="assets/dish-pichon.webp"><div><div class="dn">Pichón en asado breve</div><div class="dd">crema de foie, crumble de maíz y texturas de zanahorias</div></div><div class="dp">40 €</div></div>
         </div>
         <div class="course-group">
           <div class="cg-title">Postres</div>
@@ -1130,13 +1151,13 @@ body::after {mix-blend-mode:screen;  opacity:.10}  /* grano sobre fondos oscuros
           <div class="dish"><div><div class="dn">Bombón de foie, txakoli Urezti, chocolate y especias</div></div></div>
           <div class="dish"><div><div class="dn">Ostra Gillardeau al natural con leche de tigre</div></div></div>
           <div class="dish"><div><div class="dn">Espárragos de Navarra y anguila ahumada</div></div></div>
-          <div class="dish"><div><div class="dn">Guisantes lágrima y caviar Beluga</div></div></div>
+          <div class="dish" data-img="assets/dish-guisantes.webp"><div><div class="dn">Guisantes lágrima y caviar Beluga</div></div></div>
           <div class="dish"><div><div class="dn">Atún rojo “Balfegó”, mostaza y jengibre</div></div></div>
           <div class="dish"><div><div class="dn">Huevo, coliflor, chocolate blanco y trufa</div></div></div>
           <div class="dish"><div><div class="dn">Vieira, arroz, algas e hinojo</div></div></div>
-          <div class="dish"><div><div class="dn">Perretxikos, parmentine y foie</div></div></div>
-          <div class="dish"><div><div class="dn">Merluza del Cantábrico con su kokotxa al pilpil</div></div></div>
-          <div class="dish"><div><div class="dn">Pichón, maíz y zanahorias</div></div></div>
+          <div class="dish" data-img="assets/dish-perretxikos.webp"><div><div class="dn">Perretxikos, parmentine y foie</div></div></div>
+          <div class="dish" data-img="assets/kokotxa-1400.webp"><div><div class="dn">Merluza del Cantábrico con su kokotxa al pilpil</div></div></div>
+          <div class="dish" data-img="assets/dish-pichon.webp"><div><div class="dn">Pichón, maíz y zanahorias</div></div></div>
           <div class="dish"><div><div class="dn">Nuestro Mojito</div></div></div>
           <div class="dish"><div><div class="dn">Idiazabal, fresas y pimienta</div></div></div>
           <div class="dish"><div><div class="dn">Cereza, chocolate negro y pistacho</div></div></div>
@@ -1220,7 +1241,7 @@ body::after {mix-blend-mode:screen;  opacity:.10}  /* grano sobre fondos oscuros
           <div class="dish"><div><div class="dn">Espárragos naturales de Navarra en diferentes texturas</div></div></div>
           <div class="dish"><div><div class="dn">Huevo, coliflor, chocolate blanco y trufa</div></div></div>
           <div class="dish"><div><div class="dn">Habitas de Aroa con boletus a la brasa</div></div></div>
-          <div class="dish"><div><div class="dn">Alcachofas de temporada con cremoso de trufa</div></div></div>
+          <div class="dish" data-img="assets/dish-habitas.webp"><div><div class="dn">Alcachofas de temporada con cremoso de trufa</div></div></div>
           <div class="dish"><div><div class="dn">Fajitas de tempe ahumado y verduras, cebolla encurtida y kimchee</div></div></div>
           <div class="dish"><div><div class="dn">Nuestro Mojito</div></div></div>
           <div class="dish"><div><div class="dn">Cheesecake de Idiazabal, fresas, pimienta rosa y ruibarbo</div></div></div>
@@ -1925,6 +1946,38 @@ if(matchMedia('(pointer:fine)').matches && !REDUCED){
     });
   });
 }
+
+/* ============ CARTA: previsualización de la foto del plato (hover escritorio / toque móvil) ============ */
+(function(){
+  const dishes=[...document.querySelectorAll('.dish[data-img]')];
+  if(!dishes.length)return;
+  const prev=document.createElement('div');prev.id='dishPreview';prev.setAttribute('aria-hidden','true');
+  prev.innerHTML='<img alt=""><div class="dp-name"></div>';
+  document.body.appendChild(prev);
+  const pimg=prev.querySelector('img'),pname=prev.querySelector('.dp-name');
+  function load(d){pimg.src=d.dataset.img;pname.textContent=d.querySelector('.dn').textContent;}
+  const touch=matchMedia('(hover: none)').matches || matchMedia('(pointer: coarse)').matches;
+  if(!touch){
+    let raf=0,mx=0,my=0;
+    function follow(){raf=0;const w=prev.offsetWidth,h=prev.offsetHeight;
+      let nx=mx+24,ny=my-h/2;
+      if(nx+w>innerWidth-14)nx=mx-w-24; if(nx<14)nx=14;
+      ny=Math.max(14,Math.min(innerHeight-h-14,ny));
+      prev.style.left=nx+'px';prev.style.top=ny+'px';}
+    dishes.forEach(d=>{
+      d.addEventListener('mouseenter',()=>{load(d);prev.classList.add('on');});
+      d.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;if(!raf)raf=requestAnimationFrame(follow);});
+      d.addEventListener('mouseleave',()=>prev.classList.remove('on'));
+    });
+  }else{
+    const back=document.createElement('div');back.id='dishBackdrop';document.body.appendChild(back);
+    let open=false;
+    const show=d=>{load(d);prev.classList.add('on');back.classList.add('on');open=true;};
+    const hide=()=>{prev.classList.remove('on');back.classList.remove('on');open=false;};
+    dishes.forEach(d=>d.addEventListener('click',e=>{e.preventDefault();open?hide():show(d);}));
+    back.addEventListener('click',hide);
+  }
+})();
 
 /* ============ ESTELA FLUIDA (webgl-fluid-enhanced v0.8, humo bronce) + BOTONES MAGNÉTICOS ============ */
 if(!REDUCED){
