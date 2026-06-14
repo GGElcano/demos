@@ -3,264 +3,249 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Foto Soria Digital — Álvaro Rodríguez | Fotografía profesional en Soria</title>
-<meta name="description" content="Álvaro Rodríguez, fotógrafo profesional en El Burgo de Osma y Soria desde 1996. Bodas, comuniones, retratos, producto, paisaje y retoque digital. 4,9 sobre 5 en Google.">
+<title>Foto Soria Digital — Álvaro Rodríguez | Fotógrafo profesional en Soria</title>
+<meta name="description" content="Álvaro Rodríguez, fotógrafo profesional en Soria. Bodas, comuniones, quinceañeras, eventos, empresa, producto, retoque fotográfico, diseño y servicios digitales de imagen.">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#070709">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%232E4A8E'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="legal/cookie-banner.css">
 
 <style>
 :root{
   --fondo:   #070709;
   --fondo-2: #0d0e12;
-  --fondo-3: #141620;
-  --crema:   #eae6de;
-  --crema-2: rgba(234,230,222,.82);
-  --crema-3: rgba(234,230,222,.42);
+  --fondo-3: #15171f;
+  --crema:   #f3f0ea;
+  --crema-2: rgba(243,240,234,.90);
+  --crema-3: rgba(243,240,234,.74);
   --azul:    #2E4A8E;
-  --azul-cl: #4a6db8;
-  --verde:   #7CB342;
-  --rojo:    #B22222;
-  --linea:   rgba(46,74,142,.14);
+  --azul-cl: #7ea0e6;
+  --verde:   #93c95a;
+  --rojo:    #cf3b34;
+  --linea:   rgba(126,160,230,.22);
   --serif: "Playfair Display", Georgia, serif;
   --sans:  "Inter", system-ui, sans-serif;
-  --pad: clamp(1.5rem, 5vw, 6rem);
+  --pad: clamp(1.25rem, 5vw, 6rem);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scrollbar-width:thin;scrollbar-color:var(--azul) var(--fondo)}
 body{
   background:var(--fondo);color:var(--crema);
-  font-family:var(--sans);font-weight:300;font-size:1rem;line-height:1.65;
+  font-family:var(--sans);font-weight:400;font-size:1rem;line-height:1.7;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 ::selection{background:var(--azul);color:#fff}
-h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;color:var(--crema)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;color:var(--crema)}
 em{font-style:italic;color:var(--azul-cl)}
 a{color:inherit;text-decoration:none}
 ul{list-style:none}
 img{display:block;width:100%;height:100%;object-fit:cover}
 
-/* ── FLUID ── */
-#fluid{position:fixed;inset:0;width:100%;height:100%;z-index:9000;pointer-events:none;mix-blend-mode:screen;opacity:.55}
-#fluid canvas{width:100%;height:100%;display:block}
+/* Accesibilidad: foco visible */
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--azul-cl);outline-offset:3px;border-radius:3px}
 
-/* ── CURSOR ── */
+/* ── FLUID (decorativo) ── */
+#fluid{position:fixed;inset:0;width:100%;height:100%;z-index:9000;pointer-events:none;mix-blend-mode:screen;opacity:.5}
+#fluid canvas{width:100%;height:100%;display:block}
 .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:9500;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);opacity:0}
 .cursor-dot{width:6px;height:6px;background:var(--verde)}
-.cursor-ring{width:38px;height:38px;border:1px solid rgba(46,74,142,.55)}
+.cursor-ring{width:38px;height:38px;border:1px solid rgba(126,160,230,.55)}
 @media(pointer:coarse),(prefers-reduced-motion:reduce){.cursor-dot,.cursor-ring,#fluid{display:none}}
 
-/* ── PROGRESS ── */
 .progreso{position:fixed;right:1.3rem;top:50%;transform:translateY(-50%);width:1px;height:9rem;background:var(--linea);z-index:60;pointer-events:none}
-.progreso span{position:absolute;inset:0;background:var(--azul);transform:scaleY(0);transform-origin:top}
+.progreso span{position:absolute;inset:0;background:var(--azul-cl);transform:scaleY(0);transform-origin:top}
 @media(max-width:820px){.progreso{display:none}}
 
-/* ── GRAIN ── */
-.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:180px}
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:180px}
 
 /* ── PRELOADER ── */
 .preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:end start;padding:var(--pad)}
 .preloader__cortina{position:absolute;inset:0;background:#0a0c14;z-index:-1}
-.preloader__marca{position:absolute;top:var(--pad);left:var(--pad);font-family:var(--serif);font-size:1.1rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(74,109,184,.6);overflow:hidden}
-.preloader__marca span{display:inline-block}
-.preloader__marca b{font-weight:500;color:#fff}
+.preloader__marca{position:absolute;top:var(--pad);left:var(--pad);font-family:var(--serif);font-size:1.1rem;letter-spacing:.22em;text-transform:uppercase;color:var(--azul-cl);overflow:hidden}
+.preloader__marca b{font-weight:600;color:#fff}
 .preloader__contador{overflow:hidden;line-height:1}
 .preloader__num{display:inline-block;font-family:var(--serif);font-size:clamp(4.5rem,14vw,11rem);font-variant-numeric:tabular-nums;color:#fff}
 .preloader__num i{font-style:normal;color:var(--azul-cl);font-size:.35em;vertical-align:super}
 
-/* ── SKIP ── */
-.skip-link{position:absolute;top:-100%;left:16px;background:var(--azul);color:#fff;padding:8px 16px;z-index:10000;font-size:.85rem;text-decoration:none}
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--azul);color:#fff;padding:10px 18px;z-index:10000;font-size:.9rem}
 .skip-link:focus{top:16px}
 
 /* ── CABECERA ── */
-.cabecera{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1.3rem var(--pad);transition:background .5s,backdrop-filter .5s}
-.cabecera.scrolled{backdrop-filter:blur(20px);background:rgba(7,7,9,.88)}
-.cabecera__logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:1.15rem;letter-spacing:.06em;color:var(--crema)}
-.cabecera__logo img{height:30px;width:auto}
-.cabecera__nav{display:flex;gap:2rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.cabecera{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem var(--pad);transition:background .4s,backdrop-filter .4s}
+.cabecera.scrolled{backdrop-filter:blur(20px);background:rgba(7,7,9,.9)}
+.cabecera__logo{display:flex;align-items:center;gap:12px;color:var(--crema)}
+.cabecera__logo img{height:40px;width:auto}
+.cabecera__logo b{font-family:var(--serif);font-size:1.15rem;font-weight:600;letter-spacing:.02em;line-height:1}
+.cabecera__logo small{display:block;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--crema-3);margin-top:3px}
+.cabecera__nav{display:flex;gap:2rem;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.cabecera__nav a{padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.cabecera__nav a:hover{color:var(--azul-cl);border-bottom-color:var(--azul-cl)}
 @media(max-width:820px){.cabecera__nav{display:none}}
 
-.roll{position:relative;display:inline-block;overflow:hidden;line-height:1.25}
-.roll>span{display:inline-block;transition:transform .5s cubic-bezier(.76,0,.24,1)}
-.roll::after{content:attr(data-text);position:absolute;left:0;top:100%;display:inline-block;color:var(--azul-cl);transition:transform .5s cubic-bezier(.76,0,.24,1)}
-@media(hover:hover) and (pointer:fine){.roll:hover>span,.roll:hover::after{transform:translateY(-100%)}}
-
-/* HAMBURGER */
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:1001}
-.hamburger span{width:24px;height:1.5px;background:var(--crema);transition:transform .3s,opacity .3s}
+.hamburger span{width:26px;height:2px;background:var(--crema);transition:transform .3s,opacity .3s}
 .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.active span:nth-child(2){opacity:0}
 .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.mobile-menu{display:none;position:fixed;inset:0;background:var(--fondo);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--fondo);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:30px}
 .mobile-menu.open{display:flex}
-.mobile-menu a{text-decoration:none;color:var(--crema);font-size:1.1rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--serif)}
+.mobile-menu a{color:var(--crema);font-size:1.4rem;letter-spacing:.06em;text-transform:uppercase;font-family:var(--serif)}
 .mobile-menu a:hover{color:var(--azul-cl)}
-@media(max-width:820px){.hamburger{display:flex}.cabecera__nav{display:none}}
+@media(max-width:820px){.hamburger{display:flex}}
 
 /* ── HERO ── */
 .hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--pad) clamp(3rem,8vh,5.5rem);overflow:hidden}
 .hero__media{position:absolute;inset:0;z-index:0}
-.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(170deg,rgba(7,7,9,.88) 0%,rgba(7,7,9,.35) 45%,rgba(7,7,9,.82) 100%)}
+.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(175deg,rgba(7,7,9,.82) 0%,rgba(7,7,9,.45) 42%,rgba(7,7,9,.9) 100%)}
 .hero__media img{will-change:transform}
-.hero__contenido{position:relative;z-index:1;color:var(--crema)}
-.hero__kicker{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--azul-cl);margin-bottom:1.5rem;display:flex;align-items:center;gap:14px}
-.hero__kicker::before{content:"";width:36px;height:1px;background:var(--azul)}
-.hero__titulo{font-size:clamp(2.8rem,8.5vw,7.2rem);letter-spacing:-.02em;max-width:14ch}
+.hero__contenido{position:relative;z-index:1}
+.hero__kicker{font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--azul-cl);margin-bottom:1.4rem;display:flex;align-items:center;gap:14px;font-weight:600}
+.hero__kicker::before{content:"";width:36px;height:2px;background:var(--azul-cl)}
+.hero__titulo{font-size:clamp(2.8rem,8.5vw,7rem);letter-spacing:-.02em;max-width:16ch}
 .hero__titulo em{color:var(--verde)}
-.hero__pie{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-top:2.4rem;flex-wrap:wrap}
-.hero__sub{max-width:42ch;opacity:.88;font-size:1.02rem;line-height:1.75}
-.hero__scroll{font-size:.66rem;letter-spacing:.25em;text-transform:uppercase;opacity:.7;display:flex;align-items:center;gap:.8rem}
-.hero__scroll::after{content:"";display:block;width:1px;height:3.2rem;background:var(--azul-cl);transform-origin:top;animation:gota 2.4s cubic-bezier(.76,0,.24,1) infinite}
-@keyframes gota{0%{transform:scaleY(0)}45%{transform:scaleY(1);transform-origin:top}46%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero__pie{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-top:2rem;flex-wrap:wrap}
+.hero__sub{max-width:46ch;color:var(--crema);font-size:1.05rem;line-height:1.75}
+.hero__cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+.btn{display:inline-flex;align-items:center;gap:.7rem;font:600 .82rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:1.05rem 1.9rem;border-radius:999px;cursor:pointer;transition:background-color .35s,border-color .35s,color .35s}
+.btn--solido{background:var(--azul);border:2px solid var(--azul);color:#fff}
+.btn--solido:hover{background:var(--verde);border-color:var(--verde);color:#06210a}
+.btn--linea{background:transparent;border:2px solid rgba(243,240,234,.5);color:var(--crema)}
+.btn--linea:hover{border-color:var(--crema);background:rgba(243,240,234,.08)}
 [data-hero-reveal]{visibility:hidden}
 
 /* ── MARQUEE ── */
-.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);padding:1.05rem 0;background:var(--fondo-2);position:relative;z-index:2}
-.marquee__track{display:inline-flex;gap:3rem;will-change:transform;width:max-content;animation:marquee 6s linear infinite}
+.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);padding:1rem 0;background:var(--fondo-2);position:relative;z-index:2}
+.marquee__track{display:inline-flex;gap:3rem;will-change:transform;width:max-content;animation:marquee 30s linear infinite}
 @keyframes marquee{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-50%,0,0)}}
 .marquee__group{display:inline-flex;gap:3rem}
-.marquee__group span{font-family:var(--serif);font-size:1.2rem;color:var(--crema-3);flex-shrink:0}
+.marquee__group span{font-family:var(--serif);font-size:1.2rem;color:var(--crema-2);flex-shrink:0}
 .marquee__group i{font-style:normal;color:var(--azul-cl)}
+@media(prefers-reduced-motion:reduce){.marquee__track{animation:none}}
 
 /* ── MANIFIESTO ── */
-.manifiesto{position:relative;padding:clamp(9rem,20vh,15rem) var(--pad)}
-.manifiesto p{position:relative;z-index:2;max-width:28ch;font-family:var(--serif);font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.3}
-.flotante{position:absolute;z-index:1;width:clamp(7rem,15vw,16rem);overflow:hidden;will-change:transform;box-shadow:0 24px 60px rgba(7,7,9,.5)}
+.manifiesto{position:relative;padding:clamp(6rem,16vh,12rem) var(--pad)}
+.manifiesto p{position:relative;z-index:2;max-width:24ch;font-family:var(--serif);font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.3;color:var(--crema)}
+.manifiesto p em{color:var(--azul-cl)}
+.flotante{position:absolute;z-index:1;width:clamp(8rem,15vw,15rem);overflow:hidden;will-change:transform;box-shadow:0 24px 60px rgba(7,7,9,.5);border-radius:4px}
 .flotante img{aspect-ratio:4/3}
-.flotante--1{top:8%;right:8%;width:clamp(9rem,18vw,19rem)}
-.flotante--2{bottom:4%;right:28%}
-.flotante--3{top:44%;left:60%;width:clamp(6rem,11vw,12rem);opacity:.9}
-@media(max-width:720px){.flotante--3{display:none}.flotante--1{right:2%}}
+.flotante--1{top:8%;right:7%;width:clamp(9rem,18vw,18rem)}
+.flotante--2{bottom:6%;right:26%}
+.flotante--3{top:46%;right:46%;width:clamp(6rem,11vw,11rem);opacity:.92}
+@media(max-width:900px){.flotante{display:none}}
 
 /* ── CIFRAS ── */
-.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:2rem;padding:0 var(--pad) clamp(7rem,14vh,11rem)}
-.cifra{border-top:1px solid var(--linea);padding-top:1.3rem}
-.cifra__valor{font-family:var(--serif);font-size:clamp(2.5rem,5.5vw,4.4rem);font-variant-numeric:tabular-nums}
-.cifra__valor i{font-style:normal;color:var(--azul-cl);font-size:.5em;margin-left:.06em}
-.cifra p{color:var(--crema-3);font-size:.84rem;margin-top:.35rem}
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:2rem;padding:0 var(--pad) clamp(6rem,12vh,10rem)}
+.cifra{border-top:2px solid var(--linea);padding-top:1.2rem}
+.cifra__valor{font-family:var(--serif);font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1;color:var(--crema)}
+.cifra__valor i{font-style:normal;color:var(--azul-cl);font-size:.5em;margin-left:.05em}
+.cifra p{color:var(--crema-3);font-size:.9rem;margin-top:.5rem}
+
+/* ── SECCIÓN cabecera común ── */
+.sec-cab{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.8rem}
+.sec-cab h2{font-size:clamp(2.2rem,5.5vw,4rem)}
+.sec-cab p{color:var(--crema-3);font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+
+/* ── PORTFOLIO (rejilla clara) ── */
+.portfolio{padding:clamp(5rem,11vh,9rem) var(--pad)}
+.galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:15rem;gap:.9rem}
+.gitem{position:relative;overflow:hidden;border-radius:4px;background:var(--fondo-3);cursor:zoom-in}
+.gitem img{transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.gitem:hover img,.gitem:focus-visible img{transform:scale(1.05)}
+.gitem::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,7,9,.85) 0%,rgba(7,7,9,.05) 55%);pointer-events:none}
+.gitem figcaption{position:absolute;left:1rem;bottom:.85rem;right:1rem;z-index:2;font-family:var(--serif);font-size:1.1rem;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.6);pointer-events:none}
+.gitem figcaption small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-cl);font-weight:700;margin-bottom:.2rem}
+.gitem--tall{grid-row:span 2}
+.gitem--wide{grid-column:span 2}
+@media(max-width:900px){
+  .galeria-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:13rem}
+  .gitem--wide{grid-column:span 2}
+  .gitem--tall{grid-row:span 1}
+}
+@media(max-width:560px){
+  .galeria-grid{grid-template-columns:1fr;grid-auto-rows:15rem;gap:.7rem}
+  .gitem--wide{grid-column:span 1}
+}
+.portfolio__nota{margin-top:1.4rem;font-size:.86rem;color:var(--crema-3);text-align:center}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;background:rgba(5,6,9,.95);z-index:9700;display:none;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:94vw;max-height:86vh;object-fit:contain;border-radius:4px;width:auto;height:auto}
+.lb__cap{position:absolute;bottom:1.2rem;left:0;right:0;text-align:center;color:var(--crema-2);font-family:var(--serif);font-size:1.1rem}
+.lb__btn{position:absolute;background:rgba(243,240,234,.1);border:1px solid rgba(243,240,234,.3);color:#fff;width:3rem;height:3rem;border-radius:50%;font-size:1.4rem;cursor:pointer;display:grid;place-items:center;transition:background .25s}
+.lb__btn:hover{background:var(--azul)}
+.lb__close{top:1.2rem;right:1.2rem}
+.lb__prev{left:1rem;top:50%;transform:translateY(-50%)}
+.lb__next{right:1rem;top:50%;transform:translateY(-50%)}
 
 /* ── SERVICIOS ── */
-.servicios{padding:clamp(7rem,14vh,11rem) var(--pad)}
-.servicios__cab{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3.4rem;gap:2rem;flex-wrap:wrap}
-.servicios__cab h2{font-size:clamp(2.2rem,5.5vw,4.2rem)}
-.servicios__cab p{color:var(--crema-3);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase}
-.servicios__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(18rem,100%),1fr));gap:1px}
-.servicio{padding:clamp(2rem,4vw,3.5rem);border:1px solid var(--linea);background:var(--fondo);transition:background .5s,border-color .5s}
-.servicio:hover{background:var(--fondo-3);border-color:rgba(46,74,142,.35)}
-.servicio__icono{font-size:2rem;margin-bottom:1.2rem;color:var(--azul-cl);line-height:1}
-.servicio h3{font-size:1.15rem;margin-bottom:.7rem;letter-spacing:.02em}
-.servicio p{color:var(--crema-3);font-size:.92rem;line-height:1.6}
+.servicios{padding:clamp(5rem,11vh,9rem) var(--pad);background:var(--fondo-2)}
+.servicios__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(19rem,100%),1fr));gap:1px;background:var(--linea);border:1px solid var(--linea)}
+.servicio{padding:clamp(1.8rem,4vw,3rem);background:var(--fondo);transition:background .4s}
+.servicio:hover{background:var(--fondo-3)}
+.servicio__icono{font-size:1.8rem;margin-bottom:1rem;color:var(--azul-cl);line-height:1}
+.servicio h3{font-size:1.25rem;margin-bottom:.6rem}
+.servicio p{color:var(--crema-3);font-size:.95rem;line-height:1.65}
 
-/* ── GALERIA HORIZONTAL PINEADA CON SKEW ── */
-.galeria-h{height:400vh;position:relative}
-.galeria-h__pin{height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center;background:var(--fondo-2)}
-.galeria-h__track{display:flex;gap:clamp(1.5rem,3vw,2.5rem);padding:0 var(--pad);will-change:transform}
-.galeria-h__item{flex-shrink:0;width:clamp(22rem,38vw,36rem);position:relative;overflow:hidden}
-.galeria-h__item img{aspect-ratio:3/4;will-change:transform;transition:transform .8s cubic-bezier(.22,1,.36,1)}
-@media(hover:hover) and (pointer:fine){.galeria-h__item:hover img{transform:scale(1.06)}}
-.galeria-h__item figcaption{position:absolute;bottom:0;left:0;right:0;padding:clamp(1rem,2vw,1.5rem);background:linear-gradient(to top,rgba(7,7,9,.85),transparent);font-family:var(--serif);font-size:1.1rem;color:var(--crema);opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
-.galeria-h__item:hover figcaption{opacity:1;transform:translateY(0)}
-.galeria-h__cab{position:absolute;top:clamp(2rem,5vh,3.5rem);left:var(--pad);z-index:2}
-.galeria-h__cab h2{font-size:clamp(1.8rem,4vw,3.2rem)}
-.galeria-h__cab p{color:var(--crema-3);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;margin-top:.6rem}
+/* ── IA BAND ── */
+.ia{display:grid;grid-template-columns:1fr 1.2fr;align-items:center;gap:0;background:var(--fondo)}
+.ia__visual{position:relative;overflow:hidden;min-height:360px}
+.ia__txt{padding:clamp(3rem,6vw,5.5rem) var(--pad)}
+.ia__txt span{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--verde);font-weight:700}
+.ia__txt h2{font-size:clamp(1.9rem,4vw,3rem);margin:.7rem 0 1.2rem}
+.ia__txt p{color:var(--crema-2);font-size:1.02rem;line-height:1.8;max-width:46ch}
+@media(max-width:820px){.ia{grid-template-columns:1fr}.ia__visual{min-height:240px}}
 
-/* ── ZOOM ── */
-.zoom{height:300vh;position:relative}
-.zoom__pin{position:relative;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center;background:var(--fondo)}
-.zoom__marco{position:absolute;inset:0;clip-path:inset(38% 32% 38% 32%);will-change:clip-path}
-.zoom__marco img{will-change:transform}
-.zoom__marco::after{content:"";position:absolute;inset:0;background:rgba(7,7,9,.45)}
-.zoom__texto{position:relative;z-index:2;font-family:var(--serif);font-size:clamp(2rem,5.5vw,4.6rem);line-height:1.15;color:#fff;text-align:center;max-width:18ch;padding:0 var(--pad);text-shadow:0 2px 30px rgba(0,0,0,.5)}
-.zoom__texto em{color:var(--verde)}
-@media(prefers-reduced-motion:reduce){.zoom{height:auto}.zoom__pin{height:100svh}.zoom__marco{clip-path:none}}
-
-/* ── TESTIMONIOS ── */
-.testimonios{padding:clamp(7rem,14vh,11rem) var(--pad);max-width:74rem}
-.testimonios__cab{display:flex;justify-content:space-between;align-items:baseline;gap:2rem;flex-wrap:wrap;margin-bottom:3.2rem}
-.testimonios__cab h2{font-size:clamp(2.2rem,5.5vw,4.2rem)}
-.google{display:inline-flex;align-items:center;gap:.7rem;font-size:.8rem;letter-spacing:.06em;color:var(--crema-3);border:1px solid var(--linea);border-radius:999px;padding:.6rem 1.2rem}
-.google b{color:var(--crema);font-weight:600}
-.google i{font-style:normal;color:var(--verde);letter-spacing:.16em}
-.cita{border-left:1px solid rgba(46,74,142,.45);padding:.4rem 0 .4rem 1.8rem;margin-bottom:2.6rem}
-.cita blockquote{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.55rem);line-height:1.5;color:var(--crema-2)}
-.cita figcaption{margin-top:.8rem;color:var(--crema-3);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase}
-
-/* ── TIRAS ── */
-.tiras{overflow:hidden;padding:clamp(5rem,10vh,8rem) 0 clamp(3rem,6vh,5rem);display:grid;gap:.4rem}
-.tira{white-space:nowrap;will-change:transform;font-family:var(--serif);font-size:clamp(3rem,8vw,7.5rem);line-height:1.05;color:transparent;-webkit-text-stroke:1px rgba(46,74,142,.28)}
-.tira em{color:var(--azul-cl);-webkit-text-stroke:0}
-.tira--llena{color:rgba(46,74,142,.1);-webkit-text-stroke:0}
-
-/* ── ABOUT ── */
-.sobre{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0}
-.sobre__visual{position:relative;overflow:hidden;min-height:600px}
-.sobre__visual img{object-position:center top}
-.sobre__badge{position:absolute;top:24px;right:24px;background:var(--fondo);border:1px solid var(--linea);padding:20px 26px;max-width:200px}
-.sobre__badge-year{font-family:var(--serif);font-size:2.8rem;color:var(--azul-cl);line-height:1}
-.sobre__badge-text{font-size:.72rem;letter-spacing:.1em;color:var(--crema-3);margin-top:4px}
-.sobre__contenido{padding:clamp(3rem,6vw,6rem);display:flex;flex-direction:column;justify-content:center;background:var(--fondo-2)}
-.sobre__contenido h2{font-size:clamp(2rem,4vw,3.4rem);margin-bottom:1.5rem}
-.sobre__contenido .texto{font-size:1.02rem;line-height:1.8;color:var(--crema-2);margin-bottom:2rem}
-.sobre__contenido .texto strong{color:var(--crema);font-weight:500}
-.sobre__valores{display:flex;flex-direction:column;gap:1rem}
-.valor{display:flex;gap:16px;align-items:flex-start;padding:16px;border:1px solid var(--linea);transition:border-color .4s}
-.valor:hover{border-color:rgba(46,74,142,.4)}
-.valor__num{font-family:var(--serif);font-size:1.3rem;color:var(--azul-cl);opacity:.65;flex-shrink:0}
-.valor h3{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:4px;font-family:var(--sans)}
-.valor p{font-size:.88rem;color:var(--crema-3);line-height:1.5}
-@media(max-width:820px){.sobre{grid-template-columns:1fr}.sobre__visual{min-height:380px}}
+/* ── SOBRE ── */
+.sobre{display:grid;grid-template-columns:1fr 1.1fr;gap:0}
+.sobre__visual{position:relative;overflow:hidden;min-height:560px}
+.sobre__badge{position:absolute;top:22px;left:22px;background:var(--fondo);border:1px solid var(--linea);padding:16px 22px;border-radius:4px}
+.sobre__badge-year{font-family:var(--serif);font-size:2.4rem;color:var(--azul-cl);line-height:1}
+.sobre__badge-text{font-size:.7rem;letter-spacing:.1em;color:var(--crema-3);margin-top:3px}
+.sobre__contenido{padding:clamp(3rem,6vw,5.5rem);display:flex;flex-direction:column;justify-content:center;background:var(--fondo-2)}
+.sobre__contenido h2{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:1.4rem}
+.sobre__contenido .texto{font-size:1.02rem;line-height:1.8;color:var(--crema-2);margin-bottom:1.3rem}
+.sobre__contenido .texto strong{color:var(--crema);font-weight:600}
+.sobre__valores{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem}
+.valor{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border:1px solid var(--linea);border-radius:4px}
+.valor__num{font-family:var(--serif);font-size:1.3rem;color:var(--azul-cl);flex-shrink:0}
+.valor h3{font-size:.95rem;font-weight:600;margin-bottom:2px;font-family:var(--sans)}
+.valor p{font-size:.9rem;color:var(--crema-3);line-height:1.5}
+@media(max-width:820px){.sobre{grid-template-columns:1fr}.sobre__visual{min-height:340px}}
 
 /* ── MAPA ── */
-.mapa{width:100%;height:420px;border:none;display:block;filter:grayscale(.6) brightness(.85) contrast(1.1)}
+.mapa{width:100%;height:400px;border:none;display:block;filter:grayscale(.5) brightness(.9) contrast(1.05)}
 
 /* ── CONTACTO ── */
-.contacto{min-height:90svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:2.4rem;padding:6rem var(--pad) 4rem;border-top:1px solid var(--linea)}
-.contacto__estado{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--crema-3);display:flex;align-items:center;gap:.7rem}
-.contacto__estado::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--verde);box-shadow:0 0 12px rgba(124,179,66,.8);animation:latido 2.6s cubic-bezier(.42,0,.58,1) infinite}
-@keyframes latido{50%{opacity:.35}}
-.contacto h2{font-size:clamp(2.5rem,7.2vw,6rem);max-width:15ch}
-
-.magnetico{display:inline-flex;align-items:center;gap:.9rem;font:500 .88rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#fff;border:1px solid var(--azul);border-radius:999px;padding:1.3rem 2.5rem;background:var(--azul);cursor:pointer;transition:background-color .45s,border-color .45s}
-.magnetico:hover{background:var(--verde);border-color:var(--verde)}
-.magnetico .magnetico__label{display:inline-block}
-.contacto__secundario{font-size:.85rem;color:var(--crema-3)}
+.contacto{min-height:80svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:2rem;padding:6rem var(--pad) 4rem;border-top:1px solid var(--linea)}
+.contacto__estado{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--crema-2);display:flex;align-items:center;gap:.7rem;font-weight:600}
+.contacto__estado::before{content:"";width:.6rem;height:.6rem;border-radius:50%;background:var(--verde);box-shadow:0 0 12px rgba(147,201,90,.9);animation:latido 2.6s ease-in-out infinite}
+@keyframes latido{50%{opacity:.4}}
+.contacto h2{font-size:clamp(2.4rem,7vw,5.5rem);max-width:16ch}
+.contacto__secundario{font-size:.95rem;color:var(--crema-2)}
 .contacto__secundario a{border-bottom:1px solid var(--linea);padding-bottom:.1em}
 .contacto__secundario a:hover{color:var(--azul-cl);border-color:var(--azul-cl)}
-.contacto__datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:2rem;width:min(60rem,100%);margin-top:2.2rem;text-align:left;font-size:.92rem}
-.dato{border-top:1px solid var(--linea);padding-top:1.1rem}
-.dato h4{font:500 .68rem/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--crema-3);margin-bottom:.8rem}
+.contacto__datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:2rem;width:min(56rem,100%);margin-top:1.5rem;text-align:left;font-size:.95rem}
+.dato{border-top:2px solid var(--linea);padding-top:1rem}
+.dato h4{font:600 .7rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--azul-cl);margin-bottom:.7rem}
+.dato p,.dato a{color:var(--crema-2)}
 .dato a:hover{color:var(--azul-cl)}
 
-/* ── HORARIO ── */
-.horario{width:100%;font-size:.88rem;border-collapse:collapse;margin-top:.6rem}
-.horario td{padding:4px 0;border-bottom:1px solid var(--linea)}
-.horario td:first-child{color:var(--crema-3);width:3rem}
-.horario-hoy td{color:var(--verde) !important;font-weight:500}
-
 /* ── PIE ── */
-.pie{display:flex;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;padding:2rem var(--pad) 2.6rem;color:var(--crema-3);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;border-top:1px solid var(--linea)}
+.pie{display:flex;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;padding:2rem var(--pad) 2.6rem;color:var(--crema-3);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;border-top:1px solid var(--linea)}
 .pie nav{display:flex;gap:1.4rem;flex-wrap:wrap}
 .pie a:hover,.pie button:hover{color:var(--azul-cl)}
 .pie button{background:none;border:none;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0}
 
-/* ── SENSACIONES: estela de imágenes del porfolio ── */
-.sensaciones{position:relative;min-height:82svh;display:grid;place-items:center;text-align:center;padding:clamp(7rem,15vh,11rem) var(--pad);overflow:hidden}
-.sensaciones h2{font-size:clamp(2.3rem,6vw,5rem);max-width:16ch;position:relative;z-index:2;pointer-events:none}
-.sensaciones__pista{position:absolute;bottom:clamp(2rem,6vh,4rem);left:50%;transform:translateX(-50%);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--crema-3);z-index:2;pointer-events:none}
-.estela-img{position:absolute;width:clamp(9rem,16vw,15rem);aspect-ratio:3/4;overflow:hidden;pointer-events:none;will-change:transform,opacity;box-shadow:0 18px 50px rgba(0,0,0,.55)}
-.estela-img img{width:100%;height:100%;object-fit:cover}
-@media(pointer:coarse){.sensaciones__pista{display:none}}
-
 [data-reveal]{visibility:hidden}
 
 @media(max-width:768px){
-  .hero{min-height:auto;height:auto;align-items:flex-start;padding-top:7rem;padding-bottom:3rem}
-  .hero__titulo{font-size:clamp(2.2rem,10vw,3.5rem)}
-  .hero__scroll{display:none}
+  .hero{min-height:auto;height:auto;justify-content:flex-end;padding-top:8rem;padding-bottom:3.5rem}
+  .hero__titulo{font-size:clamp(2.4rem,11vw,3.6rem)}
   .contacto{min-height:auto;padding-top:4rem;padding-bottom:3rem}
 }
 
@@ -269,8 +254,6 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   [data-reveal],[data-hero-reveal]{visibility:visible !important}
   .preloader{display:none}
   .progreso{display:none}
-  .galeria-h{height:auto}
-  .galeria-h__pin{height:auto;flex-wrap:wrap;padding:3rem var(--pad)}
 }
 </style>
 </head>
@@ -278,14 +261,13 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-<!-- ════════ PRELOADER ════════ -->
+<!-- PRELOADER -->
 <div class="preloader" aria-hidden="true">
   <div class="preloader__cortina"></div>
-  <div class="preloader__marca"><span><b>Foto</b> Soria Digital</span></div>
+  <div class="preloader__marca"><b>Foto</b> Soria Digital</div>
   <div class="preloader__contador"><span class="preloader__num">0<i>%</i></span></div>
 </div>
 
-<!-- ════════ CAPAS ════════ -->
 <div id="fluid" aria-hidden="true"></div>
 <div class="cursor-dot" aria-hidden="true"></div>
 <div class="cursor-ring" aria-hidden="true"></div>
@@ -293,282 +275,264 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 <div class="grain" aria-hidden="true"></div>
 
 <header class="cabecera">
-  <a class="cabecera__logo" href="index.html">
-    <img src="img/logo.png" alt="Logo Foto Soria Digital" height="30" width="auto">
+  <a class="cabecera__logo" href="index.html" aria-label="Foto Soria Digital, inicio">
+    <img src="img/logo-icon.png" alt="" width="40" height="40">
+    <span><b>Foto Soria Digital</b><small>Álvaro Rodríguez</small></span>
   </a>
-  <nav class="cabecera__nav" aria-label="principal">
-    <a class="roll" href="#portfolio" data-text="Portfolio"><span>Portfolio</span></a>
-    <a class="roll" href="#servicios" data-text="Servicios"><span>Servicios</span></a>
-    <a class="roll" href="#sobre" data-text="Sobre mi"><span>Sobre mi</span></a>
-    <a class="roll" href="#contacto" data-text="Contacto"><span>Contacto</span></a>
+  <nav class="cabecera__nav" aria-label="Navegación principal">
+    <a href="#servicios">Servicios</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#sobre">Sobre mí</a>
+    <a href="#contacto">Contacto</a>
   </nav>
-  <button class="hamburger" aria-label="Menu" aria-expanded="false">
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#portfolio">Portfolio</a>
   <a href="#servicios">Servicios</a>
-  <a href="#sobre">Sobre mi</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#sobre">Sobre mí</a>
   <a href="#contacto">Contacto</a>
 </div>
 
 <main id="contenido">
 
-  <!-- ════════ HERO ════════ -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero__media" aria-hidden="true">
-      <img src="img/hero-boda.jpg" alt="Fotografia de boda en Soria por Álvaro Rodríguez" loading="eager" data-hero-parallax>
+      <img src="img/hero.jpg" alt="" loading="eager" data-hero-parallax>
     </div>
     <div class="hero__contenido">
-      <p class="hero__kicker" data-hero-reveal>Fotógrafo profesional en Soria desde 1996</p>
-      <h1 class="hero__titulo" data-hero-reveal>
-        Momentos que <em>perduran</em>.
-      </h1>
+      <p class="hero__kicker" data-hero-reveal>Álvaro Rodríguez · Fotógrafo profesional</p>
+      <h1 class="hero__titulo" data-hero-reveal>Fotógrafo en <em>Soria</em>.</h1>
       <div class="hero__pie">
-        <p class="hero__sub" data-hero-reveal>
-          Bodas, retratos, comuniones y paisaje con la mirada de quien lleva
-          casi tres décadas capturando la provincia de Soria.
-        </p>
-        <p class="hero__scroll" data-hero-reveal>Descubre</p>
+        <div>
+          <p class="hero__sub" data-hero-reveal>
+            Bodas, comuniones, eventos, empresa y producto. Y todo el mundo digital
+            de la imagen: retoque profesional, diseño y cursos de fotografía.
+          </p>
+          <div class="hero__cta-row" data-hero-reveal>
+            <a class="btn btn--solido" href="https://wa.me/34645120519" target="_blank" rel="noopener">WhatsApp · 645 12 05 19</a>
+            <a class="btn btn--linea" href="#portfolio">Ver portfolio</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ════════ MARQUEE ════════ -->
+  <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
       <div class="marquee__group">
-        <span>Bodas <i>&middot;</i></span><span>Comuniones <i>&middot;</i></span><span>Retrato <i>&middot;</i></span>
-        <span>Producto <i>&middot;</i></span><span>Paisaje <i>&middot;</i></span><span>Retoque digital <i>&middot;</i></span>
-        <span>4,9 en Google <i>&middot;</i></span><span>El Burgo de Osma <i>&middot;</i></span>
+        <span>Bodas <i>·</i></span><span>Comuniones <i>·</i></span><span>Quinceañeras <i>·</i></span>
+        <span>Eventos <i>·</i></span><span>Empresa <i>·</i></span><span>Producto <i>·</i></span>
+        <span>Retoque <i>·</i></span><span>Diseño <i>·</i></span><span>Cursos <i>·</i></span>
       </div>
       <div class="marquee__group" aria-hidden="true">
-        <span>Bodas <i>&middot;</i></span><span>Comuniones <i>&middot;</i></span><span>Retrato <i>&middot;</i></span>
-        <span>Producto <i>&middot;</i></span><span>Paisaje <i>&middot;</i></span><span>Retoque digital <i>&middot;</i></span>
-        <span>4,9 en Google <i>&middot;</i></span><span>El Burgo de Osma <i>&middot;</i></span>
+        <span>Bodas <i>·</i></span><span>Comuniones <i>·</i></span><span>Quinceañeras <i>·</i></span>
+        <span>Eventos <i>·</i></span><span>Empresa <i>·</i></span><span>Producto <i>·</i></span>
+        <span>Retoque <i>·</i></span><span>Diseño <i>·</i></span><span>Cursos <i>·</i></span>
       </div>
     </div>
   </div>
 
-  <!-- ════════ MANIFIESTO ════════ -->
+  <!-- MANIFIESTO -->
   <section class="manifiesto">
-    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="img/novia-artistica.jpg" alt="" loading="lazy"></figure>
-    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="img/novios-sotos.jpg" alt="" loading="lazy"></figure>
-    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="img/reportaje-boda.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="img/g-eventos.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="img/g-quinceaneras.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="img/g-fiestas.jpg" alt="" loading="lazy"></figure>
     <p data-manifiesto>
-      No disparo fotos: construyo recuerdos.
-      Cada imagen tiene un instante irrepetible
-      y mi trabajo es que lo vivas cada vez que la mires.
+      Capturando los recuerdos de Soria <em>desde 1996</em> — dentro y fuera del estudio.
     </p>
   </section>
 
-  <!-- ════════ CIFRAS ════════ -->
+  <!-- CIFRAS -->
   <section class="cifras">
-    <div class="cifra">
-      <div class="cifra__valor"><span data-cuenta data-target="27">0</span><i>+</i></div>
-      <p>años de experiencia</p>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor">1996</div>
+      <p>en activo como fotógrafo</p>
     </div>
-    <div class="cifra">
-      <div class="cifra__valor">4,9<i>&#9733;</i></div>
-      <p>en Google Maps</p>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor"><span data-cuenta data-target="28">0</span><i>+</i></div>
+      <p>años tras la cámara</p>
     </div>
-    <div class="cifra">
-      <div class="cifra__valor"><span data-cuenta data-target="27">0</span></div>
-      <p>reseñas de clientes</p>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor">Soria</div>
+      <p>capital y provincia</p>
     </div>
-    <div class="cifra">
-      <div class="cifra__valor">360<i>&deg;</i></div>
-      <p>fotografía inmersiva</p>
-    </div>
-  </section>
-
-  <!-- ════════ GALERIA HORIZONTAL PINEADA ════════ -->
-  <section class="galeria-h" id="portfolio" aria-label="Portfolio fotografico">
-    <div class="galeria-h__pin">
-      <div class="galeria-h__cab">
-        <h2 data-reveal data-split="lines">Trabajos <em>recientes</em></h2>
-        <p data-reveal>Bodas, paisaje, retrato y producto</p>
-      </div>
-      <div class="galeria-h__track">
-        <figure class="galeria-h__item">
-          <img src="img/boda-catedral.jpg" alt="Ceremonia en la catedral de El Burgo de Osma" loading="lazy">
-          <figcaption>Catedral de El Burgo de Osma</figcaption>
-        </figure>
-        <figure class="galeria-h__item">
-          <img src="img/novios-puente.jpg" alt="Reportaje de boda junto al puente del Duero" loading="lazy">
-          <figcaption>Puente del Duero</figcaption>
-        </figure>
-        <figure class="galeria-h__item">
-          <img src="img/paisaje-fuentona.jpg" alt="La Fuentona de Muriel, Soria" loading="lazy">
-          <figcaption>La Fuentona de Muriel</figcaption>
-        </figure>
-        <figure class="galeria-h__item">
-          <img src="img/novios-cascada.jpg" alt="Postboda en cascada natural" loading="lazy">
-          <figcaption>Cascada natural</figcaption>
-        </figure>
-        <figure class="galeria-h__item">
-          <img src="img/ia-foto.jpg" alt="Fotografía y edición con inteligencia artificial" loading="lazy">
-          <figcaption>Edición con IA</figcaption>
-        </figure>
-      </div>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor">IA</div>
+      <p>plus creativo incluido</p>
     </div>
   </section>
 
-  <!-- ════════ SENSACIONES: estela de imágenes del porfolio ════════ -->
-  <section class="sensaciones" aria-label="Porfolio en movimiento">
-    <h2 data-reveal data-split="lines">Tres décadas mirando <em>Soria</em>.</h2>
-    <p class="sensaciones__pista">Mueve el ratón</p>
-  </section>
-
-  <!-- ════════ ZOOM ════════ -->
-  <section class="zoom" aria-label="Fotografia inmersiva">
-    <div class="zoom__pin">
-      <div class="zoom__marco"><img src="img/paisaje-canon.jpg" alt="Cañón del Río Lobos al atardecer" loading="lazy"></div>
-      <p class="zoom__texto" data-zoom-texto>Tu historia merece ser <em>contada</em>.</p>
+  <!-- PORTFOLIO (rejilla clara) -->
+  <section class="portfolio" id="portfolio">
+    <div class="sec-cab">
+      <h2 data-reveal>Portfolio</h2>
+      <p data-reveal>Una muestra de mi trabajo</p>
     </div>
+    <div class="galeria-grid" id="galeria">
+      <figure class="gitem gitem--wide" data-reveal tabindex="0" data-full="img/g-bodas.jpg" data-cap="Bodas y postboda">
+        <img src="img/g-bodas.jpg" alt="Reportaje de boda en Soria por Álvaro Rodríguez" loading="lazy">
+        <figcaption><small>Reportaje</small>Bodas</figcaption>
+      </figure>
+      <figure class="gitem gitem--tall" data-reveal tabindex="0" data-full="img/g-quinceaneras.jpg" data-cap="Quinceañeras">
+        <img src="img/g-quinceaneras.jpg" alt="Reportaje de quinceañera" loading="lazy">
+        <figcaption><small>Celebraciones</small>Quinceañeras</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-comuniones.jpg" data-cap="Comuniones">
+        <img src="img/g-comuniones.jpg" alt="Reportaje de comunión en Soria" loading="lazy">
+        <figcaption><small>Reportaje</small>Comuniones</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-bautizos.jpg" data-cap="Bautizos y confirmaciones">
+        <img src="img/g-bautizos.jpg" alt="Reportaje de evento religioso" loading="lazy">
+        <figcaption><small>Reportaje</small>Bautizos</figcaption>
+      </figure>
+      <figure class="gitem gitem--wide" data-reveal tabindex="0" data-full="img/g-eventos.jpg" data-cap="Eventos y fiestas populares">
+        <img src="img/g-eventos.jpg" alt="Cobertura de fiestas y eventos en Soria" loading="lazy">
+        <figcaption><small>Social</small>Eventos y fiestas</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-grupos.jpg" data-cap="Grupos y corporativa">
+        <img src="img/g-grupos.jpg" alt="Fotografía de grupo y corporativa" loading="lazy">
+        <figcaption><small>Empresa</small>Grupos</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-inmobiliaria.jpg" data-cap="Inmobiliaria e interiorismo">
+        <img src="img/g-inmobiliaria.jpg" alt="Fotografía inmobiliaria e interiorismo" loading="lazy">
+        <figcaption><small>Espacios</small>Inmobiliaria</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-fiestas.jpg" data-cap="Reportaje social">
+        <img src="img/g-fiestas.jpg" alt="Reportaje social y de fiestas" loading="lazy">
+        <figcaption><small>Social</small>Reportaje</figcaption>
+      </figure>
+    </div>
+    <p class="portfolio__nota">Pulsa cualquier foto para verla en grande.</p>
   </section>
 
-  <!-- ════════ SERVICIOS ════════ -->
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <button class="lb__btn lb__close" id="lbClose" aria-label="Cerrar">&times;</button>
+    <button class="lb__btn lb__prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
+    <img src="" alt="" id="lbImg">
+    <button class="lb__btn lb__next" id="lbNext" aria-label="Siguiente">&#8250;</button>
+    <p class="lb__cap" id="lbCap"></p>
+  </div>
+
+  <!-- SERVICIOS -->
   <section class="servicios" id="servicios">
-    <div class="servicios__cab">
-      <h2 data-reveal data-split="lines">Lo que <em>hacemos</em></h2>
+    <div class="sec-cab">
+      <h2 data-reveal>Lo que <em>hago</em></h2>
       <p data-reveal>Servicios profesionales</p>
     </div>
     <div class="servicios__grid">
       <div class="servicio" data-reveal>
-        <div class="servicio__icono">&#9655;</div>
-        <h3>Bodas y postboda</h3>
-        <p>Cobertura completa de ceremonia, convite, baile y sesión de postboda en los paisajes de Soria. Álbum artesanal con maquetación propia y entrega en 12 horas.</p>
+        <div class="servicio__icono" aria-hidden="true">&#9670;</div>
+        <h3>Bodas y celebraciones</h3>
+        <p>Bodas, comuniones, confirmaciones, bautizos y quinceañeras. Reportaje natural de tu día, en la ceremonia, el convite y la sesión de exteriores.</p>
       </div>
       <div class="servicio" data-reveal>
-        <div class="servicio__icono">&#10022;</div>
-        <h3>Comuniones y bautizos</h3>
-        <p>Reportajes naturales donde cada gesto espontáneo queda capturado. Sesión de estudio o exterior, a domicilio en toda la provincia.</p>
+        <div class="servicio__icono" aria-hidden="true">&#9737;</div>
+        <h3>Retrato, book y familia</h3>
+        <p>Sesiones de estudio o exterior: retrato, book, infantil, familia y mascotas. Sesiones temáticas de Navidad y calendarios personalizados.</p>
       </div>
       <div class="servicio" data-reveal>
-        <div class="servicio__icono">&#9737;</div>
-        <h3>Retrato y book</h3>
-        <p>Sesiones de retrato personal, profesional o artístico. Equipo de iluminación strobist, fondos variados y estilo adaptado al cliente.</p>
+        <div class="servicio__icono" aria-hidden="true">&#9728;</div>
+        <h3>Eventos y fiestas</h3>
+        <p>Fiestas populares, procesiones, eventos sociales y celebraciones. Casi tres décadas documentando la vida de Soria y su provincia.</p>
       </div>
       <div class="servicio" data-reveal>
-        <div class="servicio__icono">&#9881;</div>
-        <h3>Producto y publicidad</h3>
-        <p>Fotografía de producto para ecommerce, catálogo y redes sociales. Retoque profesional incluido, colores fieles y composiciones limpias.</p>
+        <div class="servicio__icono" aria-hidden="true">&#9632;</div>
+        <h3>Empresa, producto e inmobiliaria</h3>
+        <p>Fotografía corporativa, de grupo, de producto e inmobiliaria/interiorismo. Apoyo a las empresas sorianas con imagen profesional.</p>
       </div>
       <div class="servicio" data-reveal>
-        <div class="servicio__icono">&#8634;</div>
-        <h3>Fotografia 360 y dron</h3>
-        <p>Tours virtuales inmersivos y tomas aéreas para inmobiliarias, hostelería y turismo. Tecnología de vanguardia al servicio de tu negocio.</p>
+        <div class="servicio__icono" aria-hidden="true">&#9998;</div>
+        <h3>Retoque fotográfico profesional</h3>
+        <p>Ajustes básicos y avanzados, restauración de fotos antiguas, silueteado de producto, trucaje, montaje y colorización. También para otros fotógrafos.</p>
       </div>
       <div class="servicio" data-reveal>
-        <div class="servicio__icono">&#9998;</div>
-        <h3>Retoque digital</h3>
-        <p>Desde ajustes básicos hasta restauración avanzada, silueteado, trucaje y colorización. Servicio externo para otros fotógrafos y agencias.</p>
+        <div class="servicio__icono" aria-hidden="true">&#9671;</div>
+        <h3>Diseño y servicios digitales</h3>
+        <p>Diseño y publicaciones, logotipos, orlas, maquetación de álbumes digitales, vídeo y publicidad, diseño web y posicionamiento. Y venta de fotos.</p>
       </div>
     </div>
   </section>
 
-  <!-- ════════ TIRAS ════════ -->
-  <div class="tiras" aria-hidden="true">
-    <p class="tira" data-tira="-1">Bodas <em>&middot;</em> Retratos <em>&middot;</em> Paisaje <em>&middot;</em> Comuniones <em>&middot;</em> Producto <em>&middot;</em> 360 <em>&middot;</em> Bodas <em>&middot;</em> Retratos</p>
-    <p class="tira tira--llena" data-tira="1">Soria <em>&middot;</em> El Burgo de Osma <em>&middot;</em> Desde 1996 <em>&middot;</em> Soria <em>&middot;</em> El Burgo de Osma <em>&middot;</em> Desde 1996</p>
-  </div>
+  <!-- IA -->
+  <section class="ia" aria-label="Inteligencia artificial">
+    <div class="ia__visual"><img src="img/ia.jpg" alt="Fotografía y retoque con inteligencia artificial en Foto Soria Digital" loading="lazy"></div>
+    <div class="ia__txt" data-reveal>
+      <span>Novedad</span>
+      <h2>La <em>IA</em> como aliada</h2>
+      <p>La inteligencia artificial se incorpora a mis servicios como un plus creativo —que ya estaba presente— sin perder la esencia del retoque fotográfico profesional en Photoshop. La tecnología como aliada de la imaginación, nunca como sustituta del arte.</p>
+    </div>
+  </section>
 
-  <!-- ════════ SOBRE ════════ -->
+  <!-- SOBRE -->
   <section class="sobre" id="sobre">
     <div class="sobre__visual">
-      <img src="img/alvaro-retrato.jpg" alt="Álvaro Rodríguez, fotógrafo profesional" loading="lazy">
+      <img src="img/about.jpg" alt="Álvaro Rodríguez trabajando en el retoque digital de imágenes" loading="lazy">
       <div class="sobre__badge">
         <div class="sobre__badge-year">1996</div>
         <div class="sobre__badge-text">Inicio profesional</div>
       </div>
     </div>
     <div class="sobre__contenido">
-      <h2 data-reveal data-split="lines">Álvaro <em>Rodríguez</em></h2>
+      <h2 data-reveal>Álvaro <em>Rodríguez</em></h2>
       <p class="texto" data-reveal>
-        Llevo desde <strong>1996</strong> detrás del objetivo, primero como especialista en retoque digital y desde <strong>2004</strong> cubriendo bodas en toda la provincia de Soria. Trabajo desde El Burgo de Osma con un equipo ligero y una filosofía clara: <strong>calidad, colores fieles y composiciones que cuentan historias</strong>.
+        Los servicios de Fotosoriadigital son muy variados, siempre relacionados con la imagen y el mundo digital. Como <strong>fotógrafo profesional de Soria</strong> he vivido muchas experiencias capturando infinidad de recuerdos para las gentes de estas tierras; también he pasado muchas horas de ordenador apoyando a las <strong>empresas sorianas</strong> con el retoque fotográfico, y han pasado por mis manos alumnos con la inquietud de aprender en los <strong>cursos de fotografía</strong>. Otro capítulo es el diseño web, el posicionamiento y el diseño publicitario.
       </p>
       <p class="texto" data-reveal>
-        Mi estilo mezcla reportaje documental con toques artísticos. Priorizo la luz natural, uso técnicas strobist cuando la escena lo pide y entrego las fotos en tiempo récord. Ganador del primer premio de fotografía en la Semana Santa de El Burgo de Osma.
+        Cuando hablamos de un servicio profesional nos referimos a la <strong>seriedad</strong> con la que afrontamos los trabajos, poniendo nuestro compromiso encima de la mesa, avalado por una trayectoria de experiencia, asegurando un trabajo de calidad y en unos <strong>tiempos de entrega pactados</strong>.
       </p>
       <div class="sobre__valores">
         <div class="valor" data-reveal>
           <span class="valor__num">01</span>
           <div>
-            <h3>Entrega ultrarápida</h3>
-            <p>Primeras fotos en 12 horas, maquetación de álbum en 1 día.</p>
+            <h3>Soria y provincia</h3>
+            <p>Cobertura en la capital, El Burgo de Osma y toda la comarca.</p>
           </div>
         </div>
         <div class="valor" data-reveal>
           <span class="valor__num">02</span>
           <div>
-            <h3>Cobertura provincial</h3>
-            <p>Soria capital, El Burgo de Osma, San Esteban de Gormaz y toda la comarca del Duero.</p>
+            <h3>Retoque para empresas y profesionales</h3>
+            <p>Servicio de edición y retoque también para otros fotógrafos y negocios.</p>
           </div>
         </div>
         <div class="valor" data-reveal>
           <span class="valor__num">03</span>
           <div>
-            <h3>Tecnología y artesanía</h3>
-            <p>Dron, foto 360, photocall con impresión instantánea y álbum artesanal cosido a mano.</p>
+            <h3>Cursos de fotografía</h3>
+            <p>Formación para quienes quieren aprender esta profesión y afición.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ════════ TESTIMONIOS ════════ -->
-  <section class="testimonios">
-    <div class="testimonios__cab">
-      <h2 data-reveal data-split="lines">Clientes que <em>repiten</em></h2>
-      <p class="google" data-reveal><i>&#9733;&#9733;&#9733;&#9733;&#9733;</i> <b>4,9</b> en Google &middot; 27 reseñas</p>
-    </div>
-    <figure class="cita" data-reveal>
-      <blockquote>Nos hizo las fotos de la boda y fueron espectaculares. Captó momentos que ni nosotros recordábamos. El álbum quedó precioso y lo entregó en tiempo récord.</blockquote>
-      <figcaption>Resena verificada en Google</figcaption>
-    </figure>
-    <figure class="cita" data-reveal>
-      <blockquote>Profesional y cercano. Le encargamos las fotos de comunión de nuestra hija y el resultado superó todas las expectativas. Muy recomendable.</blockquote>
-      <figcaption>Resena verificada en Google</figcaption>
-    </figure>
-    <figure class="cita" data-reveal>
-      <blockquote>Gran fotógrafo y mejor persona. Hizo el reportaje de nuestro negocio y las fotos de producto para la web. Calidad excelente y precios muy competitivos.</blockquote>
-      <figcaption>Resena verificada en Google</figcaption>
-    </figure>
-  </section>
+  <!-- MAPA -->
+  <iframe class="mapa" src="https://maps.google.com/maps?q=fotosoriadigital+soria&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Foto Soria Digital en Soria" allowfullscreen></iframe>
 
-  <!-- ════════ MAPA ════════ -->
-  <iframe class="mapa" src="https://maps.google.com/maps?q=fotosoriadigital+el+burgo+de+osma+soria&output=embed" loading="lazy" title="Ubicación de Foto Soria Digital en El Burgo de Osma" allowfullscreen></iframe>
-
-  <!-- ════════ CONTACTO ════════ -->
+  <!-- CONTACTO -->
   <section class="contacto" id="contacto">
     <p class="contacto__estado" data-reveal>Disponible para reservas</p>
-    <h2 data-reveal data-split="lines">Hablemos de tu <em>proyecto</em></h2>
-    <a class="magnetico" href="https://wa.me/34645120519" target="_blank" rel="noopener" data-magnetico>
-      <span class="magnetico__label">WhatsApp &middot; 645 12 05 19</span>
-    </a>
+    <h2 data-reveal>Hablemos de tu <em>proyecto</em></h2>
+    <a class="btn btn--solido" href="https://wa.me/34645120519" target="_blank" rel="noopener" style="font-size:.9rem;padding:1.2rem 2.4rem">WhatsApp · 645 12 05 19</a>
     <p class="contacto__secundario" data-reveal>
-      <a href="tel:+34645120519">645 12 05 19</a> &middot;
+      <a href="tel:+34645120519">645 12 05 19</a> ·
       <a href="mailto:fotosoriadigital@gmail.com">fotosoriadigital@gmail.com</a>
     </p>
     <div class="contacto__datos">
       <div class="dato" data-reveal>
-        <h4>Estudio</h4>
-        <p>El Burgo de Osma<br>Soria, Castilla y León</p>
+        <h4>Dónde</h4>
+        <p>Soria · El Burgo de Osma<br>Castilla y León</p>
       </div>
       <div class="dato" data-reveal>
-        <h4>Horario</h4>
-        <table class="horario" id="tablaHorario">
-          <tr><td>L</td><td>8:00 - 23:00</td></tr>
-          <tr><td>M</td><td>8:00 - 23:00</td></tr>
-          <tr><td>X</td><td>8:00 - 23:00</td></tr>
-          <tr><td>J</td><td>8:00 - 23:00</td></tr>
-          <tr><td>V</td><td>8:00 - 23:00</td></tr>
-          <tr><td>S</td><td>8:00 - 23:00</td></tr>
-          <tr><td>D</td><td>8:00 - 23:00</td></tr>
-        </table>
+        <h4>Atención</h4>
+        <p>Con cita previa<br>Respuesta el mismo día por WhatsApp</p>
       </div>
       <div class="dato" data-reveal>
         <h4>Redes</h4>
@@ -582,18 +546,17 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   </section>
 
   <footer class="pie">
-    <span>&copy; 2026 Foto Soria Digital &middot; Álvaro Rodríguez</span>
-    <nav>
+    <span>&copy; 2026 Foto Soria Digital · Álvaro Rodríguez</span>
+    <nav aria-label="Enlaces legales">
       <a href="legal/aviso-legal.html">Aviso legal</a>
       <a href="legal/politica-privacidad.html">Privacidad</a>
       <a href="legal/politica-cookies.html">Cookies</a>
       <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
     </nav>
-    <span>Propuesta de diseño &mdash; G&amp;G Elcano</span>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
   </footer>
 </main>
 
-<!-- ════════ DEPENDENCIAS ════════ -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
@@ -601,11 +564,10 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
 <script>
 'use strict';
-
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
 
-const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
 
 let lenis = null;
@@ -618,390 +580,139 @@ if (!REDUCE) {
   window.lenis = lenis;
 }
 
-/* ── ESTELA FLUIDA ── */
+/* Estela fluida (decorativa, solo ratón) */
 if (FINE_POINTER && !REDUCE) {
   import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then((mod) => {
     const cont = document.getElementById('fluid');
     if (!cont) return;
     const sim = new mod.default(cont);
-    Object.assign(cont.style, {
-      position: 'fixed', inset: '0', width: '100%', height: '100%',
-      zIndex: '9000', pointerEvents: 'none',
-    });
+    Object.assign(cont.style, { position:'fixed', inset:'0', width:'100%', height:'100%', zIndex:'9000', pointerEvents:'none' });
     dispatchEvent(new Event('resize'));
     sim.setConfig({
-      simResolution: 128, dyeResolution: 1024,
-      densityDissipation: 2.2, velocityDissipation: 1.4,
-      pressureIterations: 10, curl: 28,
-      splatRadius: 0.1, splatForce: 5000,
-      hover: false, colorful: false,
-      colorPalette: ['#2E4A8E', '#4a6db8', '#7CB342'],
-      transparent: true,
-      bloom: false,
-      sunrays: false,
+      simResolution:128, dyeResolution:1024, densityDissipation:2.4, velocityDissipation:1.5,
+      pressureIterations:10, curl:26, splatRadius:0.1, splatForce:5000,
+      hover:false, colorful:false, colorPalette:['#2E4A8E','#7ea0e6','#93c95a'],
+      transparent:true, bloom:false, sunrays:false,
     });
     sim.start();
-    let lastX = null, lastY = null;
-    addEventListener('pointermove', (e) => {
-      if (lastX !== null) {
-        const dx = (e.clientX - lastX) * 2.5, dy = (e.clientY - lastY) * 2.5;
-        if (Math.abs(dx) + Math.abs(dy) > 4) sim.splatAtLocation(e.clientX, e.clientY, dx, dy);
-      }
-      lastX = e.clientX; lastY = e.clientY;
-    }, { passive: true });
-    window.__fluidBurst = () => {
-      const W = innerWidth, H = innerHeight;
-      for (let i = 0; i <= 5; i++) {
-        const t = i / 5;
-        setTimeout(() => {
-          sim.splatAtLocation(W * (0.15 + t * 0.7), H * (0.6 - Math.sin(t * Math.PI) * 0.22),
-                              180 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
-        }, i * 70);
-      }
-    };
-    document.addEventListener('visibilitychange', () => sim.pause());
-  }).catch(() => {});
+    let lastX=null,lastY=null;
+    addEventListener('pointermove',(e)=>{
+      if(lastX!==null){const dx=(e.clientX-lastX)*2.5,dy=(e.clientY-lastY)*2.5;if(Math.abs(dx)+Math.abs(dy)>4)sim.splatAtLocation(e.clientX,e.clientY,dx,dy);}
+      lastX=e.clientX;lastY=e.clientY;
+    },{passive:true});
+    window.__fluidBurst=()=>{const W=innerWidth,H=innerHeight;for(let i=0;i<=5;i++){const t=i/5;setTimeout(()=>sim.splatAtLocation(W*(0.15+t*0.7),H*(0.6-Math.sin(t*Math.PI)*0.22),180*(1-t*0.4),-70*Math.cos(t*Math.PI)),i*70);}};
+    document.addEventListener('visibilitychange',()=>sim.pause());
+  }).catch(()=>{});
 }
 
-/* ── Cursor dot + ring ── */
-if (FINE_POINTER && !REDUCE) (function cursor(){
-  const dot  = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
-  const dx = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
-  const dy = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
-  const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
-  const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
-  let visto = false;
-  addEventListener('pointermove', (e) => {
-    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
-    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
-  }, { passive: true });
-  document.querySelectorAll('a, button').forEach((el) => {
-    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }));
-    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }));
+/* Cursor */
+if (FINE_POINTER && !REDUCE) (function(){
+  const dot=document.querySelector('.cursor-dot'),ring=document.querySelector('.cursor-ring');
+  if(!dot||!ring)return;
+  const dx=gsap.quickTo(dot,'x',{duration:.12,ease:'power3'}),dy=gsap.quickTo(dot,'y',{duration:.12,ease:'power3'});
+  const rx=gsap.quickTo(ring,'x',{duration:.45,ease:'power3'}),ry=gsap.quickTo(ring,'y',{duration:.45,ease:'power3'});
+  let visto=false;
+  addEventListener('pointermove',(e)=>{if(!visto){gsap.to([dot,ring],{opacity:1,duration:.4});visto=true;}dx(e.clientX);dy(e.clientY);rx(e.clientX);ry(e.clientY);},{passive:true});
+  document.querySelectorAll('a,button,.gitem').forEach((el)=>{
+    el.addEventListener('mouseenter',()=>gsap.to(ring,{scale:1.9,duration:.35,ease:'power3.out'}));
+    el.addEventListener('mouseleave',()=>gsap.to(ring,{scale:1,duration:.35,ease:'power3.out'}));
   });
 })();
 
-/* ── Hamburger ── */
+/* Hamburger */
 (function(){
-  const btn = document.querySelector('.hamburger');
-  const menu = document.getElementById('mobileMenu');
-  if (!btn || !menu) return;
-  btn.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    btn.classList.toggle('active');
-    btn.setAttribute('aria-expanded', open);
-    if (lenis) open ? lenis.stop() : lenis.start();
+  const btn=document.querySelector('.hamburger'),menu=document.getElementById('mobileMenu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.classList.toggle('active');btn.setAttribute('aria-expanded',open);if(lenis)open?lenis.stop():lenis.start();});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');btn.classList.remove('active');btn.setAttribute('aria-expanded','false');if(lenis)lenis.start();}));
+})();
+
+/* Navbar scroll */
+(function(){
+  const cab=document.querySelector('.cabecera');if(!cab)return;let ticking=false;
+  addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{cab.classList.toggle('scrolled',scrollY>60);ticking=false;});ticking=true;}},{passive:true});
+})();
+
+/* LIGHTBOX */
+(function(){
+  const items=[].slice.call(document.querySelectorAll('.gitem'));
+  const lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
+  if(!items.length||!lb)return;
+  let idx=0;
+  function show(i){idx=(i+items.length)%items.length;const el=items[idx];img.src=el.dataset.full;img.alt=el.querySelector('img').alt;cap.textContent=el.dataset.cap||'';}
+  function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden';if(lenis)lenis.stop();}
+  function close(){lb.classList.remove('open');document.body.style.overflow='';if(lenis)lenis.start();}
+  items.forEach((el,i)=>{
+    el.addEventListener('click',()=>open(i));
+    el.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(i);}});
   });
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    menu.classList.remove('open');
-    btn.classList.remove('active');
-    btn.setAttribute('aria-expanded', 'false');
-    if (lenis) lenis.start();
-  }));
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',(e)=>{e.stopPropagation();show(idx-1);});
+  document.getElementById('lbNext').addEventListener('click',(e)=>{e.stopPropagation();show(idx+1);});
+  lb.addEventListener('click',(e)=>{if(e.target===lb||e.target===img)close();});
+  document.addEventListener('keydown',(e)=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1);});
 })();
 
-/* ── Navbar scroll ── */
-(function(){
-  const cab = document.querySelector('.cabecera');
-  if (!cab) return;
-  let ticking = false;
-  addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(() => { cab.classList.toggle('scrolled', scrollY > 60); ticking = false; }); ticking = true; }
-  }, { passive: true });
-})();
-
-/* ── SENSACIONES: estela de imágenes del porfolio real ── */
-if (FINE_POINTER && !REDUCE) (function estelaImagenes(){
-  const zona = document.querySelector('.sensaciones');
-  if (!zona) return;
-  const POOL = ['img/hero-boda.jpg','img/novios-cascada.jpg','img/boda-catedral.jpg',
-                'img/novia-artistica.jpg','img/novios-puente.jpg','img/novios-sotos.jpg',
-                'img/paisaje-canon.jpg','img/ia-foto.jpg'];
-  POOL.forEach(src => { const im = new Image(); im.src = src; });
-  let idx = 0, acumulado = 0, px = null, py = null, vivas = 0;
-  zona.addEventListener('pointermove', (e) => {
-    if (px !== null) acumulado += Math.hypot(e.clientX - px, e.clientY - py);
-    px = e.clientX; py = e.clientY;
-    if (acumulado < 110 || vivas > 12) return;
-    acumulado = 0;
-    const r = zona.getBoundingClientRect();
-    const fig = document.createElement('figure');
-    fig.className = 'estela-img';
-    fig.innerHTML = '<img src="' + POOL[idx++ % POOL.length] + '" alt="">';
-    zona.appendChild(fig);
-    vivas++;
-    gsap.set(fig, { left: e.clientX - r.left, top: e.clientY - r.top, xPercent: -50, yPercent: -50, rotation: gsap.utils.random(-9, 9) });
-    gsap.timeline({ onComplete: () => { fig.remove(); vivas--; } })
-      .fromTo(fig, { scale: 0.55, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.35, ease: 'power3.out' })
-      .to(fig, { yPercent: -85, scale: 1.04, autoAlpha: 0, duration: 0.9, ease: 'power2.in' }, 0.45);
-  }, { passive: true });
-})();
-
-/* ── Horario: destacar hoy ── */
-function highlightToday(){
-  const t = document.getElementById('tablaHorario');
-  if (!t) return;
-  const d = new Date().getDay();
-  const idx = d === 0 ? 6 : d - 1;
-  const rows = t.querySelectorAll('tr');
-  if (rows[idx]) rows[idx].classList.add('horario-hoy');
-}
-highlightToday();
-
-/* ── COREOGRAFIA PRINCIPAL ── */
-document.fonts.ready.then(() => {
-  const mm = gsap.matchMedia();
-
-  mm.add({
-    motionOK: '(prefers-reduced-motion: no-preference)',
-    reduce:   '(prefers-reduced-motion: reduce)',
-  }, (ctx) => {
-    if (ctx.conditions.reduce) {
-      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
-      document.querySelectorAll('[data-cuenta]').forEach((el) => {
-        el.textContent = (+el.dataset.target).toLocaleString('es-ES');
-      });
-      const pre = document.querySelector('.preloader');
-      if (pre) pre.style.display = 'none';
+/* COREOGRAFÍA */
+document.fonts.ready.then(()=>{
+  const mm=gsap.matchMedia();
+  mm.add({motionOK:'(prefers-reduced-motion: no-preference)',reduce:'(prefers-reduced-motion: reduce)'},(ctx)=>{
+    if(ctx.conditions.reduce){
+      gsap.set('[data-reveal],[data-hero-reveal]',{clearProps:'all',autoAlpha:1,visibility:'visible'});
+      document.querySelectorAll('[data-cuenta]').forEach((el)=>{el.textContent=(+el.dataset.target).toLocaleString('es-ES');});
+      const pre=document.querySelector('.preloader');if(pre)pre.style.display='none';
       return;
     }
 
-    /* PRELOADER */
     function revealHero(){
-      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-      tl.set('[data-hero-reveal]', { visibility: 'visible' });
-      tl.fromTo('.hero__media', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
-      tl.fromTo('.hero__media img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
-      const splitT = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
-      tl.from(splitT.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.4);
-      const splitS = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
-      tl.from(splitS.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.65);
-      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.55);
-      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 0.95);
-      tl.from('.cabecera', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
+      const tl=gsap.timeline({defaults:{ease:'expo.out'}});
+      tl.set('[data-hero-reveal]',{visibility:'visible'});
+      tl.fromTo('.hero__media',{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)',duration:1.4,ease:'hop'},0);
+      tl.fromTo('.hero__media img',{scale:1.25},{scale:1,duration:1.8,ease:'power4.out'},0);
+      const splitT=SplitText.create('.hero__titulo',{type:'words,chars',mask:'chars'});
+      tl.from(splitT.chars,{yPercent:120,duration:1,stagger:.012},0.4);
+      const splitS=SplitText.create('.hero__sub',{type:'lines',mask:'lines'});
+      tl.from(splitS.lines,{yPercent:105,duration:.9,stagger:.06},0.65);
+      tl.from('.hero__kicker',{autoAlpha:0,y:18,duration:.8},0.55);
+      tl.from('.hero__cta-row',{autoAlpha:0,y:18,duration:.8},0.85);
+      tl.from('.cabecera',{autoAlpha:0,y:-16,duration:.8},0.5);
       return tl;
     }
 
-    const num = document.querySelector('.preloader__num');
-    const progreso = { v: 0 };
-    const cargaMinima = new Promise(res => {
-      gsap.to(progreso, {
-        v: 100, duration: 1.9, ease: 'steps(14)',
-        onUpdate: () => { if (num) num.firstChild.textContent = Math.round(progreso.v); },
-        onComplete: res,
-      });
-    });
-    const cargaReal = new Promise(res => {
-      if (document.readyState === 'complete') res();
-      else addEventListener('load', res, { once: true });
-    });
-    Promise.all([cargaMinima, cargaReal]).then(() => {
+    const num=document.querySelector('.preloader__num');
+    const progreso={v:0};
+    const cargaMinima=new Promise(res=>{gsap.to(progreso,{v:100,duration:1.7,ease:'steps(14)',onUpdate:()=>{if(num)num.firstChild.textContent=Math.round(progreso.v);},onComplete:res});});
+    const cargaReal=new Promise(res=>{if(document.readyState==='complete')res();else addEventListener('load',res,{once:true});});
+    Promise.all([cargaMinima,cargaReal]).then(()=>{
       gsap.timeline()
-        .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
-        .to('.preloader__marca span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
-        .to('.preloader__cortina', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
-        .set('.preloader', { display: 'none' })
-        .add(revealHero(), '-=0.75')
-        .call(() => lenis && lenis.start(), null, '-=1.2')
-        .call(() => window.__fluidBurst && window.__fluidBurst(), null, '-=0.9');
+        .to('.preloader__num',{yPercent:-110,duration:.65,ease:'expo.in'})
+        .to('.preloader__marca',{yPercent:-110,duration:.5,ease:'expo.in'},'<')
+        .to('.preloader__cortina',{clipPath:'inset(0 0 100% 0)',duration:1.1,ease:'hop'},'-=0.1')
+        .set('.preloader',{display:'none'})
+        .add(revealHero(),'-=0.75')
+        .call(()=>lenis&&lenis.start(),null,'-=1.2')
+        .call(()=>window.__fluidBurst&&window.__fluidBurst(),null,'-=0.9');
     });
 
-    /* HERO PARALLAX */
-    gsap.to('[data-hero-parallax]', {
-      yPercent: 14, scale: 1.12, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    /* Hero parallax */
+    gsap.to('[data-hero-parallax]',{yPercent:14,scale:1.12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    gsap.to('.hero__contenido',{yPercent:-10,autoAlpha:.35,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 30%',scrub:true}});
+
+    /* Progress */
+    gsap.to('.progreso span',{scaleY:1,ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.5}});
+
+    /* Manifiesto scrub + floats */
+    SplitText.create('[data-manifiesto]',{type:'words',onSplit:(self)=>gsap.from(self.words,{opacity:.14,stagger:.05,ease:'none',scrollTrigger:{trigger:'.manifiesto',start:'top 72%',end:'bottom 55%',scrub:true}})});
+    gsap.utils.toArray('.flotante').forEach((el)=>{const sp=+el.dataset.speed||1;gsap.fromTo(el,{yPercent:16*sp},{yPercent:-16*sp,ease:'none',scrollTrigger:{trigger:'.manifiesto',start:'top bottom',end:'bottom top',scrub:1}});});
+
+    /* Cifras */
+    gsap.utils.toArray('.cifra').forEach((el,i)=>{gsap.fromTo(el,{y:50+i*30,autoAlpha:0},{y:0,autoAlpha:1,ease:'none',scrollTrigger:{trigger:'.cifras',start:'top 95%',end:'top 45%',scrub:1}});});
+    document.querySelectorAll('[data-cuenta]').forEach((el)=>{const objetivo=+el.dataset.target;const c={v:0};gsap.to(c,{v:objetivo,duration:2,ease:'power2.out',snap:{v:1},scrollTrigger:{trigger:el,start:'top 88%',once:true},onUpdate:()=>{el.textContent=Math.round(c.v).toLocaleString('es-ES');}});});
+
+    /* Reveal genérico */
+    document.querySelectorAll('[data-reveal]').forEach((el)=>{
+      gsap.fromTo(el,{autoAlpha:0,y:26},{autoAlpha:1,y:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}});
     });
-    gsap.to('.hero__contenido', {
-      yPercent: -12, autoAlpha: 0.3, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
-    });
-
-    /* PROGRESS BAR */
-    gsap.to('.progreso span', {
-      scaleY: 1, ease: 'none',
-      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
-    });
-
-    /* MANIFIESTO: scrub words */
-    SplitText.create('[data-manifiesto]', {
-      type: 'words',
-      onSplit: (self) => gsap.from(self.words, {
-        opacity: 0.13, stagger: 0.05, ease: 'none',
-        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
-      }),
-    });
-    gsap.utils.toArray('.flotante').forEach((el) => {
-      const sp = +el.dataset.speed || 1;
-      gsap.fromTo(el, { yPercent: 16 * sp }, {
-        yPercent: -16 * sp, ease: 'none',
-        scrollTrigger: { trigger: '.manifiesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
-      });
-    });
-
-    /* CIFRAS */
-    gsap.utils.toArray('.cifra').forEach((el, i) => {
-      gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
-        y: 0, autoAlpha: 1, ease: 'none',
-        scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
-      });
-    });
-    document.querySelectorAll('[data-cuenta]').forEach((el) => {
-      const objetivo = +el.dataset.target;
-      const c = { v: 0 };
-      gsap.to(c, {
-        v: objetivo, duration: 2, ease: 'power2.out', snap: { v: 1 },
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-        onUpdate: () => { el.textContent = Math.round(c.v).toLocaleString('es-ES'); },
-      });
-    });
-
-    /* MARQUEE vivo */
-    {
-      const trackM = document.querySelector('.marquee__track');
-      if (trackM) {
-        const marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 30, repeat: -1 });
-        marq.totalTime(30 * 1000);
-        let objetivoTS = 1;
-        ScrollTrigger.create({
-          onUpdate: (self) => {
-            const v = self.getVelocity();
-            objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
-          },
-        });
-        gsap.ticker.add(() => {
-          marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
-          objetivoTS += (1 - objetivoTS) * 0.04;
-        });
-      }
-    }
-
-    /* GALERIA HORIZONTAL PINEADA CON SKEW */
-    {
-      const sec = document.querySelector('.galeria-h');
-      const pin = document.querySelector('.galeria-h__pin');
-      const track = document.querySelector('.galeria-h__track');
-      if (sec && pin && track) {
-        const items = track.querySelectorAll('.galeria-h__item');
-        const totalW = () => track.scrollWidth - pin.clientWidth;
-
-        gsap.to(track, {
-          x: () => -totalW(),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sec,
-            start: 'top top',
-            end: () => '+=' + totalW() * 1.2,
-            pin: pin,
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
-
-        /* skew basado en velocidad */
-        let skewTarget = 0;
-        ScrollTrigger.create({
-          trigger: sec,
-          start: 'top top',
-          end: 'bottom bottom',
-          onUpdate: (self) => {
-            skewTarget = gsap.utils.clamp(-4, 4, self.getVelocity() / -400);
-          },
-        });
-        gsap.ticker.add(() => {
-          const current = parseFloat(gsap.getProperty(items[0], 'skewX') || 0);
-          const next = gsap.utils.interpolate(current, skewTarget, 0.08);
-          skewTarget *= 0.96;
-          items.forEach(it => gsap.set(it, { skewX: next }));
-        });
-      }
-    }
-
-    /* ZOOM */
-    {
-      const fluidEl = document.getElementById('fluid');
-      const zTexto = document.querySelector('[data-zoom-texto]');
-      if (zTexto) {
-        const zsplit = SplitText.create(zTexto, { type: 'words' });
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: '.zoom',
-            start: 'top top',
-            end: 'bottom bottom',
-            pin: '.zoom__pin',
-            pinSpacing: false,
-            scrub: 1,
-            anticipatePin: 1,
-            onToggle: (self) => { if (fluidEl) fluidEl.classList.toggle('fluid--screen', self.isActive); },
-          },
-        })
-        .fromTo('.zoom__marco', { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0)
-        .fromTo('.zoom__marco img', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 0.85 }, 0)
-        .fromTo(zsplit.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
-      }
-    }
-
-    /* TIRAS a contra-scroll */
-    document.querySelectorAll('[data-tira]').forEach((el) => {
-      const dir = +el.dataset.tira;
-      gsap.fromTo(el, { xPercent: dir * 6 }, {
-        xPercent: dir * -6, ease: 'none',
-        scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 },
-      });
-    });
-
-    /* TESTIMONIOS: citas scrubadas */
-    gsap.utils.toArray('.cita').forEach((el, i) => {
-      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, {
-        x: 0, autoAlpha: 1, ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 60%', scrub: 1 },
-      });
-    });
-
-    /* REVEAL generico */
-    document.querySelectorAll('[data-reveal]').forEach((el) => {
-      if (el.dataset.split === 'lines') {
-        SplitText.create(el, {
-          type: 'lines', mask: 'lines', autoSplit: true,
-          onSplit: (self) => {
-            gsap.set(el, { visibility: 'visible' });
-            return gsap.from(self.lines, {
-              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
-              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
-            });
-          },
-        });
-      } else {
-        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
-          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-        });
-      }
-    });
-
-    /* CTA MAGNETICO */
-    if (FINE_POINTER) {
-      document.querySelectorAll('[data-magnetico]').forEach((el) => {
-        const label = el.querySelector('.magnetico__label');
-        if (!label) return;
-        const xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
-        const yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
-        const lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
-        const ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
-        el.addEventListener('mousemove', (e) => {
-          const r = el.getBoundingClientRect();
-          const ddx = e.clientX - (r.left + r.width / 2);
-          const ddy = e.clientY - (r.top + r.height / 2);
-          xTo(ddx * 0.35); yTo(ddy * 0.35);
-          lx(ddx * 0.5);  ly(ddy * 0.5);
-        });
-        el.addEventListener('mouseleave', () => {
-          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
-        });
-      });
-    }
 
     ScrollTrigger.refresh();
   });
