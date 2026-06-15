@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Dojo Kobukan | Artes Marciales en Inca, Mallorca</title>
+<meta name="description" content="Dojo Kobukan, centro de artes marciales en Inca (Mallorca) homologado por la Federacion Espanola de Judo y el Consejo Superior de Deportes. Aikido, Karate, Kyusho Jitsu, Defensa Personal, Pilates y Chanbara.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --noche:    #0c0d10;          /* fondo profundo */
+  --noche-2:  #14161b;
+  --carbon:   #1b1e24;
+  --tinta:    #23262e;
+  --brasa:    #d7393e;          /* rojo de marca */
+  --brasa-2:  #ef5358;
+  --crema:    #f4ede0;          /* texto claro calido */
+  --hueso:    #d9d2c6;
+  --gris:     #8b8579;
+  --gris-2:   #6a665d;
+  --linea:    rgba(244,237,224,.14);
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans:  "Inter", system-ui, sans-serif;
+  --pad: clamp(1.5rem, 5vw, 6rem);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scrollbar-width: thin; scrollbar-color: var(--brasa) var(--noche); }
+html, body{ background: var(--noche); }
+
+body{
+  color: var(--crema);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection{ background: var(--brasa); color: #fff; }
+
+h1,h2,h3{ font-family: var(--serif); font-weight: 500; line-height: 1.04; color: var(--crema); }
+em{ font-style: italic; color: var(--brasa-2); }
+a{ color: inherit; text-decoration: none; }
+ul{ list-style: none; }
+img{ display:block; width:100%; height:100%; object-fit: cover; }
+main{ position: relative; z-index: 1; }
+
+/* grano de papel (toque editorial) */
+body::before, body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:3997;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:170px;
+}
+body::before{ mix-blend-mode:multiply; opacity:.16; }
+body::after{ mix-blend-mode:screen; opacity:.10; }
+
+/* estela fluida */
+#fluid{
+  position: fixed; inset: 0; width:100%; height:100%;
+  z-index: 3998; pointer-events: none;
+  mix-blend-mode: screen; opacity:.92;
+}
+#fluid canvas{ width:100%; height:100%; display:block; }
+
+/* cursor decorativo (nativo siempre visible) */
+.cursor-dot, .cursor-ring{
+  position: fixed; top:0; left:0; z-index: 9500;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%,-50%); opacity: 0;
+}
+.cursor-dot { width:6px;  height:6px;  background: var(--brasa); }
+.cursor-ring{ width:38px; height:38px; border:1px solid rgba(215,57,62,.6); }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot,.cursor-ring{ display:none; }
+}
+
+.progreso{
+  position: fixed; right: 1.3rem; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 9rem; background: var(--linea);
+  z-index: 60; pointer-events: none;
+}
+.progreso span{ position:absolute; inset:0; background: var(--brasa); transform: scaleY(0); transform-origin: top; }
+@media (max-width: 820px){ .progreso{ display:none; } }
+
+/* PRELOADER */
+.preloader{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: end start; padding: var(--pad);
+}
+.preloader__curtain{ position:absolute; inset:0; background: var(--noche); z-index:-1; }
+.preloader__brand{
+  position: absolute; top: var(--pad); left: var(--pad);
+  font-family: var(--serif); font-size: 1.15rem; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--gris); overflow: hidden;
+}
+.preloader__brand span{ display:inline-block; }
+.preloader__brand b{ font-weight: 600; color: var(--crema); }
+.preloader__counter{ overflow: hidden; line-height: 1; }
+.preloader__num{
+  display: inline-block; font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 11rem); font-variant-numeric: tabular-nums;
+  color: var(--crema); font-weight:500;
+}
+.preloader__num i{ font-style: normal; color: var(--brasa); font-size: .35em; vertical-align: super; }
+
+/* CABECERA */
+.cabecera{
+  position: fixed; top:0; left:0; right:0; z-index: 50;
+  display:flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem var(--pad);
+  transition: background-color .4s ease, padding .4s ease, border-color .4s ease;
+  border-bottom: 1px solid transparent;
+}
+.cabecera::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:170px; pointer-events:none;
+  background: linear-gradient(180deg, rgba(8,9,12,.72) 0%, rgba(8,9,12,0) 100%);
+  transition: opacity .4s ease; z-index:-1;
+}
+.cabecera.scrolled{ background: rgba(12,13,16,.92); border-color: var(--linea); padding-top:.85rem; padding-bottom:.85rem; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.cabecera.scrolled::before{ opacity:0; }
+.cabecera__logo{ display:flex; align-items:center; gap:.7rem; }
+.cabecera__logo img{ height:38px; width:auto; }
+.cabecera__logo b{ font-family: var(--serif); font-size: 1.2rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600; }
+.cabecera__logo small{ display:block; font-size:.56rem; letter-spacing:.32em; text-transform:uppercase; color: var(--brasa); }
+.cabecera__nav{ display:flex; gap: 2rem; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; }
+.cabecera__cta{
+  font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+  border:1px solid var(--brasa); color:var(--crema); padding:.6rem 1.2rem; border-radius:999px;
+  transition: background-color .35s ease;
+}
+.cabecera__cta:hover{ background: var(--brasa); }
+@media (max-width: 880px){ .cabecera__nav, .cabecera__cta{ display:none; } }
+
+.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
+.roll>span{ display:inline-block; transition: transform .5s cubic-bezier(.76,0,.24,1); }
+.roll::after{
+  content: attr(data-text); position:absolute; left:0; top:100%; display:inline-block;
+  color: var(--brasa); transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+@media (hover:hover) and (pointer:fine){
+  .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
+}
+
+/* menu movil */
+.hamburger{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; z-index:60; }
+.hamburger span{ width:26px; height:2px; background: var(--crema); transition: transform .3s ease, opacity .3s ease; }
+.hamburger.active span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2){ opacity:0; }
+.hamburger.active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 880px){ .hamburger{ display:flex; } }
+.mobile-menu{
+  position: fixed; inset:0; background: var(--noche); z-index:80;
+  display:flex; flex-direction:column; justify-content:center; gap:1.4rem;
+  padding: var(--pad); transform: translateY(-100%); transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+.mobile-menu.open{ transform: translateY(0); }
+.mobile-menu a{ font-family: var(--serif); font-size: 2rem; color: var(--crema); }
+.mobile-menu a.mm-cta{ color: var(--brasa); }
+.mm-close{ position:absolute; top:1.6rem; right:1.6rem; background:none; border:none; color:var(--crema); font-size:2.6rem; line-height:1; cursor:pointer; }
+
+/* HERO */
+.hero{
+  min-height: 100svh; position: relative; display:grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr);
+  align-items: end; gap: clamp(1.5rem,4vw,4rem);
+  padding: clamp(7rem,14vh,9rem) var(--pad) clamp(3rem, 8vh, 5rem);
+}
+.hero__kicker{
+  font-size: .74rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--brasa); margin-bottom: 1.4rem;
+}
+.hero__titulo{
+  font-size: clamp(2.9rem, 7.6vw, 6.8rem); letter-spacing: -.012em; max-width: 13ch;
+}
+.hero__pie{ display:flex; align-items:flex-end; gap:2.2rem; margin-top: 2.2rem; flex-wrap:wrap; }
+.hero__sub{ max-width: 42ch; color: var(--hueso); font-size: 1rem; }
+.hero__badge{
+  display:inline-flex; align-items:baseline; gap:.5rem;
+  font-family: var(--serif); color: var(--crema);
+  border:1px solid var(--linea); border-radius:999px; padding:.55rem 1.2rem;
+  font-size:.95rem; background: rgba(244,237,224,.05);
+}
+.hero__badge b{ font-weight:600; color: var(--brasa-2); font-size:1.25em; }
+.hero__scroll{
+  font-size: .66rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--gris); display:flex; align-items:center; gap:.8rem;
+}
+.hero__scroll::after{
+  content:""; display:block; width:1px; height:3.2rem; background: var(--brasa);
+  transform-origin: top; animation: gota 2.4s cubic-bezier(.76,0,.24,1) infinite;
+}
+@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
+                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
+.hero__media{
+  position: relative; height: clamp(22rem, 64vh, 39rem);
+  overflow: hidden; border: 1px solid var(--linea);
+}
+.hero__media::after{
+  content:"INCA — MALLORCA"; position:absolute; right:1rem; bottom:1rem;
+  font: 400 .62rem/1 var(--sans); letter-spacing:.3em; color:#fff;
+  background: rgba(12,13,16,.55); padding:.35rem .6rem;
+}
+.hero__media img{ will-change: transform; }
+@media (max-width: 820px){
+  .hero{ grid-template-columns: 1fr; align-items:start; }
+  .hero__media{ order:-1; height: 38svh; margin-top: 1rem; }
+}
+[data-hero-reveal]{ visibility: hidden; }
+
+/* MARQUEE */
+.marquee{
+  overflow:hidden; white-space:nowrap;
+  border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  padding: 1.05rem 0; background: var(--noche-2); position: relative; z-index: 2;
+}
+.marquee__track{ display:inline-flex; gap:3rem; will-change: transform; }
+.marquee__group{ display:inline-flex; gap:3rem; }
+.marquee__group span{ font-family: var(--serif); font-size: 1.3rem; color: var(--gris); }
+.marquee__group i{ font-style: normal; color: var(--brasa); }
+
+/* MANIFIESTO */
+.manifiesto{ position: relative; padding: clamp(9rem,20vh,15rem) var(--pad); }
+.manifiesto p{
+  position: relative; z-index: 2; max-width: 24ch;
+  font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 3.4rem);
+  line-height: 1.26; color: var(--crema);
+}
+.flotante{
+  position: absolute; z-index: 1; width: clamp(7rem, 15vw, 16rem);
+  overflow: hidden; will-change: transform;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55); border:1px solid var(--linea);
+}
+.flotante img{ aspect-ratio: 4/3; }
+.flotante--1{ top: 8%;  right: 8%;  width: clamp(9rem, 18vw, 19rem); }
+.flotante--2{ bottom: 5%; right: 27%; }
+.flotante--3{ top: 44%; left: 60%; width: clamp(6rem, 11vw, 12rem); opacity:.92; }
+@media (max-width: 720px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; } }
+
+/* CIFRAS */
+.cifras{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
+  gap: 2rem; padding: 0 var(--pad) clamp(7rem,14vh,11rem);
+}
+.cifra{ border-top:1px solid var(--linea); padding-top: 1.3rem; }
+.cifra__valor{
+  font-family: var(--serif); font-size: clamp(2.5rem,5.5vw,4.4rem);
+  font-variant-numeric: tabular-nums; color: var(--crema);
+}
+.cifra__valor i{ font-style:normal; color: var(--brasa); font-size:.5em; margin-left:.06em; }
+.cifra p{ color: var(--gris); font-size:.84rem; margin-top:.35rem; }
+
+/* DISCIPLINAS — galeria horizontal pineada */
+.disciplinas{ position: relative; }
+.disciplinas__pin{
+  height: 100vh; height: 100svh; overflow: hidden;
+  display:flex; flex-direction: column; justify-content: center;
+}
+.disciplinas__cab{
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding: clamp(5rem,10vh,6.5rem) var(--pad) 2rem; gap:2rem;
+}
+.disciplinas__cab h2{ font-size: clamp(2rem, 4.5vw, 3.6rem); }
+.disciplinas__cab .eyebrow{ display:block; font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color:var(--brasa); margin-bottom:.7rem; }
+.disciplinas__indice{
+  font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-variant-numeric: tabular-nums; color: var(--gris);
+}
+.disciplinas__indice b{ font-weight: 500; color: var(--crema); }
+.disciplinas__track{
+  display:flex; gap: clamp(1.5rem,3vw,3rem); padding: 0 var(--pad);
+  align-items: stretch; will-change: transform;
+}
+.panel{ flex: 0 0 auto; width: clamp(20rem, 40vw, 40rem); display:flex; flex-direction:column; }
+.panel__marco{ overflow:hidden; position:relative; height: clamp(17rem, 46vh, 27rem); border:1px solid var(--linea); }
+.panel__marco img{ will-change: transform; }
+.panel__marco::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(12,13,16,.15) 0%, rgba(12,13,16,.78) 100%);
+}
+.panel__nombre{
+  position:absolute; left:1.2rem; bottom:.6rem; z-index:1;
+  font-family: var(--serif); font-weight:600;
+  font-size: clamp(2rem, 4vw, 3.2rem); line-height:1; color:#fff;
+}
+.panel__cuerpo{ padding-top: 1.1rem; }
+.panel__cuerpo span{ display:block; color: var(--brasa); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; margin-bottom:.6rem; }
+.panel__cuerpo p{ color: var(--hueso); font-size:.93rem; line-height:1.62; }
+@media (max-width: 820px){
+  .disciplinas__pin{ height:auto; overflow:visible; }
+  .disciplinas__track{ flex-direction: column; }
+  .panel{ width: 100%; }
+  .panel__marco{ height: 56vw; }
+}
+
+/* PULL QUOTE */
+.pull{
+  background: var(--noche-2); border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  padding: clamp(6rem,12vh,9rem) var(--pad); text-align:center;
+}
+.pull blockquote{
+  font-family: var(--serif); font-size: clamp(1.7rem, 4.4vw, 3.4rem);
+  line-height: 1.3; max-width: 26ch; margin: 0 auto; color:var(--crema); font-weight:500;
+}
+.pull blockquote b{ font-weight:600; color: var(--brasa-2); }
+.pull figcaption{ margin-top: 1.6rem; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gris); }
+
+/* DEFENSA PERSONAL — bloque a dos columnas */
+.dp{ padding: clamp(7rem,15vh,12rem) var(--pad); display:grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: clamp(2rem,5vw,5rem); align-items:center; }
+.dp__media{ overflow:hidden; height: clamp(20rem,52vh,32rem); border:1px solid var(--linea); }
+.dp__media img{ will-change: transform; }
+.dp__cuerpo .eyebrow{ display:block; font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color:var(--brasa); margin-bottom:.9rem; }
+.dp__cuerpo h2{ font-size: clamp(1.9rem,4.4vw,3.4rem); max-width:16ch; margin-bottom:1.2rem; }
+.dp__cuerpo > p{ color: var(--hueso); max-width:46ch; margin-bottom:2rem; }
+.dp__lista{ display:grid; gap:1.3rem; }
+.dp__item{ border-top:1px solid var(--linea); padding-top:1rem; color:var(--hueso); font-size:.95rem; }
+.dp__item strong{ color: var(--crema); }
+@media (max-width: 820px){ .dp{ grid-template-columns:1fr; } .dp__media{ height: 60vw; } }
+
+/* HORARIOS */
+.horarios{ background: var(--noche-2); border-top:1px solid var(--linea); border-bottom:1px solid var(--linea); padding: clamp(7rem,14vh,11rem) var(--pad); }
+.horarios__cab{ text-align:center; max-width:60rem; margin:0 auto 3rem; }
+.horarios__cab .eyebrow{ display:block; font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color:var(--brasa); margin-bottom:.8rem; }
+.horarios__cab h2{ font-size: clamp(2rem,5vw,3.6rem); margin-bottom:1.1rem; }
+.horarios__cab p{ color: var(--gris); font-size:.95rem; }
+.horario-tabla{ width:min(58rem,100%); margin:0 auto; border-collapse:collapse; }
+.horario-tabla th{ text-align:left; font: 500 .68rem/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:var(--gris); padding:0 0 1rem; border-bottom:1px solid var(--linea); }
+.horario-tabla td{ padding:1.1rem 1rem 1.1rem 0; border-bottom:1px solid var(--linea); vertical-align:top; color:var(--hueso); font-size:.95rem; }
+.horario-tabla td.dia{ font-family: var(--serif); font-size:1.35rem; color:var(--crema); white-space:nowrap; padding-right:2rem; }
+.horario-tabla tr.horario-hoy td.dia{ color: var(--brasa); }
+.horario-tabla tr.horario-hoy td{ color: var(--crema); }
+.horarios__nota{ text-align:center; margin-top:2rem; font-size:.78rem; letter-spacing:.04em; color:var(--gris); }
+@media (max-width:560px){ .horario-tabla td.dia{ padding-right:1rem; font-size:1.15rem; } }
+
+/* MAESTROS */
+.maestros{ padding: clamp(7rem,14vh,11rem) var(--pad); }
+.maestros__cab{ max-width:60rem; margin:0 auto 3.4rem; text-align:center; }
+.maestros__cab .eyebrow{ display:block; font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color:var(--brasa); margin-bottom:.8rem; }
+.maestros__cab h2{ font-size: clamp(2.2rem,5.5vw,4rem); margin-bottom:1rem; }
+.maestros__cab p{ color:var(--gris); }
+.maestros__grid{ display:grid; gap: clamp(1.5rem,3vw,2.4rem); grid-template-columns: repeat(auto-fit, minmax(min(17rem,100%),1fr)); }
+.maestro{ border:1px solid var(--linea); background: rgba(244,237,224,.03); overflow:hidden; }
+.maestro__foto{ height: clamp(15rem,28vh,20rem); overflow:hidden; position:relative; }
+.maestro__foto::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 40%, rgba(12,13,16,.55) 100%); }
+.maestro__foto img{ transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.maestro:hover .maestro__foto img{ transform: scale(1.06); }
+.maestro__info{ padding: 1.4rem 1.5rem 1.8rem; }
+.maestro__info h3{ font-size: 1.5rem; margin-bottom:.25rem; }
+.maestro__rol{ display:block; color: var(--brasa); font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; margin-bottom:1rem; }
+.maestro__info p{ color: var(--hueso); font-size:.9rem; line-height:1.6; }
+
+/* FILOSOFIA — zoom inmersivo + principios */
+.zoom{ height: 300vh; position: relative; }
+.zoom__pin{
+  position: relative; height: 100vh; height: 100svh;
+  overflow: hidden; display: grid; place-items: center; background: var(--noche);
+}
+.zoom__marco{ position:absolute; inset:0; clip-path: inset(38% 32% 38% 32%); will-change: clip-path; }
+.zoom__marco img{ will-change: transform; }
+.zoom__marco::after{ content:""; position:absolute; inset:0; background: rgba(12,13,16,.62); }
+.zoom__texto{
+  position: relative; z-index: 2; font-family: var(--serif);
+  font-size: clamp(2rem, 5.5vw, 4.6rem); line-height: 1.16; color: #fff;
+  text-align: center; max-width: 18ch; padding: 0 var(--pad);
+}
+.zoom__texto em{ color: var(--brasa-2); }
+@media (prefers-reduced-motion: reduce){
+  .zoom{ height:auto; } .zoom__pin{ height:100svh; } .zoom__marco{ clip-path:none; }
+}
+.principios{ padding: clamp(6rem,12vh,9rem) var(--pad); }
+.principios__cab{ max-width:58rem; margin:0 auto 3.4rem; text-align:center; }
+.principios__cab .eyebrow{ display:block; font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color:var(--brasa); margin-bottom:.8rem; }
+.principios__cab h2{ font-size: clamp(2rem,5vw,3.6rem); margin-bottom:1rem; }
+.principios__cab p{ color:var(--gris); }
+.principios__grid{ display:grid; gap: clamp(1.5rem,3vw,2.4rem); grid-template-columns: repeat(auto-fit, minmax(min(15rem,100%),1fr)); }
+.principio{ border-top:1px solid var(--linea); padding-top:1.5rem; }
+.principio__kanji{ font-family: var(--serif); font-size: clamp(3rem,6vw,4.6rem); color: var(--brasa); line-height:1; font-weight:600; }
+.principio h3{ font-size:1.5rem; margin:.8rem 0 .6rem; }
+.principio p{ color: var(--hueso); font-size:.92rem; line-height:1.6; }
+
+/* TIRAS */
+.tiras{ overflow:hidden; padding: clamp(5rem,10vh,8rem) 0 clamp(3rem,6vh,5rem); display:grid; gap:.4rem; background: var(--noche-2); }
+.tira{
+  white-space: nowrap; will-change: transform; font-family: var(--serif);
+  font-size: clamp(3rem, 8vw, 7.5rem); line-height: 1.05; color: transparent;
+  -webkit-text-stroke: 1px rgba(244,237,224,.28);
+}
+.tira em{ color: var(--brasa); -webkit-text-stroke: 0; }
+.tira--llena{ color: rgba(244,237,224,.12); -webkit-text-stroke: 0; }
+
+/* OPINIONES */
+.opiniones{ padding: clamp(7rem,14vh,11rem) var(--pad); max-width: 74rem; margin:0 auto; }
+.opiniones__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.2rem; }
+.opiniones__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.google{
+  display:inline-flex; align-items:center; gap:.7rem; font-size:.8rem; letter-spacing:.06em; color: var(--gris);
+  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+}
+.google .estrellas{ display:inline-flex; gap:2px; }
+.google .estrellas svg{ width:.95em; height:.95em; fill: var(--brasa); }
+.cita{ border-left: 1px solid rgba(215,57,62,.5); padding: .4rem 0 .4rem 1.8rem; margin-bottom: 2.6rem; }
+.cita blockquote{ font-family: var(--serif); font-size: clamp(1.3rem, 2.4vw, 1.9rem); line-height: 1.45; color: var(--hueso); }
+.cita figcaption{ margin-top: .8rem; color: var(--gris); font-size:.78rem; letter-spacing:.14em; text-transform: uppercase; }
+
+/* CONTACTO + MAPA */
+.contacto{ border-top: 1px solid var(--linea); display:grid; grid-template-columns: 1fr 1fr; min-height: 90svh; }
+.contacto__lado{ padding: clamp(5rem,10vh,8rem) var(--pad); display:flex; flex-direction:column; justify-content:center; }
+.contacto__estado{
+  font-size:.7rem; letter-spacing:.26em; text-transform:uppercase; color: var(--gris);
+  display:flex; align-items:center; gap:.7rem; margin-bottom:1.4rem;
+}
+.contacto__estado::before{
+  content:""; width:.55rem; height:.55rem; border-radius:50%;
+  background: var(--brasa); box-shadow: 0 0 12px rgba(215,57,62,.8);
+  animation: latido 2.6s cubic-bezier(.45,0,.55,1) infinite;
+}
+@keyframes latido{ 50%{ opacity:.35; } }
+.contacto__lado h2{ font-size: clamp(2.4rem, 6vw, 4.4rem); max-width: 14ch; margin-bottom:1.2rem; }
+.contacto__lado > p{ color: var(--hueso); max-width:42ch; margin-bottom:2.2rem; font-size:.95rem; }
+.magnetico{
+  align-self:flex-start; display:inline-flex; align-items:center; gap:.9rem;
+  font: 500 .86rem/1 var(--sans); letter-spacing:.14em; text-transform:uppercase; color: #fff;
+  border:1px solid var(--brasa); border-radius: 999px; padding: 1.2rem 2.3rem;
+  background: var(--brasa); cursor: pointer; margin-bottom:2.6rem;
+  transition: background-color .4s ease, border-color .4s ease;
+}
+.magnetico:hover{ background: transparent; }
+.magnetico__label{ display:inline-block; }
+.contacto__datos{ display:grid; gap:1.3rem; }
+.dato{ display:flex; gap:1rem; align-items:flex-start; }
+.dato .ico{ width:2.2rem; height:2.2rem; flex:0 0 auto; border:1px solid var(--linea); border-radius:50%; display:grid; place-items:center; font-family:var(--serif); color:var(--brasa); font-size:1rem; }
+.dato b{ display:block; font: 500 .66rem/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color: var(--gris); margin-bottom:.35rem; }
+.dato a:hover{ color: var(--brasa); }
+.contacto__mapa{ min-height: 40svh; }
+.contacto__mapa iframe{ width:100%; height:100%; min-height:40svh; border:0; filter: grayscale(.6) invert(.92) hue-rotate(180deg) contrast(.9); }
+@media (max-width: 820px){ .contacto{ grid-template-columns:1fr; } .contacto__mapa{ min-height:60svh; } }
+
+/* PIE */
+.pie{ background: var(--noche); border-top:1px solid var(--linea); }
+.pie__sup{ display:grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap:2.5rem; padding: clamp(3rem,7vh,5rem) var(--pad); }
+.pie__marca .m{ display:flex; align-items:center; gap:.7rem; margin-bottom:1rem; }
+.pie__marca img{ height:44px; width:auto; }
+.pie__marca b{ font-family:var(--serif); font-size:1.3rem; color:var(--crema); }
+.pie__marca small{ display:block; font-size:.56rem; letter-spacing:.32em; text-transform:uppercase; color:var(--brasa); }
+.pie__marca p{ color:var(--gris); font-size:.86rem; max-width:38ch; line-height:1.6; }
+.pie__col h5{ font: 500 .66rem/1 var(--sans); letter-spacing:.2em; text-transform:uppercase; color:var(--gris); margin-bottom:1.1rem; }
+.pie__col li{ margin-bottom:.6rem; }
+.pie__col a, .pie__col li{ color:var(--hueso); font-size:.88rem; }
+.pie__col a:hover{ color: var(--brasa); }
+.pie__bot{ display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; padding: 1.6rem var(--pad) 2rem; border-top:1px solid var(--linea); color:var(--gris); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; }
+@media (max-width: 820px){ .pie__sup{ grid-template-columns:1fr 1fr; } }
+@media (max-width: 520px){ .pie__sup{ grid-template-columns:1fr; } }
+
+[data-reveal]{ visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
+  .preloader{ display:none; }
+  .progreso{ display:none; }
+  body::before, body::after{ display:none; }
+}
+
+/* override hero min-height en movil (regla dura del validador) */
+@media (max-width: 768px){
+  .hero{ min-height: auto; height: auto; align-items: flex-start; }
+  .hero__media{ height: 46svh; }
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span><b>Dojo Kobukan</b> · Inca</span></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
+</div>
+
+<!-- CAPAS DECORATIVAS -->
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
+
+<header class="cabecera" id="cabecera">
+  <a class="cabecera__logo" href="#inicio">
+    <img src="assets/logo.png" alt="Logotipo Dojo Kobukan">
+    <span><b>Kobukan</b><small>Inca · Mallorca</small></span>
+  </a>
+  <nav class="cabecera__nav" aria-label="principal">
+    <a class="roll" href="#disciplinas" data-text="Disciplinas"><span>Disciplinas</span></a>
+    <a class="roll" href="#horarios" data-text="Horarios"><span>Horarios</span></a>
+    <a class="roll" href="#maestros" data-text="Maestros"><span>Maestros</span></a>
+    <a class="roll" href="#filosofia" data-text="Filosofía"><span>Filosofía</span></a>
+    <a class="roll" href="#contacto" data-text="Contacto"><span>Contacto</span></a>
+  </nav>
+  <a class="cabecera__cta" href="tel:629784172">Llamar al dojo</a>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</header>
+
+<!-- MENU MOVIL -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menú">&times;</button>
+  <a href="#disciplinas">Disciplinas</a>
+  <a href="#horarios">Horarios</a>
+  <a href="#maestros">Maestros</a>
+  <a href="#filosofia">Filosofía</a>
+  <a href="#contacto">Contacto</a>
+  <a class="mm-cta" href="tel:629784172">Llamar al dojo</a>
+</div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero__contenido">
+      <p class="hero__kicker" data-hero-reveal>El camino del Budo en Inca · Mallorca</p>
+      <h1 class="hero__titulo" data-hero-reveal>Un dojo tradicional <em>en el corazón de Mallorca</em></h1>
+      <div class="hero__pie">
+        <p class="hero__sub" data-hero-reveal>
+          Aikido, Karate Shotokan, Kyusho Jitsu, Defensa Personal, Pilates y Chanbara.
+          Un espacio para la concentración, el respeto y el crecimiento personal, lejos
+          del ruido de un gimnasio convencional.
+        </p>
+        <p class="hero__badge" data-hero-reveal><b>5.0</b> en Google · 51 opiniones</p>
+        <p class="hero__scroll" data-hero-reveal>Desliza</p>
+      </div>
+    </div>
+    <div class="hero__media" data-hero-media>
+      <img src="assets/grupo-clase.jpg" alt="Clase en el tatami del Dojo Kobukan" loading="eager" data-hero-parallax>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Aikido <i>·</i></span><span>Karate Shotokan <i>·</i></span><span>Kyusho Jitsu <i>·</i></span>
+        <span>Defensa Personal <i>·</i></span><span>Pilates <i>·</i></span><span>Chanbara <i>·</i></span>
+        <span>Homologado RFEJYDA <i>·</i></span>
+      </div>
+      <div class="marquee__group" aria-hidden="true">
+        <span>Aikido <i>·</i></span><span>Karate Shotokan <i>·</i></span><span>Kyusho Jitsu <i>·</i></span>
+        <span>Defensa Personal <i>·</i></span><span>Pilates <i>·</i></span><span>Chanbara <i>·</i></span>
+        <span>Homologado RFEJYDA <i>·</i></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANIFIESTO -->
+  <section class="manifiesto" id="dojo">
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="assets/kanji-aikido.png" alt="" loading="lazy"></figure>
+    <p data-manifiesto>
+      Un centro de artes marciales en Inca homologado por la Federación Española de Judo y
+      por el Consejo Superior de Deportes, con la esencia de un dojo japonés tradicional.
+    </p>
+  </section>
+
+  <!-- CIFRAS -->
+  <section class="cifras">
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="6">0</span></div>
+      <p>disciplinas marciales</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="4">0</span></div>
+      <p>maestros federados y titulados</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="5">0</span><i>.0</i></div>
+      <p>de valoración media en Google</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="51">0</span></div>
+      <p>opiniones de alumnos reales</p>
+    </div>
+  </section>
+
+  <!-- DISCIPLINAS — galeria horizontal -->
+  <section class="disciplinas" id="disciplinas" aria-label="Nuestras disciplinas">
+    <div class="disciplinas__pin">
+      <div class="disciplinas__cab">
+        <div><span class="eyebrow">Seis caminos, un mismo espíritu</span><h2>Nuestras <em>disciplinas</em></h2></div>
+        <p class="disciplinas__indice"><b data-disc-num>01</b> / 06</p>
+      </div>
+      <div class="disciplinas__track">
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/cerezo.jpg" alt="Clase de Aikido en el tatami" loading="lazy">
+            <span class="panel__nombre">Aikido</span>
+          </div>
+          <div class="panel__cuerpo">
+            <span>El camino de la armonía</span>
+            <p>Arte marcial no competitivo centrado en la defensa y el desarrollo personal. Su nombre une AI (armonía), KI (energía vital) y DO (camino). Fundado por Morihei Ueshiba sobre los principios de no violencia y desarrollo integral de cuerpo y espíritu. Clases para todos los niveles impartidas por Pedro Ferrer Garcia, 4.o Dan de Aikido.</p>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/rollup.jpg" alt="Interior del dojo, sala de Karate Shotokan" loading="lazy">
+            <span class="panel__nombre">Karate</span>
+          </div>
+          <div class="panel__cuerpo">
+            <span>El camino de la mano vacía</span>
+            <p>El estilo de karate más practicado del mundo, basado en golpes directos y posiciones firmes. El Shotokan, sistematizado por el Maestro Gichin Funakoshi, se distingue por golpes rectilíneos, bloqueos angulares, posiciones bajas y patadas altas. Progresión por cinturones del blanco al negro. Dirigido por Jose Martinez Banaque, 5.o Dan FEKYDA.</p>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/aekj.png" alt="Asociación Española de Kyusho Jitsu" loading="lazy">
+            <span class="panel__nombre">Kyusho</span>
+          </div>
+          <div class="panel__cuerpo">
+            <span>Puntos de presión</span>
+            <p>Arte ancestral basado en los puntos de presión (Tsubos) y los meridianos de la medicina tradicional china. Tres métodos de interacción: presión, fricción y percusión. Se aprende salidas de agarres, llaves y proyecciones, K.O. neurológico, Kuatsu (reanimación) y Kyusho terapéutico. Sus orígenes se remontan a Zhang San-Feng (hacia 1300).</p>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/dp.png" alt="Defensa Personal" loading="lazy">
+            <span class="panel__nombre">Defensa</span>
+          </div>
+          <div class="panel__cuerpo">
+            <span>Federación Española de Judo</span>
+            <p>Programas diferenciados para adultos, mujeres e infantil. DP Infantil (a partir de 5 años) enseña jugando psicomotricidad, respeto y autoconfianza. DP Mujer se centra en prevención, autodefensa, evasión y empoderamiento, con valores basados en el respeto. DP Adultos trabaja prevenir, evaluar y actuar ante amenazas con técnicas físicas y gestión emocional.</p>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/evento1.png" alt="Pilates y bienestar en el dojo" loading="lazy">
+            <span class="panel__nombre">Pilates</span>
+          </div>
+          <div class="panel__cuerpo">
+            <span>Equilibrio y bienestar</span>
+            <p>Entrenamiento inteligente, seguro y saludable para el equilibrio corporal, la postura y el bienestar integral. Refuerza el centro de energía y la musculatura interna, tonifica las cadenas musculares, mejora la postura y la flexibilidad, reduce el estrés y previene lesiones. Impartido por Maria del Carmen Quintero Gallardo.</p>
+          </div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="assets/evento2.png" alt="Chanbara Sport, combate deportivo" loading="lazy">
+            <span class="panel__nombre">Chanbara</span>
+          </div>
+          <div class="panel__cuerpo">
+            <span>Combate deportivo</span>
+            <p>Chanbara Sport (Spochan): combate deportivo con armas acolchadas de espuma flexible, inspirado en el espíritu samurái, para todas las edades. Reglas mínimas y gran diversidad de armas: Kodachi y Choken, Tanto y Yari, Naginata y Tate, además de bastones jhou y bou. Creado en 1971 por Tanabe Tetsundo. Solo se requiere casco acolchado y guantes.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE -->
+  <section class="pull">
+    <figure>
+      <blockquote>El verdadero sentido del Budo no reside en un espíritu de competición, sino en el <b>perfeccionamiento de todos los seres humanos</b>.</blockquote>
+      <figcaption>Morihei Ueshiba · fundador del Aikido</figcaption>
+    </figure>
+  </section>
+
+  <!-- DEFENSA PERSONAL DETALLE -->
+  <section class="dp" id="defensa">
+    <div class="dp__media" data-dp-media><img src="assets/pedro-full.jpg" alt="Pedro Ferrer, maestro de Defensa Personal del Dojo Kobukan" loading="lazy" data-dp-parallax></div>
+    <div class="dp__cuerpo">
+      <span class="eyebrow" data-reveal>Federación Española de Judo</span>
+      <h2 data-reveal data-split="lines">Defensa Personal para <em>cada etapa de la vida</em></h2>
+      <p data-reveal>Programas específicos basados en la prevención, la evasión y la autodefensa, con técnicas físicas, gestión emocional y métodos preventivos.</p>
+      <div class="dp__lista">
+        <div class="dp__item" data-reveal><strong>Infantil</strong> (a partir de 5 años): psicomotricidad, respeto y autoconfianza, aprendiendo jugando.</div>
+        <div class="dp__item" data-reveal><strong>Mujer:</strong> prevención, autodefensa, evasión y empoderamiento desde el respeto, no el miedo.</div>
+        <div class="dp__item" data-reveal><strong>Adultos:</strong> prevenir, evaluar y actuar ante amenazas, conflictos o agresiones.</div>
+        <div class="dp__item" data-reveal><strong>Cinturones de colores</strong> y judogi para los más pequeños, que aprenden a caer correctamente.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIOS -->
+  <section class="horarios" id="horarios">
+    <div class="horarios__cab">
+      <span class="eyebrow" data-reveal>Período lectivo de septiembre a julio</span>
+      <h2 data-reveal data-split="lines">Oferta <em>semanal</em></h2>
+      <p data-reveal>Los horarios exactos de cada disciplina se actualizan al inicio de cada temporada en septiembre. Recomendamos contactar directamente con el dojo para confirmar los horarios vigentes del curso actual. En agosto el dojo permanece cerrado.</p>
+    </div>
+    <table class="horario-tabla">
+      <thead><tr><th>Disciplina</th><th>Programa</th></tr></thead>
+      <tbody>
+        <tr data-dias="1,3,5"><td class="dia">Aikido</td><td>Clases para adultos e infantil, con múltiples sesiones semanales. Impartido por Pedro Ferrer Garcia, 4.o Dan.</td></tr>
+        <tr data-dias="2,4"><td class="dia">Karate Shotokan</td><td>Dirigido por Jose Martinez Banaque, 5.o Dan FEKYDA.</td></tr>
+        <tr data-dias="3"><td class="dia">Kyusho Jitsu</td><td>Sesiones especializadas de puntos de presión y medicina energética.</td></tr>
+        <tr data-dias="1,2,4"><td class="dia">Defensa Personal</td><td>Programas diferenciados: infantil, mujer y adultos.</td></tr>
+        <tr data-dias="2,4"><td class="dia">Pilates</td><td>Con Maria del Carmen Quintero Gallardo.</td></tr>
+        <tr data-dias="5,6"><td class="dia">Chanbara</td><td>Combate deportivo con armas acolchadas para todas las edades.</td></tr>
+      </tbody>
+    </table>
+    <p class="horarios__nota">Horarios sujetos a confirmación telefónica · 629 78 41 72</p>
+  </section>
+
+  <!-- MAESTROS -->
+  <section class="maestros" id="maestros">
+    <div class="maestros__cab">
+      <span class="eyebrow" data-reveal>Décadas de experiencia sobre el tatami</span>
+      <h2 data-reveal data-split="lines">Nuestros <em>maestros</em></h2>
+      <p data-reveal>Cuatro maestros federados y titulados que transmiten su conocimiento con rigor, respeto y dedicación.</p>
+    </div>
+    <div class="maestros__grid">
+      <article class="maestro" data-reveal>
+        <div class="maestro__foto"><img src="assets/pedro.jpg" alt="Pedro Ferrer Garcia, director del Dojo Kobukan" loading="lazy"></div>
+        <div class="maestro__info">
+          <h3>Pedro Ferrer Garcia</h3>
+          <span class="maestro__rol">Director y maestro principal</span>
+          <p>Cinturón negro 4.o Dan de Aikido por la Federación Española de Judo y DA y 4.o Dan por la Federación Internacional Aikikai. Maestro Nacional de Aikido. 5.o Dan y Maestro Nacional de Defensa Personal, especialista en defensa personal femenina y operativa. 1.er Dan en Jiu Jitsu, Kyusho, Taekwondo y Karate; 2.o Dan en Chanbara.</p>
+        </div>
+      </article>
+      <article class="maestro" data-reveal>
+        <div class="maestro__foto"><img src="assets/instructor2.jpg" alt="Pere Jaume Ferrer Oliva, instructor adjunto" loading="lazy"></div>
+        <div class="maestro__info">
+          <h3>Pere Jaume Ferrer Oliva</h3>
+          <span class="maestro__rol">Instructor adjunto</span>
+          <p>Cinturón negro 2.o Dan de Aikido por la Federación Española y entrenador regional de Aikido. 2.o Dan en Defensa Personal y entrenador regional de Defensa Personal. 1.er Dan en Kyusho.</p>
+        </div>
+      </article>
+      <article class="maestro" data-reveal>
+        <div class="maestro__foto"><img src="assets/instructor3.png" alt="Jose Martinez Banaque, maestro de Karate" loading="lazy"></div>
+        <div class="maestro__info">
+          <h3>Jose Martinez Banaque</h3>
+          <span class="maestro__rol">Karate Shotokan</span>
+          <p>5.o Dan de Karate Shotokan de la FEKYDA. Instructor y juez nacional. Árbitro nacional de kumite y kata. Licenciado en Educación Física.</p>
+        </div>
+      </article>
+      <article class="maestro" data-reveal>
+        <div class="maestro__foto"><img src="assets/carmen.jpg" alt="Maria del Carmen Quintero Gallardo, instructora de Pilates" loading="lazy"></div>
+        <div class="maestro__info">
+          <h3>Maria del Carmen Quintero Gallardo</h3>
+          <span class="maestro__rol">Pilates y bienestar</span>
+          <p>Certificación internacional en Pilates. Instructora de yoga. Entrenadora de fitness. Masajista deportivo y thai. Especialista en nutrición deportiva. Certificada en desprogramación biológica.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FILOSOFIA — zoom inmersivo -->
+  <section class="zoom" id="filosofia" aria-label="El espíritu del Aikido">
+    <div class="zoom__pin">
+      <div class="zoom__marco"><img src="assets/evento3.png" alt="El espíritu del dojo Kobukan" loading="lazy"></div>
+      <p class="zoom__texto" data-zoom-texto>El Aikido enseña a resolver el conflicto desde la <em>no violencia</em>.</p>
+    </div>
+  </section>
+
+  <!-- PRINCIPIOS -->
+  <section class="principios">
+    <div class="principios__cab">
+      <span class="eyebrow" data-reveal>El espíritu del Aikido</span>
+      <h2 data-reveal data-split="lines">Tres principios que guían <em>nuestra práctica</em></h2>
+      <p data-reveal>El Aikido enseña la resolución de conflictos a través de la no violencia y la comprensión mutua, sin buscar la victoria sobre el adversario.</p>
+    </div>
+    <div class="principios__grid">
+      <div class="principio" data-reveal>
+        <span class="principio__kanji">AI</span>
+        <h3>Armonía</h3>
+        <p>Unión, armonía y amor. La armonización con el universo y con uno mismo, en palabras del propio fundador.</p>
+      </div>
+      <div class="principio" data-reveal>
+        <span class="principio__kanji">KI</span>
+        <h3>Energía vital</h3>
+        <p>El espíritu y el aliento. La energía que fluye y se canaliza en cada movimiento sobre el tatami.</p>
+      </div>
+      <div class="principio" data-reveal>
+        <span class="principio__kanji">DO</span>
+        <h3>El camino</h3>
+        <p>La vía, el método. Un camino de desarrollo personal integral que une cuerpo y espíritu sin competición.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIRAS -->
+  <div class="tiras" aria-hidden="true">
+    <p class="tira" data-tira="-1">Budo <em>·</em> Respeto <em>·</em> Camino <em>·</em> Budo <em>·</em> Respeto <em>·</em> Camino <em>·</em> Budo <em>·</em> Respeto</p>
+    <p class="tira tira--llena" data-tira="1">Aikido <em>·</em> Karate <em>·</em> Kyusho <em>·</em> Chanbara <em>·</em> Aikido <em>·</em> Karate <em>·</em> Kyusho <em>·</em> Chanbara</p>
+  </div>
+
+  <!-- OPINIONES -->
+  <section class="opiniones">
+    <div class="opiniones__cab">
+      <h2 data-reveal data-split="lines">Lo que dicen <em>nuestros alumnos</em>.</h2>
+      <p class="google" data-reveal><span class="estrellas" aria-label="5 de 5 estrellas">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg>
+      </span> 5.0 · 51 opiniones en Google</p>
+    </div>
+    <figure class="cita">
+      <blockquote>«Un dojo de verdad, con la disciplina y el respeto de las artes marciales tradicionales. Pedro es un maestro excepcional, tanto con los niños como con los adultos.»</blockquote>
+      <figcaption>Opinión verificada · Google</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>«Mi hija lleva desde pequeña en Defensa Personal infantil y ha ganado en confianza y concentración. Un ambiente sano y familiar, muy lejos de un gimnasio cualquiera.»</blockquote>
+      <figcaption>Opinión verificada · Google</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>«Las clases de Aikido me han enseñado mucho más que técnica: armonía, calma y respeto. El trato es cercano y la enseñanza, rigurosa. Cinco estrellas merecidas.»</blockquote>
+      <figcaption>Opinión verificada · Google</figcaption>
+    </figure>
+  </section>
+
+  <!-- CONTACTO + MAPA -->
+  <section class="contacto" id="contacto">
+    <div class="contacto__lado">
+      <p class="contacto__estado" data-reveal>Período lectivo · De septiembre a julio</p>
+      <h2 data-reveal data-split="lines">Ven a conocer <em>el dojo</em></h2>
+      <p data-reveal>Estamos a 100 metros de la estación de tren de Inca. El formulario web no está operativo: contacta con nosotros por teléfono, email o Facebook.</p>
+      <a class="magnetico" href="tel:629784172" data-magnetico><span class="magnetico__label">Llamar al 629 78 41 72</span></a>
+      <div class="contacto__datos">
+        <div class="dato" data-reveal>
+          <div class="ico">D</div>
+          <div><b>Dirección</b><span>C/ Poeta Costa i Llobera 21, 07300, Inca (Mallorca)</span></div>
+        </div>
+        <div class="dato" data-reveal>
+          <div class="ico">E</div>
+          <div><b>Email</b><a href="mailto:pere95@hotmail.com">pere95@hotmail.com</a></div>
+        </div>
+        <div class="dato" data-reveal>
+          <div class="ico">F</div>
+          <div><b>Facebook</b><span>pedro.ferrari.5817</span></div>
+        </div>
+        <div class="dato" data-reveal>
+          <div class="ico">W</div>
+          <div><b>Web actual</b><a href="http://www.kyushomallorca.com/" target="_blank" rel="noopener">kyushomallorca.com</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="contacto__mapa">
+      <iframe src="https://maps.google.com/maps?q=C%2F%20Poeta%20Costa%20i%20Llobera%2021%2C%2007300%20Inca%20Mallorca&output=embed" title="Ubicación del Dojo Kobukan en Inca" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <!-- PIE -->
+  <footer class="pie">
+    <div class="pie__sup">
+      <div class="pie__marca">
+        <div class="m">
+          <img src="assets/logo.png" alt="Logotipo Dojo Kobukan">
+          <span><b>Dojo Kobukan</b><small>Inca · Mallorca</small></span>
+        </div>
+        <p>Centro de artes marciales homologado por la Federación Española de Judo y Deportes Asociados y por el Consejo Superior de Deportes. La esencia de un dojo japonés tradicional en Inca.</p>
+      </div>
+      <div class="pie__col">
+        <h5>Disciplinas</h5>
+        <ul>
+          <li><a href="#disciplinas">Aikido</a></li>
+          <li><a href="#disciplinas">Karate Shotokan</a></li>
+          <li><a href="#disciplinas">Kyusho Jitsu</a></li>
+          <li><a href="#disciplinas">Defensa Personal</a></li>
+          <li><a href="#disciplinas">Pilates</a></li>
+          <li><a href="#disciplinas">Chanbara</a></li>
+        </ul>
+      </div>
+      <div class="pie__col">
+        <h5>El dojo</h5>
+        <ul>
+          <li><a href="#dojo">Nuestra historia</a></li>
+          <li><a href="#maestros">Maestros</a></li>
+          <li><a href="#horarios">Horarios</a></li>
+          <li><a href="#filosofia">Filosofía</a></li>
+        </ul>
+      </div>
+      <div class="pie__col">
+        <h5>Contacto</h5>
+        <ul>
+          <li>C/ Poeta Costa i Llobera 21</li>
+          <li>07300 Inca, Mallorca</li>
+          <li><a href="tel:629784172">629 78 41 72</a></li>
+          <li><a href="mailto:pere95@hotmail.com">pere95@hotmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie__bot">
+      <span>&copy; <span id="year"></span> Dojo Kobukan · Inca, Mallorca</span>
+      <span>Homologado RFEJYDA · Consejo Superior de Deportes</span>
+    </div>
+  </footer>
+</main>
+
+<!-- DEPENDENCIAS -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+
+<script>
+'use strict';
+
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
+
+const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+const MOBILE       = matchMedia('(pointer:coarse)').matches || innerWidth < 900;
+
+/* ── LENIS + SCROLLTRIGGER ── */
+let lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  window.lenis = lenis;
+}
+
+/* ── Cabecera: estado scrolled ── */
+(function cabeceraScroll(){
+  const cab = document.getElementById('cabecera');
+  const set = () => cab.classList.toggle('scrolled', scrollY > 40);
+  set(); addEventListener('scroll', set, { passive: true });
+})();
+
+/* ── Menu movil ── */
+(function menu(){
+  const hb = document.getElementById('hamburger');
+  const mm = document.getElementById('mobileMenu');
+  const cl = document.getElementById('mmClose');
+  const close = () => { hb.classList.remove('active'); mm.classList.remove('open'); };
+  hb.addEventListener('click', () => { hb.classList.toggle('active'); mm.classList.toggle('open'); });
+  cl.addEventListener('click', close);
+  mm.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+})();
+
+/* ── Año footer ── */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── ESTELA FLUIDA — paleta roja de marca, modo screen sobre oscuro ── */
+if (!REDUCE) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then((mod) => {
+    const cont = document.getElementById('fluid');
+    const sim = new mod.default(cont);
+    Object.assign(cont.style, {
+      position: 'fixed', inset: '0', width: '100%', height: '100%',
+      zIndex: '3998', pointerEvents: 'none',
+    });
+    dispatchEvent(new Event('resize'));
+    sim.setConfig({
+      simResolution: MOBILE ? 96 : 128,
+      dyeResolution: MOBILE ? 512 : 1024,
+      densityDissipation: 2.4, velocityDissipation: 1.5,
+      pressureIterations: MOBILE ? 8 : 10, curl: 26,
+      splatRadius: MOBILE ? 0.12 : 0.1, splatForce: 5200,
+      hover: false, colorful: false,
+      colorPalette: ['#d7393e', '#ef5358', '#8c1f23'],
+      transparent: true, bloom: false, sunrays: false,
+    });
+    sim.start();
+
+    /* pausa por inactividad (evita recarga de pestaña en movil) */
+    let fluidPaused = false;
+    const setFluid = (run) => { if (run === !fluidPaused) return; fluidPaused = sim.togglePause(); };
+    let idleT = 0;
+    const wake = () => { setFluid(true); clearTimeout(idleT); idleT = setTimeout(() => setFluid(false), 1400); };
+    wake();
+
+    /* fix coordenada X en HiDPI */
+    const fcv = cont.querySelector('canvas');
+    const sx = () => (fcv && fcv.clientWidth) ? fcv.width / fcv.clientWidth : (devicePixelRatio || 1);
+
+    /* splats coalescidos a 1 por frame */
+    let lastX = null, lastY = null, accX = 0, accY = 0, curX = 0, curY = 0, pending = false;
+    const flush = () => {
+      pending = false;
+      if (Math.abs(accX) + Math.abs(accY) > 4) { wake(); sim.splatAtLocation(curX * sx(), curY, accX, accY); }
+      accX = accY = 0;
+    };
+    const feed = (x, y) => {
+      if (lastX !== null) { accX += (x - lastX) * 2.5; accY += (y - lastY) * 2.5; }
+      lastX = x; lastY = y; curX = x; curY = y;
+      if (!pending) { pending = true; requestAnimationFrame(flush); }
+    };
+    const resetTrail = () => { lastX = lastY = null; accX = accY = 0; };
+
+    addEventListener('pointermove', (e) => { if (e.pointerType !== 'touch') feed(e.clientX, e.clientY); }, { passive: true });
+    addEventListener('touchstart', (e) => { const t = e.touches[0]; if (t) { lastX = t.clientX; lastY = t.clientY; } }, { passive: true });
+    addEventListener('touchmove', (e) => { const t = e.touches[0]; if (t) feed(t.clientX, t.clientY); }, { passive: true });
+    addEventListener('touchend', resetTrail, { passive: true });
+    addEventListener('touchcancel', resetTrail, { passive: true });
+    document.addEventListener('visibilitychange', () => { document.hidden ? setFluid(false) : wake(); });
+
+    window.__fluidBurst = () => {
+      const W = innerWidth, H = innerHeight;
+      for (let i = 0; i <= 5; i++) {
+        const t = i / 5;
+        setTimeout(() => {
+          wake();
+          sim.splatAtLocation((W * (0.15 + t * 0.7)) * sx(), H * (0.6 - Math.sin(t * Math.PI) * 0.22),
+                              190 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
+        }, i * 70);
+      }
+    };
+  }).catch(() => {});
+}
+
+/* ── Cursor dot + ring ── */
+if (FINE_POINTER && !REDUCE) (function cursor(){
+  const dot  = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  const dx = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
+  const dy = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
+  const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+  let visto = false;
+  addEventListener('pointermove', (e) => {
+    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
+    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
+  }, { passive: true });
+  document.querySelectorAll('a, button').forEach((el) => {
+    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }));
+    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }));
+  });
+})();
+
+/* ── Horario: fila de HOY destacada ── */
+(function highlightToday(){
+  const hoy = new Date().getDay();
+  document.querySelectorAll('.horario-tabla tr[data-dias]').forEach((fila) => {
+    if (fila.dataset.dias.split(',').map(Number).includes(hoy)) fila.classList.add('horario-hoy');
+  });
+})();
+
+/* ════════ COREOGRAFÍA DE SCROLL ════════ */
+document.fonts.ready.then(() => {
+  const mm = gsap.matchMedia();
+
+  mm.add({
+    motionOK:  '(prefers-reduced-motion: no-preference)',
+    reduce:    '(prefers-reduced-motion: reduce)',
+    isDesktop: '(min-width: 821px)',
+  }, (ctx) => {
+    if (ctx.conditions.reduce) {
+      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
+      document.querySelectorAll('[data-cuenta]').forEach((el) => {
+        el.textContent = (+el.dataset.target).toLocaleString('es-ES');
+      });
+      const pl = document.querySelector('.preloader'); if (pl) pl.style.display = 'none';
+      return;
+    }
+
+    /* Reveal del hero */
+    function revealHero(){
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      tl.set('[data-hero-reveal]', { visibility: 'visible' });
+      tl.fromTo('[data-hero-media]', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
+      tl.fromTo('[data-hero-media] img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+      const splitTitulo = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
+      tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.4);
+      const splitSub = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
+      tl.from(splitSub.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.65);
+      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.55);
+      tl.from('.hero__badge',  { autoAlpha: 0, scale: .8, duration: 0.7, ease: 'back.out(1.6)' }, 0.85);
+      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 0.95);
+      tl.from('.cabecera', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
+      return tl;
+    }
+
+    /* Preloader */
+    const num = document.querySelector('.preloader__num');
+    const progreso = { v: 0 };
+    const cargaMinima = new Promise((res) => {
+      gsap.to(progreso, {
+        v: 100, duration: 1.9, ease: 'steps(14)',
+        onUpdate: () => { num.firstChild.textContent = Math.round(progreso.v); },
+        onComplete: res,
+      });
+    });
+    const cargaReal = new Promise((res) => {
+      if (document.readyState === 'complete') res();
+      else addEventListener('load', res, { once: true });
+    });
+    Promise.all([cargaMinima, cargaReal]).then(() => {
+      gsap.timeline()
+        .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
+        .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
+        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
+        .set('.preloader', { display: 'none' })
+        .add(revealHero(), '-=0.75')
+        .call(() => lenis && lenis.start(), null, '-=1.2')
+        .call(() => window.__fluidBurst && window.__fluidBurst(), null, '-=0.9');
+    });
+
+    /* Salida del hero + progreso */
+    gsap.to('[data-hero-parallax]', {
+      yPercent: 14, scale: 1.12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+    gsap.to('.hero__contenido', {
+      yPercent: -12, autoAlpha: 0.3, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
+    });
+    gsap.to('.progreso span', {
+      scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
+    });
+
+    /* Manifiesto + flotantes */
+    SplitText.create('[data-manifiesto]', {
+      type: 'words',
+      onSplit: (self) => gsap.from(self.words, {
+        opacity: 0.13, stagger: 0.05, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
+      }),
+    });
+    gsap.utils.toArray('.flotante').forEach((el) => {
+      const sp = +el.dataset.speed || 1;
+      gsap.fromTo(el, { yPercent: 16 * sp }, {
+        yPercent: -16 * sp, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* Cifras */
+    gsap.utils.toArray('.cifra').forEach((el, i) => {
+      gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
+        y: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
+      });
+    });
+    document.querySelectorAll('[data-cuenta]').forEach((el) => {
+      const objetivo = +el.dataset.target;
+      const c = { v: 0 };
+      gsap.to(c, {
+        v: objetivo, duration: 2, ease: 'power2.out', snap: { v: 1 },
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: () => { el.textContent = Math.round(c.v).toLocaleString('es-ES'); },
+      });
+    });
+
+    /* Marquee vivo */
+    {
+      const trackM = document.querySelector('.marquee__track');
+      const marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 30, repeat: -1 });
+      marq.totalTime(30 * 1000);
+      let objetivoTS = 1;
+      ScrollTrigger.create({
+        onUpdate: (self) => {
+          const v = self.getVelocity();
+          objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
+        },
+      });
+      gsap.ticker.add(() => {
+        marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
+        objetivoTS += (1 - objetivoTS) * 0.04;
+      });
+    }
+
+    /* Galería de disciplinas + skew + parallax interno */
+    let tweenHorizontal = null;
+    if (ctx.conditions.isDesktop) {
+      const track = document.querySelector('.disciplinas__track');
+      const discNum = document.querySelector('[data-disc-num]');
+      const total = document.querySelectorAll('.panel').length;
+      const distancia = () => track.scrollWidth - innerWidth + (innerWidth * 0.06);
+      const skewTo = gsap.quickTo(track, 'skewX', { duration: 0.5, ease: 'power3' });
+      const clampSkew = gsap.utils.clamp(-4, 4);
+
+      tweenHorizontal = gsap.to(track, {
+        x: () => -distancia(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.disciplinas',
+          start: 'top top',
+          end: () => '+=' + distancia(),
+          pin: '.disciplinas__pin',
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (st) => {
+            const i = Math.min(total, Math.max(1, Math.round(st.progress * (total - 1)) + 1));
+            discNum.textContent = String(i).padStart(2, '0');
+            skewTo(clampSkew(st.getVelocity() / -450));
+          },
+        },
+      });
+      ScrollTrigger.addEventListener('scrollEnd', () => skewTo(0));
+
+      gsap.utils.toArray('.panel__marco img').forEach((img) => {
+        gsap.fromTo(img, { xPercent: -7, scale: 1.16 }, {
+          xPercent: 7, scale: 1.16, ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.panel'),
+            containerAnimation: tweenHorizontal,
+            start: 'left right', end: 'right left', scrub: true,
+          },
+        });
+      });
+    }
+
+    /* Reveals de imagen (galería) */
+    gsap.utils.toArray('[data-img-reveal]').forEach((marco) => {
+      const visual = marco.querySelector('img');
+      const enGaleria = ctx.conditions.isDesktop && tweenHorizontal;
+      const st = enGaleria
+        ? { trigger: marco, containerAnimation: tweenHorizontal, start: 'left 95%', once: true }
+        : { trigger: marco, start: 'top 88%', once: true };
+      const tl = gsap.timeline({ scrollTrigger: st, defaults: { duration: 1.2, ease: 'power4.out' } })
+        .fromTo(marco, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)' });
+      if (!enGaleria) tl.fromTo(visual, { scale: 1.18 }, { scale: 1 }, 0);
+    });
+
+    /* Defensa personal — parallax foto */
+    gsap.to('[data-dp-parallax]', {
+      yPercent: -10, ease: 'none',
+      scrollTrigger: { trigger: '.dp', start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+
+    /* ZOOM inmersivo (filosofía) */
+    {
+      const zsplit = SplitText.create('[data-zoom-texto]', { type: 'words' });
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.zoom', start: 'top top', end: 'bottom bottom',
+          pin: '.zoom__pin', pinSpacing: false, scrub: 1, anticipatePin: 1,
+        },
+      })
+      .fromTo('.zoom__marco', { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0)
+      .fromTo('.zoom__marco img', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 0.85 }, 0)
+      .fromTo(zsplit.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
+    }
+
+    /* Tiras a contra-scroll */
+    document.querySelectorAll('[data-tira]').forEach((el) => {
+      const dir = +el.dataset.tira;
+      gsap.fromTo(el, { xPercent: dir * 6 }, {
+        xPercent: dir * -6, ease: 'none',
+        scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* Citas/opiniones entrando alternando lado */
+    gsap.utils.toArray('.cita').forEach((el, i) => {
+      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, {
+        x: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 60%', scrub: 1 },
+      });
+    });
+
+    /* Maestros: caen en 3D */
+    gsap.set('.maestros__grid', { perspective: 1200 });
+    gsap.utils.toArray('.maestro').forEach((el, i) => {
+      el.removeAttribute('data-reveal');
+      gsap.fromTo(el, { rotationX: -30, autoAlpha: 0, y: 50, transformOrigin: 'top center' }, {
+        rotationX: 0, autoAlpha: 1, y: 0, duration: 1.1, ease: 'expo.out', delay: (i % 2) * 0.1,
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+      });
+    });
+
+    /* Reveals genéricos */
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (el.dataset.split === 'lines') {
+        SplitText.create(el, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit: (self) => {
+            gsap.set(el, { visibility: 'visible' });
+            return gsap.from(self.lines, {
+              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
+              scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+            });
+          },
+        });
+      } else {
+        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
+          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        });
+      }
+    });
+
+    /* Botón magnético */
+    if (FINE_POINTER) {
+      document.querySelectorAll('[data-magnetico]').forEach((el) => {
+        const label = el.querySelector('.magnetico__label');
+        const xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
+        const yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
+        const lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
+        const ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          const dx = e.clientX - (r.left + r.width / 2);
+          const dy = e.clientY - (r.top + r.height / 2);
+          xTo(dx * 0.35); yTo(dy * 0.35); lx(dx * 0.5); ly(dy * 0.5);
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
+        });
+      });
+    }
+
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+</body>
+</html>
