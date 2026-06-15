@@ -1,5 +1,12 @@
 /* ──────────────────────────────────────────────────────────────
    GG Elcano · Banner de cookies (AEPD 2023 + LSSICE art. 22.2)
+   Requisitos que cumple:
+     - Botones "Aceptar todas", "Rechazar todas" y "Configurar" con
+       misma jerarquía visual (mismo tamaño y contraste en CSS).
+     - Bloqueo real: hasta que el usuario no consienta, no se cargan
+       recursos de terceros marcados con data-consent="terceros".
+     - Persistencia en localStorage clave "gg_cookie_consent".
+     - API global window.GGConsent con métodos has / set / revoke.
    Drop-in, sin dependencias.
    ────────────────────────────────────────────────────────────── */
 (function () {
@@ -7,8 +14,10 @@
 
   var STORAGE_KEY = 'gg_cookie_consent';
   var VERSION = 1;
+  // Duración máxima del consentimiento (AEPD: máx 24 meses). 13 meses = patrón habitual.
   var MAX_AGE_MS = 13 * 30 * 24 * 60 * 60 * 1000;
 
+  // ── Estado ────────────────────────────────────────────────────
   function readState() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
@@ -26,13 +35,14 @@
   function writeState(state) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (_) {}
+    } catch (_) { /* storage deshabilitado */ }
   }
 
   function currentState() {
     return readState() || { v: VERSION, ts: 0, tecnicas: true, analiticas: false, terceros: false, decided: false };
   }
 
+  // ── API pública ───────────────────────────────────────────────
   var listeners = [];
 
   var API = {
@@ -45,6 +55,7 @@
       return readState();
     },
     set: function (partial) {
+      var s = currentState();
       var next = {
         v: VERSION,
         ts: Date.now(),
@@ -79,6 +90,7 @@
 
   window.GGConsent = API;
 
+  // ── Activación diferida de recursos con data-consent ─────────
   function applyConsent(state) {
     var nodes = document.querySelectorAll('[data-consent]');
     for (var i = 0; i < nodes.length; i++) {
@@ -94,14 +106,17 @@
     if (el.getAttribute('data-consent-active') === '1') return;
     el.setAttribute('data-consent-active', '1');
 
+    // 1) Si hay un <template> dentro, inyecta su contenido.
     var tpl = el.querySelector('template[data-consent-payload]');
     if (tpl && tpl.content) {
+      // Limpia placeholder
       var fb = el.querySelector('.ggc-consent-fallback');
       if (fb) fb.remove();
       el.appendChild(tpl.content.cloneNode(true));
       return;
     }
 
+    // 2) Si hay <script type="text/plain" data-consent-src>, cárgalos.
     var scripts = el.querySelectorAll('script[type="text/plain"][data-consent-src]');
     for (var i = 0; i < scripts.length; i++) {
       var s = document.createElement('script');
@@ -111,6 +126,7 @@
     }
   }
 
+  // ── UI ────────────────────────────────────────────────────────
   function h(tag, attrs, children) {
     var el = document.createElement(tag);
     if (attrs) {
@@ -144,14 +160,14 @@
   }
 
   function buildBanner() {
-    var linkCookies = h('a', { href: 'legal/politica-cookies.html' }, ['politica de cookies']);
-    var linkPriv = h('a', { href: 'legal/politica-privacidad.html' }, ['politica de privacidad']);
+    var linkCookies = h('a', { href: 'legal/politica-cookies.html' }, ['política de cookies']);
+    var linkPriv = h('a', { href: 'legal/politica-privacidad.html' }, ['política de privacidad']);
 
     var text = h('div', null, [
       h('h2', null, ['Utilizamos cookies']),
       (function () {
         var p = h('p', null, [
-          'Usamos cookies tecnicas propias (necesarias para el funcionamiento) y, solo con tu consentimiento, cookies de terceros (Google Maps). Consulta nuestra ',
+          'Usamos cookies técnicas propias (necesarias para el funcionamiento) y, solo con tu consentimiento, cookies de terceros (Google Maps). Consulta nuestra ',
           linkCookies,
           ' y la ',
           linkPriv,
@@ -204,16 +220,16 @@
       ]);
     }
 
-    var rowTec = row('ggc-tec', 'Cookies tecnicas (obligatorias)',
-      'Necesarias para el funcionamiento basico de la web. No se pueden desactivar.',
+    var rowTec = row('ggc-tec', 'Cookies técnicas (obligatorias)',
+      'Necesarias para el funcionamiento básico de la web. No se pueden desactivar.',
       true, true);
 
-    var rowAna = row('ggc-ana', 'Cookies analiticas',
-      'Nos ayudan a entender como se usa la web de forma agregada y anonima.',
+    var rowAna = row('ggc-ana', 'Cookies analíticas',
+      'Nos ayudan a entender cómo se usa la web de forma agregada y anónima.',
       !!s.analiticas, false);
 
     var rowTer = row('ggc-ter', 'Cookies de terceros (Google Maps, fuentes)',
-      'Permiten mostrar el mapa de Google y cargar recursos externos. Implican transferencia internacional a EE. UU. bajo clausulas contractuales tipo.',
+      'Permiten mostrar el mapa de Google y cargar recursos externos. Implican transferencia internacional a EE. UU. bajo cláusulas contractuales tipo.',
       !!s.terceros, false);
 
     var btnSave = h('button', {
@@ -243,9 +259,9 @@
     var actions = h('div', { class: 'ggc-panel-actions' }, [btnReject, btnSave, btnAccept]);
 
     var inner = h('div', { class: 'ggc-panel-inner' }, [
-      h('h2', null, ['Configuracion de cookies']),
+      h('h2', null, ['Configuración de cookies']),
       h('p', { class: 'ggc-intro' }, [
-        'Puedes aceptar, rechazar o elegir que categorias permites. Las cookies tecnicas son imprescindibles y siempre estan activas.'
+        'Puedes aceptar, rechazar o elegir qué categorías permites. Las cookies técnicas son imprescindibles y siempre están activas.'
       ]),
       rowTec,
       rowAna,
@@ -270,6 +286,7 @@
     panelEl = buildPanel();
     root.appendChild(panelEl);
     root.hidden = false;
+    // foco al primer toggle editable
     var first = panelEl.querySelector('input:not(:disabled)');
     if (first) first.focus();
   }
@@ -282,6 +299,7 @@
     if (root && !keepRoot) root.hidden = true;
   }
 
+  // ── Fallback UI para bloques bloqueados (iframe Maps, etc.) ──
   function decorateBlockedBlocks() {
     var nodes = document.querySelectorAll('[data-consent]');
     for (var i = 0; i < nodes.length; i++) {
@@ -291,18 +309,19 @@
       if (el.querySelector('.ggc-consent-fallback')) continue;
 
       var fallbackMsg = el.getAttribute('data-fallback') ||
-        'Este contenido requiere cookies de terceros. Activalas para verlo.';
+        'Este contenido requiere cookies de terceros. Actívalas para verlo.';
 
       var btn = h('button', {
         type: 'button',
-        onclick: (function (category) {
+        onclick: (function (category, element) {
           return function () {
+            // Activa SOLO la categoría de este bloque (manteniendo las demás)
             var prev = readState() || { analiticas: false, terceros: false };
             var patch = { analiticas: !!prev.analiticas, terceros: !!prev.terceros };
             patch[category] = true;
             API.set(patch);
           };
-        })(cat)
+        })(cat, el)
       }, ['Aceptar cookies y cargar']);
 
       var fb = h('div', { class: 'ggc-consent-fallback' }, [
@@ -313,6 +332,7 @@
     }
   }
 
+  // ── Arranque ─────────────────────────────────────────────────
   function boot() {
     var s = readState();
     decorateBlockedBlocks();
@@ -321,6 +341,7 @@
       applyConsent(s);
       return;
     }
+    // Sin consentimiento válido: mostrar banner
     showBanner();
   }
 

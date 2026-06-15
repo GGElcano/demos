@@ -1,1367 +1,1332 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academia Las Cortes | Oposiciones en La Laguna, Tenerife</title>
-  <meta name="description" content="Academia Las Cortes: preparaci&oacute;n de oposiciones C1 y C2 en La Laguna. 4,8/5 en Google con 408 rese&ntilde;as. M&aacute;s del 80% de aprobados en AGE. Presencial y online.">
-  <meta name="robots" content="index, follow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="legal/cookie-banner.css">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Academia Las Cortes — Oposiciones C1 y C2 en La Laguna, Tenerife</title>
+<meta name="description" content="Academia Las Cortes: preparación de oposiciones Administrativo C1 y Auxiliar C2 en La Laguna. 4,8 en Google con más de 400 reseñas. Más del 80% de aprobados en AGE. Presencial y online.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%233366FF'/%3E%3C/svg%3E">
 
-    :root {
-      --black: #060a12;
-      --white: #f0f0f0;
-      --accent: #3366FF;
-      --accent-light: #5580FF;
-      --accent-dark: #1a3db3;
-      --navy: #0a1228;
-      --navy-mid: #101d3a;
-      --navy-light: #162850;
-      --text-muted: #8a96b0;
-      --font-serif: 'Playfair Display', serif;
-      --font-sans: 'Inter', sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    }
+<!-- ============================================================
+     ACADEMIA LAS CORTES — propuesta premium (G&G Elcano)
+     Marca real verificada en academialascortes.com + logo:
+       · azul marca #3366FF · verde éxito #00b285
+     Pieza singular: León heráldico (su mascota/logo) que se
+     construye trazo a trazo con el scroll en canvas 2D.
+     Estela fluida, galería horizontal, zoom inmersivo, tiras,
+     citas scrubadas, CTA magnético. Contenido 100% real.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal/cookie-banner.css">
 
-    html { scroll-behavior: smooth; }
+<style>
+:root{
+  --hielo:    #f4f6fa;
+  --hielo-2:  #e8ecf3;
+  --azul:     #3366FF;
+  --azul-osc: #1a3db3;
+  --navy:     #0b1a3a;
+  --navy-2:   #122550;
+  --verde:    #00b285;
+  --texto:    #14233f;
+  --texto-2:  #3c4a63;
+  --piedra:   #75829b;
+  --linea:    rgba(11,26,58,.14);
+  --serif: "DM Serif Display", Georgia, serif;
+  --sans:  "Inter", system-ui, sans-serif;
+  --pad: clamp(1.5rem, 5vw, 6rem);
+}
 
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--font-sans);
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scrollbar-width: thin; scrollbar-color: var(--azul) var(--hielo); }
+html, body{ background: var(--hielo); }
 
-    /* CUSTOM CURSOR (desktop only) */
-    .cursor-dot, .cursor-ring {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      z-index: 99998;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      will-change: transform;
-    }
-    @media (hover: hover) and (pointer: fine) {
-      .cursor-dot, .cursor-ring { display: block; }
-      .cursor-dot {
-        width: 6px; height: 6px;
-        background: var(--accent);
-        transition: width 0.2s, height 0.2s, background 0.2s;
-      }
-      .cursor-ring {
-        width: 36px; height: 36px;
-        border: 1.5px solid rgba(51,102,255,0.4);
-        transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s;
-      }
-      a:hover ~ .cursor-dot, button:hover ~ .cursor-dot,
-      .cursor-dot.hovering {
-        width: 10px; height: 10px;
-        background: var(--accent-light);
-      }
-      .cursor-ring.hovering {
-        width: 52px; height: 52px;
-        border-color: rgba(51,102,255,0.6);
-      }
-    }
+body{
+  color: var(--texto);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-    /* PRELOADER */
-    .loader {
-      position: fixed; inset: 0; z-index: 10000;
-      background: var(--black);
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 28px;
-      transition: opacity 0.8s, visibility 0.8s;
-    }
-    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .loader-logo {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      letter-spacing: 0.15em;
-      color: var(--white);
-      text-transform: uppercase;
-    }
-    .loader-logo span { color: var(--accent); }
-    .loader-bar {
-      width: 200px; height: 2px;
-      background: rgba(240,240,240,0.1);
-      position: relative; overflow: hidden;
-      border-radius: 1px;
-    }
-    .loader-bar::after {
-      content: ''; position: absolute; inset: 0;
-      background: var(--accent);
-      transform: translateX(-100%);
-      animation: loadBar 1.8s var(--ease-out) 0.3s forwards;
-    }
-    @keyframes loadBar { to { transform: translateX(0); } }
+::selection{ background: var(--azul); color: #fff; }
 
-    /* FLUID CANVAS */
-    #fluid-canvas {
-      position: fixed; inset: 0; z-index: 0;
-      pointer-events: none;
-      opacity: 0.25;
-    }
+h1,h2,h3{ font-family: var(--serif); font-weight: 400; line-height: 1.08; color: var(--navy); }
+em{ font-style: italic; color: var(--azul); }
 
-    /* NAVBAR */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 60px;
-      backdrop-filter: blur(0px);
-      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
-    }
-    nav.scrolled {
-      backdrop-filter: blur(20px);
-      background: rgba(6,10,18,0.88);
-      padding: 18px 60px;
-      border-bottom: 1px solid rgba(51,102,255,0.08);
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--white);
-    }
-    .nav-logo img {
-      height: 38px; width: auto;
-      filter: brightness(0) invert(1);
-    }
-    .nav-logo-text {
-      font-family: var(--font-serif);
-      font-size: 1.1rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.1;
-    }
-    .nav-logo-text small {
-      display: block;
-      font-family: var(--font-sans);
-      font-size: 0.55rem;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-top: 2px;
-    }
-    .nav-links { display: flex; gap: 44px; list-style: none; align-items: center; }
-    .nav-links a {
-      text-decoration: none; color: rgba(240,240,240,0.78);
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      transition: color 0.3s; font-weight: 400;
-    }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-cta {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent) !important;
-      padding: 10px 28px !important;
-      font-size: 0.72rem !important;
-      letter-spacing: 0.25em !important;
-      transition: background 0.3s, color 0.3s !important;
-    }
-    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
+a{ color: inherit; text-decoration: none; }
+ul{ list-style: none; }
+img{ display:block; width:100%; height:100%; object-fit: cover; }
 
-    /* HAMBURGER MOBILE */
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 8px;
-    }
-    .hamburger span {
-      width: 24px; height: 2px; background: var(--white);
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    .mobile-menu {
-      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--black); z-index: 999;
-      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      text-decoration: none; color: var(--white); font-size: 1.2rem;
-      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
-    }
-    .mobile-menu a:hover { color: var(--accent); }
+#fluid{
+  position: fixed; inset: 0; width:100%; height:100%;
+  z-index: 9000; pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: .45;
+}
+#fluid.fluid--screen{ mix-blend-mode: screen; opacity: .85; }
+#fluid canvas{ width:100%; height:100%; display:block; }
 
-    /* HERO */
-    .hero {
-      position: relative; height: 100vh; min-height: 700px;
-      display: flex; align-items: flex-end; justify-content: flex-start;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
-      transform: scale(1.08);
-      transition: transform 8s var(--ease-out);
-    }
-    .hero-bg.loaded { transform: scale(1); }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(6,10,18,0.94) 0%, rgba(6,10,18,0.6) 50%, rgba(6,10,18,0.3) 100%);
-    }
-    .hero-overlay-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
-      background: linear-gradient(to top, var(--black), transparent);
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      padding: 0 60px 100px;
-      max-width: 900px;
-    }
-    .hero-eyebrow {
-      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 28px;
-      display: flex; align-items: center; gap: 16px;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.85);
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block; width: 40px; height: 1px; background: var(--accent);
-    }
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(3rem, 7vw, 6.5rem);
-      font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 32px;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.9), 0 4px 40px rgba(0,0,0,0.7);
-      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
-    }
-    .hero-title em { font-style: italic; color: var(--accent); }
-    .hero-sub {
-      font-size: 1.05rem; color: rgba(240,240,240,0.92);
-      max-width: 520px; line-height: 1.7; margin-bottom: 52px;
-      font-weight: 300;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.85);
-    }
-    .hero-actions {
-      display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 14px;
-      background: var(--accent); color: var(--black);
-      text-decoration: none; padding: 18px 40px;
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-weight: 600; transition: all 0.35s var(--ease-smooth);
-      position: relative; overflow: hidden;
-    }
-    .btn-primary::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--white); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .btn-primary:hover::before { transform: translateX(0); }
-    .btn-primary:hover { color: var(--black); }
-    .btn-primary span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
-    .btn-ghost {
-      color: rgba(240,240,240,0.85); text-decoration: none;
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-      transition: color 0.3s;
-    }
-    .btn-ghost:hover { color: var(--accent); }
-    .btn-ghost-arrow {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(240,240,240,0.32);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .btn-ghost:hover .btn-ghost-arrow {
-      border-color: var(--accent); transform: rotate(45deg);
-    }
-    .icon-arrow { width: 14px; height: 14px; }
-    .hero-scroll {
-      position: absolute; right: 60px; bottom: 100px; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 16px;
-      opacity: 0; animation: fadeIn 1s 2.2s ease forwards;
-    }
-    .hero-scroll span {
-      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--text-muted); writing-mode: vertical-rl;
-    }
-    .scroll-line {
-      width: 1px; height: 70px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      animation: scrollPulse 2s infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
-    }
+.cursor-dot, .cursor-ring{
+  position: fixed; top:0; left:0; z-index: 9500;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+}
+.cursor-dot { width:6px;  height:6px;  background: var(--verde); }
+.cursor-ring{ width:38px; height:38px; border:1px solid rgba(51,102,255,.55); }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot,.cursor-ring,#fluid{ display:none; }
+}
 
-    /* MARQUEE */
-    .marquee-section {
-      border-top: 1px solid rgba(51,102,255,0.12);
-      border-bottom: 1px solid rgba(51,102,255,0.12);
-      overflow: hidden; padding: 20px 0; background: var(--navy);
-      position: relative;
-    }
-    .marquee-track {
-      display: flex; width: max-content; align-items: center;
-      animation: marquee 22s linear infinite;
-      will-change: transform;
-    }
-    .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item {
-      display: inline-flex; align-items: center; gap: 14px;
-      padding: 0 32px; flex-shrink: 0; white-space: nowrap;
-      font-family: var(--font-serif); font-size: 1.1rem;
-      font-style: italic; color: rgba(240,240,240,0.7);
-      letter-spacing: 0.05em;
-    }
-    .marquee-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-    @keyframes marquee {
-      0%   { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-50%, 0, 0); }
-    }
+.progreso{
+  position: fixed; right: 1.3rem; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 9rem; background: var(--linea);
+  z-index: 60; pointer-events: none;
+}
+.progreso span{ position:absolute; inset:0; background: var(--verde); transform: scaleY(0); transform-origin: top; }
+@media (max-width: 820px){ .progreso{ display:none; } }
 
-    /* SECTION COMMONS */
-    section { padding: 130px 60px; }
-    .section-label {
-      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 20px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.4rem, 4vw, 4.2rem);
-      font-weight: 400; line-height: 1.1;
-      letter-spacing: -0.01em;
-      overflow-wrap: break-word; word-break: break-word; hyphens: auto;
-    }
-    .section-title em { font-style: italic; color: var(--accent); }
+/* ── PRELOADER ── */
+.preloader{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: end start;
+  padding: var(--pad);
+}
+.preloader__curtain{ position:absolute; inset:0; background: var(--navy); z-index:-1; }
+.preloader__brand{
+  position: absolute; top: var(--pad); left: var(--pad);
+  font-family: var(--serif); font-size: 1.15rem; letter-spacing: .26em;
+  text-transform: uppercase; color: #8fa4cf;
+  overflow: hidden;
+}
+.preloader__brand span{ display:inline-block; }
+.preloader__brand b{ font-weight: 400; color: #fff; }
+.preloader__counter{ overflow: hidden; line-height: 1; }
+.preloader__num{
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+.preloader__num i{ font-style: normal; color: var(--verde); font-size: .35em; vertical-align: super; }
 
-    /* STATS */
-    .stats-section {
-      background: var(--navy);
-      padding: 100px 60px;
-      border-top: 1px solid rgba(51,102,255,0.08);
-    }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2px; max-width: 1400px; margin: 0 auto;
-    }
-    .stat-card {
-      padding: 60px 50px; background: var(--navy);
-      border: 1px solid rgba(51,102,255,0.08);
-      position: relative; overflow: hidden;
-      transition: border-color 0.4s; min-width: 0;
-    }
-    .stat-card::before {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 3px; background: var(--accent); transform: scaleX(0);
-      transition: transform 0.5s var(--ease-out); transform-origin: left;
-    }
-    .stat-card:hover::before { transform: scaleX(1); }
-    .stat-card:hover { border-color: rgba(51,102,255,0.3); }
-    .stat-number {
-      font-family: var(--font-serif); font-size: clamp(2.5rem, 7vw, 4.5rem);
-      font-weight: 400; line-height: 1; color: var(--white);
-      margin-bottom: 12px; letter-spacing: -0.02em;
-    }
-    .stat-number .stat-suffix { color: var(--accent); }
-    .stat-label {
-      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-muted); font-weight: 400;
-    }
+/* ── CABECERA ── */
+.cabecera{
+  position: fixed; top:0; left:0; right:0; z-index: 50;
+  display:flex; justify-content: space-between; align-items: center;
+  padding: 1.3rem var(--pad);
+  mix-blend-mode: multiply;
+}
+.cabecera__logo{
+  display: flex; align-items: center; gap: .7rem;
+  font-family: var(--serif); font-size: 1.2rem; letter-spacing: .08em; color: var(--navy);
+}
+.cabecera__logo img{ width: 32px; height: 32px; object-fit: contain; filter: brightness(0) saturate(100%); }
+.cabecera__logo b{ font-weight: 400; color: var(--azul); }
+.cabecera__nav{ display:flex; gap: 2rem; font-size:.72rem; letter-spacing:.16em; text-transform: uppercase; }
+@media (max-width: 820px){ .cabecera__nav{ display:none; } }
 
-    /* GALLERY / SERVICIOS */
-    .projects-section { background: var(--black); }
-    .projects-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 70px; max-width: 1400px; margin-left: auto; margin-right: auto;
-      gap: 32px; flex-wrap: wrap;
-    }
-    .projects-header .section-title { max-width: 550px; }
-    .view-all {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--accent);
-      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
-      transition: gap 0.3s; padding-bottom: 4px;
-      border-bottom: 1px solid rgba(51,102,255,0.45);
-      white-space: nowrap;
-    }
-    .view-all:hover { gap: 20px; border-color: var(--accent); }
+.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
+.roll>span{ display:inline-block; transition: transform .5s cubic-bezier(.76,0,.24,1); }
+.roll::after{
+  content: attr(data-text);
+  position:absolute; left:0; top:100%; display:inline-block;
+  color: var(--verde);
+  transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+@media (hover:hover) and (pointer:fine){
+  .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
+}
 
-    /* SERVICE CARDS */
-    .services-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; max-width: 1400px; margin: 60px auto 0;
-    }
-    .service-card {
-      padding: 60px 48px; background: var(--black);
-      border: 1px solid rgba(51,102,255,0.12);
-      position: relative; overflow: hidden;
-      transition: background 0.5s, border-color 0.5s;
-    }
-    .service-card:hover { background: var(--navy-mid); border-color: rgba(51,102,255,0.35); }
-    .service-icon {
-      width: 52px; height: 52px; margin-bottom: 36px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid rgba(51,102,255,0.35); color: var(--accent);
-    }
-    .service-card h3 {
-      font-family: var(--font-serif); font-size: 1.7rem;
-      font-weight: 400; margin-bottom: 10px; line-height: 1.2;
-    }
-    .service-card p {
-      font-size: 0.92rem; color: rgba(240,240,240,0.72); line-height: 1.75;
-      font-weight: 300;
-    }
-    .service-number {
-      position: absolute; top: 30px; right: 36px;
-      font-family: var(--font-serif); font-size: 5rem;
-      font-weight: 400; color: rgba(51,102,255,0.06);
-      line-height: 1; transition: color 0.5s;
-    }
-    .service-card:hover .service-number { color: rgba(51,102,255,0.15); }
+/* ── HERO ── */
+.hero{
+  min-height: 100svh;
+  position: relative;
+  display:grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: end;
+  gap: clamp(1.5rem,4vw,4rem);
+  padding: clamp(7rem,14vh,9rem) var(--pad) clamp(3rem, 8vh, 5rem);
+}
+.hero__kicker{
+  font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--piedra); margin-bottom: 1.4rem;
+}
+.hero__titulo{
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  letter-spacing: -.01em;
+  max-width: 14ch;
+}
+.hero__pie{ display:flex; align-items:flex-end; gap:2.2rem; margin-top: 2.2rem; flex-wrap:wrap; }
+.hero__sub{ max-width: 42ch; color: var(--texto-2); font-size: 1rem; }
+.hero__badge{
+  display:inline-flex; align-items:baseline; gap:.5rem;
+  font-family: var(--serif); color: var(--navy);
+  border:1px solid var(--linea); border-radius:999px; padding:.55rem 1.2rem;
+  font-size:.95rem; background: rgba(255,255,255,.5);
+}
+.hero__badge b{ font-weight:400; color: var(--verde); font-size:1.25em; }
+.hero__scroll{
+  font-size: .66rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--piedra); display:flex; align-items:center; gap:.8rem;
+}
+.hero__scroll::after{
+  content:""; display:block; width:1px; height:3.2rem; background: var(--verde);
+  transform-origin: top;
+  animation: gota 2.4s cubic-bezier(.76,0,.24,1) infinite;
+}
+@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
+                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
+.hero__media{
+  position: relative;
+  height: clamp(22rem, 62vh, 37rem);
+  overflow: hidden;
+  border: 1px solid var(--linea);
+}
+.hero__media::after{
+  content:"LA LAGUNA — TENERIFE";
+  position:absolute; right:1rem; bottom:1rem;
+  font: 400 .62rem/1 var(--sans); letter-spacing:.3em; color:#fff;
+  text-shadow: 0 1px 10px rgba(0,0,0,.6);
+}
+.hero__media img{ will-change: transform; }
+@media (max-width: 820px){
+  .hero{ grid-template-columns: 1fr; align-items:start; }
+  .hero__media{ order:-1; height: 36svh; margin-top: 1rem; }
+}
+@media (max-width: 768px){
+  .hero{ min-height: auto; height: auto; align-items: flex-start; }
+}
+[data-hero-reveal]{ visibility: hidden; }
 
-    /* ABOUT */
-    .about-section {
-      background: var(--navy);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0; padding: 0; max-width: none;
-    }
-    .about-visual {
-      position: relative; overflow: hidden; min-height: 700px;
-    }
-    .about-visual img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .about-badge {
-      position: absolute; top: 24px; right: 24px;
-      background: var(--black); border: 1px solid rgba(51,102,255,0.35);
-      padding: 24px 30px; max-width: 240px;
-    }
-    .about-badge-number {
-      font-family: var(--font-serif); font-size: 3rem;
-      color: var(--accent); line-height: 1;
-    }
-    .about-badge-text {
-      font-size: 0.72rem; letter-spacing: 0.1em;
-      color: rgba(240,240,240,0.75); margin-top: 6px;
-    }
-    .about-content {
-      padding: 100px 80px; display: flex; flex-direction: column; justify-content: center;
-    }
-    .about-body {
-      font-size: 1.05rem; line-height: 1.8;
-      color: rgba(240,240,240,0.78); margin: 32px 0 40px;
-      font-weight: 300;
-    }
-    .about-body strong { color: var(--white); font-weight: 500; }
-    .about-divider {
-      width: 60px; height: 1px; background: var(--accent); margin: 32px 0;
-    }
-    .about-values { display: flex; flex-direction: column; gap: 20px; }
-    .about-value {
-      display: flex; gap: 20px; align-items: flex-start;
-      padding: 20px; border: 1px solid rgba(51,102,255,0.12);
-      transition: border-color 0.4s;
-    }
-    .about-value:hover { border-color: rgba(51,102,255,0.35); }
-    .value-num {
-      font-family: var(--font-serif); font-size: 1.4rem;
-      color: var(--accent); opacity: 0.65; flex-shrink: 0; line-height: 1.2;
-    }
-    .value-text h3 {
-      font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 500; margin-bottom: 6px;
-    }
-    .value-text p {
-      font-size: 0.88rem; color: rgba(240,240,240,0.7); font-weight: 300; line-height: 1.6;
-    }
+/* ── MARQUEE ── */
+.marquee{
+  overflow:hidden; white-space:nowrap;
+  border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  padding: 1.05rem 0;
+  background: var(--hielo);
+  position: relative; z-index: 2;
+}
+.marquee__track{ display:inline-flex; gap:3rem; will-change: transform; }
+.marquee__group{ display:inline-flex; gap:3rem; }
+.marquee__group span{ font-family: var(--serif); font-size: 1.25rem; color: var(--piedra); }
+.marquee__group i{ font-style: normal; color: var(--verde); }
 
-    /* TESTIMONIALS */
-    .testimonials-section {
-      background: var(--navy); position: relative; overflow: hidden;
-    }
-    .testimonials-section::before {
-      content: '\201C'; position: absolute; top: -60px; left: 40px;
-      font-family: var(--font-serif); font-size: 30rem;
-      color: rgba(51,102,255,0.04); line-height: 1; pointer-events: none;
-    }
-    .testimonials-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 70px;
-    }
-    .testimonial-card {
-      padding: 56px 44px; background: rgba(6,10,18,0.55);
-      border: 1px solid rgba(51,102,255,0.12);
-      transition: border-color 0.4s, background 0.4s;
-      display: flex; flex-direction: column;
-    }
-    .testimonial-card:hover { border-color: rgba(51,102,255,0.35); background: rgba(6,10,18,0.8); }
-    .testimonial-stars { display: flex; gap: 5px; margin-bottom: 28px; }
-    .star {
-      width: 12px; height: 12px; background: var(--accent);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-    }
-    .testimonial-quote {
-      font-family: var(--font-serif); font-size: 1.18rem;
-      font-style: italic; font-weight: 400;
-      line-height: 1.7; color: rgba(240,240,240,0.92);
-      margin-bottom: 36px; flex: 1;
-    }
-    .testimonial-divider {
-      width: 30px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0.55;
-    }
-    .testimonial-author strong {
-      display: block; font-size: 0.85rem; font-weight: 500;
-      letter-spacing: 0.08em; margin-bottom: 4px; color: var(--white);
-      font-family: var(--font-sans);
-    }
-    .testimonial-author span {
-      font-size: 0.75rem; color: rgba(240,240,240,0.72); letter-spacing: 0.05em;
-      font-family: var(--font-sans); font-style: normal;
-    }
+/* ── MANIFIESTO ── */
+.manifiesto{ position: relative; padding: clamp(9rem,20vh,15rem) var(--pad); }
+.manifiesto p{
+  position: relative; z-index: 2;
+  max-width: 26ch;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3.6vw, 3rem);
+  line-height: 1.3;
+  color: var(--navy);
+}
+.flotante{
+  position: absolute; z-index: 1;
+  width: clamp(7rem, 15vw, 16rem);
+  overflow: hidden;
+  will-change: transform;
+  box-shadow: 0 24px 60px rgba(11,26,58,.22);
+}
+.flotante img{ aspect-ratio: 4/3; }
+.flotante--1{ top: 8%;  right: 8%;  width: clamp(9rem, 18vw, 19rem); }
+.flotante--2{ bottom: 4%; right: 28%; }
+.flotante--3{ top: 44%; left: 60%; width: clamp(6rem, 11vw, 12rem); opacity:.9; }
+@media (max-width: 720px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; } }
 
-    /* HORARIO */
-    .horario-section {
-      background: var(--black);
-      padding: 100px 60px;
-    }
-    .horario-inner {
-      max-width: 800px; margin: 0 auto;
-    }
-    .horario-table {
-      width: 100%; border-collapse: collapse;
-      margin-top: 50px;
-    }
-    .horario-table tr {
-      border-bottom: 1px solid rgba(51,102,255,0.1);
-      transition: background 0.3s;
-    }
-    .horario-table td {
-      padding: 18px 24px;
-      font-size: 0.95rem;
-      color: rgba(240,240,240,0.78);
-    }
-    .horario-table td:first-child {
-      font-weight: 500;
-      color: var(--white);
-      letter-spacing: 0.05em;
-      width: 50%;
-    }
-    .horario-table td:last-child {
-      text-align: right;
-    }
-    .horario-hoy {
-      background: rgba(51,102,255,0.08) !important;
-    }
-    .horario-hoy td:first-child {
-      color: var(--accent) !important;
-      font-weight: 600;
-    }
-    .horario-hoy td:last-child {
-      color: var(--accent);
-    }
-    .horario-cerrado td:last-child {
-      color: var(--text-muted);
-      font-style: italic;
-    }
+/* ── CIFRAS ── */
+.cifras{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
+  gap: 2rem; padding: 0 var(--pad) clamp(7rem,14vh,11rem);
+}
+.cifra{ border-top:1px solid var(--linea); padding-top: 1.3rem; }
+.cifra__valor{
+  font-family: var(--serif); font-size: clamp(2.5rem,5.5vw,4.4rem);
+  font-variant-numeric: tabular-nums; color: var(--navy);
+}
+.cifra__valor i{ font-style:normal; color: var(--verde); font-size:.5em; margin-left:.06em; }
+.cifra p{ color: var(--piedra); font-size:.84rem; margin-top:.35rem; }
 
-    /* MAP SECTION */
-    .map-section { background: var(--black); padding: 0; }
-    .map-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      max-width: none;
-    }
-    .map-info {
-      padding: 100px 80px;
-      display: flex; flex-direction: column; justify-content: center;
-      background: var(--navy);
-    }
-    .map-info-item {
-      display: flex; gap: 24px; align-items: flex-start;
-      padding: 28px 0; border-bottom: 1px solid rgba(51,102,255,0.12);
-    }
-    .map-info-item:first-of-type { padding-top: 40px; }
-    .map-icon {
-      width: 44px; height: 44px; flex-shrink: 0;
-      border: 1px solid rgba(51,102,255,0.35);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent);
-    }
-    .map-info-text h3 {
-      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 6px; font-weight: 500;
-    }
-    .map-info-text p, .map-info-text a {
-      font-size: 0.95rem; color: rgba(240,240,240,0.85);
-      text-decoration: none; transition: color 0.3s; line-height: 1.6;
-    }
-    .map-info-text a:hover { color: var(--white); }
-    .map-frame { min-height: 500px; position: relative; }
-    .map-frame iframe {
-      width: 100%; height: 100%; min-height: 500px;
-      border: none; display: block;
-      filter: invert(90%) hue-rotate(180deg) saturate(0.6);
-    }
+/* ── LEÓN — se dibuja trazo a trazo con el scroll (pieza singular) ── */
+.leon{ height: 340vh; position: relative; }
+.leon__pin{
+  position: relative; height: 100vh; height: 100svh;
+  overflow: hidden; display: grid;
+  background: var(--hielo-2);
+}
+.leon__lienzo{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.leon__hud{
+  position: relative; z-index: 2;
+  display:flex; flex-direction:column; justify-content: space-between;
+  padding: clamp(5rem, 12vh, 7rem) var(--pad) clamp(2.5rem, 6vh, 4rem);
+  pointer-events: none;
+}
+.leon__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; }
+.leon__titulo{ font-size: clamp(1.8rem, 4vw, 3.2rem); }
+.leon__num{
+  font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.leon__num i{ font-style:normal; color: var(--verde); font-size:.45em; }
+.leon__fase{
+  font-size:.74rem; letter-spacing:.28em; text-transform:uppercase; color: var(--texto-2);
+  border-left: 2px solid var(--verde); padding-left: 1rem;
+}
+@media (prefers-reduced-motion: reduce){
+  .leon{ height:auto; } .leon__pin{ height:100svh; }
+}
 
-    /* CTA BANNER */
-    .cta-section {
-      background: var(--accent); padding: 110px 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 60px; flex-wrap: wrap;
-    }
-    .cta-text { flex: 1; min-width: 300px; }
-    .cta-text h2 {
-      font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 4rem);
-      font-weight: 400; color: var(--black); line-height: 1.1;
-    }
-    .cta-text p {
-      font-size: 1rem; color: rgba(6,10,18,0.85); margin-top: 16px; font-weight: 400;
-    }
-    .btn-dark {
-      display: inline-flex; align-items: center; gap: 14px;
-      background: var(--black); color: var(--white);
-      text-decoration: none; padding: 20px 48px;
-      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
-      font-weight: 600; transition: all 0.35s var(--ease-smooth);
-      white-space: nowrap; position: relative; overflow: hidden;
-    }
-    .btn-dark::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--navy-light); transform: translateX(-102%);
-      transition: transform 0.4s var(--ease-out);
-    }
-    .btn-dark:hover::before { transform: translateX(0); }
-    .btn-dark span { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; }
+/* ── SERVICIOS — galería horizontal pineada ── */
+.servicios{ position: relative; }
+.servicios__pin{
+  height: 100vh; height: 100svh; overflow: hidden;
+  display:flex; flex-direction: column; justify-content: center;
+}
+.servicios__cab{
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding: clamp(5rem,10vh,6.5rem) var(--pad) 2rem; gap:2rem;
+}
+.servicios__cab h2{ font-size: clamp(2rem, 4.5vw, 3.6rem); }
+.servicios__indice{
+  font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-variant-numeric: tabular-nums; color: var(--piedra);
+}
+.servicios__indice b{ font-weight: 400; color: var(--navy); }
+.servicios__track{
+  display:flex; gap: clamp(1.5rem,3vw,3rem);
+  padding: 0 var(--pad);
+  align-items: stretch;
+  will-change: transform;
+}
+.panel{ flex: 0 0 auto; width: clamp(19rem, 38vw, 38rem); }
+.panel__marco{ overflow:hidden; position:relative; height: clamp(19rem, 54vh, 32rem); border:1px solid var(--linea); }
+.panel__marco img{ will-change: transform; }
+.panel__marco::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(11,26,58,.06) 0%, rgba(11,26,58,.55) 100%);
+}
+.panel__nivel{
+  position:absolute; left:1.2rem; bottom:.6rem; z-index:1;
+  font-family: var(--serif); font-weight:400;
+  font-size: clamp(3rem, 6vw, 5rem); line-height:1;
+  color:#fff; text-shadow: 0 2px 22px rgba(0,0,0,.4);
+}
+.panel__meta{ display:flex; justify-content:space-between; margin-top: 1rem; align-items:baseline; gap:1rem; }
+.panel__meta h3{ font-size: clamp(1.2rem, 1.9vw, 1.6rem); }
+.panel__meta span{ color: var(--piedra); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; white-space:nowrap; }
+@media (max-width: 820px){
+  .servicios__pin{ height:auto; overflow:visible; }
+  .servicios__track{ flex-direction: column; }
+  .panel{ width: 100%; }
+}
 
-    /* FOOTER */
-    footer {
-      background: var(--black); padding: 90px 60px 50px;
-      border-top: 1px solid rgba(51,102,255,0.12);
-    }
-    .footer-top {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 60px; margin-bottom: 70px;
-    }
-    .footer-brand .nav-logo {
-      font-size: 1.8rem; margin-bottom: 22px; display: inline-flex;
-    }
-    .footer-tagline {
-      font-family: var(--font-serif); font-style: italic;
-      font-size: 1.05rem; color: rgba(240,240,240,0.78);
-      line-height: 1.6; max-width: 280px; margin-bottom: 36px;
-    }
-    .footer-social { display: flex; gap: 14px; flex-wrap: wrap; }
-    .social-link {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(240,240,240,0.25);
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none; color: rgba(240,240,240,0.78);
-      transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
-    }
-    .social-link:hover { background: var(--accent); color: var(--black); border-color: var(--accent); transform: translateY(-2px); }
-    .social-link svg { width: 18px; height: 18px; }
-    .footer-col h3 {
-      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 24px; font-weight: 600;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-col ul a {
-      text-decoration: none; color: rgba(240,240,240,0.78);
-      font-size: 0.88rem; transition: color 0.3s; font-weight: 300;
-    }
-    .footer-col ul a:hover { color: var(--white); }
-    .footer-bottom {
-      border-top: 1px solid rgba(240,240,240,0.1);
-      padding-top: 36px; display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 16px;
-    }
-    .footer-copy {
-      font-size: 0.78rem; color: rgba(240,240,240,0.7); letter-spacing: 0.05em;
-    }
-    .footer-legal { display: flex; gap: 28px; flex-wrap: wrap; }
-    .footer-legal a, .footer-legal button {
-      font-size: 0.75rem; color: rgba(240,240,240,0.78);
-      text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
-      background: none; border: none; padding: 0; cursor: pointer;
-      font-family: inherit;
-    }
-    .footer-legal a:hover, .footer-legal button:hover { color: var(--white); }
+/* ── MÉTODO (banda navy) ── */
+.metodo{
+  background: var(--navy);
+  color:#e8edf7;
+  padding: clamp(6rem,12vh,9rem) var(--pad);
+  text-align:center;
+}
+.metodo p.metodo__kicker{ font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:#8fa4cf; margin-bottom:1.6rem; }
+.metodo blockquote{
+  font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 3.2rem);
+  line-height: 1.3; max-width: 26ch; margin: 0 auto; color:#fff;
+}
+.metodo blockquote em{ color: #7eb8f0; }
+.metodo figcaption{ margin-top: 1.4rem; font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:#8fa4cf; }
 
-    /* ANIMATIONS */
-    @keyframes fadeIn { to { opacity: 1; } }
-    .reveal {
-      opacity: 1; transform: translateY(0);
-      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+/* ── SENSACIONES — estela de imágenes ── */
+.sensaciones{
+  position: relative;
+  min-height: 80svh;
+  display:grid; place-items:center; text-align:center;
+  padding: clamp(7rem,16vh,11rem) var(--pad);
+  overflow: hidden;
+}
+.sensaciones h2{ font-size: clamp(2.4rem, 6.5vw, 5.2rem); max-width: 16ch; position:relative; z-index:2; pointer-events:none; }
+.sensaciones__pista{
+  position:absolute; bottom: clamp(2rem,6vh,4rem); left:50%; transform:translateX(-50%);
+  font-size:.68rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
+  z-index:2; pointer-events:none;
+}
+.estela-img{
+  position:absolute; width: clamp(9rem, 16vw, 15rem); aspect-ratio: 4/3;
+  overflow:hidden; border:1px solid var(--linea);
+  pointer-events:none; will-change: transform, opacity;
+  box-shadow: 0 18px 50px rgba(11,26,58,.25);
+}
+@media (pointer: coarse){ .sensaciones__pista{ display:none; } }
 
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      nav { padding: 24px 36px; }
-      nav.scrolled { padding: 16px 36px; }
-      section { padding: 100px 36px; }
-      .hero-content { padding: 110px 36px 80px; }
-      .hero-scroll { right: 36px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 48px; }
-      .map-inner { grid-template-columns: 1fr; }
-      .map-info { padding: 60px 36px; }
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .horario-section { padding: 80px 36px; }
-    }
-    @media (max-width: 768px) {
-      .hero { min-height: auto; height: auto; align-items: flex-start; }
-      .hamburger { display: flex; }
-      nav { padding: 20px 24px; }
-      nav.scrolled { padding: 14px 24px; }
-      .nav-links { display: none; }
-      section { padding: 80px 24px; }
-      .hero-content { padding: 8px 24px 70px; }
-      .hero-scroll { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 24px; }
-      .about-section { grid-template-columns: 1fr; }
-      .about-visual { min-height: 360px; }
-      .about-content { padding: 60px 24px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .cta-section { padding: 80px 24px; flex-direction: column; align-items: flex-start; }
-      .footer-top { grid-template-columns: 1fr; gap: 40px; }
-      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; align-items: center; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .stats-section { padding: 70px 24px; }
-      .map-info { padding: 60px 24px; }
-      .horario-section { padding: 60px 24px; }
-    }
-    @media (max-width: 480px) {
-      .hero-title { font-size: clamp(2.4rem, 11vw, 3rem); margin-bottom: 22px; }
-      .hero-eyebrow {
-        font-size: 0.68rem; letter-spacing: 0.28em;
-        margin-bottom: 40px; line-height: 1.6;
-        flex-wrap: wrap; gap: 10px;
-      }
-      .hero-eyebrow::before { width: 24px; }
-      .hero-sub { font-size: 0.95rem; margin-bottom: 36px; }
-      .hero-content { padding: 5px 24px 60px; }
-      .section-title { font-size: clamp(1.9rem, 8vw, 2.4rem); }
-      .stat-number { font-size: clamp(2.4rem, 12vw, 3.2rem); }
-      .stat-card { padding: 36px 24px; }
-      .service-card { padding: 40px 28px; }
-      .testimonial-card { padding: 36px 24px; }
-      .cta-section { padding: 60px 20px; }
-      .btn-dark { padding: 16px 32px; }
-      .btn-primary { padding: 16px 32px; }
-      .about-badge {
-        top: 16px; right: 16px;
-        padding: 18px 22px; max-width: 200px;
-      }
-      .about-badge-number { font-size: 2.4rem; }
-      .about-badge-text { font-size: 0.65rem; }
-      .nav-logo-text { font-size: 0.9rem; }
-      .nav-logo img { height: 30px; }
-    }
+/* ── ZOOM INMERSIVO ── */
+.zoom{ height: 300vh; position: relative; }
+.zoom__pin{
+  position: relative; height: 100vh; height: 100svh;
+  overflow: hidden; display: grid; place-items: center;
+  background: var(--navy);
+}
+.zoom__marco{ position:absolute; inset:0; clip-path: inset(38% 32% 38% 32%); will-change: clip-path; }
+.zoom__marco img{ will-change: transform; }
+.zoom__marco::after{ content:""; position:absolute; inset:0; background: rgba(11,26,58,.5); }
+.zoom__texto{
+  position: relative; z-index: 2;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5.5vw, 4.6rem);
+  line-height: 1.15; color: #fff;
+  text-align: center; max-width: 17ch;
+  padding: 0 var(--pad);
+  text-shadow: 0 2px 30px rgba(0,0,0,.5);
+}
+.zoom__texto em{ color: #7eb8f0; }
+@media (prefers-reduced-motion: reduce){
+  .zoom{ height:auto; } .zoom__pin{ height:100svh; }
+  .zoom__marco{ clip-path:none; }
+}
 
-    /* WCAG */
-    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
-    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--accent); color: var(--black); padding: 10px 18px; z-index: 99999; font-size: 1rem; border-radius: 4px; }
+/* ── TIRAS ── */
+.tiras{ overflow:hidden; padding: clamp(5rem,10vh,8rem) 0 clamp(3rem,6vh,5rem); display:grid; gap:.4rem; }
+.tira{
+  white-space: nowrap; will-change: transform;
+  font-family: var(--serif); font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1.05; color: transparent;
+  -webkit-text-stroke: 1px rgba(11,26,58,.3);
+}
+.tira em{ color: var(--verde); -webkit-text-stroke: 0; }
+.tira--llena{ color: rgba(11,26,58,.14); -webkit-text-stroke: 0; }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-      .marquee-track { animation: none !important; }
-    }
-  </style>
+/* ── TESTIMONIOS ── */
+.testimonios{ padding: 0 var(--pad) clamp(7rem,14vh,11rem); max-width: 72rem; }
+.testimonios__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.2rem; }
+.testimonios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.google{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-size:.8rem; letter-spacing:.08em; color: var(--piedra);
+  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+}
+.google i{ font-style:normal; color: var(--verde); letter-spacing:.16em; }
+.cita{ border-left: 1px solid rgba(51,102,255,.5); padding: .4rem 0 .4rem 1.8rem; margin-bottom: 2.6rem; }
+.cita blockquote{ font-family: var(--serif); font-size: clamp(1.2rem, 2.3vw, 1.75rem); line-height: 1.45; color: var(--texto-2); }
+.cita figcaption{ margin-top: .8rem; color: var(--piedra); font-size:.78rem; letter-spacing:.14em; text-transform: uppercase; }
+
+/* ── CONTACTO ── */
+.contacto{
+  min-height: 92svh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; gap: 2.4rem; padding: 6rem var(--pad) 4rem;
+  border-top: 1px solid var(--linea);
+}
+.contacto__estado{
+  font-size:.7rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
+  display:flex; align-items:center; gap:.7rem;
+}
+.contacto__estado::before{
+  content:""; width:.55rem; height:.55rem; border-radius:50%;
+  background: var(--verde); box-shadow: 0 0 12px rgba(0,178,133,.8);
+  animation: latido 2.6s cubic-bezier(.42,0,.58,1) infinite;
+}
+@keyframes latido{ 50%{ opacity:.35; } }
+.contacto h2{ font-size: clamp(2.5rem, 7.5vw, 6.2rem); max-width: 15ch; }
+
+.magnetico{
+  display:inline-flex; align-items:center; gap:.9rem;
+  font: 500 .88rem/1 var(--sans); letter-spacing:.14em; text-transform:uppercase;
+  color: #fff;
+  border:1px solid var(--verde); border-radius: 999px;
+  padding: 1.3rem 2.5rem;
+  background: var(--verde); cursor: pointer;
+  transition: background-color .45s ease, border-color .45s ease;
+}
+.magnetico:hover{ background: var(--navy); border-color: var(--navy); }
+.magnetico .magnetico__label{ display:inline-block; }
+.contacto__secundario{ font-size:.85rem; color: var(--piedra); }
+.contacto__secundario a{ border-bottom:1px solid var(--linea); padding-bottom:.1em; }
+.contacto__secundario a:hover{ color: var(--verde); border-color: var(--verde); }
+
+.contacto__datos{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr));
+  gap: 2rem; width: min(70rem, 100%); margin-top: 2.2rem;
+  text-align:left; font-size:.92rem;
+}
+.dato{ border-top:1px solid var(--linea); padding-top: 1.1rem; }
+.dato h4{ font: 500 .68rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
+.dato a:hover{ color: var(--verde); }
+.horario{ display:grid; gap:.25rem; }
+.horario > div{ display:flex; justify-content:space-between; gap:1rem; color: var(--piedra); }
+.horario .horario-hoy{ color: var(--verde); font-weight: 400; }
+
+.mapa{ width: 100%; margin-top: 2.5rem; border: 1px solid var(--linea); }
+.mapa iframe{ display:block; width:100%; height: 300px; border:0; }
+
+.pie{
+  display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap;
+  padding: 2rem var(--pad) 2.6rem;
+  color: var(--piedra); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+  border-top: 1px solid var(--linea);
+}
+.pie nav{ display:flex; gap:1.4rem; flex-wrap:wrap; }
+.pie a:hover, .pie button:hover{ color: var(--verde); }
+.pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
+
+[data-reveal]{ visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
+  .preloader{ display:none; }
+  .progreso{ display:none; }
+}
+</style>
 </head>
 <body>
 
-<!-- Custom Cursor -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- Fluid Background -->
-<canvas id="fluid-canvas"></canvas>
-
-<!-- Preloader -->
-<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
-  <div class="loader-logo">Las Cortes<span>.</span></div>
-  <div class="loader-bar"></div>
+<!-- ════════ PRELOADER ════════ -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span><b>Las Cortes</b> · La Laguna</span></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
 </div>
 
-<!-- Navbar -->
-<nav id="navbar" aria-label="Navegaci&oacute;n principal">
-  <a href="#main-content" class="nav-logo">
-    <img src="https://academialascortes.com/wp-content/uploads/2021/11/Leon-fondo-blanco.png" alt="Logo Academia Las Cortes" width="38" height="38">
-    <div class="nav-logo-text">
-      Las Cortes
-      <small>Academia de Oposiciones</small>
-    </div>
+<!-- ════════ CAPAS DECORATIVAS ════════ -->
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
+
+<header class="cabecera">
+  <a class="cabecera__logo" href="#">
+    <img src="https://academialascortes.com/wp-content/uploads/2021/11/Leon-fondo-blanco.png" alt="León, logo de Academia Las Cortes" width="32" height="32">
+    Academia <b>Las Cortes</b>
   </a>
-  <ul class="nav-links">
-    <li><a href="#m&eacute;todo">M&eacute;todo</a></li>
-    <li><a href="#servicios">Oposiciones</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#contacto" class="nav-cta">Inf&oacute;rmate</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menu de navegacion">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <nav class="cabecera__nav" aria-label="principal">
+    <a class="roll" href="#metodo"       data-text="Método"><span>Método</span></a>
+    <a class="roll" href="#oposiciones"  data-text="Oposiciones"><span>Oposiciones</span></a>
+    <a class="roll" href="#opiniones"    data-text="Opiniones"><span>Opiniones</span></a>
+    <a class="roll" href="#contacto"     data-text="Contacto"><span>Contacto</span></a>
+  </nav>
+</header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegaci&oacute;n principal">
-  <a href="#m&eacute;todo" onclick="closeMobile()">M&eacute;todo</a>
-  <a href="#servicios" onclick="closeMobile()">Oposiciones</a>
-  <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
-  <a href="#contacto" onclick="closeMobile()">Inf&oacute;rmate</a>
-</div>
-
-<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
-<main id="main-content">
-
-<!-- HERO -->
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-bg" id="heroBg" style="background-image: url('https://academialascortes.com/wp-content/uploads/2026/01/puertas_abiertas.jpeg');" role="img" aria-label="Aula de la academia con alumnos en clase presencial"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-overlay-bottom"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">La Laguna, Tenerife &middot; Presencial y Online</p>
-    <h1 class="hero-title" id="hero-title">Tu plaza fija<br>empieza <em>aqu&iacute;.</em></h1>
-    <p class="hero-sub">Academia Las Cortes prepara opositores de Administrativo C1 y Auxiliar C2 con m&aacute;s del 80% de aprobados en las &uacute;ltimas convocatorias AGE en Tenerife. M&aacute;s de 400 rese&ntilde;as con un 4,8 sobre 5 en Google lo avalan.</p>
-    <div class="hero-actions">
-      <a href="tel:+34633324432" class="btn-primary" aria-label="Llamar a Academia Las Cortes al 633 32 44 32">
-        <span>Llamar al 633 32 44 32
-          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-      <a href="#servicios" class="btn-ghost">
-        <span>Ver oposiciones</span>
-        <span class="btn-ghost-arrow" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>
-        </span>
-      </a>
-    </div>
-  </div>
-  <div class="hero-scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-section" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>Administrativo C1</span>
-    <span class="marquee-item"><span class="dot"></span>Auxiliar Administrativo C2</span>
-    <span class="marquee-item"><span class="dot"></span>AGE</span>
-    <span class="marquee-item"><span class="dot"></span>Comunidades Aut&oacute;nomas</span>
-    <span class="marquee-item"><span class="dot"></span>Entidades Locales</span>
-    <span class="marquee-item"><span class="dot"></span>Cabildos Canarios</span>
-    <span class="marquee-item"><span class="dot"></span>Tarifa Plana</span>
-    <span class="marquee-item"><span class="dot"></span>60+ horas semanales</span>
-    <span class="marquee-item"><span class="dot"></span>Administrativo C1</span>
-    <span class="marquee-item"><span class="dot"></span>Auxiliar Administrativo C2</span>
-    <span class="marquee-item"><span class="dot"></span>AGE</span>
-    <span class="marquee-item"><span class="dot"></span>Comunidades Aut&oacute;nomas</span>
-    <span class="marquee-item"><span class="dot"></span>Entidades Locales</span>
-    <span class="marquee-item"><span class="dot"></span>Cabildos Canarios</span>
-    <span class="marquee-item"><span class="dot"></span>Tarifa Plana</span>
-    <span class="marquee-item"><span class="dot"></span>60+ horas semanales</span>
-  </div>
-</div>
-
-<!-- STATS -->
-<div class="stats-section" role="region" aria-label="Cifras de la academia">
-  <div class="stats-grid">
-    <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="48" data-decimal="true">0,0</span></div>
-      <div class="stat-label">Sobre 5 en Google Maps</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="408">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Rese&ntilde;as verificadas</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="80">0</span><span class="stat-suffix">%+</span></div>
-      <div class="stat-label">Aprobados en AGE</div>
-    </div>
-    <div class="stat-card reveal">
-      <div class="stat-number"><span class="count" data-target="60">0</span><span class="stat-suffix">+</span></div>
-      <div class="stat-label">Horas semanales de clase</div>
-    </div>
-  </div>
-</div>
-
-<!-- SERVICIOS (Oposiciones) -->
-<section class="projects-section" id="servicios" aria-labelledby="servicios-title">
-  <div class="projects-header">
-    <div>
-      <p class="section-label reveal">Oposiciones que preparamos</p>
-      <h2 class="section-title reveal" id="servicios-title">Especialistas en C1 y C2<br>para <em>todas las administraciones.</em></h2>
-    </div>
-    <a href="#contacto" class="view-all reveal" aria-label="Contactar para m&aacute;s informaci&oacute;n">
-      Solicitar informaci&oacute;n
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+<main>
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="hero__contenido">
+      <p class="hero__kicker" data-hero-reveal>Academia de oposiciones · La Laguna, Tenerife · Presencial y online</p>
+      <h1 class="hero__titulo" data-hero-reveal>
+        Tu plaza fija <em>empieza aquí</em>.
+      </h1>
+      <div class="hero__pie">
+        <p class="hero__sub" data-hero-reveal>
+          Preparación integral de oposiciones Administrativo C1 y Auxiliar C2 para
+          AGE, Comunidades Autónomas, Cabildos, Ayuntamientos y Universidades.
+          Presencial en La Laguna y online en toda España.
+        </p>
+        <p class="hero__badge" data-hero-reveal><b>+80%</b> de aprobados en AGE</p>
+        <p class="hero__scroll" data-hero-reveal>Consigue tu plaza</p>
       </div>
-      <div class="service-number" aria-hidden="true">01</div>
-      <h3>Administrativo C1</h3>
-      <p>Preparaci&oacute;n integral para las convocatorias de Administrativo del Estado, Comunidades Aut&oacute;nomas, Cabildos y Ayuntamientos. Temario actualizado, simulacros semanales y normativa al d&iacute;a.</p>
     </div>
-    <div class="service-card reveal">
-      <div class="service-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      </div>
-      <div class="service-number" aria-hidden="true">02</div>
-      <h3>Auxiliar C2</h3>
-      <p>El grupo con mayor volumen de plazas. Formacion en todas las materias del programa: derecho administrativo, informatica, psicotecnicos y mecanografia. Resultados contrastados convocatoria tras convocatoria.</p>
+    <div class="hero__media" data-hero-media>
+      <img src="https://academialascortes.com/wp-content/uploads/2026/01/puertas_abiertas.jpeg" alt="Academia Las Cortes, jornada de puertas abiertas en La Laguna" loading="eager" data-hero-parallax>
     </div>
-    <div class="service-card reveal">
-      <div class="service-icon" aria-hidden="true">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+  </section>
+
+  <!-- ════════ MARQUEE ════════ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Administrativo C1 <i>·</i></span><span>Auxiliar C2 <i>·</i></span>
+        <span>AGE <i>·</i></span><span>Seguridad Social <i>·</i></span>
+        <span>+80% aprobados <i>·</i></span><span>La Laguna <i>·</i></span><span>Online <i>·</i></span>
+        <span>Tarifa plana <i>·</i></span><span>CorTest <i>·</i></span>
       </div>
-      <div class="service-number" aria-hidden="true">03</div>
-      <h3>Online y presencial</h3>
-      <p>Clases en directo y en diferido a trav&eacute;s de tu campus virtual. Tutor&iacute;as semanales por videoconferencia, plataforma Las CorTest para tests online y foro de dudas con profesores. T&uacute; decides c&oacute;mo estudiar.</p>
+      <div class="marquee__group" aria-hidden="true">
+        <span>Administrativo C1 <i>·</i></span><span>Auxiliar C2 <i>·</i></span>
+        <span>AGE <i>·</i></span><span>Seguridad Social <i>·</i></span>
+        <span>+80% aprobados <i>·</i></span><span>La Laguna <i>·</i></span><span>Online <i>·</i></span>
+        <span>Tarifa plana <i>·</i></span><span>CorTest <i>·</i></span>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- VISUAL GALLERY STRIP -->
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--black);" aria-hidden="true">
-  <div style="overflow:hidden;aspect-ratio:16/7;"><img src="https://academialascortes.com/wp-content/uploads/2026/01/preparate.jpeg" alt="Convocatoria de oposiciones: preparate con nosotros para Administrativo C1 y Auxiliar C2" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease-out);" onmouseenter="this.style.transform='scale(1.05)'" onmouseleave="this.style.transform='scale(1)'"></div>
-  <div style="overflow:hidden;aspect-ratio:16/7;"><img src="https://academialascortes.com/wp-content/uploads/2026/01/aprobado_age.jpeg" alt="Que hacer tras aprobar en AGE: informacion para nuevos funcionarios" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.8s var(--ease-out);" onmouseenter="this.style.transform='scale(1.05)'" onmouseleave="this.style.transform='scale(1)'"></div>
-</div>
-
-<!-- ABOUT / METODO -->
-<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
-  <div class="about-visual">
-    <img src="https://academialascortes.com/wp-content/uploads/2026/01/ratios.jpeg" alt="Ratios de aprobados de Academia Las Cortes en las ultimas convocatorias" loading="lazy">
-    <div class="about-badge">
-      <div class="about-badge-number">4,8</div>
-      <div class="about-badge-text">Valoracion media en Google Maps</div>
-    </div>
-  </div>
-  <div class="about-content">
-    <p class="section-label reveal">Nuestro m&eacute;todo</p>
-    <h2 class="section-title reveal" id="nosotros-title">
-      Tarifa Plana:<br>acceso total <em>sin limites.</em>
-    </h2>
-    <div class="about-divider reveal" aria-hidden="true"></div>
-    <p class="about-body reveal">
-      En Academia Las Cortes trabajamos con un sistema de <strong>Tarifa Plana</strong>: acceso ilimitado a m&aacute;s de 60 horas semanales de clases, tanto presenciales en La Laguna como online en directo y en diferido. Preparaci&oacute;n completa en normativa, inform&aacute;tica, psicot&eacute;cnicos y mecanograf&iacute;a. <strong>V&iacute;ctor Cabeza</strong> dirige el m&eacute;todo y la preparaci&oacute;n de contenidos, con un equipo de profesionales volcado en que consigas tu plaza.
+  <!-- ════════ MANIFIESTO ════════ -->
+  <section class="manifiesto" id="metodo">
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="https://academialascortes.com/wp-content/uploads/2026/01/ratios.jpeg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="https://academialascortes.com/wp-content/uploads/2026/01/preparate.jpeg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80" alt="" loading="lazy"></figure>
+    <p data-manifiesto>
+      Más de 60 horas semanales de clase, temario actualizado al día y una plataforma
+      de test basada en exámenes reales. Tarifa plana, sin límites: presencial o desde casa,
+      en directo o en diferido. Preparamos opositores que aprueban.
     </p>
-    <div class="about-values reveal" id="m&eacute;todo">
-      <div class="about-value">
-        <div class="value-num">01</div>
-        <div class="value-text">
-          <h3>Simulacros reales</h3>
-          <p>Cada semana realizamos simulacros con la estructura y el tiempo del examen oficial. Asi llegas sin sorpresas.</p>
+  </section>
+
+  <!-- ════════ CIFRAS (reales de academialascortes.com y Google) ════════ -->
+  <section class="cifras">
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="80">0</span><i>%+</i></div>
+      <p>de aprobados en convocatorias AGE</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="60">0</span><i>h+</i></div>
+      <p>horas de clase cada semana</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="4">0</span><i>,8</i></div>
+      <p>valoración en Google (más de 400 reseñas)</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="70">0</span><i>%+</i></div>
+      <p>de aprobados en Cabildos y Ayuntamientos</p>
+    </div>
+  </section>
+
+  <!-- ════════ LEÓN — se dibuja trazo a trazo con el scroll ════════ -->
+  <section class="leon" aria-label="El león de Las Cortes se dibuja con el scroll">
+    <div class="leon__pin">
+      <canvas class="leon__lienzo" aria-hidden="true"></canvas>
+      <div class="leon__hud">
+        <div class="leon__cab">
+          <h2 class="leon__titulo">Tu oposición, <em>paso a paso</em></h2>
+          <div class="leon__num"><span data-leon-num>0</span><i>%</i></div>
         </div>
-      </div>
-      <div class="about-value">
-        <div class="value-num">02</div>
-        <div class="value-text">
-          <h3>Temario actualizado</h3>
-          <p>Nuestro equipo revisa cada cambio legislativo y lo integra en los materiales. Nunca estudias normativa obsoleta.</p>
-        </div>
-      </div>
-      <div class="about-value">
-        <div class="value-num">03</div>
-        <div class="value-text">
-          <h3>Apoyo integral</h3>
-          <p>Tutorias, gestion emocional, foro de dudas con respuesta de profesores y clases de relajacion para afrontar la oposicion con equilibrio.</p>
-        </div>
+        <p class="leon__fase" data-leon-fase>Temario — Los cimientos</p>
       </div>
     </div>
+  </section>
+
+  <!-- ════════ OPOSICIONES — galería horizontal ════════ -->
+  <section class="servicios" id="oposiciones" aria-label="Tipos de oposiciones">
+    <div class="servicios__pin">
+      <div class="servicios__cab">
+        <h2>Una preparación para cada <em>convocatoria</em></h2>
+        <p class="servicios__indice"><b data-servicios-num>01</b> / 05</p>
+      </div>
+      <div class="servicios__track">
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="https://academialascortes.com/wp-content/uploads/2026/01/aprobado_age.jpeg" alt="Preparación oposiciones AGE" loading="lazy">
+            <span class="panel__nivel">AGE</span>
+          </div>
+          <div class="panel__meta"><h3>Administración General del Estado</h3><span>C1 y C2 · Presencial · Online</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="https://academialascortes.com/wp-content/uploads/2026/01/segsocial.jpeg" alt="Oposiciones Seguridad Social" loading="lazy">
+            <span class="panel__nivel">SS</span>
+          </div>
+          <div class="panel__meta"><h3>Seguridad Social</h3><span>C1 y C2 · Online · Material propio</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="https://academialascortes.com/wp-content/uploads/2026/01/carrito_compra.jpeg" alt="Oposiciones CCAA y entes locales" loading="lazy">
+            <span class="panel__nivel">CCAA</span>
+          </div>
+          <div class="panel__meta"><h3>Comunidades Autónomas</h3><span>C1 y C2 · Canarias y nacional</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="https://academialascortes.com/wp-content/uploads/2026/01/banner_redondo-1024x210.png" alt="Oposiciones Ayuntamientos y Cabildos" loading="lazy">
+            <span class="panel__nivel">Local</span>
+          </div>
+          <div class="panel__meta"><h3>Cabildos y Ayuntamientos</h3><span>C1 y C2 · Temario específico</span></div>
+        </article>
+        <article class="panel">
+          <div class="panel__marco" data-img-reveal>
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" alt="Estudiante preparando oposiciones en la Universidad de La Laguna" loading="lazy">
+            <span class="panel__nivel">ULL</span>
+          </div>
+          <div class="panel__meta"><h3>Universidades</h3><span>ULL · Servicio Canario de Salud</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ MÉTODO (banda navy) ════════ -->
+  <section class="metodo">
+    <p class="metodo__kicker" data-reveal>Nuestro método</p>
+    <blockquote data-reveal data-split="lines">Temario siempre actualizado, test reales con CorTest, tutorías semanales
+    y foros de dudas con el equipo. Sin límite de horas: la tarifa plana que
+    necesitas para <em>conseguir tu plaza</em>.</blockquote>
+    <figcaption data-reveal>Clases en directo y en diferido · Lunes a viernes · Presencial y online</figcaption>
+  </section>
+
+  <!-- ════════ SENSACIONES — estela de imágenes ════════ -->
+  <section class="sensaciones" aria-label="Así se vive Las Cortes">
+    <h2 data-reveal data-split="lines">Así se prepara una plaza en <em>Las Cortes</em>.</h2>
+    <p class="sensaciones__pista">Mueve el ratón</p>
+  </section>
+
+  <!-- ════════ ZOOM INMERSIVO ════════ -->
+  <section class="zoom" aria-label="Tu plaza te espera">
+    <div class="zoom__pin">
+      <div class="zoom__marco"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80" alt="Estudiantes celebrando el aprobado de sus oposiciones" loading="lazy"></div>
+      <p class="zoom__texto" data-zoom-texto>La próxima plaza lleva <em>tu nombre</em>.</p>
+    </div>
+  </section>
+
+  <!-- ════════ TIRAS ════════ -->
+  <div class="tiras" aria-hidden="true">
+    <p class="tira" data-tira="-1">C1 <em>·</em> C2 <em>·</em> AGE <em>·</em> Cabildos <em>·</em> C1 <em>·</em> C2 <em>·</em> AGE <em>·</em> Cabildos <em>·</em> C1 <em>·</em> C2 <em>·</em> AGE <em>·</em> Cabildos</p>
+    <p class="tira tira--llena" data-tira="1">Aprueba <em>·</em> Prepárate <em>·</em> Tu plaza <em>·</em> Consíguelo <em>·</em> Aprueba <em>·</em> Prepárate <em>·</em> Tu plaza <em>·</em> Consíguelo</p>
   </div>
-</div>
 
-<!-- TESTIMONIOS -->
-<section class="testimonials-section" aria-labelledby="testimonios-title">
-  <div class="testimonials-inner">
-    <p class="section-label reveal">Lo que dicen nuestros alumnos</p>
-    <h2 class="section-title reveal" id="testimonios-title">
-      4,8 sobre 5 con 408 rese&ntilde;as<br>verificadas en <em>Google Maps.</em>
-    </h2>
-    <div class="testimonials-grid">
-
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars" role="img" aria-label="Valoracion de 5 estrellas sobre 5">
-          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
-        </div>
-        <p class="testimonial-quote">"Academia s&uacute;per recomendable. Con ellos consegu&iacute; mi plaza como funcionaria C1. Los profesores son fant&aacute;sticos y el m&eacute;todo muy estudiado que funciona."</p>
-        <div class="testimonial-divider" aria-hidden="true"></div>
-        <div class="testimonial-author">
-          <strong>Maria J.</strong>
-          <span>Rese&ntilde;a en Google Maps</span>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars" role="img" aria-label="Valoracion de 5 estrellas sobre 5">
-          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
-        </div>
-        <p class="testimonial-quote">"Llevo ya unos meses en la academia y la verdad que las clases, los profesores y su personal es de 10. Los recursos que ofrecen son infinitos."</p>
-        <div class="testimonial-divider" aria-hidden="true"></div>
-        <div class="testimonial-author">
-          <strong>Julio F.</strong>
-          <span>Rese&ntilde;a en Google Maps</span>
-        </div>
-      </div>
-
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars" role="img" aria-label="Valoracion de 5 estrellas sobre 5">
-          <span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span><span class="star" aria-hidden="true"></span>
-        </div>
-        <p class="testimonial-quote">"Es una academia en constante evoluci&oacute;n, sabiendo adaptarse a cada adversidad. Sin duda, la mejor academia de oposiciones; los n&uacute;meros de aprobados la avalan."</p>
-        <div class="testimonial-divider" aria-hidden="true"></div>
-        <div class="testimonial-author">
-          <strong>Yurena B.</strong>
-          <span>Rese&ntilde;a en Google Maps</span>
-        </div>
-      </div>
-
+  <!-- ════════ TESTIMONIOS (reseñas reales de Google / opositaya) ════════ -->
+  <section class="testimonios" id="opiniones">
+    <div class="testimonios__cab">
+      <h2 data-reveal data-split="lines">Opositores que ya lo <em>han conseguido</em>.</h2>
+      <p class="google" data-reveal><i><svg width="80" height="14" viewBox="0 0 80 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle"><path d="M7 1l1.76 3.57L13 5.25l-3 2.92.71 4.13L7 10.38 3.29 12.3 4 8.17l-3-2.92 4.24-.68z" fill="#00b285"/><path d="M23 1l1.76 3.57L29 5.25l-3 2.92.71 4.13L23 10.38l-3.71 1.92.71-4.13-3-2.92 4.24-.68z" fill="#00b285"/><path d="M39 1l1.76 3.57L45 5.25l-3 2.92.71 4.13L39 10.38l-3.71 1.92.71-4.13-3-2.92 4.24-.68z" fill="#00b285"/><path d="M55 1l1.76 3.57L61 5.25l-3 2.92.71 4.13L55 10.38l-3.71 1.92.71-4.13-3-2.92 4.24-.68z" fill="#00b285"/><path d="M71 1l1.76 3.57L77 5.25l-3 2.92.71 4.13L71 10.38l-3.71 1.92.71-4.13-3-2.92 4.24-.68z" fill="#00b285"/></svg></i> 4,8 en Google · Más de 400 reseñas</p>
     </div>
-  </div>
-</section>
+    <figure class="cita">
+      <blockquote>Muy buena academia, grandes profesionales y mejores personas. Un precio asequible y con todo el temario disponible.</blockquote>
+      <figcaption>Reseña verificada en Google</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>La mejor academia sin duda. Dedicación completa y motivación por parte de todo el equipo. Totalmente recomendable para quién busque prepararse en serio.</blockquote>
+      <figcaption>Yasira S. — Google</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>Excelentes profesionales, formatos de clase flexibles y apoyo constante durante todo el proceso. Aprobé mi C1 gracias a su método.</blockquote>
+      <figcaption>Elena S. — Google</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>Con más de 50 años y circunstancias difíciles, conseguí el Administrativo C1. Los recursos y el acompañamiento de la academia fueron clave.</blockquote>
+      <figcaption>Mon H. — Google</figcaption>
+    </figure>
+  </section>
 
-<!-- HORARIO -->
-<div class="horario-section" id="horario" role="region" aria-labelledby="horario-title">
-  <div class="horario-inner">
-    <p class="section-label reveal">Horario de atenci&oacute;n</p>
-    <h2 class="section-title reveal" id="horario-title">Cu&aacute;ndo <em>encontrarnos.</em></h2>
-    <table class="horario-table reveal" aria-label="Horario semanal de la academia">
-      <tbody>
-        <tr data-day="1"><td>Lunes</td><td>8:00 - 20:00</td></tr>
-        <tr data-day="2"><td>Martes</td><td>8:00 - 20:00</td></tr>
-        <tr data-day="3"><td>Mi&eacute;rcoles</td><td>8:00 - 20:00</td></tr>
-        <tr data-day="4"><td>Jueves</td><td>8:00 - 20:00</td></tr>
-        <tr data-day="5"><td>Viernes</td><td>8:00 - 20:00</td></tr>
-        <tr data-day="6" class="horario-cerrado"><td>S&aacute;bado</td><td>Cerrado</td></tr>
-        <tr data-day="0" class="horario-cerrado"><td>Domingo</td><td>Cerrado</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- CONTACTO + MAPA -->
-<div class="map-section" id="contacto">
-  <div class="map-inner">
-    <div class="map-info">
-      <p class="section-label reveal">D&oacute;nde estamos</p>
-      <h2 class="section-title reveal" style="margin-bottom: 0;">
-        En La Laguna,<br><em>Calle el Charcon, 1.</em>
-      </h2>
-      <div class="map-info-item">
-        <div class="map-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <div class="map-info-text">
-          <h3>Direcci&oacute;n</h3>
-          <p>C. el Charcon, 1, Local<br>38320 San Cristobal de La Laguna<br>Santa Cruz de Tenerife</p>
+  <!-- ════════ CONTACTO ════════ -->
+  <section class="contacto" id="contacto">
+    <p class="contacto__estado" data-reveal>Matrícula abierta · Plazas limitadas</p>
+    <h2 data-reveal data-split="lines">Empieza hoy. Aprueba <em>tu oposición</em>.</h2>
+    <a class="magnetico" href="https://wa.me/34633324432" target="_blank" rel="noopener" data-magnetico>
+      <span class="magnetico__label">Información por WhatsApp</span>
+    </a>
+    <p class="contacto__secundario" data-reveal>o llama al <a href="tel:+34633324432">633 32 44 32</a> · <a href="mailto:info@academialascortes.com">info@academialascortes.com</a></p>
+    <div class="contacto__datos">
+      <div class="dato" data-reveal>
+        <h4>Dirección</h4>
+        <p>C. el Charcón, 1, Local<br>38320 San Cristóbal de La Laguna<br>Santa Cruz de Tenerife</p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Teléfonos</h4>
+        <p><a href="tel:+34633324432">633 32 44 32</a><br>
+        <a href="tel:+34822110385">822 11 03 85</a><br>
+        <a href="mailto:info@academialascortes.com">info@academialascortes.com</a></p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Horario</h4>
+        <div class="horario">
+          <div data-dias="1,2,3,4,5"><span>Lun — Vie</span><span>8:00 — 20:00</span></div>
+          <div data-dias="6"><span>Sábado</span><span>Cerrado</span></div>
+          <div data-dias="0"><span>Domingo</span><span>Cerrado</span></div>
         </div>
       </div>
-      <div class="map-info-item">
-        <div class="map-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-          </svg>
-        </div>
-        <div class="map-info-text">
-          <h3>Tel&eacute;fono</h3>
-          <a href="tel:+34633324432">633 32 44 32</a><br>
-          <a href="tel:+34822110385">822 11 03 85</a>
-        </div>
-      </div>
-      <div class="map-info-item">
-        <div class="map-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </div>
-        <div class="map-info-text">
-          <h3>Email</h3>
-          <a href="mailto:info@academialascortes.com">info@academialascortes.com</a>
-        </div>
-      </div>
-      <div style="margin-top: 40px;">
-        <a href="tel:+34633324432" class="btn-primary" style="display: inline-flex;">
-          <span>Llamar al 633 32 44 32
-            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </span>
-        </a>
+      <div class="dato" data-reveal>
+        <h4>Online</h4>
+        <p>Clases en directo y en diferido<br>Plataforma CorTest 24/7<br><a href="https://academialascortes.com" target="_blank" rel="noopener">academialascortes.com</a></p>
       </div>
     </div>
-    <div class="map-frame">
-      <iframe
-        title="Mapa de ubicaci&oacute;n de Academia Las Cortes en La Laguna, Tenerife"
-        src="https://www.google.com/maps?q=Academia+Las+Cortes+La+Laguna+Tenerife&output=embed"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+    <div class="mapa" data-reveal>
+      <iframe src="https://maps.google.com/maps?q=Academia+Las+Cortes+La+Laguna+Tenerife&output=embed" allowfullscreen loading="lazy" title="Ubicación de Academia Las Cortes en Google Maps"></iframe>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- CTA -->
-<div class="cta-section" role="region" aria-label="Llamada a la accion">
-  <div class="cta-text">
-    <h2>Tu plaza te esta esperando.<br>Da el primer paso.</h2>
-    <p>Ll&aacute;manos al 633 32 44 32 o escr&iacute;benos a info@academialascortes.com. Te contamos todo sin compromiso.</p>
-  </div>
-  <a href="tel:+34633324432" class="btn-dark">
-    <span>Llamar ahora
-      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
-    </span>
-  </a>
-</div>
-
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="#main-content" class="nav-logo" style="margin-bottom: 22px; display: inline-flex;">
-        <div class="nav-logo-text">
-          Las Cortes
-          <small>Academia de Oposiciones</small>
-        </div>
-      </a>
-      <p class="footer-tagline">"M&eacute;todo, preparaci&oacute;n y contenidos para que consigas tu plaza fija."</p>
-      <div class="footer-social">
-        <a href="https://wa.me/34633324432" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp a Academia Las Cortes">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04m0 18.1c-1.6 0-3.17-.43-4.55-1.25l-.32-.2-3.37.88.9-3.3-.22-.34A8.05 8.05 0 0 1 3.88 12C3.88 7.52 7.52 3.88 12 3.88S20.12 7.52 20.12 12 16.48 20.14 12 20.14"/></svg>
-        </a>
-        <a href="tel:+34633324432" class="social-link" aria-label="Llamar a Academia Las Cortes al 633 32 44 32">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 0 0-1.02.24l-2.2 2.2a15.07 15.07 0 0 1-6.58-6.6l2.2-2.2a1 1 0 0 0 .25-1.02A11.4 11.4 0 0 1 8.5 4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5a1 1 0 0 0-1-1"/></svg>
-        </a>
-        <a href="mailto:info@academialascortes.com" class="social-link" aria-label="Enviar correo a info@academialascortes.com">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 4-8 5-8-5V6l8 5 8-5z"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h3>Oposiciones</h3>
-      <ul>
-        <li><a href="#servicios">Administrativo C1</a></li>
-        <li><a href="#servicios">Auxiliar C2</a></li>
-        <li><a href="#servicios">AGE</a></li>
-        <li><a href="#servicios">Entidades Locales</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h3>La academia</h3>
-      <ul>
-        <li><a href="#nosotros">Nuestro m&eacute;todo</a></li>
-        <li><a href="#horario">Horario</a></li>
-        <li><a href="#contacto">C&oacute;mo llegar</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h3>Contacto</h3>
-      <ul>
-        <li><a href="tel:+34633324432">633 32 44 32</a></li>
-        <li><a href="tel:+34822110385">822 11 03 85</a></li>
-        <li><a href="mailto:info@academialascortes.com">info@academialascortes.com</a></li>
-        <li><a href="#contacto">La Laguna, Tenerife</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">&copy; 2026 Academia Las Cortes. Todos los derechos reservados.</p>
-    <div class="footer-legal">
+  <footer class="pie">
+    <span>Academia Las Cortes · La Laguna</span>
+    <nav>
       <a href="legal/aviso-legal.html">Aviso legal</a>
       <a href="legal/politica-privacidad.html">Privacidad</a>
       <a href="legal/politica-cookies.html">Cookies</a>
       <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
-    </div>
-  </div>
-</footer>
+    </nav>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
+  </footer>
+</main>
+
+<!-- ════════ DEPENDENCIAS ════════ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
 
 <script>
-  // ═══════════════════════════════════════════════════════════
-  // LOADER
-  // ═══════════════════════════════════════════════════════════
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var loader = document.getElementById('loader');
-      var heroBg = document.getElementById('heroBg');
-      if (loader) loader.classList.add('hidden');
-      if (heroBg) heroBg.classList.add('loaded');
-    }, 2000);
-  });
+'use strict';
 
-  // ═══════════════════════════════════════════════════════════
-  // NAVBAR SCROLL
-  // ═══════════════════════════════════════════════════════════
-  var navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', function() {
-    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
 
-  // ═══════════════════════════════════════════════════════════
-  // HAMBURGER MENU
-  // ═══════════════════════════════════════════════════════════
-  var hamburger = document.getElementById('hamburger');
-  var mobileMenu = document.getElementById('mobileMenu');
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', function() {
-      var isOpen = hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', isOpen);
-      if (isOpen) { var firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
+var REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+var DPR          = Math.min(devicePixelRatio || 1, 2);
+
+/* ── 1) LENIS + SCROLLTRIGGER ── */
+var lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  window.lenis = lenis;
+}
+
+/* ── 2) ESTELA FLUIDA — receta aprobada, paleta azul Las Cortes ── */
+if (FINE_POINTER && !REDUCE) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then(function(mod){
+    var cont = document.getElementById('fluid');
+    if (!cont) return;
+    var sim = new mod.default(cont);
+    Object.assign(cont.style, {
+      position: 'fixed', inset: '0', width: '100%', height: '100%',
+      zIndex: '9000', pointerEvents: 'none',
     });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.focus();
+    dispatchEvent(new Event('resize'));
+    sim.setConfig({
+      simResolution: 128, dyeResolution: 1024,
+      densityDissipation: 2.2, velocityDissipation: 1.4,
+      pressureIterations: 10, curl: 28,
+      splatRadius: 0.1, splatForce: 5000,
+      hover: false, colorful: false,
+      colorPalette: ['#3366FF', '#1a3db3', '#7ea3ff'],
+      transparent: true,
+      bloom: false,
+      sunrays: false,
+    });
+    sim.start();
+
+    var lastX = null, lastY = null;
+    addEventListener('pointermove', function(e){
+      if (lastX !== null) {
+        var dx = (e.clientX - lastX) * 2.5, dy = (e.clientY - lastY) * 2.5;
+        if (Math.abs(dx) + Math.abs(dy) > 4) sim.splatAtLocation(e.clientX, e.clientY, dx, dy);
       }
-    });
+      lastX = e.clientX; lastY = e.clientY;
+    }, { passive: true });
+
+    window.__fluidBurst = function(){
+      var W = innerWidth, H = innerHeight;
+      for (var i = 0; i <= 5; i++) {
+        (function(j){
+          var t = j / 5;
+          setTimeout(function(){
+            sim.splatAtLocation(W * (0.15 + t * 0.7), H * (0.6 - Math.sin(t * Math.PI) * 0.22),
+                                180 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
+          }, j * 70);
+        })(i);
+      }
+    };
+    document.addEventListener('visibilitychange', function(){ sim.pause(); });
+  }).catch(function(){});
+}
+
+/* ── 3) Cursor dot + ring ── */
+if (FINE_POINTER && !REDUCE) (function cursor(){
+  var dot  = document.querySelector('.cursor-dot');
+  var ring = document.querySelector('.cursor-ring');
+  if (!dot || !ring) return;
+  var dxQ = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
+  var dyQ = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
+  var rxQ = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  var ryQ = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+  var visto = false;
+  addEventListener('pointermove', function(e){
+    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
+    dxQ(e.clientX); dyQ(e.clientY); rxQ(e.clientX); ryQ(e.clientY);
+  }, { passive: true });
+  document.querySelectorAll('a, button').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }); });
+    el.addEventListener('mouseleave', function(){ gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }); });
+  });
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   4) LEÓN HERÁLDICO — se dibuja trazo a trazo con el scroll (canvas 2D)
+   Inspirado en el logo real de la academia: un león rampante sobre pedestal.
+   ════════════════════════════════════════════════════════════════════════ */
+(function leonCanvas(){
+  var seccion = document.querySelector('.leon');
+  var pinEl   = document.querySelector('.leon__pin');
+  var canvas  = document.querySelector('.leon__lienzo');
+  if (!canvas || !seccion || !pinEl) return;
+  var ctx     = canvas.getContext('2d');
+  var elNum   = document.querySelector('[data-leon-num]');
+  var elFase  = document.querySelector('[data-leon-fase]');
+
+  var AZUL = 'rgba(51,102,255,.85)', VERDE = '#00b285', TENUE = 'rgba(11,26,58,.3)';
+
+  var trazos = [
+    /* FASE 1: Pedestal / base (0 - 0.15) — Temario */
+    { t:[0.00,0.06], w:2.4, c:AZUL,  p:[[280,560],[720,560]] },
+    { t:[0.04,0.10], w:2.0, c:TENUE, p:[[310,560],[310,540],[690,540],[690,560]] },
+    { t:[0.08,0.15], w:2.2, c:AZUL,  p:[[340,540],[340,520],[660,520],[660,540]] },
+
+    /* FASE 2: Patas (0.15 - 0.35) — Test */
+    { t:[0.15,0.22], w:2.2, c:AZUL,  p:[[390,520],[380,480],[370,440]] },
+    { t:[0.18,0.25], w:2.2, c:AZUL,  p:[[610,520],[620,480],[630,440]] },
+    { t:[0.22,0.28], w:1.8, c:TENUE, p:[[370,440],[360,410],[380,390]] },
+    { t:[0.26,0.35], w:1.8, c:TENUE, p:[[630,440],[640,410],[620,390]] },
+
+    /* FASE 3: Cuerpo / torso (0.35 - 0.55) — Clases */
+    { t:[0.35,0.44], w:2.6, c:AZUL,  p:[[380,390],[400,340],[440,300],[500,280]] },
+    { t:[0.38,0.48], w:2.6, c:AZUL,  p:[[620,390],[600,340],[560,300],[500,280]] },
+    { t:[0.44,0.52], w:1.6, c:TENUE, p:[[420,360],[500,340],[580,360]] },
+    { t:[0.48,0.55], w:1.4, c:TENUE, p:[[440,320],[500,310],[560,320]] },
+
+    /* FASE 4: Melena / cabeza (0.55 - 0.80) — Simulacros */
+    { t:[0.55,0.62], w:2.4, c:AZUL,  p:[[500,280],[480,240],[460,200],[470,160]] },
+    { t:[0.58,0.65], w:2.4, c:AZUL,  p:[[500,280],[520,240],[540,200],[530,160]] },
+    { t:[0.62,0.70], w:2.0, c:AZUL,  p:[[470,160],[440,140],[420,160],[430,180],[460,170]] },
+    { t:[0.65,0.72], w:2.0, c:AZUL,  p:[[530,160],[560,140],[580,160],[570,180],[540,170]] },
+    /* Ojo */
+    { t:[0.70,0.76], w:2.0, c:VERDE, circulo:[500,175,10] },
+    /* Boca */
+    { t:[0.72,0.78], w:1.8, c:AZUL,  p:[[470,200],[490,215],[510,200]] },
+    { t:[0.75,0.80], w:1.6, c:TENUE, p:[[475,210],[490,220],[505,210]] },
+
+    /* FASE 5: Cola + corona (0.80 - 1.00) — Aprobado */
+    { t:[0.80,0.88], w:2.0, c:AZUL,  p:[[620,390],[660,340],[680,280],[660,240],[630,260]] },
+    { t:[0.85,0.92], w:1.6, c:AZUL,  p:[[630,260],[610,240],[620,220],[650,230]] },
+    /* Corona */
+    { t:[0.90,0.95], w:2.0, c:VERDE, p:[[468,130],[480,105],[492,125],[504,105],[516,125],[528,105],[540,130]] },
+    /* Firma */
+    { t:[0.93,0.98], w:1.4, c:VERDE, p:[[340,580],[660,580]], cota:'Más del 80% de aprobados — Academia Las Cortes' },
+    { t:[0.96,1.00], w:1.8, c:VERDE, p:[[100,590],[140,578],[178,594],[210,584]] },
+  ];
+  var fases = [
+    [0.00, 'Temario — Los cimientos'],
+    [0.15, 'Test — Entrena con exámenes reales'],
+    [0.35, 'Clases — El día a día del opositor'],
+    [0.55, 'Simulacros — Ponte a prueba'],
+    [0.80, 'Aprobado — Tu plaza es tuya'],
+  ];
+
+  function longitudes(p){
+    var acc = [0];
+    for (var i = 1; i < p.length; i++)
+      acc.push(acc[i-1] + Math.hypot(p[i][0]-p[i-1][0], p[i][1]-p[i-1][1]));
+    return acc;
+  }
+  trazos.forEach(function(tr){ if (tr.p) tr.len = longitudes(tr.p); });
+
+  var escala = 1, offX = 0, offY = 0;
+  function redimensionar(){
+    var w = pinEl.clientWidth, h = pinEl.clientHeight;
+    canvas.width = w * DPR; canvas.height = h * DPR;
+    escala = Math.min(w / 1000, h / 640) * 0.86;
+    offX = (w - 1000 * escala) / 2;
+    offY = (h - 640 * escala) / 2 + h * 0.02;
+    pintar(progreso.valor, true);
   }
 
-  function closeMobile() {
-    var h = document.getElementById('hamburger');
-    var m = document.getElementById('mobileMenu');
-    if (h) h.classList.remove('active');
-    if (m) m.classList.remove('open');
-    if (h) h.setAttribute('aria-expanded', 'false');
+  function polilineaParcial(p, len, f){
+    var objetivo = len[len.length-1] * f;
+    ctx.beginPath();
+    ctx.moveTo(p[0][0], p[0][1]);
+    for (var i = 1; i < p.length; i++){
+      if (len[i] <= objetivo) { ctx.lineTo(p[i][0], p[i][1]); continue; }
+      var resto = (objetivo - len[i-1]) / (len[i] - len[i-1]);
+      if (resto > 0)
+        ctx.lineTo(p[i-1][0] + (p[i][0]-p[i-1][0]) * resto,
+                   p[i-1][1] + (p[i][1]-p[i-1][1]) * resto);
+      break;
+    }
+    ctx.stroke();
   }
 
-  // ═══════════════════════════════════════════════════════════
-  // REVEAL ON SCROLL
-  // ═══════════════════════════════════════════════════════════
-  var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-    reveals.forEach(function(el) { observer.observe(el); });
-  } else {
-    reveals.forEach(function(el) { el.classList.add('visible'); });
-  }
+  var ultimoPintado = -1;
+  function pintar(t, forzar){
+    var tick = Math.round(t * 800);
+    if (!forzar && tick === ultimoPintado) return;
+    ultimoPintado = tick;
 
-  // ═══════════════════════════════════════════════════════════
-  // COUNTER ANIMATION (with decimal support for 4.8)
-  // ═══════════════════════════════════════════════════════════
-  function animateCount(el) {
-    var targetRaw = parseInt(el.dataset.target, 10);
-    var isDecimal = el.dataset.decimal === 'true';
-    var duration = 1800;
-    var start = performance.now();
-    function step(now) {
-      var progress = Math.min((now - start) / duration, 1);
-      var ease = 1 - Math.pow(1 - progress, 4);
-      var value = ease * targetRaw;
-      if (isDecimal) {
-        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.clearRect(0, 0, canvas.width / DPR, canvas.height / DPR);
+    ctx.translate(offX, offY);
+    ctx.scale(escala, escala);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+    var aGrid = Math.min(t * 4, 1) * 0.04;
+    if (aGrid > 0.004){
+      ctx.strokeStyle = 'rgba(11,26,58,' + aGrid.toFixed(3) + ')';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (var x = 0; x <= 1000; x += 100){ ctx.moveTo(x, 0); ctx.lineTo(x, 640); }
+      for (var y = 0; y <= 640; y += 100){ ctx.moveTo(0, y); ctx.lineTo(1000, y); }
+      ctx.stroke();
+    }
+
+    for (var j = 0; j < trazos.length; j++){
+      var tr = trazos[j];
+      var f = gsap.utils.clamp(0, 1, (t - tr.t[0]) / (tr.t[1] - tr.t[0]));
+      if (f <= 0) continue;
+      ctx.strokeStyle = tr.c;
+      ctx.lineWidth = tr.w;
+      if (tr.circulo){
+        ctx.beginPath();
+        ctx.arc(tr.circulo[0], tr.circulo[1], tr.circulo[2], -Math.PI/2, -Math.PI/2 + Math.PI*2*f);
+        ctx.stroke();
       } else {
-        el.textContent = Math.round(value);
-      }
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  if ('IntersectionObserver' in window) {
-    var countObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          animateCount(e.target);
-          countObserver.unobserve(e.target);
+        polilineaParcial(tr.p, tr.len, f);
+        if (tr.cota && f >= 1){
+          ctx.fillStyle = VERDE;
+          ctx.font = '400 21px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(tr.cota, 500, 574);
         }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
-  } else {
-    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+      }
+    }
+
+    if (elNum) elNum.textContent = Math.round(t * 100);
+    var fase = fases[0][1];
+    for (var k = 0; k < fases.length; k++) if (t >= fases[k][0]) fase = fases[k][1];
+    if (elFase && elFase.textContent !== fase) elFase.textContent = fase;
   }
 
-  // ═══════════════════════════════════════════════════════════
-  // HERO PARALLAX
-  // ═══════════════════════════════════════════════════════════
-  window.addEventListener('scroll', function() {
-    var heroBg = document.getElementById('heroBg');
-    if (heroBg && window.scrollY < window.innerHeight) {
-      heroBg.style.transform = 'scale(1) translateY(' + (window.scrollY * 0.25) + 'px)';
-    }
-  });
+  var progreso = { valor: REDUCE ? 1 : 0 };
+  if (!REDUCE){
+    gsap.to(progreso, {
+      valor: 1,
+      ease: 'none',
+      onUpdate: function(){ pintar(progreso.valor); },
+      scrollTrigger: {
+        trigger: seccion,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: pinEl,
+        pinSpacing: false,
+        scrub: 1,
+        anticipatePin: 1,
+      },
+    });
+  }
+  addEventListener('resize', redimensionar);
+  redimensionar();
+})();
 
-  // ═══════════════════════════════════════════════════════════
-  // HIGHLIGHT TODAY IN HORARIO
-  // ═══════════════════════════════════════════════════════════
-  function highlightToday() {
-    var today = new Date().getDay();
-    var rows = document.querySelectorAll('.horario-table tr[data-day]');
-    rows.forEach(function(row) {
-      if (parseInt(row.dataset.day, 10) === today) {
-        row.classList.add('horario-hoy');
+/* ── 5) Horario: fila de HOY destacada ── */
+(function highlightToday(){
+  var hoy = new Date().getDay();
+  document.querySelectorAll('.horario [data-dias]').forEach(function(fila){
+    if (fila.dataset.dias.split(',').map(Number).indexOf(hoy) !== -1) fila.classList.add('horario-hoy');
+  });
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   6) COREOGRAFÍA DE SCROLL — tras document.fonts.ready
+   ════════════════════════════════════════════════════════════════════════ */
+document.fonts.ready.then(function(){
+  var mm = gsap.matchMedia();
+
+  mm.add({
+    motionOK:  '(prefers-reduced-motion: no-preference)',
+    reduce:    '(prefers-reduced-motion: reduce)',
+    isDesktop: '(min-width: 821px)',
+  }, function(ctx){
+    if (ctx.conditions.reduce) {
+      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
+      document.querySelectorAll('[data-cuenta]').forEach(function(el){
+        el.textContent = (+el.dataset.target).toLocaleString('es-ES');
+      });
+      var preloaderEl = document.querySelector('.preloader');
+      if (preloaderEl) preloaderEl.style.display = 'none';
+      return;
+    }
+
+    /* 6.1 Reveal del hero */
+    function revealHero(){
+      var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      tl.set('[data-hero-reveal]', { visibility: 'visible' });
+      tl.fromTo('[data-hero-media]', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
+      tl.fromTo('[data-hero-media] img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+      var tituloEl = document.querySelector('.hero__titulo');
+      if (tituloEl) {
+        var splitTitulo = SplitText.create(tituloEl, { type: 'words, chars', mask: 'chars' });
+        tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.4);
+      }
+      var subEl = document.querySelector('.hero__sub');
+      if (subEl) {
+        var splitSub = SplitText.create(subEl, { type: 'lines', mask: 'lines' });
+        tl.from(splitSub.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.65);
+      }
+      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.55);
+      tl.from('.hero__badge',  { autoAlpha: 0, scale: .8, duration: 0.7, ease: 'back.out(1.6)' }, 0.85);
+      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 0.95);
+      tl.from('.cabecera', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
+      return tl;
+    }
+
+    /* 6.2 Preloader */
+    var numEl = document.querySelector('.preloader__num');
+    var progreso = { v: 0 };
+    var cargaMinima = new Promise(function(res){
+      gsap.to(progreso, {
+        v: 100, duration: 1.9, ease: 'steps(14)',
+        onUpdate: function(){ if (numEl) numEl.firstChild.textContent = Math.round(progreso.v); },
+        onComplete: res,
+      });
+    });
+    var cargaReal = new Promise(function(res){
+      if (document.readyState === 'complete') res();
+      else addEventListener('load', res, { once: true });
+    });
+    Promise.all([cargaMinima, cargaReal]).then(function(){
+      gsap.timeline()
+        .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
+        .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
+        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
+        .set('.preloader', { display: 'none' })
+        .add(revealHero(), '-=0.75')
+        .call(function(){ if (lenis) lenis.start(); }, null, '-=1.2')
+        .call(function(){ if (window.__fluidBurst) window.__fluidBurst(); }, null, '-=0.9');
+    });
+
+    /* 6.3 Salida del hero + progreso */
+    gsap.to('[data-hero-parallax]', {
+      yPercent: 14, scale: 1.12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+    gsap.to('.hero__contenido', {
+      yPercent: -12, autoAlpha: 0.3, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
+    });
+    gsap.to('.progreso span', {
+      scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
+    });
+
+    /* 6.4 Manifiesto + flotantes */
+    var manifiestoEl = document.querySelector('[data-manifiesto]');
+    if (manifiestoEl) {
+      SplitText.create(manifiestoEl, {
+        type: 'words',
+        onSplit: function(self){ gsap.from(self.words, {
+          opacity: 0.13, stagger: 0.05, ease: 'none',
+          scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
+        }); },
+      });
+    }
+    gsap.utils.toArray('.flotante').forEach(function(el){
+      var sp = +el.dataset.speed || 1;
+      gsap.fromTo(el, { yPercent: 16 * sp }, {
+        yPercent: -16 * sp, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* 6.5 Cifras */
+    gsap.utils.toArray('.cifra').forEach(function(el, i){
+      gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
+        y: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
+      });
+    });
+    document.querySelectorAll('[data-cuenta]').forEach(function(el){
+      var objetivo = +el.dataset.target;
+      var c = { v: 0 };
+      gsap.to(c, {
+        v: objetivo, duration: 2, ease: 'power2.out', snap: { v: 1 },
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: function(){ el.textContent = Math.round(c.v).toLocaleString('es-ES'); },
+      });
+    });
+
+    /* 6.6 Marquee vivo */
+    (function(){
+      var trackM = document.querySelector('.marquee__track');
+      if (!trackM) return;
+      var marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 30, repeat: -1 });
+      marq.totalTime(30 * 1000);
+      var objetivoTS = 1;
+      ScrollTrigger.create({
+        onUpdate: function(self){
+          var v = self.getVelocity();
+          objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
+        },
+      });
+      gsap.ticker.add(function(){
+        marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
+        objetivoTS += (1 - objetivoTS) * 0.04;
+      });
+    })();
+
+    /* 6.7 Galería de servicios + skew + parallax interno */
+    var tweenHorizontal = null;
+    if (ctx.conditions.isDesktop) {
+      var track = document.querySelector('.servicios__track');
+      var srvNum = document.querySelector('[data-servicios-num]');
+      var total = document.querySelectorAll('.panel').length;
+      var distancia = function(){ return track.scrollWidth - innerWidth + (innerWidth * 0.06); };
+      var skewTo = gsap.quickTo(track, 'skewX', { duration: 0.5, ease: 'power3' });
+      var clampSkew = gsap.utils.clamp(-4, 4);
+
+      tweenHorizontal = gsap.to(track, {
+        x: function(){ return -distancia(); },
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.servicios',
+          start: 'top top',
+          end: function(){ return '+=' + distancia(); },
+          pin: '.servicios__pin',
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: function(st){
+            var i = Math.min(total, Math.max(1, Math.round(st.progress * (total - 1)) + 1));
+            if (srvNum) srvNum.textContent = String(i).padStart(2, '0');
+            skewTo(clampSkew(st.getVelocity() / -450));
+          },
+        },
+      });
+      ScrollTrigger.addEventListener('scrollEnd', function(){ skewTo(0); });
+
+      gsap.utils.toArray('.panel__marco img').forEach(function(img){
+        gsap.fromTo(img, { xPercent: -7, scale: 1.16 }, {
+          xPercent: 7, scale: 1.16, ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.panel'),
+            containerAnimation: tweenHorizontal,
+            start: 'left right', end: 'right left', scrub: true,
+          },
+        });
+      });
+    }
+
+    /* 6.8 Reveals de imagen */
+    gsap.utils.toArray('[data-img-reveal]').forEach(function(marco){
+      var enGaleria = ctx.conditions.isDesktop && tweenHorizontal;
+      var st = enGaleria
+        ? { trigger: marco, containerAnimation: tweenHorizontal, start: 'left 95%', once: true }
+        : { trigger: marco, start: 'top 88%', once: true };
+      var tl = gsap.timeline({ scrollTrigger: st, defaults: { duration: 1.2, ease: 'power4.out' } })
+        .fromTo(marco, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)' });
+      if (!enGaleria) tl.fromTo(marco.querySelector('img'), { scale: 1.18 }, { scale: 1 }, 0);
+    });
+
+    /* 6.9 Estela de imágenes */
+    if (FINE_POINTER) {
+      var zona = document.querySelector('.sensaciones');
+      if (zona) {
+        var POOL = [
+          'https://academialascortes.com/wp-content/uploads/2026/01/aprobado_age.jpeg',
+          'https://academialascortes.com/wp-content/uploads/2026/01/preparate.jpeg',
+          'https://academialascortes.com/wp-content/uploads/2026/01/ratios.jpeg',
+          'https://academialascortes.com/wp-content/uploads/2026/01/segsocial.jpeg',
+          'https://academialascortes.com/wp-content/uploads/2026/01/puertas_abiertas.jpeg'
+        ];
+        POOL.forEach(function(src){ var im = new Image(); im.src = src; });
+        var idxE = 0, acumuladoE = 0, pxE = null, pyE = null, vivasE = 0;
+        zona.addEventListener('pointermove', function(e){
+          if (pxE !== null) acumuladoE += Math.hypot(e.clientX - pxE, e.clientY - pyE);
+          pxE = e.clientX; pyE = e.clientY;
+          if (acumuladoE < 110 || vivasE > 12) return;
+          acumuladoE = 0;
+          var r = zona.getBoundingClientRect();
+          var fig = document.createElement('figure');
+          fig.className = 'estela-img';
+          fig.innerHTML = '<img src="' + POOL[idxE++ % POOL.length] + '" alt="">';
+          zona.appendChild(fig);
+          vivasE++;
+          var xPos = e.clientX - r.left, yPos = e.clientY - r.top;
+          gsap.set(fig, { left: xPos, top: yPos, xPercent: -50, yPercent: -50, rotation: gsap.utils.random(-9, 9) });
+          gsap.timeline({ onComplete: function(){ fig.remove(); vivasE--; } })
+            .fromTo(fig, { scale: 0.55, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.35, ease: 'power3.out' })
+            .to(fig, { yPercent: -85, scale: 1.04, autoAlpha: 0, duration: 0.9, ease: 'power2.in' }, 0.45);
+        }, { passive: true });
+      }
+    }
+
+    /* 6.10 ZOOM inmersivo + fluido en modo screen */
+    (function(){
+      var fluidEl = document.getElementById('fluid');
+      var zoomTextoEl = document.querySelector('[data-zoom-texto]');
+      if (!zoomTextoEl) return;
+      var zsplit = SplitText.create(zoomTextoEl, { type: 'words' });
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.zoom',
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: '.zoom__pin',
+          pinSpacing: false,
+          scrub: 1,
+          anticipatePin: 1,
+          onToggle: function(self){ if (fluidEl) fluidEl.classList.toggle('fluid--screen', self.isActive); },
+        },
+      })
+      .fromTo('.zoom__marco', { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0)
+      .fromTo('.zoom__marco img', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 0.85 }, 0)
+      .fromTo(zsplit.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
+    })();
+
+    /* 6.11 Tiras */
+    document.querySelectorAll('[data-tira]').forEach(function(el){
+      var dir = +el.dataset.tira;
+      gsap.fromTo(el, { xPercent: dir * 6 }, {
+        xPercent: dir * -6, ease: 'none',
+        scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* 6.12 Citas scrubadas */
+    gsap.utils.toArray('.cita').forEach(function(el, i){
+      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, {
+        x: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 60%', scrub: 1 },
+      });
+    });
+
+    /* 6.13 Reveals genéricos */
+    document.querySelectorAll('[data-reveal]').forEach(function(el){
+      if (el.dataset.split === 'lines') {
+        SplitText.create(el, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit: function(self){
+            gsap.set(el, { visibility: 'visible' });
+            return gsap.from(self.lines, {
+              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
+              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
+            });
+          },
+        });
+      } else {
+        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
+          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+        });
       }
     });
-  }
-  highlightToday();
 
-  // ═══════════════════════════════════════════════════════════
-  // CUSTOM CURSOR (desktop only)
-  // ═══════════════════════════════════════════════════════════
-  (function() {
-    var dot = document.getElementById('cursorDot');
-    var ring = document.getElementById('cursorRing');
-    if (!dot || !ring) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-    var mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', function(e) {
-      mx = e.clientX;
-      my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top = my + 'px';
-    });
-
-    function lerp(a, b, n) { return a + (b - a) * n; }
-
-    function animateRing() {
-      rx = lerp(rx, mx, 0.15);
-      ry = lerp(ry, my, 0.15);
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(animateRing);
+    /* 6.14 Botón magnético */
+    if (FINE_POINTER) {
+      document.querySelectorAll('[data-magnetico]').forEach(function(el){
+        var label = el.querySelector('.magnetico__label');
+        if (!label) return;
+        var xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
+        var yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
+        var lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
+        var ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
+        el.addEventListener('mousemove', function(e){
+          var r = el.getBoundingClientRect();
+          var dx = e.clientX - (r.left + r.width / 2);
+          var dy = e.clientY - (r.top + r.height / 2);
+          xTo(dx * 0.35); yTo(dy * 0.35);
+          lx(dx * 0.5);  ly(dy * 0.5);
+        });
+        el.addEventListener('mouseleave', function(){
+          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
+        });
+      });
     }
-    animateRing();
 
-    document.querySelectorAll('a, button').forEach(function(el) {
-      el.addEventListener('mouseenter', function() {
-        dot.classList.add('hovering');
-        ring.classList.add('hovering');
-      });
-      el.addEventListener('mouseleave', function() {
-        dot.classList.remove('hovering');
-        ring.classList.remove('hovering');
-      });
-    });
-  })();
+    ScrollTrigger.refresh();
+  });
+});
 </script>
 <script defer src="legal/cookie-banner.js"></script>
 </body>

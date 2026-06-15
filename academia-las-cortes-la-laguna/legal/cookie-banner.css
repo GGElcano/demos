@@ -1,5 +1,8 @@
 /* ──────────────────────────────────────────────────────────────
    GG Elcano · Banner de cookies (AEPD 2023 compliant)
+   3 botones con jerarquía visual equivalente: Aceptar / Rechazar / Configurar.
+   Variables CSS heredables: si el host define --accent, se usa; si no, fallback.
+   Drop-in sin dependencias.
    ────────────────────────────────────────────────────────────── */
 
 :root {
@@ -13,6 +16,7 @@
   --ggc-radius: 8px;
 }
 
+/* Contenedor raíz — oculto hasta que JS decide mostrarlo */
 .ggc-root {
   position: fixed;
   inset: auto 0 0 0;
@@ -36,6 +40,7 @@
   max-width: 100%;
 }
 
+/* Banner simple (vista inicial) */
 .ggc-banner-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -70,6 +75,7 @@
   justify-content: flex-end;
 }
 
+/* Los 3 botones deben tener MISMA jerarquía visual (AEPD 2023). */
 .ggc-btn {
   appearance: none;
   border: 1.5px solid var(--ggc-text);
@@ -96,6 +102,7 @@
   outline-offset: 2px;
 }
 
+/* Panel de configuración */
 .ggc-panel-inner {
   max-width: 760px;
   margin: 0 auto;
@@ -133,6 +140,7 @@
   margin: 0;
 }
 
+/* Toggle accesible con checkbox real */
 .ggc-toggle {
   position: relative;
   width: 44px;
@@ -200,6 +208,7 @@
   border-top: 1px solid var(--ggc-border);
 }
 
+/* Placeholder para iframe bloqueado */
 .ggc-consent-fallback {
   display: flex;
   flex-direction: column;
@@ -245,6 +254,7 @@
   outline-offset: 2px;
 }
 
+/* Responsive */
 @media (max-width: 720px) {
   .ggc-banner-inner {
     grid-template-columns: 1fr;
@@ -259,6 +269,7 @@
   }
 }
 
+/* Accesibilidad: respeta reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .ggc-toggle-slider,
   .ggc-toggle-slider::before,
