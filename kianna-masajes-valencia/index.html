@@ -444,6 +444,21 @@ main{ position: relative; z-index: 1; }
 }
 .valoracion__link:hover{ border-color: var(--teal); color: var(--teal-osc); }
 
+/* ── TESTIMONIOS (citas scrubadas) ── */
+.testimonios{ padding: clamp(5rem,10vh,8rem) var(--pad) clamp(6rem,12vh,9rem); max-width: 72rem; }
+.testimonios__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.2rem; }
+.testimonios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.google-badge{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-size:.8rem; letter-spacing:.06em; color: var(--piedra);
+  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+}
+.google-badge b{ color: var(--tinta); font-weight:500; }
+.google-badge i{ font-style:normal; color: var(--teal); letter-spacing:.16em; }
+.cita{ border-left: 1px solid rgba(6,161,167,.45); padding: .4rem 0 .4rem 1.8rem; margin-bottom: 2.6rem; }
+.cita blockquote{ font-family: var(--serif); font-size: clamp(1.15rem, 2.2vw, 1.65rem); line-height: 1.5; color: var(--tinta-2); }
+.cita figcaption{ margin-top: .8rem; color: var(--piedra); font-size:.76rem; letter-spacing:.14em; text-transform: uppercase; }
+
 /* ── PRECIOS ── */
 .precios-sec{ padding: clamp(5rem,10vh,8rem) var(--pad); border-top: 1px solid var(--linea); }
 .precios-sec__cab{ text-align:center; margin-bottom: clamp(2.5rem,5vh,4rem); }
@@ -772,6 +787,26 @@ main{ position: relative; z-index: 1; }
     <p class="valoracion__sub" data-reveal>Valoración media en Google Maps con 193 reseñas reales</p>
     <br>
     <a class="valoracion__link" data-reveal href="https://maps.google.com/?q=Kianna+masajes+Valencia" target="_blank" rel="noopener">Ver reseñas en Google</a>
+  </section>
+
+  <!-- ════════ TESTIMONIOS REALES ════════ -->
+  <section class="testimonios">
+    <div class="testimonios__cab">
+      <h2 data-reveal data-split="lines">Lo cuentan <em>ellos</em>.</h2>
+      <p class="google-badge" data-reveal><i>&#9733;&#xFE0E;&#9733;&#xFE0E;&#9733;&#xFE0E;&#9733;&#xFE0E;&#9733;&#xFE0E;</i> <b>5,0</b> en Google y TripAdvisor</p>
+    </div>
+    <figure class="cita">
+      <blockquote>I have been going to Kianna Massage for over 2 years. Jessica is a friendly and skilled masseuse. Her establishment is clean and comfortable, with a peaceful and relaxing ambience.</blockquote>
+      <figcaption>Jim S. - TripAdvisor</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>Always an amazing experience here! Such a calm and peaceful environment to have a massage.</blockquote>
+      <figcaption>Grace S. - TripAdvisor</figcaption>
+    </figure>
+    <figure class="cita">
+      <blockquote>Great experience. The masseuse was incredibly attentive, knowing how to work out every knot. Adjusting pressure perfectly.</blockquote>
+      <figcaption>Erik N. - TripAdvisor</figcaption>
+    </figure>
   </section>
 
   <!-- ════════ PRECIOS ════════ -->
@@ -1448,7 +1483,15 @@ document.fonts.ready.then(function(){
       });
     });
 
-    /* 8.12 Reveals genericos */
+    /* 8.12 Citas scrubadas (testimonios) */
+    gsap.utils.toArray('.cita').forEach(function(el, i){
+      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, {
+        x: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 60%', scrub: 1 },
+      });
+    });
+
+    /* 8.13 Reveals genericos */
     document.querySelectorAll('[data-reveal]').forEach(function(el){
       if (el.dataset.split === 'lines') {
         SplitText.create(el, {
@@ -1469,7 +1512,7 @@ document.fonts.ready.then(function(){
       }
     });
 
-    /* 8.13 Boton magnetico */
+    /* 8.14 Boton magnetico */
     if (FINE_POINTER) {
       document.querySelectorAll('[data-magnetico]').forEach(function(el){
         var label = el.querySelector('.magnetico__label');
