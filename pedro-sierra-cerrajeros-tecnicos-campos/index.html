@@ -3,17 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sierros Centro de Seguridad — Cerrajería y Puertas Acorazadas en Campos, Mallorca</title>
-<meta name="description" content="Sierros Centro de Seguridad: cerrajería 24 h, puertas acorazadas CABMA y seguridad integral en Campos, Mallorca. Desde 1999. 4,8 en Google con 142 reseñas.">
+<title>Centro de Seguridad Sierros — Cerrajer&iacute;a y Puertas Acorazadas en Campos, Mallorca</title>
+<meta name="description" content="Centro de Seguridad Sierros: cerrajer&iacute;a 24 h, puertas acorazadas CABMA y automatismos en Campos, Mallorca. Desde 1999, 142 rese&ntilde;as con 4,8 estrellas. Llama al 660 22 39 59.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23C41E1E'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='2' width='12' height='12' rx='2' fill='%23E2061A'/%3E%3C/svg%3E">
 
 <!-- ============================================================
-     SIERROS CENTRO DE SEGURIDAD — propuesta premium (G&G Elcano)
-     Marca real: rojo CABMA #C41E1E · negro #14171c · blanco cálido.
-     Pieza singular: SVG line-draw de cerradura con pins que se
-     dibuja al hacer scroll, culminando con la apertura del arco.
-     Datos 100 % reales: web cabmabaleares.com, Google Maps (4,8 / 142).
+     CENTRO DE SEGURIDAD SIERROS — propuesta premium (G&G Elcano)
+     Marca real: rojo CABMA #E2061A, negro #14171c, blanco.
+     Pieza singular: SVG lock-mechanism line-draw animado por scroll.
+     Datos 100 % reales de cabmabaleares.com + Google Maps.
      ============================================================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,16 +21,16 @@
 
 <style>
 :root{
-  --rojo:     #C41E1E;
-  --rojo-osc: #8B1515;
+  --blanco:   #f5f5f0;
+  --blanco-2: #eaeae4;
+  --rojo:     #E2061A;
+  --rojo-osc: #a8040f;
   --negro:    #14171c;
   --negro-2:  #1e2128;
-  --blanco:   #f5f4f0;
-  --blanco-2: #eae8e3;
-  --texto:    #1a1c20;
-  --texto-2:  #4a4d55;
-  --piedra:   #7a7d86;
-  --linea:    rgba(196,30,30,.14);
+  --texto:    #1a1d24;
+  --texto-2:  #4a4f5c;
+  --piedra:   #7a7f8c;
+  --linea:    rgba(226,6,26,.16);
   --serif: "DM Serif Display", Georgia, serif;
   --sans:  "Inter", system-ui, sans-serif;
   --pad: clamp(1.5rem, 5vw, 6rem);
@@ -60,17 +59,15 @@ a{ color: inherit; text-decoration: none; }
 ul{ list-style: none; }
 img{ display:block; width:100%; height:100%; object-fit: cover; }
 
-/* ── FLUID OVERLAY ── */
 #fluid{
   position: fixed; inset: 0; width:100%; height:100%;
   z-index: 9000; pointer-events: none;
   mix-blend-mode: multiply;
-  opacity: .45;
+  opacity: .40;
 }
-#fluid.fluid--screen{ mix-blend-mode: screen; opacity: .85; }
+#fluid.fluid--screen{ mix-blend-mode: screen; opacity: .80; }
 #fluid canvas{ width:100%; height:100%; display:block; }
 
-/* ── CURSOR ── */
 .cursor-dot, .cursor-ring{
   position: fixed; top:0; left:0; z-index: 9500;
   pointer-events: none; border-radius: 50%;
@@ -78,12 +75,11 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   opacity: 0;
 }
 .cursor-dot { width:6px;  height:6px;  background: var(--rojo); }
-.cursor-ring{ width:38px; height:38px; border:1px solid rgba(196,30,30,.55); }
+.cursor-ring{ width:38px; height:38px; border:1px solid rgba(226,6,26,.50); }
 @media (pointer: coarse), (prefers-reduced-motion: reduce){
   .cursor-dot,.cursor-ring,#fluid{ display:none; }
 }
 
-/* ── PROGRESS ── */
 .progreso{
   position: fixed; right: 1.3rem; top: 50%; transform: translateY(-50%);
   width: 1px; height: 9rem; background: var(--linea);
@@ -92,7 +88,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .progreso span{ position:absolute; inset:0; background: var(--rojo); transform: scaleY(0); transform-origin: top; }
 @media (max-width: 820px){ .progreso{ display:none; } }
 
-/* ── PRELOADER ── */
+/* -- PRELOADER -- */
 .preloader{
   position: fixed; inset: 0; z-index: 9999;
   display: grid; place-items: end start;
@@ -101,12 +97,12 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .preloader__curtain{ position:absolute; inset:0; background: var(--negro); z-index:-1; }
 .preloader__brand{
   position: absolute; top: var(--pad); left: var(--pad);
-  font-family: var(--serif); font-size: 1.15rem; letter-spacing: .26em;
-  text-transform: uppercase; color: #8a7f7f;
+  font-family: var(--serif); font-size: 1.15rem; letter-spacing: .18em;
+  text-transform: uppercase; color: #8a8d94;
   overflow: hidden;
 }
 .preloader__brand span{ display:inline-block; }
-.preloader__brand b{ font-weight: 400; color: #fff; }
+.preloader__brand b{ font-weight: 400; color: var(--rojo); }
 .preloader__counter{ overflow: hidden; line-height: 1; }
 .preloader__num{
   display: inline-block;
@@ -117,16 +113,19 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 }
 .preloader__num i{ font-style: normal; color: var(--rojo); font-size: .35em; vertical-align: super; }
 
-/* ── CABECERA ── */
+/* -- CABECERA -- */
 .cabecera{
   position: fixed; top:0; left:0; right:0; z-index: 50;
   display:flex; justify-content: space-between; align-items: center;
   padding: 1.3rem var(--pad);
-  mix-blend-mode: multiply;
+  mix-blend-mode: difference;
 }
-.cabecera__logo{ font-family: var(--serif); font-size: 1.2rem; letter-spacing: .1em; color: var(--texto); }
+.cabecera__logo{
+  font-family: var(--serif); font-size: 1.15rem; letter-spacing: .06em;
+  color: #fff;
+}
 .cabecera__logo b{ font-weight: 400; color: var(--rojo); }
-.cabecera__nav{ display:flex; gap: 2rem; font-size:.72rem; letter-spacing:.16em; text-transform: uppercase; }
+.cabecera__nav{ display:flex; gap: 2rem; font-size:.72rem; letter-spacing:.16em; text-transform: uppercase; color:#fff; }
 @media (max-width: 820px){ .cabecera__nav{ display:none; } }
 
 .roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
@@ -141,7 +140,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
 }
 
-/* ── HERO ── */
+/* -- HERO -- */
 .hero{
   min-height: 100svh;
   position: relative;
@@ -152,7 +151,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .hero__media{ position:absolute; inset:0; z-index:0; }
 .hero__media::after{
   content:""; position:absolute; inset:0;
-  background: linear-gradient(180deg, rgba(20,23,28,.32) 0%, rgba(20,23,28,.08) 40%, rgba(20,23,28,.78) 100%);
+  background: linear-gradient(180deg, rgba(20,23,28,.30) 0%, rgba(20,23,28,.08) 40%, rgba(20,23,28,.78) 100%);
 }
 .hero__media img{ will-change: transform; }
 .hero__contenido{ position: relative; z-index: 1; color:#fff; }
@@ -163,9 +162,9 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .hero__titulo{
   font-size: clamp(2.6rem, 8vw, 7rem);
   letter-spacing: -.01em;
-  max-width: 14ch; color:#fff;
+  max-width: 16ch; color:#fff;
 }
-.hero__titulo em{ color: #ffc4a0; }
+.hero__titulo em{ color: #ffc9c9; }
 .hero__pie{ display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; margin-top: 2.4rem; flex-wrap:wrap; }
 .hero__sub{ max-width: 44ch; opacity:.88; font-size: 1.02rem; }
 .hero__scroll{
@@ -173,7 +172,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   opacity:.8; display:flex; align-items:center; gap:.8rem;
 }
 .hero__scroll::after{
-  content:""; display:block; width:1px; height:3.2rem; background: #ffc4a0;
+  content:""; display:block; width:1px; height:3.2rem; background: var(--rojo);
   transform-origin: top;
   animation: gota 2.4s cubic-bezier(.76,0,.24,1) infinite;
 }
@@ -181,7 +180,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
                  46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
 [data-hero-reveal]{ visibility: hidden; }
 
-/* ── MARQUEE ── */
+/* -- MARQUEE -- */
 .marquee{
   overflow:hidden; white-space:nowrap;
   border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
@@ -189,14 +188,15 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   background: var(--blanco);
   position: relative; z-index: 2;
 }
-.marquee__track{ display:inline-flex; gap:3rem; will-change: transform; }
+.marquee__track{ display:inline-flex; gap:3rem; will-change: transform; animation: marquee-scroll 7s linear infinite; }
+@keyframes marquee-scroll{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 .marquee__group{ display:inline-flex; gap:3rem; }
 .marquee__group span{ font-family: var(--serif); font-size: 1.25rem; color: var(--piedra); }
 .marquee__group i{ font-style: normal; color: var(--rojo); }
 
-/* ── MANIFIESTO ── */
+/* -- MANIFIESTO -- */
 .manifiesto{ position: relative; padding: clamp(9rem,20vh,15rem) var(--pad); }
-.manifiesto p{
+.manifiesto p.manifiesto__texto{
   position: relative; z-index: 2;
   max-width: 26ch;
   font-family: var(--serif);
@@ -213,9 +213,10 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .flotante img{ aspect-ratio: 4/3; }
 .flotante--1{ top: 8%;  right: 8%;  width: clamp(9rem, 18vw, 19rem); }
 .flotante--2{ bottom: 4%; right: 28%; }
-@media (max-width: 720px){ .flotante--1{ right: 2%; width: clamp(7rem,35vw,12rem); } .flotante--2{ display:none; } }
+.flotante--3{ top: 44%; left: 60%; width: clamp(6rem, 11vw, 12rem); opacity:.9; }
+@media (max-width: 720px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; } }
 
-/* ── CIFRAS ── */
+/* -- CIFRAS -- */
 .cifras{
   display:grid; grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
   gap: 2rem; padding: 0 var(--pad) clamp(7rem,14vh,11rem);
@@ -228,110 +229,111 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .cifra__valor i{ font-style:normal; color: var(--rojo); font-size:.5em; margin-left:.06em; }
 .cifra p{ color: var(--piedra); font-size:.84rem; margin-top:.35rem; }
 
-/* ── CERRADURA (pieza singular — SVG line-draw) ── */
-.cerradura{ height: 400vh; position: relative; }
-.cerradura__pin{
-  position: relative; height: 100vh; height: 100svh;
-  overflow: hidden; display: grid; place-items: center;
+/* -- LOCK LINE-DRAW (pieza singular cerrajería) -- */
+.lockdraw{
+  position: relative;
+  padding: clamp(6rem,12vh,10rem) var(--pad);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 70vh;
   background: var(--negro);
+  overflow: hidden;
 }
-.cerradura__inner{
-  display: flex; align-items: center; gap: clamp(2rem,6vw,6rem);
-  padding: 0 var(--pad);
-  max-width: 64rem; width: 100%;
+.lockdraw__svg{
+  width: min(420px, 65vw);
+  height: auto;
 }
-.cerradura__svg{
-  width: clamp(10rem, 22vw, 16rem);
-  flex-shrink: 0;
-}
-.cerradura__svg .lock-el{
-  stroke: var(--rojo);
+.lockdraw__svg path{
   fill: none;
+  stroke: var(--rojo);
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.cerradura__texto{
-  color: #fff; flex: 1;
-}
-.cerradura__fase{
-  font-size: .74rem; letter-spacing: .28em; text-transform: uppercase;
-  color: rgba(255,255,255,.5);
-  border-left: 2px solid var(--rojo); padding-left: 1rem;
-  margin-bottom: 1.5rem;
-  min-height: 1.4em;
-}
-.cerradura__titulo{
+.lockdraw__label{
+  position: absolute;
+  bottom: clamp(2rem,5vh,4rem);
+  left: var(--pad);
   font-family: var(--serif);
-  font-size: clamp(2rem, 4.5vw, 3.6rem);
-  color: #fff; line-height: 1.12;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: #fff;
+  max-width: 22ch;
+  line-height: 1.3;
 }
-.cerradura__titulo em{ color: #ffc4a0; }
-@media (max-width: 720px){
-  .cerradura__inner{ flex-direction: column; text-align: center; }
-  .cerradura__fase{ border-left: none; padding-left: 0; border-bottom: 2px solid var(--rojo); padding-bottom: .5rem; }
-  .cerradura__svg{ width: clamp(8rem, 40vw, 12rem); }
-}
-@media (prefers-reduced-motion: reduce){
-  .cerradura{ height:auto; } .cerradura__pin{ height:100svh; }
-}
+.lockdraw__label em{ color: var(--rojo); }
 
-/* ── GALERIA HORIZONTAL ── */
-.galeria{ position: relative; }
+/* -- GALERIA HORIZONTAL PINEADA -- */
+.galeria{ height: 300vh; position: relative; }
 .galeria__pin{
-  height: 100vh; height: 100svh;
+  position: relative; height: 100vh; height: 100svh;
   overflow: hidden; display: flex; align-items: center;
-  padding-left: var(--pad);
+  background: var(--blanco-2);
 }
-.galeria__track{ display: flex; gap: clamp(1.5rem,3vw,2.5rem); will-change: transform; }
-.galeria__card{
-  width: clamp(20rem, 65vw, 44rem);
-  flex-shrink: 0;
-  position: relative;
+.galeria__track{
+  display: flex; gap: clamp(1rem,2vw,2rem);
+  padding: 0 var(--pad);
+  will-change: transform;
+}
+.galeria__item{
+  flex: 0 0 auto;
+  width: clamp(18rem, 32vw, 28rem);
   overflow: hidden;
   will-change: transform;
 }
-.galeria__card-img{
-  position: relative; aspect-ratio: 16/10; overflow: hidden;
+.galeria__item img{
+  aspect-ratio: 3/4;
+  will-change: transform;
+  transition: transform .7s cubic-bezier(.22,1,.36,1);
 }
-.galeria__card-img img{ transition: transform .8s cubic-bezier(.22,1,.36,1); }
 @media (hover:hover) and (pointer:fine){
-  .galeria__card:hover .galeria__card-img img{ transform: scale(1.04); }
+  .galeria__item:hover img{ transform: scale(1.06); }
 }
-.galeria__card-body{ padding: 1.6rem 0 0; }
-.galeria__card-body h3{ font-size: clamp(1.4rem,2.5vw,2rem); margin-bottom: .5rem; }
-.galeria__card-body p{ color: var(--texto-2); font-size: .92rem; max-width: 38ch; }
+.galeria__item figcaption{
+  margin-top: .8rem;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  color: var(--texto-2);
+}
+.galeria__cab{
+  position: absolute; top: clamp(2rem,5vh,4rem); left: var(--pad); z-index: 2;
+}
+.galeria__cab h2{ font-size: clamp(1.8rem, 4vw, 3.2rem); }
 
-/* ── TESTIMONIOS ── */
-.testimonios{ padding: clamp(7rem,14vh,11rem) var(--pad); max-width: 74rem; }
-.testimonios__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.2rem; }
-.testimonios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
-.google{
-  display:inline-flex; align-items:center; gap:.7rem;
-  font-size:.8rem; letter-spacing:.06em; color: var(--piedra);
-  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+/* -- SERVICIOS -- */
+.servicios{
+  padding: clamp(7rem,14vh,11rem) var(--pad);
 }
-.google b{ color: var(--texto); font-weight:600; }
-.cita{ border-left: 1px solid rgba(196,30,30,.45); padding: .4rem 0 .4rem 1.8rem; margin-bottom: 2.6rem; }
-.cita blockquote{ font-family: var(--serif); font-size: clamp(1.15rem, 2.2vw, 1.65rem); line-height: 1.5; color: var(--texto-2); }
-.cita figcaption{ margin-top: .8rem; color: var(--piedra); font-size:.76rem; letter-spacing:.14em; text-transform: uppercase; }
+.servicios__cab{
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 3.4rem; gap: 2rem; flex-wrap: wrap;
+}
+.servicios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.servicios__grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem,100%), 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+.servicio{
+  border-top: 1px solid var(--linea);
+  padding-top: 1.6rem;
+}
+.servicio__num{
+  font-family: var(--serif);
+  font-size: 2.8rem;
+  color: rgba(226,6,26,.15);
+  line-height: 1;
+  margin-bottom: .6rem;
+}
+.servicio h3{
+  font-size: 1.35rem;
+  margin-bottom: .7rem;
+}
+.servicio p{
+  color: var(--texto-2);
+  font-size: .92rem;
+  max-width: 38ch;
+}
 
-/* ── EQUIPO ── */
-.equipo{
-  padding: 0 var(--pad) clamp(6rem,12vh,10rem);
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem,3vw,3rem);
-  max-width: 56rem;
-}
-.equipo__persona{ text-align: center; }
-.equipo__foto{
-  width: clamp(8rem,18vw,12rem); aspect-ratio: 3/4;
-  border-radius: 6px; overflow: hidden;
-  margin: 0 auto 1.2rem;
-}
-.equipo__persona h3{ font-size: 1.2rem; margin-bottom: .2rem; }
-.equipo__persona p{ color: var(--piedra); font-size: .84rem; }
-@media (max-width: 580px){ .equipo{ max-width: 22rem; margin: 0 auto; } }
-
-/* ── ZOOM ── */
+/* -- ZOOM -- */
 .zoom{ height: 300vh; position: relative; }
 .zoom__pin{
   position: relative; height: 100vh; height: 100svh;
@@ -340,7 +342,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 }
 .zoom__marco{ position:absolute; inset:0; clip-path: inset(38% 32% 38% 32%); will-change: clip-path; }
 .zoom__marco img{ will-change: transform; }
-.zoom__marco::after{ content:""; position:absolute; inset:0; background: rgba(20,23,28,.4); }
+.zoom__marco::after{ content:""; position:absolute; inset:0; background: rgba(20,23,28,.40); }
 .zoom__texto{
   position: relative; z-index: 2;
   font-family: var(--serif);
@@ -350,24 +352,149 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   padding: 0 var(--pad);
   text-shadow: 0 2px 30px rgba(0,0,0,.5);
 }
-.zoom__texto em{ color: #ffc4a0; }
+.zoom__texto em{ color: #ffc9c9; }
 @media (prefers-reduced-motion: reduce){
   .zoom{ height:auto; } .zoom__pin{ height:100svh; }
   .zoom__marco{ clip-path:none; }
 }
 
-/* ── TIRAS ── */
+/* -- COMO TRABAJAMOS -- */
+.proceso{
+  padding: clamp(7rem,14vh,11rem) var(--pad);
+}
+.proceso__cab{
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 3.4rem; gap: 2rem; flex-wrap: wrap;
+}
+.proceso__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+.proceso__cab .google{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font-size:.8rem; letter-spacing:.06em; color: var(--piedra);
+  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
+}
+.proceso__cab .google b{ color: var(--texto); font-weight:600; }
+.proceso__cab .google i{ font-style:normal; color: var(--rojo); letter-spacing:.16em; }
+.pasos{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem,100%), 1fr));
+  gap: clamp(2rem, 4vw, 3rem);
+  counter-reset: paso;
+}
+.paso{
+  counter-increment: paso;
+  border-left: 2px solid var(--rojo);
+  padding-left: 1.5rem;
+}
+.paso::before{
+  content: "0" counter(paso);
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  color: rgba(226,6,26,.18);
+  display: block;
+  margin-bottom: .5rem;
+}
+.paso h3{
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
+}
+.paso p{
+  color: var(--texto-2);
+  font-size: .9rem;
+}
+
+/* -- TIRAS -- */
 .tiras{ overflow:hidden; padding: clamp(5rem,10vh,8rem) 0 clamp(3rem,6vh,5rem); display:grid; gap:.4rem; }
 .tira{
   white-space: nowrap; will-change: transform;
   font-family: var(--serif); font-size: clamp(3rem, 8vw, 7.5rem);
   line-height: 1.05; color: transparent;
-  -webkit-text-stroke: 1px rgba(196,30,30,.32);
+  -webkit-text-stroke: 1px rgba(226,6,26,.28);
 }
 .tira em{ color: var(--rojo); -webkit-text-stroke: 0; }
-.tira--llena{ color: rgba(196,30,30,.13); -webkit-text-stroke: 0; }
+.tira--llena{ color: rgba(226,6,26,.10); -webkit-text-stroke: 0; }
 
-/* ── CONTACTO ── */
+/* -- EQUIPO -- */
+.equipo{
+  padding: clamp(5rem,10vh,8rem) var(--pad);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem,5vw,5rem);
+  align-items: center;
+}
+@media (max-width: 720px){ .equipo{ grid-template-columns: 1fr; } }
+.equipo__foto{
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.equipo__foto img{ will-change: transform; transition: transform .8s cubic-bezier(.22,1,.36,1); }
+.equipo__contenido h2{
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: 1.2rem;
+}
+.equipo__contenido p{
+  color: var(--texto-2);
+  font-size: .95rem;
+  margin-bottom: 1rem;
+  max-width: 48ch;
+}
+.equipo__badge{
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(226,6,26,.08);
+  border: 1px solid rgba(226,6,26,.2);
+  border-radius: 999px;
+  padding: .5rem 1.2rem;
+  font-size: .78rem;
+  letter-spacing: .06em;
+  color: var(--rojo-osc);
+  margin-top: .5rem;
+}
+.equipo__badge::before{
+  content: "";
+  width: .5rem; height: .5rem;
+  background: var(--rojo);
+  border-radius: 50%;
+}
+
+/* -- MAPA -- */
+.mapa{
+  width: 100%;
+  height: 400px;
+  border: none;
+  filter: grayscale(.9) contrast(1.1);
+  transition: filter .4s ease;
+}
+.mapa:hover{ filter: grayscale(0); }
+
+/* -- HORARIO -- */
+.horario-section{
+  padding: clamp(3rem,6vh,5rem) var(--pad);
+  background: var(--blanco-2);
+}
+.horario-section h3{
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+.horario{
+  width: 100%;
+  max-width: 34rem;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+.horario td{
+  padding: .7rem 1rem;
+  border-bottom: 1px solid var(--linea);
+}
+.horario td:first-child{
+  font-weight: 500;
+  width: 40%;
+}
+.horario-hoy td{
+  background: rgba(226,6,26,.07);
+  color: var(--rojo-osc);
+  font-weight: 500;
+}
+
+/* -- CONTACTO -- */
 .contacto{
   min-height: 90svh;
   display:flex; flex-direction:column; justify-content:center; align-items:center;
@@ -380,8 +507,8 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 }
 .contacto__estado::before{
   content:""; width:.55rem; height:.55rem; border-radius:50%;
-  background: var(--rojo); box-shadow: 0 0 12px rgba(196,30,30,.8);
-  animation: latido 4.5s cubic-bezier(.4,0,.6,1) infinite;
+  background: var(--rojo); box-shadow: 0 0 12px rgba(226,6,26,.8);
+  animation: latido 2.6s cubic-bezier(.42,0,.58,1) infinite;
 }
 @keyframes latido{ 50%{ opacity:.35; } }
 .contacto h2{ font-size: clamp(2.5rem, 7.2vw, 6rem); max-width: 15ch; }
@@ -410,14 +537,17 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .dato h4{ font: 500 .68rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
 .dato a:hover{ color: var(--rojo); }
 
-/* ── MAPA ── */
-.mapa{
-  width: 100%; height: clamp(18rem, 36vh, 26rem);
-  border-top: 1px solid var(--linea);
+.wa-float{
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 80;
+  width: 56px; height: 56px;
+  background: #25d366; border-radius: 50%;
+  display: grid; place-items: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+  transition: transform .3s ease;
 }
-.mapa iframe{ width:100%; height:100%; border:0; display:block; }
+.wa-float:hover{ transform: scale(1.1); }
+.wa-float svg{ width: 28px; height: 28px; fill: #fff; }
 
-/* ── PIE ── */
 .pie{
   display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap;
   padding: 2rem var(--pad) 2.6rem;
@@ -430,9 +560,9 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 
 [data-reveal]{ visibility: hidden; }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 768px){
-  .hero{ min-height: auto; height: auto; align-items: flex-start; padding-top: 55svh; padding-bottom: 2.5rem; }
+  .hero{ min-height: auto; height: auto; align-items: flex-start; padding-top: 7rem; padding-bottom: 2.5rem; }
+  .hero__titulo{ font-size: clamp(2.2rem, 9vw, 3.2rem); }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -440,26 +570,28 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
   .preloader{ display:none; }
   .progreso{ display:none; }
+  .galeria{ height:auto; }
+  .galeria__pin{ height:auto; flex-wrap: wrap; padding: 2rem var(--pad); }
 }
 </style>
 </head>
 <body>
 
-<!-- ════════ PRELOADER ════════ -->
+<!-- PRELOADER -->
 <div class="preloader" aria-hidden="true">
   <div class="preloader__curtain"></div>
   <div class="preloader__brand"><span><b>Sierros</b> Centro de Seguridad</span></div>
   <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
 </div>
 
-<!-- ════════ CAPAS ════════ -->
+<!-- CAPAS -->
 <div id="fluid" aria-hidden="true"></div>
 <div class="cursor-dot"  aria-hidden="true"></div>
 <div class="cursor-ring" aria-hidden="true"></div>
 <div class="progreso" aria-hidden="true"><span></span></div>
 
 <header class="cabecera">
-  <a class="cabecera__logo" href="index.html"><b>Sierros</b> Centro de Seguridad</a>
+  <a class="cabecera__logo" href="index.html"><b>Sierros</b> Seguridad</a>
   <nav class="cabecera__nav" aria-label="principal">
     <a class="roll" href="#servicios" data-text="Servicios"><span>Servicios</span></a>
     <a class="roll" href="#equipo"    data-text="Equipo"><span>Equipo</span></a>
@@ -468,189 +600,229 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 </header>
 
 <main>
-  <!-- ════════ HERO ════════ -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero__media" aria-hidden="true">
-      <img src="assets/hero-showroom.jpeg" alt="Showroom de puertas acorazadas CABMA en Sierros Centro de Seguridad, Campos" loading="eager" data-hero-parallax>
+      <img src="showroom.jpg" alt="Expositor de puertas acorazadas CABMA en el Centro de Seguridad Sierros de Campos" loading="eager" data-hero-parallax>
     </div>
     <div class="hero__contenido">
-      <p class="hero__kicker" data-hero-reveal>Centro de Seguridad Sierros · Campos, Mallorca · Desde 1999</p>
+      <p class="hero__kicker" data-hero-reveal>Cerrajería en Campos, Mallorca &middot; Desde 1999 &middot; Servicio 24 h</p>
       <h1 class="hero__titulo" data-hero-reveal>
-        Tu hogar, <em>blindado</em>.
+        La seguridad que tu hogar <em>merece</em>.
       </h1>
       <div class="hero__pie">
         <p class="hero__sub" data-hero-reveal>
-          Distribuidor oficial CABMA en Baleares. Puertas acorazadas,
-          cerrajería de urgencia y seguridad integral, con la confianza
-          de 142 familias en Google.
+          Puertas acorazadas CABMA, cerrajería de urgencia y automatismos.
+          25 años de oficio en Mallorca, 142 reseñas con 4,8 estrellas.
         </p>
         <p class="hero__scroll" data-hero-reveal>Descubre</p>
       </div>
     </div>
   </section>
 
-  <!-- ════════ MARQUEE ════════ -->
+  <!-- MARQUEE -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
       <div class="marquee__group">
-        <span>Cerrajería 24 h <i>/</i></span><span>Puertas acorazadas <i>/</i></span><span>Distribuidor CABMA <i>/</i></span>
-        <span>Automatismos <i>/</i></span><span>142 reseñas en Google <i>/</i></span><span>Campos, Mallorca <i>/</i></span>
-        <span>Desde 1999 <i>/</i></span><span>Alarmas <i>/</i></span>
+        <span>Puertas acorazadas <i>&middot;</i></span><span>Cerrajero 24 h <i>&middot;</i></span><span>Automatismos <i>&middot;</i></span>
+        <span>Alarmas <i>&middot;</i></span><span>4,8 estrellas en Google <i>&middot;</i></span><span>Campos, Mallorca <i>&middot;</i></span>
       </div>
       <div class="marquee__group" aria-hidden="true">
-        <span>Cerrajería 24 h <i>/</i></span><span>Puertas acorazadas <i>/</i></span><span>Distribuidor CABMA <i>/</i></span>
-        <span>Automatismos <i>/</i></span><span>142 reseñas en Google <i>/</i></span><span>Campos, Mallorca <i>/</i></span>
-        <span>Desde 1999 <i>/</i></span><span>Alarmas <i>/</i></span>
+        <span>Puertas acorazadas <i>&middot;</i></span><span>Cerrajero 24 h <i>&middot;</i></span><span>Automatismos <i>&middot;</i></span>
+        <span>Alarmas <i>&middot;</i></span><span>4,8 estrellas en Google <i>&middot;</i></span><span>Campos, Mallorca <i>&middot;</i></span>
       </div>
     </div>
   </div>
 
-  <!-- ════════ MANIFIESTO ════════ -->
+  <!-- MANIFIESTO -->
   <section class="manifiesto">
-    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true">
-      <img src="assets/instalacion.jpeg" alt="Fachada de Sierros Centro de Seguridad en Campos" loading="lazy">
-    </figure>
-    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true">
-      <img src="assets/mihaela-ros.jpg" alt="Mihaela Ros, asesora comercial" loading="lazy">
-    </figure>
-    <p data-manifiesto>
-      No vendemos cerraduras: protegemos lo que más importa. Desde 1999,
-      Pedro Sierra y su equipo asesoran, instalan y reparan con un solo
-      objetivo: que duermas tranquilo.
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="tienda.jpg" alt="Interior del Centro de Seguridad Sierros" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="puerta-premium.jpg" alt="Puerta acorazada CABMA Premium" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="equipo.jpg" alt="Pedro y Mihaela del Centro de Seguridad Sierros" loading="lazy"></figure>
+    <p class="manifiesto__texto" data-manifiesto>
+      No vendemos puertas: protegemos lo que importa. Desde cerraduras de emergencia hasta blindajes certificados, cada trabajo lleva 25 años de oficio.
     </p>
   </section>
 
-  <!-- ════════ CIFRAS ════════ -->
+  <!-- CIFRAS -->
   <section class="cifras">
     <div class="cifra">
-      <div class="cifra__valor"><span data-cuenta data-target="27">0</span></div>
-      <p>años de oficio desde 1999</p>
+      <div class="cifra__valor"><span data-cuenta data-target="25">0</span><i>+</i></div>
+      <p>años de experiencia en el oficio</p>
     </div>
     <div class="cifra">
       <div class="cifra__valor"><span data-cuenta data-target="142">0</span></div>
-      <p>reseñas en Google</p>
+      <p>reseñas en Google Maps</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor">4,8<i>&#9733;</i></div>
+      <p>valoración media de clientes</p>
     </div>
     <div class="cifra">
       <div class="cifra__valor">24<i>h</i></div>
-      <p>servicio de urgencia en Mallorca</p>
-    </div>
-    <div class="cifra">
-      <div class="cifra__valor">4,8<i>/5</i></div>
-      <p>valoración media en Google</p>
+      <p>servicio de urgencias</p>
     </div>
   </section>
 
-  <!-- ════════ CERRADURA — pieza singular (SVG line-draw scrubbed) ════════ -->
-  <section class="cerradura" aria-label="Animación de cerradura que se dibuja con el scroll">
-    <div class="cerradura__pin">
-      <div class="cerradura__inner">
-        <svg class="cerradura__svg" viewBox="0 0 200 280" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <!-- Lock body -->
-          <rect class="lock-el" data-order="1" x="30" y="120" width="140" height="135" rx="10" stroke-width="2"/>
-          <!-- Inner border -->
-          <rect class="lock-el" data-order="2" x="42" y="132" width="116" height="111" rx="6" stroke-width="0.6"/>
-          <!-- Pin 1 -->
-          <line class="lock-el" data-order="3" x1="62" y1="132" x2="62" y2="156" stroke-width="1.2"/>
-          <!-- Pin 2 -->
-          <line class="lock-el" data-order="3" x1="81" y1="132" x2="81" y2="150" stroke-width="1.2"/>
-          <!-- Pin 3 -->
-          <line class="lock-el" data-order="4" x1="100" y1="132" x2="100" y2="159" stroke-width="1.2"/>
-          <!-- Pin 4 -->
-          <line class="lock-el" data-order="4" x1="119" y1="132" x2="119" y2="147" stroke-width="1.2"/>
-          <!-- Pin 5 -->
-          <line class="lock-el" data-order="3" x1="138" y1="132" x2="138" y2="153" stroke-width="1.2"/>
-          <!-- Shear line -->
-          <line class="lock-el" data-order="5" x1="42" y1="158" x2="158" y2="158" stroke-width="0.5" stroke-dasharray="4,3"/>
-          <!-- Keyhole outer -->
-          <circle class="lock-el" data-order="6" cx="100" cy="200" r="16" stroke-width="1.5"/>
-          <!-- Keyhole slot -->
-          <path class="lock-el" data-order="7" d="M100,214 L92,242 L108,242 Z" stroke-width="1"/>
-          <!-- Shackle -->
-          <path class="lock-el lock-shackle" data-order="8" d="M60,120 L60,62 C60,26 140,26 140,62 L140,120" stroke-width="3"/>
-        </svg>
-        <div class="cerradura__texto">
-          <p class="cerradura__fase" data-lock-fase>El cerrojo</p>
-          <h2 class="cerradura__titulo">La seguridad es un <em>oficio</em></h2>
-        </div>
-      </div>
-    </div>
+  <!-- LOCK LINE-DRAW (pieza singular) -->
+  <section class="lockdraw" aria-label="Animación de mecanismo de cerradura">
+    <svg class="lockdraw__svg" viewBox="0 0 400 400" aria-hidden="true">
+      <!-- Cuerpo del candado -->
+      <path d="M120 200 L120 320 Q120 350 150 350 L250 350 Q280 350 280 320 L280 200 Z"/>
+      <!-- Arco superior -->
+      <path d="M150 200 L150 140 Q150 80 200 80 Q250 80 250 140 L250 200"/>
+      <!-- Ojo de cerradura -->
+      <path d="M200 250 Q185 250 185 265 Q185 280 195 285 L190 320 L210 320 L205 285 Q215 280 215 265 Q215 250 200 250 Z"/>
+      <!-- Llave -->
+      <path d="M60 265 L170 265 M170 255 L170 275 Q180 275 180 265 Q180 255 170 255 Z M90 265 L90 280 M110 265 L110 285 M130 265 L130 278"/>
+      <!-- Escudo de seguridad -->
+      <path d="M300 60 L340 80 L340 130 Q340 170 300 190 Q260 170 260 130 L260 80 Z M280 120 L295 135 L320 100"/>
+    </svg>
+    <p class="lockdraw__label">Seguridad que se <em>construye</em> con oficio.</p>
   </section>
 
-  <!-- ════════ GALERIA HORIZONTAL (servicios) ════════ -->
-  <section class="galeria" id="servicios">
+  <!-- GALERIA HORIZONTAL PINEADA -->
+  <section class="galeria" aria-label="Productos y servicios de seguridad">
     <div class="galeria__pin">
-      <div class="galeria__track">
-        <div class="galeria__card" data-reveal>
-          <div class="galeria__card-img">
-            <img src="assets/puerta-premium.jpg" alt="Puerta acorazada CABMA Premium 5C" loading="lazy" style="object-position: center;">
-          </div>
-          <div class="galeria__card-body">
-            <h3>Puertas acorazadas CABMA</h3>
-            <p>Distribuidor oficial en Baleares. Grado 3 a 5 de seguridad, medidas a la carta y paneles intercambiables que se adaptan a la estética de cada hogar.</p>
-          </div>
-        </div>
-        <div class="galeria__card" data-reveal>
-          <div class="galeria__card-img">
-            <img src="assets/pedro-sierra.jpg" alt="Pedro Sierra, cerrajero y herrero desde 1999" loading="lazy" style="object-position: center 20%;">
-          </div>
-          <div class="galeria__card-body">
-            <h3>Cerrajería 24 horas</h3>
-            <p>Aperturas, reparaciones y cambios de cerradura en toda Mallorca. Llegamos rápido y resolvemos en el acto, de día o de noche.</p>
-          </div>
-        </div>
+      <div class="galeria__cab">
+        <h2 data-reveal data-split="lines">Puertas <em>CABMA</em></h2>
+      </div>
+      <div class="galeria__track" id="galeriaTrack">
+        <figure class="galeria__item">
+          <img src="showroom.jpg" alt="Gama completa de puertas acorazadas CABMA en exposición" loading="lazy">
+          <figcaption>Showroom con la gama completa</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="puerta-premium.jpg" alt="Puerta acorazada CABMA Premium abierta mostrando blindaje" loading="lazy">
+          <figcaption>Premium: hasta 5 puntos de cierre</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="tienda.jpg" alt="Mostrador de Centro de Seguridad Sierros con expositor de llaves" loading="lazy">
+          <figcaption>Copia de llaves y cerraduras</figcaption>
+        </figure>
+        <figure class="galeria__item">
+          <img src="equipo.jpg" alt="Pedro Sierra y Mihaela Ros frente al Centro de Seguridad Sierros en Campos" loading="lazy">
+          <figcaption>Pedro y Mihaela, el equipo</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <!-- ════════ TESTIMONIOS ════════ -->
-  <section class="testimonios" id="equipo">
-    <div class="testimonios__cab">
-      <h2 data-reveal data-split="lines">142 familias lo <em>confirman</em>.</h2>
-      <p class="google" data-reveal><b>4,8 / 5</b> en Google</p>
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="servicios__cab">
+      <h2 data-reveal data-split="lines">Lo que hacemos <em>bien</em>.</h2>
     </div>
-    <figure class="cita">
-      <blockquote>Muy buenos profesionales y las mejores puertas acorazadas del mercado. Sin duda volvería a llamarles.</blockquote>
-      <figcaption>Reseña verificada en Google</figcaption>
-    </figure>
-    <figure class="cita">
-      <blockquote>Muchas gracias al cerrajero, llegó rápido y abrió rápido, un experto.</blockquote>
-      <figcaption>Reseña verificada en Google</figcaption>
-    </figure>
-    <figure class="cita">
-      <blockquote>Increíble los profesionales que tenemos en Campos. Me han hecho una llave muy rara a mano. Encima económico.</blockquote>
-      <figcaption>Reseña verificada en Google</figcaption>
-    </figure>
+    <div class="servicios__grid">
+      <div class="servicio" data-reveal>
+        <div class="servicio__num">01</div>
+        <h3>Puertas acorazadas CABMA</h3>
+        <p>Distribuidor exclusivo en Baleares. Gamas Premium 3C, 4C y 5C, Thor 20, Eco-Thor y puertas de trastero. Medidas personalizables, paneles intercambiables y certificación europea.</p>
+      </div>
+      <div class="servicio" data-reveal>
+        <div class="servicio__num">02</div>
+        <h3>Cerrajero de urgencia 24 h</h3>
+        <p>Apertura de puertas, cambio de cerraduras, bombines de seguridad y reparación de accesos. Servicio de emergencia en toda Mallorca, con furgón equipado y sin intermediarios.</p>
+      </div>
+      <div class="servicio" data-reveal>
+        <div class="servicio__num">03</div>
+        <h3>Automatismos y persianas</h3>
+        <p>Motorización de puertas de garaje, persianas metálicas, barreras de acceso y mandos a distancia. Instalación, mantenimiento y reparación.</p>
+      </div>
+      <div class="servicio" data-reveal>
+        <div class="servicio__num">04</div>
+        <h3>Alarmas y seguridad integral</h3>
+        <p>Sistemas de alarma para hogar y negocio, cerrojos de seguridad, escudos antipalanca y asesoramiento personalizado para blindar tu propiedad.</p>
+      </div>
+    </div>
   </section>
 
-  <!-- ════════ ZOOM ════════ -->
-  <section class="zoom" aria-label="Vista del local de Sierros">
+  <!-- ZOOM -->
+  <section class="zoom" aria-label="Interior del centro de seguridad">
     <div class="zoom__pin">
-      <div class="zoom__marco"><img src="assets/taller.jpg" alt="Marca CABMA Baleares, distribuidor oficial de puertas de seguridad" loading="lazy"></div>
-      <p class="zoom__texto" data-zoom-texto>Proteger tu hogar es la mejor <em>inversión</em>.</p>
+      <div class="zoom__marco"><img src="tienda.jpg" alt="Interior del Centro de Seguridad Sierros" loading="lazy"></div>
+      <p class="zoom__texto" data-zoom-texto>Tu tranquilidad empieza en la <em>puerta</em>.</p>
     </div>
   </section>
 
-  <!-- ════════ TIRAS ════════ -->
+  <!-- COMO TRABAJAMOS -->
+  <section class="proceso">
+    <div class="proceso__cab">
+      <h2 data-reveal data-split="lines">Cómo <em>trabajamos</em>.</h2>
+      <p class="google" data-reveal><i>&#9733;&#9733;&#9733;&#9733;&#9733;</i> <b>4,8</b> en Google &middot; 142 reseñas</p>
+    </div>
+    <div class="pasos">
+      <div class="paso" data-reveal>
+        <h3>Diagnóstico gratuito</h3>
+        <p>Evaluamos tu cerradura, puerta o sistema de acceso sin compromiso. Presupuesto cerrado antes de empezar.</p>
+      </div>
+      <div class="paso" data-reveal>
+        <h3>Solución a medida</h3>
+        <p>Seleccionamos la puerta, cerradura o automatismo que se ajusta a tu vivienda, comunidad o negocio. Sin sobrecostes.</p>
+      </div>
+      <div class="paso" data-reveal>
+        <h3>Instalación profesional</h3>
+        <p>Pedro y su equipo ejecutan el trabajo con herramienta propia y vehículo rotulado. Limpieza al terminar.</p>
+      </div>
+      <div class="paso" data-reveal>
+        <h3>Garantía y posventa</h3>
+        <p>Garantía por escrito en puertas y cerraduras. Servicio técnico directo, sin centralitas externas ni intermediarios.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIRAS -->
   <div class="tiras" aria-hidden="true">
-    <p class="tira" data-tira="-1">Cerrajería <em>/</em> Seguridad <em>/</em> CABMA <em>/</em> Mallorca <em>/</em> Cerrajería <em>/</em> Seguridad <em>/</em> CABMA <em>/</em> Mallorca</p>
-    <p class="tira tira--llena" data-tira="1">Campos <em>/</em> Desde 1999 <em>/</em> 24 horas <em>/</em> Campos <em>/</em> Desde 1999 <em>/</em> 24 horas</p>
+    <p class="tira" data-tira="-1">Seguridad <em>&middot;</em> Cerrajería <em>&middot;</em> Puertas <em>&middot;</em> Seguridad <em>&middot;</em> Cerrajería <em>&middot;</em> Puertas <em>&middot;</em> Seguridad <em>&middot;</em> Cerrajería</p>
+    <p class="tira tira--llena" data-tira="1">Campos <em>&middot;</em> Mallorca <em>&middot;</em> Desde 1999 <em>&middot;</em> Campos <em>&middot;</em> Mallorca <em>&middot;</em> Desde 1999 <em>&middot;</em> Campos <em>&middot;</em> Mallorca</p>
   </div>
 
-  <!-- ════════ CONTACTO ════════ -->
+  <!-- EQUIPO -->
+  <section class="equipo" id="equipo">
+    <div class="equipo__foto" data-reveal>
+      <img src="equipo.jpg" alt="Pedro Sierra y Mihaela Ros en la entrada del Centro de Seguridad Sierros" loading="lazy">
+    </div>
+    <div class="equipo__contenido">
+      <h2 data-reveal data-split="lines">Pedro Sierra y Mihaela Ros</h2>
+      <p data-reveal>Herrero desde 1999, Pedro se formó en las mejores metalúrgicas de las islas antes de abrir su propio centro de seguridad en Campos. Mihaela asesora a cada cliente para elegir la puerta y el sistema de cierre que encaja con su hogar.</p>
+      <p data-reveal>Juntos dirigen el Centro de Seguridad Sierros, distribuidor exclusivo de puertas acorazadas CABMA en Baleares.</p>
+      <div class="equipo__badge" data-reveal>Presidente de la Asociación de Cerrajeros de Mallorca</div>
+    </div>
+  </section>
+
+  <!-- HORARIO -->
+  <section class="horario-section">
+    <h3 data-reveal>Horario del centro</h3>
+    <table class="horario" data-reveal>
+      <tr data-dia="1"><td>Lunes</td><td>09:00 - 13:30 / 16:00 - 19:30</td></tr>
+      <tr data-dia="2"><td>Martes</td><td>09:00 - 13:30 / 16:00 - 19:30</td></tr>
+      <tr data-dia="3"><td>Miércoles</td><td>09:00 - 13:30 / 16:00 - 19:30</td></tr>
+      <tr data-dia="4"><td>Jueves</td><td>09:00 - 13:30 / 16:00 - 19:30</td></tr>
+      <tr data-dia="5"><td>Viernes</td><td>09:00 - 13:30 / 16:00 - 19:30</td></tr>
+      <tr data-dia="6"><td>Sábado</td><td>09:00 - 13:00</td></tr>
+      <tr data-dia="0"><td>Domingo</td><td>Cerrado (urgencias 24 h)</td></tr>
+    </table>
+    <p style="margin-top: 1rem; font-size: .82rem; color: var(--piedra);" data-reveal>Urgencias: servicio 24 horas, 365 días al año.</p>
+  </section>
+
+  <!-- MAPA -->
+  <iframe class="mapa" src="https://maps.google.com/maps?q=Centro+de+Seguridad+Sierros+Campos+Mallorca&output=embed" loading="lazy" title="Ubicación del Centro de Seguridad Sierros en Google Maps" allowfullscreen></iframe>
+
+  <!-- CONTACTO -->
   <section class="contacto" id="contacto">
-    <p class="contacto__estado" data-reveal>Disponible 24 horas, 365 días</p>
-    <h2 data-reveal data-split="lines">¿Hablamos de la seguridad de tu <em>hogar</em>?</h2>
+    <p class="contacto__estado" data-reveal>Presupuesto sin compromiso</p>
+    <h2 data-reveal data-split="lines">Protege lo que <em>importa</em>.</h2>
     <a class="magnetico" href="tel:+34660223959" data-magnetico>
-      <span class="magnetico__label">Llamar / 660 22 39 59</span>
+      <span class="magnetico__label">Llamar al 660 22 39 59</span>
     </a>
     <p class="contacto__secundario" data-reveal>
-      <a href="https://wa.me/34660223959">WhatsApp</a> ·
+      <a href="https://wa.me/34660223959">WhatsApp</a> &middot;
       <a href="mailto:centroseguridadsierros@gmail.com">centroseguridadsierros@gmail.com</a>
     </p>
     <div class="contacto__datos">
       <div class="dato" data-reveal>
-        <h4>El local</h4>
-        <p>C/ Ronda de l'Estació 17, bajos<br>07630 Campos, Mallorca<br><span style="color:var(--piedra);font-size:.82rem">Illes Balears</span></p>
+        <h4>El centro</h4>
+        <p>C/ Ronda de l'Estació 17, Bajos<br>07630 Campos, Mallorca<br><span style="color:var(--piedra);font-size:.82rem">Illes Balears</span></p>
       </div>
       <div class="dato" data-reveal>
         <h4>Contacto</h4>
@@ -658,19 +830,20 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
         <a href="mailto:centroseguridadsierros@gmail.com">centroseguridadsierros@gmail.com</a></p>
       </div>
       <div class="dato" data-reveal>
-        <h4>El equipo</h4>
-        <p>Pedro Sierra, cerrajero y herrero<br>Mihaela Ros, asesora comercial<br>Servicio en toda Mallorca</p>
+        <h4>Redes</h4>
+        <p><a href="https://www.instagram.com/pedrosierra_cerrajero/" target="_blank" rel="noopener">Instagram</a><br>
+        <a href="https://www.facebook.com/puertas.ps.3" target="_blank" rel="noopener">Facebook</a></p>
       </div>
     </div>
   </section>
 
-  <!-- ════════ MAPA ════════ -->
-  <div class="mapa" id="ubicacion">
-    <iframe src="https://www.google.com/maps?q=Pedro+Sierra+Cerrajero+%26+Herrero+Campos+Mallorca&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Sierros Centro de Seguridad en Google Maps"></iframe>
-  </div>
+  <!-- WHATSAPP FLOTANTE -->
+  <a class="wa-float" href="https://wa.me/34660223959" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
   <footer class="pie">
-    <span>© 2026 Sierros Centro de Seguridad · Campos</span>
+    <span>&copy; 2026 Centro de Seguridad Sierros &middot; Campos, Mallorca</span>
     <nav>
       <a href="legal/aviso-legal.html">Aviso legal</a>
       <a href="legal/politica-privacidad.html">Privacidad</a>
@@ -681,7 +854,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   </footer>
 </main>
 
-<!-- ════════ DEPENDENCIAS ════════ -->
+<!-- DEPENDENCIAS -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
@@ -695,6 +868,7 @@ CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
 
 var REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
 var FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+var DPR          = Math.min(devicePixelRatio || 1, 2);
 
 var lenis = null;
 if (!REDUCE) {
@@ -706,9 +880,9 @@ if (!REDUCE) {
   window.lenis = lenis;
 }
 
-/* ── ESTELA FLUIDA ── */
+/* -- ESTELA FLUIDA (receta aprobada) -- */
 if (FINE_POINTER && !REDUCE) {
-  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then(function(mod) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then(function(mod){
     var cont = document.getElementById('fluid');
     var sim = new mod.default(cont);
     Object.assign(cont.style, {
@@ -722,24 +896,26 @@ if (FINE_POINTER && !REDUCE) {
       pressureIterations: 10, curl: 28,
       splatRadius: 0.1, splatForce: 5000,
       hover: false, colorful: false,
-      colorPalette: ['#C41E1E', '#8B1515', '#14171c'],
-      transparent: true, bloom: false, sunrays: false,
+      colorPalette: ['#E2061A', '#a8040f', '#14171c'],
+      transparent: true,
+      bloom: false,
+      sunrays: false,
     });
     sim.start();
     var lastX = null, lastY = null;
-    addEventListener('pointermove', function(e) {
+    addEventListener('pointermove', function(e){
       if (lastX !== null) {
         var dx = (e.clientX - lastX) * 2.5, dy = (e.clientY - lastY) * 2.5;
         if (Math.abs(dx) + Math.abs(dy) > 4) sim.splatAtLocation(e.clientX, e.clientY, dx, dy);
       }
       lastX = e.clientX; lastY = e.clientY;
     }, { passive: true });
-    window.__fluidBurst = function() {
+    window.__fluidBurst = function(){
       var W = innerWidth, H = innerHeight;
       for (var i = 0; i <= 5; i++) {
-        (function(idx) {
+        (function(idx){
           var t = idx / 5;
-          setTimeout(function() {
+          setTimeout(function(){
             sim.splatAtLocation(W * (0.15 + t * 0.7), H * (0.6 - Math.sin(t * Math.PI) * 0.22),
                                 180 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
           }, idx * 70);
@@ -750,40 +926,48 @@ if (FINE_POINTER && !REDUCE) {
   }).catch(function(){});
 }
 
-/* ── Cursor dot + ring ── */
+/* -- Cursor dot + ring -- */
 if (FINE_POINTER && !REDUCE) (function cursor(){
   var dot  = document.querySelector('.cursor-dot');
   var ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
-  var dx = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
-  var dy = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
-  var rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
-  var ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+  var dxQ = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
+  var dyQ = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
+  var rxQ = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  var ryQ = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
   var visto = false;
-  addEventListener('pointermove', function(e) {
+  addEventListener('pointermove', function(e){
     if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
-    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
+    dxQ(e.clientX); dyQ(e.clientY); rxQ(e.clientX); ryQ(e.clientY);
   }, { passive: true });
-  document.querySelectorAll('a, button').forEach(function(el) {
+  document.querySelectorAll('a, button').forEach(function(el){
     el.addEventListener('mouseenter', function(){ gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }); });
     el.addEventListener('mouseleave', function(){ gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }); });
   });
 })();
 
-/* ── Coreografía principal ── */
-document.fonts.ready.then(function() {
+/* -- Highlight today's schedule -- */
+function highlightToday(){
+  var d = new Date().getDay();
+  var fila = document.querySelector('[data-dia="' + d + '"]');
+  if (fila) fila.classList.add('horario-hoy');
+}
+highlightToday();
+
+/* -- Coreografia principal -- */
+document.fonts.ready.then(function(){
   var mm = gsap.matchMedia();
 
   mm.add({
     motionOK:  '(prefers-reduced-motion: no-preference)',
     reduce:    '(prefers-reduced-motion: reduce)',
-  }, function(ctx) {
+  }, function(ctx){
     if (ctx.conditions.reduce) {
       gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
-      document.querySelectorAll('[data-cuenta]').forEach(function(el) {
+      document.querySelectorAll('[data-cuenta]').forEach(function(el){
         el.textContent = (+el.dataset.target).toLocaleString('es-ES');
       });
-      document.querySelector('.preloader').style.display = 'none';
+      var pre = document.querySelector('.preloader');
+      if (pre) pre.style.display = 'none';
       return;
     }
 
@@ -802,21 +986,20 @@ document.fonts.ready.then(function() {
       return tl;
     }
 
-    /* ── Preloader ── */
-    var num = document.querySelector('.preloader__num');
-    var progreso = { v: 0 };
-    var cargaMinima = new Promise(function(res) {
-      gsap.to(progreso, {
+    var numEl = document.querySelector('.preloader__num');
+    var prog = { v: 0 };
+    var cargaMinima = new Promise(function(res){
+      gsap.to(prog, {
         v: 100, duration: 1.9, ease: 'steps(14)',
-        onUpdate: function(){ num.firstChild.textContent = Math.round(progreso.v); },
+        onUpdate: function(){ numEl.firstChild.textContent = Math.round(prog.v); },
         onComplete: res,
       });
     });
-    var cargaReal = new Promise(function(res) {
+    var cargaReal = new Promise(function(res){
       if (document.readyState === 'complete') res();
       else addEventListener('load', res, { once: true });
     });
-    Promise.all([cargaMinima, cargaReal]).then(function() {
+    Promise.all([cargaMinima, cargaReal]).then(function(){
       gsap.timeline()
         .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
         .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
@@ -827,7 +1010,7 @@ document.fonts.ready.then(function() {
         .call(function(){ if (window.__fluidBurst) window.__fluidBurst(); }, null, '-=0.9');
     });
 
-    /* ── Hero parallax ── */
+    /* Hero parallax */
     gsap.to('[data-hero-parallax]', {
       yPercent: 14, scale: 1.12, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
@@ -836,43 +1019,20 @@ document.fonts.ready.then(function() {
       yPercent: -12, autoAlpha: 0.3, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
     });
-
-    /* ── Progress bar ── */
     gsap.to('.progreso span', {
       scaleY: 1, ease: 'none',
       scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
     });
 
-    /* ── Marquee ── */
-    (function(){
-      var trackM = document.querySelector('.marquee__track');
-      if (!trackM) return;
-      var marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 30, repeat: -1 });
-      marq.totalTime(30 * 1000);
-      var objetivoTS = 1;
-      ScrollTrigger.create({
-        onUpdate: function(self) {
-          var v = self.getVelocity();
-          objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
-        },
-      });
-      gsap.ticker.add(function() {
-        marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
-        objetivoTS += (1 - objetivoTS) * 0.04;
-      });
-    })();
-
-    /* ── Manifiesto word scrub ── */
+    /* Manifiesto scrub words */
     SplitText.create('[data-manifiesto]', {
       type: 'words',
-      onSplit: function(self) {
-        gsap.from(self.words, {
-          opacity: 0.13, stagger: 0.05, ease: 'none',
-          scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
-        });
-      },
+      onSplit: function(self){ return gsap.from(self.words, {
+        opacity: 0.13, stagger: 0.05, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
+      }); },
     });
-    gsap.utils.toArray('.flotante').forEach(function(el) {
+    gsap.utils.toArray('.flotante').forEach(function(el){
       var sp = +el.dataset.speed || 1;
       gsap.fromTo(el, { yPercent: 16 * sp }, {
         yPercent: -16 * sp, ease: 'none',
@@ -880,14 +1040,14 @@ document.fonts.ready.then(function() {
       });
     });
 
-    /* ── Cifras ── */
-    gsap.utils.toArray('.cifra').forEach(function(el, i) {
+    /* Cifras */
+    gsap.utils.toArray('.cifra').forEach(function(el, i){
       gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
         y: 0, autoAlpha: 1, ease: 'none',
         scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
       });
     });
-    document.querySelectorAll('[data-cuenta]').forEach(function(el) {
+    document.querySelectorAll('[data-cuenta]').forEach(function(el){
       var objetivo = +el.dataset.target;
       var c = { v: 0 };
       gsap.to(c, {
@@ -897,128 +1057,67 @@ document.fonts.ready.then(function() {
       });
     });
 
-    /* ── Cerradura SVG line-draw ── */
-    (function lockDraw(){
-      var seccion = document.querySelector('.cerradura');
-      var pinEl   = document.querySelector('.cerradura__pin');
-      var faseEl  = document.querySelector('[data-lock-fase]');
-      if (!seccion || !pinEl) return;
+    /* Lock line-draw */
+    document.querySelectorAll('.lockdraw__svg path').forEach(function(path){
+      var len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+    });
+    gsap.to('.lockdraw__svg path', {
+      strokeDashoffset: 0,
+      stagger: 0.12,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.lockdraw',
+        start: 'top 70%',
+        end: 'bottom 50%',
+        scrub: 1,
+      },
+    });
 
-      var paths = seccion.querySelectorAll('.lock-el');
-      var shackle = seccion.querySelector('.lock-shackle');
-
-      /* Prepare dash offsets */
-      paths.forEach(function(p) {
-        var len;
-        if (p.tagName === 'line') {
-          var x1 = +p.getAttribute('x1'), y1 = +p.getAttribute('y1');
-          var x2 = +p.getAttribute('x2'), y2 = +p.getAttribute('y2');
-          len = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
-        } else if (p.getTotalLength) {
-          len = p.getTotalLength();
-        } else {
-          /* rect fallback */
-          var w = +p.getAttribute('width') || 0, h = +p.getAttribute('height') || 0;
-          len = 2 * (w + h);
-        }
-        p.style.strokeDasharray = len;
-        p.style.strokeDashoffset = len;
-        p.dataset.len = len;
+    /* Marquee */
+    (function(){
+      var trackM = document.querySelector('.marquee__track');
+      if (!trackM) return;
+      var marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 30, repeat: -1 });
+      marq.totalTime(30 * 1000);
+      var objetivoTS = 1;
+      ScrollTrigger.create({
+        onUpdate: function(self){
+          var v = self.getVelocity();
+          objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
+        },
       });
-
-      var fases = [
-        [0.00, 'El cerrojo'],
-        [0.25, 'Los pernos'],
-        [0.50, 'El cilindro'],
-        [0.80, 'La apertura'],
-      ];
-
-      var prog = { p: 0 };
-      gsap.to(prog, {
-        p: 1,
-        ease: 'none',
-        onUpdate: function() {
-          var t = prog.p;
-          paths.forEach(function(p) {
-            var order = (+p.dataset.order - 1) / 8;
-            var dur = 0.15;
-            var local = gsap.utils.clamp(0, 1, (t - order) / dur);
-            var len = +p.dataset.len;
-            p.style.strokeDashoffset = len * (1 - local);
-          });
-
-          /* Shackle opens at end */
-          if (shackle && t > 0.88) {
-            var open = gsap.utils.clamp(0, 1, (t - 0.88) / 0.12);
-            shackle.style.transform = 'translateY(' + (-open * 14) + 'px)';
-          }
-
-          /* Phase text */
-          if (faseEl) {
-            var fase = fases[0][1];
-            for (var i = 0; i < fases.length; i++) {
-              if (t >= fases[i][0]) fase = fases[i][1];
-            }
-            if (faseEl.textContent !== fase) faseEl.textContent = fase;
-          }
-        },
-        scrollTrigger: {
-          trigger: seccion,
-          start: 'top top',
-          end: 'bottom bottom',
-          pin: pinEl,
-          pinSpacing: false,
-          scrub: 0.6,
-          anticipatePin: 1,
-        },
+      gsap.ticker.add(function(){
+        marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
+        objetivoTS += (1 - objetivoTS) * 0.04;
       });
     })();
 
-    /* ── Galería horizontal con skew ── */
+    /* Galeria horizontal pineada con skew */
     (function(){
-      var galeria  = document.querySelector('.galeria');
-      var galeriaPin = document.querySelector('.galeria__pin');
-      var track    = document.querySelector('.galeria__track');
-      var cards    = gsap.utils.toArray('.galeria__card');
-      if (!galeria || !track || cards.length === 0) return;
-
-      var totalScroll;
-      function calcTotal(){ totalScroll = track.scrollWidth - galeriaPin.clientWidth + 80; }
-      calcTotal();
-
-      galeria.style.height = totalScroll + 'px';
-
-      gsap.to(track, {
-        x: function(){ return -totalScroll + galeriaPin.clientWidth; },
-        ease: 'none',
+      var track = document.getElementById('galeriaTrack');
+      if (!track) return;
+      var items = track.querySelectorAll('.galeria__item');
+      var totalScroll = track.scrollWidth - innerWidth + 200;
+      var tl = gsap.timeline({
         scrollTrigger: {
-          trigger: galeria,
+          trigger: '.galeria',
           start: 'top top',
           end: 'bottom bottom',
-          pin: galeriaPin,
+          pin: '.galeria__pin',
           pinSpacing: false,
           scrub: 1,
           anticipatePin: 1,
-          invalidateOnRefresh: true,
-          onRefresh: calcTotal,
-          onUpdate: function(self) {
-            var v = self.getVelocity();
-            var skew = gsap.utils.clamp(-6, 6, v / 400);
-            gsap.to(cards, { skewX: skew, duration: 0.4, ease: 'power3.out', overwrite: true });
-          },
         },
+      });
+      tl.to(track, { x: -totalScroll, ease: 'none', duration: 1 }, 0);
+      items.forEach(function(item){
+        tl.fromTo(item, { skewX: 4 }, { skewX: -2, ease: 'none', duration: 1 }, 0);
       });
     })();
 
-    /* ── Citas scrubadas ── */
-    gsap.utils.toArray('.cita').forEach(function(el, i) {
-      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, {
-        x: 0, autoAlpha: 1, ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 60%', scrub: 1 },
-      });
-    });
-
-    /* ── Zoom ── */
+    /* ZOOM */
     (function(){
       var fluidEl = document.getElementById('fluid');
       var zTexto = document.querySelector('[data-zoom-texto]');
@@ -1041,8 +1140,8 @@ document.fonts.ready.then(function() {
       .fromTo(zsplit.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
     })();
 
-    /* ── Tiras ── */
-    document.querySelectorAll('[data-tira]').forEach(function(el) {
+    /* Tiras a contra-scroll */
+    document.querySelectorAll('[data-tira]').forEach(function(el){
       var dir = +el.dataset.tira;
       gsap.fromTo(el, { xPercent: dir * 6 }, {
         xPercent: dir * -6, ease: 'none',
@@ -1050,12 +1149,12 @@ document.fonts.ready.then(function() {
       });
     });
 
-    /* ── Reveals genéricos ── */
-    document.querySelectorAll('[data-reveal]').forEach(function(el) {
+    /* Reveal generico */
+    document.querySelectorAll('[data-reveal]').forEach(function(el){
       if (el.dataset.split === 'lines') {
         SplitText.create(el, {
           type: 'lines', mask: 'lines', autoSplit: true,
-          onSplit: function(self) {
+          onSplit: function(self){
             gsap.set(el, { visibility: 'visible' });
             return gsap.from(self.lines, {
               yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
@@ -1071,23 +1170,22 @@ document.fonts.ready.then(function() {
       }
     });
 
-    /* ── CTA magnético ── */
+    /* CTA magnetico */
     if (FINE_POINTER) {
-      document.querySelectorAll('[data-magnetico]').forEach(function(el) {
+      document.querySelectorAll('[data-magnetico]').forEach(function(el){
         var label = el.querySelector('.magnetico__label');
-        if (!label) return;
         var xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
         var yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
         var lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
         var ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
-        el.addEventListener('mousemove', function(e) {
+        el.addEventListener('mousemove', function(e){
           var r = el.getBoundingClientRect();
-          var dx = e.clientX - (r.left + r.width / 2);
-          var dy = e.clientY - (r.top + r.height / 2);
-          xTo(dx * 0.35); yTo(dy * 0.35);
-          lx(dx * 0.5);  ly(dy * 0.5);
+          var ddx = e.clientX - (r.left + r.width / 2);
+          var ddy = e.clientY - (r.top + r.height / 2);
+          xTo(ddx * 0.35); yTo(ddy * 0.35);
+          lx(ddx * 0.5);  ly(ddy * 0.5);
         });
-        el.addEventListener('mouseleave', function() {
+        el.addEventListener('mouseleave', function(){
           gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
         });
       });
