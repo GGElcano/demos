@@ -1990,11 +1990,14 @@ if(!REDUCED){
     Object.assign(cont.style,{position:'fixed',inset:'0',width:'100%',
       height:'100%',zIndex:'3998',pointerEvents:'none'});    // la lib pisa el position
     dispatchEvent(new Event('resize'));
+    /* En MÓVIL bajamos resolución del fluido: 1024 RGBA16F + DPR alto satura la GPU del
+       móvil y el navegador recarga la pestaña. 512/96 se ve igual para un humo y pesa ~⅓. */
+    const MOBILE=matchMedia('(pointer:coarse)').matches || innerWidth<900;
     sim.setConfig({
-      simResolution:128, dyeResolution:1024,
+      simResolution:MOBILE?96:128, dyeResolution:MOBILE?512:1024,
       densityDissipation:2.2, velocityDissipation:1.4,
-      pressureIterations:10, curl:28,
-      splatRadius:0.1, splatForce:5000,
+      pressureIterations:MOBILE?8:10, curl:28,
+      splatRadius:MOBILE?0.12:0.1, splatForce:5000,
       hover:false, colorful:false,
       colorPalette:['#9a7b4f','#c8ad7f','#e3cfa3'],          // 3 tonos bronce/oro Boroa
       transparent:true,
@@ -2002,20 +2005,33 @@ if(!REDUCED){
       sunrays:false,
     });
     sim.start();
+    /* PAUSA POR INACTIVIDAD: el solve Navier-Stokes corre cada frame para SIEMPRE aunque
+       no toques nada → en móvil recalienta y la pestaña se recarga. Lo pausamos tras 1,4s
+       sin actividad y revive al mover. pause() de la lib es un TOGGLE → llevamos el estado. */
+    let fluidPaused=false;
+    /* en v0.8 el método es togglePause() (NO pause()); devuelve el nuevo estado paused */
+    const setFluid=(run)=>{ if(run === !fluidPaused) return; fluidPaused = sim.togglePause(); };
+    let idleT=0;
+    const wake=()=>{ setFluid(true); clearTimeout(idleT); idleT=setTimeout(()=>setFluid(false),1400); };
+    wake();                                                  // arranca el temporizador de inactividad
     /* v0.8 splatAtLocation normaliza la X por canvas.width (px de DISPOSITIVO = CSS×DPR)
        pero la Y por clientHeight (px CSS). En móvil (DPR>1) eso manda la estela a 1/DPR
        a la izquierda y diminuta → compensamos escalando SOLO la X por width/clientWidth. */
     const fcv=cont.querySelector('canvas');
     const sx=()=> (fcv&&fcv.clientWidth)? fcv.width/fcv.clientWidth : (devicePixelRatio||1);
-    let lastX=null,lastY=null;
-    const feed=(x,y)=>{
-      if(lastX!==null){
-        const dx=(x-lastX)*2.5, dy=(y-lastY)*2.5;
-        if(Math.abs(dx)+Math.abs(dy)>4) sim.splatAtLocation(x*sx(), y, dx, dy);
-      }
-      lastX=x; lastY=y;
+    /* Coalescemos los splats a UNO por frame (en scroll táctil llegan decenas de touchmove
+       por frame → no hay que inyectar en WebGL en cada uno). Acumulamos el delta. */
+    let lastX=null,lastY=null,accX=0,accY=0,curX=0,curY=0,pending=false;
+    const flush=()=>{ pending=false;
+      if(Math.abs(accX)+Math.abs(accY)>4){ wake(); sim.splatAtLocation(curX*sx(),curY,accX,accY); }
+      accX=accY=0;
     };
-    const resetTrail=()=>{lastX=lastY=null;};
+    const feed=(x,y)=>{
+      if(lastX!==null){ accX+=(x-lastX)*2.5; accY+=(y-lastY)*2.5; }
+      lastX=x; lastY=y; curX=x; curY=y;
+      if(!pending){ pending=true; requestAnimationFrame(flush); }
+    };
+    const resetTrail=()=>{lastX=lastY=null;accX=accY=0;};
     /* ratón/lápiz */
     addEventListener('pointermove',(e)=>{ if(e.pointerType!=='touch') feed(e.clientX,e.clientY); },{passive:true});
     /* táctil: touchmove SIGUE emitiéndose durante el scroll (pointermove se cancela al
@@ -2024,7 +2040,8 @@ if(!REDUCED){
     addEventListener('touchmove',(e)=>{ const t=e.touches[0]; if(t) feed(t.clientX,t.clientY); },{passive:true});
     addEventListener('touchend',resetTrail,{passive:true});
     addEventListener('touchcancel',resetTrail,{passive:true});
-    document.addEventListener('visibilitychange',()=>sim.pause());
+    /* pausa explícita al ocultar la pestaña; revive al volver (antes era un toggle frágil) */
+    document.addEventListener('visibilitychange',()=>{ document.hidden ? setFluid(false) : wake(); });
   }).catch(()=>{});
   /* magnéticos */
   document.querySelectorAll('.btn,.gate-btn,#sndToggle,#burger').forEach(el=>{
