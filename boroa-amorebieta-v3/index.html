@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Boroa Jatetxea · Alta cocina vasca en un caserío del s.XV · Amorebieta</title>
 <meta name="description" content="Boroa Jatetxea — 1 Estrella Michelin desde 2008. Cocina vizcaína de raíz en un caserío del siglo XV rodeado de robles centenarios. Amorebieta-Etxano, Bizkaia.">
 <meta property="og:title" content="Boroa Jatetxea · Paraíso gastronómico en plena naturaleza">
@@ -1999,14 +2002,28 @@ if(!REDUCED){
       sunrays:false,
     });
     sim.start();
+    /* v0.8 splatAtLocation normaliza la X por canvas.width (px de DISPOSITIVO = CSS×DPR)
+       pero la Y por clientHeight (px CSS). En móvil (DPR>1) eso manda la estela a 1/DPR
+       a la izquierda y diminuta → compensamos escalando SOLO la X por width/clientWidth. */
+    const fcv=cont.querySelector('canvas');
+    const sx=()=> (fcv&&fcv.clientWidth)? fcv.width/fcv.clientWidth : (devicePixelRatio||1);
     let lastX=null,lastY=null;
-    addEventListener('pointermove',(e)=>{
+    const feed=(x,y)=>{
       if(lastX!==null){
-        const dx=(e.clientX-lastX)*2.5, dy=(e.clientY-lastY)*2.5;
-        if(Math.abs(dx)+Math.abs(dy)>4) sim.splatAtLocation(e.clientX,e.clientY,dx,dy);
+        const dx=(x-lastX)*2.5, dy=(y-lastY)*2.5;
+        if(Math.abs(dx)+Math.abs(dy)>4) sim.splatAtLocation(x*sx(), y, dx, dy);
       }
-      lastX=e.clientX; lastY=e.clientY;
-    },{passive:true});
+      lastX=x; lastY=y;
+    };
+    const resetTrail=()=>{lastX=lastY=null;};
+    /* ratón/lápiz */
+    addEventListener('pointermove',(e)=>{ if(e.pointerType!=='touch') feed(e.clientX,e.clientY); },{passive:true});
+    /* táctil: touchmove SIGUE emitiéndose durante el scroll (pointermove se cancela al
+       reclamarse el gesto) → así la estela también funciona arrastrando el dedo en móvil */
+    addEventListener('touchstart',(e)=>{ const t=e.touches[0]; if(t){lastX=t.clientX;lastY=t.clientY;} },{passive:true});
+    addEventListener('touchmove',(e)=>{ const t=e.touches[0]; if(t) feed(t.clientX,t.clientY); },{passive:true});
+    addEventListener('touchend',resetTrail,{passive:true});
+    addEventListener('touchcancel',resetTrail,{passive:true});
     document.addEventListener('visibilitychange',()=>sim.pause());
   }).catch(()=>{});
   /* magnéticos */
