@@ -1,356 +1,518 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <title>Oi Vita | Pizzeria Napoletana &amp; Drinks en Valencia</title>
-  <meta name="description" content="Pizzeria napoletana en el Barrio del Carmen, Valencia. Pizza artesanal con masa de larga fermentación, ingredientes italianos de primera y cóctel de autor. Reserva tu mesa.">
-  <link rel="icon" href="img/logo.png">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="legal/cookie-banner.css">
-  <style>@media(max-width:768px){.hero{min-height:auto;height:auto;align-items:flex-start}}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Oi Vita | Pizzeria Napoletana &amp; Drinks en Valencia</title>
+<meta name="description" content="Pizzeria napoletana en el Barrio del Carmen, Valencia. Pizza artesanal con masa de larga fermentación, ingredientes italianos seleccionados, brunch y cócteles. Reserva tu mesa o pide online.">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="legal/cookie-banner.css">
+<style>
+  .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;transition:opacity .3s}
+  .cursor-dot{width:7px;height:7px;background:var(--brasa);transform:translate(-50%,-50%)}
+  .cursor-ring{width:34px;height:34px;border:1.5px solid rgba(240,81,68,.55);transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .3s,border-color .25s}
+  .cursor-ring.hovering{width:52px;height:52px;border-color:var(--brasa)}
+  @media(max-width:1024px){.cursor-dot,.cursor-ring{display:none}}
+  @media(hover:none){.cursor-dot,.cursor-ring{display:none}}
+  @media(max-width:768px){.hero{min-height:auto;height:auto;align-items:flex-start}}
+  .wa-float{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;z-index:9000;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s}
+  .wa-float:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 14px 38px rgba(0,0,0,.34)}
+  .fab-stack{position:fixed;right:20px;bottom:86px;display:flex;flex-direction:column;gap:12px;z-index:9000}
+  .fab-stack a{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;color:#fff;box-shadow:0 8px 22px rgba(0,0,0,.26);transition:transform .2s}
+  .fab-stack a:hover{transform:translateY(-3px) scale(1.05)}
+  .fab-call{background:var(--brasa)}
+  .fab-map{background:var(--tierra)}
+  .fab-stack svg{width:24px;height:24px;fill:currentColor}
+  .quick-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .qa-wa{background:#25D366;color:#062b16;border-color:#25D366}
+  .qa-wa:hover{background:#1eb456;border-color:#1eb456;color:#fff}
+  .faq-wrap{max-width:820px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--linea);padding:22px 0}
+  .faq-item h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--tierra);margin-bottom:10px;line-height:1.2}
+  .faq-item p{font-size:15px;color:var(--gris);line-height:1.7}
+  /* cocina grid (pasos / razones) */
+  .cocina-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;max-width:1000px;margin:48px auto 0}
+  .dish-card{padding:32px 28px;border:1px solid var(--linea);background:#fff;transition:.3s}
+  .dish-card:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(47,29,68,.1)}
+  .dish-card .dish-num{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:30px;color:var(--brasa);display:block;margin-bottom:8px;line-height:1}
+  .dish-card h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:var(--tierra);margin-bottom:8px;line-height:1.1}
+  .dish-card h3 em{font-style:italic;color:var(--brasa-2)}
+  .dish-card p{font-size:14px;color:var(--gris);line-height:1.65}
+  .cocina-feature{position:relative;margin:0 auto 48px;max-width:1100px;aspect-ratio:16/8;overflow:hidden;box-shadow:0 24px 60px rgba(47,29,68,.18)}
+  .cocina-feature img{width:100%;height:100%;object-fit:cover}
+  .cf-tag{position:absolute;left:28px;bottom:28px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(24px,3vw,40px);color:#fff;line-height:1.05;text-shadow:0 6px 26px rgba(0,0,0,.6);background:linear-gradient(135deg,rgba(25,11,38,.0),rgba(25,11,38,.0));max-width:60%}
+  .cf-tag em{font-style:italic;color:var(--brasa)}
+  @media(max-width:600px){.cocina-grid{grid-template-columns:1fr}.cocina-feature{aspect-ratio:4/3}.cf-tag{left:18px;bottom:18px;max-width:85%}}
+  /* opiniones (dark) */
+  .opiniones{background:var(--tierra);color:var(--crema);padding:100px 28px;position:relative;overflow:hidden}
+  .opiniones::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(240,81,68,.16) 0%,transparent 60%)}
+  .opiniones-head{text-align:center;max-width:700px;margin:0 auto 56px;position:relative}
+  .opiniones-head .eyebrow{color:var(--brasa)}
+  .opiniones-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.4vw,50px);color:var(--crema);line-height:1.05}
+  .opiniones-head h3 em{font-style:italic;font-weight:600;color:var(--brasa)}
+  .opiniones-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1180px;margin:0 auto;position:relative}
+  .opinion-card{padding:30px 26px;border:1px solid rgba(246,236,226,.15);background:rgba(246,236,226,.03);transition:.3s}
+  .opinion-card:hover{background:rgba(246,236,226,.06)}
+  .opinion-stars{color:var(--brasa);letter-spacing:.18em;font-size:15px;margin-bottom:14px}
+  .opinion-text{font-size:15px;color:rgba(246,236,226,.86);line-height:1.7;margin-bottom:16px}
+  .opinion-author{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brasa);font-weight:700}
+  @media(max-width:900px){.opiniones-grid{grid-template-columns:1fr}}
+  .galeria-head{text-align:center;max-width:680px;margin:0 auto}
+  .galeria-head h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4.4vw,48px);color:var(--tierra);line-height:1.05;margin-bottom:10px}
+  .galeria-head h3 em{font-style:italic;font-weight:600;color:var(--brasa-2)}
+  .galeria-head p{font-size:15px;color:var(--gris);line-height:1.65}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"Oi Vita Pizzeria Napoletana & Drinks",
+  "servesCuisine":["Pizza napoletana","Cocina italiana"],
+  "priceRange":"€€",
+  "description":"Pizzeria napoletana en el Barrio del Carmen de Valencia. Pizza artesanal con masa de larga fermentación, ingredientes italianos seleccionados, brunch de fin de semana y coctelería.",
+  "url":"https://ggelcano.github.io/demos/oi-vita-pizzeria-napoletana-drinks-valencia/",
+  "telephone":"+34963316505",
+  "email":"oivitagroup7@gmail.com",
+  "image":"https://ggelcano.github.io/demos/oi-vita-pizzeria-napoletana-drinks-valencia/img/pizza3.jpg",
+  "address":{"@type":"PostalAddress","streetAddress":"Carrer de la Conquesta, 8","addressLocality":"Valencia","postalCode":"46001","addressCountry":"ES"},
+  "geo":{"@type":"GeoCoordinates","latitude":39.4760,"longitude":-0.3808},
+  "areaServed":"Valencia",
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"1751"},
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"19:00","closes":"23:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday"],"opens":"10:00","closes":"13:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday"],"opens":"19:00","closes":"23:30"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"10:00","closes":"13:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"19:00","closes":"23:00"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"¿Hace falta reservar mesa?","acceptedAnswer":{"@type":"Answer","text":"Recomendamos reservar, sobre todo los fines de semana, porque el local es acogedor y suele completarse. Puedes reservar desde nuestra web, por teléfono al 963 31 65 05 o por WhatsApp."}},
+    {"@type":"Question","name":"¿Se puede pedir para llevar o a domicilio?","acceptedAnswer":{"@type":"Answer","text":"Sí. Puedes pedir online y recoger en el local o recibirlo a domicilio a través de nuestra carta de pedidos."}},
+    {"@type":"Question","name":"¿Qué hace diferente a vuestra pizza?","acceptedAnswer":{"@type":"Answer","text":"Una masa de larga fermentación al estilo napolitano, horneada a alta temperatura, e ingredientes italianos seleccionados como la mozzarella fior di latte, la mortadella, la trufa o la nduja calabresa."}},
+    {"@type":"Question","name":"¿Tenéis brunch?","acceptedAnswer":{"@type":"Answer","text":"Sí, ofrecemos brunch los viernes, sábados y domingos de 10:00 a 13:00, además del servicio de cena."}},
+    {"@type":"Question","name":"¿Dónde estáis y cómo llego?","acceptedAnswer":{"@type":"Answer","text":"Estamos en Carrer de la Conquesta, 8, 46001 València, en pleno Barrio del Carmen. Tienes el mapa y las indicaciones en la página de Contacto."}},
+    {"@type":"Question","name":"¿Qué horario tenéis?","acceptedAnswer":{"@type":"Answer","text":"De lunes a jueves abrimos para cena de 19:00 a 23:00. Viernes y sábado: brunch de 10:00 a 13:00 y cena de 19:00 a 23:30. Domingo: brunch de 10:00 a 13:00 y cena de 19:00 a 23:00."}}
+  ]
+}
+</script>
 </head>
 <body>
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <span>Carrer de la Conquesta, 8</span>
-    <b>Valencia</b>
-    <span>Tel. <a href="tel:963316505" style="color:inherit">963 31 65 05</a></span>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span>Barrio del Carmen · <b>Valencia</b></span>
+  <span><b>4,8</b> en Google · 1.751 reseñas</span>
+  <span>Tel. <b>963 31 65 05</b></span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="img/logo.png" alt="Logotipo de Oi Vita, pizzeria napoletana en Valencia" class="brand-logo">
+      <span class="brand-text">
+        <b>Oi Vita</b>
+        <small>Pizzeria Napoletana &amp; Drinks</small>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="carta.html">Carta</a>
+      <a href="carta-brunch.html">Brunch</a>
+      <a href="reservas.html">Reservas</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a href="reservas.html" class="nav-cta">Reservar mesa</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-inner">
-      <a href="index.html" class="brand">
-        <img src="img/logo.png" alt="Oi Vita Pizzeria Napoletana" class="brand-logo">
-        <div class="brand-text">
-          <b>Oi Vita</b>
-          <small>Pizzeria Napoletana &amp; Drinks</small>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="index.html" class="active">Inicio</a>
-        <a href="carta.html">Carta</a>
-        <a href="carta-brunch.html">Brunch</a>
-        <a href="reservas.html">Reservas</a>
-        <a href="contacto.html">Contacto</a>
-      </div>
-      <a href="reservas.html" class="nav-cta">Reservar mesa</a>
-      <button class="hamburger" aria-label="Abrir menu" onclick="document.getElementById('mm').classList.add('open')">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menú">&times;</button>
+  <a href="index.html">Inicio</a>
+  <a href="carta.html">Carta</a>
+  <a href="carta-brunch.html">Brunch</a>
+  <a href="reservas.html">Reservas</a>
+  <a href="contacto.html">Contacto</a>
+  <a href="reservas.html" class="mm-cta">Reservar mesa</a>
+</div>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mm">
-    <button class="mm-close" aria-label="Cerrar menu" onclick="document.getElementById('mm').classList.remove('open')">&times;</button>
-    <a href="index.html" onclick="document.getElementById('mm').classList.remove('open')">Inicio</a>
-    <a href="carta.html" onclick="document.getElementById('mm').classList.remove('open')">Carta</a>
-    <a href="carta-brunch.html" onclick="document.getElementById('mm').classList.remove('open')">Brunch</a>
-    <a href="reservas.html" onclick="document.getElementById('mm').classList.remove('open')">Reservas</a>
-    <a href="contacto.html" onclick="document.getElementById('mm').classList.remove('open')">Contacto</a>
-    <a href="reservas.html" class="mm-cta">Reservar mesa</a>
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <img src="img/pizza3.jpg" alt="Pizza napoletana artesanal de Oi Vita con tomate, stracciatella y albahaca" class="hero-photo">
+  <div class="hero-img-overlay"></div>
+  <div class="hero-bg-radial"></div>
+  <div class="hero-frame"></div>
+  <div class="hero-meta">
+    <span><b>4,8</b> · Google</span>
+    <span><b>1.751</b> reseñas</span>
+    <span>Barrio del <b>Carmen</b></span>
   </div>
-
-  <!-- HERO -->
-  <section class="hero">
-    <img src="img/hero.jpg" alt="Interior de Oi Vita Pizzeria Napoletana en Valencia" class="hero-photo">
-    <div class="hero-img-overlay"></div>
-    <div class="hero-frame"></div>
-    <div class="hero-meta">
-      <span><b>4.8</b> Google</span>
-      <span>+1.850 opiniones</span>
-      <span>Barrio del Carmen</span>
-    </div>
-    <div class="hero-tag">Cucina Italiana</div>
-    <div class="hero-content">
-      <span class="hero-eye">Pizzeria Napoletana &amp; Drinks</span>
-      <h1>Oi <em>Vita</em></h1>
-      <p>Pizza napoletana artesanal en el corazón del Carmen. Masa de larga fermentación, ingredientes importados de Italia y un ambiente que te transporta a Napoles.</p>
-      <div class="hero-ctas">
-        <a href="reservas.html" class="btn btn-primary">Reservar mesa</a>
-        <a href="carta.html" class="btn btn-ghost">Ver la carta</a>
-      </div>
-    </div>
-    <div class="hero-scroll">Descubre</div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stats-inner">
-      <div class="stat"><b>4.8</b><span>Estrellas Google</span></div>
-      <div class="stat"><b>+1.850</b><span>Opiniones</span></div>
-      <div class="stat"><b>100%</b><span>Ingredientes italianos</span></div>
-      <div class="stat"><b>48h</b><span>Fermentacion masa</span></div>
+  <div class="hero-content">
+    <span class="hero-eye">Cucina italiana · non c'è festa senza pizza</span>
+    <h1>Auténtica pizza<em>napoletana en Valencia</em></h1>
+    <p>En el corazón del Barrio del Carmen. Masa de larga fermentación, horno a alta temperatura e ingredientes italianos seleccionados. Pizza, brunch de fin de semana y cócteles en un ambiente acogedor.</p>
+    <div class="quick-actions">
+      <a href="reservas.html" class="btn btn-primary">Reservar mesa</a>
+      <a class="btn qa-wa" href="https://wa.me/34963316505?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20mesa%20en%20Oi%20Vita" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.75);background:rgba(36,19,53,.4)" href="carta.html">Ver la carta</a>
     </div>
   </div>
+  <div class="hero-scroll">Descubre</div>
+</header>
 
-  <!-- SOBRE NOSOTROS -->
-  <section class="cocina" id="nosotros">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Nuestra esencia</span>
-        <h2 class="section-title">Tradición napolitana en el <em>corazón de Valencia</em></h2>
-        <p class="section-lead">En Oi Vita unimos la autenticidad de la cocina italiana con la energía del Barrio del Carmen. Cada pizza se elabora con masa de larga fermentación y los mejores ingredientes importados directamente de Italia.</p>
-      </div>
-      <div class="cocina-feature">
-        <img src="img/interior2.jpg" alt="Ambiente interior de Oi Vita Pizzeria en Valencia">
-        <div class="cf-tag">Donde la tradición<br>se hace <em>sabor</em></div>
-      </div>
-      <div class="cocina-grid">
-        <div class="dish-card">
-          <span class="dish-num">01</span>
-          <h3>Masa de larga <em>fermentación</em></h3>
-          <p>Nuestra masa fermenta durante un mínimo de 48 horas, consiguiendo una textura ligera, crujiente por fuera y tierna por dentro, fiel a la tradición napolitana.</p>
-        </div>
-        <div class="dish-card">
-          <span class="dish-num">02</span>
-          <h3>Ingredientes <em>importados</em></h3>
-          <p>Mozzarella fior di latte, burrata, nduja calabresa, prosciutto di Parma, trufa y aceite de oliva extra virgen seleccionados directamente de productores italianos.</p>
-        </div>
-        <div class="dish-card">
-          <span class="dish-num">03</span>
-          <h3>Horno a <em>alta temperatura</em></h3>
-          <p>Nuestras pizzas se hornean a temperaturas que superan los 400 grados, logrando el punto perfecto de la auténtica pizza napoletana en menos de 90 segundos.</p>
-        </div>
-        <div class="dish-card">
-          <span class="dish-num">04</span>
-          <h3>Coctelería y <em>aperitivos</em></h3>
-          <p>Completa tu experiencia con nuestra selección de cócteles de autor, vinos italianos y una carta de antipasti que va desde los clásicos arancini a la burrata al basilico.</p>
-        </div>
-      </div>
+<!-- Credenciales: banda bajo el hero (móvil) -->
+<div class="hero-creds">
+  <span><b>4,8</b> · Google</span>
+  <span><b>1.751</b> reseñas</span>
+  <span>Barrio del <b>Carmen</b></span>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><b>4,8</b><span>Valoración Google</span></div>
+    <div class="stat"><b>1.751</b><span>Reseñas reales</span></div>
+    <div class="stat"><b>Napoli</b><span>Tradición auténtica</span></div>
+    <div class="stat"><b>El Carmen</b><span>Centro de Valencia</span></div>
+  </div>
+</div>
+
+<!-- SOBRE NOSOTROS -->
+<section id="nosotros">
+  <div class="wrap">
+    <div class="head" style="max-width:820px">
+      <span class="eyebrow">Nuestra esencia</span>
+      <h2 class="section-title">Tradición napolitana en el <em>corazón de Valencia</em></h2>
+      <p class="section-lead">Oi Vita es una auténtica pizzería napolitana donde tradición y sabor se unen en cada plato. Ubicada en pleno Barrio del Carmen, elaboramos pizzas artesanales con ingredientes frescos y masa fermentada al estilo italiano. Un ambiente multicultural y acogedor para vivir la verdadera experiencia napolitana, en el local o para llevar.</p>
     </div>
-  </section>
-
-  <!-- PULL QUOTE -->
-  <div class="pull">
-    <div class="pull-inner">
-      <div class="pull-mark">"</div>
-      <blockquote>La pizza es exquisita, también tienen entrantes super ricos y el <b>ambiente y servicio es super acogedor</b></blockquote>
-      <span class="pull-author">Victoria R. via Google</span>
+    <div class="cocina-feature fade-in">
+      <img src="img/interior5.jpg" alt="Ambiente de Oi Vita: clientes con cajas de pizza napoletana en el Barrio del Carmen">
+      <div class="cf-tag">Donde la tradición<br>se hace <em>sabor</em></div>
+    </div>
+    <div class="cocina-grid">
+      <div class="dish-card fade-in">
+        <span class="dish-num">01</span>
+        <h3>Masa de larga <em>fermentación</em></h3>
+        <p>Nuestra masa fermenta al estilo napolitano para conseguir una textura ligera, un borde aireado y un punto perfecto de horneado, fiel a la tradición de Nápoles.</p>
+      </div>
+      <div class="dish-card fade-in">
+        <span class="dish-num">02</span>
+        <h3>Ingredientes <em>italianos</em></h3>
+        <p>Mozzarella fior di latte, stracciatella, mortadella, trufa, nduja calabresa y aceite de oliva virgen extra. Producto seleccionado para un sabor auténtico.</p>
+      </div>
+      <div class="dish-card fade-in">
+        <span class="dish-num">03</span>
+        <h3>Horno a <em>alta temperatura</em></h3>
+        <p>Horneamos cada pizza a alta temperatura para lograr el borde justo y el punto exacto de la auténtica pizza napoletana, recién hecha al momento.</p>
+      </div>
+      <div class="dish-card fade-in">
+        <span class="dish-num">04</span>
+        <h3>Brunch y <em>cócteles</em></h3>
+        <p>Completa la experiencia con nuestro brunch de fin de semana y una carta de drinks. Cucina italiana y buen ambiente, también para celebrar.</p>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- DESTACADOS CARTA -->
-  <section class="cocina">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">Nuestras pizzas</span>
-        <h2 class="section-title">Clásicos napolitanos y <em>creaciones de autor</em></h2>
-        <p class="section-lead">Desde la Margherita más pura hasta elaboraciónes con trufa, pistacho y mortadella. Descubre la carta completa con más de 16 variedades.</p>
-      </div>
-      <div class="cocina-grid">
-        <div class="dish-card">
-          <span class="dish-num">Signature</span>
-          <h3>Oi <em>Vita</em></h3>
-          <p>Tomate San Marzano, pesto de albahaca, stracciatella, parmesano, pecorino. La pizza que da nombre a la casa.</p>
-        </div>
-        <div class="dish-card">
-          <span class="dish-num">Gourmet</span>
-          <h3>La <em>Romana</em></h3>
-          <p>Crema de cacio e pepe, fior di latte, porchetta, albahaca frita. Un homenaje a la cocina romana, reinterpretada en cada bocado.</p>
-        </div>
-        <div class="dish-card">
-          <span class="dish-num">Intensa</span>
-          <h3><em>Tartufo</em></h3>
-          <p>Trufa, fior di latte, setas, jamón serrano. Aroma y sabor con la intensidad justa para los amantes de la trufa.</p>
-        </div>
-        <div class="dish-card">
-          <span class="dish-num">Clásica</span>
-          <h3><em>Diavola</em></h3>
-          <p>Tomate, nduja picante, miel artesanal, pecorino. El equilibrio perfecto entre el picante calabres y la dulzura de la miel.</p>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:60px">
-        <a href="carta.html" class="btn btn-primary">Ver carta completa</a>
-      </div>
+<!-- PULL QUOTE -->
+<section class="pull">
+  <div class="pull-inner">
+    <div class="pull-mark">&ldquo;</div>
+    <blockquote>Pizza napolitana auténtica, masa ligera y borde perfecto, ingredientes frescos y <b>sabores equilibrados</b>. Servicio muy atento y ambiente acogedor.</blockquote>
+    <div class="pull-author">Victoria Z. · reseña en Google</div>
+  </div>
+</section>
+
+<!-- DESTACADOS CARTA -->
+<section style="background:var(--crema);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)">
+  <div class="wrap">
+    <div class="head" style="text-align:center;margin-left:auto;margin-right:auto;max-width:760px">
+      <span class="eyebrow">Nuestras pizzas</span>
+      <h2 class="section-title">Clásicos napolitanos y <em>creaciones de autor</em></h2>
+      <p class="section-lead" style="margin-left:auto;margin-right:auto">Desde la pureza de una base de tomate San Marzano hasta elaboraciones con trufa, mortadella y pistacho. Estas son algunas de las favoritas de la casa.</p>
     </div>
-  </section>
+    <div class="disciplines-grid">
+      <article class="disc-card fade-in">
+        <h4>Oi Vita</h4>
+        <p>Tomate, pesto de albahaca, stracciatella, parmesano, pecorino y aceite de oliva. La pizza que da nombre a la casa.</p>
+        <a href="carta.html">Ver carta · 15,5 €</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>La Romana</h4>
+        <p>Crema de cacio e pepe, fior di latte, porchetta, albahaca frita y aceite de oliva virgen. Un homenaje a la cocina romana.</p>
+        <a href="carta.html">Ver carta · 22 €</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>Tartufo</h4>
+        <p>Trufa, fior di latte, champiñones, parmesano, pecorino, jamón serrano y albahaca. Aroma e intensidad para los amantes de la trufa.</p>
+        <a href="carta.html">Ver carta · 20,5 €</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>Pistacchio e Mortadella</h4>
+        <p>Fior di latte, mortadella, pesto de pistacho, gragea de pistacho, stracciatella, pecorino y parmesano.</p>
+        <a href="carta.html">Ver carta · 21 €</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>Diavola</h4>
+        <p>Tomate, fior di latte, nduja picante, spianata picante, miel, parmesano y pecorino. El equilibrio entre el picante y la miel.</p>
+        <a href="carta.html">Ver carta · 15,5 €</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>Bufalina</h4>
+        <p>Tomate, mozzarella di bufala, parmesano, pecorino, albahaca y aceite de oliva. El clásico napolitano en su versión más pura.</p>
+        <a href="carta.html">Ver carta · 16,5 €</a>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:54px">
+      <a href="carta.html" class="btn btn-primary">Ver carta completa</a>
+    </div>
+  </div>
+</section>
 
-  <!-- GALERIA -->
-  <section class="galeria">
+<!-- GALERIA -->
+<section>
+  <div class="wrap">
     <div class="galeria-head">
       <span class="eyebrow">Galería</span>
       <h3>Momentos en <em>Oi Vita</em></h3>
-      <p>El ambiente, los platos y la experiencia que viven nuestros comensales cada día en el Barrio del Carmen.</p>
+      <p>Las pizzas, los platos y la experiencia que viven cada día nuestros comensales en el Barrio del Carmen.</p>
     </div>
-    <div class="galeria-grid">
-      <div class="galeria-item big">
-        <img src="img/pizza1.jpg" alt="Pizza napoletana recién salida del horno en Oi Vita">
-        <span class="galeria-tag">Pizza artesanal</span>
-      </div>
-      <div class="galeria-item">
-        <img src="img/interior1.jpg" alt="Interior de Oi Vita con decoración italiana">
-        <span class="galeria-tag">Nuestro espacio</span>
-      </div>
-      <div class="galeria-item">
-        <img src="img/diavola.jpg" alt="Pizza Diavola con nduja y miel">
-        <span class="galeria-tag">Diavola</span>
-      </div>
-      <div class="galeria-item wide">
-        <img src="img/interior3.jpg" alt="Terraza y ambiente de Oi Vita en Valencia">
-        <span class="galeria-tag">Terraza</span>
-      </div>
-      <div class="galeria-item">
-        <img src="img/tartufo.jpg" alt="Pizza Tartufo con trufa y setas">
-        <span class="galeria-tag">Tartufo</span>
-      </div>
-      <div class="galeria-item">
-        <img src="img/pizza4.jpg" alt="Elaboración artesanal de pizza en Oi Vita">
-        <span class="galeria-tag">Elaboración artesanal</span>
-      </div>
+  </div>
+  <div class="galeria-grid">
+    <div class="galeria-item big">
+      <img src="img/pizza4.jpg" alt="Pizza napolitana con base de tomate, fior di latte y albahaca">
+      <span class="galeria-tag">Tradición napoletana</span>
     </div>
-  </section>
+    <div class="galeria-item">
+      <img src="img/diavola.jpg" alt="Pizza Diavola con nduja picante y miel">
+      <span class="galeria-tag">Diavola</span>
+    </div>
+    <div class="galeria-item">
+      <img src="img/tartufo.jpg" alt="Pizza Tartufo con trufa, champiñones y jamón serrano">
+      <span class="galeria-tag">Tartufo</span>
+    </div>
+    <div class="galeria-item wide">
+      <img src="img/interior3.jpg" alt="Pizza blanca napolitana con setas y albahaca recién horneada">
+      <span class="galeria-tag">Recién salida del horno</span>
+    </div>
+    <div class="galeria-item">
+      <img src="img/pizza1.jpg" alt="Pizza con mortadella, pistacho y stracciatella">
+      <span class="galeria-tag">Pistacchio e Mortadella</span>
+    </div>
+    <div class="galeria-item">
+      <img src="img/interior1.jpg" alt="Gnocchi gratinados con nueces y albahaca">
+      <span class="galeria-tag">Antipasti</span>
+    </div>
+    <div class="galeria-item">
+      <img src="img/pizza2.jpg" alt="Pizza blanca con setas, aceite de oliva y albahaca">
+      <span class="galeria-tag">Bianca</span>
+    </div>
+  </div>
+</section>
 
-  <!-- OPINIONES (oscura) -->
-  <section class="opiniones" id="opiniones">
-    <div class="opiniones-head">
-      <span class="eyebrow">Opiniones reales</span>
-      <h3>Lo que dicen nuestros <em>comensales</em></h3>
+<!-- OPINIONES (dark) -->
+<section class="opiniones" id="opiniones">
+  <div class="opiniones-head">
+    <span class="eyebrow">Opiniones reales en Google</span>
+    <h3>Lo que dicen nuestros <em>comensales</em></h3>
+  </div>
+  <div class="opiniones-grid">
+    <div class="opinion-card fade-in">
+      <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="opinion-text">Maravillosa experiencia: pizza napolitana auténtica, masa ligera y borde perfecto, ingredientes frescos y sabores equilibrados. Cócteles creativos y excelente relación calidad-precio.</p>
+      <span class="opinion-author">Victoria Z.</span>
     </div>
-    <div class="opiniones-grid">
-      <div class="opinion-card">
-        <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="opinion-text">La mejor pizza napolitana de Valencia. Hecha al momento, productos de calidad y servicio excelente.</p>
-        <span class="opinion-author">Natalia V.</span>
-      </div>
-      <div class="opinion-card">
-        <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="opinion-text">Esta pizzeria sin duda alguna es un acierto total, desde las entradas empiezas a descubrir la comida más rica y hecha con amor.</p>
-        <span class="opinion-author">Rosana A.</span>
-      </div>
-      <div class="opinion-card">
-        <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="opinion-text">Ambiente muy acogedor, nos atendieron increible. Todo lo que pedimos era de muy alta calidad.</p>
-        <span class="opinion-author">Natalia S.</span>
-      </div>
-      <div class="opinion-card">
-        <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="opinion-text">Local muy bonito y acogedor, nos hicieron sentar incluso sin reserva y fueron muy amables.</p>
-        <span class="opinion-author">Antonio R.</span>
-      </div>
-      <div class="opinion-card">
-        <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="opinion-text">Celebramos en la terraza el cumpleaños de mi hijo, estuvieron muy atentos a todos los detalles.</p>
-        <span class="opinion-author">Sandra A.</span>
-      </div>
-      <div class="opinion-card">
-        <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="opinion-text">Las pizzas son increíbles, se nota el sabor italiano con ingredientes de primera calidad.</p>
-        <span class="opinion-author">Franco S.</span>
-      </div>
+    <div class="opinion-card fade-in">
+      <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="opinion-text">La comida buenísima: las pizzas, un 10, y la pasta que acaban de añadir a la carta está súper rica. Rocío, la camarera que nos atendió, y todos los demás, geniales.</p>
+      <span class="opinion-author">Sara A.</span>
     </div>
-  </section>
+    <div class="opinion-card fade-in">
+      <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="opinion-text">Teníamos una reserva a las 21:00 y nos sentaron enseguida. Pedimos solo dos pizzas pero, además de estar buenísimas, todo el trato fue inmejorable.</p>
+      <span class="opinion-author">Diego</span>
+    </div>
+    <div class="opinion-card fade-in">
+      <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="opinion-text">Fuimos a probarlo y volveremos 100%. Pedimos los arancini de entrante y estaban tan buenos que repetimos. Reservar es buena idea porque se llena.</p>
+      <span class="opinion-author">Raquel D.</span>
+    </div>
+    <div class="opinion-card fade-in">
+      <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="opinion-text">La pizza, muy buena. El ambiente en el local y en la terraza, muy agradable. La próxima vez nos quedamos a cenar sin duda.</p>
+      <span class="opinion-author">Mustafa A.</span>
+    </div>
+    <div class="opinion-card fade-in">
+      <div class="opinion-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="opinion-text">Local en el Barrio del Carmen, no muy grande pero acogedor, muy buen servicio y rápido, comida de calidad y deliciosa, pizzas napolitanas y postres caseros. Recomendable.</p>
+      <span class="opinion-author">Sergio G.</span>
+    </div>
+  </div>
+</section>
 
-  <!-- HORARIO + CONTACTO -->
-  <section class="contact" id="contacto">
-    <div class="contact-wrap">
-      <div class="contact-side">
-        <span class="eyebrow">Visítanos</span>
-        <h2>Cómo <em>llegar</em></h2>
-        <div class="contact-info">
-          <div class="contact-row">
-            <div class="ico">D</div>
-            <div>
-              <b>Dirección</b>
-              <span>Carrer de la Conquesta, 8<br>46001 Valencia (Barrio del Carmen)</span>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="ico">T</div>
-            <div>
-              <b>Teléfono</b>
-              <a href="tel:963316505">963 31 65 05</a>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="ico">H</div>
-            <div>
-              <b>Horario</b>
-              <table class="horario-table">
-                <tr class="horario-day" id="row-lun"><td>Lunes</td><td>19:00 - 23:00</td></tr>
-                <tr class="horario-day" id="row-mar"><td>Martes</td><td>19:00 - 23:00</td></tr>
-                <tr class="horario-day" id="row-mie"><td>Miércoles</td><td>19:00 - 23:00</td></tr>
-                <tr class="horario-day" id="row-jue"><td>Jueves</td><td>19:00 - 23:00</td></tr>
-                <tr class="horario-day" id="row-vie"><td>Viernes</td><td>12:30 - 00:30</td></tr>
-                <tr class="horario-day" id="row-sab"><td>Sábado</td><td>12:30 - 00:30</td></tr>
-                <tr class="horario-day" id="row-dom"><td>Domingo</td><td>12:30 - 00:00</td></tr>
-              </table>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="ico">@</div>
-            <div>
-              <b>Redes sociales</b>
-              <a href="https://www.instagram.com/oivitagroup/" target="_blank" rel="noopener">@oivitagroup en Instagram</a><br>
-              <a href="https://www.facebook.com/oivitagroup" target="_blank" rel="noopener">Facebook</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="contact-map">
-        <iframe src="https://maps.google.com/maps?q=Oi+Vita+Pizzeria+Napoletana+Carrer+de+la+Conquesta+8+Valencia&t=m&z=16&output=embed&iwloc=near" title="Ubicación de Oi Vita en Google Maps" loading="lazy"></iframe>
+<!-- CONTACTO + MAPA -->
+<section class="contact" id="contacto" style="padding:0">
+  <div class="contact-wrap">
+    <div class="contact-side">
+      <span class="eyebrow">Visítanos</span>
+      <h2>Ven a comer <em>a Oi Vita</em></h2>
+      <p style="color:rgba(246,236,226,.8);font-size:15px;line-height:1.65">Estamos en pleno Barrio del Carmen de Valencia. Reserva tu mesa, llámanos o escríbenos por WhatsApp.</p>
+      <div class="contact-info">
+        <div class="contact-row"><div class="ico">D</div><div><b>Dirección</b><span>Carrer de la Conquesta, 8, 46001 València</span></div></div>
+        <div class="contact-row"><div class="ico">T</div><div><b>Teléfono</b><a href="tel:963316505">963 31 65 05</a></div></div>
+        <div class="contact-row"><div class="ico">W</div><div><b>WhatsApp</b><a href="https://wa.me/34963316505" target="_blank" rel="noopener">963 31 65 05</a></div></div>
+        <div class="contact-row"><div class="ico">E</div><div><b>Email</b><a href="mailto:oivitagroup7@gmail.com">oivitagroup7@gmail.com</a></div></div>
+        <div class="contact-row"><div class="ico">H</div><div><b>Horario</b><span>Lun-Jue: cena 19:00-23:00 · Vie-Dom: brunch 10:00-13:00 y cena</span></div></div>
       </div>
     </div>
-  </section>
+    <div class="contact-map">
+      <iframe src="https://maps.google.com/maps?q=Oi%20Vita%20Pizzeria%20Carrer%20de%20la%20Conquesta%208%20Valencia&output=embed" title="Ubicación de Oi Vita en el Barrio del Carmen, Valencia" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="foot-inner">
-      <div class="foot-brand">
-        <img src="img/logo.png" alt="Oi Vita" class="brand-logo">
-        <p>Pizzeria napoletana en el Barrio del Carmen de Valencia. Masa de larga fermentación, ingredientes italianos de primera y ambiente acogedor.</p>
-      </div>
-      <div class="foot-col">
-        <h5>Navegación</h5>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="carta.html">Carta</a></li>
-          <li><a href="carta-brunch.html">Brunch</a></li>
-          <li><a href="reservas.html">Reservas</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h5>Contacto</h5>
-        <ul>
-          <li>Carrer de la Conquesta, 8</li>
-          <li>46001 Valencia</li>
-          <li><a href="tel:963316505">963 31 65 05</a></li>
-          <li><a href="mailto:oivitagroup7@gmail.com">oivitagroup7@gmail.com</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="legal/aviso-legal.html">Aviso legal</a></li>
-          <li><a href="legal/politica-privacidad.html">Privacidad</a></li>
-          <li><a href="legal/politica-cookies.html">Cookies</a></li>
-        </ul>
-      </div>
+<!-- FAQ -->
+<section style="background:var(--crema);border-top:1px solid var(--linea)">
+  <div class="wrap">
+    <div class="head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Antes de venir</span>
+      <h2 class="section-title">Preguntas <em>frecuentes</em></h2>
     </div>
-    <div class="foot-bottom">
-      <span>Oi Vita Pizzeria Napoletana &amp; Drinks</span>
-      <span>Web diseñada por G&amp;G Elcano</span>
+    <div class="faq-wrap">
+      <div class="faq-item"><h4>¿Hace falta reservar mesa?</h4><p>Recomendamos reservar, sobre todo los fines de semana, porque el local es acogedor y suele completarse. Puedes reservar desde nuestra web, por teléfono al 963 31 65 05 o por WhatsApp.</p></div>
+      <div class="faq-item"><h4>¿Se puede pedir para llevar o a domicilio?</h4><p>Sí. Puedes pedir online y recoger en el local o recibirlo a domicilio a través de nuestra carta de pedidos.</p></div>
+      <div class="faq-item"><h4>¿Qué hace diferente a vuestra pizza?</h4><p>Una masa de larga fermentación al estilo napolitano, horneada a alta temperatura, e ingredientes italianos seleccionados como la mozzarella fior di latte, la mortadella, la trufa o la nduja calabresa.</p></div>
+      <div class="faq-item"><h4>¿Tenéis brunch?</h4><p>Sí, ofrecemos brunch los viernes, sábados y domingos de 10:00 a 13:00, además del servicio de cena.</p></div>
+      <div class="faq-item"><h4>¿Dónde estáis y cómo llego?</h4><p>Estamos en Carrer de la Conquesta, 8, 46001 València, en pleno Barrio del Carmen. Tienes el mapa y las indicaciones en la página de Contacto.</p></div>
+      <div class="faq-item"><h4>¿Qué horario tenéis?</h4><p>De lunes a jueves abrimos para cena de 19:00 a 23:00. Viernes y sábado: brunch de 10:00 a 13:00 y cena de 19:00 a 23:30. Domingo: brunch de 10:00 a 13:00 y cena de 19:00 a 23:00.</p></div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-  /* Highlight today's schedule row */
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="brand" style="gap:12px">
+        <img src="img/logo.png" alt="Logotipo de Oi Vita" style="height:52px;width:auto">
+        <span class="brand-text">
+          <b style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--crema)">Oi Vita</b>
+          <small style="font-size:9px;letter-spacing:.26em;color:var(--brasa);text-transform:uppercase">Napoletana &amp; Drinks</small>
+        </span>
+      </div>
+      <p>Pizzeria napoletana en el Barrio del Carmen de Valencia. Masa de larga fermentación, ingredientes italianos seleccionados, brunch de fin de semana y coctelería en un ambiente acogedor.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Navegación</h5>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="carta.html">Carta</a></li>
+        <li><a href="carta-brunch.html">Brunch</a></li>
+        <li><a href="reservas.html">Reservas</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li>Carrer de la Conquesta, 8</li>
+        <li>46001 València</li>
+        <li><a href="tel:963316505">963 31 65 05</a></li>
+        <li><a href="mailto:oivitagroup7@gmail.com">oivitagroup7@gmail.com</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Síguenos</h5>
+      <ul>
+        <li><a href="https://www.instagram.com/oivitagroup/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.facebook.com/oivitagroup" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="legal/aviso-legal.html">Aviso legal</a></li>
+        <li><a href="legal/politica-privacidad.html">Privacidad</a></li>
+        <li><a href="legal/politica-cookies.html">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; <span id="year"></span> Oi Vita Pizzeria Napoletana &amp; Drinks · València</span>
+    <span><a href="legal/aviso-legal.html">Aviso legal</a> · <a href="legal/politica-privacidad.html">Privacidad</a> · <a href="legal/politica-cookies.html">Cookies</a></span>
+    <span>Web de ejemplo · G&amp;G Elcano</span>
+  </div>
+</footer>
+
+<!-- ACCIONES FLOTANTES -->
+<div class="fab-stack">
+  <a class="fab-call" href="tel:963316505" aria-label="Llamar">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+  </a>
+  <a class="fab-map" href="https://www.google.com/maps/dir/?api=1&destination=Oi+Vita+Pizzeria+Carrer+de+la+Conquesta+8+Valencia" target="_blank" rel="noopener" aria-label="Cómo llegar">
+    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+  </a>
+</div>
+<a class="wa-float" href="https://wa.me/34963316505?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20mesa%20en%20Oi%20Vita" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L.3 31.6l8.1-2.1c2.2 1.2 4.8 1.9 7.6 1.9 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.5 0-4.8-.7-6.8-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2-2-4.4-2-6.9C2.9 8.8 8.8 2.9 16 2.9S29.1 8.8 29.1 16 23.2 28.9 16 28.9zm7.2-9.7c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.2s1.4 3.7 1.6 4c.2.2 2.7 4.2 6.6 5.9.9.4 1.6.6 2.2.8.9.3 1.7.2 2.4.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.4z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mmClose = document.getElementById('mmClose');
+  function closeMenu(){ hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); }
+  hamburger.addEventListener('click', function(){ hamburger.classList.toggle('active'); mobileMenu.classList.toggle('open'); });
+  mmClose.addEventListener('click', closeMenu);
+  Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function(a){ a.addEventListener('click', closeMenu); });
+
+  var faders = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    faders.forEach(function(el){ io.observe(el); });
+  } else { faders.forEach(function(el){ el.classList.add('visible'); }); }
+
   function highlightToday(){
-    var days=['dom','lun','mar','mie','jue','vie','sab'];
-    var d=new Date().getDay();
-    var id='row-'+days[d];
-    var row=document.getElementById(id);
-    if(row) row.classList.add('horario-hoy');
+    var rows = document.querySelectorAll('[data-dia]');
+    if (!rows.length) return;
+    var dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+    var hoy = dias[new Date().getDay()];
+    Array.prototype.forEach.call(rows, function(r){ if (r.getAttribute('data-dia') === hoy) r.classList.add('horario-hoy'); });
   }
   highlightToday();
-  </script>
-  <script src="legal/cookie-banner.js" defer></script>
+
+  var cursorDot = document.getElementById('cursorDot');
+  var cursorRing = document.getElementById('cursorRing');
+  if (cursorDot && cursorRing && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    var rx = 0, ry = 0, dx = 0, dy = 0;
+    window.addEventListener('mousemove', function(e){ dx = e.clientX; dy = e.clientY; cursorDot.style.left = dx + 'px'; cursorDot.style.top = dy + 'px'; });
+    function ring(){ rx += (dx - rx) * 0.18; ry += (dy - ry) * 0.18; cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px'; requestAnimationFrame(ring); }
+    ring();
+    Array.prototype.forEach.call(document.querySelectorAll('a,button,.disc-card,.opinion-card,.galeria-item'), function(el){
+      el.addEventListener('mouseenter', function(){ cursorRing.classList.add('hovering'); });
+      el.addEventListener('mouseleave', function(){ cursorRing.classList.remove('hovering'); });
+    });
+  } else if (cursorDot && cursorRing) { cursorDot.style.display = 'none'; cursorRing.style.display = 'none'; }
+</script>
+<script src="legal/cookie-banner.js" defer></script>
 </body>
 </html>
