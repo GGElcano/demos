@@ -1,1409 +1,514 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bacán Pizzas de Autor — Pizzería gourmet artesana en Campanet, Mallorca</title>
-<meta name="description" content="Bacán Pizzas de Autor: pizzas gourmet artesanas en horno de leña, opciones sin gluten y veganas. Plaça Son Bordoy, Campanet. 4,8 en Google con más de 1.500 reseñas.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23C9A66C'/%3E%3C/svg%3E">
-
-<!-- ============================================================
-     BACÁN PIZZAS DE AUTOR — propuesta premium (G&G Elcano)
-     Marca real verificada en bacanpizzasdeautor.com:
-       · Logo negro sobre blanco, tipografía condensada
-       · Paleta derivada: negro #1A1614 · crema #F5F0E8 · terracotta #B8372D
-       · ámbar #C9A66C · hierba #5A6B3C
-       · Fuentes originales: Barlow Condensed + Oswald
-       · Demo: DM Serif Display (display) + Barlow (cuerpo)
-     Piezas: estela fluida (receta aprobada) · preloader coreografiado ·
-     galería horizontal pineada con skew · zoom inmersivo · marquee vivo ·
-     tiras a contra-scroll · citas scrubadas · CTA magnético ·
-     pieza singular: pizza line-draw canvas (masa>salsa>ingredientes>horno)
-     ============================================================ -->
+<title>Bacán Pizzas de Autor | Pizzería gourmet en horno de leña · Campanet, Mallorca</title>
+<meta name="description" content="Bacán Pizzas de Autor: pizzas gourmet artesanas en horno de leña, masa madre, opciones sin gluten y veganas. Plaça Son Bordoy, Campanet (Mallorca). 4,8 en Google con más de 1.500 reseñas.">
+<link rel="icon" href="img/b-negra.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
 <link rel="stylesheet" href="legal/cookie-banner.css">
-
 <style>
-:root{
-  --crema:    #F5F0E8;
-  --crema-2:  #EDE6DA;
-  --tinta:    #1A1614;
-  --tinta-2:  #3A3430;
-  --piedra:   #8A7E72;
-  --terra:    #B8372D;
-  --terra-osc:#943025;
-  --ambar:    #C9A66C;
-  --ambar-osc:#A8884A;
-  --hierba:   #5A6B3C;
-  --hierba-luz:#7A8E56;
-  --linea:    rgba(26,22,20,.12);
-  --serif: "DM Serif Display", Georgia, serif;
-  --sans:  "Barlow", system-ui, sans-serif;
-  --pad: clamp(1.5rem, 5vw, 6rem);
-}
-
-*{ margin:0; padding:0; box-sizing:border-box; }
-html{ scrollbar-width: thin; scrollbar-color: var(--ambar) var(--crema); }
-html, body{ background: var(--crema); }
-
-body{
-  color: var(--tinta);
-  font-family: var(--sans);
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.65;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-::selection{ background: var(--terra); color: var(--crema); }
-
-h1,h2,h3{ font-family: var(--serif); font-weight: 400; line-height: 1.05; color: var(--tinta); }
-em{ font-style: italic; color: var(--terra); }
-
-a{ color: inherit; text-decoration: none; }
-ul{ list-style: none; }
-img{ display:block; width:100%; height:100%; object-fit: cover; }
-
-#fluid{
-  position: fixed; inset: 0; width:100%; height:100%;
-  z-index: 9000; pointer-events: none;
-  mix-blend-mode: multiply;
-  opacity: .5;
-}
-#fluid.fluid--screen{ mix-blend-mode: screen; opacity: .85; }
-#fluid canvas{ width:100%; height:100%; display:block; }
-
-main{ position: relative; z-index: 1; }
-
-.cursor-dot, .cursor-ring{
-  position: fixed; top:0; left:0; z-index: 9500;
-  pointer-events: none; border-radius: 50%;
-  transform: translate(-50%,-50%);
-  opacity: 0;
-}
-.cursor-dot { width:6px;  height:6px;  background: var(--terra); }
-.cursor-ring{ width:38px; height:38px; border:1px solid rgba(184,55,45,.5); }
-@media (pointer: coarse), (prefers-reduced-motion: reduce){
-  .cursor-dot,.cursor-ring,#fluid{ display:none; }
-}
-
-/* ── PROGRESO LATERAL ── */
-.progreso{
-  position: fixed; right: 1.3rem; top: 50%; transform: translateY(-50%);
-  width: 1px; height: 9rem; background: var(--linea);
-  z-index: 60; pointer-events: none;
-}
-.progreso span{ position:absolute; inset:0; background: var(--terra); transform: scaleY(0); transform-origin: top; }
-@media (max-width: 820px){ .progreso{ display:none; } }
-
-/* ── PRELOADER ── */
-.preloader{
-  position: fixed; inset: 0; z-index: 9999;
-  display: grid; place-items: end start;
-  padding: var(--pad);
-}
-.preloader__curtain{ position:absolute; inset:0; background: #1A1614; z-index:-1; }
-.preloader__brand{
-  position: absolute; top: var(--pad); left: var(--pad);
-  font-family: var(--sans); font-size: 1rem; letter-spacing: .25em;
-  text-transform: uppercase; color: #b9aa90;
-  overflow: hidden; font-weight: 500;
-}
-.preloader__brand span{ display:inline-block; }
-.preloader__brand b{ font-weight: 600; color: #F5F0E8; letter-spacing: .08em; }
-.preloader__counter{ overflow: hidden; line-height: 1; }
-.preloader__num{
-  display: inline-block;
-  font-family: var(--serif);
-  font-size: clamp(4.5rem, 14vw, 11rem);
-  font-variant-numeric: tabular-nums;
-  color: #F5F0E8;
-}
-.preloader__num i{ font-style: normal; color: var(--ambar); font-size: .35em; vertical-align: super; }
-
-/* ── CABECERA ── */
-.cabecera{
-  position: fixed; top:0; left:0; right:0; z-index: 50;
-  display:flex; justify-content: space-between; align-items: center;
-  padding: 1.3rem var(--pad);
-  mix-blend-mode: difference;
-}
-.cabecera__logo{
-  display:flex; align-items:center; gap:.7rem;
-}
-.cabecera__logo img{
-  height: 32px; width: auto; object-fit: contain;
-  filter: brightness(0) invert(1);
-}
-.cabecera__der{ display:flex; align-items:center; gap: 2rem; }
-.cabecera__nav{ display:flex; gap: 2rem; font-size:.76rem; letter-spacing:.16em; text-transform: uppercase; color: #F5F0E8; }
-@media (max-width: 820px){ .cabecera__nav{ display:none; } }
-
-.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
-.roll>span{ display:inline-block; transition: transform .5s cubic-bezier(.76,0,.24,1); }
-.roll::after{
-  content: attr(data-text);
-  position:absolute; left:0; top:100%; display:inline-block;
-  color: var(--ambar);
-  transition: transform .5s cubic-bezier(.76,0,.24,1);
-}
-@media (hover:hover) and (pointer:fine){
-  .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
-}
-
-/* ── MENÚ MÓVIL ── */
-.menu-btn{
-  display:none; background:none; border:none; cursor:pointer;
-  width:28px; height:20px; position:relative; z-index:52;
-}
-.menu-btn span{
-  display:block; width:100%; height:2px; background:#F5F0E8;
-  position:absolute; left:0; transition: all .35s ease;
-}
-.menu-btn span:nth-child(1){ top:0; }
-.menu-btn span:nth-child(2){ top:50%; transform:translateY(-50%); }
-.menu-btn span:nth-child(3){ bottom:0; }
-.menu-btn.open span:nth-child(1){ top:50%; transform:translateY(-50%) rotate(45deg); }
-.menu-btn.open span:nth-child(2){ opacity:0; }
-.menu-btn.open span:nth-child(3){ bottom:50%; transform:translateY(50%) rotate(-45deg); }
-@media (max-width: 820px){ .menu-btn{ display:block; } }
-
-.nav-movil{
-  position:fixed; inset:0; z-index:51;
-  display:flex; flex-direction:column; justify-content:center; align-items:center; gap:2.2rem;
-  background: rgba(26,22,20,.96); backdrop-filter: blur(8px);
-  opacity:0; pointer-events:none; transition: opacity .5s ease;
-}
-.nav-movil.open{ opacity:1; pointer-events:auto; }
-.nav-movil a{
-  font-family: var(--serif); font-size: clamp(2rem, 7vw, 3.2rem);
-  color: var(--crema); transition: color .3s;
-}
-.nav-movil a:hover{ color: var(--ambar); }
-
-/* ── HERO ── */
-.hero{
-  min-height: 100svh;
-  position: relative;
-  display:grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
-  align-items: end;
-  gap: clamp(1.5rem,4vw,4rem);
-  padding: clamp(7rem,14vh,9rem) var(--pad) clamp(3rem, 8vh, 5rem);
-}
-.hero__kicker{
-  font-size: .76rem; letter-spacing: .3em; text-transform: uppercase;
-  color: var(--piedra); margin-bottom: 1.5rem;
-}
-.hero__titulo{
-  font-size: clamp(2.7rem, 7.4vw, 6.6rem);
-  letter-spacing: -.01em;
-  max-width: 14ch;
-}
-.hero__pie{ display:flex; align-items:flex-end; gap:2.5rem; margin-top: 2.4rem; flex-wrap:wrap; }
-.hero__sub{ max-width: 40ch; color: var(--tinta-2); font-size: 1.02rem; }
-.hero__scroll{
-  font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
-  color: var(--piedra); display:flex; align-items:center; gap:.8rem;
-}
-.hero__scroll::after{
-  content:""; display:block; width:1px; height:3.2rem; background: var(--terra);
-  transform-origin: top;
-  animation: gota 4.8s cubic-bezier(.76,0,.24,1) infinite;
-}
-@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
-                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
-.hero__media{
-  position: relative;
-  height: clamp(22rem, 64vh, 38rem);
-  border-radius: 0 0 50vw 50vw;
-  overflow: hidden;
-}
-.hero__media img{ will-change: transform; }
-@media (max-width: 820px){
-  .hero{ grid-template-columns: 1fr; align-items:start; }
-  .hero__media{ order:-1; height: 38svh; margin-top: 1rem; border-radius: 0 0 40vw 40vw; }
-}
-@media (max-width: 768px){
-  .hero{ min-height: auto; height: auto; align-items: flex-start; padding-top: 6rem; }
-}
-[data-hero-reveal]{ visibility: hidden; }
-
-/* ── MARQUEE ── */
-.marquee{
-  overflow:hidden; white-space:nowrap;
-  border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
-  padding: 1.05rem 0;
-  background: var(--crema);
-  position: relative; z-index: 2;
-}
-.marquee__track{ display:inline-flex; gap:3rem; will-change: transform; }
-.marquee__group{ display:inline-flex; gap:3rem; }
-.marquee__group span{ font-family: var(--serif); font-size: 1.25rem; color: var(--piedra); }
-.marquee__group i{ font-style: normal; color: var(--terra); }
-
-/* ── MANIFIESTO + flotantes ── */
-.manifiesto{ position: relative; padding: clamp(9rem,20vh,15rem) var(--pad); }
-.manifiesto p{
-  position: relative; z-index: 2;
-  max-width: 26ch;
-  font-family: var(--serif);
-  font-size: clamp(1.7rem, 3.7vw, 3rem);
-  line-height: 1.3;
-}
-.flotante{
-  position: absolute; z-index: 1;
-  width: clamp(7rem, 15vw, 16rem);
-  overflow: hidden; border-radius: 0 0 50vw 50vw;
-  will-change: transform;
-  box-shadow: 0 24px 60px rgba(26,22,20,.18);
-}
-.flotante img{ aspect-ratio: 3/4; }
-.flotante--1{ top: 6%;  right: 9%;  width: clamp(9rem, 17vw, 18rem); }
-.flotante--2{ bottom: 4%; right: 30%; }
-.flotante--3{ top: 42%; left: 60%; width: clamp(6rem, 11vw, 12rem); opacity:.85; }
-@media (max-width: 720px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; } }
-
-/* ── CIFRAS ── */
-.cifras{
-  display:grid; grid-template-columns: repeat(auto-fit, minmax(10rem,1fr));
-  gap: 2rem; padding: 0 var(--pad) clamp(7rem,14vh,11rem);
-}
-.cifra{ border-top:1px solid var(--linea); padding-top: 1.3rem; }
-.cifra__valor{
-  font-family: var(--serif); font-size: clamp(2.5rem,5.5vw,4.4rem);
-  font-variant-numeric: tabular-nums; color: var(--tinta);
-}
-.cifra__valor i{ font-style:normal; color: var(--terra); font-size:.5em; margin-left:.06em; }
-.cifra p{ color: var(--piedra); font-size:.85rem; margin-top:.35rem; }
-
-/* ── PIZZA CANVAS — pieza singular: line-draw pizza making ── */
-.ritual{ height: 340vh; position: relative; }
-.ritual__pin{
-  position: relative; height: 100vh; height: 100svh;
-  overflow: hidden; display: grid;
-  background: var(--crema-2);
-}
-.ritual__lienzo{ position:absolute; inset:0; width:100%; height:100%; display:block; }
-.ritual__hud{
-  position: relative; z-index: 2;
-  display:flex; flex-direction:column; justify-content: space-between;
-  padding: clamp(5rem, 12vh, 7rem) var(--pad) clamp(2.5rem, 6vh, 4rem);
-  pointer-events: none;
-}
-.ritual__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; }
-.ritual__titulo{ font-size: clamp(1.8rem, 4vw, 3.2rem); }
-.ritual__num{
-  font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 4.6rem);
-  font-variant-numeric: tabular-nums; color: var(--piedra);
-}
-.ritual__num i{ font-style:normal; color: var(--terra); font-size:.45em; }
-.ritual__fase{
-  font-size:.76rem; letter-spacing:.28em; text-transform:uppercase; color: var(--tinta-2);
-  border-left: 2px solid var(--terra); padding-left: 1rem;
-}
-@media (prefers-reduced-motion: reduce){
-  .ritual{ height:auto; } .ritual__pin{ height:100svh; }
-}
-
-/* ── EXPERIENCIAS — galería horizontal pineada ── */
-.expe{ position: relative; }
-.expe__pin{
-  height: 100vh; height: 100svh; overflow: hidden;
-  display:flex; flex-direction: column; justify-content: center;
-}
-.expe__cab{
-  display:flex; justify-content:space-between; align-items:baseline;
-  padding: clamp(5rem,10vh,6.5rem) var(--pad) 2rem; gap:2rem;
-}
-.expe__cab h2{ font-size: clamp(2rem, 4.5vw, 3.6rem); }
-.expe__indice{
-  font-family: var(--serif); font-size: clamp(1.6rem, 3.4vw, 2.6rem);
-  font-variant-numeric: tabular-nums; color: var(--piedra);
-}
-.expe__indice b{ font-weight: 400; color: var(--tinta); }
-.expe__track{
-  display:flex; gap: clamp(1.5rem,3vw,3rem);
-  padding: 0 var(--pad);
-  align-items: stretch;
-  will-change: transform;
-}
-.panel{ flex: 0 0 auto; width: clamp(19rem, 38vw, 38rem); }
-.panel__marco{
-  overflow:hidden; position:relative; height: clamp(19rem, 54vh, 32rem);
-  border-radius: 0;
-  background: var(--crema-2);
-}
-.panel:nth-child(odd) .panel__marco{ border-radius: 0 0 50vw 50vw; }
-.panel:nth-child(even) .panel__marco{ border-radius: 50vw 50vw 0 0; }
-.panel__marco img{ will-change: transform; }
-.panel__num{
-  position:absolute; top:1rem; left:1.3rem; z-index:1;
-  font-family: var(--serif); font-size: 1rem; letter-spacing:.18em;
-  color: #F5F0E8; text-shadow: 0 1px 14px rgba(0,0,0,.55);
-}
-.panel__meta{ display:flex; justify-content:space-between; margin-top: 1rem; align-items:baseline; gap:1rem; }
-.panel__meta h3{ font-size: clamp(1.25rem, 2vw, 1.7rem); }
-.panel__meta span{ color: var(--piedra); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; white-space:nowrap; }
-@media (max-width: 820px){
-  .expe__pin{ height:auto; overflow:visible; }
-  .expe__track{ flex-direction: column; }
-  .panel{ width: 100%; }
-}
-
-/* ── SENSACIONES — estela de imágenes ── */
-.sensaciones{
-  position: relative;
-  min-height: 86svh;
-  display:grid; place-items:center; text-align:center;
-  padding: clamp(7rem,16vh,11rem) var(--pad);
-  overflow: hidden;
-}
-.sensaciones h2{ font-size: clamp(2.4rem, 6.5vw, 5.4rem); max-width: 15ch; position:relative; z-index:2; pointer-events:none; }
-.sensaciones__pista{
-  position:absolute; bottom: clamp(2rem,6vh,4rem); left:50%; transform:translateX(-50%);
-  font-size:.7rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
-  z-index:2; pointer-events:none;
-}
-.estela-img{
-  position:absolute; width: clamp(9rem, 16vw, 15rem); aspect-ratio: 3/4;
-  overflow:hidden; border-radius: 0 0 50vw 50vw;
-  pointer-events:none; will-change: transform, opacity;
-  box-shadow: 0 18px 50px rgba(26,22,20,.22);
-}
-@media (pointer: coarse){ .sensaciones__pista{ display:none; } }
-
-/* ── ZOOM INMERSIVO (sección oscura) ── */
-.zoom{ height: 300vh; position: relative; }
-.zoom__pin{
-  position: relative; height: 100vh; height: 100svh;
-  overflow: hidden; display: grid; place-items: center;
-  background: #1A1614;
-}
-.zoom__marco{ position:absolute; inset:0; clip-path: inset(38% 32% 38% 32%); will-change: clip-path; }
-.zoom__marco img{ will-change: transform; }
-.zoom__marco::after{ content:""; position:absolute; inset:0; background: rgba(26,22,20,.38); }
-.zoom__texto{
-  position: relative; z-index: 2;
-  font-family: var(--serif);
-  font-size: clamp(2rem, 5.5vw, 4.8rem);
-  line-height: 1.15; color: #F5F0E8;
-  text-align: center; max-width: 18ch;
-  padding: 0 var(--pad);
-  text-shadow: 0 2px 30px rgba(0,0,0,.5);
-}
-.zoom__texto em{ color: var(--ambar); }
-@media (prefers-reduced-motion: reduce){
-  .zoom{ height:auto; } .zoom__pin{ height:100svh; }
-  .zoom__marco{ clip-path:none; }
-}
-
-/* ── TIRAS a contra-scroll ── */
-.tiras{ overflow:hidden; padding: clamp(5rem,10vh,8rem) 0 clamp(3rem,6vh,5rem); display:grid; gap:.4rem; }
-.tira{
-  white-space: nowrap; will-change: transform;
-  font-family: var(--serif); font-size: clamp(3rem, 8vw, 7.5rem);
-  line-height: 1.05; color: transparent;
-  -webkit-text-stroke: 1px rgba(184,55,45,.3);
-}
-.tira em{ color: var(--terra); -webkit-text-stroke: 0; }
-.tira--llena{ color: rgba(184,55,45,.12); -webkit-text-stroke: 0; }
-
-/* ── TESTIMONIOS ── */
-.testimonios{ padding: 0 var(--pad) clamp(7rem,14vh,11rem); max-width: 72rem; }
-.testimonios__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 3.2rem; }
-.testimonios__cab h2{ font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
-.google{
-  display:inline-flex; align-items:center; gap:.7rem;
-  font-size:.82rem; letter-spacing:.08em; color: var(--piedra);
-  border:1px solid var(--linea); border-radius: 999px; padding:.6rem 1.2rem;
-}
-.google i{ font-style:normal; color: var(--ambar); letter-spacing:.16em; }
-.cita{ border-left: 1px solid rgba(184,55,45,.45); padding: .4rem 0 .4rem 1.8rem; margin-bottom: 2.6rem; }
-.cita blockquote{ font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.8rem); line-height: 1.45; color: var(--tinta-2); }
-.cita figcaption{ margin-top: .8rem; color: var(--piedra); font-size:.8rem; letter-spacing:.14em; text-transform: uppercase; }
-
-/* ── MAPA ── */
-.mapa{
-  width:100%; height: clamp(20rem, 40vh, 28rem);
-  border:0; filter: saturate(.85) contrast(1.05);
-}
-
-/* ── CONTACTO ── */
-.contacto{
-  min-height: 92svh;
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  text-align:center; gap: 2.4rem; padding: 6rem var(--pad) 4rem;
-  border-top: 1px solid var(--linea);
-}
-.contacto__estado{
-  font-size:.72rem; letter-spacing:.26em; text-transform:uppercase; color: var(--piedra);
-  display:flex; align-items:center; gap:.7rem;
-}
-.contacto__estado::before{
-  content:""; width:.55rem; height:.55rem; border-radius:50%;
-  background: var(--terra); box-shadow: 0 0 12px var(--terra);
-  animation: latido 5.2s ease-in-out infinite;
-}
-@keyframes latido{ 50%{ opacity:.35; } }
-.contacto h2{ font-size: clamp(2.5rem, 7.5vw, 6.2rem); max-width: 14ch; }
-
-.magnetico{
-  display:inline-flex; align-items:center; gap:.9rem;
-  font: 500 .9rem/1 var(--sans); letter-spacing:.14em; text-transform:uppercase;
-  color: var(--crema);
-  border:1px solid var(--terra); border-radius: 999px;
-  padding: 1.3rem 2.5rem;
-  background: var(--terra); cursor: pointer;
-  transition: background-color .45s ease, border-color .45s ease;
-}
-.magnetico:hover{ background: var(--terra-osc); border-color: var(--terra-osc); }
-.magnetico .magnetico__label{ display:inline-block; }
-.contacto__secundario{ font-size:.85rem; color: var(--piedra); }
-.contacto__secundario a{ border-bottom:1px solid var(--linea); padding-bottom:.1em; }
-.contacto__secundario a:hover{ color: var(--terra); border-color: var(--terra); }
-
-.contacto__datos{
-  display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr));
-  gap: 2rem; width: min(64rem, 100%); margin-top: 2.2rem;
-  text-align:left; font-size:.95rem;
-}
-.dato{ border-top:1px solid var(--linea); padding-top: 1.1rem; }
-.dato h4{ font: 500 .7rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
-.dato a:hover{ color: var(--terra); }
-.horario{ display:grid; gap:.25rem; }
-.horario > div{ display:flex; justify-content:space-between; gap:1rem; color: var(--piedra); }
-.horario .horario-hoy{ color: var(--terra); font-weight: 500; }
-
-.pie{
-  display:flex; justify-content:space-between; gap:1.2rem; flex-wrap:wrap;
-  padding: 2rem var(--pad) 2.6rem;
-  color: var(--piedra); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
-  border-top: 1px solid var(--linea);
-}
-.pie nav{ display:flex; gap:1.4rem; flex-wrap:wrap; }
-.pie a:hover, .pie button:hover{ color: var(--terra); }
-.pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
-
-[data-reveal]{ visibility: hidden; }
-
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
-  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
-  .preloader{ display:none; }
-  .progreso{ display:none; }
-}
+  .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;transition:opacity .3s}
+  .cursor-dot{width:7px;height:7px;background:var(--brasa);transform:translate(-50%,-50%)}
+  .cursor-ring{width:34px;height:34px;border:1.5px solid rgba(184,55,45,.55);transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .3s,border-color .25s}
+  .cursor-ring.hovering{width:52px;height:52px;border-color:var(--brasa)}
+  @media(max-width:1024px){.cursor-dot,.cursor-ring{display:none}}
+  @media(hover:none){.cursor-dot,.cursor-ring{display:none}}
+  @media (max-width:768px){.hero{min-height:auto;height:auto;align-items:flex-start}}
+  .wa-float{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;z-index:9000;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s}
+  .wa-float:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 14px 38px rgba(0,0,0,.34)}
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Bacán Pizzas de Autor",
+  "servesCuisine": ["Pizza", "Argentina", "Italiana"],
+  "description": "Pizzería gourmet artesana en horno de leña en Campanet (Mallorca). Masa madre, opciones sin gluten y veganas. 4,8 en Google con más de 1.500 reseñas.",
+  "url": "https://ggelcano.github.io/demos/bacan-pizzas-de-autor-campanet/",
+  "telephone": "+34640809608",
+  "email": "info@bacanpizzasdeautor.com",
+  "image": "https://ggelcano.github.io/demos/bacan-pizzas-de-autor-campanet/img/hero-3.jpg",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Plaça Son Bordoy, 6",
+    "addressLocality": "Campanet",
+    "addressRegion": "Illes Balears",
+    "postalCode": "07310",
+    "addressCountry": "ES"
+  },
+  "areaServed": "Campanet, Mallorca",
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "1500"},
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Wednesday","Thursday","Friday"],"opens":"18:00","closes":"22:45"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"13:00","closes":"15:30"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"18:30","closes":"22:45"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"¿Hace falta reservar mesa?","acceptedAnswer":{"@type":"Answer","text":"Recomendamos reservar, sobre todo los fines de semana, ya que Bacán suele llenarse. Puedes reservar por WhatsApp o llamando al 640 80 96 08."}},
+    {"@type":"Question","name":"¿Tenéis opciones sin gluten y veganas?","acceptedAnswer":{"@type":"Answer","text":"Sí. Elaboramos masa sin gluten y contamos con opciones veganas. Avísanos al reservar o al pedir para prepararte la mejor opción."}},
+    {"@type":"Question","name":"¿Dónde estáis y cómo se llega?","acceptedAnswer":{"@type":"Answer","text":"Estamos en la Plaça Son Bordoy, 6, 07310 Campanet (Mallorca), al pie de la Serra de Tramuntana. Tienes el mapa y las indicaciones en la sección de Ubicación."}},
+    {"@type":"Question","name":"¿Qué días abrís?","acceptedAnswer":{"@type":"Answer","text":"Abrimos de miércoles a viernes en horario de cena (18:00 a 22:45) y los sábados y domingos a mediodía y noche. Lunes y martes permanecemos cerrados."}},
+    {"@type":"Question","name":"¿Las pizzas son en horno de leña?","acceptedAnswer":{"@type":"Answer","text":"Sí. Todas nuestras pizzas se cuecen en horno de leña, sobre masa de fermentación lenta, con ingredientes frescos y de proximidad."}}
+  ]
+}
+</script>
 </head>
 <body>
 
-<!-- ════════ PRELOADER ════════ -->
-<div class="preloader" aria-hidden="true">
-  <div class="preloader__curtain"></div>
-  <div class="preloader__brand"><span><b>Bacán</b> · Pizzas de Autor</span></div>
-  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span><b>4,8</b> en Google · +1.500 reseñas</span>
+  <span>Campanet, Mallorca · Horno de leña</span>
+  <span>Reservas <b>640 80 96 08</b></span>
 </div>
 
-<!-- ════════ CAPAS DECORATIVAS ════════ -->
-<div id="fluid" aria-hidden="true"></div>
-<div class="cursor-dot"  aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-
-<div class="progreso" aria-hidden="true"><span></span></div>
-
-<header class="cabecera">
-  <a class="cabecera__logo" href="#">
-    <img src="img/logo-horizontal.png" alt="Bacán Pizzas de Autor" loading="eager">
-  </a>
-  <div class="cabecera__der">
-    <nav class="cabecera__nav" aria-label="principal">
-      <a class="roll" href="#carta" data-text="Carta"><span>Carta</span></a>
-      <a class="roll" href="#historia" data-text="Historia"><span>Historia</span></a>
-      <a class="roll" href="#contacto" data-text="Reservar"><span>Reservar</span></a>
-    </nav>
-    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="img/logo-horizontal.png" alt="Logotipo de Bacán Pizzas de Autor, pizzería en Campanet" class="brand-logo">
+    </a>
+    <div class="nav-links">
+      <a href="#inicio" class="active">Inicio</a>
+      <a href="#historia">Historia</a>
+      <a href="#carta">La carta</a>
+      <a href="#proceso">El proceso</a>
+      <a href="#horario">Horario</a>
+      <a href="#ubicacion">Ubicación</a>
+    </div>
+    <a href="https://wa.me/34640809608?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20mesa%20en%20Bac%C3%A1n" target="_blank" rel="noopener" class="nav-cta">Reservar mesa</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
   </div>
-</header>
-
-<nav class="nav-movil" id="navMovil" aria-label="Menú móvil">
-  <a href="#carta" data-nav-link>Carta</a>
-  <a href="#historia" data-nav-link>Historia</a>
-  <a href="#contacto" data-nav-link>Reservar</a>
-  <a href="tel:+34640809608" data-nav-link>Llamar</a>
 </nav>
 
-<main>
-  <!-- ════════ HERO ════════ -->
-  <section class="hero">
-    <div class="hero__contenido">
-      <p class="hero__kicker" data-hero-reveal>Horno de leña · Masa artesana · Campanet, Mallorca</p>
-      <h1 class="hero__titulo" data-hero-reveal>
-        Pizzas de <em>autor</em> al pie de la Tramuntana.
-      </h1>
-      <div class="hero__pie">
-        <p class="hero__sub" data-hero-reveal>
-          Recetas argentinas con ingredientes frescos y de proximidad, cocinadas
-          en horno de leña en el corazón de Campanet. Opciones sin gluten y veganas.
-        </p>
-        <p class="hero__scroll" data-hero-reveal>Descubre más</p>
-      </div>
-    </div>
-    <div class="hero__media" data-hero-media>
-      <img src="img/hero-3.jpg" alt="Pizza artesana de Bacán con aceitunas y albahaca, recién salida del horno de leña" loading="eager" data-hero-parallax>
-    </div>
-  </section>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menú">&times;</button>
+  <a href="#inicio">Inicio</a>
+  <a href="#historia">Historia</a>
+  <a href="#carta">La carta</a>
+  <a href="#proceso">El proceso</a>
+  <a href="#horario">Horario</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a href="https://wa.me/34640809608?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20mesa%20en%20Bac%C3%A1n" target="_blank" rel="noopener" class="mm-cta">Reservar mesa</a>
+</div>
 
-  <!-- ════════ MARQUEE ════════ -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <div class="marquee__group">
-        <span>Pizzas gourmet artesanas <i>·</i></span><span>Horno de leña <i>·</i></span>
-        <span>Sin gluten <i>·</i></span><span>Opciones veganas <i>·</i></span>
-        <span>Campanet, Mallorca <i>·</i></span><span>4,8 en Google <i>·</i></span>
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <img src="img/hero-3.jpg" alt="Pizza artesana de Bacán con aceitunas y albahaca, recién salida del horno de leña" class="hero-photo">
+  <div class="hero-img-overlay"></div>
+  <div class="hero-bg-radial"></div>
+  <div class="hero-frame"></div>
+  <div class="hero-meta">
+    <span><b>4,8</b> · Google</span>
+    <span><b>+1.500</b> reseñas</span>
+    <span>Campanet · <b>Mallorca</b></span>
+  </div>
+  <div class="hero-content">
+    <span class="hero-eye">Horno de leña · Masa artesana</span>
+    <h1>Pizzas de autor<em>al pie de la Tramuntana</em></h1>
+    <p>Recetas con alma argentina y raíces italianas, cocinadas en horno de leña en el corazón de Campanet. Ingredientes frescos y de proximidad, masa de fermentación lenta y opciones sin gluten y veganas.</p>
+    <div class="quick-actions">
+      <a class="btn qa-wa" href="https://wa.me/34640809608?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20mesa%20en%20Bac%C3%A1n" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+      <a href="tel:+34640809608" class="btn btn-primary">Llamar 640 80 96 08</a>
+      <a class="btn btn-ghost" href="#ubicacion">Cómo llegar</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Desliza</div>
+</header>
+
+<!-- Credenciales: banda bajo el hero (en movil sustituye a los chips) -->
+<div class="hero-creds">
+  <span><b>4,8</b> · Google</span>
+  <span><b>+1.500</b> reseñas</span>
+  <span>Campanet · <b>Mallorca</b></span>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><b>4,8</b><span>Valoración en Google</span></div>
+    <div class="stat"><b>+1.500</b><span>Reseñas de clientes</span></div>
+    <div class="stat"><b>100%</b><span>Horno de leña</span></div>
+    <div class="stat"><b>Sí</b><span>Sin gluten y vegana</span></div>
+  </div>
+</div>
+
+<!-- HISTORIA -->
+<section id="historia">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="content-pic fade-in">
+        <img src="img/historia-2.jpg" alt="Pizza de Bacán recién horneada con ingredientes frescos sobre la mesa">
       </div>
-      <div class="marquee__group" aria-hidden="true">
-        <span>Pizzas gourmet artesanas <i>·</i></span><span>Horno de leña <i>·</i></span>
-        <span>Sin gluten <i>·</i></span><span>Opciones veganas <i>·</i></span>
-        <span>Campanet, Mallorca <i>·</i></span><span>4,8 en Google <i>·</i></span>
+      <div class="content-text fade-in">
+        <span class="eyebrow">Nuestra historia</span>
+        <h3>Somos Flor y Rod, <em>cocineros de corazón</em></h3>
+        <p>Bacán nace de dos cocineros argentinos con raíces italianas y españolas. Nuestras <strong>nonnas</strong> preparaban docenas de pizzas y cada comida era una fiesta alrededor de la mesa. Hoy honramos ese legado en Campanet, al pie de la Serra de Tramuntana.</p>
+        <p>Cada pizza es de autor: masa de fermentación lenta, salsa de tomate elaborada con mimo, ingredientes frescos y de proximidad y el sabor inconfundible del <strong>horno de leña</strong>.</p>
+        <ul>
+          <li>Masa madre artesana de fermentación lenta</li>
+          <li>Horno de leña para un sabor auténtico</li>
+          <li>Ingredientes frescos y de proximidad</li>
+          <li>Opciones sin gluten y veganas</li>
+        </ul>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ════════ MANIFIESTO ════════ -->
-  <section class="manifiesto" id="historia">
-    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="img/hero-2.jpg" alt="" loading="lazy"></figure>
-    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="img/secreto-1.jpg" alt="" loading="lazy"></figure>
-    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="img/historia-1.jpg" alt="" loading="lazy"></figure>
-    <p data-manifiesto>
-      Somos Flor y Rod, cocineros argentinos con raíces italianas y españolas.
-      Nuestras nonnas preparaban docenas de pizzas y cada día era una fiesta.
-      Hoy seguimos honrando ese legado en Campanet.
-    </p>
-  </section>
-
-  <!-- ════════ CIFRAS ════════ -->
-  <section class="cifras">
-    <div class="cifra">
-      <div class="cifra__valor"><span data-cuenta data-target="4.8">0</span><i>/5</i></div>
-      <p>valoración en Google</p>
+<!-- CARTA -->
+<section id="carta" style="background:var(--crema);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Pizzas de autor y mucho más</span>
+      <h2 class="section-title">Nuestra <em>carta</em></h2>
+      <p class="section-lead">Una selección de nuestras pizzas de autor más queridas, además de picoteo argentino, cócteles y postres caseros. Cada receta tiene nombre propio y su propia historia.</p>
     </div>
-    <div class="cifra">
-      <div class="cifra__valor"><span data-cuenta data-target="1500">0</span><i>+</i></div>
-      <p>reseñas de clientes</p>
+    <div class="aviso-ejemplo">Carta y precios de muestra a modo de ejemplo para esta propuesta de diseño. La carta y los importes definitivos los facilita el restaurante.</div>
+    <div class="disciplines-grid">
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/pizza-adriana.png" alt="Pizza Adriana de Bacán con rúcula, jamón y tomate cherry"></div>
+        <h4>Adriana</h4>
+        <p>Tomate, mozzarella, jamón crudo, rúcula fresca y tomate cherry. Una de las favoritas de la casa.</p>
+        <span class="disc-price">14,90 €</span>
+      </article>
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/pizza-demetrio.png" alt="Pizza Demetrio de Bacán"></div>
+        <h4>Demetrio</h4>
+        <p>Combinación intensa de embutidos, mozzarella fundida y nuestra salsa de tomate de fermentación lenta.</p>
+        <span class="disc-price">13,90 €</span>
+      </article>
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/pizza-el-flaco.png" alt="Pizza El Flaco de Bacán"></div>
+        <h4>El Flaco</h4>
+        <p>Receta ligera y equilibrada para los amantes de los sabores frescos sobre masa fina y crujiente.</p>
+        <span class="disc-price">12,90 €</span>
+      </article>
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/pizza-marado.png" alt="Pizza Maradó de Bacán"></div>
+        <h4>Maradó</h4>
+        <p>Nuestro homenaje gourmet, generosa y sabrosa, con ingredientes seleccionados al detalle.</p>
+        <span class="disc-price">15,90 €</span>
+      </article>
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/pizza-muzza.png" alt="Pizza Muzza de Bacán, estilo argentino con abundante mozzarella"></div>
+        <h4>Muzza</h4>
+        <p>La clásica argentina: masa al molde con abundante mozzarella, tomate y orégano. Pura tradición.</p>
+        <span class="disc-price">11,90 €</span>
+      </article>
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/pizza-nona-maria.png" alt="Pizza Nona María de Bacán"></div>
+        <h4>Nona María</h4>
+        <p>La receta de la abuela, con el sabor de siempre y el cariño de las pizzas de toda la vida.</p>
+        <span class="disc-price">13,50 €</span>
+      </article>
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/picoteo.jpg" alt="Empanadas argentinas y picoteo para compartir en Bacán"></div>
+        <h4>Para picotear</h4>
+        <p>Empanadas argentinas, tacos y nachos para empezar y compartir mientras llega tu pizza.</p>
+        <span class="disc-price">desde 3,50 €</span>
+      </article>
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/cocktails.jpg" alt="Cócteles artesanales de la barra de Bacán"></div>
+        <h4>BB Cocktails</h4>
+        <p>La barra de Bacán: cócteles de autor y clásicos bien preparados para acompañar la velada.</p>
+        <span class="disc-price">desde 7,50 €</span>
+      </article>
+      <article class="disc-card fade-in">
+        <div class="disc-photo"><img src="img/postre.jpg" alt="Tiramisú casero, postre estrella de Bacán"></div>
+        <h4>Postres</h4>
+        <p>Postres caseros para cerrar con dulzura. Nuestro tiramisú es uno de los más aplaudidos.</p>
+        <span class="disc-price">desde 5,50 €</span>
+      </article>
     </div>
-    <div class="cifra">
-      <div class="cifra__valor"><span data-cuenta data-target="7">0</span></div>
-      <p>pizzas de autor exclusivas</p>
-    </div>
-    <div class="cifra">
-      <div class="cifra__valor"><span data-cuenta data-target="4">0</span></div>
-      <p>tipos de masa artesana</p>
-    </div>
-  </section>
-
-  <!-- ════════ PIZZA CANVAS — line-draw pieza singular ════════ -->
-  <section class="ritual" aria-label="El proceso artesano, paso a paso">
-    <div class="ritual__pin">
-      <canvas class="ritual__lienzo" aria-hidden="true"></canvas>
-      <div class="ritual__hud">
-        <div class="ritual__cab">
-          <h2 class="ritual__titulo">El arte de la <em>masa</em></h2>
-          <div class="ritual__num"><span data-ritual-num>0</span><i>%</i></div>
-        </div>
-        <p class="ritual__fase" data-ritual-fase>I — La masa madre</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════ EXPERIENCIAS — galería horizontal ════════ -->
-  <section class="expe" id="carta" aria-label="Nuestras pizzas y especialidades">
-    <div class="expe__pin">
-      <div class="expe__cab">
-        <h2>Nuestra <em>carta</em></h2>
-        <p class="expe__indice"><b data-expe-num>01</b> / 07</p>
-      </div>
-      <div class="expe__track">
-        <article class="panel">
-          <div class="panel__marco" data-img-reveal>
-            <span class="panel__num">01</span>
-            <img src="img/pizza-adriana.png" alt="Pizza Adriana de Bacán" loading="lazy">
-          </div>
-          <div class="panel__meta"><h3>Adriana</h3><span>Pizza de autor</span></div>
-        </article>
-        <article class="panel">
-          <div class="panel__marco" data-img-reveal>
-            <span class="panel__num">02</span>
-            <img src="img/pizza-demetrio.png" alt="Pizza Demetrio de Bacán" loading="lazy">
-          </div>
-          <div class="panel__meta"><h3>Demetrio</h3><span>Pizza de autor</span></div>
-        </article>
-        <article class="panel">
-          <div class="panel__marco" data-img-reveal>
-            <span class="panel__num">03</span>
-            <img src="img/pizza-el-flaco.png" alt="Pizza El Flaco de Bacán" loading="lazy">
-          </div>
-          <div class="panel__meta"><h3>El Flaco</h3><span>Pizza de autor</span></div>
-        </article>
-        <article class="panel">
-          <div class="panel__marco" data-img-reveal>
-            <span class="panel__num">04</span>
-            <img src="img/picoteo.jpg" alt="Empanadas argentinas y picoteo de Bacán" loading="lazy">
-          </div>
-          <div class="panel__meta"><h3>Picoteo</h3><span>Empanadas · Tacos · Nachos</span></div>
-        </article>
-        <article class="panel">
-          <div class="panel__marco" data-img-reveal>
-            <span class="panel__num">05</span>
-            <img src="img/pizza-marado.png" alt="Pizza Maradó de Bacán" loading="lazy">
-          </div>
-          <div class="panel__meta"><h3>Maradó</h3><span>Pizza de autor</span></div>
-        </article>
-        <article class="panel">
-          <div class="panel__marco" data-img-reveal>
-            <span class="panel__num">06</span>
-            <img src="img/cocktails.jpg" alt="Cócteles artesanales de Bacán" loading="lazy">
-          </div>
-          <div class="panel__meta"><h3>BB Cocktails</h3><span>Barra Bacán</span></div>
-        </article>
-        <article class="panel">
-          <div class="panel__marco" data-img-reveal>
-            <span class="panel__num">07</span>
-            <img src="img/postre.jpg" alt="Tiramisú y postres caseros de Bacán" loading="lazy">
-          </div>
-          <div class="panel__meta"><h3>Postres</h3><span>Tiramisú best seller</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════ SENSACIONES — estela de imágenes ════════ -->
-  <section class="sensaciones" aria-label="Galería de sensaciones">
-    <h2 data-reveal data-split="lines">Ingredientes frescos, sabor de <em>autor</em>.</h2>
-    <p class="sensaciones__pista">Mueve el ratón</p>
-  </section>
-
-  <!-- ════════ ZOOM INMERSIVO (oscuro) ════════ -->
-  <section class="zoom" aria-label="La terraza con vistas a la Serra de Tramuntana">
-    <div class="zoom__pin">
-      <div class="zoom__marco"><img src="img/hero-4.jpg" alt="Terraza de Bacán con vistas a la Serra de Tramuntana al atardecer" loading="lazy"></div>
-      <p class="zoom__texto" data-zoom-texto>Atardeceres sobre la <em>Tramuntana</em>.</p>
-    </div>
-  </section>
-
-  <!-- ════════ TIRAS ════════ -->
-  <div class="tiras" aria-hidden="true">
-    <p class="tira" data-tira="-1">Masa artesana <em>·</em> Horno de leña <em>·</em> Sabor argentino <em>·</em> Masa artesana <em>·</em> Horno de leña <em>·</em> Sabor argentino</p>
-    <p class="tira tira--llena" data-tira="1">Campanet <em>·</em> Mallorca <em>·</em> Tramuntana <em>·</em> Campanet <em>·</em> Mallorca <em>·</em> Tramuntana <em>·</em> Campanet <em>·</em> Mallorca</p>
   </div>
+</section>
 
-  <!-- ════════ TESTIMONIOS (reseñas reales de Google/web) ════════ -->
-  <section class="testimonios">
-    <div class="testimonios__cab">
-      <h2 data-reveal data-split="lines">Lo que dicen nuestros <em>clientes</em>.</h2>
-      <p class="google" data-reveal><i>4,8 / 5</i> Reseñas reales en Google</p>
+<!-- PULL QUOTE -->
+<section class="pull">
+  <div class="pull-inner">
+    <div class="pull-mark">&ldquo;</div>
+    <blockquote>Sin palabras, creo que son las <b>mejores pizzas de Mallorca</b>. Local acogedor y un servicio de diez.</blockquote>
+    <div class="pull-author">Domingo D. · Reseña real en Google</div>
+  </div>
+</section>
+
+<!-- PROCESO (dark) -->
+<section class="como-trabajamos" id="proceso">
+  <div class="ct-head">
+    <span class="eyebrow">Del horno a tu mesa</span>
+    <h2>El arte de la <em>masa</em></h2>
+    <p>Cada pizza recorre el mismo camino artesano: tiempo, manos y fuego de leña. Así nace el sabor de Bacán.</p>
+  </div>
+  <div class="ct-grid">
+    <div class="ct-step fade-in">
+      <span class="ct-num">I</span>
+      <h4>La masa madre</h4>
+      <p>Fermentación lenta de varias horas para una masa ligera, digestiva y con carácter.</p>
     </div>
-    <figure class="cita">
-      <blockquote>Hemos ido varias veces y nunca defrauda. El sitio es bonito tanto para sentarse arriba en la terraza como en el comedor de abajo. El personal es super amable. Y la comida está muy buena.</blockquote>
-      <figcaption>Josep B.</figcaption>
-    </figure>
-    <figure class="cita">
-      <blockquote>Sin palabras, creo que son las mejores pizzas de Mallorca. Local acogedor, servicio de 11. Agradecer a la gerencia el detalle con nosotros, hizo inolvidable un día especial.</blockquote>
-      <figcaption>Domingo D.</figcaption>
-    </figure>
-    <figure class="cita">
-      <blockquote>Sin duda, uno de mis sitios favoritos de toda Mallorca, merecido paseo hasta allí. Empanadas espectaculares, pizzas tremendas y el tiramisú no de 10, de 100. Camareros súper majos y amables.</blockquote>
-      <figcaption>Rafa S.</figcaption>
-    </figure>
-    <figure class="cita">
-      <blockquote>Una gran experiencia en familia gracias al servicio de su personal, el ambiente, las vistas y por sobre todas las cosas unas pizzas espectaculares. Fugaza, Adriana y Demetrio nuestras preferidas.</blockquote>
-      <figcaption>Matías F.</figcaption>
-    </figure>
-  </section>
+    <div class="ct-step fade-in">
+      <span class="ct-num">II</span>
+      <h4>La salsa</h4>
+      <p>Tomate elaborado con mimo, base de cada receta, sin prisas ni atajos.</p>
+    </div>
+    <div class="ct-step fade-in">
+      <span class="ct-num">III</span>
+      <h4>Los ingredientes</h4>
+      <p>Productos frescos y de proximidad, seleccionados a diario para cada pizza de autor.</p>
+    </div>
+    <div class="ct-step fade-in">
+      <span class="ct-num">IV</span>
+      <h4>El horno de leña</h4>
+      <p>El toque final: el fuego de leña que sella el sabor y firma cada pizza de Bacán.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- ════════ MAPA ════════ -->
-  <iframe class="mapa" src="https://maps.google.com/maps?q=Bac%C3%A1n+Pizzas+de+Autor+Campanet&output=embed" loading="lazy" title="Ubicación de Bacán Pizzas de Autor en Google Maps" allowfullscreen></iframe>
+<!-- GALERIA -->
+<section>
+  <div class="wrap">
+    <div class="head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Un rincón con vistas</span>
+      <h2 class="section-title">El ambiente <em>de Bacán</em></h2>
+      <p class="section-lead" style="margin-left:auto;margin-right:auto">Terraza al atardecer con vistas a la Serra de Tramuntana, comedor acogedor y el aroma del horno de leña. Un sitio para venir con calma.</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="fade-in"><img src="img/hero-4.jpg" alt="Terraza de Bacán al atardecer con vistas a la Serra de Tramuntana"><figcaption>Terraza · Atardeceres sobre la Tramuntana</figcaption></figure>
+      <figure class="fade-in"><img src="img/hero-1.jpg" alt="Pizza de autor de Bacán recién salida del horno"><figcaption>Horno de leña · Pizzas de autor</figcaption></figure>
+      <figure class="fade-in"><img src="img/secreto-2.jpg" alt="Detalle de los ingredientes frescos de una pizza de Bacán"><figcaption>Ingredientes frescos y de proximidad</figcaption></figure>
+      <figure class="fade-in"><img src="img/historia-1.jpg" alt="Pizza con embutidos y verduras frescas de Bacán"><figcaption>Recetas con alma argentina</figcaption></figure>
+    </div>
+  </div>
+</section>
 
-  <!-- ════════ CONTACTO ════════ -->
-  <section class="contacto" id="contacto">
-    <p class="contacto__estado" data-reveal>Reservas abiertas · Campanet, Mallorca</p>
-    <h2 data-reveal data-split="lines">Tu mesa te <em>espera</em>.</h2>
-    <a class="magnetico" href="https://wa.me/34640809608" target="_blank" rel="noopener" data-magnetico>
-      <span class="magnetico__label">Reservar por WhatsApp</span>
-    </a>
-    <p class="contacto__secundario" data-reveal>o llama al <a href="tel:+34640809608">640 80 96 08</a> · <a href="mailto:info@bacanpizzasdeautor.com">info@bacanpizzasdeautor.com</a></p>
-    <div class="contacto__datos">
-      <div class="dato" data-reveal>
-        <h4>Dónde estamos</h4>
-        <p>Plaça Son Bordoy, 6<br>07310 Campanet<br>Mallorca, Illes Balears</p>
+<!-- PRIMERA VISITA -->
+<section style="background:var(--crema);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)">
+  <div class="wrap">
+    <div class="two-col reverse">
+      <div class="content-pic fade-in">
+        <img src="img/hero-2.jpg" alt="Mesa servida en Bacán con pizza de autor lista para compartir">
       </div>
-      <div class="dato" data-reveal>
-        <h4>Contacto</h4>
-        <p><a href="tel:+34640809608">640 80 96 08</a><br>
-        <a href="mailto:info@bacanpizzasdeautor.com">info@bacanpizzasdeautor.com</a></p>
-      </div>
-      <div class="dato" data-reveal>
-        <h4>Horario</h4>
-        <div class="horario">
-          <div data-dias="1"><span>Lunes</span><span>Cerrado</span></div>
-          <div data-dias="2"><span>Martes</span><span>Cerrado</span></div>
-          <div data-dias="3"><span>Miércoles</span><span>18:00 — 22:45</span></div>
-          <div data-dias="4"><span>Jueves</span><span>18:00 — 22:45</span></div>
-          <div data-dias="5"><span>Viernes</span><span>18:00 — 22:45</span></div>
-          <div data-dias="6"><span>Sábado</span><span>13:00 — 15:30 / 18:30 — 22:45</span></div>
-          <div data-dias="0"><span>Domingo</span><span>13:00 — 15:30 / 18:30 — 22:45</span></div>
+      <div class="content-text fade-in">
+        <span class="eyebrow">Tu mesa te espera</span>
+        <h3>Ven a vivir la <em>experiencia Bacán</em></h3>
+        <p>Reserva tu mesa y disfruta de nuestras pizzas de autor en el comedor o en la terraza con vistas a la montaña. Avísanos si necesitas opciones <strong>sin gluten o veganas</strong> y te las preparamos encantados.</p>
+        <p>Los fines de semana solemos llenarnos, así que te recomendamos reservar con antelación por WhatsApp o por teléfono.</p>
+        <div class="quick-actions">
+          <a class="btn qa-wa" href="https://wa.me/34640809608?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20mesa%20en%20Bac%C3%A1n" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+          <a href="tel:+34640809608" class="btn btn-primary">Llamar 640 80 96 08</a>
+          <a class="btn btn-ghost" style="color:var(--tierra);border-color:var(--tierra)" href="#ubicacion">Cómo llegar</a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="pie">
-    <span>© 2026 Bacán Pizzas de Autor · Campanet</span>
-    <nav>
-      <a href="legal/aviso-legal.html">Aviso legal</a>
-      <a href="legal/politica-privacidad.html">Privacidad</a>
-      <a href="legal/politica-cookies.html">Cookies</a>
-      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
-    </nav>
+<!-- HORARIO -->
+<section id="horario">
+  <div class="wrap">
+    <div class="head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Cuándo abrimos</span>
+      <h2 class="section-title">Nuestro <em>horario</em></h2>
+      <p class="section-lead" style="margin-left:auto;margin-right:auto">Lunes y martes descansamos. El resto de la semana te esperamos para cenar y, los fines de semana, también a mediodía.</p>
+    </div>
+    <table class="horario-table">
+      <tbody>
+        <tr data-dia="lunes"><td class="dia">Lunes</td><td class="hrs"><span class="cerrado">Cerrado</span></td></tr>
+        <tr data-dia="martes"><td class="dia">Martes</td><td class="hrs"><span class="cerrado">Cerrado</span></td></tr>
+        <tr data-dia="miercoles"><td class="dia">Miércoles</td><td class="hrs">18:00 — 22:45</td></tr>
+        <tr data-dia="jueves"><td class="dia">Jueves</td><td class="hrs">18:00 — 22:45</td></tr>
+        <tr data-dia="viernes"><td class="dia">Viernes</td><td class="hrs">18:00 — 22:45</td></tr>
+        <tr data-dia="sabado"><td class="dia">Sábado</td><td class="hrs">13:00 — 15:30&nbsp;&nbsp;·&nbsp;&nbsp;18:30 — 22:45</td></tr>
+        <tr data-dia="domingo"><td class="dia">Domingo</td><td class="hrs">13:00 — 15:30&nbsp;&nbsp;·&nbsp;&nbsp;18:30 — 22:45</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--crema);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)">
+  <div class="wrap">
+    <div class="head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Antes de venir</span>
+      <h2 class="section-title">Preguntas <em>frecuentes</em></h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item"><h4>¿Hace falta reservar mesa?</h4><p>Recomendamos reservar, sobre todo los fines de semana, ya que Bacán suele llenarse. Puedes reservar por WhatsApp o llamando al 640 80 96 08.</p></div>
+      <div class="faq-item"><h4>¿Tenéis opciones sin gluten y veganas?</h4><p>Sí. Elaboramos masa sin gluten y contamos con opciones veganas. Avísanos al reservar o al pedir para prepararte la mejor opción.</p></div>
+      <div class="faq-item"><h4>¿Las pizzas son en horno de leña?</h4><p>Sí. Todas nuestras pizzas se cuecen en horno de leña, sobre masa de fermentación lenta, con ingredientes frescos y de proximidad.</p></div>
+      <div class="faq-item"><h4>¿Dónde estáis y cómo se llega?</h4><p>Estamos en la Plaça Son Bordoy, 6, 07310 Campanet (Mallorca), al pie de la Serra de Tramuntana. Tienes el mapa y las indicaciones en la sección de Ubicación.</p></div>
+      <div class="faq-item"><h4>¿Qué días abrís?</h4><p>Abrimos de miércoles a viernes en horario de cena (18:00 a 22:45) y los sábados y domingos a mediodía y noche. Lunes y martes permanecemos cerrados.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO + MAPA -->
+<section class="contact" id="ubicacion" style="padding:0">
+  <div class="contact-wrap">
+    <div class="contact-side">
+      <span class="eyebrow">Visítanos</span>
+      <h2>Ven a conocer <em>Bacán</em></h2>
+      <p style="color:rgba(245,240,232,.8);font-size:15px;line-height:1.65">Estamos en la Plaça Son Bordoy de Campanet, al pie de la Tramuntana. Reserva por WhatsApp, teléfono o email.</p>
+      <div class="contact-info">
+        <div class="contact-row"><div class="ico">D</div><div><b>Dirección</b><span>Plaça Son Bordoy, 6, 07310 Campanet (Mallorca)</span></div></div>
+        <div class="contact-row"><div class="ico">T</div><div><b>Teléfono</b><a href="tel:+34640809608">640 80 96 08</a></div></div>
+        <div class="contact-row"><div class="ico">W</div><div><b>WhatsApp</b><a href="https://wa.me/34640809608" target="_blank" rel="noopener">640 80 96 08</a></div></div>
+        <div class="contact-row"><div class="ico">E</div><div><b>Email</b><a href="mailto:info@bacanpizzasdeautor.com">info@bacanpizzasdeautor.com</a></div></div>
+        <div class="contact-row"><div class="ico">H</div><div><b>Horario</b><span>Mié a Vie cena · Sáb y Dom mediodía y noche · Lun y Mar cerrado</span></div></div>
+      </div>
+    </div>
+    <div class="contact-map">
+      <iframe src="https://maps.google.com/maps?q=Bac%C3%A1n%20Pizzas%20de%20Autor%20Campanet&output=embed" title="Ubicación de Bacán Pizzas de Autor en Campanet, Mallorca" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <img src="img/logo-white.png" alt="Logotipo de Bacán Pizzas de Autor">
+      <p>Pizzas de autor en horno de leña en Campanet, al pie de la Serra de Tramuntana. Masa artesana de fermentación lenta, ingredientes frescos y de proximidad, opciones sin gluten y veganas.</p>
+    </div>
+    <div class="foot-col">
+      <h5>La carta</h5>
+      <ul>
+        <li><a href="#carta">Pizzas de autor</a></li>
+        <li><a href="#carta">Para picotear</a></li>
+        <li><a href="#carta">BB Cocktails</a></li>
+        <li><a href="#carta">Postres caseros</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Bacán</h5>
+      <ul>
+        <li><a href="#historia">Nuestra historia</a></li>
+        <li><a href="#proceso">El proceso</a></li>
+        <li><a href="#horario">Horario</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li>Plaça Son Bordoy, 6</li>
+        <li>07310 Campanet, Mallorca</li>
+        <li><a href="tel:+34640809608">640 80 96 08</a></li>
+        <li><a href="mailto:info@bacanpizzasdeautor.com">info@bacanpizzasdeautor.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; <span id="year"></span> Bacán Pizzas de Autor · Campanet, Mallorca</span>
+    <span>
+      <a href="legal/aviso-legal.html">Aviso legal</a> ·
+      <a href="legal/politica-privacidad.html">Privacidad</a> ·
+      <a href="legal/politica-cookies.html">Cookies</a> ·
+      <a href="#" onclick="if(window.GGConsent){window.GGConsent.open();}return false;">Configurar cookies</a>
+    </span>
     <span>Propuesta de diseño — G&amp;G Elcano</span>
-  </footer>
-</main>
+  </div>
+</footer>
 
-<!-- ════════ DEPENDENCIAS ════════ -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
-<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<!-- WHATSAPP FLOTANTE -->
+<a class="wa-float" href="https://wa.me/34640809608?text=Hola%2C%20me%20gustar%C3%ADa%20reservar%20mesa%20en%20Bac%C3%A1n"
+   target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L.3 31.6l8.1-2.1c2.2 1.2 4.8 1.9 7.6 1.9 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.5 0-4.8-.7-6.8-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2-2-4.4-2-6.9C2.9 8.8 8.8 2.9 16 2.9S29.1 8.8 29.1 16 23.2 28.9 16 28.9zm7.2-9.7c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.2s1.4 3.7 1.6 4c.2.2 2.7 4.2 6.6 5.9.9.4 1.6.6 2.2.8.9.3 1.7.2 2.4.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.4z"/></svg>
+</a>
 
 <script>
-'use strict';
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
-CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
-
-const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
-const DPR          = Math.min(devicePixelRatio || 1, 2);
-
-/* ── 1) LENIS + SCROLLTRIGGER ── */
-let lenis = null;
-if (!REDUCE) {
-  lenis = new Lenis({ autoRaf: false });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((t) => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
-  lenis.stop();
-  window.lenis = lenis;
-}
-
-/* ── 2) MENÚ MÓVIL ── */
-(function menuMovil(){
-  const btn = document.getElementById('menuBtn');
-  const nav = document.getElementById('navMovil');
-  if (!btn || !nav) return;
-  btn.addEventListener('click', () => {
-    btn.classList.toggle('open');
-    nav.classList.toggle('open');
-    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  // Menu movil
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mmClose = document.getElementById('mmClose');
+  function closeMenu(){ hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); }
+  hamburger.addEventListener('click', function(){
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
   });
-  nav.querySelectorAll('[data-nav-link]').forEach(a => {
-    a.addEventListener('click', () => {
-      btn.classList.remove('open');
-      nav.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+  mmClose.addEventListener('click', closeMenu);
+  Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function(a){
+    a.addEventListener('click', closeMenu);
   });
-})();
 
-/* ════════════════════════════════════════════════════════════════════════
-   3) ESTELA FLUIDA — receta aprobada (webgl-fluid-enhanced v0.8).
-   Sobre crema: multiply. En sección oscura: screen (modo dual).
-   ════════════════════════════════════════════════════════════════════════ */
-if (FINE_POINTER && !REDUCE) {
-  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then((mod) => {
-    const cont = document.getElementById('fluid');
-    const sim = new mod.default(cont);
-    Object.assign(cont.style, {
-      position: 'fixed', inset: '0', width: '100%', height: '100%',
-      zIndex: '9000', pointerEvents: 'none',
-    });
-    dispatchEvent(new Event('resize'));
-    sim.setConfig({
-      simResolution: 128, dyeResolution: 1024,
-      densityDissipation: 2.2, velocityDissipation: 1.4,
-      pressureIterations: 10, curl: 28,
-      splatRadius: 0.1, splatForce: 5000,
-      hover: false, colorful: false,
-      colorPalette: ['#B8372D', '#C9A66C', '#5A6B3C'],
-      transparent: true,
-      bloom: false,
-      sunrays: false,
-    });
-    sim.start();
-
-    let lastX = null, lastY = null;
-    addEventListener('pointermove', (e) => {
-      if (lastX !== null) {
-        const dx = (e.clientX - lastX) * 2.5, dy = (e.clientY - lastY) * 2.5;
-        if (Math.abs(dx) + Math.abs(dy) > 4) sim.splatAtLocation(e.clientX, e.clientY, dx, dy);
-      }
-      lastX = e.clientX; lastY = e.clientY;
-    }, { passive: true });
-
-    window.__fluidBurst = () => {
-      const W = innerWidth, H = innerHeight;
-      for (let i = 0; i <= 5; i++) {
-        const t = i / 5;
-        setTimeout(() => {
-          sim.splatAtLocation(W * (0.15 + t * 0.7), H * (0.6 - Math.sin(t * Math.PI) * 0.22),
-                              180 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
-        }, i * 70);
-      }
-    };
-    document.addEventListener('visibilitychange', () => sim.pause());
-  }).catch(() => {});
-}
-
-/* ── Cursor dot + ring ── */
-if (FINE_POINTER && !REDUCE) (function cursor(){
-  const dot  = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
-  const dx = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
-  const dy = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
-  const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
-  const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
-  let visto = false;
-  addEventListener('pointermove', (e) => {
-    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
-    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
-  }, { passive: true });
-  document.querySelectorAll('a, button').forEach((el) => {
-    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }));
-    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }));
-  });
-})();
-
-/* ════════════════════════════════════════════════════════════════════════
-   4) PIZZA LINE-DRAW — pieza singular del vertical pizzería.
-   Canvas 2D: dibujo paso a paso del proceso artesano
-   (masa > salsa > ingredientes > horno > porción servida).
-   ════════════════════════════════════════════════════════════════════════ */
-(function ritualCanvas(){
-  const seccion = document.querySelector('.ritual');
-  const pinEl   = document.querySelector('.ritual__pin');
-  const canvas  = document.querySelector('.ritual__lienzo');
-  if (!seccion || !pinEl || !canvas) return;
-  const ctx     = canvas.getContext('2d');
-  const elNum   = document.querySelector('[data-ritual-num]');
-  const elFase  = document.querySelector('[data-ritual-fase]');
-
-  const TERRA = 'rgba(184,55,45,.8)', AMBAR = '#C9A66C', TENUE = 'rgba(138,126,114,.45)', HIERBA = 'rgba(90,107,60,.7)';
-
-  /* circulo parcial */
-  function arco(cx, cy, r, inicio, fin, n){
-    const pts = [];
-    for (let i = 0; i <= n; i++){
-      const a = inicio + (fin - inicio) * (i / n);
-      pts.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]);
-    }
-    return pts;
+  // Animaciones de entrada
+  var faders = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    faders.forEach(function(el){ io.observe(el); });
+  } else {
+    faders.forEach(function(el){ el.classList.add('visible'); });
   }
 
-  /* hoja de albahaca (dos curvas opuestas) */
-  function hoja(cx, cy, angDeg, len){
-    const a = angDeg * Math.PI / 180;
-    const tx = cx + Math.cos(a) * len, ty = cy + Math.sin(a) * len;
-    const px = -Math.sin(a), py = Math.cos(a);
-    const pts = [];
-    const w = len * 0.35;
-    for (let i = 0; i <= 10; i++){
-      const u = i / 10;
-      const ww = Math.sin(u * Math.PI) * w;
-      pts.push([cx + (tx-cx)*u + px*ww, cy + (ty-cy)*u + py*ww]);
-    }
-    for (let i = 10; i >= 0; i--){
-      const u = i / 10;
-      const ww = Math.sin(u * Math.PI) * w;
-      pts.push([cx + (tx-cx)*u - px*ww, cy + (ty-cy)*u - py*ww]);
-    }
-    return pts;
-  }
-
-  /* llama de horno */
-  function llama(x, y, h){
-    return [[x, y], [x-8, y-h*0.5], [x+3, y-h*0.7], [x-4, y-h], [x+6, y-h*0.8], [x+10, y-h*0.5], [x+2, y]];
-  }
-
-  const trazos = [
-    /* FASE I — La masa madre (0 > 0.22): círculo base de pizza */
-    { t:[0.00,0.12], w:2.5, c:AMBAR, p: arco(500, 350, 160, -Math.PI, Math.PI, 48) },
-    { t:[0.06,0.16], w:1.5, c:TENUE, p: arco(500, 350, 155, -Math.PI*0.9, Math.PI*0.9, 32) },
-    /* borde/cornicione */
-    { t:[0.12,0.22], w:3, c:AMBAR, p: arco(500, 350, 170, -Math.PI, Math.PI, 48) },
-
-    /* FASE II — La salsa (0.22 > 0.42): espiral de tomate */
-    { t:[0.22,0.32], w:2, c:TERRA, p: arco(500, 350, 60, 0, Math.PI*4, 48) },
-    { t:[0.28,0.38], w:2, c:TERRA, p: arco(500, 350, 95, Math.PI, Math.PI*5, 48) },
-    { t:[0.34,0.42], w:1.5, c:TERRA, p: arco(500, 350, 130, 0, Math.PI*3.5, 40) },
-
-    /* FASE III — Los ingredientes (0.42 > 0.72): hojas, aceitunas, queso */
-    { t:[0.42,0.50], w:1.8, c:HIERBA, p: hoja(440, 290, -60, 50) },
-    { t:[0.46,0.54], w:1.8, c:HIERBA, p: hoja(560, 300, -120, 45) },
-    { t:[0.50,0.58], w:1.8, c:HIERBA, p: hoja(480, 400, 30, 40) },
-    /* aceitunas (pequeños círculos) */
-    { t:[0.54,0.60], w:2, c:'rgba(90,80,50,.7)', circulo:[430, 360, 14] },
-    { t:[0.58,0.64], w:2, c:'rgba(90,80,50,.7)', circulo:[540, 310, 12] },
-    { t:[0.62,0.68], w:2, c:'rgba(90,80,50,.7)', circulo:[510, 410, 13] },
-    /* queso (líneas onduladas) */
-    { t:[0.66,0.72], w:1.2, c:'rgba(201,166,108,.6)', p:[[380,320],[420,310],[460,330],[500,315],[540,335],[580,320]] },
-
-    /* FASE IV — El horno (0.72 > 0.88): llamas */
-    { t:[0.72,0.80], w:1.8, c:TERRA, p: llama(340, 540, 80) },
-    { t:[0.76,0.84], w:1.8, c:AMBAR, p: llama(420, 545, 65) },
-    { t:[0.78,0.86], w:1.8, c:TERRA, p: llama(580, 540, 75) },
-    { t:[0.80,0.88], w:1.8, c:AMBAR, p: llama(660, 545, 60) },
-    /* arco del horno */
-    { t:[0.72,0.82], w:3, c:TENUE, p: arco(500, 550, 220, -Math.PI, 0, 32) },
-
-    /* FASE V — Servir (0.88 > 1): línea de corte + rúbrica */
-    { t:[0.88,0.94], w:1.5, c:AMBAR, p:[[500,190],[500,510]] },
-    { t:[0.90,0.96], w:1.5, c:AMBAR, p:[[340,350],[660,350]] },
-    { t:[0.94,1.00], w:2, c:TERRA, p:[[300,580],[700,580]] },
-  ];
-  const fases = [
-    [0.00, 'I — La masa madre'],
-    [0.22, 'II — La salsa de tomate'],
-    [0.42, 'III — Los ingredientes'],
-    [0.72, 'IV — El horno de leña'],
-    [0.88, 'V — Servir'],
-  ];
-
-  function longitudes(p){
-    const acc = [0];
-    for (let i = 1; i < p.length; i++)
-      acc.push(acc[i-1] + Math.hypot(p[i][0]-p[i-1][0], p[i][1]-p[i-1][1]));
-    return acc;
-  }
-  trazos.forEach(tr => { if (tr.p) tr.len = longitudes(tr.p); });
-
-  let escala = 1, offX = 0, offY = 0;
-  function redimensionar(){
-    const w = pinEl.clientWidth, h = pinEl.clientHeight;
-    canvas.width = w * DPR; canvas.height = h * DPR;
-    escala = Math.min(w / 1000, h / 640) * 0.86;
-    offX = (w - 1000 * escala) / 2;
-    offY = (h - 640 * escala) / 2 + h * 0.02;
-    pintar(progreso.valor, true);
-  }
-
-  function polilineaParcial(p, len, f){
-    const objetivo = len[len.length-1] * f;
-    ctx.beginPath();
-    ctx.moveTo(p[0][0], p[0][1]);
-    for (let i = 1; i < p.length; i++){
-      if (len[i] <= objetivo) { ctx.lineTo(p[i][0], p[i][1]); continue; }
-      const resto = (objetivo - len[i-1]) / (len[i] - len[i-1]);
-      if (resto > 0)
-        ctx.lineTo(p[i-1][0] + (p[i][0]-p[i-1][0]) * resto,
-                   p[i-1][1] + (p[i][1]-p[i-1][1]) * resto);
-      break;
-    }
-    ctx.stroke();
-  }
-
-  let ultimoPintado = -1;
-  function pintar(t, forzar){
-    const tick = Math.round(t * 800);
-    if (!forzar && tick === ultimoPintado) return;
-    ultimoPintado = tick;
-
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    ctx.clearRect(0, 0, canvas.width / DPR, canvas.height / DPR);
-    ctx.translate(offX, offY);
-    ctx.scale(escala, escala);
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-
-    for (const tr of trazos){
-      const f = gsap.utils.clamp(0, 1, (t - tr.t[0]) / (tr.t[1] - tr.t[0]));
-      if (f <= 0) continue;
-      ctx.strokeStyle = tr.c;
-      ctx.lineWidth = tr.w;
-      if (tr.circulo){
-        const [cx, cy, r] = tr.circulo;
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, -Math.PI/2, -Math.PI/2 + Math.PI*2*f);
-        ctx.stroke();
-      } else {
-        polilineaParcial(tr.p, tr.len, f);
-      }
-    }
-
-    if (elNum) elNum.textContent = Math.round(t * 100);
-    let fase = fases[0][1];
-    for (const [umbral, nombre] of fases) if (t >= umbral) fase = nombre;
-    if (elFase && elFase.textContent !== fase) elFase.textContent = fase;
-  }
-
-  const progreso = { valor: REDUCE ? 1 : 0 };
-  if (!REDUCE){
-    gsap.to(progreso, {
-      valor: 1,
-      ease: 'none',
-      onUpdate: () => pintar(progreso.valor),
-      scrollTrigger: {
-        trigger: seccion,
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: pinEl,
-        pinSpacing: false,
-        scrub: 1,
-        anticipatePin: 1,
-      },
+  // Destacar el dia de hoy en la tabla de horarios
+  function highlightToday(){
+    var rows = document.querySelectorAll('[data-dia]');
+    if (!rows.length) return;
+    var dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+    var hoy = dias[new Date().getDay()];
+    Array.prototype.forEach.call(rows, function(r){
+      if (r.getAttribute('data-dia') === hoy) r.classList.add('horario-hoy');
     });
   }
-  addEventListener('resize', redimensionar);
-  redimensionar();
-})();
+  highlightToday();
 
-/* ── Horario: fila de HOY destacada ── */
-(function highlightToday(){
-  const hoy = new Date().getDay();
-  document.querySelectorAll('.horario [data-dias]').forEach((fila) => {
-    if (fila.dataset.dias.split(',').map(Number).includes(hoy)) fila.classList.add('horario-hoy');
-  });
-})();
-
-/* ════════════════════════════════════════════════════════════════════════
-   5) COREOGRAFÍA DE SCROLL — tras document.fonts.ready
-   ════════════════════════════════════════════════════════════════════════ */
-document.fonts.ready.then(() => {
-  const mm = gsap.matchMedia();
-
-  mm.add({
-    motionOK:  '(prefers-reduced-motion: no-preference)',
-    reduce:    '(prefers-reduced-motion: reduce)',
-    isDesktop: '(min-width: 821px)',
-  }, (ctx) => {
-    if (ctx.conditions.reduce) {
-      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
-      document.querySelectorAll('[data-cuenta]').forEach((el) => {
-        const v = +el.dataset.target;
-        el.textContent = v % 1 === 0 ? v.toLocaleString('es-ES') : v.toLocaleString('es-ES', {minimumFractionDigits:1, maximumFractionDigits:1});
-      });
-      const pl = document.querySelector('.preloader');
-      if (pl) pl.style.display = 'none';
-      return;
+  // Cursor decorativo (desktop)
+  var cursorDot = document.getElementById('cursorDot');
+  var cursorRing = document.getElementById('cursorRing');
+  if (cursorDot && cursorRing && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    var rx = 0, ry = 0, dx = 0, dy = 0;
+    window.addEventListener('mousemove', function(e){
+      dx = e.clientX; dy = e.clientY;
+      cursorDot.style.left = dx + 'px';
+      cursorDot.style.top = dy + 'px';
+    });
+    function ring(){
+      rx += (dx - rx) * 0.18;
+      ry += (dy - ry) * 0.18;
+      cursorRing.style.left = rx + 'px';
+      cursorRing.style.top = ry + 'px';
+      requestAnimationFrame(ring);
     }
-
-    /* 5.1 Reveal del hero */
-    function revealHero(){
-      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-      tl.set('[data-hero-reveal]', { visibility: 'visible' });
-      const heroMedia = document.querySelector('[data-hero-media]');
-      if (heroMedia) {
-        tl.fromTo(heroMedia, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
-        const heroImg = heroMedia.querySelector('img');
-        if (heroImg) tl.fromTo(heroImg, { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
-      }
-      const tituloEl = document.querySelector('.hero__titulo');
-      if (tituloEl) {
-        const splitTitulo = SplitText.create(tituloEl, { type: 'words, chars', mask: 'chars' });
-        tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.4);
-      }
-      const subEl = document.querySelector('.hero__sub');
-      if (subEl) {
-        const splitSub = SplitText.create(subEl, { type: 'lines', mask: 'lines' });
-        tl.from(splitSub.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.65);
-      }
-      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.55);
-      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 0.95);
-      tl.from('.cabecera', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
-      return tl;
-    }
-
-    /* 5.2 Preloader */
-    const num = document.querySelector('.preloader__num');
-    const progreso = { v: 0 };
-    const cargaMinima = new Promise(res => {
-      gsap.to(progreso, {
-        v: 100, duration: 1.9, ease: 'steps(14)',
-        onUpdate: () => { if (num) num.firstChild.textContent = Math.round(progreso.v); },
-        onComplete: res,
-      });
+    ring();
+    Array.prototype.forEach.call(document.querySelectorAll('a,button,.disc-card'), function(el){
+      el.addEventListener('mouseenter', function(){ cursorRing.classList.add('hovering'); });
+      el.addEventListener('mouseleave', function(){ cursorRing.classList.remove('hovering'); });
     });
-    const cargaReal = new Promise(res => {
-      if (document.readyState === 'complete') res();
-      else addEventListener('load', res, { once: true });
-    });
-    Promise.all([cargaMinima, cargaReal]).then(() => {
-      gsap.timeline()
-        .to('.preloader__num',   { yPercent: -110, duration: 0.65, ease: 'expo.in' })
-        .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
-        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
-        .set('.preloader', { display: 'none' })
-        .add(revealHero(), '-=0.75')
-        .call(() => lenis && lenis.start(), null, '-=1.2')
-        .call(() => window.__fluidBurst && window.__fluidBurst(), null, '-=0.9');
-    });
-
-    /* 5.3 Salida del hero + barra de progreso */
-    const heroParallax = document.querySelector('[data-hero-parallax]');
-    if (heroParallax) {
-      gsap.to(heroParallax, {
-        yPercent: 14, scale: 1.12, ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-      });
-    }
-    gsap.to('.hero__contenido', {
-      yPercent: -12, autoAlpha: 0.3, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
-    });
-    gsap.to('.progreso span', {
-      scaleY: 1, ease: 'none',
-      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
-    });
-
-    /* 5.4 Manifiesto + flotantes */
-    const manifiestoEl = document.querySelector('[data-manifiesto]');
-    if (manifiestoEl) {
-      SplitText.create(manifiestoEl, {
-        type: 'words',
-        onSplit: (self) => gsap.from(self.words, {
-          opacity: 0.13, stagger: 0.05, ease: 'none',
-          scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
-        }),
-      });
-    }
-    gsap.utils.toArray('.flotante').forEach((el) => {
-      const sp = +el.dataset.speed || 1;
-      gsap.fromTo(el, { yPercent: 16 * sp }, {
-        yPercent: -16 * sp, ease: 'none',
-        scrollTrigger: { trigger: '.manifiesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
-      });
-    });
-
-    /* 5.5 Cifras */
-    gsap.utils.toArray('.cifra').forEach((el, i) => {
-      gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
-        y: 0, autoAlpha: 1, ease: 'none',
-        scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
-      });
-    });
-    document.querySelectorAll('[data-cuenta]').forEach((el) => {
-      const objetivo = +el.dataset.target;
-      const esDecimal = objetivo % 1 !== 0;
-      const c = { v: 0 };
-      gsap.to(c, {
-        v: objetivo, duration: 2, ease: 'power2.out', snap: esDecimal ? {} : { v: 1 },
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-        onUpdate: () => {
-          el.textContent = esDecimal
-            ? c.v.toLocaleString('es-ES', {minimumFractionDigits:1, maximumFractionDigits:1})
-            : Math.round(c.v).toLocaleString('es-ES');
-        },
-      });
-    });
-
-    /* 5.6 Marquee vivo */
-    {
-      const trackM = document.querySelector('.marquee__track');
-      if (trackM) {
-        const marq = gsap.to(trackM, { xPercent: -50, ease: 'none', duration: 30, repeat: -1 });
-        marq.totalTime(30 * 1000);
-        let objetivoTS = 1;
-        ScrollTrigger.create({
-          onUpdate: (self) => {
-            const v = self.getVelocity();
-            objetivoTS = gsap.utils.clamp(-6, 6, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
-          },
-        });
-        gsap.ticker.add(() => {
-          marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
-          objetivoTS += (1 - objetivoTS) * 0.04;
-        });
-      }
-    }
-
-    /* 5.7 Galería horizontal + skew + parallax interno */
-    let tweenHorizontal = null;
-    if (ctx.conditions.isDesktop) {
-      const track = document.querySelector('.expe__track');
-      const expeNum = document.querySelector('[data-expe-num]');
-      const total = document.querySelectorAll('.panel').length;
-      if (track && total > 0) {
-        const distancia = () => track.scrollWidth - innerWidth + (innerWidth * 0.06);
-        const skewTo = gsap.quickTo(track, 'skewX', { duration: 0.5, ease: 'power3' });
-        const clampSkew = gsap.utils.clamp(-4, 4);
-
-        tweenHorizontal = gsap.to(track, {
-          x: () => -distancia(),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.expe',
-            start: 'top top',
-            end: () => '+=' + distancia(),
-            pin: '.expe__pin',
-            scrub: 1,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onUpdate: (st) => {
-              const i = Math.min(total, Math.max(1, Math.round(st.progress * (total - 1)) + 1));
-              if (expeNum) expeNum.textContent = String(i).padStart(2, '0');
-              skewTo(clampSkew(st.getVelocity() / -450));
-            },
-          },
-        });
-        ScrollTrigger.addEventListener('scrollEnd', () => skewTo(0));
-
-        gsap.utils.toArray('.panel__marco img').forEach((img) => {
-          gsap.fromTo(img, { xPercent: -7, scale: 1.16 }, {
-            xPercent: 7, scale: 1.16, ease: 'none',
-            scrollTrigger: {
-              trigger: img.closest('.panel'),
-              containerAnimation: tweenHorizontal,
-              start: 'left right', end: 'right left', scrub: true,
-            },
-          });
-        });
-      }
-    }
-
-    /* 5.8 Reveals de imagen (clip) */
-    gsap.utils.toArray('[data-img-reveal]').forEach((marco) => {
-      const visual = marco.querySelector('img');
-      const enGaleria = ctx.conditions.isDesktop && tweenHorizontal;
-      const st = enGaleria
-        ? { trigger: marco, containerAnimation: tweenHorizontal, start: 'left 95%', once: true }
-        : { trigger: marco, start: 'top 88%', once: true };
-      const tl = gsap.timeline({ scrollTrigger: st, defaults: { duration: 1.2, ease: 'power4.out' } })
-        .fromTo(marco, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)' });
-      if (!enGaleria && visual) tl.fromTo(visual, { scale: 1.18 }, { scale: 1 }, 0);
-    });
-
-    /* 5.9 SENSACIONES — estela de imágenes al mover el ratón */
-    if (FINE_POINTER) {
-      const zona = document.querySelector('.sensaciones');
-      if (zona) {
-        const POOL = ['img/pizza-adriana.png','img/pizza-demetrio.png','img/pizza-el-flaco.png',
-                      'img/pizza-marado.png','img/pizza-muzza.png','img/pizza-nona-maria.png',
-                      'img/picoteo.jpg','img/postre.jpg'];
-        POOL.forEach(src => { const im = new Image(); im.src = src; });
-        let idx = 0, acumulado = 0, px = null, py = null, vivas = 0;
-        zona.addEventListener('pointermove', (e) => {
-          if (px !== null) acumulado += Math.hypot(e.clientX - px, e.clientY - py);
-          px = e.clientX; py = e.clientY;
-          if (acumulado < 110 || vivas > 12) return;
-          acumulado = 0;
-          const r = zona.getBoundingClientRect();
-          const fig = document.createElement('figure');
-          fig.className = 'estela-img';
-          fig.innerHTML = '<img src="' + POOL[idx++ % POOL.length] + '" alt="">';
-          zona.appendChild(fig);
-          vivas++;
-          const x = e.clientX - r.left, y = e.clientY - r.top;
-          gsap.set(fig, { left: x, top: y, xPercent: -50, yPercent: -50, rotation: gsap.utils.random(-9, 9) });
-          gsap.timeline({ onComplete: () => { fig.remove(); vivas--; } })
-            .fromTo(fig, { scale: 0.55, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.35, ease: 'power3.out' })
-            .to(fig, { yPercent: -85, scale: 1.04, autoAlpha: 0, duration: 0.9, ease: 'power2.in' }, 0.45);
-        }, { passive: true });
-      }
-    }
-
-    /* 5.10 ZOOM inmersivo (oscuro) + fluido a modo screen */
-    {
-      const fluidEl = document.getElementById('fluid');
-      const zoomTextoEl = document.querySelector('[data-zoom-texto]');
-      if (zoomTextoEl) {
-        const zsplit = SplitText.create(zoomTextoEl, { type: 'words' });
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: '.zoom',
-            start: 'top top',
-            end: 'bottom bottom',
-            pin: '.zoom__pin',
-            pinSpacing: false,
-            scrub: 1,
-            anticipatePin: 1,
-            onToggle: (self) => { if (fluidEl) fluidEl.classList.toggle('fluid--screen', self.isActive); },
-          },
-        })
-        .fromTo('.zoom__marco', { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0)
-        .fromTo('.zoom__marco img', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 0.85 }, 0)
-        .fromTo(zsplit.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
-      }
-    }
-
-    /* 5.11 Tiras a contra-scroll */
-    document.querySelectorAll('[data-tira]').forEach((el) => {
-      const dir = +el.dataset.tira;
-      gsap.fromTo(el, { xPercent: dir * 6 }, {
-        xPercent: dir * -6, ease: 'none',
-        scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 },
-      });
-    });
-
-    /* 5.12 Citas cosidas al scroll */
-    gsap.utils.toArray('.cita').forEach((el, i) => {
-      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, {
-        x: 0, autoAlpha: 1, ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top 96%', end: 'top 60%', scrub: 1 },
-      });
-    });
-
-    /* 5.13 Reveals genéricos */
-    document.querySelectorAll('[data-reveal]').forEach((el) => {
-      if (el.dataset.split === 'lines') {
-        SplitText.create(el, {
-          type: 'lines', mask: 'lines', autoSplit: true,
-          onSplit: (self) => {
-            gsap.set(el, { visibility: 'visible' });
-            return gsap.from(self.lines, {
-              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
-              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
-            });
-          },
-        });
-      } else {
-        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
-          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-        });
-      }
-    });
-
-    /* 5.14 Botón magnético */
-    if (FINE_POINTER) {
-      document.querySelectorAll('[data-magnetico]').forEach((el) => {
-        const label = el.querySelector('.magnetico__label');
-        if (!label) return;
-        const xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
-        const yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
-        const lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
-        const ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
-        el.addEventListener('mousemove', (e) => {
-          const r = el.getBoundingClientRect();
-          const dx = e.clientX - (r.left + r.width / 2);
-          const dy = e.clientY - (r.top + r.height / 2);
-          xTo(dx * 0.35); yTo(dy * 0.35);
-          lx(dx * 0.5);  ly(dy * 0.5);
-        });
-        el.addEventListener('mouseleave', () => {
-          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
-        });
-      });
-    }
-
-    ScrollTrigger.refresh();
-  });
-});
+  } else if (cursorDot && cursorRing) {
+    cursorDot.style.display = 'none';
+    cursorRing.style.display = 'none';
+  }
 </script>
-<script defer src="legal/cookie-banner.js"></script>
+<script src="legal/cookie-banner.js" defer></script>
+
 </body>
 </html>
