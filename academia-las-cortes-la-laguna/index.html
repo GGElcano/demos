@@ -6,6 +6,9 @@
 <title>Academia Las Cortes — Oposiciones C1 y C2 en La Laguna, Tenerife</title>
 <meta name="description" content="Academia Las Cortes: preparación de oposiciones Administrativo C1 y Auxiliar C2 en La Laguna. 4,8 en Google con más de 400 reseñas. Más del 80% de aprobados en AGE. Presencial y online.">
 <meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%233366FF'/%3E%3C/svg%3E">
 
 <!-- ============================================================
@@ -20,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="legal/cookie-banner.css">
+<link rel="stylesheet" href="legal/cookie-banner.css?v=2">
 
 <style>
 :root{
@@ -190,9 +193,13 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   overflow: hidden;
   border: 1px solid var(--linea);
 }
+.hero__media::before{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background: linear-gradient(160deg, rgba(18,13,9,.18) 0%, rgba(11,26,58,.42) 60%, rgba(11,26,58,.78) 100%);
+}
 .hero__media::after{
   content:"LA LAGUNA — TENERIFE";
-  position:absolute; right:1rem; bottom:1rem;
+  position:absolute; right:1rem; bottom:1rem; z-index:2;
   font: 400 .62rem/1 var(--sans); letter-spacing:.3em; color:#fff;
   text-shadow: 0 1px 10px rgba(0,0,0,.6);
 }
@@ -474,6 +481,27 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 .pie a:hover, .pie button:hover{ color: var(--verde); }
 .pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
 
+/* ── ACCIONES FLOTANTES (WhatsApp · Llamar · Cómo llegar) ── */
+.fab{
+  position: fixed; right: clamp(1rem,3vw,1.6rem); bottom: clamp(1rem,3vw,1.6rem);
+  z-index: 70; display:flex; flex-direction:column; gap:.7rem;
+}
+.fab a{
+  display:flex; align-items:center; justify-content:center;
+  width: 3.5rem; height: 3.5rem; border-radius: 50%;
+  color:#fff; box-shadow: 0 8px 24px rgba(11,26,58,.28);
+  transition: transform .25s ease, filter .25s ease;
+}
+.fab a:hover{ transform: translateY(-3px) scale(1.05); filter: brightness(1.08); }
+.fab a svg{ width: 1.5rem; height: 1.5rem; display:block; }
+.fab__wa{ background:#25D366; }
+.fab__call{ background: var(--azul); }
+.fab__map{ background: var(--navy); }
+@media (max-width: 820px){
+  .fab a{ width: 3.2rem; height: 3.2rem; }
+  .fab a svg{ width: 1.4rem; height: 1.4rem; }
+}
+
 [data-reveal]{ visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce){
@@ -501,7 +529,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 
 <header class="cabecera">
   <a class="cabecera__logo" href="#">
-    <img src="https://academialascortes.com/wp-content/uploads/2021/11/Leon-fondo-blanco.png" alt="León, logo de Academia Las Cortes" width="32" height="32">
+    <img src="logo-leon.png" alt="León, logo de Academia Las Cortes" width="32" height="32">
     Academia <b>Las Cortes</b>
   </a>
   <nav class="cabecera__nav" aria-label="principal">
@@ -531,7 +559,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
       </div>
     </div>
     <div class="hero__media" data-hero-media>
-      <img src="https://academialascortes.com/wp-content/uploads/2026/01/puertas_abiertas.jpeg" alt="Academia Las Cortes, jornada de puertas abiertas en La Laguna" loading="eager" data-hero-parallax>
+      <img src="puertas-abiertas.jpeg" alt="Academia Las Cortes, jornada de puertas abiertas en La Laguna" loading="eager" data-hero-parallax>
     </div>
   </section>
 
@@ -555,9 +583,9 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
 
   <!-- ════════ MANIFIESTO ════════ -->
   <section class="manifiesto" id="metodo">
-    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="https://academialascortes.com/wp-content/uploads/2026/01/ratios.jpeg" alt="" loading="lazy"></figure>
-    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="https://academialascortes.com/wp-content/uploads/2026/01/preparate.jpeg" alt="" loading="lazy"></figure>
-    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=600&q=80" alt="Estudiante preparando oposiciones" loading="lazy"></figure>
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="stock-estudio2.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="stock-libros.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="stock-estudio.jpg" alt="Estudiante preparando oposiciones" loading="lazy"></figure>
     <p data-manifiesto>
       Más de 60 horas semanales de clase, temario actualizado al día y una plataforma
       de test basada en exámenes reales. Tarifa plana, sin límites: presencial o desde casa,
@@ -609,35 +637,35 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
       <div class="servicios__track">
         <article class="panel">
           <div class="panel__marco" data-img-reveal>
-            <img src="https://academialascortes.com/wp-content/uploads/2026/01/aprobado_age.jpeg" alt="Preparación oposiciones AGE" loading="lazy">
+            <img src="stock-age.jpg" alt="Preparación oposiciones AGE" loading="lazy">
             <span class="panel__nivel">AGE</span>
           </div>
           <div class="panel__meta"><h3>Administración General del Estado</h3><span>C1 y C2 · Presencial · Online</span></div>
         </article>
         <article class="panel">
           <div class="panel__marco" data-img-reveal>
-            <img src="https://academialascortes.com/wp-content/uploads/2026/01/segsocial.jpeg" alt="Oposiciones Seguridad Social" loading="lazy">
+            <img src="stock-segsocial.jpg" alt="Oposiciones Seguridad Social" loading="lazy">
             <span class="panel__nivel">SS</span>
           </div>
           <div class="panel__meta"><h3>Seguridad Social</h3><span>C1 y C2 · Online · Material propio</span></div>
         </article>
         <article class="panel">
           <div class="panel__marco" data-img-reveal>
-            <img src="https://academialascortes.com/wp-content/uploads/2026/01/carrito_compra.jpeg" alt="Oposiciones CCAA y entes locales" loading="lazy">
+            <img src="stock-ccaa.jpg" alt="Oposiciones CCAA y entes locales" loading="lazy">
             <span class="panel__nivel">CCAA</span>
           </div>
           <div class="panel__meta"><h3>Comunidades Autónomas</h3><span>C1 y C2 · Canarias y nacional</span></div>
         </article>
         <article class="panel">
           <div class="panel__marco" data-img-reveal>
-            <img src="https://academialascortes.com/wp-content/uploads/2026/01/banner_redondo-1024x210.png" alt="Oposiciones Ayuntamientos y Cabildos" loading="lazy">
+            <img src="stock-ayuntamiento.jpg" alt="Oposiciones Ayuntamientos y Cabildos" loading="lazy">
             <span class="panel__nivel">Local</span>
           </div>
           <div class="panel__meta"><h3>Cabildos y Ayuntamientos</h3><span>C1 y C2 · Temario específico</span></div>
         </article>
         <article class="panel">
           <div class="panel__marco" data-img-reveal>
-            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80" alt="Preparación de oposiciones para Universidades" loading="lazy">
+            <img src="stock-universidad.jpg" alt="Preparación de oposiciones para Universidades" loading="lazy">
             <span class="panel__nivel">ULL</span>
           </div>
           <div class="panel__meta"><h3>Universidades</h3><span>ULL · Servicio Canario de Salud</span></div>
@@ -664,7 +692,7 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
   <!-- ════════ ZOOM INMERSIVO ════════ -->
   <section class="zoom" aria-label="Tu plaza te espera">
     <div class="zoom__pin">
-      <div class="zoom__marco"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80" alt="Opositora celebrando el aprobado" loading="lazy"></div>
+      <div class="zoom__marco"><img src="stock-aprobado.jpg" alt="Opositora celebrando el aprobado" loading="lazy"></div>
       <p class="zoom__texto" data-zoom-texto>La próxima plaza lleva <em>tu nombre</em>.</p>
     </div>
   </section>
@@ -735,6 +763,19 @@ img{ display:block; width:100%; height:100%; object-fit: cover; }
       <iframe src="https://maps.google.com/maps?q=Academia+Las+Cortes+La+Laguna+Tenerife&output=embed" allowfullscreen loading="lazy" title="Ubicación de Academia Las Cortes en Google Maps"></iframe>
     </div>
   </section>
+
+  <!-- ════════ ACCIONES FLOTANTES ════════ -->
+  <div class="fab" aria-label="Acciones rápidas">
+    <a class="fab__wa" href="https://wa.me/34633324432" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.045zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+    <a class="fab__call" href="tel:+34633324432" aria-label="Llamar a Academia Las Cortes" title="Llamar">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.46 15.46 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.24 1.02l-2.2 2.21z"/></svg>
+    </a>
+    <a class="fab__map" href="https://maps.google.com/maps?q=Academia+Las+Cortes+La+Laguna+Tenerife" target="_blank" rel="noopener" aria-label="Cómo llegar a Academia Las Cortes" title="Cómo llegar">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+    </a>
+  </div>
 
   <footer class="pie">
     <span>Academia Las Cortes · La Laguna</span>
@@ -1072,8 +1113,9 @@ document.fonts.ready.then(function(){
       });
     });
     var cargaReal = new Promise(function(res){
-      if (document.readyState === 'complete') res();
-      else addEventListener('load', res, { once: true });
+      if (document.readyState === 'complete') return res();
+      addEventListener('load', res, { once: true });
+      setTimeout(res, 2500); // failsafe: no colgar el preloader si 'load' tarda (mapa/recurso lento)
     });
     Promise.all([cargaMinima, cargaReal]).then(function(){
       gsap.timeline()
@@ -1213,11 +1255,11 @@ document.fonts.ready.then(function(){
       var zona = document.querySelector('.sensaciones');
       if (zona) {
         var POOL = [
-          'https://academialascortes.com/wp-content/uploads/2026/01/aprobado_age.jpeg',
-          'https://academialascortes.com/wp-content/uploads/2026/01/preparate.jpeg',
-          'https://academialascortes.com/wp-content/uploads/2026/01/ratios.jpeg',
-          'https://academialascortes.com/wp-content/uploads/2026/01/segsocial.jpeg',
-          'https://academialascortes.com/wp-content/uploads/2026/01/puertas_abiertas.jpeg'
+          'stock-age.jpg',
+          'stock-estudio2.jpg',
+          'stock-libros.jpg',
+          'stock-estudio.jpg',
+          'puertas-abiertas.jpeg'
         ];
         POOL.forEach(function(src){ var im = new Image(); im.src = src; });
         var idxE = 0, acumuladoE = 0, pxE = null, pyE = null, vivasE = 0;
