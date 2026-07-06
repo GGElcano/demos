@@ -280,7 +280,7 @@ footer{text-align:center; padding:26px 14px 40px; color:var(--muted); font-size:
           <input id="in-nombre" type="text" placeholder="Nombre y apellido">
         </div>
         <div class="field" id="f-telefono">
-          <label>Teléfono *</label>
+          <label>Teléfono (llamada y WhatsApp) *</label>
           <input id="in-telefono" type="tel" placeholder="600 000 000">
         </div>
       </div>
@@ -414,6 +414,11 @@ footer{text-align:center; padding:26px 14px 40px; color:var(--muted); font-size:
       </ul>
       <p>Documentación a aportar: certificado energético, cédula de habitabilidad, fotografías, descripción, precio y otros documentos según la operación.</p>
     </div>
+    <div class="wa-preview show" style="margin-bottom:12px">
+      <div class="wa-head">WhatsApp · <span id="mi-tel"></span> (el propietario)</div>
+      <div class="wa-bubble">Hola <b id="mi-nombre2"></b>, soy <span id="mi-resp"></span> de Alemany Real Estate. Le acabamos de enviar por email las condiciones y la lista de documentación de su propiedad. Si le resulta más cómodo, puede mandarnos los documentos por aquí. Quedamos a su disposición.</div>
+    </div>
+    <p class="hint" style="margin-bottom:10px">El mismo envío sale por las dos vías, como marca vuestro proceso: email (constancia escrita) y WhatsApp (seguimiento ágil).</p>
     <div class="mrow">
       <button class="btn btn-line" data-close="ov-info" type="button">Cancelar</button>
       <button class="btn btn-azul" id="send-info" type="button">Enviar email + WhatsApp</button>
@@ -711,6 +716,7 @@ function action(l,act,via){
   }
   if(act==='info'){
     $('#mi-para').textContent=l.email; $('#mi-nombre').textContent=l.nombre.split(' ')[0];
+    $('#mi-nombre2').textContent=l.nombre.split(' ')[0]; $('#mi-tel').textContent=l.tel; $('#mi-resp').textContent=l.resp;
     $('#ov-info').classList.add('open');
   }
   if(act==='reclamar'){
