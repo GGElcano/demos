@@ -522,6 +522,13 @@
     .aviso-card.aviso-warning {
       border-left-color: #d68b8b;
     }
+    .aviso-card.aviso-full {
+      grid-column: 1 / -1;
+    }
+    .aviso-full .aviso-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
     .aviso-icon {
       flex-shrink: 0;
       width: 48px; height: 48px;
@@ -732,6 +739,7 @@
     }
     .horario-cerrado {
       color: var(--accent-light);
+      font-weight: 600;
     }
     .timbre-note {
       margin-top: 24px;
@@ -1341,10 +1349,19 @@
     <div class="avisos-header">
       <p class="section-label reveal">Antes de venir</p>
       <h2 class="section-title reveal reveal-delay-1" style="font-size:clamp(2rem,3vw,3rem)">
-        Dos avisos<br><em>importantes</em>
+        <span id="avisos-num">Tres</span> avisos<br><em>importantes</em>
       </h2>
     </div>
     <div class="avisos-grid">
+      <div class="aviso-card aviso-warning aviso-full reveal" id="aviso-martes">
+        <div class="aviso-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="aviso-body">
+          <h3>Martes cerrado por descanso del personal</h3>
+          <p>Durante julio y agosto el restaurante permanece cerrado los martes para el descanso del equipo. El resto de la semana te atendemos con normalidad, de 10:30 a 21:00. En septiembre volvemos al horario habitual.</p>
+        </div>
+      </div>
       <div class="aviso-card aviso-warning reveal">
         <div class="aviso-icon" aria-hidden="true">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -1444,10 +1461,12 @@
     if (semana) semana.textContent = 'Lunes a domingo: 10:30 a 21:00';
     const footer = document.getElementById('horario-footer');
     if (footer) footer.textContent = 'Verano: Lun a Dom · 10:30 a 21:00';
-    ['horario-martes', 'horario-footer-martes'].forEach(id => {
+    ['horario-martes', 'horario-footer-martes', 'aviso-martes'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.remove();
     });
+    const num = document.getElementById('avisos-num');
+    if (num) num.textContent = 'Dos';
   })();
 
   // ── REDUCED MOTION DETECTION
