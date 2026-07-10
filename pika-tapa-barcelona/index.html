@@ -122,7 +122,7 @@
       <a href="ruta-xato.html">Ruta del Xató</a>
       <a href="contacto.html">Contacto</a>
     </div>
-    <a href="tel:938151284" class="nav-cta">Reservar mesa</a>
+    <a href="#reservar" class="nav-cta">Reservar mesa</a>
     <button class="hamburger" id="hamburger" aria-label="Abrir menú">
       <span></span><span></span><span></span>
     </button>
@@ -145,7 +145,7 @@
   <a href="horarios.html">Horarios</a>
   <a href="ruta-xato.html">Ruta del Xató</a>
   <a href="contacto.html">Contacto</a>
-  <a href="tel:938151284" class="mm-cta">Reservar mesa</a>
+  <a href="#reservar" class="mm-cta">Reservar mesa</a>
 </div>
 
 <!-- HERO -->
@@ -310,6 +310,89 @@
     </div>
   </div>
 </section>
+
+<!-- RESERVAR (maqueta de demostración) -->
+<style>
+.resv-sec{background:linear-gradient(160deg,var(--tierra) 0%,var(--tierra-2) 62%,var(--carbon) 100%);padding:82px 24px}
+.resv-form{max-width:560px;margin:34px auto 0;background:rgba(255,255,255,.045);border:1px solid rgba(159,224,242,.2);border-radius:7px;padding:30px}
+.resv-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.resv-form label,.resv-field{flex:1;min-width:170px;display:flex;flex-direction:column;gap:7px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,237,224,.72);font-weight:600}
+.resv-field{margin-bottom:20px}
+.resv-form input,.resv-form select{font-family:'Inter',sans-serif;font-size:15px;letter-spacing:normal;text-transform:none;font-weight:400;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(244,237,224,.2);color:var(--hueso);border-radius:4px}
+.resv-form input:focus,.resv-form select:focus{outline:none;border-color:var(--brasa)}
+.resv-slots{display:flex;flex-wrap:wrap;gap:8px}
+.slot{padding:9px 15px;background:rgba(255,255,255,.05);border:1px solid rgba(244,237,224,.22);color:var(--hueso);font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;border-radius:4px;transition:.2s}
+.slot:hover:not(.off){border-color:var(--brasa)}
+.slot.active{background:var(--brasa);border-color:var(--brasa);color:#fff}
+.slot.off{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+.resv-note{margin-top:14px;text-align:center;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(244,237,224,.5)}
+.resv-ok{max-width:520px;margin:34px auto 0;text-align:center;background:rgba(159,224,242,.06);border:1px solid rgba(159,224,242,.28);border-radius:7px;padding:42px 28px}
+.resv-check{width:56px;height:56px;border-radius:50%;background:var(--brasa);color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.resv-ok h3{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--hueso);margin-bottom:10px;font-weight:600}
+.resv-ok p{color:rgba(244,237,224,.82);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6}
+.resv-demo{margin-top:14px;font-family:'Cormorant Garamond',serif !important;font-style:italic;color:#9fe0f2 !important;font-size:19px !important}
+</style>
+<section id="reservar" class="resv-sec">
+  <div class="wrap">
+    <div class="head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow" style="color:#9fe0f2">Reserva online</span>
+      <h2 class="section-title" style="color:var(--hueso)">Reserva tu mesa <em>en 30 segundos</em></h2>
+      <p style="color:rgba(244,237,224,.7);max-width:560px;margin:12px auto 0;font-family:'Inter',sans-serif;font-size:15px">Elige día, hora y comensales. Sin llamar, a cualquier hora del día.</p>
+    </div>
+    <form class="resv-form" id="resvForm" novalidate>
+      <div class="resv-row">
+        <label>Fecha<input type="date" id="rvDate" required></label>
+        <label>Comensales
+          <select id="rvGuests" required>
+            <option value="">Elige…</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8 o más</option>
+          </select>
+        </label>
+      </div>
+      <div class="resv-field">
+        <span>Hora</span>
+        <div class="resv-slots" id="rvSlots">
+          <button type="button" class="slot">13:00</button>
+          <button type="button" class="slot">13:30</button>
+          <button type="button" class="slot off" disabled>14:00</button>
+          <button type="button" class="slot">14:30</button>
+          <button type="button" class="slot">20:00</button>
+          <button type="button" class="slot">20:30</button>
+          <button type="button" class="slot off" disabled>21:00</button>
+          <button type="button" class="slot">21:30</button>
+        </div>
+      </div>
+      <div class="resv-row">
+        <label>Nombre<input type="text" id="rvName" placeholder="Tu nombre" required></label>
+        <label>Teléfono<input type="tel" id="rvPhone" placeholder="600 00 00 00" required></label>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Reservar mesa</button>
+      <p class="resv-note">Demostración — no se envía ninguna reserva de verdad.</p>
+    </form>
+    <div class="resv-ok" id="resvOk" hidden>
+      <div class="resv-check">&#10003;</div>
+      <h3>¡Reserva confirmada!</h3>
+      <p id="resvOkText"></p>
+      <p class="resv-demo">— Demostración —</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var slots=document.getElementById('rvSlots'),form=document.getElementById('resvForm'),ok=document.getElementById('resvOk'),date=document.getElementById('rvDate');
+  if(date){var n=new Date();var m=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');date.min=m;date.value=m;}
+  var chosen=null;
+  if(slots)slots.addEventListener('click',function(e){var b=e.target.closest('.slot');if(!b||b.classList.contains('off'))return;slots.querySelectorAll('.slot').forEach(function(s){s.classList.remove('active');});b.classList.add('active');chosen=b.textContent;});
+  if(form)form.addEventListener('submit',function(e){e.preventDefault();
+    var g=document.getElementById('rvGuests').value,nm=document.getElementById('rvName').value.trim(),d=date.value;
+    if(!d||!g||!chosen||!nm){alert('Elige fecha, hora, comensales y tu nombre para ver la confirmación.');return;}
+    var ds=new Date(d+'T00:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+    document.getElementById('resvOkText').innerHTML='Mesa para <b>'+g+'</b> · <b>'+ds+'</b> a las <b>'+chosen+'</b>.<br>Te esperamos, '+nm+'.';
+    form.style.display='none';ok.hidden=false;ok.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+})();
+</script>
 
 <!-- CONTACTO + MAPA -->
 <section class="contact" id="contacto" style="padding:0">
