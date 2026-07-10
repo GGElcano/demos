@@ -1,233 +1,536 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<title>Compro Oro Galdakao | Calle Zamakoa | Tasador Online</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
---gold:#d4a843;
---gold-light:#f0d78c;
---gold-dark:#b8892e;
---gold-bg:rgba(212,168,67,.06);
---black:#0a0a0a;
---dark:#111;
---gray:#1a1a1a;
---gray-mid:#2a2a2a;
---white:#fafafa;
-}
-html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;line-height:1.6}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Compro Oro Galdakao | Calle Zamakoa | Tasador Online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Preloader */
-.preloader{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s,visibility .6s}
-.preloader.hidden{opacity:0;visibility:hidden}
-.preloader-ring{width:50px;height:50px;border:3px solid var(--gray-mid);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+    :root {
+      --black: #080c10;
+      --white: #f5f3ef;
+      --accent: #d4a843;
+      --accent-light: #f0d78c;
+      --accent-dim: rgba(212,168,67,0.12);
+      --carbon: #0f1520;
+      --carbon-mid: #162030;
+      --carbon-light: #1e2d40;
+      --text-muted: #9aa6b6;
+      --font-serif: 'DM Serif Display', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-/* ── BANNER COTIZACION (fijo arriba) ── */
-.price-banner{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(90deg,#1a1408,#2a1f0d,#1a1408);border-bottom:1px solid rgba(212,168,67,.25);padding:0;overflow:hidden}
-.price-banner-inner{display:flex;align-items:stretch;min-height:52px}
-.price-banner-label{background:var(--gold);color:var(--black);font-weight:800;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;padding:0 20px;white-space:nowrap;flex-shrink:0}
-.price-ticker-area{flex:1;overflow:hidden;position:relative}
-.price-ticker-area::before,.price-ticker-area::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none}
-.price-ticker-area::before{left:0;background:linear-gradient(90deg,#1a1408,transparent)}
-.price-ticker-area::after{right:0;background:linear-gradient(90deg,transparent,#1a1408)}
-.price-scroll{display:flex;animation:ticker 25s linear infinite;white-space:nowrap;align-items:center;height:100%;gap:0}
-.price-item{display:flex;align-items:center;gap:8px;padding:0 28px;height:100%;border-right:1px solid rgba(212,168,67,.1)}
-.price-item .p-label{font-size:.65rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,250,250,.45)}
-.price-item .p-value{font-size:1.05rem;font-weight:800;color:var(--gold)}
-.price-item .p-unit{font-size:.6rem;color:rgba(250,250,250,.3);font-weight:400}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* ── NAV ── */
-nav{position:fixed;top:52px;left:0;right:0;z-index:90;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,box-shadow .3s}
-nav.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(16px);box-shadow:0 2px 20px rgba(0,0,0,.5)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.5px}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:var(--white);text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;opacity:.6;transition:opacity .3s,color .3s}
-.nav-links a:hover{opacity:1;color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--black);padding:10px 22px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;transition:background .3s}
-.nav-cta:hover{background:var(--gold-light)}
-.mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
-.mobile-toggle span{width:22px;height:2px;background:var(--gold)}
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.98);z-index:95;flex-direction:column;align-items:center;justify-content:center;gap:28px}
-.mobile-menu.open{display:flex}
-.mobile-menu a{color:var(--white);text-decoration:none;font-size:1.1rem;font-weight:500;letter-spacing:1px}
-.mobile-menu .close-menu{position:absolute;top:20px;right:24px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none}
+    /* LOADER */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--black); display: flex;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 28px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: var(--font-serif); font-size: 2rem;
+      letter-spacing: 0.2em; color: var(--white);
+    }
+    .loader-logo span { color: var(--accent); }
+    .loader-bar {
+      width: 200px; height: 1px; background: rgba(245,243,239,0.15);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--accent); transform: translateX(-100%);
+      animation: loadBar 1.5s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
 
-/* ── HERO + TASADOR ── */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 20px 80px;background:radial-gradient(ellipse at 30% 40%,rgba(212,168,67,.07) 0%,transparent 50%),var(--black)}
-.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%}
-.hero-text h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:16px}
-.hero-text h1 .gold{color:var(--gold)}
-.hero-text .hero-sub{font-size:1.05rem;color:rgba(250,250,250,.55);font-weight:300;margin-bottom:28px;max-width:420px;line-height:1.7}
-.hero-text .hero-location{display:flex;align-items:center;gap:10px;font-size:.85rem;color:rgba(250,250,250,.5);margin-bottom:8px}
-.hero-text .hero-location .pin{font-size:1.1rem}
-.hero-text .hero-schedule{font-size:.8rem;color:rgba(250,250,250,.35);margin-left:26px}
+    /* PRICE BANNER */
+    .price-banner {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
+      background: var(--carbon);
+      border-bottom: 1px solid rgba(212,168,67,0.15);
+      overflow: hidden; height: 44px;
+    }
+    .price-banner-inner { display: flex; align-items: stretch; height: 100%; }
+    .price-banner-label {
+      background: var(--accent); color: var(--black);
+      font-weight: 700; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; padding: 0 20px; white-space: nowrap; flex-shrink: 0;
+    }
+    .price-ticker-area {
+      flex: 1; overflow: hidden; position: relative;
+    }
+    .price-ticker-area::before, .price-ticker-area::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 40px; z-index: 2; pointer-events: none;
+    }
+    .price-ticker-area::before { left: 0; background: linear-gradient(90deg, var(--carbon), transparent); }
+    .price-ticker-area::after { right: 0; background: linear-gradient(90deg, transparent, var(--carbon)); }
+    .price-scroll {
+      display: flex; animation: ticker 28s linear infinite;
+      white-space: nowrap; align-items: center; height: 100%;
+    }
+    .price-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 0 28px; height: 100%;
+      border-right: 1px solid rgba(212,168,67,0.08);
+    }
+    .price-item .p-label {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .price-item .p-value { font-size: 1rem; font-weight: 700; color: var(--accent); }
+    .price-item .p-unit { font-size: 0.58rem; color: rgba(245,243,239,0.3); }
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-/* ── TASADOR CARD ── */
-.tasador{background:var(--dark);border:1px solid rgba(212,168,67,.2);border-radius:16px;padding:36px 32px;position:relative;overflow:hidden}
-.tasador::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark))}
-.tasador-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px}
-.tasador-sub{font-size:.8rem;color:rgba(250,250,250,.4);margin-bottom:28px}
-.tasador-field{margin-bottom:20px}
-.tasador-field label{display:block;font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,250,250,.45);margin-bottom:8px}
-.tasador-field select,.tasador-field input{width:100%;background:var(--gray);border:1px solid var(--gray-mid);border-radius:8px;padding:14px 16px;color:var(--white);font-size:.95rem;font-family:'Inter',sans-serif;font-weight:500;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
-.tasador-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4a843' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
-.tasador-field select:focus,.tasador-field input:focus{border-color:var(--gold)}
-.tasador-field input::placeholder{color:rgba(250,250,250,.2)}
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 44px; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 60px;
+      transition: backdrop-filter 0.5s, background 0.5s, padding 0.4s;
+    }
+    nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(8,8,8,0.85);
+      padding: 16px 60px;
+      border-bottom: 1px solid rgba(212,168,67,0.08);
+    }
+    .nav-logo {
+      font-family: var(--font-serif); font-size: 1.4rem;
+      letter-spacing: 0.12em; text-decoration: none; color: var(--white);
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: rgba(245,243,239,0.78);
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent) !important;
+      padding: 10px 28px !important;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.25em !important;
+      transition: background 0.3s, color 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--black) !important; }
 
-/* Resultado */
-.tasador-result{background:var(--gray);border:1px solid var(--gray-mid);border-radius:12px;padding:24px;text-align:center;margin-top:24px;transition:border-color .4s,background .4s}
-.tasador-result.active{border-color:rgba(212,168,67,.4);background:rgba(212,168,67,.04)}
-.tasador-result .result-label{font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(250,250,250,.35);margin-bottom:6px}
-.tasador-result .result-price{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:800;color:var(--gold);line-height:1.1;transition:transform .2s}
-.tasador-result.active .result-price{animation:popIn .3s ease}
-.tasador-result .result-breakdown{font-size:.78rem;color:rgba(250,250,250,.4);margin-top:8px}
-.tasador-result .result-disclaimer{font-size:.68rem;color:rgba(250,250,250,.25);margin-top:14px;line-height:1.5;border-top:1px solid var(--gray-mid);padding-top:12px}
-@keyframes popIn{0%{transform:scale(.9)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
-.tasador-cta{display:block;width:100%;background:var(--gold);color:var(--black);border:none;padding:16px;border-radius:8px;font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;margin-top:16px;text-align:center;text-decoration:none;transition:background .3s}
-.tasador-cta:hover{background:var(--gold-light)}
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px;
+    }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; background: var(--black); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--white); font-size: 1.2rem;
+      letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
 
-/* ── QUE COMPRAMOS (compacto) ── */
-.compramos{padding:80px 20px;background:var(--dark)}
-.compramos-inner{max-width:1000px;margin:0 auto}
-.compramos-header{text-align:center;margin-bottom:40px}
-.compramos-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;line-height:1.15}
-.compramos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-.compra-item{background:var(--gray);border:1px solid var(--gray-mid);border-radius:10px;padding:24px 16px;text-align:center;transition:border-color .3s,transform .3s}
-.compra-item:hover{border-color:rgba(212,168,67,.3);transform:translateY(-3px)}
-.compra-item .ci-icon{font-size:1.6rem;margin-bottom:8px;display:block}
-.compra-item .ci-name{font-size:.8rem;font-weight:600;letter-spacing:.5px}
-.compra-item .ci-detail{font-size:.7rem;color:rgba(250,250,250,.35);margin-top:4px;line-height:1.4}
+    /* SECTION COMMONS */
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 400; line-height: 1.12;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
 
-/* ── UBICACION ── */
-.ubicacion{padding:80px 20px;background:var(--black)}
-.ubicacion-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.ubi-info h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:24px;color:var(--gold)}
-.ubi-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px}
-.ubi-row .icon{font-size:1.1rem;margin-top:2px;flex-shrink:0}
-.ubi-row .text{font-size:.88rem;color:rgba(250,250,250,.6);line-height:1.6}
-.ubi-row .text strong{color:var(--white);display:block;font-size:.82rem;margin-bottom:2px}
-.ubi-buttons{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
-.ubi-buttons a{padding:12px 24px;border-radius:6px;font-size:.8rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;transition:background .3s,transform .2s}
-.ubi-buttons .btn-gold{background:var(--gold);color:var(--black)}
-.ubi-buttons .btn-gold:hover{background:var(--gold-light)}
-.ubi-buttons .btn-outline{border:1px solid rgba(250,250,250,.2);color:var(--white)}
-.ubi-buttons .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-.ubi-map{border-radius:12px;overflow:hidden;border:1px solid var(--gray-mid);aspect-ratio:4/3}
-.ubi-map iframe{width:100%;height:100%;border:0;filter:grayscale(.8) invert(.92) contrast(1.1)}
+    /* HERO */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 160px 60px 100px;
+      background: radial-gradient(ellipse at 20% 40%, rgba(212,168,67,0.04) 0%, transparent 50%), var(--black);
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      max-width: 1400px; margin: 0 auto; width: 100%;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+      font-weight: 400; line-height: 1.05; letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(245,243,239,0.7);
+      max-width: 440px; line-height: 1.75; margin-bottom: 40px; font-weight: 300;
+    }
+    .hero-location {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+    }
+    .hero-schedule { font-size: 0.75rem; color: rgba(245,243,239,0.35); margin-left: 28px; }
 
-/* Horario hoy */
-.horario-table{width:100%;border-collapse:collapse;margin-top:8px}
-.horario-table tr{border-bottom:1px solid rgba(250,250,250,.06)}
-.horario-table td{padding:7px 10px;font-size:.82rem}
-.horario-table td:first-child{font-weight:600;color:rgba(250,250,250,.6);width:100px}
-.horario-table td:last-child{color:rgba(250,250,250,.4)}
-.horario-hoy{background:rgba(212,168,67,.08) !important;border-left:3px solid var(--gold) !important}
+    /* TASADOR */
+    .tasador {
+      background: var(--carbon);
+      border: 1px solid rgba(212,168,67,0.15);
+      padding: 48px 44px; position: relative; overflow: hidden;
+    }
+    .tasador::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--accent); transform: scaleX(0);
+      transition: transform 0.6s var(--ease-out); transform-origin: left;
+    }
+    .tasador:hover::before { transform: scaleX(1); }
+    .tasador-number {
+      position: absolute; top: 24px; right: 32px;
+      font-family: var(--font-serif); font-size: 5rem; font-weight: 300;
+      color: rgba(212,168,67,0.06); line-height: 1;
+    }
+    .tasador-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .tasador-label::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+    .tasador h2 {
+      font-family: var(--font-serif); font-size: 1.8rem;
+      font-weight: 400; margin-bottom: 28px; line-height: 1.2;
+    }
+    .tasador-field { margin-bottom: 20px; }
+    .tasador-field label {
+      display: block; font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 10px;
+    }
+    .tasador-field select, .tasador-field input {
+      width: 100%; background: var(--black);
+      border: 1px solid rgba(212,168,67,0.15); padding: 16px 18px;
+      color: var(--white); font-size: 0.95rem;
+      font-family: var(--font-sans); font-weight: 400;
+      outline: none; transition: border-color 0.3s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .tasador-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4a843' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center;
+      padding-right: 40px; cursor: pointer;
+    }
+    .tasador-field select:focus, .tasador-field input:focus { border-color: var(--accent); }
+    .tasador-field input::placeholder { color: rgba(245,243,239,0.2); }
 
-/* ── FOOTER ── */
-footer{padding:32px 20px;background:var(--dark);border-top:1px solid var(--gray-mid);text-align:center}
-footer p{font-size:.75rem;color:rgba(250,250,250,.25)}
-footer .fg{color:var(--gold);font-weight:600}
+    .tasador-result {
+      background: var(--black); border: 1px solid rgba(212,168,67,0.1);
+      padding: 32px; text-align: center; margin-top: 24px;
+      transition: border-color 0.4s;
+    }
+    .tasador-result.active { border-color: rgba(212,168,67,0.35); }
+    .result-label {
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+    }
+    .result-price {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 400; color: var(--accent); line-height: 1.1;
+    }
+    .tasador-result.active .result-price { animation: popIn 0.3s ease; }
+    @keyframes popIn { 0%{transform:scale(.92)} 50%{transform:scale(1.04)} 100%{transform:scale(1)} }
+    .result-breakdown {
+      font-size: 0.78rem; color: rgba(245,243,239,0.5);
+      margin-top: 10px; letter-spacing: 0.03em;
+    }
+    .result-disclaimer {
+      font-size: 0.68rem; color: rgba(245,243,239,0.3);
+      margin-top: 16px; line-height: 1.6;
+      border-top: 1px solid rgba(212,168,67,0.08); padding-top: 14px;
+    }
+    .tasador-cta {
+      display: block; width: 100%; text-align: center; margin-top: 20px;
+      background: var(--accent); color: var(--black); text-decoration: none;
+      padding: 16px; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      transition: background 0.3s; position: relative; overflow: hidden;
+    }
+    .tasador-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--white); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .tasador-cta:hover::before { transform: translateX(0); }
+    .tasador-cta span { position: relative; z-index: 1; }
 
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;gap:40px}
-  .hero-text{text-align:center}
-  .hero-text .hero-sub{margin:0 auto 28px}
-  .hero-text .hero-location{justify-content:center}
-  .hero-text .hero-schedule{margin-left:0;text-align:center}
-  .ubicacion-inner{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-  nav{padding:12px 20px}
-  .nav-links,.nav-cta{display:none}
-  .mobile-toggle{display:flex}
-  .price-banner-label{padding:0 12px;font-size:.6rem}
-  .compramos-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media(max-width:480px){
-  .compramos-grid{grid-template-columns:repeat(2,1fr)}
-  .ubi-buttons{flex-direction:column}
-  .ubi-buttons a{text-align:center}
-}
+    /* QUE COMPRAMOS */
+    .compramos {
+      background: var(--carbon); padding: 120px 60px;
+      border-top: 1px solid rgba(212,168,67,0.08);
+    }
+    .compramos-inner { max-width: 1400px; margin: 0 auto; }
+    .compramos-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; margin-top: 60px;
+    }
+    .compra-card {
+      padding: 48px 36px; background: var(--carbon);
+      border: 1px solid rgba(212,168,67,0.1);
+      position: relative; overflow: hidden;
+      transition: background 0.5s, border-color 0.5s;
+    }
+    .compra-card:hover { background: var(--carbon-mid); border-color: rgba(212,168,67,0.3); }
+    .compra-card-number {
+      position: absolute; top: 20px; right: 24px;
+      font-family: var(--font-serif); font-size: 3.5rem; font-weight: 300;
+      color: rgba(212,168,67,0.06); line-height: 1;
+      transition: color 0.5s;
+    }
+    .compra-card:hover .compra-card-number { color: rgba(212,168,67,0.14); }
+    .compra-icon {
+      width: 44px; height: 44px; margin-bottom: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(212,168,67,0.3); color: var(--accent);
+      font-size: 1.2rem;
+    }
+    .compra-card h3 {
+      font-family: var(--font-serif); font-size: 1.35rem;
+      font-weight: 400; margin-bottom: 8px; line-height: 1.2;
+    }
+    .compra-card p {
+      font-size: 0.85rem; color: rgba(245,243,239,0.6);
+      line-height: 1.7; font-weight: 300;
+    }
 
-/* Reveal */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-</style>
+    /* UBICACION */
+    .ubicacion { background: var(--black); padding: 0; }
+    .ubicacion-inner {
+      display: grid; grid-template-columns: 1fr 1fr; max-width: none;
+    }
+    .ubi-info {
+      padding: 100px 80px; display: flex; flex-direction: column;
+      justify-content: center; background: var(--carbon);
+    }
+    .ubi-info-item {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 28px 0; border-bottom: 1px solid rgba(212,168,67,0.1);
+    }
+    .ubi-info-item:first-of-type { padding-top: 40px; }
+    .ubi-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border: 1px solid rgba(212,168,67,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 1.1rem;
+    }
+    .ubi-info-text h3 {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 6px; font-weight: 500;
+    }
+    .ubi-info-text p, .ubi-info-text a {
+      font-size: 0.95rem; color: rgba(245,243,239,0.85);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .ubi-info-text a:hover { color: var(--white); }
+    .ubi-buttons {
+      display: flex; gap: 16px; padding-top: 36px; flex-wrap: wrap;
+    }
+    .btn-accent {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--accent); color: var(--black);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: all 0.35s var(--ease-smooth);
+      position: relative; overflow: hidden;
+    }
+    .btn-accent::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--white); transform: translateX(-102%);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .btn-accent:hover::before { transform: translateX(0); }
+    .btn-accent span { position: relative; z-index: 1; }
+    .btn-ghost {
+      color: rgba(245,243,239,0.85); text-decoration: none;
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px; transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .btn-ghost-arrow {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(245,243,239,0.32); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.3s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow { border-color: var(--accent); }
+    .ubi-map { min-height: 500px; position: relative; }
+    .ubi-map iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+      filter: invert(90%) hue-rotate(180deg) saturate(0.6);
+    }
+
+    /* HORARIO */
+    .horario-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .horario-table tr { border-bottom: 1px solid rgba(212,168,67,0.06); }
+    .horario-table td { padding: 8px 10px; font-size: 0.82rem; }
+    .horario-table td:first-child { font-weight: 500; color: rgba(245,243,239,0.65); width: 110px; }
+    .horario-table td:last-child { color: rgba(245,243,239,0.45); }
+    .horario-hoy { background: rgba(212,168,67,0.06) !important; border-left: 3px solid var(--accent) !important; }
+
+    /* FOOTER */
+    footer {
+      background: var(--black); padding: 40px 60px;
+      border-top: 1px solid rgba(212,168,67,0.1); text-align: center;
+    }
+    footer p { font-size: 0.75rem; color: rgba(245,243,239,0.3); letter-spacing: 0.05em; }
+    footer span { color: var(--accent); font-weight: 500; }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      nav { padding: 20px 36px; }
+      nav.scrolled { padding: 14px 36px; }
+      .hero { padding: 140px 36px 80px; }
+      .compramos { padding: 100px 36px; }
+      .compramos-grid { grid-template-columns: repeat(2, 1fr); }
+      .ubicacion-inner { grid-template-columns: 1fr; }
+      .ubi-info { padding: 60px 36px; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .hero { padding: 120px 24px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .compramos { padding: 80px 24px; }
+      .compramos-grid { grid-template-columns: 1fr 1fr; }
+      .ubi-info { padding: 60px 24px; }
+      .price-banner-label { padding: 0 12px; font-size: 0.55rem; letter-spacing: 0.12em; }
+    }
+    @media (max-width: 480px) {
+      .compramos-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: clamp(2.2rem, 10vw, 3rem); }
+      .tasador { padding: 32px 24px; }
+      .ubi-buttons { flex-direction: column; }
+      .ubi-buttons a { text-align: center; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Preloader -->
-<div class="preloader" id="preloader"><div class="preloader-ring"></div></div>
+<div class="loader" id="loader">
+  <div class="loader-logo">COMPRO ORO<span>.</span></div>
+  <div class="loader-bar"></div>
+</div>
 
-<!-- Banner cotizacion fijo -->
+<!-- Banner cotizacion -->
 <div class="price-banner">
   <div class="price-banner-inner">
-    <div class="price-banner-label">Precio del oro hoy</div>
+    <div class="price-banner-label">Cotizaci&oacute;n hoy</div>
     <div class="price-ticker-area">
-      <div class="price-scroll" id="priceScroll">
-        <div class="price-item"><span class="p-label">Oro 24K</span><span class="p-value">142,42&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Oro 22K</span><span class="p-value">130,55&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Oro 18K</span><span class="p-value">106,82&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Oro 14K</span><span class="p-value">83,08&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Plata 925</span><span class="p-value">1,77&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Oro 24K</span><span class="p-value">142,42&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Oro 22K</span><span class="p-value">130,55&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Oro 18K</span><span class="p-value">106,82&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Oro 14K</span><span class="p-value">83,08&euro;</span><span class="p-unit">/gramo</span></div>
-        <div class="price-item"><span class="p-label">Plata 925</span><span class="p-value">1,77&euro;</span><span class="p-unit">/gramo</span></div>
+      <div class="price-scroll">
+        <div class="price-item"><span class="p-label">Oro 24K</span><span class="p-value">142,42&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Oro 22K</span><span class="p-value">130,55&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Oro 18K</span><span class="p-value">106,82&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Oro 14K</span><span class="p-value">83,08&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Plata 925</span><span class="p-value">1,77&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Oro 24K</span><span class="p-value">142,42&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Oro 22K</span><span class="p-value">130,55&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Oro 18K</span><span class="p-value">106,82&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Oro 14K</span><span class="p-value">83,08&euro;</span><span class="p-unit">/g</span></div>
+        <div class="price-item"><span class="p-label">Plata 925</span><span class="p-value">1,77&euro;</span><span class="p-unit">/g</span></div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Nav -->
-<nav id="nav">
-  <a href="#" class="nav-logo">Compro Oro Galdakao</a>
+<nav id="navbar">
+  <a href="#" class="nav-logo">COMPRO ORO<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#tasador">Tasador</a></li>
     <li><a href="#compramos">Qu&eacute; compramos</a></li>
-    <li><a href="#ubicacion">D&oacute;nde estamos</a></li>
+    <li><a href="#ubicacion" class="nav-cta">D&oacute;nde estamos</a></li>
   </ul>
-  <a href="tel:+34600000000" class="nav-cta">Llamar</a>
-  <div class="mobile-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')">
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir men&uacute;">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
+
 <div class="mobile-menu" id="mobileMenu">
-  <button class="close-menu" onclick="this.parentElement.classList.remove('open')">&times;</button>
-  <a href="#tasador" onclick="this.parentElement.classList.remove('open')">Tasador online</a>
-  <a href="#compramos" onclick="this.parentElement.classList.remove('open')">Qu&eacute; compramos</a>
-  <a href="#ubicacion" onclick="this.parentElement.classList.remove('open')">D&oacute;nde estamos</a>
-  <a href="tel:+34600000000" style="color:var(--gold)">Llamar</a>
+  <a href="#tasador" onclick="closeMobile()">Tasador</a>
+  <a href="#compramos" onclick="closeMobile()">Qu&eacute; compramos</a>
+  <a href="#ubicacion" onclick="closeMobile()">D&oacute;nde estamos</a>
+  <a href="tel:+34600000000" onclick="closeMobile()" style="color:var(--accent)">Llamar</a>
 </div>
+
+<main>
 
 <!-- Hero + Tasador -->
 <section class="hero" id="tasador">
   <div class="hero-inner">
-    <div class="hero-text" style="animation:fadeInUp .8s ease both">
-      <h1>Tu oro tiene <span class="gold">m&aacute;s valor</span> del que crees</h1>
-      <p class="hero-sub">Tasaci&oacute;n gratuita, pago al instante. Usa el tasador para hacerte una idea antes de venir.</p>
-      <div class="hero-location"><span class="pin">&#128205;</span> Calle Zamakoa, Galdakao</div>
+    <div>
+      <p class="hero-eyebrow">Calle Zamakoa &middot; Galdakao, Bizkaia</p>
+      <h1 class="hero-title">Tu oro vale<br>m&aacute;s de lo<br>que <em>crees.</em></h1>
+      <p class="hero-sub">Tasaci&oacute;n gratuita y pago al instante. Calcula aqu&iacute; una estimaci&oacute;n antes de venir a la tienda.</p>
+      <div class="hero-location">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Calle Zamakoa, Galdakao
+      </div>
       <div class="hero-schedule" id="heroSchedule"></div>
     </div>
 
-    <!-- Tasador online -->
-    <div class="tasador" style="animation:fadeInUp .8s ease .15s both">
-      <div class="tasador-title">Tasar online</div>
-      <div class="tasador-sub">Resultado orientativo al instante</div>
+    <div class="tasador">
+      <div class="tasador-number">Au</div>
+      <p class="tasador-label">Calculadora</p>
+      <h2>Tasar online</h2>
 
       <div class="tasador-field">
         <label>Tipo de metal</label>
@@ -249,10 +552,10 @@ footer .fg{color:var(--gold);font-weight:600}
         <div class="result-label">Valor estimado</div>
         <div class="result-price" id="resultPrice">0,00 &euro;</div>
         <div class="result-breakdown" id="resultBreakdown"></div>
-        <div class="result-disclaimer">Precio orientativo basado en la cotizaci&oacute;n del d&iacute;a. El valor final lo determina un tasador profesional en tienda tras analizar pureza y peso exacto.</div>
+        <div class="result-disclaimer">Estimaci&oacute;n orientativa basada en la cotizaci&oacute;n del d&iacute;a. El precio final lo determina un tasador profesional en tienda.</div>
       </div>
 
-      <a href="tel:+34600000000" class="tasador-cta">Quiero tasaci&oacute;n exacta</a>
+      <a href="tel:+34600000000" class="tasador-cta"><span>Quiero tasaci&oacute;n exacta</span></a>
     </div>
   </div>
 </section>
@@ -260,49 +563,44 @@ footer .fg{color:var(--gold);font-weight:600}
 <!-- Que compramos -->
 <section class="compramos" id="compramos">
   <div class="compramos-inner">
-    <div class="compramos-header reveal">
-      <h2>Qu&eacute; compramos</h2>
-    </div>
+    <p class="section-label reveal">Qu&eacute; compramos</p>
+    <h2 class="section-title reveal reveal-delay-1">Todo tipo de <em>metales preciosos.</em></h2>
     <div class="compramos-grid">
-      <div class="compra-item reveal">
-        <span class="ci-icon">&#128141;</span>
-        <span class="ci-name">Joyas</span>
-        <span class="ci-detail">Anillos, cadenas, pulseras, pendientes</span>
+      <div class="compra-card reveal">
+        <div class="compra-card-number">01</div>
+        <div class="compra-icon">&#128141;</div>
+        <h3>Joyas y alianzas</h3>
+        <p>Anillos, cadenas, pulseras, pendientes, alianzas. Cualquier estado, incluso rotas.</p>
       </div>
-      <div class="compra-item reveal">
-        <span class="ci-icon">&#128141;</span>
-        <span class="ci-name">Alianzas</span>
-        <span class="ci-detail">De boda, sello, cualquier estado</span>
+      <div class="compra-card reveal reveal-delay-1">
+        <div class="compra-card-number">02</div>
+        <div class="compra-icon">&#9201;</div>
+        <h3>Relojes de oro</h3>
+        <p>Caja o pulsera de oro. Tasamos metal y marca por separado.</p>
       </div>
-      <div class="compra-item reveal">
-        <span class="ci-icon">&#9201;</span>
-        <span class="ci-name">Relojes</span>
-        <span class="ci-detail">Caja o pulsera de oro</span>
+      <div class="compra-card reveal">
+        <div class="compra-card-number">03</div>
+        <div class="compra-icon">&#9646;</div>
+        <h3>Monedas y lingotes</h3>
+        <p>Inversi&oacute;n, colecci&oacute;n, certificados o sin certificar.</p>
       </div>
-      <div class="compra-item reveal">
-        <span class="ci-icon">&#127960;</span>
-        <span class="ci-name">Monedas</span>
-        <span class="ci-detail">Inversi&oacute;n, colecci&oacute;n, antiguas</span>
+      <div class="compra-card reveal reveal-delay-1">
+        <div class="compra-card-number">04</div>
+        <div class="compra-icon">&#129689;</div>
+        <h3>Dental y chatarra</h3>
+        <p>Coronas, puentes, fundas de oro. Pagamos por peso y pureza real.</p>
       </div>
-      <div class="compra-item reveal">
-        <span class="ci-icon">&#9646;</span>
-        <span class="ci-name">Lingotes</span>
-        <span class="ci-detail">Certificados o sin certificar</span>
+      <div class="compra-card reveal">
+        <div class="compra-card-number">05</div>
+        <div class="compra-icon">&#127944;</div>
+        <h3>Plata de ley</h3>
+        <p>Cuberter&iacute;a, bandejas, candelabros, joyas 925.</p>
       </div>
-      <div class="compra-item reveal">
-        <span class="ci-icon">&#129689;</span>
-        <span class="ci-name">Dental</span>
-        <span class="ci-detail">Coronas, puentes, fundas</span>
-      </div>
-      <div class="compra-item reveal">
-        <span class="ci-icon">&#127944;</span>
-        <span class="ci-name">Plata</span>
-        <span class="ci-detail">Cuberteria, bandejas, joyas 925</span>
-      </div>
-      <div class="compra-item reveal">
-        <span class="ci-icon">&#128142;</span>
-        <span class="ci-name">Piedras</span>
-        <span class="ci-detail">Diamantes y gemas sueltas</span>
+      <div class="compra-card reveal reveal-delay-1">
+        <div class="compra-card-number">06</div>
+        <div class="compra-icon">&#128142;</div>
+        <h3>Piedras preciosas</h3>
+        <p>Diamantes y gemas sueltas. Valoraci&oacute;n aparte.</p>
       </div>
     </div>
   </div>
@@ -311,19 +609,22 @@ footer .fg{color:var(--gold);font-weight:600}
 <!-- Ubicacion -->
 <section class="ubicacion" id="ubicacion">
   <div class="ubicacion-inner">
-    <div class="ubi-info reveal">
-      <h2>D&oacute;nde estamos</h2>
-      <div class="ubi-row">
-        <span class="icon">&#128205;</span>
-        <div class="text">
-          <strong>Direcci&oacute;n</strong>
-          Calle Zamakoa, Galdakao, Bizkaia
+    <div class="ubi-info">
+      <p class="section-label reveal">Contacto</p>
+      <h2 class="section-title reveal reveal-delay-1">Enc&uacute;entranos en <em>Galdakao.</em></h2>
+
+      <div class="ubi-info-item reveal">
+        <div class="ubi-icon">&#128205;</div>
+        <div class="ubi-info-text">
+          <h3>Direcci&oacute;n</h3>
+          <p>Calle Zamakoa, Galdakao, Bizkaia</p>
         </div>
       </div>
-      <div class="ubi-row">
-        <span class="icon">&#128337;</span>
-        <div class="text">
-          <strong>Horario</strong>
+
+      <div class="ubi-info-item reveal">
+        <div class="ubi-icon">&#128337;</div>
+        <div class="ubi-info-text">
+          <h3>Horario</h3>
           <table class="horario-table" id="horarioTable">
             <tr data-day="1"><td>Lunes</td><td>10:00 - 13:30 / 16:30 - 19:30</td></tr>
             <tr data-day="2"><td>Martes</td><td>10:00 - 13:30 / 16:30 - 19:30</td></tr>
@@ -335,76 +636,106 @@ footer .fg{color:var(--gold);font-weight:600}
           </table>
         </div>
       </div>
-      <div class="ubi-row">
-        <span class="icon">&#128222;</span>
-        <div class="text">
-          <strong>Tel&eacute;fono</strong>
-          <a href="tel:+34600000000" style="color:var(--gold);text-decoration:none">600 000 000</a>
+
+      <div class="ubi-info-item reveal">
+        <div class="ubi-icon">&#128222;</div>
+        <div class="ubi-info-text">
+          <h3>Tel&eacute;fono</h3>
+          <a href="tel:+34600000000">600 000 000</a>
         </div>
       </div>
-      <div class="ubi-buttons">
-        <a href="tel:+34600000000" class="btn-gold">Llamar</a>
-        <a href="https://wa.me/34600000000?text=Hola%2C%20quiero%20tasar%20unas%20piezas" target="_blank" class="btn-outline">WhatsApp</a>
+
+      <div class="ubi-buttons reveal">
+        <a href="tel:+34600000000" class="btn-accent"><span>Llamar ahora</span></a>
+        <a href="https://wa.me/34600000000?text=Hola%2C%20quiero%20tasar%20unas%20piezas" target="_blank" class="btn-ghost">
+          <span>WhatsApp</span>
+          <span class="btn-ghost-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </span>
+        </a>
       </div>
     </div>
-    <div class="ubi-map reveal">
+    <div class="ubi-map">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2895.8!2d-2.8445!3d43.2305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4f8a8a8a8a8a%3A0x0!2sCalle%20Zamakoa%2C%20Galdakao%2C%20Bizkaia!5e0!3m2!1ses!2ses!4v1688000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+</main>
+
 <footer>
-  <p><span class="fg">Compro Oro Galdakao</span> &middot; Calle Zamakoa &middot; &copy; 2026</p>
+  <p><span>Compro Oro Galdakao</span> &middot; Calle Zamakoa &middot; &copy; 2026</p>
 </footer>
 
 <script>
-// Preloader
-setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),1200);
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),2500));
+// Loader
+window.addEventListener('load', function(){
+  setTimeout(function(){ document.getElementById('loader').classList.add('hidden'); }, 1800);
+});
+setTimeout(function(){ document.getElementById('loader').classList.add('hidden'); }, 2500);
 
 // Nav scroll
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+var nav = document.getElementById('navbar');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
 
-// Reveal
-const obs=new IntersectionObserver(ee=>ee.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// Highlight today
-const today=new Date().getDay();
-document.querySelectorAll('#horarioTable tr').forEach(r=>{if(+r.dataset.day===today)r.classList.add('horario-hoy')});
-const dias=['Domingo','Lunes','Martes','Mi\u00e9rcoles','Jueves','Viernes','S\u00e1bado'];
-const tRow=document.querySelector('#horarioTable tr[data-day="'+today+'"]');
-if(tRow){
-  const heroSched=document.getElementById('heroSchedule');
-  heroSched.textContent='Hoy ('+dias[today]+'): '+tRow.cells[1].textContent;
+// Hamburger
+var hamburger = document.getElementById('hamburger');
+hamburger.addEventListener('click', function(){
+  this.classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  this.setAttribute('aria-expanded', this.classList.contains('active'));
+});
+function closeMobile(){
+  hamburger.classList.remove('active');
+  document.getElementById('mobileMenu').classList.remove('open');
+  hamburger.setAttribute('aria-expanded','false');
 }
 
-// ── TASADOR ──
-const metalSel=document.getElementById('metalType');
-const weightIn=document.getElementById('weightGrams');
-const resultEl=document.getElementById('resultPrice');
-const breakdownEl=document.getElementById('resultBreakdown');
-const resultCard=document.getElementById('tasadorResult');
+// Reveal
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+
+// Horario hoy
+var today = new Date().getDay();
+document.querySelectorAll('#horarioTable tr').forEach(function(r){
+  if(+r.dataset.day === today) r.classList.add('horario-hoy');
+});
+var dias = ['Domingo','Lunes','Martes','Mi\u00e9rcoles','Jueves','Viernes','S\u00e1bado'];
+var tRow = document.querySelector('#horarioTable tr[data-day="'+today+'"]');
+if(tRow){
+  document.getElementById('heroSchedule').textContent = 'Hoy ('+dias[today]+'): '+tRow.cells[1].textContent;
+}
+
+// Tasador
+var metalSel = document.getElementById('metalType');
+var weightIn = document.getElementById('weightGrams');
+var resultEl = document.getElementById('resultPrice');
+var breakdownEl = document.getElementById('resultBreakdown');
+var resultCard = document.getElementById('tasadorResult');
 
 function calcular(){
-  const pricePerG=parseFloat(metalSel.value);
-  const grams=parseFloat(weightIn.value);
-  if(!grams||grams<=0){
-    resultEl.innerHTML='0,00 \u20ac';
-    breakdownEl.textContent='';
+  var pricePerG = parseFloat(metalSel.value);
+  var grams = parseFloat(weightIn.value);
+  if(!grams || grams <= 0){
+    resultEl.innerHTML = '0,00 \u20ac';
+    breakdownEl.textContent = '';
     resultCard.classList.remove('active');
     return;
   }
-  const total=pricePerG*grams;
-  resultEl.textContent=total.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' \u20ac';
-  const metalName=metalSel.options[metalSel.selectedIndex].text.split('(')[0].trim();
-  breakdownEl.textContent=grams.toLocaleString('es-ES',{maximumFractionDigits:1})+'g \u00d7 '+pricePerG.toLocaleString('es-ES',{minimumFractionDigits:2})+' \u20ac/g ('+metalName+')';
+  var total = pricePerG * grams;
+  resultEl.textContent = total.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' \u20ac';
+  var metalName = metalSel.options[metalSel.selectedIndex].text.split('(')[0].trim();
+  breakdownEl.textContent = grams.toLocaleString('es-ES',{maximumFractionDigits:1})+'g \u00d7 '+pricePerG.toLocaleString('es-ES',{minimumFractionDigits:2})+' \u20ac/g ('+metalName+')';
   resultCard.classList.add('active');
 }
-metalSel.addEventListener('change',calcular);
-weightIn.addEventListener('input',calcular);
+metalSel.addEventListener('change', calcular);
+weightIn.addEventListener('input', calcular);
 </script>
 
 </body>
