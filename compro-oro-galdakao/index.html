@@ -6,23 +6,22 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Compro Oro Galdakao | Calle Zamakoa | Compra de Oro y Plata al Mejor Precio</title>
+<title>Compro Oro Galdakao | Calle Zamakoa | Tasador Online</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
 --gold:#d4a843;
 --gold-light:#f0d78c;
 --gold-dark:#b8892e;
+--gold-bg:rgba(212,168,67,.06);
 --black:#0a0a0a;
 --dark:#111;
 --gray:#1a1a1a;
 --gray-mid:#2a2a2a;
 --white:#fafafa;
---silver:#c0c0c0;
---silver-light:#e8e8e8;
 }
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;line-height:1.6}
@@ -30,184 +29,167 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);o
 /* Preloader */
 .preloader{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s,visibility .6s}
 .preloader.hidden{opacity:0;visibility:hidden}
-.preloader-ring{width:60px;height:60px;border:3px solid var(--gray-mid);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+.preloader-ring{width:50px;height:50px;border:3px solid var(--gray-mid);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Ticker cotización */
-.ticker-wrap{background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark));padding:10px 0;overflow:hidden;position:relative;z-index:100}
-.ticker{display:flex;animation:ticker 20s linear infinite;white-space:nowrap;gap:60px}
-.ticker span{font-family:'Inter',sans-serif;font-weight:600;font-size:.85rem;color:var(--black);letter-spacing:.5px;display:flex;align-items:center;gap:8px}
-.ticker .label{font-weight:700;text-transform:uppercase;font-size:.75rem;letter-spacing:1px}
-.ticker .price{font-size:1rem;font-weight:800}
-.ticker .sep{width:4px;height:4px;border-radius:50%;background:var(--black);opacity:.4}
+/* ── BANNER COTIZACION (fijo arriba) ── */
+.price-banner{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(90deg,#1a1408,#2a1f0d,#1a1408);border-bottom:1px solid rgba(212,168,67,.25);padding:0;overflow:hidden}
+.price-banner-inner{display:flex;align-items:stretch;min-height:52px}
+.price-banner-label{background:var(--gold);color:var(--black);font-weight:800;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;padding:0 20px;white-space:nowrap;flex-shrink:0}
+.price-ticker-area{flex:1;overflow:hidden;position:relative}
+.price-ticker-area::before,.price-ticker-area::after{content:'';position:absolute;top:0;bottom:0;width:40px;z-index:2;pointer-events:none}
+.price-ticker-area::before{left:0;background:linear-gradient(90deg,#1a1408,transparent)}
+.price-ticker-area::after{right:0;background:linear-gradient(90deg,transparent,#1a1408)}
+.price-scroll{display:flex;animation:ticker 25s linear infinite;white-space:nowrap;align-items:center;height:100%;gap:0}
+.price-item{display:flex;align-items:center;gap:8px;padding:0 28px;height:100%;border-right:1px solid rgba(212,168,67,.1)}
+.price-item .p-label{font-size:.65rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,250,250,.45)}
+.price-item .p-value{font-size:1.05rem;font-weight:800;color:var(--gold)}
+.price-item .p-unit{font-size:.6rem;color:rgba(250,250,250,.3);font-weight:400}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:90;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,padding .3s,top .3s;top:42px}
-nav.scrolled{background:rgba(10,10,10,.95);backdrop-filter:blur(20px);padding:12px 40px;top:0;border-bottom:1px solid rgba(212,168,67,.15)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:1px}
-.nav-links{display:flex;gap:30px;list-style:none}
-.nav-links a{color:var(--white);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;opacity:.7;transition:opacity .3s,color .3s}
+/* ── NAV ── */
+nav{position:fixed;top:52px;left:0;right:0;z-index:90;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,box-shadow .3s}
+nav.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(16px);box-shadow:0 2px 20px rgba(0,0,0,.5)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:.5px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;opacity:.6;transition:opacity .3s,color .3s}
 .nav-links a:hover{opacity:1;color:var(--gold)}
-.nav-cta{background:var(--gold);color:var(--black);padding:10px 24px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;transition:background .3s,transform .2s}
-.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
+.nav-cta{background:var(--gold);color:var(--black);padding:10px 22px;border-radius:4px;text-decoration:none;font-weight:700;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;transition:background .3s}
+.nav-cta:hover{background:var(--gold-light)}
 .mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
-.mobile-toggle span{width:24px;height:2px;background:var(--gold);transition:transform .3s}
-
-/* Hero */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px;background:radial-gradient(ellipse at 50% 30%,rgba(212,168,67,.08) 0%,transparent 60%),var(--black)}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a843' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-.hero-content{position:relative;z-index:2;max-width:800px}
-.hero-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:6px 20px;border-radius:20px;font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;animation:fadeInUp .8s ease}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1.1;margin-bottom:20px;animation:fadeInUp .8s ease .1s both}
-.hero h1 .gold{color:var(--gold);display:block}
-.hero p{font-size:1.1rem;color:rgba(250,250,250,.6);max-width:500px;margin:0 auto 40px;font-weight:300;animation:fadeInUp .8s ease .2s both}
-.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease .3s both}
-.btn-primary{background:var(--gold);color:var(--black);padding:16px 36px;border:none;border-radius:4px;font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .3s,transform .2s}
-.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
-.btn-secondary{border:1px solid rgba(250,250,250,.3);color:var(--white);padding:16px 36px;border-radius:4px;font-size:.85rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:border-color .3s,color .3s}
-.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
-.hero-gold-icon{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-
-/* Cotización en vivo */
-.cotizacion{padding:80px 20px;background:var(--dark)}
-.cotizacion-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.cotizacion-card{background:var(--gray);border:1px solid rgba(212,168,67,.15);border-radius:12px;padding:28px 24px;text-align:center;transition:border-color .3s,transform .3s}
-.cotizacion-card:hover{border-color:var(--gold);transform:translateY(-4px)}
-.cotizacion-card.gold-card{border-color:rgba(212,168,67,.3)}
-.cotizacion-card.silver-card{border-color:rgba(192,192,192,.2)}
-.cotizacion-card .metal-icon{font-size:1.8rem;margin-bottom:8px}
-.cotizacion-card .karat{font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(250,250,250,.4);margin-bottom:4px}
-.cotizacion-card .metal-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--gold);margin-bottom:12px}
-.cotizacion-card.silver-card .metal-name{color:var(--silver-light)}
-.cotizacion-card .metal-price{font-size:2rem;font-weight:800;letter-spacing:-1px;margin-bottom:4px}
-.cotizacion-card .metal-unit{font-size:.75rem;color:rgba(250,250,250,.4);font-weight:400}
-.cotizacion-card .metal-trend{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;font-weight:600;margin-top:8px;padding:4px 10px;border-radius:12px}
-.trend-up{background:rgba(76,175,80,.15);color:#66bb6a}
-.cotizacion-update{text-align:center;margin-top:20px;font-size:.75rem;color:rgba(250,250,250,.3);font-weight:400}
-.section-header{text-align:center;margin-bottom:50px}
-.section-header .overline{font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.15;margin-bottom:16px}
-.section-header p{color:rgba(250,250,250,.5);max-width:550px;margin:0 auto;font-size:.95rem}
-
-/* Servicios */
-.servicios{padding:100px 20px;background:var(--black)}
-.servicios-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-.servicio-card{background:var(--dark);border:1px solid var(--gray-mid);border-radius:12px;padding:40px 32px;transition:border-color .3s,transform .3s}
-.servicio-card:hover{border-color:var(--gold);transform:translateY(-4px)}
-.servicio-icon{width:56px;height:56px;border-radius:12px;background:rgba(212,168,67,.1);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px}
-.servicio-card h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:12px}
-.servicio-card p{color:rgba(250,250,250,.5);font-size:.9rem;line-height:1.7}
-
-/* Proceso */
-.proceso{padding:100px 20px;background:var(--dark)}
-.proceso-steps{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;counter-reset:step}
-.paso{position:relative;text-align:center;padding:20px}
-.paso::before{counter-increment:step;content:counter(step);font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:800;color:var(--gold);opacity:.2;display:block;margin-bottom:12px;line-height:1}
-.paso h3{font-size:1.1rem;font-weight:700;margin-bottom:10px}
-.paso p{color:rgba(250,250,250,.5);font-size:.85rem;line-height:1.7}
-
-/* Ventajas */
-.ventajas{padding:100px 20px;background:var(--black)}
-.ventajas-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
-.ventaja{display:flex;gap:16px;align-items:flex-start;padding:24px;background:var(--dark);border-radius:12px;border:1px solid transparent;transition:border-color .3s}
-.ventaja:hover{border-color:rgba(212,168,67,.2)}
-.ventaja-check{width:36px;height:36px;border-radius:50%;background:rgba(212,168,67,.12);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
-.ventaja h4{font-size:.95rem;font-weight:700;margin-bottom:4px}
-.ventaja p{color:rgba(250,250,250,.45);font-size:.82rem;line-height:1.6}
-
-/* CTA */
-.cta-section{padding:100px 20px;background:linear-gradient(135deg,rgba(212,168,67,.06) 0%,var(--dark) 50%,rgba(212,168,67,.04) 100%);text-align:center;position:relative}
-.cta-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.3}
-.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:16px;line-height:1.15}
-.cta-section p{color:rgba(250,250,250,.5);max-width:480px;margin:0 auto 32px;font-size:1rem}
-.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-.cta-info{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:40px}
-.cta-info-item{display:flex;align-items:center;gap:10px;font-size:.85rem;color:rgba(250,250,250,.5)}
-.cta-info-item .icon{font-size:1.2rem}
-
-/* Mapa */
-.mapa{padding:80px 20px;background:var(--black)}
-.mapa-container{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.mapa-info h3{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin-bottom:24px}
-.mapa-dato{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
-.mapa-dato .icon{font-size:1.2rem;margin-top:2px}
-.mapa-dato .text strong{display:block;font-size:.85rem;font-weight:700;margin-bottom:2px}
-.mapa-dato .text span{color:rgba(250,250,250,.5);font-size:.85rem}
-.mapa-embed{border-radius:12px;overflow:hidden;border:1px solid var(--gray-mid);aspect-ratio:4/3}
-.mapa-embed iframe{width:100%;height:100%;border:0;filter:grayscale(.8) invert(.92) contrast(1.1)}
-
-/* Footer */
-footer{padding:40px 20px;background:var(--dark);border-top:1px solid var(--gray-mid);text-align:center}
-footer p{font-size:.8rem;color:rgba(250,250,250,.3)}
-footer .footer-gold{color:var(--gold);font-weight:600}
-
-/* Horario hoy */
-.horario-hoy{background:rgba(212,168,67,.08) !important;border-left:3px solid var(--gold) !important}
-
-/* Responsive */
-@media(max-width:768px){
-  nav{padding:12px 20px}
-  nav.scrolled{padding:10px 20px}
-  .nav-links{display:none}
-  .nav-cta{display:none}
-  .mobile-toggle{display:flex}
-  .mobile-menu.open{display:flex}
-  .hero{min-height:90vh;padding:100px 20px 60px}
-  .mapa-container{grid-template-columns:1fr}
-  .cta-info{flex-direction:column;align-items:center;gap:16px}
-  .cotizacion-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:480px){
-  .cotizacion-grid{grid-template-columns:1fr}
-  .hero-buttons{flex-direction:column;align-items:center}
-}
-
-/* Mobile menu */
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.98);z-index:95;flex-direction:column;align-items:center;justify-content:center;gap:32px}
-.mobile-menu a{color:var(--white);text-decoration:none;font-size:1.2rem;font-weight:500;letter-spacing:1px}
-.mobile-menu a:hover{color:var(--gold)}
+.mobile-toggle span{width:22px;height:2px;background:var(--gold)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.98);z-index:95;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--white);text-decoration:none;font-size:1.1rem;font-weight:500;letter-spacing:1px}
 .mobile-menu .close-menu{position:absolute;top:20px;right:24px;font-size:2rem;color:var(--gold);cursor:pointer;background:none;border:none}
 
-/* Scroll reveal */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+/* ── HERO + TASADOR ── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 20px 80px;background:radial-gradient(ellipse at 30% 40%,rgba(212,168,67,.07) 0%,transparent 50%),var(--black)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%}
+.hero-text h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:16px}
+.hero-text h1 .gold{color:var(--gold)}
+.hero-text .hero-sub{font-size:1.05rem;color:rgba(250,250,250,.55);font-weight:300;margin-bottom:28px;max-width:420px;line-height:1.7}
+.hero-text .hero-location{display:flex;align-items:center;gap:10px;font-size:.85rem;color:rgba(250,250,250,.5);margin-bottom:8px}
+.hero-text .hero-location .pin{font-size:1.1rem}
+.hero-text .hero-schedule{font-size:.8rem;color:rgba(250,250,250,.35);margin-left:26px}
 
-/* Tabla horarios */
-.horario-table{width:100%;border-collapse:collapse;margin-top:16px}
-.horario-table tr{border-bottom:1px solid var(--gray-mid)}
-.horario-table td{padding:10px 12px;font-size:.85rem}
-.horario-table td:first-child{font-weight:600;color:rgba(250,250,250,.7);width:140px}
-.horario-table td:last-child{color:rgba(250,250,250,.5)}
+/* ── TASADOR CARD ── */
+.tasador{background:var(--dark);border:1px solid rgba(212,168,67,.2);border-radius:16px;padding:36px 32px;position:relative;overflow:hidden}
+.tasador::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark))}
+.tasador-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px}
+.tasador-sub{font-size:.8rem;color:rgba(250,250,250,.4);margin-bottom:28px}
+.tasador-field{margin-bottom:20px}
+.tasador-field label{display:block;font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,250,250,.45);margin-bottom:8px}
+.tasador-field select,.tasador-field input{width:100%;background:var(--gray);border:1px solid var(--gray-mid);border-radius:8px;padding:14px 16px;color:var(--white);font-size:.95rem;font-family:'Inter',sans-serif;font-weight:500;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
+.tasador-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4a843' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
+.tasador-field select:focus,.tasador-field input:focus{border-color:var(--gold)}
+.tasador-field input::placeholder{color:rgba(250,250,250,.2)}
+
+/* Resultado */
+.tasador-result{background:var(--gray);border:1px solid var(--gray-mid);border-radius:12px;padding:24px;text-align:center;margin-top:24px;transition:border-color .4s,background .4s}
+.tasador-result.active{border-color:rgba(212,168,67,.4);background:rgba(212,168,67,.04)}
+.tasador-result .result-label{font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(250,250,250,.35);margin-bottom:6px}
+.tasador-result .result-price{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:800;color:var(--gold);line-height:1.1;transition:transform .2s}
+.tasador-result.active .result-price{animation:popIn .3s ease}
+.tasador-result .result-breakdown{font-size:.78rem;color:rgba(250,250,250,.4);margin-top:8px}
+.tasador-result .result-disclaimer{font-size:.68rem;color:rgba(250,250,250,.25);margin-top:14px;line-height:1.5;border-top:1px solid var(--gray-mid);padding-top:12px}
+@keyframes popIn{0%{transform:scale(.9)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.tasador-cta{display:block;width:100%;background:var(--gold);color:var(--black);border:none;padding:16px;border-radius:8px;font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;margin-top:16px;text-align:center;text-decoration:none;transition:background .3s}
+.tasador-cta:hover{background:var(--gold-light)}
+
+/* ── QUE COMPRAMOS (compacto) ── */
+.compramos{padding:80px 20px;background:var(--dark)}
+.compramos-inner{max-width:1000px;margin:0 auto}
+.compramos-header{text-align:center;margin-bottom:40px}
+.compramos-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:700;line-height:1.15}
+.compramos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.compra-item{background:var(--gray);border:1px solid var(--gray-mid);border-radius:10px;padding:24px 16px;text-align:center;transition:border-color .3s,transform .3s}
+.compra-item:hover{border-color:rgba(212,168,67,.3);transform:translateY(-3px)}
+.compra-item .ci-icon{font-size:1.6rem;margin-bottom:8px;display:block}
+.compra-item .ci-name{font-size:.8rem;font-weight:600;letter-spacing:.5px}
+.compra-item .ci-detail{font-size:.7rem;color:rgba(250,250,250,.35);margin-top:4px;line-height:1.4}
+
+/* ── UBICACION ── */
+.ubicacion{padding:80px 20px;background:var(--black)}
+.ubicacion-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.ubi-info h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:24px;color:var(--gold)}
+.ubi-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:18px}
+.ubi-row .icon{font-size:1.1rem;margin-top:2px;flex-shrink:0}
+.ubi-row .text{font-size:.88rem;color:rgba(250,250,250,.6);line-height:1.6}
+.ubi-row .text strong{color:var(--white);display:block;font-size:.82rem;margin-bottom:2px}
+.ubi-buttons{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.ubi-buttons a{padding:12px 24px;border-radius:6px;font-size:.8rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;transition:background .3s,transform .2s}
+.ubi-buttons .btn-gold{background:var(--gold);color:var(--black)}
+.ubi-buttons .btn-gold:hover{background:var(--gold-light)}
+.ubi-buttons .btn-outline{border:1px solid rgba(250,250,250,.2);color:var(--white)}
+.ubi-buttons .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.ubi-map{border-radius:12px;overflow:hidden;border:1px solid var(--gray-mid);aspect-ratio:4/3}
+.ubi-map iframe{width:100%;height:100%;border:0;filter:grayscale(.8) invert(.92) contrast(1.1)}
+
+/* Horario hoy */
+.horario-table{width:100%;border-collapse:collapse;margin-top:8px}
+.horario-table tr{border-bottom:1px solid rgba(250,250,250,.06)}
+.horario-table td{padding:7px 10px;font-size:.82rem}
+.horario-table td:first-child{font-weight:600;color:rgba(250,250,250,.6);width:100px}
+.horario-table td:last-child{color:rgba(250,250,250,.4)}
+.horario-hoy{background:rgba(212,168,67,.08) !important;border-left:3px solid var(--gold) !important}
+
+/* ── FOOTER ── */
+footer{padding:32px 20px;background:var(--dark);border-top:1px solid var(--gray-mid);text-align:center}
+footer p{font-size:.75rem;color:rgba(250,250,250,.25)}
+footer .fg{color:var(--gold);font-weight:600}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .hero-text{text-align:center}
+  .hero-text .hero-sub{margin:0 auto 28px}
+  .hero-text .hero-location{justify-content:center}
+  .hero-text .hero-schedule{margin-left:0;text-align:center}
+  .ubicacion-inner{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:12px 20px}
+  .nav-links,.nav-cta{display:none}
+  .mobile-toggle{display:flex}
+  .price-banner-label{padding:0 12px;font-size:.6rem}
+  .compramos-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:480px){
+  .compramos-grid{grid-template-columns:repeat(2,1fr)}
+  .ubi-buttons{flex-direction:column}
+  .ubi-buttons a{text-align:center}
+}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
 <!-- Preloader -->
-<div class="preloader" id="preloader">
-  <div class="preloader-ring"></div>
-</div>
+<div class="preloader" id="preloader"><div class="preloader-ring"></div></div>
 
-<!-- Ticker cotización -->
-<div class="ticker-wrap">
-  <div class="ticker" id="ticker">
-    <span><span class="label">Oro 24K</span> <span class="price">142,42 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 22K</span> <span class="price">130,55 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 18K</span> <span class="price">106,82 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 14K</span> <span class="price">83,08 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Plata 925</span> <span class="price">1,77 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 24K</span> <span class="price">142,42 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 22K</span> <span class="price">130,55 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 18K</span> <span class="price">106,82 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 14K</span> <span class="price">83,08 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Plata 925</span> <span class="price">1,77 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 24K</span> <span class="price">142,42 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 22K</span> <span class="price">130,55 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 18K</span> <span class="price">106,82 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Oro 14K</span> <span class="price">83,08 &euro;/g</span> <span class="sep"></span></span>
-    <span><span class="label">Plata 925</span> <span class="price">1,77 &euro;/g</span> <span class="sep"></span></span>
+<!-- Banner cotizacion fijo -->
+<div class="price-banner">
+  <div class="price-banner-inner">
+    <div class="price-banner-label">Precio del oro hoy</div>
+    <div class="price-ticker-area">
+      <div class="price-scroll" id="priceScroll">
+        <div class="price-item"><span class="p-label">Oro 24K</span><span class="p-value">142,42&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Oro 22K</span><span class="p-value">130,55&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Oro 18K</span><span class="p-value">106,82&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Oro 14K</span><span class="p-value">83,08&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Plata 925</span><span class="p-value">1,77&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Oro 24K</span><span class="p-value">142,42&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Oro 22K</span><span class="p-value">130,55&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Oro 18K</span><span class="p-value">106,82&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Oro 14K</span><span class="p-value">83,08&euro;</span><span class="p-unit">/gramo</span></div>
+        <div class="price-item"><span class="p-label">Plata 925</span><span class="p-value">1,77&euro;</span><span class="p-unit">/gramo</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -215,243 +197,134 @@ footer .footer-gold{color:var(--gold);font-weight:600}
 <nav id="nav">
   <a href="#" class="nav-logo">Compro Oro Galdakao</a>
   <ul class="nav-links">
-    <li><a href="#cotizacion">Cotizaci&oacute;n</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#proceso">C&oacute;mo funciona</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#tasador">Tasador</a></li>
+    <li><a href="#compramos">Qu&eacute; compramos</a></li>
+    <li><a href="#ubicacion">D&oacute;nde estamos</a></li>
   </ul>
-  <a href="tel:+34600000000" class="nav-cta">Ll&aacute;manos</a>
+  <a href="tel:+34600000000" class="nav-cta">Llamar</a>
   <div class="mobile-toggle" onclick="document.getElementById('mobileMenu').classList.add('open')">
     <span></span><span></span><span></span>
   </div>
 </nav>
-
-<!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="close-menu" onclick="this.parentElement.classList.remove('open')">&times;</button>
-  <a href="#cotizacion" onclick="this.parentElement.classList.remove('open')">Cotizaci&oacute;n</a>
-  <a href="#servicios" onclick="this.parentElement.classList.remove('open')">Servicios</a>
-  <a href="#proceso" onclick="this.parentElement.classList.remove('open')">C&oacute;mo funciona</a>
-  <a href="#contacto" onclick="this.parentElement.classList.remove('open')">Contacto</a>
-  <a href="tel:+34600000000" style="color:var(--gold)">Ll&aacute;manos</a>
+  <a href="#tasador" onclick="this.parentElement.classList.remove('open')">Tasador online</a>
+  <a href="#compramos" onclick="this.parentElement.classList.remove('open')">Qu&eacute; compramos</a>
+  <a href="#ubicacion" onclick="this.parentElement.classList.remove('open')">D&oacute;nde estamos</a>
+  <a href="tel:+34600000000" style="color:var(--gold)">Llamar</a>
 </div>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-content">
-    <span class="hero-badge">Calle Zamakoa, Galdakao</span>
-    <h1>Convertimos tu <span class="gold">oro en efectivo</span></h1>
-    <p>Tasaci&oacute;n gratuita, pago inmediato y los mejores precios de Bizkaia. Sin compromiso.</p>
-    <div class="hero-buttons">
-      <a href="#contacto" class="btn-primary">Tasar mis joyas gratis</a>
-      <a href="#cotizacion" class="btn-secondary">Ver cotizaci&oacute;n hoy</a>
+<!-- Hero + Tasador -->
+<section class="hero" id="tasador">
+  <div class="hero-inner">
+    <div class="hero-text" style="animation:fadeInUp .8s ease both">
+      <h1>Tu oro tiene <span class="gold">m&aacute;s valor</span> del que crees</h1>
+      <p class="hero-sub">Tasaci&oacute;n gratuita, pago al instante. Usa el tasador para hacerte una idea antes de venir.</p>
+      <div class="hero-location"><span class="pin">&#128205;</span> Calle Zamakoa, Galdakao</div>
+      <div class="hero-schedule" id="heroSchedule"></div>
+    </div>
+
+    <!-- Tasador online -->
+    <div class="tasador" style="animation:fadeInUp .8s ease .15s both">
+      <div class="tasador-title">Tasar online</div>
+      <div class="tasador-sub">Resultado orientativo al instante</div>
+
+      <div class="tasador-field">
+        <label>Tipo de metal</label>
+        <select id="metalType">
+          <option value="106.82">Oro 18 Kilates (el m&aacute;s com&uacute;n)</option>
+          <option value="142.42">Oro 24 Kilates (puro)</option>
+          <option value="130.55">Oro 22 Kilates</option>
+          <option value="83.08">Oro 14 Kilates</option>
+          <option value="1.77">Plata 925</option>
+        </select>
+      </div>
+
+      <div class="tasador-field">
+        <label>Peso en gramos</label>
+        <input type="number" id="weightGrams" placeholder="Ej: 12.5" min="0.1" step="0.1">
+      </div>
+
+      <div class="tasador-result" id="tasadorResult">
+        <div class="result-label">Valor estimado</div>
+        <div class="result-price" id="resultPrice">0,00 &euro;</div>
+        <div class="result-breakdown" id="resultBreakdown"></div>
+        <div class="result-disclaimer">Precio orientativo basado en la cotizaci&oacute;n del d&iacute;a. El valor final lo determina un tasador profesional en tienda tras analizar pureza y peso exacto.</div>
+      </div>
+
+      <a href="tel:+34600000000" class="tasador-cta">Quiero tasaci&oacute;n exacta</a>
     </div>
   </div>
 </section>
 
-<!-- Cotización -->
-<section class="cotizacion" id="cotizacion">
-  <div class="section-header reveal">
-    <p class="overline">Valor de mercado</p>
-    <h2>Cotizaci&oacute;n del d&iacute;a</h2>
-    <p>Precios por gramo actualizados. Te pagamos sobre el valor real del mercado internacional.</p>
-  </div>
-  <div class="cotizacion-grid">
-    <div class="cotizacion-card gold-card reveal">
-      <div class="metal-icon">&#9670;</div>
-      <div class="karat">Pureza m&aacute;xima</div>
-      <div class="metal-name">Oro 24 Kilates</div>
-      <div class="metal-price">142,42 &euro;</div>
-      <div class="metal-unit">por gramo</div>
-      <div class="metal-trend trend-up">&#9650; mercado alcista</div>
+<!-- Que compramos -->
+<section class="compramos" id="compramos">
+  <div class="compramos-inner">
+    <div class="compramos-header reveal">
+      <h2>Qu&eacute; compramos</h2>
     </div>
-    <div class="cotizacion-card gold-card reveal">
-      <div class="metal-icon">&#9670;</div>
-      <div class="karat">Joyer&iacute;a alta</div>
-      <div class="metal-name">Oro 22 Kilates</div>
-      <div class="metal-price">130,55 &euro;</div>
-      <div class="metal-unit">por gramo</div>
-    </div>
-    <div class="cotizacion-card gold-card reveal">
-      <div class="metal-icon">&#9670;</div>
-      <div class="karat">El m&aacute;s com&uacute;n</div>
-      <div class="metal-name">Oro 18 Kilates</div>
-      <div class="metal-price">106,82 &euro;</div>
-      <div class="metal-unit">por gramo</div>
-    </div>
-    <div class="cotizacion-card gold-card reveal">
-      <div class="metal-icon">&#9670;</div>
-      <div class="karat">Joyer&iacute;a econ&oacute;mica</div>
-      <div class="metal-name">Oro 14 Kilates</div>
-      <div class="metal-price">83,08 &euro;</div>
-      <div class="metal-unit">por gramo</div>
-    </div>
-    <div class="cotizacion-card silver-card reveal">
-      <div class="metal-icon">&#9671;</div>
-      <div class="karat">Plata de ley</div>
-      <div class="metal-name">Plata 925</div>
-      <div class="metal-price">1,77 &euro;</div>
-      <div class="metal-unit">por gramo</div>
-    </div>
-  </div>
-  <div class="cotizacion-update reveal">Precios orientativos basados en el mercado internacional &middot; Julio 2026 &middot; Consultar valor exacto en tienda</div>
-</section>
-
-<!-- Servicios -->
-<section class="servicios" id="servicios">
-  <div class="section-header reveal">
-    <p class="overline">Qu&eacute; compramos</p>
-    <h2>Todos los metales preciosos</h2>
-    <p>Compramos cualquier pieza de oro o plata independientemente de su estado.</p>
-  </div>
-  <div class="servicios-grid">
-    <div class="servicio-card reveal">
-      <div class="servicio-icon">&#128141;</div>
-      <h3>Joyas y alianzas</h3>
-      <p>Anillos, pulseras, cadenas, colgantes, pendientes, alianzas de boda. Cualquier quilataje y estado, incluso rotas.</p>
-    </div>
-    <div class="servicio-card reveal">
-      <div class="servicio-icon">&#9201;</div>
-      <h3>Relojes de oro</h3>
-      <p>Relojes con caja o pulsera de oro. Tasamos por separado el metal y la marca si a&ntilde;ade valor.</p>
-    </div>
-    <div class="servicio-card reveal">
-      <div class="servicio-icon">&#127960;</div>
-      <h3>Monedas y lingotes</h3>
-      <p>Monedas de inversi&oacute;n (Krugerrand, Maple Leaf, etc.), lingotes certificados y oro de inversi&oacute;n.</p>
-    </div>
-    <div class="servicio-card reveal">
-      <div class="servicio-icon">&#129689;</div>
-      <h3>Dental y chatarra</h3>
-      <p>Piezas dentales de oro, recortes de taller, restos de fundici&oacute;n. Pagamos por peso y pureza real.</p>
-    </div>
-    <div class="servicio-card reveal">
-      <div class="servicio-icon">&#127944;</div>
-      <h3>Plata de ley</h3>
-      <p>Cuberter&iacute;a, bandejas, candelabros, joyas de plata 925. Todo tipo de piezas y cantidades.</p>
-    </div>
-    <div class="servicio-card reveal">
-      <div class="servicio-icon">&#128142;</div>
-      <h3>Piedras preciosas</h3>
-      <p>Si tus joyas incluyen diamantes u otras gemas, las valoramos aparte para darte el precio m&aacute;s justo.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Proceso -->
-<section class="proceso" id="proceso">
-  <div class="section-header reveal">
-    <p class="overline">C&oacute;mo funciona</p>
-    <h2>Dinero en 15 minutos</h2>
-    <p>Sin cita previa, sin compromiso, sin letra peque&ntilde;a.</p>
-  </div>
-  <div class="proceso-steps">
-    <div class="paso reveal">
-      <h3>Trae tus piezas</h3>
-      <p>Ven a nuestra tienda en Calle Zamakoa con las joyas, monedas o piezas que quieras vender. No hace falta cita.</p>
-    </div>
-    <div class="paso reveal">
-      <h3>Tasaci&oacute;n gratuita</h3>
-      <p>Analizamos cada pieza con equipos profesionales: balanza de precisi&oacute;n, test de pureza y contraste. Todo delante de ti.</p>
-    </div>
-    <div class="paso reveal">
-      <h3>Oferta sin compromiso</h3>
-      <p>Te damos un precio basado en la cotizaci&oacute;n del d&iacute;a. Si no te convence, te llevas tus piezas sin ning&uacute;n coste.</p>
-    </div>
-    <div class="paso reveal">
-      <h3>Cobras al instante</h3>
-      <p>Si aceptas, te pagamos en el acto: efectivo o transferencia inmediata. Sin esperas, sin papeleos extra.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Ventajas -->
-<section class="ventajas">
-  <div class="section-header reveal">
-    <p class="overline">Por qu&eacute; elegirnos</p>
-    <h2>Confianza y transparencia</h2>
-  </div>
-  <div class="ventajas-grid">
-    <div class="ventaja reveal">
-      <div class="ventaja-check">&#10003;</div>
-      <div>
-        <h4>Mejor precio garantizado</h4>
-        <p>Si encuentras un precio mejor en Bizkaia, lo igualamos.</p>
+    <div class="compramos-grid">
+      <div class="compra-item reveal">
+        <span class="ci-icon">&#128141;</span>
+        <span class="ci-name">Joyas</span>
+        <span class="ci-detail">Anillos, cadenas, pulseras, pendientes</span>
       </div>
-    </div>
-    <div class="ventaja reveal">
-      <div class="ventaja-check">&#10003;</div>
-      <div>
-        <h4>Tasaci&oacute;n delante de ti</h4>
-        <p>Pesamos y analizamos cada pieza a tu vista. Sin sorpresas.</p>
+      <div class="compra-item reveal">
+        <span class="ci-icon">&#128141;</span>
+        <span class="ci-name">Alianzas</span>
+        <span class="ci-detail">De boda, sello, cualquier estado</span>
       </div>
-    </div>
-    <div class="ventaja reveal">
-      <div class="ventaja-check">&#10003;</div>
-      <div>
-        <h4>Pago inmediato</h4>
-        <p>Efectivo en mano o transferencia al momento. T&uacute; eliges.</p>
+      <div class="compra-item reveal">
+        <span class="ci-icon">&#9201;</span>
+        <span class="ci-name">Relojes</span>
+        <span class="ci-detail">Caja o pulsera de oro</span>
       </div>
-    </div>
-    <div class="ventaja reveal">
-      <div class="ventaja-check">&#10003;</div>
-      <div>
-        <h4>Sin compromiso</h4>
-        <p>Si la oferta no te convence, te vas con tus piezas. Cero presi&oacute;n.</p>
+      <div class="compra-item reveal">
+        <span class="ci-icon">&#127960;</span>
+        <span class="ci-name">Monedas</span>
+        <span class="ci-detail">Inversi&oacute;n, colecci&oacute;n, antiguas</span>
       </div>
-    </div>
-    <div class="ventaja reveal">
-      <div class="ventaja-check">&#10003;</div>
-      <div>
-        <h4>Privacidad total</h4>
-        <p>Tasaci&oacute;n en sala privada. Tu visita es confidencial.</p>
+      <div class="compra-item reveal">
+        <span class="ci-icon">&#9646;</span>
+        <span class="ci-name">Lingotes</span>
+        <span class="ci-detail">Certificados o sin certificar</span>
       </div>
-    </div>
-    <div class="ventaja reveal">
-      <div class="ventaja-check">&#10003;</div>
-      <div>
-        <h4>M&aacute;s de 15 a&ntilde;os</h4>
-        <p>Experiencia y confianza en el sector de metales preciosos.</p>
+      <div class="compra-item reveal">
+        <span class="ci-icon">&#129689;</span>
+        <span class="ci-name">Dental</span>
+        <span class="ci-detail">Coronas, puentes, fundas</span>
+      </div>
+      <div class="compra-item reveal">
+        <span class="ci-icon">&#127944;</span>
+        <span class="ci-name">Plata</span>
+        <span class="ci-detail">Cuberteria, bandejas, joyas 925</span>
+      </div>
+      <div class="compra-item reveal">
+        <span class="ci-icon">&#128142;</span>
+        <span class="ci-name">Piedras</span>
+        <span class="ci-detail">Diamantes y gemas sueltas</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contacto">
-  <div class="section-header reveal">
-    <p class="overline">Contacto</p>
-    <h2>Ven a tasaci&oacute;n gratuita</h2>
-    <p>Estamos en Calle Zamakoa, Galdakao. Sin cita previa, te atendemos al momento.</p>
-  </div>
-  <div class="cta-buttons reveal">
-    <a href="tel:+34600000000" class="btn-primary">Llamar ahora</a>
-    <a href="https://wa.me/34600000000?text=Hola%2C%20me%20gustar%C3%ADa%20tasar%20unas%20joyas" class="btn-secondary" target="_blank">WhatsApp</a>
-  </div>
-  <div class="cta-info reveal">
-    <div class="cta-info-item"><span class="icon">&#128205;</span> Calle Zamakoa, Galdakao</div>
-    <div class="cta-info-item"><span class="icon">&#128337;</span> <span id="horario-hoy"></span></div>
-    <div class="cta-info-item"><span class="icon">&#128176;</span> Pago inmediato en efectivo</div>
-  </div>
-</section>
-
-<!-- Mapa -->
-<section class="mapa">
-  <div class="mapa-container">
-    <div class="mapa-info reveal">
-      <h3>Enc&uacute;entranos en Galdakao</h3>
-      <div class="mapa-dato">
+<!-- Ubicacion -->
+<section class="ubicacion" id="ubicacion">
+  <div class="ubicacion-inner">
+    <div class="ubi-info reveal">
+      <h2>D&oacute;nde estamos</h2>
+      <div class="ubi-row">
         <span class="icon">&#128205;</span>
         <div class="text">
           <strong>Direcci&oacute;n</strong>
-          <span>Calle Zamakoa, Galdakao, Bizkaia</span>
+          Calle Zamakoa, Galdakao, Bizkaia
         </div>
       </div>
-      <div class="mapa-dato">
+      <div class="ubi-row">
         <span class="icon">&#128337;</span>
         <div class="text">
           <strong>Horario</strong>
-          <table class="horario-table" id="horario-table">
+          <table class="horario-table" id="horarioTable">
             <tr data-day="1"><td>Lunes</td><td>10:00 - 13:30 / 16:30 - 19:30</td></tr>
             <tr data-day="2"><td>Martes</td><td>10:00 - 13:30 / 16:30 - 19:30</td></tr>
             <tr data-day="3"><td>Mi&eacute;rcoles</td><td>10:00 - 13:30 / 16:30 - 19:30</td></tr>
@@ -462,15 +335,19 @@ footer .footer-gold{color:var(--gold);font-weight:600}
           </table>
         </div>
       </div>
-      <div class="mapa-dato">
+      <div class="ubi-row">
         <span class="icon">&#128222;</span>
         <div class="text">
           <strong>Tel&eacute;fono</strong>
-          <span><a href="tel:+34600000000" style="color:var(--gold);text-decoration:none">600 000 000</a></span>
+          <a href="tel:+34600000000" style="color:var(--gold);text-decoration:none">600 000 000</a>
         </div>
       </div>
+      <div class="ubi-buttons">
+        <a href="tel:+34600000000" class="btn-gold">Llamar</a>
+        <a href="https://wa.me/34600000000?text=Hola%2C%20quiero%20tasar%20unas%20piezas" target="_blank" class="btn-outline">WhatsApp</a>
+      </div>
     </div>
-    <div class="mapa-embed reveal">
+    <div class="ubi-map reveal">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2895.8!2d-2.8445!3d43.2305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e4f8a8a8a8a8a%3A0x0!2sCalle%20Zamakoa%2C%20Galdakao%2C%20Bizkaia!5e0!3m2!1ses!2ses!4v1688000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
@@ -478,36 +355,56 @@ footer .footer-gold{color:var(--gold);font-weight:600}
 
 <!-- Footer -->
 <footer>
-  <p><span class="footer-gold">Compro Oro Galdakao</span> &middot; Calle Zamakoa, Galdakao, Bizkaia &middot; &copy; 2026</p>
+  <p><span class="fg">Compro Oro Galdakao</span> &middot; Calle Zamakoa &middot; &copy; 2026</p>
 </footer>
 
 <script>
 // Preloader
-setTimeout(()=>{document.getElementById('preloader').classList.add('hidden')},1500);
-window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('preloader').classList.add('hidden')},2500)});
+setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),1200);
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),2500));
 
 // Nav scroll
 const nav=document.getElementById('nav');
-const tickerH=document.querySelector('.ticker-wrap').offsetHeight;
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>tickerH+20)});
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
 
-// Scroll reveal
-const reveals=document.querySelectorAll('.reveal');
-const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.15});
-reveals.forEach(el=>observer.observe(el));
+// Reveal
+const obs=new IntersectionObserver(ee=>ee.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 // Highlight today
 const today=new Date().getDay();
-const rows=document.querySelectorAll('#horario-table tr');
-rows.forEach(r=>{if(parseInt(r.dataset.day)===today)r.classList.add('horario-hoy')});
-
-// Horario badge
+document.querySelectorAll('#horarioTable tr').forEach(r=>{if(+r.dataset.day===today)r.classList.add('horario-hoy')});
 const dias=['Domingo','Lunes','Martes','Mi\u00e9rcoles','Jueves','Viernes','S\u00e1bado'];
-const todayRow=document.querySelector('#horario-table tr[data-day="'+today+'"]');
-if(todayRow){
-  const h=todayRow.cells[1].textContent;
-  document.getElementById('horario-hoy').textContent=dias[today]+': '+h;
+const tRow=document.querySelector('#horarioTable tr[data-day="'+today+'"]');
+if(tRow){
+  const heroSched=document.getElementById('heroSchedule');
+  heroSched.textContent='Hoy ('+dias[today]+'): '+tRow.cells[1].textContent;
 }
+
+// ── TASADOR ──
+const metalSel=document.getElementById('metalType');
+const weightIn=document.getElementById('weightGrams');
+const resultEl=document.getElementById('resultPrice');
+const breakdownEl=document.getElementById('resultBreakdown');
+const resultCard=document.getElementById('tasadorResult');
+
+function calcular(){
+  const pricePerG=parseFloat(metalSel.value);
+  const grams=parseFloat(weightIn.value);
+  if(!grams||grams<=0){
+    resultEl.innerHTML='0,00 \u20ac';
+    breakdownEl.textContent='';
+    resultCard.classList.remove('active');
+    return;
+  }
+  const total=pricePerG*grams;
+  resultEl.textContent=total.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' \u20ac';
+  const metalName=metalSel.options[metalSel.selectedIndex].text.split('(')[0].trim();
+  breakdownEl.textContent=grams.toLocaleString('es-ES',{maximumFractionDigits:1})+'g \u00d7 '+pricePerG.toLocaleString('es-ES',{minimumFractionDigits:2})+' \u20ac/g ('+metalName+')';
+  resultCard.classList.add('active');
+}
+metalSel.addEventListener('change',calcular);
+weightIn.addEventListener('input',calcular);
 </script>
 
 </body>
