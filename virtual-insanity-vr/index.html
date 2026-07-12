@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Virtual Insanity VR | Realidad Virtual en Valencia y Mallorca</title>
+<meta name="description" content="Virtual Insanity VR: el centro de realidad virtual más completo de Valencia y Mallorca. Escape Room VR, simuladores, arena de juegos y cumpleaños VR en Heron City Paterna. Más de 400 m2 y 100 experiencias.">
+<link rel="icon" href="assets/logo-normal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="legal/cookie-banner.css">
+<style>
+  .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;transition:opacity .3s}
+  .cursor-dot{width:7px;height:7px;background:var(--brasa);transform:translate(-50%,-50%)}
+  .cursor-ring{width:34px;height:34px;border:1.5px solid rgba(0,108,175,.55);transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .3s,border-color .25s}
+  .cursor-ring.hovering{width:52px;height:52px;border-color:var(--brasa)}
+  @media(max-width:1024px){.cursor-dot,.cursor-ring{display:none}}
+  @media(hover:none){.cursor-dot,.cursor-ring{display:none}}
+  .wa-float{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;z-index:9000;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s}
+  .wa-float:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 14px 38px rgba(0,0,0,.34)}
+  .quick-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .qa-wa{background:#25D366;color:#062b16;border-color:#25D366}
+  .qa-wa:hover{background:#1eb456;border-color:#1eb456;color:#fff}
+  .faq-wrap{max-width:820px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--linea);padding:22px 0}
+  .faq-item h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--tierra);margin-bottom:10px;line-height:1.2}
+  .faq-item p{font-size:15px;color:var(--gris);line-height:1.7}
+  /* Opiniones (seccion oscura) */
+  .reviews-section{background:var(--tierra);color:var(--crema);padding:100px 28px;position:relative;overflow:hidden}
+  .reviews-section::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 30%,rgba(0,108,175,.14) 0%,transparent 60%)}
+  .reviews-section .eyebrow{color:var(--brasa)}
+  .reviews-section h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4.6vw,52px);color:var(--crema);line-height:1.05;margin-bottom:14px;text-align:center}
+  .reviews-section h2 em{font-style:italic;font-weight:600;color:var(--brasa)}
+  .reviews-section .section-lead{color:rgba(244,237,224,.75);text-align:center;max-width:600px;margin:0 auto 50px}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+  .review-card{padding:32px 24px;border:1px solid rgba(244,237,224,.12);background:rgba(244,237,224,.04);position:relative}
+  .review-card .stars{color:var(--brasa);font-size:16px;letter-spacing:2px;margin-bottom:12px}
+  .review-card p{font-size:14px;color:rgba(244,237,224,.85);line-height:1.65;font-style:italic;margin-bottom:14px}
+  .review-card .review-author{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--brasa);font-weight:700}
+  @media(max-width:768px){.reviews-grid{grid-template-columns:1fr}}
+  @media(max-width:768px){.hero{min-height:auto;height:auto;align-items:flex-end}.hero-meta{display:none}.hero-content{padding:90px 22px 44px}.hero-creds{display:flex}}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EntertainmentBusiness",
+  "name": "Virtual Insanity VR",
+  "description": "Centro de realidad virtual en Valencia y Mallorca. Escape Room VR, simuladores de montaña rusa, plataformas 360, arena de juegos VR y fiestas de cumpleaños. Más de 400 m2 y 100 experiencias inmersivas.",
+  "url": "https://ggelcano.github.io/demos/virtual-insanity-vr/",
+  "telephone": "+34648044447",
+  "image": "https://virtualinsanity.es/wp-content/uploads/2025/10/virtual-insanity-vr-games-realidad-virtual-valencia.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "C.C. Heron City, Ctra. de Ademuz, Salida 6 y 7",
+    "addressLocality": "Paterna",
+    "addressRegion": "Valencia",
+    "postalCode": "46980",
+    "addressCountry": "ES"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 39.5059, "longitude": -0.4413 },
+  "areaServed": ["Valencia", "Mallorca"],
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"17:00","closes":"22:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"17:00","closes":"23:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"14:00","closes":"00:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"14:00","closes":"23:00"}
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "254",
+    "bestRating": "5"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"¿A partir de que edad se puede jugar?","acceptedAnswer":{"@type":"Answer","text":"La mayoría de experiencias estan clasificadas PEGI 7 o PEGI 9. Los simuladores de montaña rusa VR son aptos desde los 7 años, mientras que el Escape Room VR y otras experiencias inmersivas se recomiendan a partir de los 9 años."}},
+    {"@type":"Question","name":"¿Cuántas personas pueden jugar a la vez en el Escape Room VR?","acceptedAnswer":{"@type":"Answer","text":"El Escape Room VR admite de 2 a 6 jugadores simultáneos. Es ideal para grupos de amigos, familias o equipos de trabajo."}},
+    {"@type":"Question","name":"¿Dónde esta Virtual Insanity VR en Valencia?","acceptedAnswer":{"@type":"Answer","text":"Estamos en el Centro Comercial Heron City Paterna, junto a Kinepolis, en la Autovía de Ademuz V-35, salidas 6 y 7, con parking gratuito. A unos 10 minutos del centro de Valencia."}},
+    {"@type":"Question","name":"¿Es necesario reservar?","acceptedAnswer":{"@type":"Answer","text":"Recomendamos reservar con antelación, sobre todo para el Escape Room VR y para grupos o cumpleaños. Puedes reservar a traves de nuestra web o por WhatsApp al 648 04 44 47."}},
+    {"@type":"Question","name":"¿Organizáis fiestas de cumpleaños?","acceptedAnswer":{"@type":"Answer","text":"Si. Ofrecemos packs de cumpleaños con experiencias VR, zona privada y opciones personalizables para todas las edades. Contacta con nosotros para más información."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span><b>Valencia</b> y Mallorca</span>
+  <span>Heron City Paterna · Parking gratuito</span>
+  <span>Tel. <b>648 04 44 47</b></span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo-normal.png" alt="Logotipo de Virtual Insanity VR, realidad virtual en Valencia y Mallorca" class="brand-logo">
+      <span class="brand-text">
+        <b>Virtual Insanity</b>
+        <small>Valencia · Mallorca</small>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Inicio</a>
+      <div class="dropdown">
+        <span class="drop-label">Experiencias</span>
+        <div class="drop-panel">
+          <a href="escape-room-vr.html">Escape Room VR</a>
+          <a href="simuladores.html">Simuladores VR</a>
+          <a href="arena-vr.html">Arena VR</a>
+        </div>
+      </div>
+      <a href="cumpleanos.html">Cumpleaños</a>
+      <div class="dropdown">
+        <span class="drop-label">Sedes</span>
+        <div class="drop-panel">
+          <a href="valencia.html">Valencia</a>
+          <a href="mallorca.html">Mallorca</a>
+        </div>
+      </div>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a href="tel:648044447" class="nav-cta">Llamar</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menu">&times;</button>
+  <a href="index.html">Inicio</a>
+  <div class="mm-group">
+    <div class="mm-group-title">Experiencias</div>
+    <div class="mm-sub">
+      <a href="escape-room-vr.html">Escape Room VR</a>
+      <a href="simuladores.html">Simuladores VR</a>
+      <a href="arena-vr.html">Arena VR</a>
+    </div>
+  </div>
+  <a href="cumpleanos.html">Cumpleaños</a>
+  <div class="mm-group">
+    <div class="mm-group-title">Sedes</div>
+    <div class="mm-sub">
+      <a href="valencia.html">Valencia</a>
+      <a href="mallorca.html">Mallorca</a>
+    </div>
+  </div>
+  <a href="contacto.html">Contacto</a>
+  <a href="tel:648044447" class="mm-cta">Llamar 648 04 44 47</a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <img src="https://virtualinsanity.es/wp-content/uploads/2018/06/blog-1-img-3.jpg" alt="Jugadores disfrutando de una experiencia de realidad virtual en Virtual Insanity VR" class="hero-photo">
+  <div class="hero-img-overlay"></div>
+  <div class="hero-bg-radial"></div>
+  <div class="hero-frame"></div>
+  <div class="hero-meta">
+    <span><b>4.9</b> en Google · 254 reseñas</span>
+    <span><b>Valencia</b> y Mallorca</span>
+    <span><b>+100</b> experiencias VR</span>
+  </div>
+  <div class="hero-content">
+    <span class="hero-eye">Realidad virtual inmersiva</span>
+    <h1>Vive lo imposible<em>en primera persona</em></h1>
+    <p>Escape Room VR, simuladores de montaña rusa, plataformas 360 grados y más de 100 experiencias de realidad virtual para todas las edades. En Heron City Paterna (Valencia) y Mallorca.</p>
+    <div class="quick-actions">
+      <a href="tel:648044447" class="btn btn-primary">Llamar 648 04 44 47</a>
+      <a class="btn qa-wa" href="https://wa.me/34648044447?text=Hola%2C%20me%20gustar%C3%ADa%20informarme%20sobre%20vuestras%20experiencias%20VR" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-ghost" style="color:#fff;border-color:rgba(255,255,255,.75);background:rgba(26,20,15,.4)" href="valencia.html">Como llegar</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Desliza</div>
+</header>
+
+<!-- Credenciales banda movil -->
+<div class="hero-creds">
+  <span><b>4.9</b> en Google · 254 reseñas</span>
+  <span><b>Valencia</b> y Mallorca</span>
+  <span><b>+100</b> experiencias VR</span>
+</div>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="content-pic fade-in">
+        <img src="https://virtualinsanity.es/wp-content/uploads/2018/06/blog-1-img-1.jpg" alt="Interior de Virtual Insanity VR con estaciónes de juego de realidad virtual">
+      </div>
+      <div class="content-text fade-in">
+        <span class="eyebrow">El centro</span>
+        <h3>Más de 400 m<sup>2</sup> dedicados a la <em>realidad virtual</em></h3>
+        <p>Virtual Insanity VR es el centro de realidad virtual más completo de Valencia, con más de <strong>400 m<sup>2</sup> de zona de juegos</strong> equipados con tecnología de ultima generación.</p>
+        <p>Con sedes en <strong>Heron City Paterna</strong> (Valencia) y en <strong>Mallorca</strong>, ofrecemos experiencias inmersivas para todas las edades: desde escape rooms cooperativos hasta simuladores de vuelo y carreras.</p>
+        <ul>
+          <li>Más de 100 experiencias y juegos VR disponibles</li>
+          <li>Más de 30 estaciónes de juego simultáneas</li>
+          <li>Apto para todas las edades (desde PEGI 7)</li>
+          <li>Parking gratuito en Heron City</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIAS -->
+<section id="experiencias" style="background:var(--crema);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Seis formas de vivirlo</span>
+      <h2 class="section-title">Nuestras <em>experiencias</em></h2>
+      <p class="section-lead">Desde escape rooms cooperativos hasta simuladores de alta intensidad, cada experiencia te sumerge en un mundo diferente.</p>
+    </div>
+    <div class="disciplines-grid">
+      <article class="disc-card fade-in">
+        <h4>Escape Room VR</h4>
+        <p>Resuelve puzzles en mundos imposibles: Alicia en el Pais de las Maravillas, Chernobil, casas encantadas o ciudades futuristas. De 2 a 6 jugadores.</p>
+        <a href="escape-room-vr.html">Ver Escape Room</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>Montaña Rusa VR</h4>
+        <p>Siente la adrenalina de montañas rusas imposibles con temáticas de dinosaurios, dragones, mundos de caramelo y entornos futuristas.</p>
+        <a href="simuladores.html">Ver simuladores</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>Simulador 360</h4>
+        <p>Asiento giratorio con movimiento vertical de 360 grados para una inversión total en la simulación. La experiencia más intensa.</p>
+        <a href="simuladores.html">Ver simuladores</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>Helicóptero VR</h4>
+        <p>Pilota un helicóptero virtual en primera persona y vive una aventura aérea con un acompañante a tu lado.</p>
+        <a href="simuladores.html">Ver simuladores</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>JetPack VR</h4>
+        <p>Vuela con un jetpack en una aventura aérea simulada, ideal para quienes buscan emociones fuertes.</p>
+        <a href="simuladores.html">Ver simuladores</a>
+      </article>
+      <article class="disc-card fade-in">
+        <h4>Arena VR</h4>
+        <p>Más de 30 estaciónes de juego individual con más de 90 experiencias distintas. Elige tu aventura y juega a tu ritmo.</p>
+        <a href="arena-vr.html">Ver Arena VR</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pull">
+  <div class="pull-inner">
+    <div class="pull-mark">&ldquo;</div>
+    <blockquote>Una experiencia absolutamente increible. Recomendado para <b>todas las edades</b>.</blockquote>
+    <div class="pull-author">Carlos E. · Reseña verificada en Google</div>
+  </div>
+</section>
+
+<!-- CUMPLEANOS CTA -->
+<section>
+  <div class="wrap">
+    <div class="two-col reverse">
+      <div class="content-pic fade-in">
+        <img src="https://virtualinsanity.es/wp-content/uploads/2018/06/blog-2-img-1.jpg" alt="Grupo de amigos celebrando un cumpleaños con realidad virtual en Virtual Insanity VR">
+      </div>
+      <div class="content-text fade-in">
+        <span class="eyebrow">Para grupos y celebraciones</span>
+        <h3>Cumpleaños y <em>eventos VR</em></h3>
+        <p>Celebra un cumpleaños diferente con experiencias de realidad virtual que dejaran a todos sin palabras. Packs personalizables para todas las edades, ideales para grupos de amigos, familias o equipos de trabajo.</p>
+        <p>Ofrecemos zona privada, experiencias exclusivas y opciones para adaptar la celebración a tus necesidades.</p>
+        <div class="quick-actions">
+          <a href="cumpleanos.html" class="btn btn-primary">Ver cumpleaños</a>
+          <a class="btn qa-wa" href="https://wa.me/34648044447?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20cumpleaños%20VR" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPINIONES (dark) -->
+<section class="reviews-section" id="opiniones">
+  <div style="text-align:center;margin-bottom:50px;position:relative">
+    <span class="eyebrow">Lo que dicen nuestros clientes</span>
+    <h2>Opiniones <em>reales</em></h2>
+    <p class="section-lead">4.9 sobre 5 en Google Maps, con 254 reseñas verificadas.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>Una experiencia absolutamente increible. Recomendado para todas las edades.</p>
+      <span class="review-author">Carlos E.</span>
+    </div>
+    <div class="review-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>Me encanto, me subi en la experiencia de la nieve y me fascino.</p>
+      <span class="review-author">Meli D.</span>
+    </div>
+    <div class="review-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>Muy divertido y realista!</p>
+      <span class="review-author">Santiago H.</span>
+    </div>
+    <div class="review-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>Muy divertido, es increible.</p>
+      <span class="review-author">Luis Alejandro R.</span>
+    </div>
+    <div class="review-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>Excelente servicio.</p>
+      <span class="review-author">Melissa P.</span>
+    </div>
+    <div class="review-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p>Muy divertida.</p>
+      <span class="review-author">Nuria D.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--crema);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)">
+  <div class="wrap">
+    <div class="head" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Antes de visitarnos</span>
+      <h2 class="section-title">Preguntas <em>frecuentes</em></h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item"><h4>¿A partir de que edad se puede jugar?</h4><p>La mayoría de experiencias estan clasificadas PEGI 7 o PEGI 9. Los simuladores de montaña rusa VR son aptos desde los 7 años, mientras que el Escape Room VR y otras experiencias inmersivas se recomiendan a partir de los 9 años.</p></div>
+      <div class="faq-item"><h4>¿Cuántas personas pueden jugar a la vez en el Escape Room VR?</h4><p>El Escape Room VR admite de 2 a 6 jugadores simultáneos. Es ideal para grupos de amigos, familias o equipos de trabajo.</p></div>
+      <div class="faq-item"><h4>¿Dónde esta Virtual Insanity VR en Valencia?</h4><p>Estamos en el Centro Comercial Heron City Paterna, junto a Kinepolis, en la Autovía de Ademuz V-35, salidas 6 y 7. Parking gratuito. A unos 10 minutos del centro de Valencia.</p></div>
+      <div class="faq-item"><h4>¿Es necesario reservar?</h4><p>Recomendamos reservar con antelación, sobre todo para el Escape Room VR y para grupos o cumpleaños. Puedes reservar a traves de nuestra web o por WhatsApp al 648 04 44 47.</p></div>
+      <div class="faq-item"><h4>¿Organizáis fiestas de cumpleaños?</h4><p>Si. Ofrecemos packs de cumpleaños con experiencias VR, zona privada y opciones personalizables para todas las edades. Contáctanos para más información.</p></div>
+      <div class="faq-item"><h4>¿Cuánto dura una sesión?</h4><p>Depende de la experiencia. El Escape Room VR dura entre 40 y 50 minutos. Los simuladores individuales ofrecen sesiones de 30 minutos. Puedes combinar varias experiencias en una misma visita.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO + MAPA -->
+<section class="contact" id="contacto" style="padding:0">
+  <div class="contact-wrap">
+    <div class="contact-side">
+      <span class="eyebrow">Visítanos</span>
+      <h2>Ven a <em>jugar</em></h2>
+      <p style="color:rgba(244,237,224,.8);font-size:15px;line-height:1.65">Estamos en Heron City Paterna, junto a Kinepolis, con parking gratuito. También en Mallorca.</p>
+      <div class="contact-info">
+        <div class="contact-row"><div class="ico">D</div><div><b>Dirección</b><span>C.C. Heron City, Ctra. de Ademuz, Salida 6 y 7, 46980 Paterna (Valencia)</span></div></div>
+        <div class="contact-row"><div class="ico">T</div><div><b>Teléfono</b><a href="tel:648044447">648 04 44 47</a></div></div>
+        <div class="contact-row"><div class="ico">W</div><div><b>WhatsApp</b><a href="https://wa.me/34648044447" target="_blank" rel="noopener">648 04 44 47</a></div></div>
+        <div class="contact-row"><div class="ico">H</div><div><b>Horario</b><span>L-J 17:00-22:00 · V 17:00-23:00 · S 14:00-00:00 · D 14:00-23:00</span></div></div>
+      </div>
+    </div>
+    <div class="contact-map">
+      <iframe src="https://maps.google.com/maps?q=Virtual+Insanity+VR+Heron+City+Paterna+Valencia&output=embed" title="Ubicación de Virtual Insanity VR en Heron City Paterna, Valencia" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="brand" style="gap:12px">
+        <img src="assets/logo-light.png" alt="Logotipo de Virtual Insanity VR" style="height:48px;width:auto">
+        <span class="brand-text">
+          <b style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--crema)">Virtual Insanity</b>
+          <small style="font-size:9px;letter-spacing:.32em;color:var(--brasa);text-transform:uppercase">Valencia · Mallorca</small>
+        </span>
+      </div>
+      <p>El centro de realidad virtual más completo de Valencia y Mallorca. Más de 400 m2 de zona de juegos con Escape Room VR, simuladores, arena de juegos y celebraciones para todas las edades.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Experiencias</h5>
+      <ul>
+        <li><a href="escape-room-vr.html">Escape Room VR</a></li>
+        <li><a href="simuladores.html">Simuladores VR</a></li>
+        <li><a href="arena-vr.html">Arena VR</a></li>
+        <li><a href="cumpleanos.html">Cumpleaños</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Sedes</h5>
+      <ul>
+        <li><a href="valencia.html">Valencia</a></li>
+        <li><a href="mallorca.html">Mallorca</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li>Heron City, Paterna</li>
+        <li>46980 Valencia</li>
+        <li><a href="tel:648044447">648 04 44 47</a></li>
+        <li><a href="https://wa.me/34648044447" target="_blank" rel="noopener">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; <span id="year"></span> Virtual Insanity VR · Valencia y Mallorca</span>
+    <span>
+      <a href="legal/aviso-legal.html">Aviso legal</a> ·
+      <a href="legal/politica-privacidad.html">Privacidad</a> ·
+      <a href="legal/politica-cookies.html">Cookies</a>
+    </span>
+    <span>Realidad Virtual inmersiva</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a class="wa-float" href="https://wa.me/34648044447?text=Hola%2C%20me%20gustar%C3%ADa%20informarme%20sobre%20Virtual%20Insanity%20VR"
+   target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L.3 31.6l8.1-2.1c2.2 1.2 4.8 1.9 7.6 1.9 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.5 0-4.8-.7-6.8-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2-2-4.4-2-6.9C2.9 8.8 8.8 2.9 16 2.9S29.1 8.8 29.1 16 23.2 28.9 16 28.9zm7.2-9.7c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.2s1.4 3.7 1.6 4c.2.2 2.7 4.2 6.6 5.9.9.4 1.6.6 2.2.8.9.3 1.7.2 2.4.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.4z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mmClose = document.getElementById('mmClose');
+  function closeMenu(){ hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); }
+  hamburger.addEventListener('click', function(){ hamburger.classList.toggle('active'); mobileMenu.classList.toggle('open'); });
+  mmClose.addEventListener('click', closeMenu);
+  Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function(a){ a.addEventListener('click', closeMenu); });
+  var faders = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
+    faders.forEach(function(el){ io.observe(el); });
+  } else { faders.forEach(function(el){ el.classList.add('visible'); }); }
+  function highlightToday(){
+    var rows = document.querySelectorAll('[data-dia]');
+    if (!rows.length) return;
+    var dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
+    var hoy = dias[new Date().getDay()];
+    Array.prototype.forEach.call(rows, function(r){ if (r.getAttribute('data-dia') === hoy) r.classList.add('horario-hoy'); });
+  }
+  highlightToday();
+  var cursorDot = document.getElementById('cursorDot');
+  var cursorRing = document.getElementById('cursorRing');
+  if (cursorDot && cursorRing && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    var rx=0,ry=0,dx=0,dy=0;
+    window.addEventListener('mousemove',function(e){dx=e.clientX;dy=e.clientY;cursorDot.style.left=dx+'px';cursorDot.style.top=dy+'px';});
+    function ring(){rx+=(dx-rx)*.18;ry+=(dy-ry)*.18;cursorRing.style.left=rx+'px';cursorRing.style.top=ry+'px';requestAnimationFrame(ring);}ring();
+    Array.prototype.forEach.call(document.querySelectorAll('a,button,.disc-card'),function(el){el.addEventListener('mouseenter',function(){cursorRing.classList.add('hovering');});el.addEventListener('mouseleave',function(){cursorRing.classList.remove('hovering');});});
+  } else if(cursorDot&&cursorRing){cursorDot.style.display='none';cursorRing.style.display='none';}
+</script>
+<script src="legal/cookie-banner.js" defer></script>
+
+</body>
+</html>
