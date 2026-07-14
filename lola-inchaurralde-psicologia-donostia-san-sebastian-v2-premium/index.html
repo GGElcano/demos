@@ -293,24 +293,47 @@ h2.display em{font-style:italic;color:var(--violeta-deep)}
 .stat .v small{font-size:.5em;font-style:italic}
 .stat .k{margin-top:9px;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);opacity:.85;font-weight:500}
 
-/* ============ GALERÍA HORIZONTAL PINEADA ============ */
-#galeria{background:var(--noche);position:relative;overflow:hidden}
-.gal-head{max-width:1280px;margin:0 auto clamp(30px,4vw,50px);padding:clamp(70px,9vw,110px) clamp(22px,5vw,72px) 0;
+/* ============ GALERÍA = CARRUSEL SIMPLE ============
+   Decisión CEO 14-jul: NADA de galería pineada que secuestra el scroll. Confunde al
+   visitante (sobre todo en móvil: la página deja de bajar y el dedo mueve fotos).
+   Esto es un carrusel normal: la página baja como siempre y las fotos se deslizan. */
+#galeria{background:var(--noche);position:relative;overflow:hidden;padding-bottom:clamp(56px,7vw,88px)}
+.gal-head{max-width:1280px;margin:0 auto clamp(28px,3.4vw,44px);padding:clamp(70px,9vw,110px) clamp(22px,5vw,72px) 0;
   display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-.gal-count{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--violeta-light)}
-.gal-count b{font-size:34px;font-weight:300;font-style:normal;color:var(--crema)}
-#galTrack{display:flex;gap:clamp(16px,2vw,30px);padding:0 clamp(22px,5vw,72px) clamp(60px,7vw,90px);width:max-content;will-change:transform}
-.gal-card{flex:0 0 clamp(260px,32vw,440px);position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--noche-2)}
-.gal-card .gc-img{position:absolute;inset:-6% -12%;width:124%;height:112%}
-.gal-card img{width:100%;height:100%;object-fit:cover;display:block}
+.gal-tools{display:flex;align-items:center;gap:18px}
+.gal-count{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--violeta-light);white-space:nowrap}
+.gal-count b{font-size:32px;font-weight:300;font-style:normal;color:var(--crema)}
+.gal-nav{display:flex;gap:10px}
+.gal-btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-dark);background:none;
+  cursor:pointer;display:grid;place-items:center;transition:.35s var(--ease);padding:0}
+.gal-btn svg{width:17px;height:17px;stroke:var(--crema);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.gal-btn:hover:not(:disabled){background:var(--menta);border-color:var(--menta)}
+.gal-btn:hover:not(:disabled) svg{stroke:#12352b}
+.gal-btn:disabled{opacity:.28;cursor:default}
+#galTrack{display:flex;gap:clamp(14px,2vw,26px);overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:0 clamp(22px,5vw,72px) 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;
+  overscroll-behavior-x:contain;
+  /* sin esto el encaje ignora el margen del carril y el carrusel arranca ya desplazado
+     (la flecha izquierda salía activa nada más cargar) */
+  scroll-padding-left:clamp(22px,5vw,72px)}
+#galTrack::-webkit-scrollbar{display:none}
+#galTrack.dragging{cursor:grabbing;scroll-snap-type:none}
+/* encaje por la IZQUIERDA, no centrado: con el centrado el contador saltaba de 01 a 03
+   y nunca llegaba a 05 (la última tarjeta no puede centrarse al final del carril) */
+.gal-card{flex:0 0 clamp(260px,32vw,420px);scroll-snap-align:start;position:relative;overflow:hidden;
+  aspect-ratio:3/4;background:var(--noche-2)}
+.gal-card .gc-img{position:absolute;inset:0;width:100%;height:100%}
+.gal-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s var(--ease)}
+.gal-card:hover img{transform:scale(1.05)}
 .gal-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 46%,rgba(24,20,38,.88))}
 .gc-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px}
 .gc-k{font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--menta);font-weight:500}
 .gc-t{font-family:var(--serif);font-size:clamp(19px,1.9vw,26px);color:var(--crema);font-weight:300;margin-top:6px;line-height:1.25}
+.gal-hint{max-width:1280px;margin:14px auto 0;padding:0 clamp(22px,5vw,72px);font-size:9.5px;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(250,248,244,.42)}
 @media(max-width:820px){
-  #galTrack{width:auto;flex-direction:column;padding-bottom:70px}
-  .gal-card{flex:none;width:100%}
-  .gal-card .gc-img{position:absolute;inset:0;width:100%;height:100%}
+  .gal-card{flex:0 0 82vw}          /* se asoma la siguiente: se entiende que hay más */
+  .gal-btn{width:42px;height:42px}
 }
 
 /* ============ ZOOM INMERSIVO ============ */
@@ -693,7 +716,17 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(250,248,244,.6);paddin
         <div class="label" style="color:var(--menta)"><span style="display:none"></span>El espacio</div>
         <h2 class="display" style="color:var(--crema)">Un lugar tranquilo<br>para <em style="color:var(--violeta-light)">sentarte a hablar</em></h2>
       </div>
-      <div class="gal-count"><b id="galNum">01</b> / 05</div>
+      <div class="gal-tools">
+        <div class="gal-count"><b id="galNum">01</b> / 05</div>
+        <div class="gal-nav">
+          <button class="gal-btn" id="galPrev" aria-label="Foto anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="gal-btn" id="galNext" aria-label="Foto siguiente">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
     <div id="galTrack">
       <div class="gal-card"><div class="gc-img"><img src="assets/consulta-1-1200.webp" alt="Butacas de la consulta frente al ventanal" loading="lazy"></div>
@@ -707,6 +740,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(250,248,244,.6);paddin
       <div class="gal-card"><div class="gc-img"><img src="assets/edificio-1200.webp" alt="Edificio de De Biteri Plaza, en Gros" loading="lazy"></div>
         <div class="gc-body"><div class="gc-k">Cómo llegar</div><div class="gc-t">De Biteri Plaza, 1 · Gros</div></div></div>
     </div>
+    <div class="gal-hint" aria-hidden="true">Desliza para ver más</div>
   </div>
 
   <!-- ===== ZOOM INMERSIVO ===== -->
@@ -1325,32 +1359,6 @@ if(HAS_GSAP && !REDUCED){
     });
   })();
 
-  /* Galería horizontal pineada (solo desktop) */
-  ScrollTrigger.matchMedia({
-    '(min-width:821px)':function(){
-      const track=document.getElementById('galTrack');
-      const cards=[...track.querySelectorAll('.gal-card')];
-      const dist=()=>track.scrollWidth-innerWidth;
-      const tw=gsap.to(track,{x:()=>-dist(),ease:'none',
-        scrollTrigger:{trigger:'#galeria',pin:true,scrub:1,start:'top top',
-          end:()=>'+='+dist(),invalidateOnRefresh:true,anticipatePin:1,
-          onUpdate(self){
-            const n=Math.min(cards.length,Math.floor(self.progress*cards.length)+1);
-            const el=document.getElementById('galNum');
-            if(el)el.textContent=String(n).padStart(2,'0');
-          }}});
-      /* skew por velocidad */
-      const setSkew=gsap.quickTo(cards,'skewX',{duration:.4,ease:'power3.out'});
-      ScrollTrigger.create({trigger:'#galeria',start:'top bottom',end:'bottom top',
-        onUpdate(self){setSkew(gsap.utils.clamp(-4,4,self.getVelocity()/-320))}});
-      /* parallax interno de cada foto (necesita containerAnimation) */
-      cards.forEach(c=>{
-        gsap.fromTo(c.querySelector('.gc-img'),{xPercent:-7},{xPercent:7,ease:'none',
-          scrollTrigger:{trigger:c,containerAnimation:tw,start:'left right',end:'right left',scrub:true}});
-      });
-    }
-  });
-
   /* Zoom inmersivo */
   gsap.timeline({scrollTrigger:{trigger:'#zoom',start:'top top',end:'bottom bottom',scrub:.8}})
     .to('#zoomMedia',{clipPath:'inset(0% 0% 0% 0%)',ease:'power2.inOut'},0)
@@ -1426,6 +1434,77 @@ if(location.hash && location.hash!=='#inicio'){
       c.el.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px) rotate(${Math.sin(a)*7}deg)`;
     });
   })();
+})();
+
+/* ============ GALERÍA = CARRUSEL SIMPLE ============
+   Sin pin y sin secuestrar el scroll: la página baja normal. En táctil manda el scroll
+   nativo (es lo que el dedo ya sabe hacer); el arrastre con ratón es solo para puntero fino. */
+(function(){
+  const track=document.getElementById('galTrack');
+  if(!track)return;
+  const cards=[...track.querySelectorAll('.gal-card')];
+  const num=document.getElementById('galNum');
+  const prev=document.getElementById('galPrev'), next=document.getElementById('galNext');
+
+  const paso=()=>{
+    if(cards.length<2)return track.clientWidth;
+    return cards[1].offsetLeft-cards[0].offsetLeft;      // ancho de tarjeta + hueco
+  };
+  const padIzq=()=>parseFloat(getComputedStyle(track).paddingLeft)||0;
+  /* la tarjeta "actual" es la que está encajada por la izquierda del carril */
+  function actual(){
+    const ref=track.scrollLeft+padIzq();
+    let best=0,bd=Infinity;
+    cards.forEach((el,i)=>{
+      const d=Math.abs(el.offsetLeft-ref);
+      if(d<bd){bd=d;best=i;}
+    });
+    return best;
+  }
+  function pinta(){
+    const fin=track.scrollWidth-track.clientWidth;
+    /* El contador marca la tarjeta encajada a la izquierda, sin trucos. En escritorio
+       se ven 3 a la vez y el carril se acaba en la 03: forzar un "05" al final hacía
+       que el contador saltara de 02 a 05. En móvil (1 tarjeta) recorre 01→05 solo. */
+    let i=actual();
+    if(track.scrollLeft<=2)i=0;
+    if(num)num.textContent=String(i+1).padStart(2,'0');
+    if(prev)prev.disabled=track.scrollLeft<=2;
+    if(next)next.disabled=track.scrollLeft>=fin-2;
+  }
+  const suave=REDUCED?'auto':'smooth';
+  if(prev)prev.addEventListener('click',()=>track.scrollBy({left:-paso(),behavior:suave}));
+  if(next)next.addEventListener('click',()=>track.scrollBy({left:paso(),behavior:suave}));
+  track.addEventListener('scroll',()=>{
+    if(pinta._t)cancelAnimationFrame(pinta._t);
+    pinta._t=requestAnimationFrame(pinta);
+  },{passive:true});
+  addEventListener('resize',pinta);
+  pinta();
+
+  /* arrastre con ratón (no en táctil: ahí ya funciona el scroll del dedo) */
+  let down=false,x0=0,s0=0,movido=false;
+  track.addEventListener('pointerdown',e=>{
+    if(e.pointerType==='touch')return;
+    down=true;movido=false;x0=e.clientX;s0=track.scrollLeft;track.classList.add('dragging');
+  });
+  addEventListener('pointermove',e=>{
+    if(!down)return;
+    const dx=e.clientX-x0;
+    if(Math.abs(dx)>6)movido=true;
+    track.scrollLeft=s0-dx;
+  });
+  addEventListener('pointerup',()=>{
+    if(!down)return;
+    down=false;track.classList.remove('dragging');
+    if(movido){                       /* al soltar, encajar en la tarjeta más cercana */
+      const i=actual();
+      track.scrollTo({left:cards[i].offsetLeft-padIzq(),behavior:suave});
+    }
+    pinta();
+  });
+  /* si se ha arrastrado, el click de dentro no debe dispararse */
+  track.addEventListener('click',e=>{if(movido){e.preventDefault();e.stopPropagation();}},true);
 })();
 
 /* ============ ACORDEÓN DE TERAPIAS ============ */
