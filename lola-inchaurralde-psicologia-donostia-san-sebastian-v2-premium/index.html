@@ -337,14 +337,22 @@ h2.display em{font-style:italic;color:var(--violeta-deep)}
 }
 
 /* ============ ZOOM INMERSIVO ============ */
-#zoom{position:relative;height:300svh;background:var(--arena)}
-.zoom-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+/* El fondo era ARENA (claro) y la letra crema: al empezar el zoom la foto ocupa solo un
+   recuadro y el texto casi blanco caía sobre fondo claro = ilegible. Base OSCURA siempre. */
+#zoom{position:relative;height:300svh;background:var(--noche)}
+.zoom-stage{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center;
+  justify-content:center;background:var(--noche)}
 .zoom-media{position:absolute;inset:0;clip-path:inset(38% 32% 38% 32%);will-change:clip-path}
 .zoom-media img{width:100%;height:100%;object-fit:cover;display:block}
-.zoom-media::after{content:'';position:absolute;inset:0;background:rgba(24,20,38,.42)}
+.zoom-media::after{content:'';position:absolute;inset:0;background:rgba(20,16,34,.52)}
 .zoom-words{position:relative;z-index:3;max-width:900px;padding:0 24px;text-align:center;
   font-family:var(--serif);font-weight:300;font-size:clamp(28px,4.4vw,64px);line-height:1.24;color:var(--crema)}
-.zoom-words .zw{display:inline-block;opacity:.12;transition:opacity .1s linear}
+/* scrim LOCAL detrás de la frase (nunca text-shadow): las cortinas de la foto son zonas
+   claras y ahí el texto blanco se perdía aunque el velo global ya estuviera puesto */
+.zoom-words::before{content:'';position:absolute;inset:-14% -8%;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(16,12,28,.9) 0%,rgba(16,12,28,.72) 46%,rgba(16,12,28,0) 76%)}
+/* reposo al 32%: al 12% parecía un fallo de carga, no una frase que se enciende */
+.zoom-words .zw{display:inline-block;opacity:.32;transition:opacity .1s linear}
 .zoom-words em{font-style:italic;color:var(--violeta-light)}
 
 /* ============ TIRAS A CONTRA-SCROLL ============ */
@@ -731,8 +739,8 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(250,248,244,.6);paddin
     <div id="galTrack">
       <div class="gal-card"><div class="gc-img"><img src="assets/consulta-1-1200.webp" alt="Butacas de la consulta frente al ventanal" loading="lazy"></div>
         <div class="gc-body"><div class="gc-k">La consulta</div><div class="gc-t">Dos butacas y luz de tarde</div></div></div>
-      <div class="gal-card"><div class="gc-img"><img src="assets/consulta-2-1200.webp" alt="Sala de terapia con alfombra y cortinas" loading="lazy"></div>
-        <div class="gc-body"><div class="gc-k">La consulta</div><div class="gc-t">Un espacio sin prisa</div></div></div>
+      <div class="gal-card"><div class="gc-img"><img src="assets/lola-retrato-1000.webp" alt="Lola Inchaurralde, psicóloga" loading="lazy"></div>
+        <div class="gc-body"><div class="gc-k">Quién te acompaña</div><div class="gc-t">Lola Inchaurralde</div></div></div>
       <div class="gal-card"><div class="gc-img"><img src="assets/consulta-3-1200.webp" alt="Vista de la sala desde la mesa de trabajo" loading="lazy"></div>
         <div class="gc-body"><div class="gc-k">La consulta</div><div class="gc-t">Papel y boli, por si hace falta</div></div></div>
       <div class="gal-card"><div class="gc-img"><img src="assets/consulta-4-1200.webp" alt="Escritorio de la consulta con cuadro" loading="lazy"></div>
@@ -1292,6 +1300,32 @@ function initReveals(view){
   });
 }
 
+/* Zoom: partir la frase en palabras.
+   VA ANTES del bloque GSAP a propósito: la animación de abajo apunta a '#zoomWords .zw',
+   y si los <span> no existen todavía el tween no encuentra nada y la frase se queda
+   congelada en gris para siempre (era el bug que veía el CEO). */
+(function(){
+  const zw=document.getElementById('zoomWords');if(!zw)return;
+  /* La puntuación pegada a una palabra tiene que ir DENTRO de su mismo span. Si se trocea
+     por espacios a pelo, la coma de "...escucharte, sin juicio" queda como palabra suelta
+     y se lee "escucharte , sin juicio" con un espacio delante de la coma. */
+  const partes=zw.innerHTML.split(/(<em>.*?<\/em>)/);
+  const spans=[];
+  partes.forEach(part=>{
+    if(!part)return;
+    const esEm=part.startsWith('<em>');
+    const texto=esEm?part.replace(/<\/?em>/g,''):part;
+    const pega=!esEm && !/^\s/.test(part) && spans.length>0;
+    texto.split(/\s+/).filter(Boolean).forEach((w,i)=>{
+      const cont=esEm?`<em>${w}</em>`:w;
+      if(i===0 && pega)spans[spans.length-1]=spans[spans.length-1].replace(/<\/span>$/,cont+'</span>');
+      else spans.push(`<span class="zw">${cont}</span>`);
+    });
+  });
+  zw.innerHTML=spans.join(' ');
+  if(REDUCED || !HAS_GSAP)zw.querySelectorAll('.zw').forEach(el=>el.style.opacity=1);
+})();
+
 if(HAS_GSAP && !REDUCED){
   gsap.registerPlugin(ScrollTrigger);
 
@@ -1382,19 +1416,6 @@ if(HAS_GSAP && !REDUCED){
   document.querySelectorAll('.rv').forEach(el=>{el.style.opacity=1;el.style.transform='none'});
   document.querySelectorAll('.zoom-words .zw,.esp-txt .wsc').forEach(el=>el.style.opacity=1);
 }
-
-/* Zoom: partir la frase en palabras (fuera del if para que exista siempre) */
-(function(){
-  const zw=document.getElementById('zoomWords');if(!zw)return;
-  zw.innerHTML=zw.innerHTML.split(/(<em>.*?<\/em>)/).flatMap(part=>{
-    if(part.startsWith('<em>')){
-      const inner=part.replace(/<\/?em>/g,'');
-      return inner.split(' ').filter(Boolean).map(w=>`<span class="zw"><em>${w}</em></span>`);
-    }
-    return part.split(' ').filter(Boolean).map(w=>`<span class="zw">${w}</span>`);
-  }).join(' ');
-  if(REDUCED || !HAS_GSAP)zw.querySelectorAll('.zw').forEach(el=>el.style.opacity=1);
-})();
 
 /* arranque desde hash */
 if(location.hash && location.hash!=='#inicio'){
