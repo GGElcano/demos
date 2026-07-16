@@ -192,7 +192,7 @@ body.menu-open #mnav a{opacity:1;transform:none}
 #heroPin{position:relative;height:185svh;min-height:640px;background:var(--noche)}
 .hero-stage{position:sticky;top:0;height:100svh;overflow:hidden;will-change:transform,border-radius;background:var(--noche)}
 .hero-media{position:absolute;inset:0}
-.hero-medía img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
 .hero-veil{position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(12,14,22,.40) 0%,rgba(12,14,22,.08) 30%,rgba(12,14,22,.18) 58%,rgba(10,12,20,.86) 100%)}
 .hero-inner{position:absolute;inset:auto 0 0 0;z-index:3;padding:0 clamp(22px,5vw,72px) clamp(48px,7vh,92px);
@@ -565,7 +565,10 @@ footer{overflow-x:clip;background:var(--noche);color:var(--ink-soft);padding:cla
   <div id="heroPin">
     <div class="hero-stage" id="heroStage">
       <div class="hero-media">
-        <img src="assets/fachada-principal.jpg" alt="Fachada del Hotel Asador Enrique en Madrid">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-label="Vídeo del Hotel Asador Enrique en Madrid">
+          <source src="assets/hero.mp4" type="video/mp4">
+          <img src="assets/fachada-principal.jpg" alt="Fachada del Hotel Asador Enrique en Madrid">
+        </video>
       </div>
       <div class="hero-veil"></div>
       <div class="hero-inner" id="heroInner">
@@ -649,7 +652,7 @@ footer{overflow-x:clip;background:var(--noche);color:var(--ink-soft);padding:cla
       </div>
     </div>
     <div id="galTrack">
-      <div class="gal-card"><img src="assets/hotel-exterior.jpg" alt="Fachada del hotel al atardecer"><div class="gc-body"><div class="gc-k">Fachada</div><div class="gc-t">Edificio del hotel y apartahotel</div></div></div>
+      <div class="gal-card"><img src="assets/fachada-principal.jpg" alt="Fachada del hotel y apartahotel"><div class="gc-body"><div class="gc-k">Fachada</div><div class="gc-t">Edificio del hotel y apartahotel</div></div></div>
       <div class="gal-card"><img src="assets/habitacion-estandar.jpg" alt="Habitación estandar del hotel"><div class="gc-body"><div class="gc-k">Habitaciones</div><div class="gc-t">Habitación estandar equipada</div></div></div>
       <div class="gal-card"><img src="assets/jacuzzi-superior.jpg" alt="Jacuzzi de la habitación superior"><div class="gc-body"><div class="gc-k">Superior</div><div class="gc-t">Jacuzzi privado para dos</div></div></div>
       <div class="gal-card"><img src="assets/salon-eventos.jpg" alt="Salón de eventos preparado"><div class="gc-body"><div class="gc-k">Eventos</div><div class="gc-t">Salón para hasta 600 personas</div></div></div>
@@ -660,7 +663,7 @@ footer{overflow-x:clip;background:var(--noche);color:var(--ink-soft);padding:cla
   <!-- ZOOM INMERSIVO -->
   <div id="zoom">
     <div class="zoom-stage" id="zoomStage">
-      <div class="zoom-img" id="zoomImg"><img src="assets/hotel-lobby.jpg" alt="Interior del hotel con ambiente cálido"></div>
+      <div class="zoom-img" id="zoomImg"><img src="assets/salon-banquete.jpg" alt="Salón preparado para una celebración"></div>
       <div class="zoom-veil" id="zoomVeil"></div>
       <div class="zoom-txt rv" id="zoomTxt">
         <h2>El escenario perfecto <em>para tus celebraciones</em></h2>
@@ -708,7 +711,7 @@ footer{overflow-x:clip;background:var(--noche);color:var(--ink-soft);padding:cla
 
   <!-- CTA CIERRE -->
   <div class="cta-band">
-    <div class="kb-wrap"><img class="kb" src="assets/parking-hotel.jpg" alt="Aparcamiento del hotel"></div>
+    <div class="kb-wrap"><img class="kb" src="assets/fachada-parking.jpg" alt="Aparcamiento exterior gratuito del hotel"></div>
     <div class="veil"></div>
     <div class="cta-c rv">
       <h2>Tu estancia, <em>a tu medida</em></h2>
@@ -722,7 +725,7 @@ footer{overflow-x:clip;background:var(--noche);color:var(--ink-soft);padding:cla
 <!-- ==================== HOTEL ==================== -->
 <section class="view" id="v-hotel">
   <div class="page-head">
-    <div class="kb-wrap"><img class="kb" src="assets/hotel-recepcion.jpg" alt="Recepción del hotel"></div>
+    <div class="kb-wrap"><img class="kb" src="assets/hotel-cama.jpg" alt="Habitación del hotel"></div>
     <div class="veil"></div>
     <div class="ph-inner">
       <div class="label">Alojamiento</div>
@@ -737,7 +740,7 @@ footer{overflow-x:clip;background:var(--noche);color:var(--ink-soft);padding:cla
       <h2 class="display rv">Confort <em>y tranquilidad</em></h2>
       <div class="rooms">
         <div class="room rv">
-          <div class="room-img"><img src="assets/salon-banquete.jpg" alt="Habitación estandar del hotel"></div>
+          <div class="room-img"><img src="assets/habitacion-estandar.jpg" alt="Habitación estandar del hotel"></div>
           <div class="room-body">
             <div class="room-k">Habitación</div>
             <div class="room-t">Estandar</div>
@@ -1213,7 +1216,7 @@ function initReveals(view){
   const zoomImg = document.getElementById('zoomImg');
   if(zoomSec && zoomImg && view === 'inicio'){
     gsap.fromTo(zoomImg, {clipPath:'inset(38% 32% 38% 32%)'}, {clipPath:'inset(0% 0% 0% 0%)',ease:'none',
-      scrollTrigger:{trigger:zoomSec,start:'top top',end:'bottom top',scrub:true,pin:true}});
+      scrollTrigger:{trigger:zoomSec,start:'top top',end:'bottom bottom',scrub:true}});
   }
 
   // Count-up
