@@ -999,6 +999,116 @@
       .stat-number { font-size: 3rem; }
       .menu-dia-section, .avisos-section { padding-left: 16px; padding-right: 16px; }
     }
+
+    /* ── BANNER EVENTO ECLIPSE (12 ago) ───────────────── */
+    .nav-eclipse { position: relative; }
+    .nav-eclipse::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: #e9a94d; box-shadow: 0 0 8px 2px rgba(233,169,77,0.7);
+      display: inline-block; margin-right: 7px; vertical-align: middle;
+    }
+    .eclipse-band {
+      position: relative; overflow: hidden;
+      padding: clamp(56px, 9vh, 96px) clamp(20px, 6vw, 80px);
+      background: linear-gradient(135deg, #120d08 0%, #1c1109 50%, #2a1405 100%);
+      border-top: 1px solid rgba(233,169,77,0.18);
+      border-bottom: 1px solid rgba(233,169,77,0.18);
+    }
+    .eclipse-band::before {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(70% 130% at 90% 20%, rgba(233,169,77,0.16) 0%, rgba(200,90,30,0.08) 34%, transparent 62%);
+    }
+    .eclipse-band-inner {
+      position: relative; z-index: 1; max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: clamp(28px, 5vw, 70px); flex-wrap: wrap;
+    }
+    .eclipse-band-text { max-width: 620px; }
+    .eclipse-band .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #ffd48a; font-weight: 600; margin-bottom: 16px;
+    }
+    .eclipse-band .eyebrow::before { content: ''; width: 26px; height: 1px; background: #e9a94d; }
+    .eclipse-band h2 {
+      font-family: var(--font-serif); font-weight: 700;
+      font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.06;
+      letter-spacing: -0.02em; margin-bottom: 14px;
+    }
+    .eclipse-band h2 em { font-style: italic; color: #e9a94d; }
+    .eclipse-band p {
+      font-size: clamp(0.98rem, 1.6vw, 1.12rem); color: rgba(245,243,239,0.82);
+      font-weight: 300; margin-bottom: 26px;
+    }
+    .eclipse-band-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-eclipse {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: #e9a94d; color: #1a0f04; font-weight: 600; font-size: 0.92rem;
+      padding: 14px 26px; border-radius: 40px; text-decoration: none;
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s, background 0.3s;
+      box-shadow: 0 8px 30px rgba(233,169,77,0.26);
+    }
+    .btn-eclipse:hover, .btn-eclipse:focus-visible { transform: translateY(-3px); background: #ffd48a; box-shadow: 0 14px 42px rgba(233,169,77,0.4); }
+    .btn-eclipse-ghost {
+      display: inline-flex; align-items: center; gap: 9px;
+      color: var(--white); font-weight: 500; font-size: 0.92rem;
+      padding: 14px 24px; border-radius: 40px; text-decoration: none;
+      border: 1px solid rgba(233,169,77,0.4); transition: all 0.3s var(--ease-out);
+    }
+    .btn-eclipse-ghost:hover, .btn-eclipse-ghost:focus-visible { border-color: #e9a94d; color: #ffd48a; transform: translateY(-3px); }
+    .eclipse-band-orb {
+      position: relative; flex-shrink: 0;
+      width: clamp(110px, 15vw, 180px); aspect-ratio: 1; border-radius: 50%;
+      background: #060403;
+      box-shadow:
+        0 0 0 2px rgba(255,222,170,0.95),
+        0 0 28px 5px rgba(255,206,122,0.75),
+        0 0 90px 22px rgba(233,169,77,0.45),
+        0 0 170px 60px rgba(200,100,30,0.26);
+      animation: bandPulse 6s var(--ease-smooth) infinite;
+    }
+    .eclipse-band-orb::after {
+      content: ''; position: absolute; top: 7%; left: 13%;
+      width: 15%; height: 15%; border-radius: 50%;
+      background: radial-gradient(circle, #fff 0%, #ffeccb 45%, transparent 72%);
+      box-shadow: 0 0 22px 8px rgba(255,240,210,0.9);
+    }
+    @keyframes bandPulse {
+      0%, 100% { box-shadow: 0 0 0 2px rgba(255,222,170,0.95), 0 0 28px 5px rgba(255,206,122,0.75), 0 0 90px 22px rgba(233,169,77,0.45), 0 0 170px 60px rgba(200,100,30,0.26); }
+      50%       { box-shadow: 0 0 0 2px rgba(255,222,170,1), 0 0 40px 9px rgba(255,206,122,0.9), 0 0 120px 34px rgba(233,169,77,0.56), 0 0 210px 82px rgba(200,100,30,0.32); }
+    }
+    @media (prefers-reduced-motion: reduce) { .eclipse-band-orb { animation: none !important; } }
+    @media (max-width: 720px) {
+      .eclipse-band-inner { flex-direction: column-reverse; align-items: flex-start; text-align: left; }
+      .eclipse-band-orb { align-self: center; }
+    }
+
+    /* ── TRANSICIÓN "SE HACE EL ECLIPSE" hacia /eclipse ───────── */
+    .eclipse-wipe {
+      position: fixed; inset: 0; z-index: 20000; pointer-events: none;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      background: radial-gradient(circle at 50% 45%, rgba(40,20,6,0) 0%, rgba(10,7,4,0) 40%, #060403 75%);
+    }
+    .eclipse-wipe.active { opacity: 1; visibility: visible; transition: opacity 0.35s ease; }
+    .eclipse-wipe .sun {
+      position: relative;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 0 rgba(255,238,200,0);
+    }
+    .eclipse-wipe.active .sun { animation: eclipseClose 0.9s var(--ease-smooth) forwards; }
+    @keyframes eclipseClose {
+      0%   { transform: scale(0.2); background: #fff5e0;
+             box-shadow: 0 0 40px 14px rgba(255,240,210,0.95), 0 0 120px 40px rgba(233,169,77,0.6); }
+      45%  { transform: scale(1); background: #ffe9c2;
+             box-shadow: 0 0 60px 20px rgba(255,240,210,0.9), 0 0 200px 80px rgba(233,169,77,0.55); }
+      70%  { transform: scale(14); background: #0a0604;
+             box-shadow: 0 0 0 6px rgba(255,222,170,0.9), 0 0 120px 50px rgba(233,169,77,0.5); }
+      100% { transform: scale(150); background: #060403;
+             box-shadow: 0 0 0 2px rgba(255,222,170,0.25), 0 0 90px 40px rgba(200,100,30,0.15); }
+    }
+    @media (prefers-reduced-motion: reduce) { .eclipse-wipe { display: none !important; } }
   </style>
 </head>
 <body>
@@ -1007,6 +1117,9 @@
 <a href="#main" class="skip-link">Saltar al contenido principal</a>
 
 <!-- LOADER -->
+<!-- Transición temática hacia la página del eclipse -->
+<div class="eclipse-wipe" id="eclipseWipe" aria-hidden="true"><div class="sun"></div></div>
+
 <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando Restaurante Galanga K11">
   <div class="loader-logo" aria-hidden="true">Galanga <span>.</span></div>
   <div class="loader-bar" aria-hidden="true"></div>
@@ -1020,6 +1133,7 @@
     <li><a href="#carta">Carta</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Especialidades</a></li>
+    <li><a href="eclipse/" class="nav-eclipse">Eclipse 12-ago</a></li>
     <li><a href="#contacto" class="nav-cta">Reservar</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu">
@@ -1033,6 +1147,7 @@
   <a href="#carta" onclick="closeMobile()">Carta</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#servicios" onclick="closeMobile()">Especialidades</a>
+  <a href="eclipse/">Eclipse 12-ago</a>
   <a href="#contacto" onclick="closeMobile()">Reservar</a>
 </div>
 
@@ -1088,6 +1203,28 @@
     <span class="marquee-item"><span class="dot"></span>Vistas al Golf Uraburu</span>
   </div>
 </div>
+
+<!-- BANNER EVENTO: CENA BAJO EL ECLIPSE (12 ago) -->
+<section class="eclipse-band" id="eclipse" aria-labelledby="eclipse-band-title">
+  <div class="eclipse-band-inner">
+    <div class="eclipse-band-text reveal">
+      <p class="eyebrow">Evento único · 12 de agosto</p>
+      <h2 id="eclipse-band-title">Cena bajo el <em>eclipse</em></h2>
+      <p>Una cena en nuestra terraza la tarde del eclipse: menú exclusivo, DJ en directo, vino incluido y gafas para verlo. Vistas privilegiadas a los Montes de Vizcaya. Plazas limitadas.</p>
+      <div class="eclipse-band-actions">
+        <a href="eclipse/" class="btn-eclipse">
+          Ver el evento
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="tel:+34695958986" class="btn-eclipse-ghost">
+          Reservar plaza
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="eclipse-band-orb reveal reveal-delay-1" aria-hidden="true"></div>
+  </div>
+</section>
 
 <!-- GALLERY / CARTA -->
 <section class="projects-section" id="carta">
@@ -1572,6 +1709,27 @@
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+
+  // ── TRANSICIÓN "SE HACE EL ECLIPSE" al ir a /eclipse
+  (function () {
+    const wipe = document.getElementById('eclipseWipe');
+    if (!wipe || prefersReducedMotion) return;
+    let leaving = false;
+    document.querySelectorAll('a[href^="eclipse"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        // respeta abrir en pestaña nueva / clic central
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        e.preventDefault();
+        if (leaving) return;
+        leaving = true;
+        const href = link.getAttribute('href');
+        if (typeof closeMobile === 'function' && mobileMenu.classList.contains('open')) closeMobile();
+        document.body.style.overflow = 'hidden';
+        wipe.classList.add('active');
+        setTimeout(() => { window.location.href = href; }, 880);
+      });
+    });
+  })();
 
   // ── HERO PARALLAX (deshabilitado con reduced motion)
   if (!prefersReducedMotion) {
