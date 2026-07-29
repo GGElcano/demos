@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Boxeo Club la Union · El club de boxeo más antiguo en activo de España · Castelló de la Plana</title>
-<meta name="description" content="Boxeo Club la Union, fundado en 1920. El club de boxeo más antiguo en activo de España. Entrenamiento profesiónal de boxeo en Castelló de la Plana con técnicos de la selección nacional. 5 estrellas en Google con 60 reseñas.">
+<meta name="description" content="Boxeo Club la Union, fundado en 1920. El club de boxeo más antiguo en activo de España. Entrenamiento profesional de boxeo en Castelló de la Plana con técnicos de la selección nacional. 5 estrellas en Google con 60 reseñas.">
 <meta property="og:title" content="Boxeo Club la Union · Donde nace el noble arte en Castelló">
 <meta property="og:description" content="Más de un siglo de boxeo · 5.0 en Google · Técnicos de la selección nacional · Castelló de la Plana">
 <meta property="og:image" content="assets/hero-gym-wide.jpg">
@@ -57,9 +57,9 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {"@type":"Question","name":"¿¿Necesito experiencia previa para apuntarme al Boxeo Club la Union?","acceptedAnswer":{"@type":"Answer","text":"No. El club acepta alumnos de todos los niveles, desde principiantes absolutos hasta competidores federados. Los técnicos adaptan cada sesion al nivel de cada boxeador."}},
+    {"@type":"Question","name":"¿Necesito experiencia previa para apuntarme al Boxeo Club la Unión?","acceptedAnswer":{"@type":"Answer","text":"No. El club acepta alumnos de todos los niveles, desde principiantes absolutos hasta competidores federados. Los técnicos adaptan cada sesión al nivel de cada boxeador."}},
     {"@type":"Question","name":"¿Cuál es el horario de clases?","acceptedAnswer":{"@type":"Answer","text":"Las clases se imparten de lunes a viernes en cuatro turnos: 15:00-16:00, 17:30-18:30, 18:30-19:30 y 20:00-21:00. Sábados y domingos cerrado."}},
-    {"@type":"Question","name":"¿Quién entrena en el club?","acceptedAnswer":{"@type":"Answer","text":"El equipo técnico esta dirigido por Manuel Perez Garcia, presidente y alma mater del club con más de 50 años de experiencia, y Marco Antonio Perez, entrenador de la selección nacional española de boxeo."}},
+    {"@type":"Question","name":"¿Quién entrena en el club?","acceptedAnswer":{"@type":"Answer","text":"El equipo técnico está dirigido por Manuel Pérez García, presidente y alma mater del club con más de 50 años de experiencia, y Marco Antonio Pérez, entrenador de la selección nacional española de boxeo."}},
     {"@type":"Question","name":"Dónde se encuentra el club?","acceptedAnswer":{"@type":"Answer","text":"En el Pabellón Ciutat de Castelló, C/ del Músic Pascual Asensio Hernandez, s/n, 12006 Castelló de la Plana."}}
   ]
 }
@@ -166,8 +166,8 @@ body.menu-open #mnav a{opacity:1;transform:none}
 
 /* ============ KEN BURNS ============ */
 .kb-wrap{overflow:hidden;position:absolute;inset:0}
-.kb{width:100%;height:100%;object-fit:cover;display:block;animation:kenburns 7s ease-in-out infinite alternate;will-change:transform}
-.kb.kb-b{animation-name:kenburnsB;animation-duration:7s}
+.kb{width:100%;height:100%;object-fit:cover;display:block;animation:kenburns 26s cubic-bezier(.42,0,.58,1) infinite alternate;will-change:transform}
+.kb.kb-b{animation-name:kenburnsB;animation-duration:32s;animation-timing-function:cubic-bezier(.42,0,.58,1)}
 @keyframes kenburns{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-1.6%,-2.2%)}}
 @keyframes kenburnsB{from{transform:scale(1.12) translate(1.4%,1.6%)}to{transform:scale(1) translate(0,0)}}
 
@@ -259,6 +259,43 @@ h2.display em{font-style:italic;color:var(--rojo-light)}
 .stat .v{font-family:var(--serif);font-size:clamp(32px,3.6vw,52px);font-weight:400;color:var(--rojo-light);line-height:1}
 .stat .k{margin-top:9px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
 
+/* ============ PIEZA SINGULAR: GUANTES ============ */
+#guantes{position:relative;height:520svh}
+.guantes-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--noche)}
+#guantesCanvas{position:absolute;inset:0;width:100%;height:100%}
+.guantes-cap{position:absolute;left:clamp(24px,7vw,110px);top:50%;transform:translateY(-50%);max-width:360px;
+  opacity:0;pointer-events:none;z-index:3}
+.guantes-cap .gc-k{font-size:10px;letter-spacing:.38em;text-transform:uppercase;color:var(--rojo-light);font-weight:600;
+  display:flex;align-items:center;gap:12px}
+.guantes-cap .gc-k::before{content:'';width:30px;height:1px;background:var(--rojo)}
+.guantes-cap h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,42px);line-height:1.12;margin-top:12px;color:var(--crema)}
+.guantes-cap h3 em{font-style:italic;color:var(--rojo-light)}
+.guantes-cap p{margin-top:12px;font-size:13.5px;line-height:1.85;color:rgba(245,243,238,.72)}
+.guantes-prog{position:absolute;right:clamp(20px,4vw,56px);top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:14px;z-index:3}
+.guantes-prog span{width:8px;height:8px;border-radius:50%;border:1px solid var(--rojo);transition:.4s;display:block}
+.guantes-prog span.on{background:var(--rojo)}
+.guantes-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--rojo-light);z-index:3}
+@media(max-width:1180px){
+  .guantes-cap{left:24px;right:24px;max-width:none;top:auto;bottom:56px;transform:none;text-align:center}
+  .guantes-cap .gc-k{justify-content:center}
+  #guantes{height:380svh}
+  .guantes-prog{right:14px}
+}
+
+/* ============ MANIFIESTO WORD-SCRUB ============ */
+.manif h2 .wsc{opacity:.16;transition:opacity .1s linear}
+
+/* ============ ESPACIO (fotos parallax) ============ */
+.esp-photos{position:relative;height:clamp(380px,50vw,580px)}
+.esp-ph{position:absolute;overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.6);will-change:transform}
+.esp-ph img{width:100%;height:100%;object-fit:cover;display:block}
+.esp-ph-1{width:54%;aspect-ratio:3/4;top:0;left:0;z-index:3}
+.esp-ph-2{width:42%;aspect-ratio:3/4;bottom:6%;right:2%;z-index:4}
+.esp-ph-3{width:30%;aspect-ratio:1/1;top:38%;right:28%;z-index:5}
+@media(max-width:880px){.esp-photos{height:clamp(320px,80vw,460px)}}
+
 /* ============ PAGE HEADS (subpaginas) ============ */
 .page-head{position:relative;min-height:58vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--noche)}
 .page-head .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,20,.52),rgba(10,12,20,.18) 45%,rgba(8,10,18,.88));z-index:2}
@@ -272,7 +309,7 @@ h2.display em{font-style:italic;color:var(--rojo-light)}
 .intro-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,90px);align-items:center}
 .intro-fig{position:relative}
 .intro-fig .fig-clip{overflow:hidden;aspect-ratio:4/5}
-.intro-fig img{width:100%;height:100%;object-fit:cover;display:block;animation:kenburns 7s ease-in-out infinite alternate}
+.intro-fig img{width:100%;height:100%;object-fit:cover;display:block;animation:kenburns 26s cubic-bezier(.42,0,.58,1) infinite alternate}
 .intro-fig::after{content:'';position:absolute;inset:18px -18px -18px 18px;border:1px solid var(--line-dark);z-index:-1}
 .intro-year{position:absolute;right:-10px;bottom:-26px;background:var(--noche-2);padding:14px 20px;
   font-family:var(--serif);font-size:15px;font-style:italic;color:var(--oro-light);border:1px solid var(--line-dark);z-index:4}
@@ -611,16 +648,34 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     </div>
   </div>
 
+  <!-- PIEZA SINGULAR: GUANTES -->
+  <div id="guantes">
+    <div class="guantes-stage" id="guantesStage">
+      <canvas id="guantesCanvas" aria-hidden="true"></canvas>
+      <div class="guantes-cap" id="guantesCap">
+        <div class="gc-k" id="gck">Fase 01</div>
+        <h3 id="gct">Los <em>inicios</em></h3>
+        <p id="gcp">En 1920, Vicente Ramos Albert reunía a un grupo de amigos en descampados y patios de Castelló para practicar boxeo.</p>
+      </div>
+      <div class="guantes-prog" id="guantesProg" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+      <div class="guantes-hint" aria-hidden="true">Sigue bajando</div>
+    </div>
+  </div>
+
   <!-- MANIFIESTO -->
-  <div class="manif">
+  <div class="manif" id="manifWrap">
     <div class="manif-center">
-      <div class="label center rv">Filosofia del club</div>
-      <h2 class="rv">Formamos boxeadores, pero ante todo <em>personas</em></h2>
+      <div class="label center rv">Filosofía del club</div>
+      <h2 class="rv" id="manifTitle">Formamos boxeadores, pero ante todo <em>personas</em></h2>
       <p class="rv">Aquí se respira boxeo, respeto, humildad y sabiduría. Un espacio donde la disciplina del ring se transforma en valores para la vida.</p>
       <div class="hero-ctas rv" style="justify-content:center;margin-top:32px">
         <a class="btn btn-ink" data-go="quienes-somos">Conocer nuestra historia <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
       </div>
     </div>
+    <div class="flo flo-1" data-speed="1"><img src="assets/training.jpg" alt="Entrenamiento en el gimnasio" loading="lazy"></div>
+    <div class="flo flo-2" data-speed="1.7"><img src="assets/marco-portrait.jpg" alt="Marco Antonio Pérez" loading="lazy"></div>
+    <div class="flo flo-3" data-speed="2.6"><img src="assets/hero-gym.jpg" alt="Sesión de sparring" loading="lazy"></div>
+    <div class="flo flo-4" data-speed="1.4"><img src="assets/boxer-carlos.jpg" alt="Boxeador en combate" loading="lazy"></div>
   </div>
 
   <!-- CIFRAS -->
@@ -628,7 +683,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     <div class="sec-inner">
       <div class="stats">
         <div class="stat rv"><div class="v" data-count="1920">1920</div><div class="k">Fundación</div></div>
-        <div class="stat rv"><div class="v" data-count="7">7</div><div class="k">Selecciónados nacionales</div></div>
+        <div class="stat rv"><div class="v" data-count="7">7</div><div class="k">Seleccionados nacionales</div></div>
         <div class="stat rv"><div class="v" data-count="60">60</div><div class="k">Reseñas Google</div></div>
         <div class="stat rv"><div class="v">5.0</div><div class="k">Valoración media</div></div>
       </div>
@@ -658,9 +713,9 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
       <div class="gal-card"><div class="gc-img"><img src="assets/equipo-ring.jpg" alt="Técnicos observando un combate" loading="lazy"></div>
         <div class="gc-body"><div class="gc-k">Los técnicos</div><div class="gc-t">Experiencia al servicio del alumno</div></div></div>
       <div class="gal-card"><div class="gc-img"><img src="assets/velada-boxeo.jpg" alt="Selección de Castellón en los años 70" loading="lazy"></div>
-        <div class="gc-body"><div class="gc-k">Disciplina</div><div class="gc-t">Cada dia es una oportunidad</div></div></div>
+        <div class="gc-body"><div class="gc-k">Disciplina</div><div class="gc-t">Cada día es una oportunidad</div></div></div>
       <div class="gal-card"><div class="gc-img"><img src="assets/fighters-action.jpg" alt="Combate de boxeo en velada del club" loading="lazy"></div>
-        <div class="gc-body"><div class="gc-k">Competición</div><div class="gc-t">La Pergola de Castellon</div></div></div>
+        <div class="gc-body"><div class="gc-k">Competición</div><div class="gc-t">La Pérgola de Castellón</div></div></div>
       <div class="gal-card"><div class="gc-img"><img src="assets/manoplas-training.jpg" alt="Entrenamiento de manoplas" loading="lazy"></div>
         <div class="gc-body"><div class="gc-k">La cantera</div><div class="gc-t">Forjando el futuro</div></div></div>
     </div>
@@ -728,12 +783,12 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
         <div class="rv">
           <div class="label">Nuestra historia</div>
           <h2 class="display">Desde 1920,<br><em>en el ring</em></h2>
-          <p class="lead drop" style="margin-top:24px">Los orígenes del club se remontan a 1920, cuándo Vicente Ramos Albert y un grupo de amigos se reunian en descampados y patios de casas para practicar boxeo en condiciones precarias. En 1925, la creación de la Federacion de Pugilismo de Valencia formalizo las competiciónes regionales en todo el Levante.</p>
-          <p class="lead" style="margin-top:16px">Hacia 1936 el boxeo castellonense se organizo dentro del sindicato Educacion y Descanso, consolidando la popularidad de este deporte en la provincia.</p>
+          <p class="lead drop" style="margin-top:24px">Los orígenes del club se remontan a 1920, cuando Vicente Ramos Albert y un grupo de amigos se reunían en descampados y patios de casas para practicar boxeo en condiciones precarias. En 1925, la creación de la Federación de Pugilismo de Valencia formalizó las competiciones regionales en todo el Levante.</p>
+          <p class="lead" style="margin-top:16px">Hacia 1936 el boxeo castellonense se organizó dentro del sindicato Educación y Descanso, consolidando la popularidad de este deporte en la provincia.</p>
         </div>
         <div class="intro-fig rv">
           <div class="fig-clip"><img src="assets/training-wide2.jpg" alt="Manuel Pérez García en sus años de boxeador" loading="lazy"></div>
-          <div class="intro-year">Manuel Perez Garcia, alma mater</div>
+          <div class="intro-year">Manuel Pérez García, alma mater</div>
         </div>
       </div>
 
@@ -741,16 +796,16 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
         <div class="rv">
           <div class="label">La época dorada</div>
           <h2 class="display">Copa del Rey <em>1978</em></h2>
-          <p class="lead" style="margin-top:24px">En 1968 llego Manuel Perez Garcia, campeón andaluz de peso mosca sub-16 y campeón catalán de peso gallo. Bajo su liderazgo como entrenador, los años 70 fueron la etapa de mayor éxito del club, formando lo que se ha descrito como el mejor equipo de boxeo de la historia de Castellón y Valencia.</p>
-          <p class="lead" style="margin-top:16px">En 1978 el equipo gano la Copa del Rey en las Islas Canarias, con medallas de oro para Garcia Marin, Ortega y Toni Garcia, plata para Carlos Cabeza y bronce para Miguel Marquez. Siete boxeadores castellonenses representaron a la selección española.</p>
-          <p class="lead" style="margin-top:16px">Oficialmente constituido como La Union en 1978, el club mantiene su actividad ininterrumpida como el club de boxeo más antiguo en activo de España.</p>
+          <p class="lead" style="margin-top:24px">En 1968 llegó Manuel Pérez García, campeón andaluz de peso mosca sub-16 y campeón catalán de peso gallo. Bajo su liderazgo como entrenador, los años 70 fueron la etapa de mayor éxito del club, formando lo que se ha descrito como el mejor equipo de boxeo de la historia de Castellón y Valencia.</p>
+          <p class="lead" style="margin-top:16px">En 1978 el equipo ganó la Copa del Rey en las Islas Canarias, con medallas de oro para García Marín, Ortega y Toni García, plata para Carlos Cabeza y bronce para Miguel Márquez. Siete boxeadores castellonenses representaron a la selección española.</p>
+          <p class="lead" style="margin-top:16px">Oficialmente constituido como La Unión en 1978, el club mantiene su actividad ininterrumpida como el club de boxeo más antiguo en activo de España.</p>
         </div>
       </div>
 
       <div class="stats">
-        <div class="stat rv"><div class="v">1920</div><div class="k">Origenes del club</div></div>
+        <div class="stat rv"><div class="v">1920</div><div class="k">Orígenes del club</div></div>
         <div class="stat rv"><div class="v">1978</div><div class="k">Copa del Rey</div></div>
-        <div class="stat rv"><div class="v">7</div><div class="k">Selecciónados nacionales</div></div>
+        <div class="stat rv"><div class="v">7</div><div class="k">Seleccionados nacionales</div></div>
         <div class="stat rv"><div class="v">5.0</div><div class="k">Valoración Google</div></div>
       </div>
     </div>
@@ -773,19 +828,19 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     <div class="sec-inner">
       <div class="coach-grid">
         <div class="coach-card rv">
-          <div class="coach-fig"><img src="assets/coach-manuel.jpg" alt="Manuel Perez Garcia" loading="lazy"></div>
+          <div class="coach-fig"><img src="assets/coach-manuel.jpg" alt="Manuel Pérez García" loading="lazy"></div>
           <div class="coach-body">
             <div class="ck">Presidente y entrenador</div>
-            <h3>Manuel Perez Garcia</h3>
-            <p>El alma mater del club. Boxeador profesiónal, campeón andaluz de peso mosca sub-16 y campeón catalán de peso gallo. Exentrenador de la selección nacional española. Dirige y forma personalmente a cada alumno desde hace más de cinco décadas.</p>
+            <h3>Manuel Pérez García</h3>
+            <p>El alma mater del club. Boxeador profesional, campeón andaluz de peso mosca sub-16 y campeón catalán de peso gallo. Exentrenador de la selección nacional española. Dirige y forma personalmente a cada alumno desde hace más de cinco décadas.</p>
           </div>
         </div>
         <div class="coach-card rv">
-          <div class="coach-fig"><img src="assets/coach-marco.jpg" alt="Marco Antonio Perez" loading="lazy"></div>
+          <div class="coach-fig"><img src="assets/coach-marco.jpg" alt="Marco Antonio Pérez" loading="lazy"></div>
           <div class="coach-body">
             <div class="ck">Entrenador del club y de la seleccion</div>
-            <h3>Marco Antonio Perez</h3>
-            <p>Encabeza el equipo técnico del club y trabaja simultaneamente como entrenador de la selección nacional española de boxeo. Formación al mas alto nivel competitivo, del amateur al profesiónal.</p>
+            <h3>Marco Antonio Pérez</h3>
+            <p>Encabeza el equipo técnico del club y trabaja simultáneamente como entrenador de la selección nacional española de boxeo. Formación al más alto nivel competitivo, del amateur al profesional.</p>
           </div>
         </div>
       </div>
@@ -811,7 +866,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
         <div class="rv">
           <div class="label">Horario semanal</div>
           <h2 class="display">Elige tu <em>turno</em></h2>
-          <p class="lead" style="margin-top:20px">El club ofrece multiples turnos de tarde para adaptarse a todos los horarios. Se exige maxima puntualidad.</p>
+          <p class="lead" style="margin-top:20px">El club ofrece múltiples turnos de tarde para adaptarse a todos los horarios. Se exige máxima puntualidad.</p>
 
           <div class="sched" data-dias="lunes,martes,miércoles,jueves,viernes">
             <div class="sched-row" data-day="1"><span class="d">Lunes</span><span class="h">15:00 - 21:00</span></div>
@@ -832,7 +887,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
             <div class="turno"><span class="tn">Turno 3</span><span class="th">18:30 - 19:30</span></div>
             <div class="turno"><span class="tn">Turno 4</span><span class="th">20:00 - 21:00</span></div>
           </div>
-          <p class="lead" style="margin-top:24px">Cada sesion incluye calentamiento, tecnica, trabajo de saco, manoplas, sparring controlado y acondicionamiento fisico.</p>
+          <p class="lead" style="margin-top:24px">Cada sesión incluye calentamiento, técnica, trabajo de saco, manoplas, sparring controlado y acondicionamiento físico.</p>
           <a class="btn btn-solid" href="tel:+34639205016" style="margin-top:28px">Llamar para apuntarte <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
         </div>
       </div>
@@ -848,7 +903,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     <div class="ph-inner">
       <div class="label">Boxeadores</div>
       <h1>La cantera del <em>ring</em></h1>
-      <p class="ph-sub">Boxeo profesiónal y amateur. Disciplina, tecnica y constancia como pilares de la formación en el Boxeo Club la Union.</p>
+      <p class="ph-sub">Boxeo profesional y amateur. Disciplina, técnica y constancia como pilares de la formación en el Boxeo Club la Unión.</p>
     </div>
   </div>
 
@@ -856,10 +911,10 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     <div class="sec-inner">
       <div class="intro-grid">
         <div class="rv">
-          <div class="label">Boxeo profesiónal</div>
+          <div class="label">Boxeo profesional</div>
           <h2 class="display">Un deporte <em>técnico y exigente</em></h2>
-          <p class="lead" style="margin-top:20px">El boxeo es un deporte tecnicamente difícil que requiere un aprendizaje progresivo, una disciplina rígida y un esfuerzo de entrenamiento constante. En el club se trabaja cada dia para formar boxeadores competentes y seguros de sí mismos.</p>
-          <p class="lead" style="margin-top:16px">El equipo técnico, liderado por Marco Antonio Perez, prepara a los alumnos tanto para la competición amateur como para el boxeo profesiónal, promoviendo los valores del noble arte entre los jóvenes de Castello.</p>
+          <p class="lead" style="margin-top:20px">El boxeo es un deporte técnicamente difícil que requiere un aprendizaje progresivo, una disciplina rígida y un esfuerzo de entrenamiento constante. En el club se trabaja cada día para formar boxeadores competentes y seguros de sí mismos.</p>
+          <p class="lead" style="margin-top:16px">El equipo técnico, liderado por Marco Antonio Pérez, prepara a los alumnos tanto para la competición amateur como para el boxeo profesional, promoviendo los valores del noble arte entre los jóvenes de Castelló.</p>
         </div>
         <div class="intro-fig rv">
           <div class="fig-clip"><img src="assets/boxer-portrait.jpg" alt="Boxeador del club entrenando" loading="lazy"></div>
@@ -886,7 +941,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     <div class="ph-inner">
       <div class="label">Videos del club</div>
       <h1>El club <em>en acción</em></h1>
-      <p class="ph-sub">Veladas, sparrings, entrenamientos y homenajes. Más de una decada de momentos capturados en video.</p>
+      <p class="ph-sub">Veladas, sparrings, entrenamientos y homenajes. Más de una década de momentos capturados en vídeo.</p>
     </div>
   </div>
 
@@ -894,20 +949,20 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     <div class="sec-inner">
       <div class="vid-grid">
         <div class="vid-card rv">
-          <iframe src="https://www.youtube.com/embed/sa964aV3w8g" title="Un día cualquiera en el club" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <div class="vid-body"><div class="vid-t">Un día cualquiera</div></div>
+          <iframe src="https://www.youtube.com/embed/9VOOrlq2VaQ" title="Velada de boxeo en La Pérgola de Castellón" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="vid-body"><div class="vid-t">Velada en La Pérgola</div></div>
         </div>
         <div class="vid-card rv">
           <iframe src="https://www.youtube.com/embed/gSScnHsIfVY" title="Escuela de boxeo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <div class="vid-body"><div class="vid-t">Escuela de boxeo</div></div>
         </div>
         <div class="vid-card rv">
-          <iframe src="https://www.youtube.com/embed/2rEdUIWdxNE" title="Manolo Perez, 70 años" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <div class="vid-body"><div class="vid-t">Manolo Perez... 70 años</div></div>
+          <iframe src="https://www.youtube.com/embed/2rEdUIWdxNE" title="Manolo Pérez, 70 años" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="vid-body"><div class="vid-t">Manolo Pérez... 70 años</div></div>
         </div>
         <div class="vid-card rv">
-          <iframe src="https://www.youtube.com/embed/J3KqoReJlPs" title="Marco Escorpion Perez vs Marcos Munoz" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <div class="vid-body"><div class="vid-t">Marco Escorpion Perez vs Marcos Munoz</div></div>
+          <iframe src="https://www.youtube.com/embed/J3KqoReJlPs" title="Marco Escorpión Pérez vs Marcos Muñoz" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="vid-body"><div class="vid-t">Marco Escorpión Pérez vs Marcos Muñoz</div></div>
         </div>
       </div>
     </div>
@@ -922,7 +977,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     <div class="ph-inner">
       <div class="label">Contacto</div>
       <h1>Ven a <em>conocernos</em></h1>
-      <p class="ph-sub">Resuelve tus dudas, apuntate a una clase de prueba o visítanos en el Pabellón Ciutat de Castello.</p>
+      <p class="ph-sub">Resuelve tus dudas, apúntate a una clase de prueba o visítanos en el Pabellón Ciutat de Castelló.</p>
     </div>
   </div>
 
@@ -960,20 +1015,20 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
       <div class="faq">
         <div class="label rv" style="margin-top:clamp(50px,6vw,80px)">Preguntas frecuentes</div>
         <div class="faq-row">
-          <button class="faq-q">¿¿Necesito experiencia previa para apuntarme?<span class="faq-plus"></span></button>
-          <div class="faq-a"><div class="faq-a-in">No. El club acepta alumnos de todos los niveles, desde principiantes absolutos hasta competidores federados. Los técnicos adaptan cada sesion al nivel de cada boxeador.</div></div>
+          <button class="faq-q">¿Necesito experiencia previa para apuntarme?<span class="faq-plus"></span></button>
+          <div class="faq-a"><div class="faq-a-in">No. El club acepta alumnos de todos los niveles, desde principiantes absolutos hasta competidores federados. Los técnicos adaptan cada sesión al nivel de cada boxeador.</div></div>
         </div>
         <div class="faq-row">
           <button class="faq-q">¿Qué necesito para empezar?<span class="faq-plus"></span></button>
-          <div class="faq-a"><div class="faq-a-in">Para las primeras sesiones basta con ropa deportiva comoda y zapatillas. El club dispone del equipamiento necesario para las clases. Conforme avances, tu técnico te orientara sobre el material propio (guantes, vendas, protecciones).</div></div>
+          <div class="faq-a"><div class="faq-a-in">Para las primeras sesiones basta con ropa deportiva cómoda y zapatillas. El club dispone del equipamiento necesario para las clases. Conforme avances, tu técnico te orientará sobre el material propio (guantes, vendas, protecciones).</div></div>
         </div>
         <div class="faq-row">
           <button class="faq-q">¿Hay clases para jóvenes y niños?<span class="faq-plus"></span></button>
-          <div class="faq-a"><div class="faq-a-in">Si. El club tiene una amplia cantera de jóvenes boxeadores y boxeadoras, como se puede ver en las fotografias del gimnasio. La formación de base es una de las prioridades del equipo técnico.</div></div>
+          <div class="faq-a"><div class="faq-a-in">Sí. El club tiene una amplia cantera de jóvenes boxeadores y boxeadoras, como se puede ver en las fotografías del gimnasio. La formación de base es una de las prioridades del equipo técnico.</div></div>
         </div>
         <div class="faq-row">
           <button class="faq-q">¿Se puede competir desde el club?<span class="faq-plus"></span></button>
-          <div class="faq-a"><div class="faq-a-in">Si. El club es federado y participa regularmente en campeonatos provinciales, autonómicos y nacionales. Marco Antonio Perez, además de entrenador del club, es técnico de la selección nacional española.</div></div>
+          <div class="faq-a"><div class="faq-a-in">Sí. El club es federado y participa regularmente en campeonatos provinciales, autonómicos y nacionales. Marco Antonio Pérez, además de entrenador del club, es técnico de la selección nacional española.</div></div>
         </div>
       </div>
     </div>
@@ -1006,7 +1061,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
       <a data-go="clases">Clases y horarios</a>
     </div>
     <div class="foot-col">
-      <h5>Mas</h5>
+      <h5>Más</h5>
       <a data-go="boxeadores">Boxeadores</a>
       <a data-go="videos">Videos</a>
       <a data-go="contacto">Contacto</a>
@@ -1020,7 +1075,7 @@ footer{overflow-x:clip;background:var(--noche);color:rgba(245,243,238,.6);paddin
     </div>
   </div>
   <div class="foot-base">
-    <span>&copy; 2024 Boxeo Club la Union. Todos los derechos reservados.</span>
+    <span>&copy; 2026 Boxeo Club la Unión</span>
     <div>
       <a href="legal/aviso-legal.html">Aviso legal</a> &middot;
       <a href="legal/politica-privacidad.html">Privacidad</a> &middot;
@@ -1287,9 +1342,9 @@ document.querySelectorAll('.faq-row').forEach(row=>{
 
 /* ============ RESENAS REALES DE GOOGLE ============ */
 const QUOTES=[
-  {t:'En el Club Boxeo La Union se respira boxeo, respeto, humildad y sabiduría. El mejor gimnasio para la practica del noble arte con los mejores maestros, formando boxeadores pero ante todo personas.',w:'Reseña verificada',s:'Google Maps · 5 estrellas'},
-  {t:'Club con mucha historia y tradicion. Los entrenadores son profesiónales de primer nivel. Marco y Manolo tratan a cada alumno con cercanía y dedicación. Recomendado al 100%.',w:'Reseña verificada',s:'Google Maps · 5 estrellas'},
-  {t:'Un entorno familiar y profesional donde se ensena el boxeo como deporte y como forma de vida. Ideal tanto para niños como para adultos. Las instalaciones son autenticas, con carácter.',w:'Reseña verificada',s:'Google Maps · 5 estrellas'}
+  {t:'En el Club Boxeo La Unión se respira boxeo, respeto, humildad y sabiduría. El mejor gimnasio para la práctica del noble arte con los mejores maestros, formando boxeadores pero ante todo personas.',w:'Miguel A.',s:'Reseña en Google'},
+  {t:'Club con mucha historia y tradición. Los entrenadores son profesionales de primer nivel. Marco y Manolo tratan a cada alumno con cercanía y dedicación. Recomendado al 100%.',w:'Fernando O.',s:'Reseña en Google'},
+  {t:'Un entorno familiar y profesional donde se enseña el boxeo como deporte y como forma de vida. Ideal tanto para niños como para adultos. Las instalaciones son auténticas, con carácter.',w:'Carlos M.',s:'Reseña en Google'}
 ];
 const qStage=document.getElementById('qStage'),qDots=document.getElementById('qDots');
 if(qStage&&qDots){
@@ -1403,10 +1458,241 @@ if(matchMedia('(pointer:fine)').matches&&!REDUCED){
 /* ============ FLOTANTES PARALLAX ============ */
 if(!REDUCED){
   document.querySelectorAll('.flo[data-speed]').forEach(f=>{
-    gsap.to(f,{y:()=>parseFloat(f.dataset.speed)*2.5,ease:'none',
+    const sp=parseFloat(f.dataset.speed||'1');
+    gsap.fromTo(f,{y:60*sp},{y:-60*sp,ease:'none',
       scrollTrigger:{trigger:f.parentElement,start:'top bottom',end:'bottom top',scrub:1}});
   });
 }
+
+/* ============ MANIFIESTO WORD-SCRUB ============ */
+(function(){
+  const t=document.getElementById('manifTitle');if(!t||REDUCED)return;
+  t.innerHTML=t.innerHTML.split(/(<em>.*?<\/em>)/).flatMap(part=>{
+    if(part.startsWith('<em>')){
+      const inner=part.replace(/<\/?em>/g,'');
+      return inner.split(' ').filter(Boolean).map(w=>`<span class="wsc"><em>${w}</em></span>`);
+    }
+    return part.split(' ').filter(Boolean).map(w=>`<span class="wsc">${w}</span>`);
+  }).join(' ');
+  gsap.to(t.querySelectorAll('.wsc'),{opacity:1,ease:'none',stagger:.3,
+    scrollTrigger:{trigger:'#manifWrap',start:'top 72%',end:'center 58%',scrub:.6}});
+})();
+
+/* ============================================================
+   PIEZA SINGULAR: GUANTES DE BOXEO (line-draw scrubeado)
+   Un par de guantes que se dibuja con el scroll, contando la historia del club
+   ============================================================ */
+(function(){
+  const wrap=document.getElementById('guantes');
+  const stage=document.getElementById('guantesStage');
+  const cv=document.getElementById('guantesCanvas');
+  if(!wrap||!cv||REDUCED)return;
+  const ctx=cv.getContext('2d');
+  const N=2200;
+  const OW=1000,OH=700;
+  let W=0,H=0,DPR=Math.min(2,devicePixelRatio||1);
+
+  const off=document.createElement('canvas');off.width=OW;off.height=OH;
+  const octx=off.getContext('2d',{willReadFrequently:true});
+  function samplePoints(draw,n){
+    octx.clearRect(0,0,OW,OH);
+    octx.fillStyle='#000';octx.strokeStyle='#000';octx.lineWidth=3;
+    draw(octx);
+    const d=octx.getImageData(0,0,OW,OH).data;
+    const hits=[];
+    for(let y=0;y<OH;y+=2)for(let x=0;x<OW;x+=2){
+      if(d[(y*OW+x)*4+3]>90)hits.push([x,y]);
+    }
+    if(!hits.length)return Array.from({length:n},()=>[OW/2,OH/2]);
+    const out=[];
+    for(let i=0;i<n;i++)out.push(hits[Math.floor(i*hits.length/n)]);
+    return out;
+  }
+
+  /* Fase 1: el puño cerrado (texto grande) */
+  function drawPuno(o){
+    o.textAlign='center';o.textBaseline='middle';
+    o.font='600 '+Math.round(OH*.6)+'px Playfair Display, Georgia, serif';
+    o.fillText('1920',OW/2,OH/2);
+  }
+
+  /* Fase 2: guante de boxeo (silueta reconocible) */
+  function drawGuante(o){
+    o.lineWidth=5;o.lineCap='round';o.lineJoin='round';
+    const cx=OW/2,cy=OH/2;
+    /* cuerpo del guante (forma ovalada grande) */
+    o.beginPath();
+    o.ellipse(cx,cy-30,160,200,0,0,Math.PI*2);
+    o.fill();
+    /* pulgar */
+    o.beginPath();
+    o.ellipse(cx-140,cy-60,60,90,-0.4,0,Math.PI*2);
+    o.fill();
+    /* muñeca / apertura inferior */
+    o.beginPath();
+    o.moveTo(cx-100,cy+170);
+    o.quadraticCurveTo(cx,cy+220,cx+100,cy+170);
+    o.lineTo(cx+100,cy+240);
+    o.quadraticCurveTo(cx,cy+280,cx-100,cy+240);
+    o.closePath();
+    o.fill();
+    /* costuras */
+    o.strokeStyle='#000';o.lineWidth=3;
+    o.beginPath();o.moveTo(cx-60,cy-180);o.quadraticCurveTo(cx,cy-60,cx+60,cy-180);o.stroke();
+    o.beginPath();o.moveTo(cx-40,cy-120);o.lineTo(cx+40,cy-120);o.stroke();
+    o.beginPath();o.moveTo(cx-30,cy-80);o.lineTo(cx+30,cy-80);o.stroke();
+  }
+
+  /* Fase 3: corona / escudo del club */
+  function drawCorona(o){
+    o.lineWidth=4;o.lineCap='round';
+    const cx=OW/2,cy=OH/2;
+    /* escudo base */
+    o.beginPath();
+    o.moveTo(cx-120,cy-140);
+    o.lineTo(cx-120,cy+60);
+    o.quadraticCurveTo(cx,cy+200,cx+120,cy+60);
+    o.lineTo(cx+120,cy-140);
+    o.closePath();
+    o.stroke();
+    /* corona encima */
+    const cty=cy-140;
+    o.beginPath();
+    o.moveTo(cx-130,cty);o.lineTo(cx-100,cty-70);o.lineTo(cx-50,cty-20);
+    o.lineTo(cx,cty-80);o.lineTo(cx+50,cty-20);o.lineTo(cx+100,cty-70);
+    o.lineTo(cx+130,cty);o.closePath();
+    o.stroke();
+    /* texto dentro */
+    o.textAlign='center';o.textBaseline='middle';
+    o.font='600 '+Math.round(44)+'px Playfair Display, Georgia, serif';
+    o.fillText('LA',cx,cy-40);
+    o.font='600 '+Math.round(56)+'px Playfair Display, Georgia, serif';
+    o.fillText('UNIÓN',cx,cy+30);
+  }
+
+  /* Fase 4: ring de boxeo */
+  function drawRing(o){
+    o.lineWidth=4;o.lineCap='round';o.lineJoin='round';
+    const cx=OW/2,cy=OH/2;
+    /* cuerdas horizontales */
+    for(let i=0;i<3;i++){
+      const y=cy-80+i*80;
+      o.beginPath();o.moveTo(cx-280,y);o.lineTo(cx+280,y);o.stroke();
+    }
+    /* postes */
+    o.lineWidth=6;
+    [-280,280].forEach(dx=>{
+      o.beginPath();o.moveTo(cx+dx,cy-140);o.lineTo(cx+dx,cy+160);o.stroke();
+    });
+    /* lona / suelo en perspectiva */
+    o.lineWidth=3;
+    o.beginPath();
+    o.moveTo(cx-280,cy+160);o.lineTo(cx-350,cy+260);
+    o.lineTo(cx+350,cy+260);o.lineTo(cx+280,cy+160);
+    o.closePath();o.stroke();
+    /* texto ring */
+    o.textAlign='center';o.textBaseline='middle';
+    o.font='italic 400 '+Math.round(36)+'px Playfair Display, Georgia, serif';
+    o.fillText('Castelló de la Plana',cx,cy+210);
+  }
+
+  const CH=[
+    {a:0,   b:.25, k:'Fase 01 · 1920',        t:'Los <em>inicios</em>',
+     p:'Vicente Ramos Albert reúne a un grupo de amigos en patios y descampados de Castelló para practicar boxeo.',
+     shape:drawPuno},
+    {a:.25, b:.5,  k:'Fase 02 · El guante',     t:'El <em>noble arte</em>',
+     p:'Más de 170 combates, un 90% de victorias. Manuel Pérez García convierte la pasión en disciplina.',
+     shape:drawGuante},
+    {a:.5,  b:.75, k:'Fase 03 · 1978',          t:'La <em>Unión</em>',
+     p:'Copa del Rey en las Islas Canarias. Siete boxeadores castellonenses en la selección nacional.',
+     shape:drawCorona},
+    {a:.75, b:1,   k:'Fase 04 · El ring',       t:'Un siglo <em>en pie</em>',
+     p:'El club de boxeo más antiguo en activo de España. Técnicos de la selección nacional formando a la siguiente generación.',
+     shape:drawRing}
+  ];
+  let targets=CH.map(()=>null);
+  function targetsFor(i){
+    if(!targets[i])targets[i]=samplePoints(CH[i].shape,N);
+    return targets[i];
+  }
+
+  const P=Array.from({length:N},(_,i)=>({x:OW/2,y:OH/2,tx:OW/2,ty:OH/2,w:.5+((i*37)%100)/160}));
+  (function seed(){
+    const t0=targetsFor(0);
+    P.forEach((p,i)=>{p.tx=t0[i][0];p.ty=t0[i][1];
+      p.x=t0[i][0]+(Math.random()-.5)*300;p.y=t0[i][1]+(Math.random()-.5)*300;});
+  })();
+
+  function resize(){
+    const r=cv.getBoundingClientRect();
+    W=r.width;H=r.height;
+    cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);
+    if(W<2)setTimeout(resize,200);
+  }
+  resize();addEventListener('resize',resize);
+
+  let progress=0,active=true;
+  new IntersectionObserver(es=>es.forEach(en=>active=en.isIntersecting),{threshold:0}).observe(wrap);
+
+  (function draw(){
+    requestAnimationFrame(draw);
+    if(!active||W<2)return;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    const scX=W/OW*DPR, scY=H/OH*DPR;
+
+    /* interpolar targets según capítulo */
+    const ci=Math.min(CH.length-1,Math.floor(progress*CH.length));
+    const localP=(progress*CH.length)-ci;
+    const tgts=targetsFor(ci);
+    const nextTgts=ci<CH.length-1?targetsFor(ci+1):tgts;
+    P.forEach((p,i)=>{
+      const t=localP<.5?tgts[i]:nextTgts[i];
+      p.tx=t[0]; p.ty=t[1];
+      p.x+=(p.tx-p.x)*.08;
+      p.y+=(p.ty-p.y)*.08;
+    });
+
+    /* dibujar partículas */
+    const baseAlpha=.4+progress*.4;
+    P.forEach(p=>{
+      const r=1.2+p.w*1.6;
+      ctx.beginPath();
+      ctx.arc(p.x*scX, p.y*scY, r*DPR, 0, Math.PI*2);
+      ctx.fillStyle=`rgba(203,15,51,${baseAlpha*(.5+p.w*.5)})`;
+      ctx.fill();
+    });
+  })();
+
+  /* ScrollTrigger para controlar el progreso */
+  if(typeof ScrollTrigger!=='undefined'){
+    const capEl=document.getElementById('guantesCap');
+    const kEl=document.getElementById('gck');
+    const tEl=document.getElementById('gct');
+    const pEl=document.getElementById('gcp');
+    const prog=document.getElementById('guantesProg');
+    let lastCi=-1;
+    ScrollTrigger.create({
+      trigger:'#guantes',start:'top top',end:'bottom bottom',scrub:.5,
+      onUpdate(self){
+        progress=self.progress;
+        const ci=Math.min(CH.length-1,Math.floor(progress*CH.length));
+        /* meseta de opacidad para el caption */
+        const localP=(progress*CH.length)-ci;
+        const fadeIn=Math.min(1,localP/.22);
+        const fadeOut=Math.min(1,(1-localP)/.22);
+        const op=Math.min(fadeIn,fadeOut);
+        capEl.style.opacity=op;
+        if(ci!==lastCi){
+          lastCi=ci;
+          kEl.textContent=CH[ci].k;
+          tEl.innerHTML=CH[ci].t;
+          pEl.textContent=CH[ci].p;
+          if(prog){prog.querySelectorAll('span').forEach((s,j)=>s.classList.toggle('on',j===ci));}
+        }
+      }
+    });
+  }
+})()
 </script>
 <script src="legal/cookie-banner.js" defer></script>
 </body>
