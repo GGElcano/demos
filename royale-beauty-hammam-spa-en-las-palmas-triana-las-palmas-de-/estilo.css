@@ -145,20 +145,63 @@ footer a:hover{color:var(--oro-luz)}
   html{scroll-behavior:auto}
 }
 
-/* ---------- vídeos de Instagram ----------
-   Se muestran en vertical, como se ven en el móvil. Dos formas:
-   - archivo propio (.mp4): se reproduce solo, en silencio y en bucle. Es lo rápido.
-   - enlace de Instagram: NO se carga hasta que el visitante toca el vídeo. Así la
-     página no arrastra el javascript de Meta ni sus cookies sin permiso. */
-.videos{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(min(46%,190px),1fr))}
-.video-card{position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;
-  background:#1a1815;cursor:pointer;border:1px solid var(--linea)}
-.video-card video,.video-card img{width:100%;height:100%;object-fit:cover;display:block}
-.video-card .play{position:absolute;inset:0;display:grid;place-items:center;
-  background:linear-gradient(180deg,rgba(13,11,9,.15),rgba(13,11,9,.55));transition:.3s}
-.video-card:hover .play{background:linear-gradient(180deg,rgba(13,11,9,.05),rgba(13,11,9,.4))}
-.video-card .play svg{width:52px;height:52px;fill:#fff;filter:drop-shadow(0 2px 10px rgba(0,0,0,.5))}
-.video-card .pie{position:absolute;inset-inline:0;bottom:0;padding:.7rem .8rem;color:#fff;
-  font-size:.8rem;line-height:1.35;background:linear-gradient(180deg,transparent,rgba(13,11,9,.85))}
-.video-card iframe{width:100%;height:100%;border:0}
-.nota-ig{font-size:.82rem;color:var(--piedra);margin:.9rem 0 0}
+/* ═══════════ REELS ═══════════
+   Apartado pensado para el formato de Instagram: vertical 9:16, en carrusel
+   horizontal que se arrastra con el dedo. Nada de rejilla cuadrada, que corta
+   los vídeos. Al tocar uno se abre a pantalla completa.
+   Sin librerías: scroll-snap del navegador. */
+.reels-zona{position:relative}
+.reels{display:flex;gap:.9rem;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:.3rem .2rem 1.2rem;margin-inline:calc(var(--pad)*-1);
+  padding-inline:var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.reels::-webkit-scrollbar{display:none}
+.reel{flex:0 0 auto;width:clamp(200px,58vw,268px);scroll-snap-align:center;
+  position:relative;aspect-ratio:9/16;border-radius:14px;overflow:hidden;
+  background:#1a1815;cursor:pointer;border:1px solid rgba(201,169,110,.28);
+  transition:transform .35s ease,box-shadow .35s ease}
+.reel:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(18,16,14,.28)}
+.reel:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+.reel img,.reel video{width:100%;height:100%;object-fit:cover;display:block}
+.reel .capa{position:absolute;inset:0;display:grid;place-items:center;
+  background:linear-gradient(180deg,rgba(13,11,9,.12) 0%,rgba(13,11,9,.05) 45%,rgba(13,11,9,.78) 100%)}
+.reel .play{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.35);
+  transition:transform .3s,background .3s}
+.reel:hover .play{transform:scale(1.08);background:rgba(255,255,255,.26)}
+.reel .play svg{width:22px;height:22px;fill:#fff;margin-inline-start:3px}
+.reel .vistas{position:absolute;top:.7rem;inset-inline-start:.7rem;display:flex;align-items:center;gap:.32rem;
+  background:rgba(13,11,9,.62);backdrop-filter:blur(4px);color:#fff;font-size:.72rem;
+  padding:.26rem .6rem;border-radius:99px;letter-spacing:.02em}
+.reel .vistas svg{width:13px;height:13px;fill:#fff;opacity:.9}
+.reel .pie{position:absolute;inset-inline:0;bottom:0;padding:.8rem .85rem;color:#fff;
+  font-size:.84rem;line-height:1.35;text-align:start}
+/* flechas: solo en escritorio, el móvil se arrastra */
+.reels-nav{display:none}
+@media(min-width:900px){
+  .reels-nav{display:block;position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--linea);background:#fff;
+    cursor:pointer;color:var(--tinta);transition:.25s;
+    box-shadow:0 6px 20px rgba(18,16,14,.28)}
+  .reels-nav:hover{background:var(--oro);border-color:var(--oro)}
+  .reels-nav svg{width:18px;height:18px;fill:currentColor}
+  .reels-nav.izq{inset-inline-start:-14px}
+  .reels-nav.der{inset-inline-end:-14px}
+  .reels-nav[disabled]{opacity:.3;cursor:default}
+}
+/* pantalla completa */
+.visor{position:fixed;inset:0;z-index:200;background:rgba(8,7,6,.93);
+  display:none;place-items:center;padding:1rem;backdrop-filter:blur(6px)}
+.visor[open],.visor.abierto{display:grid}
+.visor-caja{position:relative;width:min(420px,94vw);aspect-ratio:9/16;max-height:88svh;
+  border-radius:14px;overflow:hidden;background:#000}
+.visor-caja iframe,.visor-caja video{width:100%;height:100%;border:0;display:block;object-fit:cover}
+.visor-cerrar{position:absolute;top:1rem;inset-inline-end:1rem;z-index:2;width:44px;height:44px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);
+  color:#fff;cursor:pointer;font-size:1.4rem;line-height:1;backdrop-filter:blur(6px)}
+.visor-cerrar:hover{background:rgba(255,255,255,.24)}
+.nota-reels{font-size:.82rem;color:var(--piedra);margin:.2rem 0 0}
+
+/* Cualquier elemento con el atributo hidden debe quedar oculto de verdad.
+   Sin esto, reglas como .ig-grid{display:grid} ganan al hidden del navegador
+   y el bloque sigue viéndose. Pasó con la rejilla de fotos bajo los reels. */
+[hidden]{display:none !important}

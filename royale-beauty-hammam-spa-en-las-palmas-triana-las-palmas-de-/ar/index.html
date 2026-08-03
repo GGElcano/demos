@@ -152,7 +152,12 @@ h1,h2,h3{letter-spacing:0}                      /* nunca espaciar letras en ára
     <p class="rotulo rv">Instagram</p>
     <h2 class="rv" data-t="ig.titulo">El día a día del centro</h2>
     <p class="entradilla rv" data-t="ig.entradilla">Rituales, novedades y los rincones del hammam. Síguenos en @royale.beauty.spa.</p>
-    <div class="videos rv" id="videos"></div>
+    <div class="reels-zona rv">
+      <button class="reels-nav izq" id="reel-izq" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg></button>
+      <div class="reels" id="reels"></div>
+      <button class="reels-nav der" id="reel-der" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M8.6 16.6 10 18l6-6-6-6-1.4 1.4 4.6 4.6z"/></svg></button>
+    </div>
+    <p class="nota-reels rv">Desliza para ver más. Toca un vídeo para verlo completo.</p>
     <div class="ig-grid rv" id="ig-fotos" hidden>
       <a href="https://www.instagram.com/royale.beauty.spa/" target="_blank" rel="noopener"><img src="../assets/img4.jpg" alt="" loading="lazy"></a>
       <a href="https://www.instagram.com/royale.beauty.spa/" target="_blank" rel="noopener"><img src="../assets/img5.jpg" alt="" loading="lazy"></a>
@@ -235,64 +240,101 @@ h1,h2,h3{letter-spacing:0}                      /* nunca espaciar letras en ára
 })();
 
 /* ══════════════════════════════════════════════════════════════════════
-   VÍDEOS DE INSTAGRAM  ·  lo único que hay que tocar es esta lista
+   REELS DE INSTAGRAM  ·  lo único que hay que tocar es esta lista
    ══════════════════════════════════════════════════════════════════════
-   Dos formas de poner un vídeo, y se pueden mezclar:
+   { instagram: "https://www.instagram.com/reel/CODIGO/",
+     portada:   "../assets/img4.jpg",     <- foto que se ve antes de tocar
+     pie:       "Texto corto debajo",
+     vistas:    "226 mil" }                <- opcional, sale arriba a la izquierda
 
-   1) ARCHIVO PROPIO (recomendado). Rápido, se reproduce solo en silencio
-      y en bucle como un reel, y NO usa cookies de Instagram:
-        { archivo: "../assets/reel1.mp4", pie: "Ritual de hammam" }
-
-   2) ENLACE DE INSTAGRAM. El vídeo NO se carga hasta que el visitante lo
-      toca, para no arrastrar el javascript de Meta ni sus cookies:
-        { instagram: "https://www.instagram.com/reel/CODIGO/",
-          portada: "../assets/img4.jpg", pie: "Nuestro hammam por dentro" }
+   También admite vídeo propio, que va mejor (se reproduce solo, sin cookies):
+     { archivo: "../assets/reel1.mp4", pie: "...", vistas: "226 mil" }
 
    Si la lista se deja vacía, la web enseña las fotos de siempre.
    ══════════════════════════════════════════════════════════════════════ */
 var VIDEOS = [
-  { instagram: "https://www.instagram.com/reel/DanD8aUAEph/", portada: "../assets/img4.jpg", pie: "Nuestro hammam por dentro" },
-  { instagram: "https://www.instagram.com/reel/DXpgjFXDQzg/", portada: "../assets/img5.jpg", pie: "El ritual, paso a paso" },
-  { instagram: "https://www.instagram.com/reel/DaQOL4FsfAT/", portada: "../assets/flotante1.jpg", pie: "Un momento de calma" },
-  { instagram: "https://www.instagram.com/reel/DXpDojSCPfO/", portada: "../assets/flotante2.jpg", pie: "Masaje con aceite de argán" },
+  { instagram: "https://www.instagram.com/reel/DanD8aUAEph/", portada: "../assets/img4.jpg", pie: "Nuestro hammam por dentro", vistas: "226 mil" },
+  { instagram: "https://www.instagram.com/reel/DXpgjFXDQzg/", portada: "../assets/img5.jpg", pie: "El ritual, paso a paso", vistas: "207 mil" },
+  { instagram: "https://www.instagram.com/reel/DaQOL4FsfAT/", portada: "../assets/flotante1.jpg", pie: "Un momento de calma", vistas: "158 mil" },
+  { instagram: "https://www.instagram.com/reel/DXpDojSCPfO/", portada: "../assets/flotante2.jpg", pie: "Masaje con aceite de argán", vistas: "27,7 mil" },
 ];
 
 (function(){
-  var cont = document.getElementById("videos"), fotos = document.getElementById("ig-fotos");
-  if(!cont) return;
-  if(!VIDEOS.length){ cont.hidden = true; if(fotos) fotos.hidden = false; return; }
+  var pista = document.getElementById("reels"), fotos = document.getElementById("ig-fotos");
+  var zona  = pista ? pista.closest(".reels-zona") : null;
+  var nota  = document.querySelector(".nota-reels");
+  if(!pista) return;
+  if(!VIDEOS.length){
+    if(zona) zona.hidden = true;
+    if(nota) nota.hidden = true;
+    if(fotos) fotos.hidden = false;
+    return;
+  }
 
-  var ICONO = '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+  var PLAY = '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+  var OJO  = '<svg viewBox="0 0 24 24"><path d="M12 5c-5 0-9 4.5-9 7s4 7 9 7 9-4.5 9-7-4-7-9-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg>';
+
+  // Visor a pantalla completa. Se crea una sola vez.
+  var visor = document.createElement("div");
+  visor.className = "visor";
+  visor.innerHTML = '<button class="visor-cerrar" aria-label="Cerrar">&times;</button><div class="visor-caja"></div>';
+  document.body.appendChild(visor);
+  var caja = visor.querySelector(".visor-caja");
+  function cerrar(){ visor.classList.remove("abierto"); caja.innerHTML = ""; document.body.style.overflow = ""; }
+  visor.querySelector(".visor-cerrar").addEventListener("click", cerrar);
+  visor.addEventListener("click", function(e){ if(e.target === visor) cerrar(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") cerrar(); });
+
+  function abrir(v){
+    if(v.archivo){
+      caja.innerHTML = '<video src="' + v.archivo + '" controls autoplay playsinline></video>';
+    } else {
+      var limpio = String(v.instagram).split("?")[0].replace(/\/$/, "");
+      caja.innerHTML = '<iframe src="' + limpio + '/embed" allowfullscreen scrolling="no" ' +
+                       'allow="autoplay; encrypted-media" title="Vídeo de Instagram"></iframe>';
+    }
+    visor.classList.add("abierto");
+    document.body.style.overflow = "hidden";
+  }
 
   VIDEOS.forEach(function(v){
-    var card = document.createElement("div");
-    card.className = "video-card";
+    var el = document.createElement("div");
+    el.className = "reel";
+    el.setAttribute("role", "button");
+    el.setAttribute("tabindex", "0");
+    el.setAttribute("aria-label", "Ver el vídeo" + (v.pie ? ": " + v.pie : ""));
 
-    if(v.archivo){
-      // Archivo propio: se reproduce solo, sin sonido. Como un reel.
-      card.innerHTML = '<video src="' + v.archivo + '" muted loop playsinline autoplay preload="metadata"' +
-        (v.portada ? ' poster="' + v.portada + '"' : '') + '></video>' +
-        (v.pie ? '<span class="pie">' + v.pie + '</span>' : '');
-      card.style.cursor = "default";
-    } else if(v.instagram){
-      // Instagram: portada primero. El embed real solo al tocarlo.
-      card.innerHTML = '<img src="' + (v.portada || "../assets/hero.jpg") + '" alt="" loading="lazy">' + ICONO +
-        (v.pie ? '<span class="pie">' + v.pie + '</span>' : '');
-      card.setAttribute("role","button");
-      card.setAttribute("tabindex","0");
-      card.setAttribute("aria-label","Reproducir vídeo de Instagram");
-      var abrir = function(){
-        var limpio = String(v.instagram).split("?")[0].replace(/\/$/, "");
-        card.innerHTML = '<iframe src="' + limpio + '/embed" allowfullscreen scrolling="no" ' +
-          'allowtransparency="true" title="Vídeo de Instagram"></iframe>';
-        card.style.cursor = "default";
-      };
-      card.addEventListener("click", abrir);
-      card.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); abrir(); } });
-    } else { return; }
+    var fondo = v.archivo
+      ? '<video src="' + v.archivo + '" muted loop playsinline autoplay preload="metadata"' + (v.portada ? ' poster="' + v.portada + '"' : '') + '></video>'
+      : '<img src="' + (v.portada || "") + '" alt="" loading="lazy">';
 
-    cont.appendChild(card);
+    el.innerHTML = fondo +
+      '<span class="capa">' + (v.archivo ? "" : PLAY) + '</span>' +
+      (v.vistas ? '<span class="vistas">' + OJO + v.vistas + '</span>' : '') +
+      (v.pie ? '<span class="pie">' + v.pie + '</span>' : '');
+
+    el.addEventListener("click", function(){ abrir(v); });
+    el.addEventListener("keydown", function(e){
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); abrir(v); }
+    });
+    pista.appendChild(el);
   });
+
+  // Flechas de escritorio
+  var izq = document.getElementById("reel-izq"), der = document.getElementById("reel-der");
+  function paso(){ var p = pista.querySelector(".reel"); return p ? p.offsetWidth + 14 : 260; }
+  function estado(){
+    if(!izq || !der) return;
+    var fin = pista.scrollWidth - pista.clientWidth - 4;
+    izq.disabled = pista.scrollLeft <= 4;
+    der.disabled = pista.scrollLeft >= fin;
+  }
+  if(izq && der){
+    izq.addEventListener("click", function(){ pista.scrollBy({ left: -paso(), behavior: "smooth" }); });
+    der.addEventListener("click", function(){ pista.scrollBy({ left:  paso(), behavior: "smooth" }); });
+    pista.addEventListener("scroll", estado);
+    setTimeout(estado, 60);
+  }
 })();
 
 (function(){
