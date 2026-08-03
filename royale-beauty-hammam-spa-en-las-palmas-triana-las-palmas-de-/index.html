@@ -118,7 +118,8 @@
     <p class="rotulo rv">Instagram</p>
     <h2 class="rv">El día a día del centro</h2>
     <p class="entradilla rv">Rituales, novedades y los rincones del hammam. Síguenos en <a href="https://www.instagram.com/royale.beauty.spa/" target="_blank" rel="noopener">@royale.beauty.spa</a>.</p>
-    <div class="ig-grid rv">
+    <div class="videos rv" id="videos"></div>
+    <div class="ig-grid rv" id="ig-fotos" hidden>
       <a href="https://www.instagram.com/royale.beauty.spa/" target="_blank" rel="noopener" aria-label="Ver publicaciones en Instagram"><img src="assets/img4.jpg" alt="Rincón del hammam de Royale Beauty" loading="lazy"></a>
       <a href="https://www.instagram.com/royale.beauty.spa/" target="_blank" rel="noopener" aria-label="Ver publicaciones en Instagram"><img src="assets/img5.jpg" alt="Detalle de los rituales de Royale Beauty" loading="lazy"></a>
       <a href="https://www.instagram.com/royale.beauty.spa/" target="_blank" rel="noopener" aria-label="Ver publicaciones en Instagram"><img src="assets/flotante1.jpg" alt="Sala de descanso de Royale Beauty" loading="lazy"></a>
@@ -199,6 +200,64 @@
   var li = document.querySelector('#horario li[data-dia="' + d + '"]');
   if(li) li.setAttribute("data-hoy","1");
   document.getElementById("anio").textContent = String(ahora.getFullYear());
+})();
+
+/* ══════════════════════════════════════════════════════════════════════
+   VÍDEOS DE INSTAGRAM  ·  lo único que hay que tocar es esta lista
+   ══════════════════════════════════════════════════════════════════════
+   Dos formas de poner un vídeo, y se pueden mezclar:
+
+   1) ARCHIVO PROPIO (recomendado). Rápido, se reproduce solo en silencio
+      y en bucle como un reel, y NO usa cookies de Instagram:
+        { archivo: "assets/reel1.mp4", pie: "Ritual de hammam" }
+
+   2) ENLACE DE INSTAGRAM. El vídeo NO se carga hasta que el visitante lo
+      toca, para no arrastrar el javascript de Meta ni sus cookies:
+        { instagram: "https://www.instagram.com/reel/CODIGO/",
+          portada: "assets/img4.jpg", pie: "Nuestro hammam por dentro" }
+
+   Si la lista se deja vacía, la web enseña las fotos de siempre.
+   ══════════════════════════════════════════════════════════════════════ */
+var VIDEOS = [
+  // { instagram: "https://www.instagram.com/reel/PEGA_AQUI/", portada: "assets/img4.jpg", pie: "" },
+];
+
+(function(){
+  var cont = document.getElementById("videos"), fotos = document.getElementById("ig-fotos");
+  if(!cont) return;
+  if(!VIDEOS.length){ cont.hidden = true; if(fotos) fotos.hidden = false; return; }
+
+  var ICONO = '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+
+  VIDEOS.forEach(function(v){
+    var card = document.createElement("div");
+    card.className = "video-card";
+
+    if(v.archivo){
+      // Archivo propio: se reproduce solo, sin sonido. Como un reel.
+      card.innerHTML = '<video src="' + v.archivo + '" muted loop playsinline autoplay preload="metadata"' +
+        (v.portada ? ' poster="' + v.portada + '"' : '') + '></video>' +
+        (v.pie ? '<span class="pie">' + v.pie + '</span>' : '');
+      card.style.cursor = "default";
+    } else if(v.instagram){
+      // Instagram: portada primero. El embed real solo al tocarlo.
+      card.innerHTML = '<img src="' + (v.portada || "assets/hero.jpg") + '" alt="" loading="lazy">' + ICONO +
+        (v.pie ? '<span class="pie">' + v.pie + '</span>' : '');
+      card.setAttribute("role","button");
+      card.setAttribute("tabindex","0");
+      card.setAttribute("aria-label","Reproducir vídeo de Instagram");
+      var abrir = function(){
+        var limpio = String(v.instagram).split("?")[0].replace(/\/$/, "");
+        card.innerHTML = '<iframe src="' + limpio + '/embed" allowfullscreen scrolling="no" ' +
+          'allowtransparency="true" title="Vídeo de Instagram"></iframe>';
+        card.style.cursor = "default";
+      };
+      card.addEventListener("click", abrir);
+      card.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); abrir(); } });
+    } else { return; }
+
+    cont.appendChild(card);
+  });
 })();
 
 // Aparicion suave al bajar. Sin librerias: en movil se nota mucho.
