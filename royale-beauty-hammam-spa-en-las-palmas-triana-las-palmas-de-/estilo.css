@@ -1,0 +1,146 @@
+:root{
+  --crema:#F3EDE6; --crema-2:#E8E0D5;
+  --oro:#C9A96E; --oro-luz:#D9C28E; --oro-osc:#A68B4B;
+  --tinta:#12100E; --tinta-2:#0D0B09; --piedra:#847A6E;
+  --linea:rgba(18,16,14,.14);
+  --brand:"Cinzel Decorative",Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Jost",system-ui,sans-serif;
+  --pad:clamp(1.25rem,5vw,5rem);
+  --ancho:1180px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--crema);color:var(--tinta);font-family:var(--sans);
+  font-weight:300;line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.env{width:min(100% - var(--pad)*2,var(--ancho));margin-inline:auto}
+
+/* ---------- barra superior ---------- */
+.barra{position:sticky;top:0;z-index:50;background:rgba(243,237,230,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.barra .env{display:flex;align-items:center;gap:1rem;min-height:60px}
+.marca{font-family:var(--brand);font-size:clamp(.95rem,2.6vw,1.15rem);letter-spacing:.06em;
+  text-decoration:none;white-space:nowrap}
+.barra nav{margin-inline-start:auto;display:flex;align-items:center;gap:.5rem}
+.idiomas{display:flex;gap:.35rem;font-size:.78rem;letter-spacing:.08em}
+.idiomas a{text-decoration:none;padding:.3rem .55rem;border:1px solid var(--linea);border-radius:99px;
+  color:var(--piedra);transition:.2s}
+.idiomas a[aria-current]{background:var(--tinta);color:var(--crema);border-color:var(--tinta)}
+.idiomas a:hover{border-color:var(--oro)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.72rem 1.4rem;border-radius:99px;text-decoration:none;font-size:.82rem;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:400;border:1px solid transparent;
+  transition:transform .25s,background .25s,color .25s;white-space:nowrap;cursor:pointer}
+.btn:active{transform:scale(.97)}
+.btn-oro{background:var(--oro);color:var(--tinta-2)}
+.btn-oro:hover{background:var(--oro-luz)}
+.btn-linea{border-color:currentColor}
+.btn-linea:hover{background:rgba(255,255,255,.12)}
+.barra .btn{padding:.55rem 1.05rem;font-size:.72rem}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(88svh,720px);display:grid;align-items:end;
+  color:var(--crema);isolation:isolate}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+/* Velo oscuro fuerte: el texto tiene que leerse siempre, salga la foto que salga. */
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(13,11,9,.58) 0%,rgba(13,11,9,.38) 38%,rgba(13,11,9,.84) 100%)}
+.hero .env{padding-block:clamp(2.5rem,9vw,5rem)}
+.hero h1{font-family:var(--brand);font-weight:400;margin:0 0 .6rem;
+  font-size:clamp(1.9rem,7vw,4rem);line-height:1.08;letter-spacing:.01em}
+.claim{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,3.4vw,1.6rem);
+  margin:0 0 1.6rem;color:#EFE7DC;max-width:36ch}
+.hoy{display:inline-flex;align-items:center;gap:.55rem;font-size:.8rem;letter-spacing:.06em;
+  margin:0 0 1.3rem;padding:.4rem .9rem;border-radius:99px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22)}
+.punto{width:7px;height:7px;border-radius:50%;background:#7BD88F;box-shadow:0 0 0 3px rgba(123,216,143,.25);flex:none}
+.punto.cerrado{background:#E08A7B;box-shadow:0 0 0 3px rgba(224,138,123,.25)}
+.acciones{display:flex;flex-wrap:wrap;gap:.7rem}
+
+/* ---------- secciones ---------- */
+section{padding-block:clamp(3.2rem,9vw,6.5rem)}
+.rotulo{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--oro-osc);margin:0 0 .7rem}
+h2{font-family:var(--brand);font-weight:400;font-size:clamp(1.55rem,5vw,2.7rem);line-height:1.15;margin:0 0 1rem}
+.entradilla{font-family:var(--serif);font-size:clamp(1.05rem,2.8vw,1.35rem);color:#4A443D;max-width:56ch;margin:0 0 2.4rem}
+
+/* rituales */
+.rituales{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
+.ritual{position:relative;background:#fff;border:1px solid var(--linea);border-radius:4px;overflow:hidden;
+  display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.ritual:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(18,16,14,.1)}
+.ritual img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.ritual .cuerpo{padding:1.4rem 1.4rem 1.6rem;display:flex;flex-direction:column;flex:1}
+.ritual h3{font-family:var(--serif);font-size:1.5rem;font-weight:500;margin:0 0 .2rem}
+.dur{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--piedra);margin:0 0 .8rem}
+.ritual p:not(.dur){margin:0 0 1.3rem;font-size:.95rem;color:#4A443D}
+.precio{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  padding-top:1rem;border-top:1px solid var(--linea)}
+.precio b{font-family:var(--serif);font-size:1.9rem;font-weight:500;color:var(--oro-osc)}
+.destacado{outline:2px solid var(--oro);outline-offset:-2px}
+.cinta{position:absolute;inset-inline-start:0;top:1rem;background:var(--oro);color:var(--tinta-2);
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .8rem;z-index:2}
+
+/* masajes */
+.masajes{margin-top:2.6rem;background:#fff;border:1px solid var(--linea);border-radius:4px;padding:clamp(1.4rem,4vw,2.4rem)}
+.masajes h2{font-size:clamp(1.35rem,4vw,2rem)}
+.lista-masajes{list-style:none;margin:1.2rem 0 0;padding:0;display:grid;gap:.55rem;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.lista-masajes li{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;
+  border-bottom:1px dashed var(--linea);font-size:.98rem}
+.lista-masajes b{font-family:var(--serif);font-size:1.15rem;font-weight:500;color:var(--oro-osc);white-space:nowrap}
+
+/* bonos regalo */
+.bonos{background:var(--tinta);color:var(--crema);position:relative;overflow:hidden}
+.bonos::before{content:"";position:absolute;inset:0;opacity:.16;
+  background:radial-gradient(60% 80% at 82% 20%,var(--oro) 0%,transparent 60%)}
+.bonos .env{position:relative}
+.bonos .rotulo{color:var(--oro-luz)}
+.bonos .entradilla{color:#D8D1C7}
+.formatos{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));margin-bottom:2rem}
+.formato{border:1px solid rgba(201,169,110,.42);border-radius:4px;padding:1.4rem}
+.formato h3{font-family:var(--serif);font-size:1.35rem;font-weight:500;margin:0 0 .4rem;color:var(--oro-luz)}
+.formato p{margin:0;font-size:.95rem;color:#CFC8BE}
+
+/* instagram */
+.ig-grid{display:grid;gap:.5rem;grid-template-columns:repeat(auto-fit,minmax(min(45%,150px),1fr))}
+.ig-grid a{position:relative;overflow:hidden;border-radius:3px;display:block;aspect-ratio:1}
+.ig-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.ig-grid a:hover img{transform:scale(1.06)}
+.ig-grid a::after{content:"";position:absolute;inset:0;background:rgba(18,16,14,0);transition:.35s}
+.ig-grid a:hover::after{background:rgba(18,16,14,.28)}
+
+/* ubicacion */
+.ubi{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));align-items:start}
+.datos dt{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--oro-osc);margin-top:1.2rem}
+.datos dd{margin:.25rem 0 0;font-size:1.02rem}
+.datos a{text-decoration:none;border-bottom:1px solid var(--linea)}
+.horario{list-style:none;margin:.4rem 0 0;padding:0;font-size:.98rem}
+.horario li{display:flex;justify-content:space-between;gap:1rem;padding:.35rem 0;border-bottom:1px solid var(--linea)}
+.horario li[data-hoy]{color:var(--oro-osc);font-weight:500}
+.mapa{border:0;width:100%;aspect-ratio:4/3;border-radius:4px;filter:grayscale(.35) contrast(1.05)}
+
+/* pie */
+footer{background:var(--tinta-2);color:#B9B2A8;padding-block:2.6rem;font-size:.86rem}
+footer .env{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between}
+footer a{text-decoration:none}
+footer a:hover{color:var(--oro-luz)}
+.legales{display:flex;flex-wrap:wrap;gap:1rem}
+
+/* barra fija en movil: reservar siempre a un dedo */
+.flota{position:fixed;inset-inline:0;bottom:0;z-index:60;
+  padding:.7rem var(--pad) calc(.7rem + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,rgba(243,237,230,0),rgba(243,237,230,.96) 38%);
+  display:flex;gap:.6rem;justify-content:center}
+.flota .btn{flex:1;max-width:230px}
+@media(min-width:820px){.flota{display:none}}
+@media(max-width:819px){body{padding-bottom:76px}}
+
+/* aparicion suave, sin librerias */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
