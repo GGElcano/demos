@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Americana de piel artesanal | David Farré</title>
+<meta name="description" content="Americana de piel artesanal de David Farré. Elige color, piel y talla de un vistazo: solo se muestran disponibles las combinaciones que existen.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=1">
+<link rel="stylesheet" href="legal/cookie-banner.css">
+<style>
+  .wa-float{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;z-index:9000;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s}
+  .wa-float:hover{transform:translateY(-3px) scale(1.05)}
+
+  /* ---------- FICHA ---------- */
+  .ficha{max-width:1240px;margin:0 auto;padding:48px 24px 90px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+  .galeria{position:sticky;top:96px}
+  .galeria-principal{aspect-ratio:3/4;overflow:hidden;background:var(--crema);border:1px solid var(--linea)}
+  .galeria-principal img{width:100%;height:100%;object-fit:cover;display:block}
+  .galeria-tiras{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+  .galeria-tiras button{aspect-ratio:1;overflow:hidden;border:1px solid var(--linea);background:var(--crema);padding:0;cursor:pointer;transition:.2s}
+  .galeria-tiras button.on{border-color:var(--brasa);border-width:2px}
+  .galeria-tiras img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .compra{padding-top:6px}
+  .miga{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-bottom:18px}
+  .miga a{color:var(--gris)}
+  .miga a:hover{color:var(--brasa)}
+  .ficha h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4vw,46px);line-height:1.06;color:var(--tierra);margin-bottom:10px}
+  .ficha-precio{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:32px;color:var(--brasa);margin-bottom:6px}
+  .ficha-intro{font-size:14px;color:var(--gris);line-height:1.65;margin-bottom:24px;max-width:52ch}
+
+  /* conmutador de modos */
+  .modos{display:flex;gap:0;border:1px solid var(--linea);margin-bottom:26px;background:#fff}
+  .modos button{flex:1;padding:13px 10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;font-family:inherit;background:transparent;border:0;cursor:pointer;color:var(--gris);transition:.2s;line-height:1.4}
+  .modos button.on{background:var(--tierra);color:var(--crema)}
+  .modos-pie{font-size:12px;color:var(--gris);margin:-16px 0 26px;line-height:1.55;font-style:italic}
+
+  /* ------- MODO NUEVO: tres filas siempre visibles ------- */
+  .eje{margin-bottom:24px}
+  .eje-cab{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:11px;gap:12px}
+  .eje-cab h3{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--tierra)}
+  .eje-cab .elegido{font-size:13px;color:var(--brasa);font-weight:600}
+  .opciones{display:flex;flex-wrap:wrap;gap:9px}
+
+  .op{position:relative;border:1.5px solid var(--linea);background:#fff;cursor:pointer;font-family:inherit;transition:.18s;padding:0}
+  .op:hover{border-color:var(--brasa)}
+  .op.on{border-color:var(--tierra);border-width:2px;box-shadow:0 0 0 3px rgba(139,94,60,.14)}
+  .op.no{opacity:.34}
+  .op.no::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - .7px),var(--gris) 50%,transparent calc(50% + .7px))}
+  .op.muerta{opacity:.2;cursor:not-allowed}
+
+  /* 14px arriba y abajo dejan el botón en 46px de alto: por encima del mínimo
+     de 44px que recomienda Apple para que el dedo acierte a la primera. */
+  .op-texto{min-width:60px;padding:14px 16px;font-size:13px;font-weight:600;color:var(--tierra);letter-spacing:.02em}
+  .op-muestra{width:70px;padding:0 0 8px}
+  .op-muestra .piel{height:56px;width:100%;display:block}
+  .op-muestra .nombre{display:block;font-size:10.5px;padding-top:7px;color:var(--gris);letter-spacing:.04em}
+  .piel-chocolate{background:radial-gradient(circle at 32% 28%,#6b4226,#3d2314 78%)}
+  .piel-marron{background:radial-gradient(circle at 32% 28%,#9b6539,#6a3f22 78%)}
+  .piel-negro{background:radial-gradient(circle at 32% 28%,#2e2723,#100d0b 78%)}
+
+  .estado{border-left:3px solid var(--brasa);background:var(--hueso);padding:14px 16px;margin:26px 0 20px;font-size:13.5px;line-height:1.6;color:var(--tierra)}
+  .estado b{color:var(--brasa)}
+  .estado.malo{border-left-color:#b4472f}
+  .estado.malo b{color:#b4472f}
+
+  /* ------- MODO VIEJO: desplegables encadenados ------- */
+  .paso{margin-bottom:18px;opacity:.4;transition:opacity .25s;pointer-events:none}
+  .paso.activo{opacity:1;pointer-events:auto}
+  .paso-cab{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+  .paso-num{width:22px;height:22px;border-radius:50%;background:var(--linea);color:var(--tierra);font-size:11px;font-weight:700;display:grid;place-items:center;flex:0 0 auto}
+  .paso.activo .paso-num{background:var(--brasa);color:#fff}
+  .paso-cab h3{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--tierra)}
+  .paso select{width:100%;padding:13px 14px;border:1.5px solid var(--linea);background:#fff;font-family:inherit;font-size:14px;color:var(--tierra);cursor:pointer;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gris) 50%),linear-gradient(135deg,var(--gris) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+  .paso select:disabled{cursor:not-allowed;background-color:#f6f2ea}
+
+  .comprar{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+  .comprar .btn{flex:1;min-width:190px;justify-content:center}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;pointer-events:none}
+  .ficha-extras{margin-top:26px;border-top:1px solid var(--linea);padding-top:20px;font-size:12.5px;color:var(--gris);line-height:1.75}
+  .ficha-extras a{color:var(--brasa);font-weight:600}
+
+  .nota-demo{max-width:1240px;margin:0 auto 60px;padding:0 24px}
+  .nota-demo-caja{background:var(--tierra);color:var(--crema);padding:28px 30px}
+  .nota-demo-caja h4{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin-bottom:10px}
+  .nota-demo-caja p{font-size:14px;line-height:1.7;opacity:.86;max-width:78ch}
+  .nota-demo-caja p+p{margin-top:10px}
+
+  @media(max-width:900px){
+    .ficha{grid-template-columns:1fr;gap:34px;padding:30px 20px 70px}
+    .galeria{position:static}
+    .op-muestra{width:64px}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span><b>Artesanal</b> desde hace más de 30 años</span>
+  <span>Piel excepcional para diseños únicos</span>
+  <span>Tel. <b>614 46 08 98</b></span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Logotipo de David Farré" class="brand-logo" style="filter:invert(1);height:40px">
+      <span class="brand-text">
+        <b>David Farré</b>
+        <small>Piel artesanal</small>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <div class="dropdown">
+        <span class="drop-label">Mujer</span>
+        <div class="drop-panel">
+          <a href="mujer.html">Ver toda la colección</a>
+          <a href="acolchadas.html">Acolchadas</a>
+          <a href="vestidos.html">Vestidos</a>
+        </div>
+      </div>
+      <a href="hombre.html">Hombre</a>
+      <a href="complementos.html">Complementos</a>
+      <a href="zapatos.html">Zapatos</a>
+      <a href="taller.html">El Taller</a>
+      <a href="blog.html">Blog</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a href="tel:614460898" class="nav-cta">Llamar</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menú">&times;</button>
+  <a href="index.html">Inicio</a>
+  <div class="mm-group">
+    <div class="mm-group-title">Mujer</div>
+    <div class="mm-sub">
+      <a href="mujer.html">Ver toda la colección</a>
+      <a href="acolchadas.html">Acolchadas</a>
+      <a href="vestidos.html">Vestidos</a>
+    </div>
+  </div>
+  <a href="hombre.html">Hombre</a>
+  <a href="complementos.html">Complementos</a>
+  <a href="zapatos.html">Zapatos</a>
+  <a href="taller.html">El Taller</a>
+  <a href="blog.html">Blog</a>
+  <a href="contacto.html">Contacto</a>
+  <a href="tel:614460898" class="mm-cta">Llamar 614 46 08 98</a>
+</div>
+
+<!-- FICHA -->
+<div class="ficha">
+
+  <div class="galeria">
+    <div class="galeria-principal">
+      <img id="fotoGrande" src="https://davidfarre.net/wp-content/uploads/2025/06/alt-22americana-David-Farre-vista-frontal22.jpg" alt="Americana de piel artesanal de David Farré, vista frontal">
+    </div>
+    <div class="galeria-tiras" id="tiras"></div>
+  </div>
+
+  <div class="compra">
+    <div class="miga"><a href="index.html">Inicio</a> · <a href="mujer.html">Mujer</a> · Americana de piel artesanal</div>
+    <h1>Americana de piel artesanal</h1>
+    <div class="ficha-precio" id="precio">345 &euro;</div>
+    <p class="ficha-intro">Americana confeccionada a mano en nuestro taller de Lleida. Corte recto, forro interior y acabados cosidos uno a uno. Cada piel se selecciona por separado, así que no hay dos prendas idénticas.</p>
+
+    <div class="modos" role="tablist" aria-label="Forma de elegir">
+      <button id="modoNuevo" class="on" role="tab" aria-selected="true">Todo a la vista</button>
+      <button id="modoViejo" role="tab" aria-selected="false">Paso a paso (web actual)</button>
+    </div>
+    <p class="modos-pie" id="modosPie">Las tres opciones se ven a la vez. Lo que no se fabrica aparece tachado, sin tener que probar combinación por combinación.</p>
+
+    <!-- MODO NUEVO -->
+    <div id="vistaNueva"></div>
+
+    <!-- MODO VIEJO -->
+    <div id="vistaVieja" hidden>
+      <div class="paso activo" id="pasoColor">
+        <div class="paso-cab"><span class="paso-num">1</span><h3>Color</h3></div>
+        <select id="selColor"><option value="">Elige un color</option></select>
+      </div>
+      <div class="paso" id="pasoComposicion">
+        <div class="paso-cab"><span class="paso-num">2</span><h3>Piel</h3></div>
+        <select id="selComposicion" disabled><option value="">Elige antes el color</option></select>
+      </div>
+      <div class="paso" id="pasoTalla">
+        <div class="paso-cab"><span class="paso-num">3</span><h3>Talla</h3></div>
+        <select id="selTalla" disabled><option value="">Elige antes la piel</option></select>
+      </div>
+    </div>
+
+    <div class="estado" id="estado">Elige color, piel y talla.</div>
+
+    <div class="comprar">
+      <button class="btn btn-primary" id="btnComprar" disabled>Añadir a la cesta</button>
+      <a class="btn btn-ghost" style="color:var(--brasa);border-color:var(--brasa)" href="https://wa.me/34614460898?text=Hola%2C%20me%20interesa%20la%20Americana%20de%20piel%20artesanal" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+
+    <div class="ficha-extras">
+      Envío gratuito a península en 24-48 h · Devolución sin coste durante 14 días<br>
+      ¿Dudas con la talla? <a href="contacto.html">Consulta la guía de medidas</a> o escríbenos: te la ajustamos en el taller.
+    </div>
+  </div>
+</div>
+
+<div class="nota-demo">
+  <div class="nota-demo-caja">
+    <h4>Sobre esta ficha</h4>
+    <p>Los datos son los reales de la web actual: esta americana existe en 3 colores, 2 pieles y 4 tallas — pero de las 24 combinaciones posibles solo se fabrican 5. Las tallas 44 y 46 no existen en ninguna combinación.</p>
+    <p>Pulsa <b>Paso a paso</b> para ver cómo se compra hoy y compara. En la web actual hay que ir eligiendo a ciegas y descubrir al final que esa combinación no existe; aquí se ve desde el primer segundo. Las muestras de color son provisionales: en la versión final serán fotos macro de la piel real.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h5>David Farré</h5>
+      <p style="font-size:13px;line-height:1.7;color:rgba(244,237,224,.7)">Piel artesanal desde hace más de 30 años. Diseño y confección propios en Lleida.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Colecciones</h5>
+      <ul>
+        <li><a href="mujer.html">Mujer</a></li>
+        <li><a href="hombre.html">Hombre</a></li>
+        <li><a href="complementos.html">Complementos</a></li>
+        <li><a href="zapatos.html">Zapatos</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>La casa</h5>
+      <ul>
+        <li><a href="taller.html">El Taller</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="tel:614460898">614 46 08 98</a></li>
+        <li><a href="mailto:hola@davidfarre.net">hola@davidfarre.net</a></li>
+        <li><a href="https://www.instagram.com/davidfarre.exclusive/" target="_blank" rel="noopener">@davidfarre.exclusive</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>&copy; <span id="year"></span> David Farré · Piel artesanal</span>
+    <span><a href="legal/aviso-legal.html">Aviso legal</a> · <a href="legal/politica-privacidad.html">Privacidad</a> · <a href="legal/politica-cookies.html">Cookies</a></span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34614460898?text=Hola%2C%20me%20gustar%C3%ADa%20informarme%20sobre%20vuestras%20prendas" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L.3 31.6l8.1-2.1c2.2 1.2 4.8 1.9 7.6 1.9 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.5 0-4.8-.7-6.8-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2-2-4.4-2-6.9C2.9 8.8 8.8 2.9 16 2.9S29.1 8.8 29.1 16 23.2 28.9 16 28.9zm7.2-9.7c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.2s1.4 3.7 1.6 4c.2.2 2.7 4.2 6.6 5.9.9.4 1.6.6 2.2.8.9.3 1.7.2 2.4.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.4z"/></svg>
+</a>
+
+<script>
+/* ============================================================
+   DATOS REALES de davidfarre.net — Americana de piel artesanal
+   3 colores x 2 pieles x 4 tallas = 24 posibles, 5 se fabrican
+   ============================================================ */
+var PRODUCTO = {
+  precio: 345,
+  fotos: [
+    'https://davidfarre.net/wp-content/uploads/2025/06/alt-22americana-David-Farre-vista-frontal22.jpg',
+    'https://davidfarre.net/wp-content/uploads/2025/06/ALT-22americana-david-farre-detalle22-scaled.jpeg',
+    'https://davidfarre.net/wp-content/uploads/2025/06/alt-22americana-David-Farre-vista-espalda22.jpg'
+  ],
+  ejes: [
+    { id:'color', etiqueta:'Color', tipo:'muestra', opciones:[
+      { v:'chocolate', n:'Chocolate' },
+      { v:'marron',    n:'Marrón' },
+      { v:'negro',     n:'Negro' }
+    ]},
+    { id:'composicion', etiqueta:'Piel', tipo:'texto', opciones:[
+      { v:'ante-c',     n:'Ante C' },
+      { v:'cuero-pais', n:'Cuero País' }
+    ]},
+    { id:'talla', etiqueta:'Talla', tipo:'texto', opciones:[
+      { v:'40', n:'40' }, { v:'42', n:'42' }, { v:'44', n:'44' }, { v:'46', n:'46' }
+    ]}
+  ],
+  combinaciones: [
+    { color:'chocolate', composicion:'cuero-pais', talla:'40' },
+    { color:'marron',    composicion:'ante-c',     talla:'42' },
+    { color:'marron',    composicion:'cuero-pais', talla:'40' },
+    { color:'negro',     composicion:'cuero-pais', talla:'40' },
+    { color:'negro',     composicion:'cuero-pais', talla:'42' }
+  ]
+};
+
+var sel = { color:null, composicion:null, talla:null };
+var recientes = [];
+
+function nombreDe(ejeId, valor){
+  var eje = PRODUCTO.ejes.filter(function(e){ return e.id === ejeId; })[0];
+  var op = eje.opciones.filter(function(o){ return o.v === valor; })[0];
+  return op ? op.n : valor;
+}
+
+/* ¿Existe alguna combinación que cumpla estos filtros? */
+function hayCombinacion(filtros){
+  return PRODUCTO.combinaciones.some(function(c){
+    for (var k in filtros){ if (filtros[k] && c[k] !== filtros[k]) return false; }
+    return true;
+  });
+}
+
+/* ¿Se puede elegir este valor manteniendo lo ya elegido en los OTROS ejes? */
+function compatible(ejeId, valor){
+  var f = {};
+  for (var k in sel){ if (k !== ejeId && sel[k]) f[k] = sel[k]; }
+  f[ejeId] = valor;
+  return hayCombinacion(f);
+}
+
+/* ¿Este valor existe en ALGUNA combinación del producto? (talla 44 y 46 no) */
+function existeAlguna(ejeId, valor){
+  var f = {}; f[ejeId] = valor;
+  return hayCombinacion(f);
+}
+
+/* Al pulsar una opción incompatible, se reancla alrededor de ella
+   en vez de dejar al comprador en un callejón sin salida. */
+function elegir(ejeId, valor){
+  if (!existeAlguna(ejeId, valor)) return;
+
+  if (sel[ejeId] === valor){ sel[ejeId] = null; }
+  else { sel[ejeId] = valor; }
+
+  recientes = recientes.filter(function(x){ return x !== ejeId; });
+  if (sel[ejeId]) recientes.unshift(ejeId);
+
+  if (sel[ejeId] && !hayCombinacion(sel)){
+    var conservados = {}; conservados[ejeId] = sel[ejeId];
+    recientes.forEach(function(otro){
+      if (otro === ejeId || !sel[otro]) return;
+      var prueba = {}; for (var k in conservados) prueba[k] = conservados[k];
+      prueba[otro] = sel[otro];
+      if (hayCombinacion(prueba)) conservados[otro] = sel[otro];
+    });
+    for (var k in sel){ sel[k] = conservados[k] || null; }
+  }
+  pintar();
+}
+
+function pintar(){
+  var cont = document.getElementById('vistaNueva');
+  cont.innerHTML = '';
+
+  PRODUCTO.ejes.forEach(function(eje){
+    var bloque = document.createElement('div');
+    bloque.className = 'eje';
+
+    var cab = document.createElement('div');
+    cab.className = 'eje-cab';
+    var h = document.createElement('h3'); h.textContent = eje.etiqueta;
+    var el = document.createElement('span'); el.className = 'elegido';
+    el.textContent = sel[eje.id] ? nombreDe(eje.id, sel[eje.id]) : '';
+    cab.appendChild(h); cab.appendChild(el);
+    bloque.appendChild(cab);
+
+    var fila = document.createElement('div');
+    fila.className = 'opciones';
+
+    eje.opciones.forEach(function(op){
+      var b = document.createElement('button');
+      var puede = compatible(eje.id, op.v);
+      var existe = existeAlguna(eje.id, op.v);
+
+      b.className = 'op ' + (eje.tipo === 'muestra' ? 'op-muestra' : 'op-texto');
+      if (sel[eje.id] === op.v) b.className += ' on';
+      else if (!existe) b.className += ' muerta no';
+      else if (!puede) b.className += ' no';
+
+      if (eje.tipo === 'muestra'){
+        b.innerHTML = '<span class="piel piel-' + op.v + '"></span><span class="nombre">' + op.n + '</span>';
+      } else {
+        b.textContent = op.n;
+      }
+
+      var etiqueta = eje.etiqueta + ' ' + op.n;
+      if (!existe) etiqueta += ', no disponible';
+      else if (!puede) etiqueta += ', no se fabrica con lo que has elegido';
+      b.setAttribute('aria-label', etiqueta);
+      b.setAttribute('aria-pressed', sel[eje.id] === op.v ? 'true' : 'false');
+      if (!existe) b.setAttribute('disabled', 'disabled');
+
+      b.addEventListener('click', function(){ elegir(eje.id, op.v); });
+      fila.appendChild(b);
+    });
+
+    bloque.appendChild(fila);
+    cont.appendChild(bloque);
+  });
+
+  actualizarEstado();
+  sincronizarViejo();
+}
+
+function actualizarEstado(){
+  var caja = document.getElementById('estado');
+  var btn = document.getElementById('btnComprar');
+  var faltan = [];
+  PRODUCTO.ejes.forEach(function(e){ if (!sel[e.id]) faltan.push(e.etiqueta.toLowerCase()); });
+
+  if (faltan.length === 0){
+    caja.className = 'estado';
+    caja.innerHTML = 'Disponible: <b>' + nombreDe('color', sel.color) + ' &middot; ' +
+      nombreDe('composicion', sel.composicion) + ' &middot; talla ' + sel.talla + '</b>. Sale del taller en 24-48 h.';
+    btn.disabled = false;
+    btn.textContent = 'Añadir a la cesta &middot; ' + PRODUCTO.precio + ' €';
+    btn.innerHTML = 'Añadir a la cesta &middot; ' + PRODUCTO.precio + ' &euro;';
+  } else {
+    caja.className = 'estado';
+    var texto = faltan.length === 3
+      ? 'Elige color, piel y talla. Solo se pueden pulsar las combinaciones que existen.'
+      : 'Te falta elegir <b>' + faltan.join('</b> y <b>') + '</b>.';
+    caja.innerHTML = texto;
+    btn.disabled = true;
+    btn.innerHTML = 'Añadir a la cesta';
+  }
+}
+
+/* ---------- MODO VIEJO: tres desplegables encadenados ---------- */
+function opcionesPara(ejeId, filtros){
+  var eje = PRODUCTO.ejes.filter(function(e){ return e.id === ejeId; })[0];
+  return eje.opciones.filter(function(op){
+    var f = {}; for (var k in filtros){ if (filtros[k]) f[k] = filtros[k]; }
+    f[ejeId] = op.v;
+    return hayCombinacion(f);
+  });
+}
+
+function rellenar(selectEl, ejeId, filtros, textoVacio){
+  selectEl.innerHTML = '';
+  var v = document.createElement('option');
+  v.value = ''; v.textContent = textoVacio;
+  selectEl.appendChild(v);
+  opcionesPara(ejeId, filtros).forEach(function(op){
+    var o = document.createElement('option');
+    o.value = op.v; o.textContent = op.n;
+    selectEl.appendChild(o);
+  });
+  selectEl.value = sel[ejeId] || '';
+}
+
+function sincronizarViejo(){
+  var sc = document.getElementById('selColor');
+  var sp = document.getElementById('selComposicion');
+  var st = document.getElementById('selTalla');
+
+  rellenar(sc, 'color', {}, 'Elige un color');
+
+  if (sel.color){
+    rellenar(sp, 'composicion', { color: sel.color }, 'Elige la piel');
+    sp.disabled = false;
+    document.getElementById('pasoComposicion').classList.add('activo');
+  } else {
+    sp.innerHTML = '<option value="">Elige antes el color</option>';
+    sp.disabled = true;
+    document.getElementById('pasoComposicion').classList.remove('activo');
+  }
+
+  if (sel.color && sel.composicion){
+    rellenar(st, 'talla', { color: sel.color, composicion: sel.composicion }, 'Elige la talla');
+    st.disabled = false;
+    document.getElementById('pasoTalla').classList.add('activo');
+  } else {
+    st.innerHTML = '<option value="">Elige antes la piel</option>';
+    st.disabled = true;
+    document.getElementById('pasoTalla').classList.remove('activo');
+  }
+}
+
+function cambioViejo(ejeId, valor){
+  sel[ejeId] = valor || null;
+  if (ejeId === 'color'){ sel.composicion = null; sel.talla = null; }
+  if (ejeId === 'composicion'){ sel.talla = null; }
+  recientes = ['talla','composicion','color'].filter(function(k){ return sel[k]; });
+  pintar();
+}
+
+/* ---------- conmutador ---------- */
+function modo(nuevo){
+  /* En el modo encadenado no puede haber una piel elegida sin color,
+     ni una talla sin piel: se recorta a un estado que ese modo sepa mostrar. */
+  if (!nuevo){
+    if (!sel.color){ sel.composicion = null; sel.talla = null; }
+    else if (!sel.composicion){ sel.talla = null; }
+    recientes = ['color','composicion','talla'].filter(function(k){ return sel[k]; });
+    pintar();
+  }
+  document.getElementById('vistaNueva').hidden = !nuevo;
+  document.getElementById('vistaVieja').hidden = nuevo;
+  document.getElementById('modoNuevo').classList.toggle('on', nuevo);
+  document.getElementById('modoViejo').classList.toggle('on', !nuevo);
+  document.getElementById('modoNuevo').setAttribute('aria-selected', nuevo ? 'true' : 'false');
+  document.getElementById('modoViejo').setAttribute('aria-selected', nuevo ? 'false' : 'true');
+  document.getElementById('modosPie').textContent = nuevo
+    ? 'Las tres opciones se ven a la vez. Lo que no se fabrica aparece tachado, sin tener que probar combinación por combinación.'
+    : 'Así funciona hoy: hasta que no eliges el color no se abre la piel, y hasta que no eliges la piel no se abre la talla. La talla que querías puede no aparecer al final.';
+}
+
+/* ---------- galería ---------- */
+function montarGaleria(){
+  var tiras = document.getElementById('tiras');
+  var grande = document.getElementById('fotoGrande');
+  PRODUCTO.fotos.forEach(function(src, i){
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'Ver foto ' + (i + 1));
+    if (i === 0) b.className = 'on';
+    var img = document.createElement('img');
+    img.src = src; img.alt = 'Americana de piel artesanal, vista ' + (i + 1); img.loading = 'lazy';
+    b.appendChild(img);
+    b.addEventListener('click', function(){
+      grande.src = src;
+      Array.prototype.forEach.call(tiras.children, function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+    });
+    tiras.appendChild(b);
+  });
+}
+
+/* ---------- arranque ---------- */
+document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('modoNuevo').addEventListener('click', function(){ modo(true); });
+document.getElementById('modoViejo').addEventListener('click', function(){ modo(false); });
+document.getElementById('selColor').addEventListener('change', function(e){ cambioViejo('color', e.target.value); });
+document.getElementById('selComposicion').addEventListener('change', function(e){ cambioViejo('composicion', e.target.value); });
+document.getElementById('selTalla').addEventListener('change', function(e){ cambioViejo('talla', e.target.value); });
+montarGaleria();
+pintar();
+
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobileMenu');
+var mmClose = document.getElementById('mmClose');
+function closeMenu(){ hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); }
+hamburger.addEventListener('click', function(){ hamburger.classList.toggle('active'); mobileMenu.classList.toggle('open'); });
+mmClose.addEventListener('click', closeMenu);
+Array.prototype.forEach.call(mobileMenu.querySelectorAll('a'), function(a){ a.addEventListener('click', closeMenu); });
+</script>
+<script src="legal/cookie-banner.js" defer></script>
+</body>
+</html>
