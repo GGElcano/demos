@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Albéitares · Gestión Zootécnica Veterinaria — Miguelturra, Ciudad Real</title>
+<meta name="description" content="Veterinarios dedicados a la evolución y desarrollo de pequeños rumiantes. Gestión de explotaciones, nutrición, reproducción, calidad de la leche y salas de ordeño. Miguelturra, Ciudad Real.">
+<meta name="theme-color" content="#047f6a">
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero-dehesa.webp">
+
+<style>
+/* ============================================================
+   ALBÉITARES — Gestión Zootécnica Veterinaria
+   Demo premium G&G Elcano
+   Paleta tomada del logotipo y CSS reales del cliente.
+   ============================================================ */
+:root{
+  --verde:#047f6a;
+  --verde-claro:#2e987d;
+  --verde-hondo:#04543f;
+  --pasto:#6f9e3f;
+  --noche:#0d1a17;
+  --noche-2:#132520;
+  --crema:#f5f2e9;
+  --crema-2:#ebe6d8;
+  --tinta:#1f2b27;
+  --tinta-suave:#4c5b56;
+  --linea:rgba(31,43,39,.14);
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --nav-h:74px;
+  --banda-h:36px;
+}
+@media (max-width:768px){:root{--banda-h:32px}}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--crema);color:var(--tinta);
+  font-family:var(--sans);font-size:17px;line-height:1.65;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+body.cargando{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.06;margin:0;letter-spacing:-.02em}
+p{margin:0 0 1.1em}
+:focus-visible{outline:3px solid var(--verde);outline-offset:3px;border-radius:2px}
+
+.env{width:min(1280px,92vw);margin-inline:auto}
+.env-estrecho{width:min(880px,90vw);margin-inline:auto}
+
+/* ---------- Grano de papel (dos capas: multiply + screen) ---------- */
+body::before,body::after{
+  content:"";position:fixed;inset:-20%;pointer-events:none;z-index:3997;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:170px 170px;
+}
+body::before{mix-blend-mode:multiply;opacity:.16}
+body::after{mix-blend-mode:screen;opacity:.10}
+
+/* ---------- Estela fluida ---------- */
+#fluido{position:fixed;inset:0;z-index:3998;pointer-events:none;mix-blend-mode:multiply;opacity:.85}
+#fluido.fluido--screen{mix-blend-mode:screen;opacity:.62}
+#fluido canvas{width:100%!important;height:100%!important;pointer-events:none!important}
+
+/* ---------- Cursor decorativo ---------- */
+#punto,#anillo{position:fixed;top:0;left:0;z-index:4000;pointer-events:none;border-radius:50%;opacity:0}
+#punto{width:7px;height:7px;background:var(--verde);margin:-3.5px 0 0 -3.5px}
+#anillo{width:40px;height:40px;border:1.5px solid rgba(4,127,106,.55);margin:-20px 0 0 -20px}
+@media (hover:hover) and (pointer:fine){body.cursor-vivo #punto,body.cursor-vivo #anillo{opacity:1}}
+
+/* ---------- Preloader ---------- */
+#preload{position:fixed;inset:0;z-index:5000;background:var(--noche);display:grid;place-items:center;color:var(--crema)}
+#preload .pre-marca{text-align:center}
+#preload .pre-logo{width:210px;margin:0 auto 22px;opacity:.96;filter:brightness(0) invert(1)}
+#preload .pre-tag{font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(245,242,233,.6)}
+#preload .pre-num{font-family:var(--serif);font-size:clamp(3.4rem,11vw,6.4rem);line-height:1;margin-top:26px;font-variant-numeric:tabular-nums}
+#preload .pre-barra{width:min(300px,62vw);height:2px;background:rgba(245,242,233,.2);margin:20px auto 0;overflow:hidden}
+#preload .pre-barra i{display:block;height:100%;width:0;background:var(--verde-claro)}
+#cortina-carga{position:fixed;inset:0;z-index:4990;background:var(--noche);clip-path:inset(0 0 0 0);pointer-events:none}
+
+/* ---------- Cortina de navegación ---------- */
+#cortina{position:fixed;inset:0;background:var(--noche);z-index:4500;transform:scaleY(0);transform-origin:bottom;pointer-events:none;will-change:transform}
+#cortina::after{content:"";position:absolute;inset:0;background:url("assets/logo.webp") center/150px no-repeat;opacity:.14;filter:brightness(0) invert(1)}
+
+/* ---------- Cabecera ---------- */
+header.top{
+  position:fixed;top:var(--banda-h);left:0;right:0;z-index:1200;height:var(--nav-h);
+  display:flex;align-items:center;transition:background .38s ease,box-shadow .38s ease,height .38s ease;
+}
+header.top::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:170px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(8,18,15,.66) 0%,rgba(8,18,15,.28) 52%,transparent 100%);
+  transition:opacity .38s ease;
+}
+header.top.scrolled{background:rgba(245,242,233,.94);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--linea);height:64px}
+header.top.scrolled::before{opacity:0}
+.top-inner{position:relative;width:min(1280px,92vw);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.marca{display:flex;align-items:center;gap:11px}
+.marca img{height:42px;width:auto;transition:height .38s ease}
+header.top.scrolled .marca img{height:36px}
+.marca .m-blanco{display:block;filter:brightness(0) invert(1)}
+.marca .m-color{display:none}
+header.top.scrolled .m-blanco{display:none}
+header.top.scrolled .m-color{display:block}
+
+nav.principal{display:flex;align-items:center;gap:30px}
+nav.principal a{
+  font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+  color:rgba(245,242,233,.92);position:relative;padding:6px 0;transition:color .3s ease;
+}
+nav.principal a::after{content:"";position:absolute;left:0;bottom:0;height:1.5px;width:0;background:currentColor;transition:width .34s cubic-bezier(.16,1,.3,1)}
+nav.principal a:hover::after,nav.principal a.activo::after{width:100%}
+header.top.scrolled nav.principal a{color:var(--tinta)}
+header.top.scrolled nav.principal a.activo{color:var(--verde)}
+
+.tel-top{
+  display:inline-flex;align-items:center;gap:8px;border:1.4px solid rgba(245,242,233,.5);
+  padding:9px 17px;border-radius:100px;font-size:.8rem;font-weight:600;letter-spacing:.03em;
+  color:rgba(245,242,233,.96);transition:all .3s ease;white-space:nowrap;
+}
+.tel-top:hover{background:var(--verde);border-color:var(--verde);color:#fff}
+header.top.scrolled .tel-top{border-color:var(--verde);color:var(--verde)}
+header.top.scrolled .tel-top:hover{background:var(--verde);color:#fff}
+.ico{width:1em;height:1em;display:inline-block;vertical-align:-.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.hamburguesa{display:none;width:44px;height:44px;align-items:center;justify-content:center;color:rgba(245,242,233,.95)}
+header.top.scrolled .hamburguesa{color:var(--tinta)}
+.hamburguesa span{display:block;width:24px;height:1.8px;background:currentColor;position:relative;transition:background .2s}
+.hamburguesa span::before,.hamburguesa span::after{content:"";position:absolute;left:0;width:24px;height:1.8px;background:currentColor;transition:transform .32s cubic-bezier(.16,1,.3,1)}
+.hamburguesa span::before{top:-7px}
+.hamburguesa span::after{top:7px}
+body.menu-abierto .hamburguesa span{background:transparent}
+body.menu-abierto .hamburguesa span::before{transform:translateY(7px) rotate(45deg)}
+body.menu-abierto .hamburguesa span::after{transform:translateY(-7px) rotate(-45deg)}
+
+#menu-movil{
+  position:fixed;inset:var(--banda-h) 0 0 0;z-index:1150;background:var(--noche);color:var(--crema);
+  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 9vw;
+  clip-path:inset(0 0 100% 0);pointer-events:none;
+}
+body.menu-abierto #menu-movil{pointer-events:auto}
+#menu-movil a{font-family:var(--serif);font-size:clamp(2rem,9vw,3rem);line-height:1.24;opacity:0;transform:translateY(24px)}
+#menu-movil .mm-pie{margin-top:34px;font-family:var(--sans);font-size:.9rem;color:rgba(245,242,233,.72);line-height:1.9}
+#menu-movil .mm-pie a{font-family:var(--sans);font-size:.95rem;opacity:1;transform:none;color:var(--verde-claro)}
+
+/* ---------- Barra de progreso ---------- */
+#progreso{position:fixed;top:var(--banda-h);left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--verde);z-index:1300}
+
+/* ---------- Vistas ---------- */
+.vista{display:none}
+.vista.actual{display:block}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:calc(100svh - var(--banda-h));min-height:600px;margin-top:var(--banda-h);overflow:hidden;background:var(--noche)}
+.hero-foto{position:absolute;inset:0;overflow:hidden;clip-path:inset(0 0 0 0)}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 62%;will-change:transform}
+.hero-foto::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,18,15,.42) 0%,rgba(8,18,15,.14) 34%,rgba(8,18,15,.5) 74%,rgba(8,18,15,.82) 100%);
+}
+.hero-inner{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(64px,10vh,120px)}
+.hero-caja{position:relative;width:min(1280px,92vw);margin-inline:auto}
+.hero-caja::before{
+  content:"";position:absolute;left:-4vw;right:-4vw;bottom:-8vh;top:-6vh;pointer-events:none;
+  background:linear-gradient(0deg,rgba(8,18,15,.6) 0%,rgba(8,18,15,.36) 46%,rgba(8,18,15,0) 100%);
+}
+.hero-caja>*{position:relative}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:11px;color:rgba(245,242,233,.9);
+  font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;margin-bottom:20px;font-weight:500;
+}
+.hero-kicker i{display:block;width:44px;height:1px;background:var(--verde-claro)}
+.hero h1{font-size:clamp(2.9rem,9.2vw,7.4rem);color:var(--crema);font-weight:600;letter-spacing:-.035em;max-width:16ch}
+.hero-sub{
+  margin-top:24px;max-width:48ch;font-size:clamp(1.02rem,1.6vw,1.24rem);
+  color:rgba(245,242,233,.9);line-height:1.62;
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:100px;
+  font-size:.86rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  border:1.5px solid transparent;transition:background .32s ease,color .32s ease,border-color .32s ease;
+}
+.btn-p{background:var(--verde);color:#fff}
+.btn-p:hover{background:var(--verde-hondo)}
+.btn-f{border-color:rgba(245,242,233,.55);color:var(--crema)}
+.btn-f:hover{background:rgba(245,242,233,.95);color:var(--noche);border-color:transparent}
+.btn-o{border-color:var(--verde);color:var(--verde)}
+.btn-o:hover{background:var(--verde);color:#fff}
+.hero-abajo{
+  position:absolute;bottom:26px;right:max(4vw,calc((100vw - 1280px)/2));z-index:4;
+  display:flex;align-items:center;gap:11px;color:rgba(245,242,233,.72);
+  font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+}
+.hero-abajo .raya{width:1px;height:46px;background:linear-gradient(180deg,rgba(245,242,233,.6),transparent);transform-origin:top}
+
+/* ---------- Marquesina ---------- */
+.marquesina{background:var(--noche);color:var(--crema);padding:26px 0;overflow:hidden;position:relative}
+.marquee-track{display:flex;width:max-content;will-change:transform}
+.marquee-item{
+  flex-shrink:0;display:inline-flex;align-items:center;gap:26px;padding-right:26px;
+  font-family:var(--serif);font-size:clamp(1.1rem,2.3vw,1.7rem);white-space:nowrap;letter-spacing:-.01em;
+}
+.marquee-item i{display:block;width:7px;height:7px;border-radius:50%;background:var(--verde-claro);flex:none}
+
+/* ---------- Bloques generales ---------- */
+.bloque{padding:clamp(88px,13vh,160px) 0}
+.bloque-crema{background:var(--crema)}
+.bloque-crema2{background:var(--crema-2)}
+.bloque-noche{background:var(--noche);color:var(--crema)}
+.bloque-verde{background:var(--verde-hondo);color:var(--crema)}
+.etiqueta{
+  display:inline-flex;align-items:center;gap:11px;font-size:.72rem;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--verde);font-weight:600;margin-bottom:22px;
+}
+.etiqueta i{display:block;width:32px;height:1px;background:currentColor}
+.bloque-noche .etiqueta,.bloque-verde .etiqueta{color:var(--verde-claro)}
+.titular{font-size:clamp(2rem,5.2vw,3.9rem);max-width:20ch;letter-spacing:-.03em}
+.titular-ancho{max-width:26ch}
+.entradilla{max-width:60ch;font-size:clamp(1rem,1.45vw,1.14rem);color:var(--tinta-suave);margin-top:22px}
+.bloque-noche .entradilla,.bloque-verde .entradilla{color:rgba(245,242,233,.78)}
+
+/* ---------- Manifiesto ---------- */
+.manifiesto{position:relative;overflow:hidden}
+.mani-texto{
+  font-family:var(--serif);font-size:clamp(1.45rem,3.5vw,2.7rem);line-height:1.32;
+  letter-spacing:-.025em;max-width:22ch;margin:0 auto;text-align:center;position:relative;z-index:3;
+}
+.mani-texto .w{display:inline-block}
+.mani-firma{text-align:center;margin-top:38px;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--tinta-suave);position:relative;z-index:3}
+.flotante{position:absolute;border-radius:3px;overflow:hidden;box-shadow:0 26px 60px rgba(13,26,23,.24);z-index:1}
+.flotante img{width:100%;height:100%;object-fit:cover}
+.f1{width:clamp(120px,15vw,220px);aspect-ratio:3/4;left:2%;top:12%}
+.f2{width:clamp(100px,12vw,180px);aspect-ratio:1/1;right:4%;top:6%}
+.f3{width:clamp(110px,13vw,200px);aspect-ratio:4/5;right:12%;bottom:6%}
+@media (max-width:900px){.f1{left:-4%;top:4%;width:108px}.f2{right:-3%;top:2%;width:92px}.f3{right:2%;bottom:0;width:96px}}
+
+/* ---------- Cifras ---------- */
+.cifras{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,50px);margin-top:56px}
+.cifra .n{font-family:var(--serif);font-size:clamp(2.6rem,6.5vw,5rem);line-height:1;color:var(--verde-claro);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.cifra .t{margin-top:12px;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,233,.66);line-height:1.5}
+@media (max-width:760px){.cifras{grid-template-columns:repeat(2,1fr);gap:34px 20px}}
+
+/* ---------- PIEZA SINGULAR: curva de ordeño ---------- */
+.curva-seccion{position:relative;background:var(--noche);color:var(--crema)}
+.curva-pin{height:100svh;display:flex;align-items:center;overflow:hidden;position:relative}
+.curva-grid{width:min(1280px,92vw);margin-inline:auto;display:grid;grid-template-columns:0.85fr 1.15fr;gap:clamp(28px,4vw,64px);align-items:center}
+.curva-copy{max-width:44ch}
+.curva-copy h2{font-size:clamp(1.6rem,3.1vw,2.5rem);letter-spacing:-.03em}
+.curva-fase{margin-top:30px;min-height:190px;position:relative}
+.curva-fase .cf{position:absolute;inset:0;opacity:0}
+.curva-fase .cf-num{font-size:.72rem;letter-spacing:.28em;color:var(--verde-claro);text-transform:uppercase;font-weight:600}
+.curva-fase .cf-tit{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.12;margin-top:10px;letter-spacing:-.02em}
+.curva-fase .cf-txt{margin-top:14px;font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.56;color:rgba(245,242,233,.82)}
+.curva-lienzo{position:relative;width:100%;aspect-ratio:16/11}
+.curva-lienzo canvas{width:100%;height:100%;display:block}
+.curva-pie{margin-top:14px;font-size:.72rem;letter-spacing:.1em;color:rgba(245,242,233,.5);text-align:right}
+.curva-pct{
+  position:absolute;right:0;top:-6px;font-family:var(--serif);font-size:.86rem;
+  color:rgba(245,242,233,.42);font-variant-numeric:tabular-nums;letter-spacing:.08em;
+}
+@media (max-width:1180px){
+  .curva-grid{grid-template-columns:1fr;gap:26px}
+  .curva-copy{max-width:none}
+  .curva-fase{min-height:158px}
+  .curva-lienzo{aspect-ratio:16/10}
+}
+
+/* ---------- Carrusel de servicios ---------- */
+.carril-cab{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.carril-nav{display:flex;align-items:center;gap:14px}
+.carril-cuenta{font-family:var(--serif);font-size:1.02rem;color:var(--tinta-suave);font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.bloque-noche .carril-cuenta{color:rgba(245,242,233,.7)}
+.fl{
+  width:50px;height:50px;border-radius:50%;border:1.4px solid var(--linea);
+  display:grid;place-items:center;color:var(--tinta);transition:all .3s ease;
+}
+.fl:hover:not(:disabled){background:var(--verde);border-color:var(--verde);color:#fff}
+.fl:disabled{opacity:.3;cursor:default}
+.fl svg{width:19px;height:19px}
+.carril{
+  display:flex;gap:clamp(16px,2vw,28px);margin-top:46px;
+  overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:6px calc((100vw - min(1280px,92vw))/2) 34px;
+  scroll-padding-left:calc((100vw - min(1280px,92vw))/2);
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.carril::-webkit-scrollbar{display:none}
+.tarjeta{
+  flex:0 0 min(390px,82vw);scroll-snap-align:start;background:#fff;border-radius:4px;overflow:hidden;
+  box-shadow:0 3px 22px rgba(13,26,23,.08);display:flex;flex-direction:column;
+  transition:transform .42s cubic-bezier(.16,1,.3,1),box-shadow .42s ease;
+}
+.tarjeta:hover{transform:translateY(-7px);box-shadow:0 26px 54px rgba(13,26,23,.15)}
+.tarjeta-foto{aspect-ratio:16/10;overflow:hidden;background:var(--crema-2)}
+.tarjeta-foto img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.tarjeta:hover .tarjeta-foto img{transform:scale(1.06)}
+.tarjeta-cuerpo{padding:28px 28px 32px;display:flex;flex-direction:column;flex:1}
+.tarjeta-cuerpo h3{font-size:1.34rem;letter-spacing:-.02em}
+.tarjeta-cuerpo p{margin-top:12px;font-size:.96rem;color:var(--tinta-suave);line-height:1.62}
+.tarjeta-mas{margin-top:auto;padding-top:18px;display:inline-flex;align-items:center;gap:9px;color:var(--verde);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.tarjeta-mas svg{width:15px;height:15px;transition:transform .32s ease}
+.tarjeta:hover .tarjeta-mas svg{transform:translateX(5px)}
+.tarjeta-cta{background:var(--verde-hondo);color:var(--crema)}
+.tarjeta-cta .tarjeta-cuerpo{justify-content:flex-start;padding-top:44px}
+.tarjeta-cta .tcta-n{font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--verde-claro);display:block;margin-bottom:18px}
+.tarjeta-cta p{color:rgba(245,242,233,.8)}
+.tarjeta-cta .tarjeta-mas{color:var(--verde-claro)}
+
+/* ---------- Zoom inmersivo ---------- */
+.zoom-seccion{height:300svh;position:relative}
+.zoom-pin{height:100svh;position:relative;overflow:hidden;background:var(--noche)}
+.zoom-marco{position:absolute;inset:0;clip-path:inset(38% 32% 38% 32%);will-change:clip-path}
+.zoom-marco img{width:100%;height:100%;object-fit:cover}
+.zoom-marco::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,18,15,.34),rgba(8,18,15,.62))}
+.zoom-frase{
+  position:absolute;inset:0;display:grid;place-items:center;padding:0 8vw;z-index:3;
+  font-family:var(--serif);font-size:clamp(1.8rem,5.6vw,4.4rem);line-height:1.14;
+  text-align:center;color:var(--crema);letter-spacing:-.03em;
+}
+.zoom-frase .w{display:inline-block;opacity:.16}
+
+/* ---------- Tiras contra-scroll ---------- */
+.tiras{background:var(--crema-2);padding:clamp(56px,8vh,96px) 0;overflow:hidden}
+.tira{display:flex;width:max-content;font-family:var(--serif);font-size:clamp(3rem,11vw,9rem);line-height:1.06;letter-spacing:-.04em;white-space:nowrap}
+.tira span{flex-shrink:0;padding-right:.35em}
+.tira-hueca span{-webkit-text-stroke:1.4px rgba(4,127,106,.5);color:transparent}
+.tira-llena span{color:var(--verde)}
+.tira-llena{opacity:.14}
+
+/* ---------- Reseñas / pilares ---------- */
+.cita{max-width:62ch;margin:0 0 clamp(56px,8vh,90px)}
+.cita:nth-child(even){margin-left:auto;text-align:right}
+.cita blockquote{margin:0;font-family:var(--serif);font-size:clamp(1.3rem,2.9vw,2.15rem);line-height:1.36;letter-spacing:-.025em}
+.cita .autor{margin-top:20px;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--verde-claro)}
+.estrellas{display:inline-flex;gap:4px;margin-bottom:14px}
+.estrellas svg{width:16px;height:16px;fill:var(--verde-claro);stroke:none}
+.cita:nth-child(even) .estrellas{justify-content:flex-end}
+
+/* ---------- Pilares ---------- */
+.pilares{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,3vw,48px);margin-top:56px}
+.pilar{padding:34px 30px;background:rgba(245,242,233,.05);border:1px solid rgba(245,242,233,.12);border-radius:4px}
+.bloque-crema .pilar,.bloque-crema2 .pilar{background:#fff;border-color:var(--linea)}
+.pilar .p-n{font-family:var(--serif);font-size:2rem;color:var(--verde-claro);line-height:1}
+.pilar h3{margin-top:14px;font-size:1.26rem}
+.pilar p{margin-top:11px;font-size:.96rem;line-height:1.62;color:rgba(245,242,233,.74)}
+.bloque-crema .pilar p,.bloque-crema2 .pilar p{color:var(--tinta-suave)}
+@media (max-width:760px){.pilares{grid-template-columns:1fr}}
+
+/* ---------- Equipo ---------- */
+.equipo{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,44px);margin-top:56px}
+.miembro-foto{aspect-ratio:1/1;border-radius:50%;overflow:hidden;width:min(230px,64vw);background:var(--verde-hondo);display:grid;place-items:center}
+.miembro-foto img{width:100%;height:100%;object-fit:cover}
+.miembro-iniciales{font-family:var(--serif);font-size:3.2rem;color:var(--crema);letter-spacing:.02em}
+.miembro h3{margin-top:24px;font-size:1.4rem}
+.miembro .rol{margin-top:8px;font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--verde)}
+.bloque-noche .miembro .rol{color:var(--verde-claro)}
+@media (max-width:820px){.equipo{grid-template-columns:1fr;gap:44px}.miembro-foto{width:170px}}
+
+/* ---------- Servicios en detalle ---------- */
+.serv-fila{display:grid;grid-template-columns:0.95fr 1.05fr;gap:clamp(30px,5vw,80px);align-items:center;padding:clamp(50px,8vh,96px) 0;border-top:1px solid var(--linea)}
+.serv-fila:nth-child(even) .serv-media{order:-1}
+.serv-media{border-radius:4px;overflow:hidden;aspect-ratio:4/3;background:var(--crema-2)}
+.serv-media img{width:100%;height:100%;object-fit:cover}
+.serv-txt h3{font-size:clamp(1.5rem,3vw,2.3rem);letter-spacing:-.025em}
+.serv-txt .serv-n{font-family:var(--serif);font-size:.95rem;color:var(--verde);letter-spacing:.14em;margin-bottom:14px;display:block}
+.serv-txt p{margin-top:16px;color:var(--tinta-suave);font-size:1rem;line-height:1.68}
+.serv-lista{margin:20px 0 0;padding:0;list-style:none}
+.serv-lista li{position:relative;padding-left:26px;margin-bottom:11px;font-size:.97rem;color:var(--tinta-suave);line-height:1.58}
+.serv-lista li::before{content:"";position:absolute;left:0;top:.62em;width:11px;height:1.5px;background:var(--verde)}
+@media (max-width:900px){.serv-fila{grid-template-columns:1fr;gap:26px}.serv-fila:nth-child(even) .serv-media{order:0}}
+
+/* ---------- Contacto ---------- */
+.cont-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,76px)}
+.dato{padding:24px 0;border-bottom:1px solid var(--linea)}
+.bloque-noche .dato{border-color:rgba(245,242,233,.14)}
+.dato .d-t{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--verde);margin-bottom:9px}
+.bloque-noche .dato .d-t{color:var(--verde-claro)}
+.dato .d-v{font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.42}
+.dato .d-v a:hover{color:var(--verde-claro)}
+.campo{margin-bottom:20px}
+.campo label{display:block;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:9px;color:rgba(245,242,233,.72)}
+.campo input,.campo textarea,.campo select{
+  width:100%;padding:14px 16px;background:rgba(245,242,233,.07);color:var(--crema);
+  border:1px solid rgba(245,242,233,.2);border-radius:3px;font-family:var(--sans);font-size:.98rem;
+}
+.campo textarea{min-height:130px;resize:vertical}
+.campo input::placeholder,.campo textarea::placeholder{color:rgba(245,242,233,.4)}
+.consent{display:flex;gap:11px;align-items:flex-start;font-size:.85rem;color:rgba(245,242,233,.74);line-height:1.55;margin-bottom:22px}
+.consent input{width:18px;height:18px;flex:none;margin-top:3px;accent-color:var(--verde-claro)}
+.aviso-demo{margin-top:18px;font-size:.82rem;color:rgba(245,242,233,.56);line-height:1.6}
+.mapa{margin-top:56px;border-radius:4px;overflow:hidden;height:380px;background:var(--noche-2)}
+.mapa iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.35) contrast(1.05)}
+@media (max-width:860px){.cont-grid{grid-template-columns:1fr}}
+
+/* ---------- CTA ---------- */
+.cta-final{position:relative;text-align:center;overflow:hidden}
+.cta-final h2{font-size:clamp(2.1rem,6.4vw,4.6rem);max-width:18ch;margin-inline:auto;letter-spacing:-.035em}
+.cta-boton{display:inline-block;margin-top:44px;will-change:transform}
+.cta-boton .btn{padding:20px 44px;font-size:.9rem}
+
+/* ---------- Pie ---------- */
+footer.pie{background:var(--noche);color:rgba(245,242,233,.72);padding:76px 0 34px;font-size:.92rem}
+.pie-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(30px,4vw,64px)}
+.pie-grid h4{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--verde-claro);margin-bottom:18px;font-family:var(--sans);font-weight:600}
+.pie-grid ul{list-style:none;margin:0;padding:0}
+.pie-grid li{margin-bottom:11px}
+.pie-grid a:hover{color:var(--crema)}
+.pie-logo{width:190px;margin-bottom:20px;filter:brightness(0) invert(1)}
+.pie-abajo{margin-top:56px;padding-top:26px;border-top:1px solid rgba(245,242,233,.14);display:flex;flex-wrap:wrap;gap:14px 26px;justify-content:space-between;font-size:.82rem;color:rgba(245,242,233,.5)}
+.pie-abajo a:hover{color:var(--crema)}
+@media (max-width:820px){.pie-grid{grid-template-columns:1fr;gap:38px}}
+
+/* ---------- Cookies ---------- */
+#cookies{
+  position:fixed;right:max(14px,2vw);bottom:18px;left:auto;z-index:4200;width:min(400px,calc(100vw - 28px));
+  background:var(--noche);color:var(--crema);border-radius:5px;padding:18px 20px;
+  box-shadow:0 26px 60px rgba(0,0,0,.4);display:none;gap:14px;align-items:flex-start;flex-direction:column;
+}
+#cookies.ver{display:flex}
+#cookies p{margin:0;font-size:.84rem;line-height:1.52;color:rgba(245,242,233,.8)}
+#cookies .ck-btns{display:flex;gap:10px;flex-wrap:wrap}
+#cookies .ck-b{padding:10px 19px;border-radius:100px;font-size:.74rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+#cookies .ck-si{background:var(--verde);color:#fff}
+#cookies .ck-no{border:1.4px solid rgba(245,242,233,.4);color:var(--crema)}
+#cookies .ck-largo{display:inline}
+@media (max-width:640px){
+  #cookies{left:10px;right:10px;width:auto;bottom:10px;padding:13px 15px;gap:11px}
+  #cookies p{font-size:.76rem;line-height:1.45}
+  #cookies .ck-b{padding:9px 16px;font-size:.68rem}
+  #cookies .ck-largo{display:none}
+}
+
+/* ---------- Banda demo ---------- */
+.banda-demo{
+  position:fixed;top:0;left:0;right:0;height:var(--banda-h);z-index:1500;
+  background:var(--verde-hondo);color:rgba(245,242,233,.92);
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:0 14px;font-size:.76rem;letter-spacing:.04em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.banda-demo strong{color:#fff;font-weight:600}
+.banda-demo .bd-largo{display:inline}
+.banda-demo .bd-medio{display:inline}
+@media (max-width:900px){.banda-demo .bd-largo{display:none}}
+@media (max-width:640px){.banda-demo{font-size:.7rem;letter-spacing:0}.banda-demo .bd-medio{display:none}}
+
+/* ---------- Legal ---------- */
+.legal-txt h3{margin-top:34px;font-size:1.2rem}
+.legal-txt p{color:var(--tinta-suave);font-size:.97rem}
+
+/* ---------- Responsive nav ---------- */
+@media (max-width:980px){
+  nav.principal,.tel-top{display:none}
+  .hamburguesa{display:flex}
+}
+@media (max-width:768px){
+  .hero{min-height:auto;height:calc(100svh - var(--banda-h));align-items:flex-start}
+  body{font-size:16px}
+  .hero h1{max-width:none;font-size:clamp(2.5rem,11vw,3.6rem)}
+  .hero-sub{font-size:.98rem;line-height:1.5;margin-top:16px;max-width:34ch}
+  .hero-kicker{font-size:.62rem;letter-spacing:.2em;margin-bottom:14px}
+  .hero-kicker i{width:26px}
+  .hero-ctas{margin-top:24px;gap:10px}
+  .hero-ctas .btn{padding:13px 22px;font-size:.78rem}
+  .hero-inner{padding-bottom:52px}
+  .hero-abajo{display:none}
+  .bloque{padding:74px 0}
+  .serv-fila{padding:44px 0}
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  #preload,#cortina-carga{display:none!important}
+  #fluido,#punto,#anillo{display:none!important}
+  body::before,body::after{display:none!important}
+  .zoom-seccion{height:auto}
+  .zoom-pin{height:auto;min-height:64svh}
+  .zoom-marco{position:relative;clip-path:none;height:64svh}
+  .zoom-frase .w{opacity:1}
+  .curva-pin{height:auto;padding:74px 0}
+  .curva-fase{min-height:0}
+  .curva-fase .cf{position:relative;opacity:1;margin-bottom:26px}
+  .mani-texto .w{opacity:1!important}
+  .flotante{display:none}
+}
+</style>
+</head>
+<body class="cargando">
+
+<!-- ============ PRELOADER ============ -->
+<div id="preload">
+  <div class="pre-marca">
+    <img class="pre-logo" src="assets/logo.webp" alt="Albéitares" width="210" height="61">
+    <div class="pre-tag">Gestión Zootécnica Veterinaria</div>
+    <div class="pre-num"><span id="pre-n">0</span></div>
+    <div class="pre-barra"><i id="pre-i"></i></div>
+  </div>
+</div>
+<div id="cortina-carga" aria-hidden="true"></div>
+
+<div id="fluido" aria-hidden="true"></div>
+<div id="punto" aria-hidden="true"></div>
+<div id="anillo" aria-hidden="true"></div>
+<div id="cortina" aria-hidden="true"></div>
+<div id="progreso" aria-hidden="true"></div>
+
+<div class="banda-demo">Demostración creada por <strong>G&amp;G Elcano</strong><span class="bd-medio"> para Albéitares 2005 S.L.</span><span class="bd-largo"> Contenido y fotografías de la empresa.</span></div>
+
+<!-- ============ CABECERA ============ -->
+<header class="top" id="cabecera">
+  <div class="top-inner">
+    <a class="marca" href="#inicio" data-go="inicio" aria-label="Albéitares, inicio">
+      <img class="m-blanco" src="assets/logo.webp" alt="Albéitares Gestión Zootécnica Veterinaria" width="145" height="42">
+      <img class="m-color" src="assets/logo.webp" alt="Albéitares Gestión Zootécnica Veterinaria" width="124" height="36">
+    </a>
+    <nav class="principal" aria-label="Principal">
+      <a href="#inicio" data-go="inicio" class="activo">Inicio</a>
+      <a href="#servicios" data-go="servicios">Servicios</a>
+      <a href="#equipo" data-go="equipo">Quiénes somos</a>
+      <a href="#contacto" data-go="contacto">Contacto</a>
+    </nav>
+    <a class="tel-top" href="tel:+34649329604">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.4 2.1L8.1 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg>
+      649 329 604
+    </a>
+    <button class="hamburguesa" id="btn-menu" aria-label="Abrir menú" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<div id="menu-movil" aria-hidden="true">
+  <a href="#inicio" data-go="inicio">Inicio</a>
+  <a href="#servicios" data-go="servicios">Servicios</a>
+  <a href="#equipo" data-go="equipo">Quiénes somos</a>
+  <a href="#contacto" data-go="contacto">Contacto</a>
+  <div class="mm-pie">
+    <a href="tel:+34649329604">649 329 604</a><br>
+    <a href="mailto:administracion@albeitares2005.es">administracion@albeitares2005.es</a><br>
+    Urbanización el Puente, 17<br>Miguelturra, Ciudad Real
+  </div>
+</div>
+
+<main>
+
+<!-- ================================================================
+     VISTA: INICIO
+     ================================================================ -->
+<section class="vista actual" id="v-inicio">
+
+  <div class="hero">
+    <div class="hero-foto" id="hero-foto">
+      <img src="assets/hero-dehesa.webp" alt="Rebaño de ovejas pastando entre encinas en la dehesa" width="1300" height="1794" fetchpriority="high">
+    </div>
+    <div class="hero-inner">
+      <div class="hero-caja">
+        <div class="hero-kicker" data-hero-el><i></i>Miguelturra · Ciudad Real · Desde 2005</div>
+        <h1 id="hero-h1">Sanidad y bienestar animal</h1>
+        <p class="hero-sub" data-hero-el>Veterinarios dedicados a la evolución y desarrollo de pequeños rumiantes. Combinamos medicina veterinaria y zootecnia para que tu explotación sea más sana y más rentable.</p>
+        <div class="hero-ctas" data-hero-el>
+          <a class="btn btn-p" href="#servicios" data-go="servicios">Ver servicios</a>
+          <a class="btn btn-f" href="#contacto" data-go="contacto">Hablar con un veterinario</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-abajo" aria-hidden="true"><span>Desplázate</span><i class="raya" id="raya-scroll"></i></div>
+  </div>
+
+  <!-- Marquesina -->
+  <div class="marquesina" aria-hidden="true">
+    <div class="marquee-track" id="marquee">
+      <div class="marquee-item"><span>Gestión de explotaciones</span><i></i><span>Asesoramiento nutricional</span><i></i><span>Gestión reproductiva</span><i></i><span>Calidad de la leche</span><i></i><span>Salas de ordeño</span><i></i><span>Clínica a domicilio</span><i></i><span>Medicina preventiva</span><i></i><span>Análisis de datos</span><i></i></div>
+      <div class="marquee-item"><span>Gestión de explotaciones</span><i></i><span>Asesoramiento nutricional</span><i></i><span>Gestión reproductiva</span><i></i><span>Calidad de la leche</span><i></i><span>Salas de ordeño</span><i></i><span>Clínica a domicilio</span><i></i><span>Medicina preventiva</span><i></i><span>Análisis de datos</span><i></i></div>
+    </div>
+  </div>
+
+  <!-- Manifiesto -->
+  <section class="bloque bloque-crema manifiesto">
+    <div class="flotante f1" data-speed="1" aria-hidden="true"><img src="assets/cordero.webp" alt="" width="483" height="1000" loading="lazy"></div>
+    <div class="flotante f2" data-speed="1.7" aria-hidden="true"><img src="assets/corderos.webp" alt="" width="358" height="412" loading="lazy"></div>
+    <div class="flotante f3" data-speed="2.6" aria-hidden="true"><img src="assets/equinos.webp" alt="" width="358" height="412" loading="lazy"></div>
+    <div class="env-estrecho">
+      <p class="mani-texto" id="mani">Garantizar la salud, el bienestar y la productividad de los animales mediante conocimiento científico y técnicas de gestión adecuadas.</p>
+      <div class="mani-firma">Albéitares 2005 S.L.</div>
+    </div>
+  </section>
+
+  <!-- Cifras -->
+  <section class="bloque bloque-noche">
+    <div class="env">
+      <span class="etiqueta"><i></i>La casa</span>
+      <h2 class="titular titular-ancho">Un grupo de veterinarios con una amistad forjada en la Facultad de Veterinaria de Córdoba.</h2>
+      <div class="cifras">
+        <div class="cifra"><div class="n" data-cuenta="2005" data-plano="1">0</div><div class="t">Año de fundación</div></div>
+        <div class="cifra"><div class="n" data-cuenta="21" data-sufijo="+">0</div><div class="t">Años en el campo</div></div>
+        <div class="cifra"><div class="n" data-cuenta="3">0</div><div class="t">Veterinarios<br>al frente</div></div>
+        <div class="cifra"><div class="n" data-cuenta="6">0</div><div class="t">Servicios para<br>tu explotación</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PIEZA SINGULAR: la curva de ordeño ============ -->
+  <section class="curva-seccion" id="curva-seccion">
+    <div class="curva-pin" id="curva-pin">
+      <div class="curva-grid">
+        <div class="curva-copy">
+          <span class="etiqueta"><i></i>Nuestro punto fuerte</span>
+          <h2>Saber interpretar los datos obtenidos para adaptarlos a planes de mejora.</h2>
+          <div class="curva-fase" id="curva-fases">
+            <div class="cf" data-fase="0">
+              <div class="cf-num">Fase 01 · Preparación</div>
+              <div class="cf-tit">El minuto que nadie cronometra</div>
+              <p class="cf-txt">Medimos el tiempo de preparación del animal antes de colocar la unidad de ordeño. Ahí empieza todo lo demás.</p>
+            </div>
+            <div class="cf" data-fase="1">
+              <div class="cf-num">Fase 02 · Bajada de la leche</div>
+              <div class="cf-tit">Cuándo sube el flujo</div>
+              <p class="cf-txt">Si la bajada llega tarde, el animal pasa más tiempo del necesario en la sala. El dato lo dice antes que el ojo.</p>
+            </div>
+            <div class="cf" data-fase="2">
+              <div class="cf-num">Fase 03 · Meseta</div>
+              <div class="cf-tit">Producción a los 2 minutos</div>
+              <p class="cf-txt">Flujos medios altos se traducen en tiempos de ordeño más cortos, lo que reduce el tiempo de permanencia de los animales.</p>
+            </div>
+            <div class="cf" data-fase="3">
+              <div class="cf-num">Fase 04 · Ordeño residual</div>
+              <div class="cf-tit">Lo que queda en la ubre</div>
+              <p class="cf-txt">La producción residual no se ve desde el foso. Se registra, se compara y se convierte en un plan de mejora.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="curva-lienzo">
+            <canvas id="lienzo-curva" role="img" aria-label="Gráfica de la curva de eyección de leche durante el ordeño, dibujada por fases"></canvas>
+            <div class="curva-pct" id="curva-pct">00%</div>
+          </div>
+          <div class="curva-pie">Curva tipo de eyección de leche. Representación ilustrativa del análisis que realizamos en sala.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios (carrusel) -->
+  <section class="bloque bloque-crema" id="bloque-servicios">
+    <div class="env">
+      <div class="carril-cab">
+        <div>
+          <span class="etiqueta"><i></i>Servicios para la ganadería de hoy</span>
+          <h2 class="titular">Mejora el rendimiento productivo de tu explotación</h2>
+        </div>
+        <div class="carril-nav">
+          <span class="carril-cuenta" id="carril-cuenta">01 / 06</span>
+          <button class="fl" id="carril-prev" aria-label="Servicio anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="fl" id="carril-next" aria-label="Servicio siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="carril" id="carril">
+      <article class="tarjeta">
+        <div class="tarjeta-foto"><img src="assets/panoramica.webp" alt="Rebaño de ovejas en la dehesa" width="1600" height="528" loading="lazy"></div>
+        <div class="tarjeta-cuerpo">
+          <h3>Gestión de explotaciones ganaderas</h3>
+          <p>Asesoramiento sanitario completo para pequeños rumiantes: análisis de datos técnicos y económicos, acondicionamiento de instalaciones y planes de mejora personalizados.</p>
+          <a class="tarjeta-mas" href="#servicios" data-go="servicios" data-to="#s-explotaciones">Ver detalle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <div class="tarjeta-foto"><img src="assets/alimentacion.webp" alt="Ovino alimentándose en comedero" width="1000" height="667" loading="lazy"></div>
+        <div class="tarjeta-cuerpo">
+          <h3>Asesoramiento nutricional</h3>
+          <p>Valoración exhaustiva de forrajes y piensos y planes de alimentación adaptados al rebaño, con seguimiento periódico del estado nutricional.</p>
+          <a class="tarjeta-mas" href="#servicios" data-go="servicios" data-to="#s-nutricion">Ver detalle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <div class="tarjeta-foto"><img src="assets/testaje.webp" alt="Morueco en la explotación" width="500" height="334" loading="lazy"></div>
+        <div class="tarjeta-cuerpo">
+          <h3>Gestión reproductiva</h3>
+          <p>Ecografías en pequeños rumiantes, inseminación artificial y testaje y valoración de machos para impulsar la mejora genética del rebaño.</p>
+          <a class="tarjeta-mas" href="#servicios" data-go="servicios" data-to="#s-reproductiva">Ver detalle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <div class="tarjeta-foto"><img src="assets/reproductiva.webp" alt="Oveja amamantando a su cordero" width="391" height="450" loading="lazy"></div>
+        <div class="tarjeta-cuerpo">
+          <h3>Calidad de la leche</h3>
+          <p>Programas de control que informan del rendimiento productivo individual y del estado sanitario de las ubres de tus productoras.</p>
+          <a class="tarjeta-mas" href="#servicios" data-go="servicios" data-to="#s-leche">Ver detalle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="tarjeta">
+        <div class="tarjeta-foto"><img src="assets/sala-ordeno.webp" alt="Sala de ordeño de ovino" width="1451" height="485" loading="lazy"></div>
+        <div class="tarjeta-cuerpo">
+          <h3>Gestión de salas de ordeño</h3>
+          <p>Registro y análisis de datos durante el ordeño: rutinas de pre, ordeño y post, flujos parciales, curva de eyección y tiempos de permanencia.</p>
+          <a class="tarjeta-mas" href="#servicios" data-go="servicios" data-to="#s-ordeno">Ver detalle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="tarjeta tarjeta-cta">
+        <div class="tarjeta-cuerpo">
+          <span class="tcta-n">06</span>
+          <h3>Clínica domiciliaria de animales de compañía</h3>
+          <p>Y además, atendemos a tus animales de compañía en tu propia casa: consultas, revisiones, vacunaciones, desparasitaciones, curas y análisis clínicos, sin el estrés del desplazamiento.</p>
+          <a class="tarjeta-mas" href="#servicios" data-go="servicios" data-to="#s-mascotas">Ver los seis servicios <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Zoom inmersivo -->
+  <section class="zoom-seccion" id="zoom-seccion">
+    <div class="zoom-pin">
+      <div class="zoom-marco" id="zoom-marco">
+        <img src="assets/oveja-establo.webp" alt="Oveja alimentándose en el establo" width="1400" height="933" loading="lazy">
+      </div>
+      <div class="zoom-frase" id="zoom-frase"><span>Rentabiliza tu explotación ganadera</span></div>
+    </div>
+  </section>
+
+  <!-- Tiras contra-scroll -->
+  <section class="tiras" aria-hidden="true">
+    <div class="tira tira-hueca" id="tira-a"><span>Pequeños rumiantes</span><span>Pequeños rumiantes</span><span>Pequeños rumiantes</span><span>Pequeños rumiantes</span></div>
+    <div class="tira tira-llena" id="tira-b"><span>Ovino · Caprino</span><span>Ovino · Caprino</span><span>Ovino · Caprino</span><span>Ovino · Caprino</span><span>Ovino · Caprino</span></div>
+  </section>
+
+  <!-- Reseña + pilares -->
+  <section class="bloque bloque-crema2">
+    <div class="env">
+      <span class="etiqueta"><i></i>Lo que dicen de nosotros</span>
+      <div style="margin-top:52px">
+        <div class="cita" data-cita>
+          <div class="estrellas" aria-label="5 sobre 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.6 7 .9-5.1 4.8 1.3 7-6.2-3.4-6.2 3.4 1.3-7L2 9.5l7-.9z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.6 7 .9-5.1 4.8 1.3 7-6.2-3.4-6.2 3.4 1.3-7L2 9.5l7-.9z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.6 7 .9-5.1 4.8 1.3 7-6.2-3.4-6.2 3.4 1.3-7L2 9.5l7-.9z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.6 7 .9-5.1 4.8 1.3 7-6.2-3.4-6.2 3.4 1.3-7L2 9.5l7-.9z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.6 7 .9-5.1 4.8 1.3 7-6.2-3.4-6.2 3.4 1.3-7L2 9.5l7-.9z"/></svg>
+          </div>
+          <blockquote>Empresa con una gran experiencia en el sector y 100% profesionales. Los recomendaría con los ojos cerrados.</blockquote>
+          <div class="autor">Jose Alberto B. · Reseña en Google</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filosofía -->
+  <section class="bloque bloque-verde">
+    <div class="env">
+      <span class="etiqueta"><i></i>Forma de trabajo</span>
+      <h2 class="titular titular-ancho">Cuatro cosas que aprendimos en el campo</h2>
+      <div class="pilares">
+        <div class="pilar"><div class="p-n">01</div><h3>No dar nada por supuesto</h3><p>Todo es bueno o malo en función de las circunstancias. Lo que funciona en una explotación puede no servir en la de al lado.</p></div>
+        <div class="pilar"><div class="p-n">02</div><h3>Hacer equipo</h3><p>Personal, propietarios y profesionales remando en la misma dirección. Sin eso, ningún plan aguanta.</p></div>
+        <div class="pilar"><div class="p-n">03</div><h3>Aprender</h3><p>De los errores propios, asumiendo la responsabilidad de lo que se hace y de lo que se deja de hacer.</p></div>
+        <div class="pilar"><div class="p-n">04</div><h3>Tomar datos y utilizarlos</h3><p>Recoger la información, analizarla y adaptar la estrategia a lo que dicen los resultados. No a lo que nos gustaría que dijeran.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bloque bloque-crema cta-final">
+    <div class="env-estrecho">
+      <span class="etiqueta" style="justify-content:center"><i></i>Hablemos</span>
+      <h2>¿Quieres que veamos juntos los números de tu explotación?</h2>
+      <p class="entradilla" style="margin-inline:auto;text-align:center">Cuéntanos qué rebaño tienes y qué te preocupa. Te decimos con franqueza si podemos ayudarte.</p>
+      <div class="cta-boton" id="cta-mag"><a class="btn btn-p" href="#contacto" data-go="contacto">Solicitar información</a></div>
+    </div>
+  </section>
+
+</section>
+
+<!-- ================================================================
+     VISTA: SERVICIOS
+     ================================================================ -->
+<section class="vista" id="v-servicios">
+  <section class="bloque bloque-noche" style="padding-top:calc(var(--nav-h) + var(--banda-h) + 74px)">
+    <div class="env">
+      <span class="etiqueta"><i></i>Servicios</span>
+      <h1 class="titular">Servicios para la ganadería de hoy</h1>
+      <p class="entradilla">Nos centramos en la gestión y aplicación de prácticas y técnicas que contribuyan al desarrollo óptimo de los animales: alimentación, manejo, sanidad, mejora genética y reproducción.</p>
+    </div>
+  </section>
+
+  <section class="bloque bloque-crema" style="padding-top:0">
+    <div class="env">
+
+      <article class="serv-fila" id="s-explotaciones">
+        <div class="serv-txt">
+          <span class="serv-n">01</span>
+          <h3>Gestión de explotaciones ganaderas</h3>
+          <p>Nos dedicamos a la gestión de explotaciones ganaderas y brindamos un completo asesoramiento sanitario especializado en pequeños rumiantes, con el objetivo de lograr una producción eficiente y sostenible.</p>
+          <ul class="serv-lista">
+            <li>Análisis de datos técnicos y económicos para decidir con base sólida y objetivos concretos.</li>
+            <li>Acondicionamiento de instalaciones: te asesoramos sobre las condiciones óptimas que debe tener tu explotación.</li>
+            <li>Gestión de la bioseguridad y aplicación de buenas prácticas de manejo animal.</li>
+            <li>Planes de mejora personalizados a partir de la información recogida.</li>
+          </ul>
+        </div>
+        <div class="serv-media"><img src="assets/explotaciones.webp" alt="Explotación ganadera de ovino" width="1600" height="460" loading="lazy"></div>
+      </article>
+
+      <article class="serv-fila" id="s-nutricion">
+        <div class="serv-txt">
+          <span class="serv-n">02</span>
+          <h3>Asesoramiento nutricional</h3>
+          <p>Evaluamos las necesidades nutricionales del rebaño con métodos científicos y desarrollamos planes personalizados, valorando de forma exhaustiva los forrajes y piensos disponibles en la explotación.</p>
+          <ul class="serv-lista">
+            <li>Valoración de la calidad nutricional y la composición de forrajes y piensos.</li>
+            <li>Alimentación de los animales en pastoreo, aprovechando los recursos pastables del medio natural.</li>
+            <li>Recomendaciones de combinación de alimentos y suplementos.</li>
+            <li>Seguimiento periódico y ajustes según cambian las necesidades del ganado.</li>
+          </ul>
+        </div>
+        <div class="serv-media"><img src="assets/nutricion.webp" alt="Alimentación de rumiantes" width="486" height="1000" loading="lazy"></div>
+      </article>
+
+      <article class="serv-fila" id="s-reproductiva">
+        <div class="serv-txt">
+          <span class="serv-n">03</span>
+          <h3>Gestión reproductiva</h3>
+          <p>Implementamos mejoras prácticas y técnicas especializadas para impulsar la reproducción exitosa y la mejora genética en tu ganadería.</p>
+          <ul class="serv-lista">
+            <li>Ecografías en pequeños rumiantes: control de gestación y seguimiento del desarrollo fetal.</li>
+            <li>Inseminación artificial con personal capacitado y técnicas actuales.</li>
+            <li>Testaje y valoración de machos para optimizar su rendimiento genético.</li>
+            <li>También trabajamos la gestión reproductiva en equinos.</li>
+          </ul>
+        </div>
+        <div class="serv-media"><img src="assets/ecografia.webp" alt="Ecografía en pequeños rumiantes" width="500" height="334" loading="lazy"></div>
+      </article>
+
+      <article class="serv-fila" id="s-leche">
+        <div class="serv-txt">
+          <span class="serv-n">04</span>
+          <h3>Calidad de la leche</h3>
+          <p>Asesoramiento y planes de mejora de la calidad de la leche, con programas de control estructurados desde una perspectiva técnico-económica.</p>
+          <ul class="serv-lista">
+            <li>Información precisa sobre el rendimiento productivo de la explotación a nivel individual.</li>
+            <li>Evaluación del estado de salud y saneamiento de las ubres de las productoras.</li>
+            <li>Medidas concretas para incrementar la producción y la rentabilidad.</li>
+          </ul>
+        </div>
+        <div class="serv-media"><img src="assets/vet-campo.webp" alt="Veterinario de Albéitares trabajando en una explotación" width="358" height="412" loading="lazy"></div>
+      </article>
+
+      <article class="serv-fila" id="s-ordeno">
+        <div class="serv-txt">
+          <span class="serv-n">05</span>
+          <h3>Gestión de salas de ordeño</h3>
+          <p>El registro y análisis de datos durante el proceso de ordeño es crucial para evaluar de manera objetiva el rendimiento de la instalación. Gestionamos también explotaciones sin sistemas informatizados.</p>
+          <ul class="serv-lista">
+            <li>Rutinas de preordeño, ordeño y postordeño.</li>
+            <li>Producción total, a los 2 minutos y residual.</li>
+            <li>Tiempo de preparación del animal antes de la unidad de ordeño.</li>
+            <li>Flujos parciales, intervalos y curva media de eyección de leche.</li>
+          </ul>
+        </div>
+        <div class="serv-media"><img src="assets/ordeno-detalle.webp" alt="Veterinario en el foso de la sala de ordeño" width="900" height="900" loading="lazy"></div>
+      </article>
+
+      <article class="serv-fila" id="s-mascotas">
+        <div class="serv-txt">
+          <span class="serv-n">06</span>
+          <h3>Clínica domiciliaria de animales de compañía</h3>
+          <p>Ofrecemos servicios veterinarios a domicilio, diseñados para atender a tus animales de compañía en la comodidad de tu hogar, eliminando el estrés y la incomodidad de los desplazamientos.</p>
+          <ul class="serv-lista">
+            <li>Consultas y revisiones de salud.</li>
+            <li>Vacunaciones y desparasitaciones.</li>
+            <li>Curas y tratamientos médicos.</li>
+            <li>Análisis clínicos.</li>
+          </ul>
+        </div>
+        <div class="serv-media"><img src="assets/mascotas.webp" alt="Veterinario atendiendo a un animal de compañía" width="888" height="1000" loading="lazy"></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="bloque bloque-verde cta-final">
+    <div class="env-estrecho">
+      <h2>¿Cuál de estos necesita tu explotación?</h2>
+      <p class="entradilla" style="margin-inline:auto;text-align:center">Si no lo tienes claro, empezamos por mirar los datos que ya tienes.</p>
+      <div class="cta-boton"><a class="btn btn-f" href="#contacto" data-go="contacto">Solicitar información</a></div>
+    </div>
+  </section>
+</section>
+
+<!-- ================================================================
+     VISTA: EQUIPO
+     ================================================================ -->
+<section class="vista" id="v-equipo">
+  <section class="bloque bloque-noche" style="padding-top:calc(var(--nav-h) + var(--banda-h) + 74px)">
+    <div class="env">
+      <span class="etiqueta"><i></i>Quiénes somos</span>
+      <h1 class="titular titular-ancho">Albéitares nace en 2005 de la unión de un grupo de veterinarios con una amistad forjada en la Facultad de Veterinaria de Córdoba.</h1>
+      <p class="entradilla">Desde entonces mantenemos una forma de trabajo distinta, centrada en la salud y el bienestar animal. Nuestro objetivo es ayudarte a desarrollar una explotación rentable mediante la recopilación y el análisis de datos para tomar decisiones acertadas.</p>
+      <div class="equipo">
+        <div class="miembro">
+          <div class="miembro-foto"><img src="assets/vet-raul-lopez.webp" alt="Raúl López, veterinario" width="420" height="420" loading="lazy"></div>
+          <h3>Raúl López</h3>
+          <div class="rol">Veterinario</div>
+        </div>
+        <div class="miembro">
+          <div class="miembro-foto"><img src="assets/vet-francisco-barrientos.webp" alt="Francisco Barrientos, veterinario" width="420" height="420" loading="lazy"></div>
+          <h3>Francisco Barrientos</h3>
+          <div class="rol">Veterinario</div>
+        </div>
+        <div class="miembro">
+          <div class="miembro-foto"><span class="miembro-iniciales" aria-hidden="true">VP</span></div>
+          <h3>Vicente Palomar</h3>
+          <div class="rol">Veterinario</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque bloque-crema">
+    <div class="env">
+      <span class="etiqueta"><i></i>Nuestra forma de trabajo</span>
+      <h2 class="titular titular-ancho">Cuatro cosas que aprendimos en el campo</h2>
+      <div class="pilares">
+        <div class="pilar"><div class="p-n">01</div><h3>No dar nada por supuesto</h3><p>Todo es bueno o malo en función de las circunstancias. Lo que funciona en una explotación puede no servir en la de al lado.</p></div>
+        <div class="pilar"><div class="p-n">02</div><h3>Hacer equipo</h3><p>Personal, propietarios y profesionales remando en la misma dirección. Sin eso, ningún plan aguanta.</p></div>
+        <div class="pilar"><div class="p-n">03</div><h3>Aprender</h3><p>De los errores propios, asumiendo la responsabilidad de lo que se hace y de lo que se deja de hacer.</p></div>
+        <div class="pilar"><div class="p-n">04</div><h3>Tomar datos y utilizarlos</h3><p>Recoger la información, analizarla y adaptar la estrategia a lo que dicen los resultados. No a lo que nos gustaría que dijeran.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque bloque-crema2" style="padding-top:0">
+    <div class="env">
+      <div class="serv-media" style="aspect-ratio:auto;height:clamp(240px,42vh,420px)"><img src="assets/dehesa-rebano.webp" alt="Rebaño de ovejas pastando en la dehesa" width="1200" height="900" loading="lazy"></div>
+    </div>
+  </section>
+</section>
+
+<!-- ================================================================
+     VISTA: CONTACTO
+     ================================================================ -->
+<section class="vista" id="v-contacto">
+  <section class="bloque bloque-noche" style="padding-top:calc(var(--nav-h) + var(--banda-h) + 74px)">
+    <div class="env">
+      <span class="etiqueta"><i></i>Contacto</span>
+      <h1 class="titular">Cuéntanos qué necesita tu explotación</h1>
+      <p class="entradilla">Estaremos encantados de ofrecerte el asesoramiento necesario y planes de mejora personalizados.</p>
+
+      <div class="cont-grid" style="margin-top:64px">
+        <div>
+          <div class="dato">
+            <div class="d-t">Teléfonos</div>
+            <div class="d-v">
+              <a href="tel:+34649329604">649 329 604</a><br>
+              <a href="tel:+34606321969">606 321 969</a><br>
+              <a href="tel:+34696811784">696 811 784</a>
+            </div>
+          </div>
+          <div class="dato">
+            <div class="d-t">Email</div>
+            <div class="d-v">
+              <a href="mailto:info@albeitares2005.es">info@albeitares2005.es</a><br>
+              <a href="mailto:administracion@albeitares2005.es">administracion@albeitares2005.es</a>
+            </div>
+          </div>
+          <div class="dato">
+            <div class="d-t">Dónde estamos</div>
+            <div class="d-v">Urbanización el Puente, 17<br>Miguelturra · Ciudad Real</div>
+          </div>
+          <div class="dato" style="border-bottom:0">
+            <div class="d-t">Ámbito</div>
+            <div class="d-v">Explotaciones de ovino y caprino<br>Clínica a domicilio para animales de compañía</div>
+          </div>
+        </div>
+
+        <div>
+          <form id="form-contacto" novalidate>
+            <div class="campo">
+              <label for="c-nombre">Nombre</label>
+              <input type="text" id="c-nombre" name="nombre" autocomplete="name" placeholder="Tu nombre" required>
+            </div>
+            <div class="campo">
+              <label for="c-email">Email</label>
+              <input type="email" id="c-email" name="email" autocomplete="email" placeholder="tucorreo@ejemplo.com" required>
+            </div>
+            <div class="campo">
+              <label for="c-tema">Qué necesitas</label>
+              <select id="c-tema" name="tema">
+                <option>Gestión de explotaciones ganaderas</option>
+                <option>Asesoramiento nutricional</option>
+                <option>Gestión reproductiva</option>
+                <option>Calidad de la leche</option>
+                <option>Gestión de salas de ordeño</option>
+                <option>Clínica domiciliaria de animales de compañía</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="c-msg">Mensaje</label>
+              <textarea id="c-msg" name="mensaje" placeholder="Cuéntanos el tamaño del rebaño y qué te preocupa"></textarea>
+            </div>
+            <label class="consent"><input type="checkbox" id="c-ok"> He leído y acepto la política de privacidad.</label>
+            <button class="btn btn-p" type="submit">Enviar consulta</button>
+            <p class="aviso-demo" id="form-aviso">Esta es una demostración: el formulario no envía datos a ningún sitio.</p>
+          </form>
+        </div>
+      </div>
+
+      <div class="mapa">
+        <iframe title="Mapa de situación de Albéitares en Miguelturra, Ciudad Real" src="https://www.google.com/maps?q=Urbanizaci%C3%B3n%20el%20Puente%2017%2C%20Miguelturra%2C%20Ciudad%20Real&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ================================================================
+     VISTA: LEGAL
+     ================================================================ -->
+<section class="vista" id="v-legal">
+  <section class="bloque bloque-crema" style="padding-top:calc(var(--nav-h) + var(--banda-h) + 74px)">
+    <div class="env-estrecho legal-txt">
+      <span class="etiqueta"><i></i>Información legal</span>
+      <h1 class="titular">Aviso legal y privacidad</h1>
+      <h3>Titular</h3>
+      <p>Albéitares 2005 S.L. Urbanización el Puente, 17, Miguelturra (Ciudad Real). Teléfono 649 329 604. Email administracion@albeitares2005.es</p>
+      <h3>Sobre esta página</h3>
+      <p>Se trata de una demostración de diseño elaborada por G&amp;G Elcano a partir de la información pública publicada por Albéitares 2005 S.L. en su web y en fuentes abiertas. Los textos y las fotografías pertenecen a sus respectivos titulares. No es la web oficial de la empresa y el formulario de contacto no envía ningún dato.</p>
+      <h3>Protección de datos</h3>
+      <p>Al tratarse de una demostración no se recogen ni se almacenan datos personales. El formulario es únicamente ilustrativo y no realiza envíos ni guarda la información introducida.</p>
+      <h3>Cookies</h3>
+      <p>Esta demostración no instala cookies de analítica ni de publicidad. Únicamente se guarda en el navegador la preferencia sobre el aviso de cookies para no volver a mostrarlo.</p>
+      <h3>Accesibilidad</h3>
+      <p>La página respeta la preferencia del sistema de movimiento reducido: si la tienes activada, las animaciones se desactivan y el contenido se muestra de forma estática y legible.</p>
+    </div>
+  </section>
+</section>
+
+<!-- ================================================================
+     VISTA: PERDIDO
+     ================================================================ -->
+<section class="vista" id="v-perdido">
+  <section class="bloque bloque-noche" style="padding-top:calc(var(--nav-h) + var(--banda-h) + 110px);min-height:70svh">
+    <div class="env-estrecho">
+      <span class="etiqueta"><i></i>Página no encontrada</span>
+      <h1 class="titular">Esa página se nos ha ido del redil</h1>
+      <p class="entradilla">Vuelve al inicio y seguimos desde ahí.</p>
+      <div style="margin-top:34px"><a class="btn btn-p" href="#inicio" data-go="inicio">Volver al inicio</a></div>
+    </div>
+  </section>
+</section>
+
+</main>
+
+<!-- ============ PIE ============ -->
+<footer class="pie">
+  <div class="env">
+    <div class="pie-grid">
+      <div>
+        <img class="pie-logo" src="assets/logo.webp" alt="Albéitares" width="190" height="55" loading="lazy">
+        <p>Veterinarios dedicados a la evolución y desarrollo de pequeños rumiantes.<br>Miguelturra, Ciudad Real.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios" data-go="servicios" data-to="#s-explotaciones">Gestión de explotaciones</a></li>
+          <li><a href="#servicios" data-go="servicios" data-to="#s-nutricion">Asesoramiento nutricional</a></li>
+          <li><a href="#servicios" data-go="servicios" data-to="#s-reproductiva">Gestión reproductiva</a></li>
+          <li><a href="#servicios" data-go="servicios" data-to="#s-leche">Calidad de la leche</a></li>
+          <li><a href="#servicios" data-go="servicios" data-to="#s-ordeno">Salas de ordeño</a></li>
+          <li><a href="#servicios" data-go="servicios" data-to="#s-mascotas">Clínica a domicilio</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+34649329604">649 329 604</a></li>
+          <li><a href="tel:+34606321969">606 321 969</a></li>
+          <li><a href="mailto:administracion@albeitares2005.es">administracion@albeitares2005.es</a></li>
+          <li>Urbanización el Puente, 17<br>Miguelturra, Ciudad Real</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie-abajo">
+      <span>Albéitares 2005 S.L.</span>
+      <span><a href="#legal" data-go="legal">Aviso legal y privacidad</a></span>
+      <span>Demostración de diseño<br>G&amp;G Elcano</span>
+    </div>
+  </div>
+</footer>
+
+<div id="cookies" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <p>Esta demostración no usa cookies de analítica ni de publicidad.<span class="ck-largo"> Solo guardamos tu respuesta a este aviso.</span></p>
+  <div class="ck-btns">
+    <button class="ck-b ck-si" id="ck-si">Entendido</button>
+    <button class="ck-b ck-no" id="ck-no">Más información</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+<script>
+(function(){
+'use strict';
+
+var REDUCIDO = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var HAY_GSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+var MOVIL = matchMedia('(pointer:coarse)').matches || innerWidth < 900;
+var lenis = null;
+
+if (HAY_GSAP) {
+  gsap.registerPlugin(ScrollTrigger);
+  if (window.SplitText) gsap.registerPlugin(SplitText);
+  if (window.CustomEase) {
+    gsap.registerPlugin(CustomEase);
+    CustomEase.create('suave', '0.16,1,0.3,1');
+  }
+}
+
+/* ============================================================
+   1. LENIS + GSAP (un solo rAF)
+   ============================================================ */
+function arrancarLenis(){
+  if (REDUCIDO || typeof window.Lenis === 'undefined') return null;
+  var l = new Lenis({ duration: 1.12, smoothWheel: true, lerp: 0.1 });
+  if (HAY_GSAP) {
+    l.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ l.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    (function raf(t){ l.raf(t); requestAnimationFrame(raf); })();
+  }
+  l.stop();
+  return l;
+}
+lenis = arrancarLenis();
+
+/* ============================================================
+   2. ESTELA FLUIDA
+   ============================================================ */
+function arrancarFluido(){
+  if (REDUCIDO) return;
+  var cont = document.getElementById('fluido');
+  if (!cont) return;
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then(function(mod){
+    var sim;
+    try { sim = new mod.default(cont); } catch(e){ return; }
+
+    sim.setConfig({
+      simResolution: MOVIL ? 96 : 128,
+      dyeResolution: MOVIL ? 512 : 1024,
+      pressureIterations: MOVIL ? 8 : 10,
+      densityDissipation: 3.2,
+      velocityDissipation: 1.9,
+      splatRadius: MOVIL ? 0.12 : 0.1,
+      curl: 8,
+      transparent: true,
+      bloom: false,
+      colorPalette: ['#047f6a', '#2e987d', '#6f9e3f']
+    });
+    sim.start();
+
+    /* re-fijar el contenedor: la librería lo reposiciona al construir */
+    cont.style.position = 'fixed';
+    cont.style.inset = '0';
+    cont.style.zIndex = '3998';
+    cont.style.pointerEvents = 'none';
+    dispatchEvent(new Event('resize'));
+
+    /* pausa por inactividad — evita que el móvil recargue la pestaña */
+    var pausado = false, idleT = 0;
+    function correr(v){ if (v === !pausado) return; pausado = sim.togglePause(); }
+    function despertar(){
+      correr(true);
+      clearTimeout(idleT);
+      idleT = setTimeout(function(){ correr(false); }, 1400);
+    }
+    despertar();
+
+    var lienzo = cont.querySelector('canvas');
+    function sx(){
+      lienzo = lienzo || cont.querySelector('canvas');
+      return (lienzo && lienzo.clientWidth) ? lienzo.width / lienzo.clientWidth : (devicePixelRatio || 1);
+    }
+
+    /* splats coalescidos a 1 por frame */
+    var ultX = null, ultY = null, accX = 0, accY = 0, curX = 0, curY = 0, pendiente = false;
+    function volcar(){
+      pendiente = false;
+      if (Math.abs(accX) + Math.abs(accY) > 4) {
+        despertar();
+        try { sim.splatAtLocation(curX * sx(), curY, accX, accY); } catch(e){}
+      }
+      accX = 0; accY = 0;
+    }
+    function alimentar(x, y){
+      if (ultX !== null) { accX += (x - ultX) * 2.5; accY += (y - ultY) * 2.5; }
+      ultX = x; ultY = y; curX = x; curY = y;
+      if (!pendiente) { pendiente = true; requestAnimationFrame(volcar); }
+    }
+    function reiniciarEstela(){ ultX = null; ultY = null; accX = 0; accY = 0; }
+
+    addEventListener('pointermove', function(e){
+      if (e.pointerType !== 'touch') alimentar(e.clientX, e.clientY);
+    }, { passive: true });
+    addEventListener('touchstart', function(e){
+      var t = e.touches[0]; if (t) { ultX = t.clientX; ultY = t.clientY; }
+    }, { passive: true });
+    addEventListener('touchmove', function(e){
+      var t = e.touches[0]; if (t) alimentar(t.clientX, t.clientY);
+    }, { passive: true });
+    addEventListener('touchend', reiniciarEstela, { passive: true });
+    addEventListener('touchcancel', reiniciarEstela, { passive: true });
+    document.addEventListener('visibilitychange', function(){
+      document.hidden ? correr(false) : despertar();
+    });
+
+    /* la mezcla cambia según el fondo de la sección visible */
+    if (HAY_GSAP) {
+      document.querySelectorAll('.bloque-noche,.bloque-verde,.curva-seccion,.zoom-seccion,.marquesina,footer.pie').forEach(function(sec){
+        ScrollTrigger.create({
+          trigger: sec, start: 'top 46%', end: 'bottom 46%',
+          onToggle: function(self){ cont.classList.toggle('fluido--screen', self.isActive); }
+        });
+      });
+    }
+  }).catch(function(){});
+}
+
+/* ============================================================
+   3. CURSOR DECORATIVO (el nativo sigue visible)
+   ============================================================ */
+function arrancarCursor(){
+  if (REDUCIDO || !HAY_GSAP) return;
+  if (!matchMedia('(pointer:fine)').matches || !matchMedia('(any-hover:hover)').matches) return;
+  var punto = document.getElementById('punto'), anillo = document.getElementById('anillo');
+  if (!punto || !anillo) return;
+  document.body.classList.add('cursor-vivo');
+  var px = gsap.quickTo(punto, 'x', { duration: 0.12, ease: 'power3' });
+  var py = gsap.quickTo(punto, 'y', { duration: 0.12, ease: 'power3' });
+  var ax = gsap.quickTo(anillo, 'x', { duration: 0.42, ease: 'power3' });
+  var ay = gsap.quickTo(anillo, 'y', { duration: 0.42, ease: 'power3' });
+  addEventListener('pointermove', function(e){
+    px(e.clientX); py(e.clientY); ax(e.clientX); ay(e.clientY);
+  }, { passive: true });
+  document.addEventListener('pointerover', function(e){
+    var t = e.target;
+    var activo = t && t.closest && t.closest('a,button,input,textarea,select,.tarjeta');
+    gsap.to(anillo, { scale: activo ? 1.7 : 1, borderColor: activo ? 'rgba(4,127,106,.95)' : 'rgba(4,127,106,.55)', duration: 0.32, ease: 'power3.out' });
+  });
+}
+
+/* ============================================================
+   4. PRELOADER + reveal del hero encadenado
+   ============================================================ */
+function arrancarPreloader(){
+  var pre = document.getElementById('preload');
+  var cor = document.getElementById('cortina-carga');
+  var num = document.getElementById('pre-n');
+  var bar = document.getElementById('pre-i');
+
+  function soltar(){
+    document.body.classList.remove('cargando');
+    if (lenis) lenis.start();
+    if (HAY_GSAP) ScrollTrigger.refresh();
+  }
+
+  if (REDUCIDO || !HAY_GSAP) {
+    if (pre) pre.style.display = 'none';
+    if (cor) cor.style.display = 'none';
+    soltar();
+    animarHeroEstatico();
+    return;
+  }
+
+  var cuenta = { v: 0 };
+  var tl = gsap.timeline({ onComplete: soltar });
+
+  tl.to(cuenta, {
+      v: 100, duration: 1.7, ease: 'steps(14)',
+      onUpdate: function(){
+        var n = Math.round(cuenta.v);
+        if (num) num.textContent = n;
+        if (bar) bar.style.width = n + '%';
+      }
+    })
+    .to(pre, { autoAlpha: 0, duration: 0.42, ease: 'power2.inOut' }, '+=0.12')
+    .set(pre, { display: 'none' })
+    .to(cor, { clipPath: 'inset(0 0 100% 0)', duration: 0.95, ease: 'suave' }, '-=0.1')
+    .set(cor, { display: 'none' })
+    .add(prepararHero(), '-=0.62');
+}
+
+/* ---- Hero: clip-reveal de la foto + SplitText por chars ---- */
+function prepararHero(){
+  var tl = gsap.timeline();
+  var foto = document.getElementById('hero-foto');
+  var h1 = document.getElementById('hero-h1');
+  var extras = document.querySelectorAll('#v-inicio [data-hero-el]');
+  var raya = document.getElementById('raya-scroll');
+
+  if (foto) {
+    tl.fromTo(foto, { clipPath: 'inset(14% 12% 14% 12%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.35, ease: 'suave' }, 0)
+      .fromTo(foto.querySelector('img'), { scale: 1.16 }, { scale: 1, duration: 1.6, ease: 'suave' }, 0);
+  }
+  if (h1 && window.SplitText) {
+    var sp = new SplitText(h1, { type: 'chars,words' });
+    tl.from(sp.chars, { yPercent: 118, opacity: 0, duration: 0.9, stagger: 0.018, ease: 'suave' }, 0.42);
+  } else if (h1) {
+    tl.from(h1, { y: 40, opacity: 0, duration: 0.9, ease: 'suave' }, 0.42);
+  }
+  if (extras.length) tl.from(extras, { y: 26, opacity: 0, duration: 0.75, stagger: 0.09, ease: 'suave' }, 0.72);
+  if (raya) tl.fromTo(raya, { scaleY: 0 }, { scaleY: 1, duration: 0.8, ease: 'suave' }, 0.95);
+  return tl;
+}
+function animarHeroEstatico(){ /* con movimiento reducido el hero ya es visible */ }
+
+/* ---- Salida del hero cosida al scroll ---- */
+function heroSalida(){
+  if (REDUCIDO || !HAY_GSAP) return;
+  var hero = document.querySelector('#v-inicio .hero');
+  if (!hero) return;
+  var img = hero.querySelector('.hero-foto img');
+  var caja = hero.querySelector('.hero-caja');
+  gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.6 } })
+    .to(img, { scale: 1.12, ease: 'none' }, 0)
+    .to(caja, { yPercent: -18, autoAlpha: 0, ease: 'none' }, 0);
+}
+
+/* ============================================================
+   5. MARQUESINA VIVA
+   ============================================================ */
+function arrancarMarquesina(){
+  var pista = document.getElementById('marquee');
+  if (!pista || !HAY_GSAP || REDUCIDO) return;
+  var dur = 26;
+  var marq = gsap.to(pista, { xPercent: -50, duration: dur, ease: 'none', repeat: -1 });
+  marq.totalTime(dur * 1000);
+  var st = ScrollTrigger.create({
+    trigger: document.body, start: 'top top', end: 'bottom bottom',
+    onUpdate: function(self){
+      var v = self.getVelocity();
+      var ts = gsap.utils.clamp(-4, 4, 1 + v / 900);
+      gsap.to(marq, { timeScale: ts, duration: 0.3, overwrite: true });
+      gsap.to(marq, { timeScale: ts >= 0 ? 1 : -1, duration: 1.1, delay: 0.28, overwrite: 'auto' });
+    }
+  });
+  return st;
+}
+
+/* ============================================================
+   6. MANIFIESTO (word-scrub) + fotos flotantes
+   ============================================================ */
+function arrancarManifiesto(){
+  if (REDUCIDO || !HAY_GSAP) return;
+  var mani = document.getElementById('mani');
+  if (mani && window.SplitText) {
+    var sp = new SplitText(mani, { type: 'words' });
+    sp.words.forEach(function(w){ w.classList.add('w'); });
+    gsap.fromTo(sp.words, { opacity: 0.14 }, {
+      opacity: 1, ease: 'none', stagger: 0.35,
+      scrollTrigger: { trigger: mani, start: 'top 82%', end: 'bottom 46%', scrub: 0.7 }
+    });
+  }
+  document.querySelectorAll('.flotante').forEach(function(f){
+    var s = parseFloat(f.dataset.speed || '1');
+    gsap.fromTo(f, { yPercent: 34 * s }, {
+      yPercent: -34 * s, ease: 'none',
+      scrollTrigger: { trigger: f.closest('.manifiesto') || f, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+    });
+  });
+}
+
+/* ============================================================
+   7. CIFRAS cosidas al scroll
+   ============================================================ */
+function arrancarCifras(raiz){
+  var nodos = (raiz || document).querySelectorAll('[data-cuenta]');
+  if (!nodos.length) return;
+  nodos.forEach(function(n){
+    var fin = parseFloat(n.dataset.cuenta);
+    var suf = n.dataset.sufijo || '';
+    var plano = n.dataset.plano === '1';
+    if (REDUCIDO || !HAY_GSAP) { n.textContent = fin + suf; return; }
+    var obj = { v: 0 };
+    gsap.to(obj, {
+      v: fin, duration: 1.9, ease: 'power2.out', snap: { v: 1 },
+      scrollTrigger: { trigger: n, start: 'top 88%', once: true },
+      onUpdate: function(){
+        var val = Math.round(obj.v);
+        n.textContent = (plano ? String(val) : val.toLocaleString('es-ES')) + suf;
+      }
+    });
+    gsap.from(n.parentNode, {
+      y: 34, opacity: 0, duration: 0.8, ease: 'suave',
+      scrollTrigger: { trigger: n.parentNode, start: 'top 92%', once: true }
+    });
+  });
+}
+
+/* ============================================================
+   8. PIEZA SINGULAR — curva de eyección de leche
+   ============================================================ */
+var curvaEstado = { p: 0 };
+
+function curvaPuntos(){
+  /* control points (minutos, flujo relativo 0-1) de una curva tipo de eyección */
+  var c = [
+    [0.00,0.00],[0.15,0.09],[0.30,0.21],[0.42,0.52],[0.55,0.84],
+    [0.70,0.96],[0.90,1.00],[1.15,0.95],[1.45,0.84],[1.75,0.67],
+    [2.05,0.47],[2.35,0.28],[2.60,0.14],[2.80,0.06],[3.00,0.00]
+  ];
+  /* Catmull-Rom -> polilínea densa (para poder dibujarla parcialmente) */
+  var pts = [];
+  for (var i = 0; i < c.length - 1; i++) {
+    var p0 = c[i === 0 ? 0 : i - 1], p1 = c[i], p2 = c[i + 1], p3 = c[i + 2 > c.length - 1 ? c.length - 1 : i + 2];
+    for (var t = 0; t < 1; t += 0.02) {
+      var t2 = t * t, t3 = t2 * t;
+      var x = 0.5 * ((2 * p1[0]) + (-p0[0] + p2[0]) * t + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3);
+      var y = 0.5 * ((2 * p1[1]) + (-p0[1] + p2[1]) * t + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3);
+      pts.push([x, Math.max(0, y)]);
+    }
+  }
+  pts.push([3, 0]);
+  return pts;
+}
+var CURVA = curvaPuntos();
+
+function polilineaParcial(ctx, pts, prop, aX, aY){
+  if (prop <= 0) return null;
+  var total = Math.min(pts.length - 1, Math.floor(prop * (pts.length - 1)));
+  ctx.beginPath();
+  ctx.moveTo(aX(pts[0][0]), aY(pts[0][1]));
+  for (var i = 1; i <= total; i++) ctx.lineTo(aX(pts[i][0]), aY(pts[i][1]));
+  return pts[total];
+}
+
+function pintarCurva(){
+  var cv = document.getElementById('lienzo-curva');
+  if (!cv) return;
+  var caja = cv.parentNode.getBoundingClientRect();
+  if (caja.width < 4) return;
+  var dpr = Math.min(devicePixelRatio || 1, 2);
+  cv.width = Math.round(caja.width * dpr);
+  cv.height = Math.round(caja.height * dpr);
+  var ctx = cv.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  var W = caja.width, H = caja.height;
+  ctx.clearRect(0, 0, W, H);
+
+  var mI = Math.max(46, W * 0.09), mD = Math.max(16, W * 0.04);
+  var mS = Math.max(20, H * 0.08), mB = Math.max(38, H * 0.14);
+  var gw = W - mI - mD, gh = H - mS - mB;
+  var aX = function(t){ return mI + (t / 3) * gw; };
+  var aY = function(v){ return mS + (1 - v) * gh; };
+  var p = curvaEstado.p;
+
+  /* rejilla */
+  ctx.strokeStyle = 'rgba(245,242,233,.10)';
+  ctx.lineWidth = 1;
+  for (var g = 0; g <= 4; g++) {
+    var yy = mS + (gh / 4) * g;
+    ctx.beginPath(); ctx.moveTo(mI, yy); ctx.lineTo(mI + gw, yy); ctx.stroke();
+  }
+  for (var m = 0; m <= 3; m++) {
+    ctx.beginPath(); ctx.moveTo(aX(m), mS); ctx.lineTo(aX(m), mS + gh); ctx.stroke();
+  }
+
+  /* ejes */
+  ctx.strokeStyle = 'rgba(245,242,233,.34)';
+  ctx.lineWidth = 1.3;
+  ctx.beginPath(); ctx.moveTo(mI, mS); ctx.lineTo(mI, mS + gh); ctx.lineTo(mI + gw, mS + gh); ctx.stroke();
+
+  /* rótulos de ejes */
+  ctx.fillStyle = 'rgba(245,242,233,.5)';
+  ctx.font = '500 11px Inter, system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  for (var mm = 0; mm <= 3; mm++) ctx.fillText(mm + (mm === 3 ? ' min' : ''), aX(mm), mS + gh + 20);
+  ctx.save();
+  ctx.translate(mI - 26, mS + gh / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = 'center';
+  ctx.fillText('flujo de leche', 0, 0);
+  ctx.restore();
+
+  /* área bajo la curva */
+  if (p > 0.01) {
+    var fin = polilineaParcial(ctx, CURVA, p, aX, aY);
+    if (fin) {
+      ctx.lineTo(aX(fin[0]), aY(0));
+      ctx.lineTo(aX(CURVA[0][0]), aY(0));
+      ctx.closePath();
+      var grad = ctx.createLinearGradient(0, mS, 0, mS + gh);
+      grad.addColorStop(0, 'rgba(46,152,125,.42)');
+      grad.addColorStop(1, 'rgba(46,152,125,.02)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
+  }
+
+  /* la curva */
+  var punta = polilineaParcial(ctx, CURVA, p, aX, aY);
+  if (punta) {
+    ctx.strokeStyle = '#2e987d';
+    ctx.lineWidth = 2.6;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    /* cabeza que dibuja */
+    ctx.beginPath();
+    ctx.arc(aX(punta[0]), aY(punta[1]), 5.4, 0, Math.PI * 2);
+    ctx.fillStyle = '#f5f2e9';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(aX(punta[0]), aY(punta[1]), 11, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(46,152,125,.5)';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+  }
+
+  /* marca de los 2 minutos (parámetro que ellos miden) */
+  if (p > 0.66) {
+    var a2 = Math.min(1, (p - 0.66) / 0.12);
+    ctx.save();
+    ctx.globalAlpha = a2;
+    ctx.setLineDash([4, 5]);
+    ctx.strokeStyle = 'rgba(111,158,63,.85)';
+    ctx.lineWidth = 1.3;
+    ctx.beginPath(); ctx.moveTo(aX(2), mS + gh); ctx.lineTo(aX(2), mS + gh * 0.12); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(111,158,63,.95)';
+    ctx.font = '600 11px Inter, system-ui, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('producción a los 2 min', aX(2) + 8, mS + gh * 0.12 + 4);
+    ctx.restore();
+  }
+
+  /* cota del pico de flujo */
+  if (p > 0.34) {
+    var aP = Math.min(1, (p - 0.34) / 0.1);
+    ctx.save();
+    ctx.globalAlpha = aP;
+    ctx.setLineDash([3, 4]);
+    ctx.strokeStyle = 'rgba(245,242,233,.4)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(mI, aY(1)); ctx.lineTo(aX(0.9), aY(1)); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(245,242,233,.72)';
+    ctx.font = '600 11px Inter, system-ui, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('pico de flujo', mI + 8, aY(1) - 9);
+    ctx.restore();
+  }
+}
+
+function arrancarCurva(){
+  var sec = document.getElementById('curva-seccion');
+  var pin = document.getElementById('curva-pin');
+  var pct = document.getElementById('curva-pct');
+  var fases = document.querySelectorAll('#curva-fases .cf');
+  if (!sec || !pin) return;
+
+  if (REDUCIDO || !HAY_GSAP) {
+    curvaEstado.p = 1;
+    pintarCurva();
+    if (pct) pct.textContent = '100%';
+    return;
+  }
+
+  /* la sección se alarga para dar recorrido al scrub */
+  sec.style.height = '340svh';
+  pin.style.position = 'sticky';
+  pin.style.top = '0';
+
+  gsap.to(curvaEstado, {
+    p: 1, ease: 'none',
+    scrollTrigger: {
+      trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 0.55,
+      onUpdate: function(self){
+        if (pct) pct.textContent = String(Math.round(self.progress * 100)).padStart(2, '0') + '%';
+        cambiarFase(self.progress, fases);
+      }
+    },
+    onUpdate: pintarCurva
+  });
+
+  addEventListener('resize', pintarCurva);
+  pintarCurva();
+}
+
+/* Fases con MESETA de legibilidad (entrada 22% / meseta / salida 22%) */
+var FASES = [[0, 0.24], [0.24, 0.46], [0.46, 0.73], [0.73, 1.001]];
+function cambiarFase(prog, fases){
+  if (!fases || !fases.length) return;
+  for (var i = 0; i < fases.length; i++) {
+    var r = FASES[i], ini = r[0], fin = r[1], tramo = fin - ini;
+    var o = 0;
+    if (prog >= ini && prog < fin) {
+      var d = (prog - ini) / tramo;
+      var ent = 0.22, sal = 0.22;
+      if (d < ent) o = d / ent;
+      else if (d > 1 - sal) o = (1 - d) / sal;
+      else o = 1;
+    }
+    var el = fases[i];
+    var actual = parseFloat(el.dataset.op || '0');
+    if (Math.abs(actual - o) > 0.01) {
+      el.dataset.op = o;
+      gsap.set(el, { opacity: o, y: (1 - o) * 14 });
+    }
+  }
+}
+
+/* ============================================================
+   9. CARRUSEL SIMPLE (scroll nativo + snap)
+   ============================================================ */
+function arrancarCarrusel(){
+  var carril = document.getElementById('carril');
+  var prev = document.getElementById('carril-prev');
+  var next = document.getElementById('carril-next');
+  var cuenta = document.getElementById('carril-cuenta');
+  if (!carril) return;
+  var tarjetas = carril.querySelectorAll('.tarjeta');
+  if (!tarjetas.length) return;
+
+  function paso(){
+    var a = tarjetas[0].getBoundingClientRect().width;
+    var gap = parseFloat(getComputedStyle(carril).columnGap || getComputedStyle(carril).gap || '20') || 20;
+    return a + gap;
+  }
+  function indice(){
+    var pl = parseFloat(getComputedStyle(carril).scrollPaddingLeft) || 0;
+    return Math.round((carril.scrollLeft) / paso());
+  }
+  function refrescar(){
+    var i = Math.max(0, Math.min(tarjetas.length - 1, indice()));
+    if (cuenta) cuenta.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(tarjetas.length).padStart(2, '0');
+    var fin = carril.scrollLeft >= carril.scrollWidth - carril.clientWidth - 4;
+    if (prev) prev.disabled = carril.scrollLeft <= 4;
+    if (next) next.disabled = fin;
+  }
+  if (prev) prev.addEventListener('click', function(){ carril.scrollBy({ left: -paso(), behavior: 'smooth' }); });
+  if (next) next.addEventListener('click', function(){ carril.scrollBy({ left: paso(), behavior: 'smooth' }); });
+  carril.addEventListener('scroll', function(){
+    clearTimeout(carril._t);
+    carril._t = setTimeout(refrescar, 70);
+  }, { passive: true });
+  addEventListener('resize', refrescar);
+  refrescar();
+
+  /* arrastre con ratón (en táctil manda el scroll nativo) */
+  var abajo = false, x0 = 0, s0 = 0;
+  carril.addEventListener('pointerdown', function(e){
+    if (e.pointerType === 'touch') return;
+    abajo = true; x0 = e.clientX; s0 = carril.scrollLeft;
+    carril.style.scrollSnapType = 'none';
+  });
+  addEventListener('pointermove', function(e){
+    if (!abajo) return;
+    carril.scrollLeft = s0 - (e.clientX - x0);
+  });
+  addEventListener('pointerup', function(){
+    if (!abajo) return;
+    abajo = false;
+    carril.style.scrollSnapType = 'x mandatory';
+    refrescar();
+  });
+}
+
+/* ============================================================
+   10. ZOOM INMERSIVO
+   ============================================================ */
+function arrancarZoom(){
+  if (REDUCIDO || !HAY_GSAP) return;
+  var sec = document.getElementById('zoom-seccion');
+  var marco = document.getElementById('zoom-marco');
+  var frase = document.getElementById('zoom-frase');
+  if (!sec || !marco) return;
+
+  var palabras = null;
+  if (frase && window.SplitText) {
+    var sp = new SplitText(frase.querySelector('span'), { type: 'words' });
+    sp.words.forEach(function(w){ w.classList.add('w'); });
+    palabras = sp.words;
+  }
+
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: 0.6, pin: '.zoom-pin', pinSpacing: false, anticipatePin: 1 }
+  });
+  tl.fromTo(marco, { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.55 }, 0);
+  if (palabras) tl.to(palabras, { opacity: 1, ease: 'none', stagger: 0.16, duration: 0.4 }, 0.32);
+}
+
+/* ============================================================
+   11. TIRAS A CONTRA-SCROLL
+   ============================================================ */
+function arrancarTiras(){
+  if (REDUCIDO || !HAY_GSAP) return;
+  var a = document.getElementById('tira-a'), b = document.getElementById('tira-b');
+  if (!a || !b) return;
+  var st = { trigger: a.closest('.tiras'), start: 'top bottom', end: 'bottom top', scrub: 0.7 };
+  gsap.fromTo(a, { xPercent: -14 }, { xPercent: 4, ease: 'none', scrollTrigger: st });
+  gsap.fromTo(b, { xPercent: 6 }, { xPercent: -18, ease: 'none', scrollTrigger: st });
+}
+
+/* ============================================================
+   12. CITAS + reveals genéricos
+   ============================================================ */
+function arrancarCitas(raiz){
+  if (REDUCIDO || !HAY_GSAP) return;
+  (raiz || document).querySelectorAll('[data-cita]').forEach(function(c, i){
+    gsap.fromTo(c, { y: 46, opacity: 0 }, {
+      y: 0, opacity: 1, ease: 'none',
+      scrollTrigger: { trigger: c, start: 'top 88%', end: 'top 52%', scrub: 0.6 }
+    });
+  });
+}
+
+function arrancarReveals(vista){
+  if (REDUCIDO || !HAY_GSAP) return;
+  var raiz = vista ? document.getElementById('v-' + vista) : document;
+  if (!raiz) raiz = document;
+  var sel = '.titular, .entradilla, .etiqueta, .pilar, .miembro, .serv-fila .serv-txt, .serv-fila .serv-media, .dato, .mapa, .carril-cab';
+  raiz.querySelectorAll(sel).forEach(function(el){
+    if (el._rev) return;
+    el._rev = true;
+    gsap.from(el, {
+      y: 34, opacity: 0, duration: 0.85, ease: 'suave',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    });
+  });
+}
+
+/* ============================================================
+   13. CTA MAGNÉTICO + barra de progreso
+   ============================================================ */
+function arrancarMagnetico(){
+  if (REDUCIDO || !HAY_GSAP) return;
+  if (!matchMedia('(pointer:fine)').matches) return;
+  document.querySelectorAll('.cta-boton').forEach(function(caja){
+    var qx = gsap.quickTo(caja, 'x', { duration: 0.4, ease: 'power3' });
+    var qy = gsap.quickTo(caja, 'y', { duration: 0.4, ease: 'power3' });
+    caja.addEventListener('pointermove', function(e){
+      var r = caja.getBoundingClientRect();
+      qx((e.clientX - (r.left + r.width / 2)) * 0.34);
+      qy((e.clientY - (r.top + r.height / 2)) * 0.42);
+    });
+    caja.addEventListener('pointerleave', function(){
+      gsap.to(caja, { x: 0, y: 0, duration: 1.05, ease: 'elastic.out(1,0.4)' });
+    });
+  });
+}
+
+function arrancarProgreso(){
+  var bar = document.getElementById('progreso');
+  if (!bar || !HAY_GSAP || REDUCIDO) return;
+  gsap.to(bar, {
+    scaleX: 1, ease: 'none',
+    scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.3 }
+  });
+}
+
+/* ============================================================
+   14. CABECERA + menú móvil
+   ============================================================ */
+function arrancarCabecera(){
+  var cab = document.getElementById('cabecera');
+  if (!cab) return;
+  function chequear(){ cab.classList.toggle('scrolled', scrollY > 70); }
+  addEventListener('scroll', chequear, { passive: true });
+  chequear();
+
+  var btn = document.getElementById('btn-menu');
+  var menu = document.getElementById('menu-movil');
+  if (!btn || !menu) return;
+  var enlaces = menu.querySelectorAll('a');
+  var abierto = false;
+
+  function alternar(v){
+    abierto = (typeof v === 'boolean') ? v : !abierto;
+    document.body.classList.toggle('menu-abierto', abierto);
+    btn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    menu.setAttribute('aria-hidden', abierto ? 'false' : 'true');
+    if (lenis) abierto ? lenis.stop() : lenis.start();
+    if (!HAY_GSAP || REDUCIDO) {
+      menu.style.clipPath = abierto ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)';
+      enlaces.forEach(function(a){ a.style.opacity = abierto ? 1 : 0; a.style.transform = 'none'; });
+      return;
+    }
+    if (abierto) {
+      gsap.timeline()
+        .to(menu, { clipPath: 'inset(0 0 0% 0)', duration: 0.62, ease: 'suave' })
+        .to(enlaces, { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'suave' }, '-=0.32');
+    } else {
+      gsap.timeline()
+        .to(enlaces, { opacity: 0, y: 18, duration: 0.26, ease: 'power2.in' })
+        .to(menu, { clipPath: 'inset(0 0 100% 0)', duration: 0.48, ease: 'suave' }, '-=0.1');
+    }
+  }
+  btn.addEventListener('click', function(){ alternar(); });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) alternar(false); });
+  addEventListener('keydown', function(e){ if (e.key === 'Escape' && abierto) alternar(false); });
+}
+
+/* ============================================================
+   15. ROUTER SPA con cortina
+   ============================================================ */
+var VISTAS = ['inicio', 'servicios', 'equipo', 'contacto', 'legal'];
+var enRuta = false;
+
+function cambiarVista(vista, ancla){
+  document.querySelectorAll('.vista').forEach(function(v){ v.classList.remove('actual'); });
+  var destino = document.getElementById('v-' + vista);
+  if (destino) destino.classList.add('actual');
+
+  document.querySelectorAll('nav.principal a, #menu-movil a').forEach(function(a){
+    a.classList.toggle('activo', a.dataset.go === vista);
+  });
+
+  scrollTo(0, 0);
+  if (lenis) lenis.scrollTo(0, { immediate: true });
+
+  if (HAY_GSAP) {
+    ScrollTrigger.refresh();
+    arrancarReveals(vista);
+    arrancarCifras(destino);
+    arrancarCitas(destino);
+  }
+  dispatchEvent(new Event('resize'));
+
+  if (ancla) {
+    var el = document.querySelector(ancla);
+    if (el) {
+      var y = el.getBoundingClientRect().top + scrollY - 84;
+      scrollTo(0, y);
+      if (lenis) lenis.scrollTo(y, { immediate: true });
+    }
+  }
+  var cab = document.getElementById('cabecera');
+  if (cab) cab.classList.toggle('scrolled', vista !== 'inicio' || scrollY > 70);
+}
+
+function ir(vista, empujar, ancla){
+  if (VISTAS.indexOf(vista) === -1) vista = 'perdido';
+  if (enRuta) return;
+  if (empujar !== false) history.pushState(null, '', '#' + vista);
+
+  if (HAY_GSAP && !REDUCIDO) {
+    var cortina = document.getElementById('cortina');
+    enRuta = true;
+    gsap.timeline({ onComplete: function(){ enRuta = false; } })
+      .set(cortina, { transformOrigin: 'bottom' })
+      .to(cortina, { scaleY: 1, duration: 0.45, ease: 'power3.in' })
+      .add(function(){ cambiarVista(vista, ancla); })
+      .set(cortina, { transformOrigin: 'top' })
+      .to(cortina, { scaleY: 0, duration: 0.6, ease: 'power3.out' }, '+=0.05');
+  } else {
+    cambiarVista(vista, ancla);
+  }
+}
+
+document.addEventListener('click', function(e){
+  var t = e.target.closest('[data-go]');
+  if (!t) return;
+  e.preventDefault();
+  if (document.body.classList.contains('menu-abierto')) {
+    document.body.classList.remove('menu-abierto');
+    var mm = document.getElementById('menu-movil');
+    if (mm) { mm.setAttribute('aria-hidden', 'true'); mm.style.clipPath = 'inset(0 0 100% 0)'; }
+    if (lenis) lenis.start();
+  }
+  ir(t.dataset.go, true, t.dataset.to || null);
+});
+
+addEventListener('popstate', function(){
+  ir((location.hash || '#inicio').replace('#', '') || 'inicio', false);
+});
+
+/* ============================================================
+   16. FORMULARIO (demo) + cookies
+   ============================================================ */
+function arrancarForm(){
+  var f = document.getElementById('form-contacto');
+  var aviso = document.getElementById('form-aviso');
+  if (!f || !aviso) return;
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nom = document.getElementById('c-nombre');
+    var mail = document.getElementById('c-email');
+    var ok = document.getElementById('c-ok');
+    if (!nom.value.trim() || !mail.value.trim()) {
+      aviso.textContent = 'Rellena tu nombre y tu email para continuar.';
+      return;
+    }
+    if (!ok.checked) {
+      aviso.textContent = 'Marca la casilla de la política de privacidad para continuar.';
+      return;
+    }
+    aviso.textContent = 'Gracias, ' + nom.value.trim() + '. En la web real este mensaje llegaría a administracion@albeitares2005.es. Esto es una demostración y no se ha enviado nada.';
+    f.reset();
+  });
+}
+
+function arrancarCookies(){
+  var caja = document.getElementById('cookies');
+  if (!caja) return;
+  var clave = 'albeitares-cookies';
+  var si = document.getElementById('ck-si');
+  var no = document.getElementById('ck-no');
+  var guardado = null;
+  try { guardado = localStorage.getItem(clave); } catch(e){}
+  if (!guardado) setTimeout(function(){ caja.classList.add('ver'); }, 1800);
+  if (si) si.addEventListener('click', function(){
+    try { localStorage.setItem(clave, '1'); } catch(e){}
+    caja.classList.remove('ver');
+  });
+  if (no) no.addEventListener('click', function(){
+    try { localStorage.setItem(clave, '1'); } catch(e){}
+    caja.classList.remove('ver');
+    ir('legal', true, null);
+  });
+}
+
+/* ============================================================
+   ARRANQUE
+   ============================================================ */
+function arrancar(){
+  arrancarCabecera();
+  arrancarCursor();
+  arrancarFluido();
+  arrancarCarrusel();
+  arrancarForm();
+  arrancarCookies();
+
+  if (HAY_GSAP) {
+    heroSalida();
+    arrancarMarquesina();
+    arrancarManifiesto();
+    arrancarCifras(document);
+    arrancarCurva();
+    arrancarZoom();
+    arrancarTiras();
+    arrancarCitas(document);
+    arrancarMagnetico();
+    arrancarProgreso();
+    arrancarReveals('inicio');
+  } else {
+    arrancarCifras(document);
+    curvaEstado.p = 1;
+    pintarCurva();
+  }
+
+  var inicial = (location.hash || '#inicio').replace('#', '');
+  if (inicial && inicial !== 'inicio') {
+    if (VISTAS.indexOf(inicial) === -1) inicial = 'perdido';
+    cambiarVista(inicial, null);
+  }
+
+  arrancarPreloader();
+
+  addEventListener('resize', function(){
+    if (HAY_GSAP) ScrollTrigger.refresh();
+    pintarCurva();
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', arrancar);
+} else {
+  arrancar();
+}
+
+/* red de seguridad: si algo falla, la página nunca se queda tapada */
+setTimeout(function(){
+  document.body.classList.remove('cargando');
+  var pre = document.getElementById('preload');
+  var cor = document.getElementById('cortina-carga');
+  if (pre && getComputedStyle(pre).display !== 'none') pre.style.display = 'none';
+  if (cor && getComputedStyle(cor).display !== 'none') cor.style.display = 'none';
+  if (lenis) lenis.start();
+}, 6000);
+
+})();
+</script>
+</body>
+</html>
