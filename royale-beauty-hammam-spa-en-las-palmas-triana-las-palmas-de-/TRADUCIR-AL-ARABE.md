@@ -14,8 +14,13 @@ el email ni la dirección. Eso se queda tal cual.
 | `hero.horario` | Consulta nuestro horario | |
 | `hero.titulo` | Hammam & Spa en el corazón de Las Palmas | |
 | `hero.claim` | El ritual del baño tradicional, la calma del aceite tibio y el silencio que hacía falta. | |
-| `btn.reservar-wa` | Reservar por WhatsApp | |
+| `btn.reservar-online` | Reservar online | |
 | `btn.regalar` | Regalar un bono | |
+| `alt.wa` | ¿Prefieres consultarnos antes? | |
+| `alt.wa-enlace` | Escríbenos por WhatsApp | |
+| `resenas.detalle` | sobre 5 en Google | |
+| `resenas.cuantas` | 102 reseñas | |
+| `btn.leer-resenas` | Leer las reseñas | |
 | `rituales.rotulo` | Rituales de hammam | |
 | `rituales.titulo` | Elige tu ritual | |
 | `rituales.entradilla` | Tres formas de entrar en el mismo silencio. Todas incluyen vapor, exfoliación con guante kessa y jabón negro. | |
@@ -54,6 +59,8 @@ el email ni la dirección. Eso se queda tal cual.
 | `donde.direccion` | Dirección | |
 | `donde.telefono` | Teléfono y WhatsApp | |
 | `donde.email` | Email | |
+| `donde.resenas` | Reseñas | |
+| `resenas.linea` | 4,9 ★ en Google · 102 opiniones | |
 | `donde.horario` | Horario | |
 | `dia.lunes` | Lunes | |
 | `dia.martes` | Martes | |
