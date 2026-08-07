@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ginger Redwood | Spa Therapy en Palma de Mallorca</title>
+  <meta name="description" content="Ginger Redwood Spa Therapy: esteticista integral certificada con más de 16 años de experiencia en terapias faciales y masajes holísticos en Palma de Mallorca. 4,9/5 en Google con 124 reseñas.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="legal/cookie-banner.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAF6F1;
+      --cream-dark: #F0EAE0;
+      --gold: #C9AC78;
+      --gold-light: #D9C89E;
+      --gold-dark: #A8904F;
+      --olive: #4F5B3B;
+      --olive-light: #6B7A52;
+      --dark: #2C2418;
+      --dark-mid: #3D3428;
+      --text: #4A4035;
+      --text-light: #7A6F63;
+      --white: #FFFFFF;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Jost', 'Segoe UI', sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* === LOADER === */
+    .loader {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      transition: opacity 0.8s, visibility 0.8s;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-logo {
+      font-family: var(--font-serif);
+      font-size: 2.2rem; font-weight: 400;
+      color: var(--gold-dark); letter-spacing: 0.08em;
+      font-style: italic;
+    }
+    .loader-bar {
+      width: 160px; height: 1px; background: var(--cream-dark);
+      position: relative; overflow: hidden;
+    }
+    .loader-bar::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold); transform: translateX(-100%);
+      animation: loadBar 1.4s var(--ease-out) 0.3s forwards;
+    }
+    @keyframes loadBar { to { transform: translateX(0); } }
+
+    /* === NAV === */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 56px;
+      transition: background 0.5s, padding 0.4s, box-shadow 0.5s;
+    }
+    nav.scrolled {
+      background: rgba(250, 246, 241, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 18px 56px;
+      box-shadow: 0 1px 0 rgba(201, 172, 120, 0.15);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 36px; width: auto;
+    }
+    nav.scrolled .nav-logo img { height: 30px; }
+    .nav-links {
+      display: flex; gap: 40px; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--text);
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 400; transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width 0.3s var(--ease-out);
+    }
+    .nav-links a:hover { color: var(--gold-dark); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--olive) !important;
+      color: var(--cream) !important;
+      padding: 11px 28px !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.2em !important;
+      transition: background 0.3s !important;
+      border: none;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--olive-light) !important; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+    }
+    .hamburger span {
+      width: 24px; height: 1.5px; background: var(--dark);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: var(--cream); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--dark);
+      font-family: var(--font-serif); font-size: 1.6rem;
+      font-weight: 400; letter-spacing: 0.06em;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--gold-dark); }
+
+    /* === HERO === */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .hero-image {
+      position: relative; overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 6s var(--ease-out);
+    }
+    .hero-image img.loaded { transform: scale(1); }
+    .hero-image::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--cream) 100%);
+    }
+    .hero-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 80px 80px 60px;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold-dark); margin-bottom: 32px;
+      display: flex; align-items: center; gap: 14px;
+      font-weight: 500;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 40px; height: 1px; background: var(--gold);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+      font-weight: 300; line-height: 1.1;
+      color: var(--dark); letter-spacing: -0.01em;
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: italic; color: var(--olive);
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--text-light);
+      max-width: 440px; line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--olive); color: var(--cream);
+      text-decoration: none; padding: 16px 36px;
+      font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; font-family: var(--font-sans);
+      transition: background 0.35s var(--ease-smooth);
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--olive-light); }
+    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-ghost {
+      color: var(--text); text-decoration: none;
+      font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
+      transition: color 0.3s; font-weight: 400;
+    }
+    .btn-ghost:hover { color: var(--gold-dark); }
+    .hero-scroll {
+      position: absolute; right: 56px; bottom: 60px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      opacity: 0; animation: fadeIn 1s 2s ease forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--text-light); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; } 50% { opacity: 1; }
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* === MARQUEE === */
+    .marquee-section {
+      border-top: 1px solid var(--cream-dark);
+      border-bottom: 1px solid var(--cream-dark);
+      overflow: hidden; padding: 18px 0;
+      background: var(--white);
+    }
+    .marquee-track {
+      display: flex; width: max-content;
+      align-items: center;
+      animation: marquee 22s linear infinite;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 0 36px; flex-shrink: 0; white-space: nowrap;
+      font-family: var(--font-serif); font-size: 1rem;
+      font-style: italic; color: var(--text-light);
+      letter-spacing: 0.04em;
+    }
+    .marquee-item .dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* === SECTION COMMONS === */
+    section { padding: 120px 56px; }
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold-dark); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 14px;
+      font-weight: 500;
+    }
+    .section-label::before {
+      content: ''; width: 28px; height: 1px; background: var(--gold);
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+      font-weight: 300; line-height: 1.12;
+      color: var(--dark);
+    }
+    .section-title em { font-style: italic; color: var(--olive); }
+
+    /* === STATS === */
+    .stats-section {
+      background: var(--white);
+      padding: 80px 56px;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; max-width: 1200px; margin: 0 auto;
+    }
+    .stat-card {
+      padding: 48px 32px; text-align: center;
+      border-right: 1px solid var(--cream-dark);
+      position: relative;
+    }
+    .stat-card:last-child { border-right: none; }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 300; line-height: 1;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .stat-number .stat-suffix { color: var(--gold-dark); }
+    .stat-label {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-light); font-weight: 400;
+    }
+
+    /* === SERVICES === */
+    .services-section { background: var(--cream); }
+    .services-header {
+      max-width: 1200px; margin: 0 auto 60px;
+      display: flex; justify-content: space-between;
+      align-items: flex-end; gap: 32px; flex-wrap: wrap;
+    }
+    .services-header .section-title { max-width: 520px; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1200px; margin: 0 auto;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 48px 36px;
+      border: 1px solid var(--cream-dark);
+      position: relative; overflow: hidden;
+      transition: border-color 0.4s, transform 0.4s var(--ease-out);
+    }
+    .service-card:hover {
+      border-color: var(--gold-light);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      width: 48px; height: 48px; margin-bottom: 28px;
+      color: var(--olive);
+    }
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem; font-weight: 400;
+      color: var(--dark); margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .service-card p {
+      font-size: 0.92rem; color: var(--text-light);
+      line-height: 1.7;
+    }
+    .service-price {
+      display: inline-block; margin-top: 20px;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold-dark); font-weight: 500;
+      border-bottom: 1px solid var(--gold-light);
+      padding-bottom: 2px;
+    }
+    .service-number {
+      position: absolute; top: 20px; right: 24px;
+      font-family: var(--font-serif); font-size: 4rem;
+      font-weight: 300; color: var(--cream-dark);
+      line-height: 1; transition: color 0.4s;
+    }
+    .service-card:hover .service-number { color: var(--gold-light); opacity: 0.5; }
+
+    /* === GALLERY === */
+    .gallery-section {
+      background: var(--white);
+      padding: 120px 56px;
+    }
+    .gallery-header {
+      max-width: 1200px; margin: 0 auto 56px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 12px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden;
+    }
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.8s var(--ease-out);
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(44, 36, 24, 0.5) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.5s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      color: var(--cream);
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 400;
+      transform: translateY(10px); opacity: 0;
+      transition: transform 0.5s var(--ease-out), opacity 0.5s;
+    }
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0); opacity: 1;
+    }
+
+    /* === ABOUT === */
+    .about-section {
+      background: var(--dark);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0; max-width: none;
+    }
+    .about-visual {
+      position: relative; overflow: hidden; min-height: 640px;
+    }
+    .about-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-badge {
+      position: absolute; top: 24px; right: 24px;
+      background: rgba(44, 36, 24, 0.88);
+      backdrop-filter: blur(8px);
+      padding: 24px 28px;
+    }
+    .about-badge-number {
+      font-family: var(--font-serif); font-size: 2.8rem;
+      color: var(--gold); line-height: 1;
+    }
+    .about-badge-text {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(250, 246, 241, 0.7); margin-top: 4px;
+    }
+    .about-content {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      color: var(--cream);
+    }
+    .about-content .section-label { color: var(--gold); }
+    .about-content .section-label::before { background: var(--gold); }
+    .about-content .section-title { color: var(--cream); }
+    .about-content .section-title em { color: var(--gold); }
+    .about-body {
+      font-size: 1.02rem; line-height: 1.85;
+      color: rgba(250, 246, 241, 0.75);
+      margin: 28px 0 36px;
+    }
+    .about-body strong { color: var(--cream); font-weight: 500; }
+    .about-divider {
+      width: 50px; height: 1px; background: var(--gold); margin: 28px 0;
+      opacity: 0.5;
+    }
+    .about-features {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .about-feature {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px;
+      border: 1px solid rgba(201, 172, 120, 0.15);
+      transition: border-color 0.4s;
+    }
+    .about-feature:hover { border-color: rgba(201, 172, 120, 0.4); }
+    .feature-icon {
+      width: 20px; height: 20px; flex-shrink: 0;
+      color: var(--gold); margin-top: 2px;
+    }
+    .feature-text h3 {
+      font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; color: var(--cream); margin-bottom: 4px;
+    }
+    .feature-text p {
+      font-size: 0.88rem; color: rgba(250, 246, 241, 0.65);
+      line-height: 1.6;
+    }
+
+    /* === BRANDS === */
+    .brands-section {
+      background: var(--cream);
+      padding: 80px 56px;
+      border-top: 1px solid var(--cream-dark);
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .brands-inner {
+      max-width: 1000px; margin: 0 auto;
+      text-align: center;
+    }
+    .brands-inner .section-label { justify-content: center; }
+    .brands-inner .section-label::before { display: none; }
+    .brands-logos {
+      display: flex; justify-content: center; align-items: center;
+      gap: 48px; flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .brands-logos img {
+      height: 36px; width: auto;
+      filter: grayscale(100%) opacity(0.45);
+      transition: filter 0.4s;
+    }
+    .brands-logos img:hover {
+      filter: grayscale(0%) opacity(1);
+    }
+
+    /* === TESTIMONIALS === */
+    .testimonials-section {
+      background: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .testimonials-section::before {
+      content: '\201C'; position: absolute; top: -20px; left: 40px;
+      font-family: var(--font-serif); font-size: 22rem;
+      color: var(--cream-dark); line-height: 1; pointer-events: none;
+    }
+    .testimonials-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 56px;
+    }
+    .testimonial-card {
+      padding: 44px 36px;
+      background: var(--cream);
+      border: 1px solid var(--cream-dark);
+      transition: border-color 0.4s, transform 0.4s var(--ease-out);
+      display: flex; flex-direction: column;
+    }
+    .testimonial-card:hover {
+      border-color: var(--gold-light);
+      transform: translateY(-3px);
+    }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 24px; }
+    .star {
+      width: 14px; height: 14px;
+      color: var(--gold);
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: 1.1rem; font-style: italic;
+      font-weight: 400; line-height: 1.7;
+      color: var(--dark); margin-bottom: 28px;
+      flex: 1;
+    }
+    .testimonial-divider {
+      width: 28px; height: 1px; background: var(--gold);
+      margin-bottom: 20px; opacity: 0.5;
+    }
+    .testimonial-author strong {
+      display: block; font-size: 0.82rem;
+      font-weight: 500; letter-spacing: 0.08em;
+      color: var(--dark); margin-bottom: 2px;
+      font-family: var(--font-sans);
+    }
+    .testimonial-author span {
+      font-size: 0.72rem; color: var(--text-light);
+      letter-spacing: 0.04em;
+    }
+
+    /* === HORARIO === */
+    .horario-section {
+      background: var(--cream);
+    }
+    .horario-inner {
+      max-width: 600px; margin: 0 auto;
+    }
+    .horario-table {
+      width: 100%; border-collapse: collapse; margin-top: 40px;
+    }
+    .horario-table tr {
+      border-bottom: 1px solid var(--cream-dark);
+      transition: background 0.3s;
+    }
+    .horario-table td {
+      padding: 16px 20px;
+      font-size: 0.92rem;
+    }
+    .horario-table td:first-child {
+      font-weight: 500; color: var(--dark);
+      letter-spacing: 0.02em;
+    }
+    .horario-table td:last-child {
+      text-align: right; color: var(--text-light);
+    }
+    .horario-hoy {
+      background: rgba(201, 172, 120, 0.1) !important;
+    }
+    .horario-hoy td:first-child {
+      color: var(--olive) !important;
+      position: relative;
+      padding-left: 32px;
+    }
+    .horario-hoy td:first-child::before {
+      content: '';
+      position: absolute; left: 12px; top: 50%;
+      transform: translateY(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--olive);
+    }
+
+    /* === MAP === */
+    .map-section { background: var(--white); padding: 0; }
+    .map-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .map-info {
+      padding: 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--cream);
+    }
+    .map-info-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .map-info-item:first-of-type { padding-top: 36px; }
+    .map-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border: 1px solid var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--olive);
+    }
+    .map-info-text h3 {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-dark); margin-bottom: 4px; font-weight: 500;
+    }
+    .map-info-text p, .map-info-text a {
+      font-size: 0.92rem; color: var(--text);
+      text-decoration: none; transition: color 0.3s; line-height: 1.6;
+    }
+    .map-info-text a:hover { color: var(--olive); }
+    .map-frame { min-height: 500px; position: relative; }
+    .map-frame iframe {
+      width: 100%; height: 100%; min-height: 500px;
+      border: none; display: block;
+    }
+
+    /* === CTA === */
+    .cta-section {
+      background: var(--olive);
+      padding: 100px 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .cta-text { flex: 1; min-width: 280px; }
+    .cta-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.5vw, 3.4rem);
+      font-weight: 300; color: var(--cream); line-height: 1.12;
+    }
+    .cta-text p {
+      font-size: 0.95rem; color: rgba(250, 246, 241, 0.8);
+      margin-top: 14px;
+    }
+    .btn-light {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--cream); color: var(--dark);
+      text-decoration: none; padding: 18px 44px;
+      font-size: 0.76rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; font-family: var(--font-sans);
+      transition: background 0.3s, transform 0.3s;
+      white-space: nowrap;
+    }
+    .btn-light:hover { background: var(--white); transform: translateY(-2px); }
+    .btn-light svg { width: 16px; height: 16px; }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--dark); padding: 80px 56px 44px;
+      color: var(--cream);
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px; margin-bottom: 60px;
+    }
+    .footer-brand-logo {
+      height: 32px; width: auto; margin-bottom: 20px;
+      filter: brightness(1.5) saturate(0.6);
+    }
+    .footer-tagline {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1rem; color: rgba(250, 246, 241, 0.65);
+      line-height: 1.6; max-width: 260px; margin-bottom: 28px;
+    }
+    .footer-social { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-link {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(250, 246, 241, 0.2);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(250, 246, 241, 0.65);
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .social-link:hover {
+      background: var(--gold); color: var(--dark);
+      border-color: var(--gold);
+    }
+    .social-link svg { width: 16px; height: 16px; }
+    .footer-col h3 {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px; font-weight: 500;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(250, 246, 241, 0.65);
+      font-size: 0.85rem; transition: color 0.3s;
+    }
+    .footer-col ul a:hover { color: var(--cream); }
+    .footer-bottom {
+      border-top: 1px solid rgba(250, 246, 241, 0.1);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(250, 246, 241, 0.5);
+    }
+    .footer-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-legal a, .footer-legal button {
+      font-size: 0.72rem; color: rgba(250, 246, 241, 0.6);
+      text-decoration: none; transition: color 0.3s;
+      background: none; border: none; padding: 0; cursor: pointer;
+      font-family: inherit; letter-spacing: 0.03em;
+    }
+    .footer-legal a:hover, .footer-legal button:hover { color: var(--cream); }
+
+    /* === REVEAL === */
+    
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* === FOCUS === */
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .sr-only-focusable { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .sr-only-focusable:focus { position: fixed; top: 12px; left: 12px; width: auto; height: auto; overflow: visible; background: var(--gold); color: var(--dark); padding: 10px 18px; z-index: 99999; font-size: 1rem; }
+
+    /* === REDUCED MOTION === */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .marquee-track { animation: none !important; }
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      nav { padding: 24px 32px; }
+      nav.scrolled { padding: 16px 32px; }
+      section { padding: 100px 32px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-image { min-height: 50vh; }
+      .hero-image::after {
+        background: linear-gradient(to top, var(--cream) 0%, transparent 60%);
+      }
+      .hero-content { padding: 60px 32px 80px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-card:nth-child(2) { border-right: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 240px 240px;
+      }
+      .gallery-item:first-child { grid-row: span 1; }
+      .about-section { grid-template-columns: 1fr; }
+      .about-visual { min-height: 400px; }
+      .about-content { padding: 60px 32px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .map-inner { grid-template-columns: 1fr; }
+      .map-info { padding: 60px 32px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .brands-logos { gap: 32px; }
+      .brands-logos img { height: 28px; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; height: auto; align-items: flex-start; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      nav { padding: 18px 20px; }
+      nav.scrolled { padding: 14px 20px; }
+      section { padding: 80px 20px; }
+      .hero-content { padding: 40px 20px 60px; }
+      .hero-scroll { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-section { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .services-header { flex-direction: column; align-items: flex-start; margin-bottom: 40px; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item { min-height: 220px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 20px; flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; align-items: center; }
+      .brands-section { padding: 60px 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(2.2rem, 10vw, 2.8rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .section-title { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+      .stat-number { font-size: clamp(2.2rem, 10vw, 3rem); }
+      .stat-card { padding: 32px 20px; }
+      .service-card { padding: 36px 24px; }
+      .testimonial-card { padding: 32px 24px; }
+      .btn-primary { padding: 14px 28px; }
+      .btn-light { padding: 14px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loader" id="loader" role="status" aria-live="polite" aria-label="Cargando">
+  <div class="loader-logo">Ginger Redwood</div>
+  <div class="loader-bar"></div>
+</div>
+
+<nav id="navbar" aria-label="Navegación principal">
+  <a href="#main-content" class="nav-logo">
+    <img src="logo.png" alt="Ginger Redwood Spa Therapy" width="180" height="50">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Tratamientos</a></li>
+    <li><a href="#galeria">El espacio</a></li>
+    <li><a href="#nosotros">Ginger</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#contacto" class="nav-cta">Reservar cita</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú de navegación">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navegación principal">
+  <a href="#servicios" onclick="closeMobile()">Tratamientos</a>
+  <a href="#galeria" onclick="closeMobile()">El espacio</a>
+  <a href="#nosotros" onclick="closeMobile()">Ginger</a>
+  <a href="#opiniones" onclick="closeMobile()">Opiniones</a>
+  <a href="#contacto" onclick="closeMobile()">Reservar cita</a>
+</div>
+
+<a href="#main-content" class="sr-only-focusable">Saltar al contenido</a>
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-image">
+    <img id="heroImg" src="https://ginger-redwood.com/wp-content/uploads/2025/02/e9ba937d-6d29-49e6-bbd3-eef09082be5b-GingerRedwoodSpaTherapist-ES-IllesBalears-Palma-Centre-Fresha-scaled.avif" alt="Interior del centro Ginger Redwood Spa Therapy con camilla de tratamiento y ambiente calido" width="960" height="720">
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Spa Therapy en Palma de Mallorca</p>
+    <h1 class="hero-title" id="hero-title">Tu piel y tu bienestar,<br>en manos <em>expertas.</em></h1>
+    <p class="hero-sub">Esteticista integral certificada con más de 16 años de experiencia en terapias faciales holísticas y masajes del mundo. Un espacio donde técnica, sensibilidad y naturaleza se encuentran.</p>
+    <div class="hero-actions">
+      <a href="tel:+34616285068" class="btn-primary" aria-label="Llamar a Ginger Redwood al 616 28 50 68">
+        Reservar al 616 28 50 68
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#servicios" class="btn-ghost">
+        Ver tratamientos
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="dot"></span>Limpiezas faciales</span>
+    <span class="marquee-item"><span class="dot"></span>Masajes holísticos</span>
+    <span class="marquee-item"><span class="dot"></span>Rituales de spa</span>
+    <span class="marquee-item"><span class="dot"></span>Aromaterapia</span>
+    <span class="marquee-item"><span class="dot"></span>Deep Tissue</span>
+    <span class="marquee-item"><span class="dot"></span>Rejuvenecimiento facial</span>
+    <span class="marquee-item"><span class="dot"></span>Masaje tailandés</span>
+    <span class="marquee-item"><span class="dot"></span>Cosmética natural</span>
+    <span class="marquee-item"><span class="dot"></span>Limpiezas faciales</span>
+    <span class="marquee-item"><span class="dot"></span>Masajes holísticos</span>
+    <span class="marquee-item"><span class="dot"></span>Rituales de spa</span>
+    <span class="marquee-item"><span class="dot"></span>Aromaterapia</span>
+    <span class="marquee-item"><span class="dot"></span>Deep Tissue</span>
+    <span class="marquee-item"><span class="dot"></span>Rejuvenecimiento facial</span>
+    <span class="marquee-item"><span class="dot"></span>Masaje tailandés</span>
+    <span class="marquee-item"><span class="dot"></span>Cosmética natural</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section" role="region" aria-label="Cifras del centro">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-number"><span class="count" data-target="49" data-decimal="true">0</span></div>
+      <div class="stat-label">Sobre 5 en Google</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-number"><span class="count" data-target="124">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Reseñas verificadas</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-number"><span class="count" data-target="16">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-number"><span class="count" data-target="100">0</span><span class="stat-suffix">%</span></div>
+      <div class="stat-label">Cosmética natural</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section" id="servicios" aria-labelledby="servicios-title">
+  <div class="services-header">
+    <div>
+      <p class="section-label reveal">Tratamientos</p>
+      <h2 class="section-title reveal reveal-delay-1" id="servicios-title">Rituales que cuidan<br>tu piel y <em>tu equilibrio.</em></h2>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-number">01</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <circle cx="24" cy="16" r="10"/><path d="M8 44c0-8.8 7.2-16 16-16s16 7.2 16 16"/>
+      </svg>
+      <h3>Limpiezas faciales bio</h3>
+      <p>Limpieza profunda con cosmética natural. Eliminación de impurezas, exfoliación enzimática y mascarilla personalizada para cada tipo de piel.</p>
+      <span class="service-price">Desde 65 EUR</span>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-number">02</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <path d="M24 4c-6 8-16 14-16 24a16 16 0 0032 0C40 18 30 12 24 4z"/>
+      </svg>
+      <h3>Masajes holísticos</h3>
+      <p>Técnicas orientales y occidentales: deep tissue, sueco, aromaterapia, Lanna Stretching y masaje con piedras chakra. Sesiones de 60 a 90 minutos.</p>
+      <span class="service-price">Desde 59 EUR</span>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-number">03</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <path d="M24 4l4 8 8 2-6 6 2 8-8-4-8 4 2-8-6-6 8-2z"/>
+      </svg>
+      <h3>Rituales de spa</h3>
+      <p>Experiencias completas que combinan exfoliación corporal, envolturas, masaje y aromaterapia. Desde el Ritual Detox hasta el Gran Ritual del Viajero.</p>
+      <span class="service-price">Desde 85 EUR</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-number">04</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <rect x="6" y="6" width="36" height="36" rx="4"/><path d="M6 18h36M18 6v36"/>
+      </svg>
+      <h3>Rejuvenecimiento facial</h3>
+      <p>Tratamientos específicos antiedad con hidrodermoabrasión, radiofrecuencia y cosmética de alta gama. Resultados visibles desde la primera sesión.</p>
+      <span class="service-price">Desde 95 EUR</span>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-number">05</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <path d="M12 24c0-8 5.4-14.5 12-14.5S36 16 36 24"/><path d="M8 32c0 6.6 7.2 12 16 12s16-5.4 16-12"/>
+      </svg>
+      <h3>Masajes terapéuticos</h3>
+      <p>Trabajo localizado en cervicales, espalda y piernas. Técnicas de fisioterapia manual y stretching tailandés para aliviar contracturas y tension acumulada.</p>
+      <span class="service-price">Desde 45 EUR</span>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-number">06</div>
+      <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+        <path d="M24 4v40M4 24h40M10 10l28 28M38 10L10 38"/>
+      </svg>
+      <h3>Tarjetas regalo</h3>
+      <p>Regala bienestar: tarjetas de sesiones individuales o packs de tratamientos personalizados para alguien especial.</p>
+      <span class="service-price">Desde 40 EUR</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="galeria" aria-labelledby="galeria-title">
+  <div class="gallery-header">
+    <p class="section-label reveal">El espacio</p>
+    <h2 class="section-title reveal reveal-delay-1" id="galeria-title">Un refugio pensado<br>para <em>desconectar.</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-25-at-05.28.23.jpeg" alt="Sala de tratamiento de Ginger Redwood Spa con iluminacion calida y camilla preparada" loading="lazy" width="800" height="600">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-caption">Sala de tratamiento</div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-25-at-05.27.38.jpeg" alt="Detalle del espacio con productos naturales y aceites esenciales de Ginger Redwood" loading="lazy" width="600" height="400">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-caption">Aceites y productos</div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/03/WhatsApp-Image-2025-03-21-at-03.46.08-e1742559324615.webp" alt="Ambiente del centro Ginger Redwood con detalles organicos y decoracion spa" loading="lazy" width="600" height="400">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-caption">Ambiente natural</div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/05/dermatology-skin-care-facial-therapy-medical-spa-2024-10-18-08-14-57-utc.webp" alt="Tratamiento facial con cosmética natural en el centro Ginger Redwood" loading="lazy" width="600" height="400">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-caption">Facial con cosmética natural</div>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/05/young-and-beautiful-woman-during-hot-stones-massag-2024-10-18-06-39-09-utc.webp" alt="Masaje con piedras calientes en Ginger Redwood Spa Therapy" loading="lazy" width="600" height="400">
+      <div class="gallery-overlay"></div>
+      <div class="gallery-caption">Masaje con piedras</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-section" role="region" aria-labelledby="nosotros-title" id="nosotros">
+  <div class="about-visual">
+    <img src="https://d375139ucebi94.cloudfront.net/region2/es/108276/biz_photo/955aaa2f7436424183afc11c87706c-ginger-redwood-spa-therapy-biz-photo-840dd586dfde42bfb78f65427bd86a-booksy.jpeg" alt="Ginger Redwood, esteticista integral certificada y terapeuta holistica" loading="lazy" width="800" height="600">
+    <div class="about-badge">
+      <div class="about-badge-number">16+</div>
+      <div class="about-badge-text">Años de experiencia</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">Sobre Ginger</p>
+    <h2 class="section-title reveal reveal-delay-1" id="nosotros-title">
+      Técnica, sensibilidad<br>y conexion con <em>la naturaleza.</em>
+    </h2>
+    <div class="about-divider reveal" aria-hidden="true"></div>
+    <p class="about-body reveal reveal-delay-2">
+      <strong>Ginger Redwood</strong> es esteticista integral certificada, especializada en terapias faciales holísticas y masajes del mundo. Con más de <strong>16 años de trayectoria</strong>, ha trabajado en spas de hoteles de referencia en Palma como el <strong>Hotel Hospes Maricel</strong>, el <strong>Hotel Pure Salt Puerto Adriano</strong> y el <strong>Hotel Singular Sant Francesc</strong>. En 2015 completó su formación avanzada en <strong>Chiang Mai (Tailandia)</strong>, profundizando en masaje tailandés, ayurveda y aromaterapia. Cada sesión es un ritual personalizado con aceites esenciales, arcillas y hierbas naturales.
+    </p>
+    <div class="about-features reveal reveal-delay-3">
+      <div class="about-feature">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg>
+        <div class="feature-text">
+          <h3>Cosmética natural certificada</h3>
+          <p>Trabaja con Secretos del Agua, Alissi Bronte, Alqvimia y Anne Semonin.</p>
+        </div>
+      </div>
+      <div class="about-feature">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div class="feature-text">
+          <h3>Formación internacional</h3>
+          <p>Especializada en Tailandia: masaje holístico, Lanna Stretching, ayurveda y aromaterapia avanzada.</p>
+        </div>
+      </div>
+      <div class="about-feature">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <div class="feature-text">
+          <h3>Rituales a medida</h3>
+          <p>Cada tratamiento se adapta a tus necesidades. Sin protocolos rígidos: sesiones únicas pensadas para ti.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BRANDS -->
+<div class="brands-section" role="region" aria-label="Marcas colaboradoras">
+  <div class="brands-inner">
+    <p class="section-label reveal">Marcas de confianza</p>
+    <div class="brands-logos reveal reveal-delay-1">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/02/secretos-del-agua.png" alt="Secretos del Agua" loading="lazy" width="120" height="36">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/02/alissi-bronte-high-natural-cosmetic-logo-1644225658.png" alt="Alissi Bronte Natural Cosmetic" loading="lazy" width="120" height="36">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/02/Logo-thalissi-plano.png" alt="Thalissi" loading="lazy" width="120" height="36">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/02/Logo-Alqvimia-png-sin-fondo.png" alt="Alqvimia" loading="lazy" width="120" height="36">
+      <img src="https://ginger-redwood.com/wp-content/uploads/2025/02/anne-semonin-Photoroom.png" alt="Anne Semonin Paris" loading="lazy" width="120" height="36">
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="opiniones" aria-labelledby="testimonios-title">
+  <div class="testimonials-inner">
+    <p class="section-label reveal">Opiniones reales</p>
+    <h2 class="section-title reveal reveal-delay-1" id="testimonios-title">
+      4,9 sobre 5 con 124 reseñas<br>verificadas en <em>Google.</em>
+    </h2>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <p class="testimonial-quote">"Servicio muy profesional. Si buscas un masaje de verdad, este sitio no te decepcionará. Ginger es muy amable y profesional."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Pietro F.</strong>
+          <span>Resena en Booksy</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <p class="testimonial-quote">"Me encantó. La atención a cada mínimo detalle, muchísimas gracias. Salí renovada."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Milene N.</strong>
+          <span>Resena en Fresha</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars" role="img" aria-label="5 estrellas sobre 5">
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+          <svg class="star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        </div>
+        <p class="testimonial-quote">"Amazing! The most incredible facial and massage I've ever had."</p>
+        <div class="testimonial-divider" aria-hidden="true"></div>
+        <div class="testimonial-author">
+          <strong>Anais B.</strong>
+          <span>Resena en Fresha</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HORARIO -->
+<section class="horario-section" aria-labelledby="horario-title">
+  <div class="horario-inner">
+    <p class="section-label reveal" style="justify-content: center;"><span></span></p>
+    <h2 class="section-title reveal reveal-delay-1" id="horario-title" style="text-align: center;">Horario de <em>atención</em></h2>
+    <table class="horario-table reveal reveal-delay-2" id="horarioTable">
+      <tr data-day="1"><td>Lunes</td><td>12:00 - 20:00</td></tr>
+      <tr data-day="2"><td>Martes</td><td>10:30 - 20:00</td></tr>
+      <tr data-day="3"><td>Miércoles</td><td>10:30 - 20:00</td></tr>
+      <tr data-day="4"><td>Jueves</td><td>10:30 - 20:00</td></tr>
+      <tr data-day="5"><td>Viernes</td><td>10:30 - 20:00</td></tr>
+      <tr data-day="6"><td>Sábado</td><td>Bajo disponibilidad</td></tr>
+      <tr data-day="0"><td>Domingo</td><td>Cerrado</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- MAP + CONTACT -->
+<div class="map-section" id="contacto">
+  <div class="map-inner">
+    <div class="map-info">
+      <p class="section-label reveal">Contacto</p>
+      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 0;">
+        En Palma,<br><em>Avenida Joan Miro, 66.</em>
+      </h2>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Dirección</h3>
+          <p>Avenida Joan Miro, 66 bajos local B<br>07015 Palma de Mallorca</p>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Teléfono</h3>
+          <a href="tel:+34616285068">616 28 50 68</a>
+        </div>
+      </div>
+      <div class="map-info-item">
+        <div class="map-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="map-info-text">
+          <h3>Email</h3>
+          <a href="mailto:hola@ginger-redwood.com">hola@ginger-redwood.com</a>
+        </div>
+      </div>
+      <div style="margin-top: 36px;">
+        <a href="https://wa.me/34616285068" target="_blank" rel="noopener" class="btn-primary" aria-label="Escribir por WhatsApp a Ginger Redwood">
+          Reservar por WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de ubicación de Ginger Redwood Spa Therapy en Avenida Joan Miro 66, Palma de Mallorca"
+        src="https://www.google.com/maps?q=Ginger+Redwood+Spa+Therapy+Avenida+Joan+Miro+66+Palma+de+Mallorca&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" role="region" aria-label="Llamada a la accion">
+  <div class="cta-text">
+    <h2>Tu momento de bienestar te espera en Palma.</h2>
+    <p>Reserva tu cita llamando al 616 28 50 68 o escribe por WhatsApp. Primera consulta sin compromiso.</p>
+  </div>
+  <a href="tel:+34616285068" class="btn-light">
+    Llamar ahora
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <img src="logo.png" alt="Ginger Redwood Spa Therapy" class="footer-brand-logo" width="160" height="44">
+      <p class="footer-tagline">"Donde tu piel y tu espíritu florecen en armonía."</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/gingerredwood_spatherapist/" target="_blank" rel="noopener" class="social-link" aria-label="Seguir a Ginger Redwood en Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c2.7 0 3 0 4.1.1 1 0 1.5.2 1.9.3.5.2.8.4 1.1.7.3.3.5.7.7 1.1.1.4.3.9.3 1.9.1 1.1.1 1.4.1 4.1s0 3-.1 4.1c0 1-.2 1.5-.3 1.9-.2.5-.4.8-.7 1.1-.3.3-.7.5-1.1.7-.4.1-.9.3-1.9.3-1.1.1-1.4.1-4.1.1s-3 0-4.1-.1c-1 0-1.5-.2-1.9-.3-.5-.2-.8-.4-1.1-.7-.3-.3-.5-.7-.7-1.1-.1-.4-.3-.9-.3-1.9-.1-1.1-.1-1.4-.1-4.1s0-3 .1-4.1c0-1 .2-1.5.3-1.9.2-.5.4-.8.7-1.1.3-.3.7-.5 1.1-.7.4-.1.9-.3 1.9-.3 1.1-.1 1.4-.1 4.1-.1M12 0C9.3 0 8.9 0 7.8.1 6.7.1 5.9.3 5.2.6c-.7.3-1.3.6-1.9 1.2C2.7 2.4 2.4 3 2.1 3.7c-.3.7-.5 1.5-.5 2.6C1.5 7.4 1.5 7.8 1.5 10.5v3c0 2.7 0 3.1.1 4.2.1 1.1.3 1.9.5 2.6.3.7.6 1.3 1.2 1.9.6.6 1.2.9 1.9 1.2.7.3 1.5.5 2.6.5 1.1.1 1.5.1 4.2.1s3.1 0 4.2-.1c1.1-.1 1.9-.3 2.6-.5.7-.3 1.3-.6 1.9-1.2.6-.6.9-1.2 1.2-1.9.3-.7.5-1.5.5-2.6.1-1.1.1-1.5.1-4.2s0-3.1-.1-4.2c-.1-1.1-.3-1.9-.5-2.6-.3-.7-.6-1.3-1.2-1.9C19.1 1.8 18.5 1.5 17.8 1.2 17.1.9 16.3.7 15.2.6 14.1.5 13.7.5 11 .5L12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.8a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/ginger.redwood.esteticafacialymasajes/" target="_blank" rel="noopener" class="social-link" aria-label="Seguir a Ginger Redwood en Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07c0 6.02 4.39 11.01 10.13 11.93v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.69.24 2.69.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8v8.44C19.61 23.08 24 18.09 24 12.07"/></svg>
+        </a>
+        <a href="https://wa.me/34616285068" target="_blank" rel="noopener" class="social-link" aria-label="Escribir por WhatsApp a Ginger Redwood">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.3-.1-.5-.15-.7.15-.2.3-.8.95-1 1.15-.2.2-.4.2-.7.05-.3-.15-1.25-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.47.13-.62.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.7-1.7-.97-2.32-.25-.6-.52-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.48 1.08 2.9 1.22 3.1.15.2 2.12 3.25 5.15 4.55.72.3 1.28.5 1.72.65.72.22 1.37.2 1.88.12.57-.08 1.75-.72 2-1.4.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35M12 2.04C6.5 2.04 2.04 6.5 2.04 12c0 1.76.46 3.48 1.34 5L2 22l5.1-1.34c1.46.8 3.1 1.22 4.9 1.22 5.5 0 9.96-4.46 9.96-9.96S17.5 2.04 12 2.04"/></svg>
+        </a>
+        <a href="mailto:hola@ginger-redwood.com" class="social-link" aria-label="Enviar email a hola@ginger-redwood.com">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2m0 4l-8 5-8-5V6l8 5 8-5z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Tratamientos</h3>
+      <ul>
+        <li><a href="#servicios">Limpiezas faciales</a></li>
+        <li><a href="#servicios">Masajes holísticos</a></li>
+        <li><a href="#servicios">Rituales de spa</a></li>
+        <li><a href="#servicios">Rejuvenecimiento</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>El centro</h3>
+      <ul>
+        <li><a href="#nosotros">Sobre Ginger</a></li>
+        <li><a href="#galeria">El espacio</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#contacto">Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="tel:+34616285068">616 28 50 68</a></li>
+        <li><a href="mailto:hola@ginger-redwood.com">hola@ginger-redwood.com</a></li>
+        <li><a href="#contacto">Palma de Mallorca</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2026 Ginger Redwood | Spa Therapy. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // LOADER
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('loader');
+      var heroImg = document.getElementById('heroImg');
+      if (loader) loader.classList.add('hidden');
+      if (heroImg) heroImg.classList.add('loaded');
+    }, 1600);
+  });
+
+  // NAVBAR SCROLL
+  var navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', function() {
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var isOpen = hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) { var firstLink = mobileMenu.querySelector('a'); if (firstLink) firstLink.focus(); }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  }
+
+  function closeMobile() {
+    var h = document.getElementById('hamburger');
+    var m = document.getElementById('mobileMenu');
+    if (h) h.classList.remove('active');
+    if (m) m.classList.remove('open');
+    if (h) h.setAttribute('aria-expanded', 'false');
+  }
+
+  // REVEAL ON SCROLL
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  // COUNTER ANIMATION
+  function animateCount(el) {
+    var target = parseInt(el.dataset.target, 10);
+    var isDecimal = el.dataset.decimal === 'true';
+    var duration = 1800;
+    var start = performance.now();
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 4);
+      var value = ease * target;
+      if (isDecimal) {
+        el.textContent = (value / 10).toFixed(1).replace('.', ',');
+      } else {
+        el.textContent = Math.round(value);
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var countObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { animateCount(e.target); countObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count').forEach(function(el) { countObserver.observe(el); });
+  } else {
+    document.querySelectorAll('.count').forEach(function(el) { animateCount(el); });
+  }
+
+  // HIGHLIGHT TODAY
+  function highlightToday() {
+    var today = new Date().getDay();
+    var rows = document.querySelectorAll('#horarioTable tr[data-day]');
+    rows.forEach(function(row) {
+      if (parseInt(row.dataset.day, 10) === today) {
+        row.classList.add('horario-hoy');
+      }
+    });
+  }
+  highlightToday();
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
