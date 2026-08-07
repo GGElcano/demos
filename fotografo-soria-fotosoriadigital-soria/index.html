@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foto Soria Digital — Álvaro Rodríguez | Fotógrafo profesional en Soria</title>
+<meta name="description" content="Álvaro Rodríguez, fotógrafo profesional en Soria. Bodas, comuniones, quinceañeras, eventos, empresa, producto, retoque fotográfico, diseño y servicios digitales de imagen.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#070709">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%232E4A8E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal/cookie-banner.css">
+
+<style>
+:root{
+  --fondo:   #070709;
+  --fondo-2: #0d0e12;
+  --fondo-3: #15171f;
+  --crema:   #f3f0ea;
+  --crema-2: rgba(243,240,234,.90);
+  --crema-3: rgba(243,240,234,.74);
+  --azul:    #2E4A8E;
+  --azul-cl: #7ea0e6;
+  --verde:   #93c95a;
+  --rojo:    #cf3b34;
+  --linea:   rgba(126,160,230,.22);
+  --serif: "Playfair Display", Georgia, serif;
+  --sans:  "Inter", system-ui, sans-serif;
+  --pad: clamp(1.25rem, 5vw, 6rem);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:var(--azul) var(--fondo)}
+body{
+  background:var(--fondo);color:var(--crema);
+  font-family:var(--sans);font-weight:400;font-size:1rem;line-height:1.7;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--azul);color:#fff}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;color:var(--crema)}
+em{font-style:italic;color:var(--azul-cl)}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* Accesibilidad: foco visible */
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--azul-cl);outline-offset:3px;border-radius:3px}
+
+/* ── FLUID (decorativo) ── */
+#fluid{position:fixed;inset:0;width:100%;height:100%;z-index:9000;pointer-events:none;mix-blend-mode:screen;opacity:.5}
+#fluid canvas{width:100%;height:100%;display:block}
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:9500;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%);opacity:0}
+.cursor-dot{width:6px;height:6px;background:var(--verde)}
+.cursor-ring{width:38px;height:38px;border:1px solid rgba(126,160,230,.55)}
+@media(pointer:coarse),(prefers-reduced-motion:reduce){.cursor-dot,.cursor-ring,#fluid{display:none}}
+
+.progreso{position:fixed;right:1.3rem;top:50%;transform:translateY(-50%);width:1px;height:9rem;background:var(--linea);z-index:60;pointer-events:none}
+.progreso span{position:absolute;inset:0;background:var(--azul-cl);transform:scaleY(0);transform-origin:top}
+@media(max-width:820px){.progreso{display:none}}
+
+.grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:180px}
+
+/* ── PRELOADER ── */
+.preloader{position:fixed;inset:0;z-index:9999;display:grid;place-items:end start;padding:var(--pad)}
+.preloader__cortina{position:absolute;inset:0;background:#0a0c14;z-index:-1}
+.preloader__marca{position:absolute;top:var(--pad);left:var(--pad);font-family:var(--serif);font-size:1.1rem;letter-spacing:.22em;text-transform:uppercase;color:var(--azul-cl);overflow:hidden}
+.preloader__marca b{font-weight:600;color:#fff}
+.preloader__contador{overflow:hidden;line-height:1}
+.preloader__num{display:inline-block;font-family:var(--serif);font-size:clamp(4.5rem,14vw,11rem);font-variant-numeric:tabular-nums;color:#fff}
+.preloader__num i{font-style:normal;color:var(--azul-cl);font-size:.35em;vertical-align:super}
+
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--azul);color:#fff;padding:10px 18px;z-index:10000;font-size:.9rem}
+.skip-link:focus{top:16px}
+
+/* ── CABECERA ── */
+.cabecera{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:1rem var(--pad);transition:background .4s,backdrop-filter .4s}
+.cabecera.scrolled{backdrop-filter:blur(20px);background:rgba(7,7,9,.9)}
+.cabecera__logo{display:flex;align-items:center;gap:12px;color:var(--crema)}
+.cabecera__logo img{height:40px;width:auto}
+.cabecera__logo b{font-family:var(--serif);font-size:1.15rem;font-weight:600;letter-spacing:.02em;line-height:1}
+.cabecera__logo small{display:block;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--crema-3);margin-top:3px}
+.cabecera__nav{display:flex;gap:2rem;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.cabecera__nav a{padding:4px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.cabecera__nav a:hover{color:var(--azul-cl);border-bottom-color:var(--azul-cl)}
+@media(max-width:820px){.cabecera__nav{display:none}}
+
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:1001}
+.hamburger span{width:26px;height:2px;background:var(--crema);transition:transform .3s,opacity .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--fondo);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:30px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--crema);font-size:1.4rem;letter-spacing:.06em;text-transform:uppercase;font-family:var(--serif)}
+.mobile-menu a:hover{color:var(--azul-cl)}
+@media(max-width:820px){.hamburger{display:flex}}
+
+/* ── HERO ── */
+.hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--pad) clamp(3rem,8vh,5.5rem);overflow:hidden}
+.hero__media{position:absolute;inset:0;z-index:0}
+.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(175deg,rgba(7,7,9,.82) 0%,rgba(7,7,9,.45) 42%,rgba(7,7,9,.9) 100%)}
+.hero__media img{will-change:transform}
+.hero__contenido{position:relative;z-index:1}
+.hero__kicker{font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--azul-cl);margin-bottom:1.4rem;display:flex;align-items:center;gap:14px;font-weight:600}
+.hero__kicker::before{content:"";width:36px;height:2px;background:var(--azul-cl)}
+.hero__titulo{font-size:clamp(2.8rem,8.5vw,7rem);letter-spacing:-.02em;max-width:16ch}
+.hero__titulo em{color:var(--verde)}
+.hero__pie{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-top:2rem;flex-wrap:wrap}
+.hero__sub{max-width:46ch;color:var(--crema);font-size:1.05rem;line-height:1.75}
+.hero__cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+.btn{display:inline-flex;align-items:center;gap:.7rem;font:600 .82rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:1.05rem 1.9rem;border-radius:999px;cursor:pointer;transition:background-color .35s,border-color .35s,color .35s}
+.btn--solido{background:var(--azul);border:2px solid var(--azul);color:#fff}
+.btn--solido:hover{background:var(--verde);border-color:var(--verde);color:#06210a}
+.btn--linea{background:transparent;border:2px solid rgba(243,240,234,.5);color:var(--crema)}
+.btn--linea:hover{border-color:var(--crema);background:rgba(243,240,234,.08)}
+[data-hero-reveal]{visibility:hidden}
+
+/* ── MARQUEE ── */
+.marquee{overflow:hidden;white-space:nowrap;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);padding:1rem 0;background:var(--fondo-2);position:relative;z-index:2}
+.marquee__track{display:inline-flex;gap:3rem;will-change:transform;width:max-content;animation:marquee 30s linear infinite}
+@keyframes marquee{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-50%,0,0)}}
+.marquee__group{display:inline-flex;gap:3rem}
+.marquee__group span{font-family:var(--serif);font-size:1.2rem;color:var(--crema-2);flex-shrink:0}
+.marquee__group i{font-style:normal;color:var(--azul-cl)}
+@media(prefers-reduced-motion:reduce){.marquee__track{animation:none}}
+
+/* ── MANIFIESTO ── */
+.manifiesto{position:relative;padding:clamp(6rem,16vh,12rem) var(--pad)}
+.manifiesto p{position:relative;z-index:2;max-width:24ch;font-family:var(--serif);font-size:clamp(1.7rem,3.6vw,3rem);line-height:1.3;color:var(--crema)}
+.manifiesto p em{color:var(--azul-cl)}
+.flotante{position:absolute;z-index:1;width:clamp(8rem,15vw,15rem);overflow:hidden;will-change:transform;box-shadow:0 24px 60px rgba(7,7,9,.5);border-radius:4px}
+.flotante img{aspect-ratio:4/3}
+.flotante--1{top:8%;right:7%;width:clamp(9rem,18vw,18rem)}
+.flotante--2{bottom:6%;right:26%}
+.flotante--3{top:46%;right:46%;width:clamp(6rem,11vw,11rem);opacity:.92}
+@media(max-width:900px){.flotante{display:none}}
+
+/* ── CIFRAS ── */
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:2rem;padding:0 var(--pad) clamp(6rem,12vh,10rem)}
+.cifra{border-top:2px solid var(--linea);padding-top:1.2rem}
+.cifra__valor{font-family:var(--serif);font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1;color:var(--crema)}
+.cifra__valor i{font-style:normal;color:var(--azul-cl);font-size:.5em;margin-left:.05em}
+.cifra p{color:var(--crema-3);font-size:.9rem;margin-top:.5rem}
+
+/* ── SECCIÓN cabecera común ── */
+.sec-cab{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;flex-wrap:wrap;margin-bottom:2.8rem}
+.sec-cab h2{font-size:clamp(2.2rem,5.5vw,4rem)}
+.sec-cab p{color:var(--crema-3);font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+
+/* ── PORTFOLIO (rejilla clara) ── */
+.portfolio{padding:clamp(5rem,11vh,9rem) var(--pad)}
+.galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:15rem;gap:.9rem}
+.gitem{position:relative;overflow:hidden;border-radius:4px;background:var(--fondo-3);cursor:zoom-in}
+.gitem img{transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.gitem:hover img,.gitem:focus-visible img{transform:scale(1.05)}
+.gitem::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,7,9,.85) 0%,rgba(7,7,9,.05) 55%);pointer-events:none}
+.gitem figcaption{position:absolute;left:1rem;bottom:.85rem;right:1rem;z-index:2;font-family:var(--serif);font-size:1.1rem;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.6);pointer-events:none}
+.gitem figcaption small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-cl);font-weight:700;margin-bottom:.2rem}
+.gitem--tall{grid-row:span 2}
+.gitem--wide{grid-column:span 2}
+@media(max-width:900px){
+  .galeria-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:13rem}
+  .gitem--wide{grid-column:span 2}
+  .gitem--tall{grid-row:span 1}
+}
+@media(max-width:560px){
+  .galeria-grid{grid-template-columns:1fr;grid-auto-rows:15rem;gap:.7rem}
+  .gitem--wide{grid-column:span 1}
+}
+.portfolio__nota{margin-top:1.4rem;font-size:.86rem;color:var(--crema-3);text-align:center}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;background:rgba(5,6,9,.95);z-index:9700;display:none;align-items:center;justify-content:center;padding:1.5rem;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:94vw;max-height:86vh;object-fit:contain;border-radius:4px;width:auto;height:auto}
+.lb__cap{position:absolute;bottom:1.2rem;left:0;right:0;text-align:center;color:var(--crema-2);font-family:var(--serif);font-size:1.1rem}
+.lb__btn{position:absolute;background:rgba(243,240,234,.1);border:1px solid rgba(243,240,234,.3);color:#fff;width:3rem;height:3rem;border-radius:50%;font-size:1.4rem;cursor:pointer;display:grid;place-items:center;transition:background .25s}
+.lb__btn:hover{background:var(--azul)}
+.lb__close{top:1.2rem;right:1.2rem}
+.lb__prev{left:1rem;top:50%;transform:translateY(-50%)}
+.lb__next{right:1rem;top:50%;transform:translateY(-50%)}
+
+/* ── SERVICIOS ── */
+.servicios{padding:clamp(5rem,11vh,9rem) var(--pad);background:var(--fondo-2)}
+.servicios__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(19rem,100%),1fr));gap:1px;background:var(--linea);border:1px solid var(--linea)}
+.servicio{padding:clamp(1.8rem,4vw,3rem);background:var(--fondo);transition:background .4s}
+.servicio:hover{background:var(--fondo-3)}
+.servicio__icono{font-size:1.8rem;margin-bottom:1rem;color:var(--azul-cl);line-height:1}
+.servicio h3{font-size:1.25rem;margin-bottom:.6rem}
+.servicio p{color:var(--crema-3);font-size:.95rem;line-height:1.65}
+
+/* ── IA BAND ── */
+.ia{display:grid;grid-template-columns:1fr 1.2fr;align-items:center;gap:0;background:var(--fondo)}
+.ia__visual{position:relative;overflow:hidden;min-height:360px}
+.ia__txt{padding:clamp(3rem,6vw,5.5rem) var(--pad)}
+.ia__txt span{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--verde);font-weight:700}
+.ia__txt h2{font-size:clamp(1.9rem,4vw,3rem);margin:.7rem 0 1.2rem}
+.ia__txt p{color:var(--crema-2);font-size:1.02rem;line-height:1.8;max-width:46ch}
+@media(max-width:820px){.ia{grid-template-columns:1fr}.ia__visual{min-height:240px}}
+
+/* ── SOBRE ── */
+.sobre{display:grid;grid-template-columns:1fr 1.1fr;gap:0}
+.sobre__visual{position:relative;overflow:hidden;min-height:560px}
+.sobre__badge{position:absolute;top:22px;left:22px;background:var(--fondo);border:1px solid var(--linea);padding:16px 22px;border-radius:4px}
+.sobre__badge-year{font-family:var(--serif);font-size:2.4rem;color:var(--azul-cl);line-height:1}
+.sobre__badge-text{font-size:.7rem;letter-spacing:.1em;color:var(--crema-3);margin-top:3px}
+.sobre__contenido{padding:clamp(3rem,6vw,5.5rem);display:flex;flex-direction:column;justify-content:center;background:var(--fondo-2)}
+.sobre__contenido h2{font-size:clamp(2rem,4vw,3.2rem);margin-bottom:1.4rem}
+.sobre__contenido .texto{font-size:1.02rem;line-height:1.8;color:var(--crema-2);margin-bottom:1.3rem}
+.sobre__contenido .texto strong{color:var(--crema);font-weight:600}
+.sobre__valores{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem}
+.valor{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border:1px solid var(--linea);border-radius:4px}
+.valor__num{font-family:var(--serif);font-size:1.3rem;color:var(--azul-cl);flex-shrink:0}
+.valor h3{font-size:.95rem;font-weight:600;margin-bottom:2px;font-family:var(--sans)}
+.valor p{font-size:.9rem;color:var(--crema-3);line-height:1.5}
+@media(max-width:820px){.sobre{grid-template-columns:1fr}.sobre__visual{min-height:340px}}
+
+/* ── MAPA ── */
+.mapa{width:100%;height:400px;border:none;display:block;filter:grayscale(.5) brightness(.9) contrast(1.05)}
+
+/* ── CONTACTO ── */
+.contacto{min-height:80svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:2rem;padding:6rem var(--pad) 4rem;border-top:1px solid var(--linea)}
+.contacto__estado{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--crema-2);display:flex;align-items:center;gap:.7rem;font-weight:600}
+.contacto__estado::before{content:"";width:.6rem;height:.6rem;border-radius:50%;background:var(--verde);box-shadow:0 0 12px rgba(147,201,90,.9);animation:latido 2.6s ease-in-out infinite}
+@keyframes latido{50%{opacity:.4}}
+.contacto h2{font-size:clamp(2.4rem,7vw,5.5rem);max-width:16ch}
+.contacto__secundario{font-size:.95rem;color:var(--crema-2)}
+.contacto__secundario a{border-bottom:1px solid var(--linea);padding-bottom:.1em}
+.contacto__secundario a:hover{color:var(--azul-cl);border-color:var(--azul-cl)}
+.contacto__datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:2rem;width:min(56rem,100%);margin-top:1.5rem;text-align:left;font-size:.95rem}
+.dato{border-top:2px solid var(--linea);padding-top:1rem}
+.dato h4{font:600 .7rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--azul-cl);margin-bottom:.7rem}
+.dato p,.dato a{color:var(--crema-2)}
+.dato a:hover{color:var(--azul-cl)}
+
+/* ── PIE ── */
+.pie{display:flex;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;padding:2rem var(--pad) 2.6rem;color:var(--crema-3);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;border-top:1px solid var(--linea)}
+.pie nav{display:flex;gap:1.4rem;flex-wrap:wrap}
+.pie a:hover,.pie button:hover{color:var(--azul-cl)}
+.pie button{background:none;border:none;cursor:pointer;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:0}
+
+[data-reveal]{visibility:hidden}
+
+@media(max-width:768px){
+  .hero{min-height:auto;height:auto;justify-content:flex-end;padding-top:8rem;padding-bottom:3.5rem}
+  .hero__titulo{font-size:clamp(2.4rem,11vw,3.6rem)}
+  .contacto{min-height:auto;padding-top:4rem;padding-bottom:3rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  [data-reveal],[data-hero-reveal]{visibility:visible !important}
+  .preloader{display:none}
+  .progreso{display:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<!-- PRELOADER -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__cortina"></div>
+  <div class="preloader__marca"><b>Foto</b> Soria Digital</div>
+  <div class="preloader__contador"><span class="preloader__num">0<i>%</i></span></div>
+</div>
+
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="cabecera">
+  <a class="cabecera__logo" href="index.html" aria-label="Foto Soria Digital, inicio">
+    <img src="img/logo-icon.png" alt="" width="40" height="40">
+    <span><b>Foto Soria Digital</b><small>Álvaro Rodríguez</small></span>
+  </a>
+  <nav class="cabecera__nav" aria-label="Navegación principal">
+    <a href="#servicios">Servicios</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#sobre">Sobre mí</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicios">Servicios</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#sobre">Sobre mí</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<main id="contenido">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__media" aria-hidden="true">
+      <img src="img/hero.jpg" alt="" loading="eager" data-hero-parallax>
+    </div>
+    <div class="hero__contenido">
+      <p class="hero__kicker" data-hero-reveal>Álvaro Rodríguez · Fotógrafo profesional</p>
+      <h1 class="hero__titulo" data-hero-reveal>Fotógrafo en <em>Soria</em>.</h1>
+      <div class="hero__pie">
+        <div>
+          <p class="hero__sub" data-hero-reveal>
+            Bodas, comuniones, eventos, empresa y producto. Y todo el mundo digital
+            de la imagen: retoque profesional, diseño y cursos de fotografía.
+          </p>
+          <div class="hero__cta-row" data-hero-reveal>
+            <a class="btn btn--solido" href="https://wa.me/34645120519" target="_blank" rel="noopener">WhatsApp · 645 12 05 19</a>
+            <a class="btn btn--linea" href="#portfolio">Ver portfolio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Bodas <i>·</i></span><span>Comuniones <i>·</i></span><span>Quinceañeras <i>·</i></span>
+        <span>Eventos <i>·</i></span><span>Empresa <i>·</i></span><span>Producto <i>·</i></span>
+        <span>Retoque <i>·</i></span><span>Diseño <i>·</i></span><span>Cursos <i>·</i></span>
+      </div>
+      <div class="marquee__group" aria-hidden="true">
+        <span>Bodas <i>·</i></span><span>Comuniones <i>·</i></span><span>Quinceañeras <i>·</i></span>
+        <span>Eventos <i>·</i></span><span>Empresa <i>·</i></span><span>Producto <i>·</i></span>
+        <span>Retoque <i>·</i></span><span>Diseño <i>·</i></span><span>Cursos <i>·</i></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANIFIESTO -->
+  <section class="manifiesto">
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="img/g-eventos.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="img/g-quinceaneras.jpg" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="img/g-fiestas.jpg" alt="" loading="lazy"></figure>
+    <p data-manifiesto>
+      Capturando los recuerdos de Soria <em>desde 1996</em> — dentro y fuera del estudio.
+    </p>
+  </section>
+
+  <!-- CIFRAS -->
+  <section class="cifras">
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor">1996</div>
+      <p>en activo como fotógrafo</p>
+    </div>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor"><span data-cuenta data-target="28">0</span><i>+</i></div>
+      <p>años tras la cámara</p>
+    </div>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor">Soria</div>
+      <p>capital y provincia</p>
+    </div>
+    <div class="cifra" data-reveal>
+      <div class="cifra__valor">IA</div>
+      <p>plus creativo incluido</p>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO (rejilla clara) -->
+  <section class="portfolio" id="portfolio">
+    <div class="sec-cab">
+      <h2 data-reveal>Portfolio</h2>
+      <p data-reveal>Una muestra de mi trabajo</p>
+    </div>
+    <div class="galeria-grid" id="galeria">
+      <figure class="gitem gitem--wide" data-reveal tabindex="0" data-full="img/g-bodas.jpg" data-cap="Bodas y postboda">
+        <img src="img/g-bodas.jpg" alt="Reportaje de boda en Soria por Álvaro Rodríguez" loading="lazy">
+        <figcaption><small>Reportaje</small>Bodas</figcaption>
+      </figure>
+      <figure class="gitem gitem--tall" data-reveal tabindex="0" data-full="img/g-quinceaneras.jpg" data-cap="Quinceañeras">
+        <img src="img/g-quinceaneras.jpg" alt="Reportaje de quinceañera" loading="lazy">
+        <figcaption><small>Celebraciones</small>Quinceañeras</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-comuniones.jpg" data-cap="Comuniones">
+        <img src="img/g-comuniones.jpg" alt="Reportaje de comunión en Soria" loading="lazy">
+        <figcaption><small>Reportaje</small>Comuniones</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-bautizos.jpg" data-cap="Bautizos y confirmaciones">
+        <img src="img/g-bautizos.jpg" alt="Reportaje de evento religioso" loading="lazy">
+        <figcaption><small>Reportaje</small>Bautizos</figcaption>
+      </figure>
+      <figure class="gitem gitem--wide" data-reveal tabindex="0" data-full="img/g-eventos.jpg" data-cap="Eventos y fiestas populares">
+        <img src="img/g-eventos.jpg" alt="Cobertura de fiestas y eventos en Soria" loading="lazy">
+        <figcaption><small>Social</small>Eventos y fiestas</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-grupos.jpg" data-cap="Grupos y corporativa">
+        <img src="img/g-grupos.jpg" alt="Fotografía de grupo y corporativa" loading="lazy">
+        <figcaption><small>Empresa</small>Grupos</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-inmobiliaria.jpg" data-cap="Inmobiliaria e interiorismo">
+        <img src="img/g-inmobiliaria.jpg" alt="Fotografía inmobiliaria e interiorismo" loading="lazy">
+        <figcaption><small>Espacios</small>Inmobiliaria</figcaption>
+      </figure>
+      <figure class="gitem" data-reveal tabindex="0" data-full="img/g-fiestas.jpg" data-cap="Reportaje social">
+        <img src="img/g-fiestas.jpg" alt="Reportaje social y de fiestas" loading="lazy">
+        <figcaption><small>Social</small>Reportaje</figcaption>
+      </figure>
+    </div>
+    <p class="portfolio__nota">Pulsa cualquier foto para verla en grande.</p>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <button class="lb__btn lb__close" id="lbClose" aria-label="Cerrar">&times;</button>
+    <button class="lb__btn lb__prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
+    <img src="" alt="" id="lbImg">
+    <button class="lb__btn lb__next" id="lbNext" aria-label="Siguiente">&#8250;</button>
+    <p class="lb__cap" id="lbCap"></p>
+  </div>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="sec-cab">
+      <h2 data-reveal>Lo que <em>hago</em></h2>
+      <p data-reveal>Servicios profesionales</p>
+    </div>
+    <div class="servicios__grid">
+      <div class="servicio" data-reveal>
+        <div class="servicio__icono" aria-hidden="true">&#9670;</div>
+        <h3>Bodas y celebraciones</h3>
+        <p>Bodas, comuniones, confirmaciones, bautizos y quinceañeras. Reportaje natural de tu día, en la ceremonia, el convite y la sesión de exteriores.</p>
+      </div>
+      <div class="servicio" data-reveal>
+        <div class="servicio__icono" aria-hidden="true">&#9737;</div>
+        <h3>Retrato, book y familia</h3>
+        <p>Sesiones de estudio o exterior: retrato, book, infantil, familia y mascotas. Sesiones temáticas de Navidad y calendarios personalizados.</p>
+      </div>
+      <div class="servicio" data-reveal>
+        <div class="servicio__icono" aria-hidden="true">&#9728;</div>
+        <h3>Eventos y fiestas</h3>
+        <p>Fiestas populares, procesiones, eventos sociales y celebraciones. Casi tres décadas documentando la vida de Soria y su provincia.</p>
+      </div>
+      <div class="servicio" data-reveal>
+        <div class="servicio__icono" aria-hidden="true">&#9632;</div>
+        <h3>Empresa, producto e inmobiliaria</h3>
+        <p>Fotografía corporativa, de grupo, de producto e inmobiliaria/interiorismo. Apoyo a las empresas sorianas con imagen profesional.</p>
+      </div>
+      <div class="servicio" data-reveal>
+        <div class="servicio__icono" aria-hidden="true">&#9998;</div>
+        <h3>Retoque fotográfico profesional</h3>
+        <p>Ajustes básicos y avanzados, restauración de fotos antiguas, silueteado de producto, trucaje, montaje y colorización. También para otros fotógrafos.</p>
+      </div>
+      <div class="servicio" data-reveal>
+        <div class="servicio__icono" aria-hidden="true">&#9671;</div>
+        <h3>Diseño y servicios digitales</h3>
+        <p>Diseño y publicaciones, logotipos, orlas, maquetación de álbumes digitales, vídeo y publicidad, diseño web y posicionamiento. Y venta de fotos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IA -->
+  <section class="ia" aria-label="Inteligencia artificial">
+    <div class="ia__visual"><img src="img/ia.jpg" alt="Fotografía y retoque con inteligencia artificial en Foto Soria Digital" loading="lazy"></div>
+    <div class="ia__txt" data-reveal>
+      <span>Novedad</span>
+      <h2>La <em>IA</em> como aliada</h2>
+      <p>La inteligencia artificial se incorpora a mis servicios como un plus creativo —que ya estaba presente— sin perder la esencia del retoque fotográfico profesional en Photoshop. La tecnología como aliada de la imaginación, nunca como sustituta del arte.</p>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="sobre__visual">
+      <img src="img/about.jpg" alt="Álvaro Rodríguez trabajando en el retoque digital de imágenes" loading="lazy">
+      <div class="sobre__badge">
+        <div class="sobre__badge-year">1996</div>
+        <div class="sobre__badge-text">Inicio profesional</div>
+      </div>
+    </div>
+    <div class="sobre__contenido">
+      <h2 data-reveal>Álvaro <em>Rodríguez</em></h2>
+      <p class="texto" data-reveal>
+        Los servicios de Fotosoriadigital son muy variados, siempre relacionados con la imagen y el mundo digital. Como <strong>fotógrafo profesional de Soria</strong> he vivido muchas experiencias capturando infinidad de recuerdos para las gentes de estas tierras; también he pasado muchas horas de ordenador apoyando a las <strong>empresas sorianas</strong> con el retoque fotográfico, y han pasado por mis manos alumnos con la inquietud de aprender en los <strong>cursos de fotografía</strong>. Otro capítulo es el diseño web, el posicionamiento y el diseño publicitario.
+      </p>
+      <p class="texto" data-reveal>
+        Cuando hablamos de un servicio profesional nos referimos a la <strong>seriedad</strong> con la que afrontamos los trabajos, poniendo nuestro compromiso encima de la mesa, avalado por una trayectoria de experiencia, asegurando un trabajo de calidad y en unos <strong>tiempos de entrega pactados</strong>.
+      </p>
+      <div class="sobre__valores">
+        <div class="valor" data-reveal>
+          <span class="valor__num">01</span>
+          <div>
+            <h3>Soria y provincia</h3>
+            <p>Cobertura en la capital, El Burgo de Osma y toda la comarca.</p>
+          </div>
+        </div>
+        <div class="valor" data-reveal>
+          <span class="valor__num">02</span>
+          <div>
+            <h3>Retoque para empresas y profesionales</h3>
+            <p>Servicio de edición y retoque también para otros fotógrafos y negocios.</p>
+          </div>
+        </div>
+        <div class="valor" data-reveal>
+          <span class="valor__num">03</span>
+          <div>
+            <h3>Cursos de fotografía</h3>
+            <p>Formación para quienes quieren aprender esta profesión y afición.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA -->
+  <iframe class="mapa" src="https://maps.google.com/maps?q=fotosoriadigital+soria&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Foto Soria Digital en Soria" allowfullscreen></iframe>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <p class="contacto__estado" data-reveal>Disponible para reservas</p>
+    <h2 data-reveal>Hablemos de tu <em>proyecto</em></h2>
+    <a class="btn btn--solido" href="https://wa.me/34645120519" target="_blank" rel="noopener" style="font-size:.9rem;padding:1.2rem 2.4rem">WhatsApp · 645 12 05 19</a>
+    <p class="contacto__secundario" data-reveal>
+      <a href="tel:+34645120519">645 12 05 19</a> ·
+      <a href="mailto:fotosoriadigital@gmail.com">fotosoriadigital@gmail.com</a>
+    </p>
+    <div class="contacto__datos">
+      <div class="dato" data-reveal>
+        <h4>Dónde</h4>
+        <p>Soria · El Burgo de Osma<br>Castilla y León</p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Atención</h4>
+        <p>Con cita previa<br>Respuesta el mismo día por WhatsApp</p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Redes</h4>
+        <p>
+          <a href="https://www.instagram.com/alvaro.rodriguez.fotografo/" target="_blank" rel="noopener">Instagram</a><br>
+          <a href="https://www.facebook.com/fotosoriadigital/" target="_blank" rel="noopener">Facebook</a><br>
+          <a href="https://www.youtube.com/@MyAlvarorodriguez" target="_blank" rel="noopener">YouTube</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>&copy; 2026 Foto Soria Digital · Álvaro Rodríguez</span>
+    <nav aria-label="Enlaces legales">
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </nav>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
+  </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script>
+'use strict';
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
+
+const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+
+let lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  window.lenis = lenis;
+}
+
+/* Estela fluida (decorativa, solo ratón) */
+if (FINE_POINTER && !REDUCE) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then((mod) => {
+    const cont = document.getElementById('fluid');
+    if (!cont) return;
+    const sim = new mod.default(cont);
+    Object.assign(cont.style, { position:'fixed', inset:'0', width:'100%', height:'100%', zIndex:'9000', pointerEvents:'none' });
+    dispatchEvent(new Event('resize'));
+    sim.setConfig({
+      simResolution:128, dyeResolution:1024, densityDissipation:2.4, velocityDissipation:1.5,
+      pressureIterations:10, curl:26, splatRadius:0.1, splatForce:5000,
+      hover:false, colorful:false, colorPalette:['#2E4A8E','#7ea0e6','#93c95a'],
+      transparent:true, bloom:false, sunrays:false,
+    });
+    sim.start();
+    let lastX=null,lastY=null;
+    addEventListener('pointermove',(e)=>{
+      if(lastX!==null){const dx=(e.clientX-lastX)*2.5,dy=(e.clientY-lastY)*2.5;if(Math.abs(dx)+Math.abs(dy)>4)sim.splatAtLocation(e.clientX,e.clientY,dx,dy);}
+      lastX=e.clientX;lastY=e.clientY;
+    },{passive:true});
+    window.__fluidBurst=()=>{const W=innerWidth,H=innerHeight;for(let i=0;i<=5;i++){const t=i/5;setTimeout(()=>sim.splatAtLocation(W*(0.15+t*0.7),H*(0.6-Math.sin(t*Math.PI)*0.22),180*(1-t*0.4),-70*Math.cos(t*Math.PI)),i*70);}};
+    document.addEventListener('visibilitychange',()=>sim.pause());
+  }).catch(()=>{});
+}
+
+/* Cursor */
+if (FINE_POINTER && !REDUCE) (function(){
+  const dot=document.querySelector('.cursor-dot'),ring=document.querySelector('.cursor-ring');
+  if(!dot||!ring)return;
+  const dx=gsap.quickTo(dot,'x',{duration:.12,ease:'power3'}),dy=gsap.quickTo(dot,'y',{duration:.12,ease:'power3'});
+  const rx=gsap.quickTo(ring,'x',{duration:.45,ease:'power3'}),ry=gsap.quickTo(ring,'y',{duration:.45,ease:'power3'});
+  let visto=false;
+  addEventListener('pointermove',(e)=>{if(!visto){gsap.to([dot,ring],{opacity:1,duration:.4});visto=true;}dx(e.clientX);dy(e.clientY);rx(e.clientX);ry(e.clientY);},{passive:true});
+  document.querySelectorAll('a,button,.gitem').forEach((el)=>{
+    el.addEventListener('mouseenter',()=>gsap.to(ring,{scale:1.9,duration:.35,ease:'power3.out'}));
+    el.addEventListener('mouseleave',()=>gsap.to(ring,{scale:1,duration:.35,ease:'power3.out'}));
+  });
+})();
+
+/* Hamburger */
+(function(){
+  const btn=document.querySelector('.hamburger'),menu=document.getElementById('mobileMenu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.classList.toggle('active');btn.setAttribute('aria-expanded',open);if(lenis)open?lenis.stop():lenis.start();});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');btn.classList.remove('active');btn.setAttribute('aria-expanded','false');if(lenis)lenis.start();}));
+})();
+
+/* Navbar scroll */
+(function(){
+  const cab=document.querySelector('.cabecera');if(!cab)return;let ticking=false;
+  addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{cab.classList.toggle('scrolled',scrollY>60);ticking=false;});ticking=true;}},{passive:true});
+})();
+
+/* LIGHTBOX */
+(function(){
+  const items=[].slice.call(document.querySelectorAll('.gitem'));
+  const lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap');
+  if(!items.length||!lb)return;
+  let idx=0;
+  function show(i){idx=(i+items.length)%items.length;const el=items[idx];img.src=el.dataset.full;img.alt=el.querySelector('img').alt;cap.textContent=el.dataset.cap||'';}
+  function open(i){show(i);lb.classList.add('open');document.body.style.overflow='hidden';if(lenis)lenis.stop();}
+  function close(){lb.classList.remove('open');document.body.style.overflow='';if(lenis)lenis.start();}
+  items.forEach((el,i)=>{
+    el.addEventListener('click',()=>open(i));
+    el.addEventListener('keydown',(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(i);}});
+  });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',(e)=>{e.stopPropagation();show(idx-1);});
+  document.getElementById('lbNext').addEventListener('click',(e)=>{e.stopPropagation();show(idx+1);});
+  lb.addEventListener('click',(e)=>{if(e.target===lb||e.target===img)close();});
+  document.addEventListener('keydown',(e)=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(idx-1);else if(e.key==='ArrowRight')show(idx+1);});
+})();
+
+/* COREOGRAFÍA */
+document.fonts.ready.then(()=>{
+  const mm=gsap.matchMedia();
+  mm.add({motionOK:'(prefers-reduced-motion: no-preference)',reduce:'(prefers-reduced-motion: reduce)'},(ctx)=>{
+    if(ctx.conditions.reduce){
+      gsap.set('[data-reveal],[data-hero-reveal]',{clearProps:'all',autoAlpha:1,visibility:'visible'});
+      document.querySelectorAll('[data-cuenta]').forEach((el)=>{el.textContent=(+el.dataset.target).toLocaleString('es-ES');});
+      const pre=document.querySelector('.preloader');if(pre)pre.style.display='none';
+      return;
+    }
+
+    function revealHero(){
+      const tl=gsap.timeline({defaults:{ease:'expo.out'}});
+      tl.set('[data-hero-reveal]',{visibility:'visible'});
+      tl.fromTo('.hero__media',{clipPath:'inset(100% 0 0 0)'},{clipPath:'inset(0% 0 0 0)',duration:1.4,ease:'hop'},0);
+      tl.fromTo('.hero__media img',{scale:1.25},{scale:1,duration:1.8,ease:'power4.out'},0);
+      const splitT=SplitText.create('.hero__titulo',{type:'words,chars',mask:'chars'});
+      tl.from(splitT.chars,{yPercent:120,duration:1,stagger:.012},0.4);
+      const splitS=SplitText.create('.hero__sub',{type:'lines',mask:'lines'});
+      tl.from(splitS.lines,{yPercent:105,duration:.9,stagger:.06},0.65);
+      tl.from('.hero__kicker',{autoAlpha:0,y:18,duration:.8},0.55);
+      tl.from('.hero__cta-row',{autoAlpha:0,y:18,duration:.8},0.85);
+      tl.from('.cabecera',{autoAlpha:0,y:-16,duration:.8},0.5);
+      return tl;
+    }
+
+    const num=document.querySelector('.preloader__num');
+    const progreso={v:0};
+    const cargaMinima=new Promise(res=>{gsap.to(progreso,{v:100,duration:1.7,ease:'steps(14)',onUpdate:()=>{if(num)num.firstChild.textContent=Math.round(progreso.v);},onComplete:res});});
+    const cargaReal=new Promise(res=>{if(document.readyState==='complete')res();else addEventListener('load',res,{once:true});});
+    Promise.all([cargaMinima,cargaReal]).then(()=>{
+      gsap.timeline()
+        .to('.preloader__num',{yPercent:-110,duration:.65,ease:'expo.in'})
+        .to('.preloader__marca',{yPercent:-110,duration:.5,ease:'expo.in'},'<')
+        .to('.preloader__cortina',{clipPath:'inset(0 0 100% 0)',duration:1.1,ease:'hop'},'-=0.1')
+        .set('.preloader',{display:'none'})
+        .add(revealHero(),'-=0.75')
+        .call(()=>lenis&&lenis.start(),null,'-=1.2')
+        .call(()=>window.__fluidBurst&&window.__fluidBurst(),null,'-=0.9');
+    });
+
+    /* Hero parallax */
+    gsap.to('[data-hero-parallax]',{yPercent:14,scale:1.12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    gsap.to('.hero__contenido',{yPercent:-10,autoAlpha:.35,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 30%',scrub:true}});
+
+    /* Progress */
+    gsap.to('.progreso span',{scaleY:1,ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.5}});
+
+    /* Manifiesto scrub + floats */
+    SplitText.create('[data-manifiesto]',{type:'words',onSplit:(self)=>gsap.from(self.words,{opacity:.14,stagger:.05,ease:'none',scrollTrigger:{trigger:'.manifiesto',start:'top 72%',end:'bottom 55%',scrub:true}})});
+    gsap.utils.toArray('.flotante').forEach((el)=>{const sp=+el.dataset.speed||1;gsap.fromTo(el,{yPercent:16*sp},{yPercent:-16*sp,ease:'none',scrollTrigger:{trigger:'.manifiesto',start:'top bottom',end:'bottom top',scrub:1}});});
+
+    /* Cifras */
+    gsap.utils.toArray('.cifra').forEach((el,i)=>{gsap.fromTo(el,{y:50+i*30,autoAlpha:0},{y:0,autoAlpha:1,ease:'none',scrollTrigger:{trigger:'.cifras',start:'top 95%',end:'top 45%',scrub:1}});});
+    document.querySelectorAll('[data-cuenta]').forEach((el)=>{const objetivo=+el.dataset.target;const c={v:0};gsap.to(c,{v:objetivo,duration:2,ease:'power2.out',snap:{v:1},scrollTrigger:{trigger:el,start:'top 88%',once:true},onUpdate:()=>{el.textContent=Math.round(c.v).toLocaleString('es-ES');}});});
+
+    /* Reveal genérico */
+    document.querySelectorAll('[data-reveal]').forEach((el)=>{
+      gsap.fromTo(el,{autoAlpha:0,y:26},{autoAlpha:1,y:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+    });
+
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
