@@ -1,0 +1,100 @@
+/* Ficha de producto con selector en un paso — David Farré
+   Compartida por las tres versiones de idioma. */
+
+.wa-float{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;z-index:9000;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:transform .2s,box-shadow .2s}
+.wa-float:hover{transform:translateY(-3px) scale(1.05)}
+
+/* ---------- selector de idioma ---------- */
+.idiomas{display:flex;gap:2px;align-items:center;margin-left:18px}
+.idiomas a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--gris);padding:5px 8px;transition:.2s;border-bottom:2px solid transparent}
+.idiomas a:hover{color:var(--brasa)}
+.idiomas a.on{color:var(--tierra);border-bottom-color:var(--brasa)}
+.mm-idiomas{display:flex;gap:14px;padding:16px 0 4px;border-top:1px solid rgba(244,237,224,.18);margin-top:12px}
+.mm-idiomas a{font-size:12px !important;letter-spacing:.12em;text-transform:uppercase;padding:0 !important}
+
+/* ---------- ficha ---------- */
+.ficha{max-width:1240px;margin:0 auto;padding:48px 24px 90px;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+.galeria{position:sticky;top:96px}
+.galeria-principal{aspect-ratio:3/4;overflow:hidden;background:var(--crema);border:1px solid var(--linea)}
+.galeria-principal img{width:100%;height:100%;object-fit:cover;display:block}
+.galeria-tiras{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.galeria-tiras button{aspect-ratio:1;overflow:hidden;border:1px solid var(--linea);background:var(--crema);padding:0;cursor:pointer;transition:.2s}
+.galeria-tiras button.on{border-color:var(--brasa);border-width:2px}
+.galeria-tiras img{width:100%;height:100%;object-fit:cover;display:block}
+
+.compra{padding-top:6px}
+.miga{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris);margin-bottom:18px}
+.miga a{color:var(--gris)}
+.miga a:hover{color:var(--brasa)}
+.ficha h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(32px,4vw,46px);line-height:1.06;color:var(--tierra);margin-bottom:10px}
+.ficha-precio{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:32px;color:var(--brasa);margin-bottom:6px}
+.ficha-intro{font-size:14px;color:var(--gris);line-height:1.65;margin-bottom:24px;max-width:52ch}
+
+/* conmutador de modos */
+.modos{display:flex;gap:0;border:1px solid var(--linea);margin-bottom:26px;background:#fff}
+.modos button{flex:1;padding:13px 10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;font-family:inherit;background:transparent;border:0;cursor:pointer;color:var(--gris);transition:.2s;line-height:1.4}
+.modos button.on{background:var(--tierra);color:var(--crema)}
+.modos-pie{font-size:12px;color:var(--gris);margin:-16px 0 26px;line-height:1.55;font-style:italic}
+
+/* ------- tres filas siempre visibles ------- */
+.eje{margin-bottom:24px}
+.eje-cab{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:11px;gap:12px}
+.eje-cab h3{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--tierra)}
+.eje-cab .elegido{font-size:13px;color:var(--brasa);font-weight:600}
+.opciones{display:flex;flex-wrap:wrap;gap:9px}
+
+.op{position:relative;border:1.5px solid var(--linea);background:#fff;cursor:pointer;font-family:inherit;transition:.18s;padding:0}
+.op:hover{border-color:var(--brasa)}
+.op.on{border-color:var(--tierra);border-width:2px;box-shadow:0 0 0 3px rgba(139,94,60,.14)}
+.op.no{opacity:.34}
+.op.no::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - .7px),var(--gris) 50%,transparent calc(50% + .7px))}
+.op.muerta{opacity:.2;cursor:not-allowed}
+
+/* 14px arriba y abajo dejan el botón en 46px de alto: por encima del mínimo
+   de 44px que recomienda Apple para que el dedo acierte a la primera. */
+.op-texto{min-width:60px;padding:14px 16px;font-size:13px;font-weight:600;color:var(--tierra);letter-spacing:.02em}
+.op-muestra{width:70px;padding:0 0 8px}
+.op-muestra .piel{height:56px;width:100%;display:block}
+.op-muestra .nombre{display:block;font-size:10.5px;padding-top:7px;color:var(--gris);letter-spacing:.04em}
+.piel-chocolate{background:radial-gradient(circle at 32% 28%,#6b4226,#3d2314 78%)}
+.piel-marron{background:radial-gradient(circle at 32% 28%,#9b6539,#6a3f22 78%)}
+.piel-negro{background:radial-gradient(circle at 32% 28%,#2e2723,#100d0b 78%)}
+
+.estado{border-left:3px solid var(--brasa);background:var(--hueso);padding:14px 16px;margin:26px 0 20px;font-size:13.5px;line-height:1.6;color:var(--tierra)}
+.estado b{color:var(--brasa)}
+
+/* ------- como está hoy: color y piel NO son elegibles ------- */
+.hoy-fijo{border:1px solid var(--linea);background:var(--hueso);padding:2px 16px;margin-bottom:22px}
+.hoy-linea{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid var(--linea)}
+.hoy-linea:last-child{border-bottom:0}
+.hoy-linea span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--tierra);white-space:nowrap}
+.hoy-linea b{font-size:12.5px;color:var(--gris);font-weight:500;font-style:italic;text-align:right;line-height:1.5}
+
+/* ------- desplegable de talla (como la web actual) ------- */
+.paso{margin-bottom:18px;opacity:.4;transition:opacity .25s;pointer-events:none}
+.paso.activo{opacity:1;pointer-events:auto}
+.paso-cab{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.paso-num{width:22px;height:22px;border-radius:50%;background:var(--linea);color:var(--tierra);font-size:11px;font-weight:700;display:grid;place-items:center;flex:0 0 auto}
+.paso.activo .paso-num{background:var(--brasa);color:#fff}
+.paso-cab h3{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--tierra)}
+.paso select{width:100%;padding:13px 14px;border:1.5px solid var(--linea);background:#fff;font-family:inherit;font-size:14px;color:var(--tierra);cursor:pointer;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gris) 50%),linear-gradient(135deg,var(--gris) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+.paso select:disabled{cursor:not-allowed;background-color:#f6f2ea}
+
+.comprar{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.comprar .btn{flex:1;min-width:190px;justify-content:center}
+.btn[disabled]{opacity:.4;cursor:not-allowed;pointer-events:none}
+.ficha-extras{margin-top:26px;border-top:1px solid var(--linea);padding-top:20px;font-size:12.5px;color:var(--gris);line-height:1.75}
+.ficha-extras a{color:var(--brasa);font-weight:600}
+
+.nota-demo{max-width:1240px;margin:0 auto 60px;padding:0 24px}
+.nota-demo-caja{background:var(--tierra);color:var(--crema);padding:28px 30px}
+.nota-demo-caja h4{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin-bottom:10px}
+.nota-demo-caja p{font-size:14px;line-height:1.7;opacity:.86;max-width:78ch}
+.nota-demo-caja p+p{margin-top:10px}
+
+@media(max-width:900px){
+  .ficha{grid-template-columns:1fr;gap:34px;padding:30px 20px 70px}
+  .galeria{position:static}
+  .op-muestra{width:64px}
+  .idiomas{margin-left:10px}
+}
