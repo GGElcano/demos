@@ -25,6 +25,10 @@
          Guardia Civil; munición por agencia a domicilio   [formas-de-envio]
        · Productos y precios del carrusel: copiados literalmente de la
          portada de armeriaparasole.com (fotos en assets/, suyas)
+       · Catálogo con filtros: 12 productos reales con foto real, extraídos
+         de sus categorías el 11-ago-2026 (solo fichas con foto propia; la
+         mayoría de su catálogo usa el logo de relleno). Carrito y asistente
+         IA son de MUESTRA (avisado en la propia página y en el pie).
        · Marcas citadas (Blaser, Browning, B&P, Sulbeja, Sellier&Bellot,
          Norma, Sologne, RC): presentes en su catálogo real
        · Paleta: del logotipo real (oliva + agua) — assets/logo-parasole.png
@@ -73,7 +77,7 @@ h1,h2,h3{ font-family: var(--serif); font-weight: 400; line-height: 1.06; }
 em{ font-style: italic; color: var(--oliva-luz); }
 a{ color: inherit; text-decoration: none; }
 ul{ list-style: none; }
-img{ display:block; width:100%; height:100%; object-fit: cover; }
+img{ display:block; width:100%; height:100%; object-fit: cover; -webkit-user-drag: none; user-select: none; }
 
 /* ── Capas: fondo WebGL (0) < contenido (1) < grano (3997) < estela (3998) < cursor (3999) ── */
 #fondo-gl{ position: fixed; inset: 0; width:100%; height:100%; z-index: 0; pointer-events: none; }
@@ -533,6 +537,125 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
   color: rgba(154,166,148,.75); font-size:.7rem; letter-spacing:.06em; max-width: 76ch;
 }
 
+/* ── CATÁLOGO CON FILTROS ── */
+.catalogo{ padding: 0 var(--pad) clamp(6rem,14vh,11rem); }
+.catalogo__cab{ margin-bottom: 2rem; }
+.catalogo__cab h2{ font-size: clamp(2.1rem, 5.4vw, 4.4rem); max-width: 20ch; }
+.catalogo__cab p{ color: var(--piedra); font-size:.86rem; max-width: 52ch; margin-top:.7rem; }
+.catalogo__filtros{ display:flex; flex-wrap:wrap; gap:.7rem .7rem; align-items:center; margin-bottom: 1.4rem; }
+.chip{
+  border:1px solid var(--linea); border-radius:999px; background:none; color: var(--piedra);
+  font: 300 .82rem/1 var(--sans); letter-spacing:.06em; padding:.62rem 1.15rem; cursor:pointer;
+  transition: border-color .3s ease, color .3s ease, background-color .3s ease;
+}
+.chip:hover{ border-color: var(--oliva-suave); color: var(--crema); }
+.chip.activa{ background: var(--oliva); border-color: var(--oliva); color:#10150f; font-weight:500; }
+.catalogo__busca{
+  flex: 1 1 11rem; min-width: 9rem; display:flex; align-items:center; gap:.6rem;
+  border:1px solid var(--linea); border-radius:999px; padding:.55rem 1.1rem;
+}
+.catalogo__busca svg{ width:.95rem; height:.95rem; color: var(--piedra); flex:0 0 auto; }
+.catalogo__busca input{ background:none; border:none; outline:none; color: var(--crema); font: 300 .9rem var(--sans); width:100%; }
+.catalogo__busca input::placeholder{ color: rgba(154,166,148,.6); }
+.catalogo__orden{
+  background: var(--bg-2); border:1px solid var(--linea); border-radius:999px;
+  color: var(--piedra); font: 300 .82rem var(--sans); padding:.6rem 2rem .6rem 1rem; cursor:pointer;
+  appearance:none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239aa694' fill='none' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position: right .9rem center; background-size:.6rem;
+}
+.catalogo__n{ color: var(--piedra); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom: 1.6rem; }
+.catalogo__grid{ display:grid; gap: clamp(1.4rem,2.6vw,2.2rem); grid-template-columns: repeat(auto-fill, minmax(min(15.5rem,100%),1fr)); }
+.prod{ display:flex; flex-direction:column; }
+.prod__marco{ position:relative; background: var(--crema); overflow:hidden; aspect-ratio: 12/11; }
+.prod__marco img{ object-fit: contain; padding: 1.2rem; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.prod:hover .prod__marco img{ transform: scale(1.05); }
+.prod__tag{
+  position:absolute; top:.8rem; left:.9rem;
+  font: 400 .62rem/1 var(--sans); letter-spacing:.16em; text-transform:uppercase;
+  color:#4c5344; background: rgba(242,239,230,.85); border-radius:999px; padding:.35rem .7rem;
+}
+.prod h3{ font-size: 1.06rem; line-height:1.3; margin-top:.85rem; flex:1; font-weight:400; }
+.prod__pie{ display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-top:.55rem; }
+.prod__precio{ font-family: var(--serif); font-size:1.25rem; color: var(--oliva-luz); font-variant-numeric: tabular-nums; }
+.prod__add{
+  border:1px solid var(--oliva-suave); background:none; color: var(--crema); border-radius:999px;
+  font: 400 .7rem/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; padding:.55rem 1rem; cursor:pointer;
+  transition: background-color .3s ease, color .3s ease; white-space:nowrap;
+}
+.prod__add:hover{ background: var(--oliva); color:#10150f; }
+.catalogo__vacio{ color: var(--piedra); padding: 3rem 0; text-align:center; display:none; }
+
+/* carrito de muestra en cabecera */
+.cabecera__cesta{
+  position:relative; display:grid; place-items:center; width:2.55rem; height:2.55rem;
+  border:1px solid var(--oliva-suave); border-radius:50%; background:none; color: var(--crema);
+  cursor:pointer; transition: background-color .3s ease; flex: 0 0 auto;
+}
+.cabecera__cesta:hover{ background: rgba(143,163,46,.15); }
+.cabecera__cesta svg{ width:1.02rem; height:1.02rem; }
+.cabecera__cesta b{
+  position:absolute; top:-.35rem; right:-.35rem; min-width:1.15rem; height:1.15rem;
+  border-radius:999px; background: var(--oliva); color:#10150f;
+  font: 600 .62rem/1.15rem var(--sans); text-align:center; padding:0 .2rem;
+}
+
+/* toast */
+.toast{
+  position:fixed; left:50%; bottom:1.6rem; transform:translate(-50%, 160%);
+  z-index:4000; background:#0c100b; border:1px solid var(--oliva-suave); color: var(--crema);
+  font: 300 .88rem var(--sans); padding:.9rem 1.4rem; border-radius:.6rem;
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
+  max-width:min(92vw,36rem); text-align:center; pointer-events:none;
+}
+.toast.ver{ transform:translate(-50%, 0); }
+
+/* ── ASISTENTE DE LA TIENDA (muestra) ── */
+.asis-btn{
+  position:fixed; right:1.4rem; bottom:1.4rem; z-index:3990;
+  display:inline-flex; align-items:center; gap:.7rem;
+  background: var(--oliva); color:#10150f; border:none; border-radius:999px;
+  padding: .95rem 1.35rem; font: 500 .82rem/1 var(--sans); letter-spacing:.05em; cursor:pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  transition: background-color .3s ease, transform .3s ease;
+}
+.asis-btn:hover{ background: var(--oliva-luz); transform: translateY(-2px); }
+.asis-btn svg{ width:1.05rem; height:1.05rem; flex:0 0 auto; }
+.asis{
+  position:fixed; right:1.4rem; bottom:5.6rem; z-index:3991;
+  width:min(24rem, calc(100vw - 2rem)); max-height:min(34rem, calc(100svh - 8rem));
+  display:none; flex-direction:column;
+  background:#0e130d; border:1px solid var(--linea); border-radius:1rem; overflow:hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55);
+}
+.asis.abierto{ display:flex; }
+.asis__cab{ display:flex; justify-content:space-between; align-items:center; gap:1rem; padding: .95rem 1.15rem; background: var(--bg-2); border-bottom:1px solid var(--linea); }
+.asis__cab h3{ font-size:1.05rem; }
+.asis__cab p{ color: var(--piedra); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; margin-top:.2rem; }
+.asis__cerrar{ background:none; border:none; color: var(--piedra); cursor:pointer; font-size:1.25rem; line-height:1; padding:.2rem .4rem; }
+.asis__cerrar:hover{ color: var(--crema); }
+.asis__msgs{ padding: 1rem 1.15rem; overflow-y:auto; display:flex; flex-direction:column; gap:.7rem; flex:1; scrollbar-width:thin; scrollbar-color: var(--oliva) transparent; }
+.msg{ max-width:88%; padding:.7rem .95rem; border-radius:.8rem; font-size:.88rem; line-height:1.5; }
+.msg--ia{ background: var(--bg-2); border:1px solid var(--linea); align-self:flex-start; border-bottom-left-radius:.2rem; }
+.msg--yo{ background: var(--oliva); color:#10150f; align-self:flex-end; border-bottom-right-radius:.2rem; }
+.asis__chips{ display:flex; flex-wrap:wrap; gap:.5rem; padding: .2rem 1.15rem .8rem; }
+.asis__chips .chip{ font-size:.74rem; padding:.5rem .85rem; }
+.asis__pie{ border-top:1px solid var(--linea); padding:.7rem .9rem; display:flex; gap:.6rem; align-items:center; }
+.asis__pie input{ flex:1; background: var(--bg-2); border:1px solid var(--linea); border-radius:999px; color: var(--crema); font: 300 .86rem var(--sans); padding:.6rem 1rem; outline:none; }
+.asis__pie input:focus{ border-color: var(--oliva-suave); }
+.asis__enviar{
+  width:2.5rem; height:2.5rem; border-radius:50%; border:none; background: var(--oliva); color:#10150f;
+  display:grid; place-items:center; cursor:pointer; flex:0 0 auto;
+  transition: background-color .3s ease;
+}
+.asis__enviar:hover{ background: var(--oliva-luz); }
+.asis__enviar svg{ width:1rem; height:1rem; }
+.asis__nota{ color: rgba(154,166,148,.7); font-size:.63rem; line-height:1.45; padding: 0 1.15rem .8rem; }
+@media (max-width:560px){
+  .asis{ right:.6rem; left:.6rem; width:auto; bottom:5rem; }
+  .asis-btn{ right:.9rem; bottom:.9rem; }
+  .asis-btn span{ display:none; }
+}
+
 [data-reveal]{ visibility: hidden; }
 
 @media (prefers-reduced-motion: reduce){
@@ -567,12 +690,18 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
     <span><b>Parasole</b></span>
   </a>
   <nav class="cabecera__nav" aria-label="principal">
-    <a class="roll" href="#tienda"     data-text="La tienda"><span>La tienda</span></a>
+    <a class="roll" href="#catalogo"   data-text="La tienda"><span>La tienda</span></a>
     <a class="roll" href="#categorias" data-text="Categorías"><span>Categorías</span></a>
     <a class="roll" href="#como"       data-text="Cómo funciona"><span>Cómo funciona</span></a>
     <a class="roll" href="#contacto"   data-text="Contacto"><span>Contacto</span></a>
   </nav>
-  <a class="cabecera__tel" href="tel:+34924638135">924 638 135</a>
+  <div style="display:flex; align-items:center; gap:.7rem;">
+    <a class="cabecera__tel" href="tel:+34924638135">924 638 135</a>
+    <button class="cabecera__cesta" type="button" aria-label="Carrito (muestra)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 7h12l-1.2 12H7.2L6 7z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+      <b data-cesta-n>0</b>
+    </button>
+  </div>
 </header>
 
 <main>
@@ -594,7 +723,7 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
             y un taller de reparación propio.
           </p>
           <div class="hero__ctas" data-hero-reveal>
-            <a class="boton boton--solido" href="#tienda">Ver la tienda</a>
+            <a class="boton boton--solido" href="#catalogo">Ver la tienda</a>
             <a class="boton" href="tel:+34924638135">Llamar al 924 638 135</a>
           </div>
         </div>
@@ -670,8 +799,8 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
   <section class="obras" id="tienda" aria-label="Productos destacados de la tienda">
     <div class="obras__cab">
       <div>
-        <h2 data-reveal data-split="lines">La tienda, con sus <em>precios de hoy</em></h2>
-        <p data-reveal>Productos y precios reales de armeriaparasole.com, tal y como están publicados. En la web definitiva, todo el catálogo se vería así.</p>
+        <h2 data-reveal data-split="lines">Destacados, con sus <em>precios de hoy</em></h2>
+        <p data-reveal>Productos y precios reales de armeriaparasole.com, tal y como están publicados. Más abajo, el catálogo completo con filtros.</p>
       </div>
       <div class="obras__mando">
         <p class="obras__indice"><b data-carril-num>01</b> / 05</p>
@@ -775,6 +904,34 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
     <div class="servicios__preview" aria-hidden="true"><img src="" alt=""></div>
   </section>
 
+  <!-- ════════ CATÁLOGO CON FILTROS (tienda de verdad) ════════ -->
+  <section class="catalogo" id="catalogo" aria-label="Catálogo con filtros">
+    <div class="catalogo__cab">
+      <h2 data-reveal data-split="lines">El catálogo, como una <em>tienda de verdad</em></h2>
+      <p data-reveal>Filtra, busca y ordena: 12 productos reales con su precio publicado. En la web definitiva serían las más de 3.000 referencias, con stock y compra online.</p>
+    </div>
+    <div class="catalogo__filtros" role="group" aria-label="Filtros del catálogo">
+      <button class="chip activa" type="button" data-cat="todo">Todo</button>
+      <button class="chip" type="button" data-cat="rifles">Rifles</button>
+      <button class="chip" type="button" data-cat="escopetas">Escopetas</button>
+      <button class="chip" type="button" data-cat="carabinas">Carabinas</button>
+      <button class="chip" type="button" data-cat="cartucheria">Cartuchería y munición</button>
+      <button class="chip" type="button" data-cat="segunda">Segunda mano</button>
+      <label class="catalogo__busca">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        <input type="search" placeholder="Buscar…" aria-label="Buscar en el catálogo" data-busca>
+      </label>
+      <select class="catalogo__orden" aria-label="Ordenar" data-orden>
+        <option value="rel">Orden: relevancia</option>
+        <option value="asc">Precio: de menor a mayor</option>
+        <option value="desc">Precio: de mayor a menor</option>
+      </select>
+    </div>
+    <p class="catalogo__n"><span data-cat-n>12</span> productos</p>
+    <div class="catalogo__grid" data-grid></div>
+    <p class="catalogo__vacio" data-vacio>No hay resultados con esos filtros. Prueba a quitar alguno — o llámanos al 924 638 135, que en la tienda hay mucho más que en la web.</p>
+  </section>
+
   <!-- ════════ TIRAS a contra-scroll (marcas reales del catálogo) ════════ -->
   <div class="tiras" aria-hidden="true">
     <p class="tira" data-tira="-1">Blaser <em>—</em> Browning <em>—</em> Baschieri &amp; Pellagri <em>—</em> Sellier &amp; Bellot <em>—</em> Norma <em>—</em> Sologne <em>—</em> Blaser <em>—</em> Browning <em>—</em> Baschieri &amp; Pellagri <em>—</em> Sellier &amp; Bellot</p>
@@ -857,9 +1014,42 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
     Maqueta de demostración. Los productos, precios, teléfonos, dirección y horario son los
     publicados hoy por Armería Parasole; las fotos de ambiente son imágenes de stock de uso
     libre y dos fotografías de su propia web, colocadas como referencia. Los textos son una
-    propuesta de redacción.
+    propuesta de redacción. El carrito y el asistente son de muestra: enseñan cómo funcionaría
+    la web definitiva, sin compra real ni IA conectada todavía.
   </p>
 </main>
+
+<!-- ════════ ASISTENTE DE LA TIENDA (muestra) ════════ -->
+<button class="asis-btn" type="button" data-asis-abrir>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+  <span>¿Te ayudo a elegir?</span>
+</button>
+<div class="asis" role="dialog" aria-label="Asistente de la tienda (muestra)">
+  <div class="asis__cab">
+    <div>
+      <h3>El asistente de Parasole</h3>
+      <p>IA de la tienda · muestra</p>
+    </div>
+    <button class="asis__cerrar" type="button" data-asis-cerrar aria-label="Cerrar">×</button>
+  </div>
+  <div class="asis__msgs" data-asis-msgs>
+    <div class="msg msg--ia">Buenas — soy el asistente de la armería. Dime qué buscas y te oriento entre el catálogo. ¿Por dónde empezamos?</div>
+  </div>
+  <div class="asis__chips" data-asis-chips>
+    <button class="chip" type="button" data-tema="mayor">Caza mayor</button>
+    <button class="chip" type="button" data-tema="menor">Caza menor</button>
+    <button class="chip" type="button" data-tema="empezar">Quiero empezar</button>
+    <button class="chip" type="button" data-tema="segunda">Segunda mano</button>
+    <button class="chip" type="button" data-tema="pesca">Pesca</button>
+  </div>
+  <div class="asis__pie">
+    <input type="text" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta" data-asis-input>
+    <button class="asis__enviar" type="button" data-asis-enviar aria-label="Enviar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+  <p class="asis__nota">Asistente de muestra con respuestas de ejemplo sobre productos reales. En la web definitiva responde una IA conectada al catálogo, y el asesoramiento final siempre es de la armería.</p>
+</div>
 
 <!-- ════════ DEPENDENCIAS ════════ -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
@@ -1377,6 +1567,157 @@ if (FINE_POINTER && !REDUCE) (function cursor(){
   redimensionar();
 })();
 
+/* ── 3c) Nada de arrastre nativo de imágenes: al hacer clic y mover, el
+   navegador arrancaba un drag y la vista previa se quedaba pegada al cursor ── */
+document.addEventListener('dragstart', (e) => { if (e.target.closest('img')) e.preventDefault(); });
+
+/* ── 3d) CATÁLOGO con filtros + carrito de muestra ── */
+const toast = (function(){
+  const el = document.createElement('p');
+  el.className = 'toast'; el.setAttribute('role', 'status');
+  document.body.appendChild(el);
+  let t = 0;
+  return (txt) => {
+    el.textContent = txt;
+    el.classList.add('ver');
+    clearTimeout(t);
+    t = setTimeout(() => el.classList.remove('ver'), 3200);
+  };
+})();
+
+(function catalogo(){
+  /* 12 productos reales de armeriaparasole.com, precio publicado (11-ago-2026) */
+  const PRODUCTOS = [
+    { n:'Rifle Blaser R8 Professional Verde Cal-300WM',            cat:'rifles',     tag:'Rifles',       p:4090.01, precio:'4.090,01 €', img:'assets/prod-blaser.jpg' },
+    { n:'Rifle Browning BAR MK3 Hunter Fluted Cal.300WM',          cat:'rifles',     tag:'Rifles',       p:1650,    precio:'1.650,00 €', img:'assets/prod-browning.jpg' },
+    { n:'Escopeta Franchi 610 Variopress semiautomática 12-71',    cat:'escopetas',  tag:'Escopetas',    p:965,     precio:'965,00 €',   img:'assets/prod-franchi610.jpg' },
+    { n:'Carabina PCP Hatsan Factor Bronze Cal.4,5',               cat:'carabinas',  tag:'Carabinas',    p:613,     precio:'613,00 €',   img:'assets/prod-hatsan.jpg' },
+    { n:'Cartucho Baschieri&Pellagri Cal.28-70 30 Gr. P-6',        cat:'cartucheria',tag:'Cartuchería',  p:14.5,    precio:'14,50 €',    img:'assets/prod-bp.jpg' },
+    { n:'Cartucho Sulbeja Cal.9mm 7 Gr. P.8 · caja 25',            cat:'cartucheria',tag:'Cartuchería',  p:16,      precio:'16,00 €',    img:'assets/prod-sulbeja.jpg' },
+    { n:'Bala Sellier-Bellot 32 S&W Long WC 100 Grs.',             cat:'cartucheria',tag:'Munición',     p:0.61,    precio:'0,61 €',     img:'assets/prod-sb.jpg' },
+    { n:'Rifle CZ 457 Varmint Cal.17HMR con visor · 2ª mano',      cat:'segunda',    tag:'Segunda mano', p:900,     precio:'900,00 €',   img:'assets/prod-cz457.jpg' },
+    { n:'Rifle Zoli Luxe Cal.30-06 · 2ª mano',                     cat:'segunda',    tag:'Segunda mano', p:700,     precio:'700,00 €',   img:'assets/prod-zoli.jpg' },
+    { n:'Escopeta Francisco Sarriugarte Cal-12 · 2ª mano',         cat:'segunda',    tag:'Segunda mano', p:550.01,  precio:'550,01 €',   img:'assets/prod-sarriugarte.jpg' },
+    { n:'Escopeta Fabarm Cal.12-60 con polichoke · 2ª mano',       cat:'segunda',    tag:'Segunda mano', p:390,     precio:'390,00 €',   img:'assets/prod-fabarm.jpg' },
+    { n:'Escopeta Lanber Victoria semiautomática 12-71 · 2ª mano', cat:'segunda',    tag:'Segunda mano', p:375,     precio:'375,00 €',   img:'assets/prod-lanber.jpg' },
+  ];
+  const grid  = document.querySelector('[data-grid]');
+  const nEl   = document.querySelector('[data-cat-n]');
+  const vacio = document.querySelector('[data-vacio]');
+  const busca = document.querySelector('[data-busca]');
+  const orden = document.querySelector('[data-orden]');
+  if (!grid) return;
+  let cat = 'todo', q = '', ord = 'rel';
+
+  const quitarAcentos = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+  function render(){
+    let lista = PRODUCTOS.filter(pr => (cat === 'todo' || pr.cat === cat));
+    if (q) { const qq = quitarAcentos(q); lista = lista.filter(pr => quitarAcentos(pr.n + ' ' + pr.tag).includes(qq)); }
+    if (ord === 'asc')  lista = [...lista].sort((a,b) => a.p - b.p);
+    if (ord === 'desc') lista = [...lista].sort((a,b) => b.p - a.p);
+    grid.innerHTML = lista.map(pr => `
+      <article class="prod">
+        <div class="prod__marco"><span class="prod__tag">${pr.tag}</span><img src="${pr.img}" alt="${pr.n}" loading="lazy"></div>
+        <h3>${pr.n}</h3>
+        <div class="prod__pie">
+          <p class="prod__precio">${pr.precio}</p>
+          <button class="prod__add" type="button">Añadir</button>
+        </div>
+      </article>`).join('');
+    nEl.textContent = lista.length;
+    vacio.style.display = lista.length ? 'none' : 'block';
+  }
+
+  document.querySelectorAll('.catalogo__filtros [data-cat]').forEach((ch) => {
+    ch.addEventListener('click', () => {
+      document.querySelectorAll('.catalogo__filtros [data-cat]').forEach(c => c.classList.remove('activa'));
+      ch.classList.add('activa');
+      cat = ch.dataset.cat;
+      render();
+    });
+  });
+  busca.addEventListener('input', () => { q = busca.value.trim(); render(); });
+  orden.addEventListener('change', () => { ord = orden.value; render(); });
+  render();
+
+  /* carrito de muestra */
+  let cesta = 0;
+  const badge = document.querySelector('[data-cesta-n]');
+  grid.addEventListener('click', (e) => {
+    const b = e.target.closest('.prod__add');
+    if (!b) return;
+    cesta++; badge.textContent = cesta;
+    toast('Añadido al carrito de muestra. En la web definitiva, aquí se compra de verdad.');
+  });
+  document.querySelector('.cabecera__cesta').addEventListener('click', () => {
+    toast(cesta
+      ? `Llevas ${cesta} en el carrito de muestra — la compra real llegaría con la web definitiva.`
+      : 'Carrito de muestra: añade algo desde el catálogo para probarlo.');
+  });
+})();
+
+/* ── 3e) ASISTENTE de la tienda (muestra con respuestas de ejemplo) ── */
+(function asistente(){
+  const panel  = document.querySelector('.asis');
+  const btn    = document.querySelector('[data-asis-abrir]');
+  const cerrar = document.querySelector('[data-asis-cerrar]');
+  const msgs   = document.querySelector('[data-asis-msgs]');
+  const input  = document.querySelector('[data-asis-input]');
+  const enviar = document.querySelector('[data-asis-enviar]');
+  if (!panel) return;
+
+  const RESP = {
+    mayor: ['Busco algo para caza mayor',
+      'Para rececho o montería, lo habitual es rifle de cerrojo o semiautomático. En catálogo ahora mismo: el Blaser R8 Professional (4.090,01 €), el Browning BAR MK3 (1.650,00 €) o, en segunda mano, el Zoli Luxe del 30-06 (700 €). Dime modalidad y presupuesto y afinamos — y el consejo final, en la tienda: 924 638 135.'],
+    menor: ['Busco algo para caza menor',
+      'Para el puesto y la mano, escopeta: la Franchi 610 Variopress semiautomática (965 €) o una superpuesta, y cartuchos según la jornada — B&P, Bioammo o Activ, que van de 7,90 € la caja. Si me dices qué cazas (perdiz, zorzal, acuáticas), te digo qué se lleva la gente de la zona.'],
+    empezar: ['Quiero empezar en la caza',
+      'Antes del arma va el papeleo: licencia de armas (la E para escopeta, la D para rifle de caza mayor), con su examen y su revisión médica, y después la guía de pertenencia. En la armería te lo explican paso a paso y sin líos — llama al 924 638 135 y sales con el camino claro.'],
+    segunda: ['¿Qué hay en segunda mano?',
+      'La sección de ocasión se mueve mucho: ahora mismo hay escopetas desde 375 € (Lanber Victoria) y rifles como el CZ 457 con visor incluido (900 €). Todo pasa por casa, y con el taller propio aquí al lado para la puesta a punto.'],
+    pesca: ['¿Y para pesca?',
+      'Cañas, carretes, sedales y cebos para río y embalse — y equipo completo de carpfishing: bivies, bedchairs y boilies. Con La Serena y los pantanos de La Siberia al lado, de esto en la tienda se sabe un rato. Pásate o llama y te preparan el equipo.'],
+  };
+
+  const abrir = () => { panel.classList.add('abierto'); btn.style.display = 'none'; input.focus({ preventScroll: true }); };
+  const cierra = () => { panel.classList.remove('abierto'); btn.style.display = ''; };
+  btn.addEventListener('click', abrir);
+  cerrar.addEventListener('click', cierra);
+
+  function mensaje(texto, mio){
+    const el = document.createElement('div');
+    el.className = 'msg ' + (mio ? 'msg--yo' : 'msg--ia');
+    el.textContent = texto;
+    msgs.appendChild(el);
+    msgs.scrollTop = msgs.scrollHeight;
+    return el;
+  }
+  function respuestaIA(texto){
+    const el = mensaje('…', false);
+    setTimeout(() => { el.textContent = texto; msgs.scrollTop = msgs.scrollHeight; }, 650);
+  }
+
+  document.querySelectorAll('[data-tema]').forEach((ch) => {
+    ch.addEventListener('click', () => {
+      const r = RESP[ch.dataset.tema];
+      if (!r) return;
+      mensaje(r[0], true);
+      respuestaIA(r[1]);
+    });
+  });
+
+  function enviarTexto(){
+    const t = input.value.trim();
+    if (!t) return;
+    input.value = '';
+    mensaje(t, true);
+    respuestaIA('Buena pregunta — esto es una maqueta y aquí respondería la IA conectada al catálogo real de la armería. Para ver cómo suena, prueba uno de los botones de arriba; y para una respuesta de verdad, el 924 638 135 no falla.');
+  }
+  enviar.addEventListener('click', enviarTexto);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') enviarTexto(); });
+})();
+
 /* ── 4) Cabecera: fondo sólido al bajar (el scrim se apaga solo) ── */
 (function cabecera(){
   const el = document.querySelector('.cabecera');
@@ -1664,15 +2005,18 @@ document.fonts.ready.then(() => {
       gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0.92 });
       const px = gsap.quickTo(preview, 'x', { duration: 0.5, ease: 'power3.out' });
       const py = gsap.quickTo(preview, 'y', { duration: 0.5, ease: 'power3.out' });
+      const ocultar = () => gsap.to(preview, { opacity: 0, scale: 0.92, duration: 0.3, ease: 'power3.out', overwrite: true });
       document.querySelectorAll('.servicio').forEach((fila) => {
         fila.addEventListener('mouseenter', () => {
           img.src = fila.dataset.preview;
-          gsap.to(preview, { opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out' });
+          gsap.to(preview, { opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out', overwrite: true });
         });
-        fila.addEventListener('mouseleave', () => {
-          gsap.to(preview, { opacity: 0, scale: 0.92, duration: 0.35, ease: 'power3.out' });
-        });
+        fila.addEventListener('mouseleave', ocultar);
       });
+      /* cinturón y tirantes: si el cursor ya no está sobre una fila (clic,
+         arrastre, scroll…), la foto se esconde en vez de quedarse pegada */
+      addEventListener('scroll', () => { if (!document.querySelector('.servicio:hover')) ocultar(); }, { passive: true });
+      document.addEventListener('mouseleave', ocultar);
       addEventListener('pointermove', (e) => { px(e.clientX); py(e.clientY); }, { passive: true });
     }
 
