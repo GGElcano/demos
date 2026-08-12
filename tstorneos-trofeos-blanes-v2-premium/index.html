@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TrofeoshoppingTorneos — Trofeos, copas y medallas online</title>
+<meta name="description" content="Tienda online de trofeos deportivos: copas, medallas, placas conmemorativas, escarapelas y textil. Fabricación y grabado propios desde 2011 en Blanes (Girona). Teléfono 686 211 599.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 2h8v3a4 4 0 0 1-8 0zM7 9h2v2H7zM5 12h6v2H5z' fill='%23d9a83c'/%3E%3C/svg%3E">
+
+<!-- ============================================================
+     TROFEOSHOPPINGTORNEOS (tstorneos.com) — propuesta premium G&G Elcano
+     Datos reales verificados (12-ago-2026, extraídos de tstorneos.com):
+       · Marca: TrofeoshoppingTorneos (TsT) · tienda online abierta en 2011
+       · Sede CENTRAL: 17300 Blanes (Girona) — la web no publica calle
+       · Delegación Comercial (solo atención telefónica):
+         Paseo de las Delicias · 28043 Madrid
+       · Teléfono 686 211 599 · info@tstorneos.com
+       · Horario: L-V 9:30-13:30 y 15:00-19:30           [pie de su web]
+       · "Más de 1.000 opciones"                          [banner portada]
+       · "Los mejores precios del sector. Añadiendo asesoramiento
+         al cliente"                                      [FAQ ¿Quién es?]
+       · Fabrica, comercializa y personaliza trofeos      [FAQ ¿Quién es?]
+       · Grabados: pantógrafo, láser, color UV, sublimación, vinilo [FAQ]
+       · Pago: TPV o transferencia/ingreso · pedido mínimo 20 € base [FAQ]
+       · Entrega: 4-7 días hábiles (7-10 en mayo-agosto)  [FAQ plazos]
+       · Envío 100% asegurado · incidencias en 24/48 h    [FAQ transporte]
+       · Servicio stock 24/48/72H: categoría real de su menú
+       · Categorías, subcategorías y noticias: copiadas literalmente
+         de su web; fotos de producto en assets/, suyas
+       · Distribuidor de ropa deportiva Joma              [texto portada]
+       · Web original en castellano, catalán y francés
+       · SIN precios públicos en su web → aquí no se inventa ninguno
+     Fotografía de ambiente: Unsplash (hotlink CDN). Paleta: el trofeo
+     dorado del logotipo real + el morado y turquesa de las letras TsT.
+     Base técnica: kit web premium G&G (Lenis + GSAP, estela fluida con
+     fixes móviles, carrusel simple, line-draw scrubeado, grano, scrims).
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="legal/cookie-banner.css">
+
+<style>
+:root{
+  --bg:         #14100a;            /* bronce de vitrina a oscuras */
+  --bg-2:       #1c1710;
+  --crema:      #f4efe3;
+  --piedra:     #a89c86;            /* gris cálido, texto secundario */
+  --oro:        #d9a83c;            /* el trofeo dorado del logotipo */
+  --oro-luz:    #ecc45e;
+  --oro-suave:  rgba(217,168,60,.52);
+  --turquesa:   #3ab8bf;            /* la T turquesa del logotipo */
+  --morado:     #8f6cc9;            /* la s morada del logotipo */
+  --linea:      rgba(244,239,227,.13);
+  --serif:      "Fraunces", Georgia, serif;
+  --sans:       "Archivo", system-ui, sans-serif;
+  --pad:        clamp(1.4rem, 5vw, 6rem);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scrollbar-width: thin; scrollbar-color: var(--oro) var(--bg); overflow-x: clip; }
+html, body{ background: var(--bg); }
+
+body{
+  color: var(--crema);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.62;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection{ background: var(--oro); color: #14100a; }
+
+h1,h2,h3{ font-family: var(--serif); font-weight: 400; line-height: 1.06; }
+em{ font-style: italic; color: var(--oro-luz); }
+a{ color: inherit; text-decoration: none; }
+ul{ list-style: none; }
+img{ display:block; width:100%; height:100%; object-fit: cover; -webkit-user-drag: none; user-select: none; }
+
+/* ── Capas: fondo WebGL (0) < contenido (1) < grano (3997) < estela (3998) < cursor (3999) ── */
+#fondo-gl{ position: fixed; inset: 0; width:100%; height:100%; z-index: 0; pointer-events: none; }
+main{ position: relative; z-index: 1; }
+
+/* Grano de papel: DOS capas del mismo ruido (multiply se ve en claro, screen en oscuro) */
+body::before, body::after{
+  content:""; position: fixed; inset: 0; z-index: 3997; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='170' height='170' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 170px 170px;
+}
+body::before{ mix-blend-mode: multiply; opacity: .16; }
+body::after { mix-blend-mode: screen;   opacity: .10; }
+
+#fluid{
+  position: fixed; inset: 0; width:100%; height:100%;
+  z-index: 3998; pointer-events: none;
+  mix-blend-mode: screen;                /* fondo oscuro */
+}
+#fluid canvas{ width:100%; height:100%; display:block; }
+
+.cursor-dot, .cursor-ring{
+  position: fixed; top:0; left:0; z-index: 3999;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+}
+.cursor-dot { width:6px;  height:6px;  background: var(--oro-luz); }
+.cursor-ring{ width:38px; height:38px; border:1px solid var(--oro-suave); }
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-dot,.cursor-ring{ display:none; }
+}
+@media (prefers-reduced-motion: reduce){
+  #fluid{ display:none; }
+  body::before, body::after{ display:none; }
+}
+
+/* ── PRELOADER ── */
+.preloader{
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: end start;
+  padding: var(--pad);
+}
+.preloader__curtain{ position:absolute; inset:0; background:#0e0b06; z-index:-1; }
+.preloader__brand{
+  position: absolute; top: var(--pad); left: var(--pad);
+  font-size: .95rem; letter-spacing: .42em;
+  text-transform: uppercase; color: var(--piedra);
+  overflow: hidden;
+}
+.preloader__brand span{ display:inline-block; }
+.preloader__brand b{ font-weight: 500; color: var(--crema); }
+.preloader__counter{ overflow: hidden; line-height: 1; }
+.preloader__num{
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  font-variant-numeric: tabular-nums;
+  color: var(--crema);
+}
+.preloader__num i{ font-style: normal; color: var(--oro-luz); font-size: .32em; vertical-align: super; }
+
+/* ── CABECERA + SCRIM (nunca text-shadow) ── */
+.cabecera{
+  position: fixed; top:0; left:0; right:0; z-index: 50;
+  display:flex; justify-content: space-between; align-items: center;
+  gap: 1rem;
+  padding: 1.25rem var(--pad);
+  transition: background-color .5s ease, padding .5s ease;
+}
+.cabecera::before{
+  content:""; position:absolute; left:0; right:0; top:0; height:170px;
+  background: linear-gradient(180deg, rgba(10,8,4,.62) 0%, rgba(10,8,4,.28) 45%, transparent 100%);
+  pointer-events:none; z-index:-1;
+  transition: opacity .45s ease;
+}
+.cabecera.scrolled{ background: rgba(16,12,7,.94); padding: .85rem var(--pad); backdrop-filter: blur(8px); }
+.cabecera.scrolled::before{ opacity: 0; }
+.cabecera__logo{
+  font-size: 1.02rem; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap;
+  display:flex; align-items:center; gap:.55rem;
+}
+.cabecera__logo b{ font-weight: 600; color: var(--oro-luz); }
+.cabecera__logo svg{ width: 1.05rem; height: 1.05rem; flex: 0 0 auto; }
+.cabecera__nav{ display:flex; gap: 1.9rem; font-size:.75rem; letter-spacing:.17em; text-transform: uppercase; }
+.cabecera__nav a{ white-space: nowrap; }
+.cabecera__tel{
+  font-size:.75rem; letter-spacing:.14em; text-transform: uppercase;
+  border:1px solid var(--oro-suave); border-radius:999px; padding:.55rem 1.1rem;
+  transition: background-color .4s ease, color .4s ease;
+  white-space: nowrap;
+}
+.cabecera__tel:hover{ background: var(--oro); color:#14100a; }
+@media (max-width: 1060px){ .cabecera__nav{ display:none; } }
+@media (max-width: 640px){ .cabecera__logo-largo{ display:none; } }
+@media (max-width: 440px){ .cabecera__tel{ display:none; } }
+
+.roll{ position:relative; display:inline-block; overflow:hidden; line-height:1.25; }
+.roll>span{ display:inline-block; transition: transform .5s cubic-bezier(.76,0,.24,1); }
+.roll::after{
+  content: attr(data-text);
+  position:absolute; left:0; top:100%; display:inline-block;
+  color: var(--oro-luz);
+  transition: transform .5s cubic-bezier(.76,0,.24,1);
+}
+@media (hover:hover) and (pointer:fine){
+  .roll:hover>span, .roll:hover::after{ transform: translateY(-100%); }
+}
+
+/* ── HERO ── */
+.hero{
+  min-height: 100svh;
+  position: relative;
+  display:flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 var(--pad) clamp(2.6rem, 8vh, 6rem);
+  overflow: hidden;
+}
+.hero__media{ position:absolute; inset:0; z-index:0; }
+.hero__media::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(20,16,10,.52) 0%, rgba(20,16,10,.18) 42%, rgba(20,16,10,.93) 100%);
+}
+.hero__media img{ will-change: transform; }
+.hero__contenido{ position: relative; z-index: 1; }
+/* scrim LOCAL del bloque de texto: el subtítulo fino cae sobre zonas claras */
+.hero__contenido::before{
+  content:""; position:absolute; left:calc(var(--pad) * -1); right:calc(var(--pad) * -1);
+  bottom:-3rem; top:-2rem; z-index:-1; pointer-events:none;
+  background: linear-gradient(0deg, rgba(14,11,6,.74) 0%, rgba(14,11,6,.46) 55%, transparent 100%);
+}
+.hero__kicker{
+  font-size: .74rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--crema); opacity:.9; margin-bottom: 1.4rem;
+}
+.hero__titulo{
+  font-size: clamp(2.9rem, 9.4vw, 8.6rem);
+  letter-spacing: -.012em;
+  max-width: 14ch;
+}
+.hero__pie{
+  display:flex; justify-content: space-between; align-items:flex-end;
+  gap: 2rem; margin-top: 2.2rem; flex-wrap: wrap;
+}
+.hero__sub{ max-width: 48ch; color: var(--crema); opacity:.88; font-size: 1.02rem; }
+.hero__ctas{ display:flex; gap:.9rem; flex-wrap: wrap; margin-top: 1.6rem; }
+.hero__scroll{
+  font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
+  color: var(--crema); opacity:.72; display:flex; align-items:center; gap:.8rem;
+}
+.hero__scroll::after{
+  content:""; display:block; width:1px; height:3.2rem; background: var(--oro-luz);
+  transform-origin: top;
+  animation: gota 2.2s cubic-bezier(.76,0,.24,1) infinite;
+}
+@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
+                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
+@media (max-width: 720px){ .hero__scroll{ display:none; } }
+
+/* Móvil: el hero NUNCA puede desbordar. Crece con el contenido. */
+@media (max-width: 768px){
+  .hero{
+    min-height: auto;
+    height: auto;
+    padding-top: 6.5rem;
+    padding-bottom: 2.6rem;
+  }
+  .hero__contenido{ padding-top: 30vh; }
+  .hero__pie{ margin-top: 1.6rem; }
+  .hero__media img{ object-position: 50% center; }
+}
+
+[data-hero-reveal]{ visibility: hidden; }
+
+.boton{
+  display:inline-flex; align-items:center; gap:.7rem;
+  font: 400 .82rem/1 var(--sans); letter-spacing:.13em; text-transform:uppercase;
+  border-radius: 999px; padding: 1.05rem 1.9rem;
+  border:1px solid var(--oro-suave); color: var(--crema);
+  transition: background-color .4s ease, color .4s ease, border-color .4s ease;
+}
+.boton--solido{ background: var(--oro); border-color: var(--oro); color:#14100a; font-weight: 500; }
+.boton:hover{ background: var(--oro); border-color: var(--oro); color:#14100a; }
+.boton--solido:hover{ background: var(--oro-luz); border-color: var(--oro-luz); }
+
+/* ── MARQUEE ── */
+.marquee{
+  overflow:hidden; white-space:nowrap;
+  border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+  padding: 1rem 0;
+  background: var(--bg);
+  position: relative; z-index: 2;
+}
+.marquee__track{ display:inline-flex; gap:2.6rem; animation: marquee 8s linear infinite; will-change: transform; }
+.marquee__group{ display:inline-flex; gap:2.6rem; }
+.marquee__group span{ font-family: var(--serif); font-size: 1.3rem; color: var(--piedra); }
+.marquee__group i{ font-style: normal; color: var(--oro); }
+@keyframes marquee{ to{ transform: translateX(calc(-50% - 1.3rem)); } }
+
+/* ── PROGRESO LATERAL ── */
+.progreso{
+  position: fixed; right: 1.2rem; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 9rem; background: var(--linea);
+  z-index: 60; pointer-events: none;
+}
+.progreso span{ position:absolute; inset:0; background: var(--oro-luz); transform: scaleY(0); transform-origin: top; }
+@media (max-width: 900px){ .progreso{ display:none; } }
+
+/* ── MANIFIESTO ── */
+.manifiesto{ position: relative; padding: clamp(8rem,20vh,15rem) var(--pad); }
+.manifiesto p{
+  position: relative; z-index: 2;
+  max-width: 26ch;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3.9vw, 3.2rem);
+  line-height: 1.26;
+}
+.flotante{ position: absolute; z-index: 1; width: clamp(7rem, 15vw, 16rem); overflow: hidden; will-change: transform; }
+.flotante img{ aspect-ratio: 3/4; }
+.flotante--1{ top: 2%;  right: 5%;  width: clamp(9rem, 18vw, 19rem); }
+.flotante--2{ bottom: 0%; right: 34%; }
+.flotante--3{ top: 34%; left: 49%; width: clamp(6rem, 11vw, 12rem); opacity:.75; }
+@media (max-width: 760px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; opacity:.7; } .flotante--2{ right: 4%; opacity:.7; } }
+
+/* ── CIFRAS ── */
+.cifras{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(12rem,1fr));
+  gap: 2rem; padding: 0 var(--pad) clamp(6rem,14vh,11rem);
+}
+.cifra{ border-top:1px solid var(--linea); padding-top: 1.3rem; }
+.cifra__valor{ font-family: var(--serif); font-size: clamp(2.6rem,6vw,4.6rem); font-variant-numeric: tabular-nums; line-height:1; }
+.cifra__valor i{ font-style: normal; color: var(--oro-luz); font-size:.5em; }
+.cifra p{ color: var(--piedra); font-size:.85rem; margin-top:.6rem; }
+
+/* ── LA SECCIÓN — un trofeo dibujado con el scroll ── */
+.seccion{ height: 380vh; position: relative; }
+.seccion__pin{ position: relative; height: 100vh; height: 100svh; overflow: hidden; display: grid; }
+.seccion__lienzo{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+.seccion__hud{
+  position: relative; z-index: 2;
+  display:flex; flex-direction:column; justify-content: space-between;
+  padding: clamp(4.6rem, 12vh, 7rem) var(--pad) clamp(4rem, 10vh, 6.5rem);
+  pointer-events: none;
+}
+.seccion__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; }
+.seccion__titulo{ font-size: clamp(1.7rem, 4vw, 3.2rem); max-width: 16ch; }
+.seccion__num{ font-family: var(--serif); font-size: clamp(2.2rem, 6vw, 4.4rem); font-variant-numeric: tabular-nums; color: var(--piedra); line-height:1; }
+.seccion__num i{ font-style:normal; color: var(--oro-luz); font-size:.42em; }
+.seccion__pie{ max-width: 46ch; }
+.seccion__fase{
+  font-size:.74rem; letter-spacing:.28em; text-transform:uppercase; color: var(--oro-luz);
+  border-left: 2px solid var(--oro-luz); padding-left: .9rem; margin-bottom:.8rem;
+}
+.seccion__frase{ font-family: var(--serif); font-style: italic; font-size: clamp(1.05rem, 2.1vw, 1.5rem); color: var(--crema); opacity:.9; }
+@media (prefers-reduced-motion: reduce){ .seccion{ height:auto; } .seccion__pin{ height:100svh; } }
+
+/* ── CARRUSEL DE NOVEDADES (nada de pin: carril nativo con encaje) ── */
+.obras{ padding: 0 0 clamp(6rem,13vh,10rem); }
+.obras__cab{ display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; flex-wrap:wrap; padding: 0 var(--pad) 2rem; }
+.obras__cab h2{ font-size: clamp(2rem, 4.8vw, 3.6rem); }
+.obras__cab p{ color: var(--piedra); font-size:.86rem; max-width: 44ch; margin-top:.7rem; }
+.obras__mando{ display:flex; align-items:center; gap:1.1rem; }
+.obras__indice{ font-family: var(--serif); font-size: 1.5rem; font-variant-numeric: tabular-nums; color: var(--piedra); }
+.obras__indice b{ font-weight:400; color: var(--crema); }
+.flecha{
+  width:2.9rem; height:2.9rem; border-radius:50%; border:1px solid var(--linea);
+  background:none; color: var(--crema); cursor:pointer;
+  display:grid; place-items:center;
+  transition: border-color .3s ease, background-color .3s ease, opacity .3s ease;
+}
+.flecha:hover:not(:disabled){ border-color: var(--oro); background: rgba(217,168,60,.14); }
+.flecha:disabled{ opacity:.28; cursor:default; }
+.flecha svg{ width:1rem; height:1rem; }
+
+.carril{
+  display:flex; gap: clamp(1rem, 2.4vw, 2rem);
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0 var(--pad) 1.4rem;
+  scroll-padding-left: var(--pad);          /* si falta, el carril arranca desplazado */
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+.carril::-webkit-scrollbar{ display:none; }
+.tarj{ flex: 0 0 auto; width: clamp(17rem, 30vw, 27rem); scroll-snap-align: start; }
+.tarj__marco{
+  overflow:hidden; position:relative; height: clamp(17rem, 44vh, 27rem);
+  background: var(--crema);
+}
+.tarj__marco img{ object-fit: contain; padding: 1.6rem; transition: transform .9s cubic-bezier(.22,1,.36,1); }
+.tarj:hover .tarj__marco img{ transform: scale(1.06); }
+.tarj__num{
+  position:absolute; top:.9rem; left:1.1rem; z-index:1;
+  font-family: var(--serif); font-size: 1rem; letter-spacing:.16em; color: #56492c;
+}
+.tarj__meta{ display:flex; justify-content:space-between; margin-top: .9rem; align-items:baseline; gap:1rem; }
+.tarj__meta h3{ font-size: clamp(1.1rem, 1.8vw, 1.4rem); line-height:1.25; }
+.tarj__meta span{ color: var(--piedra); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; text-align:right; white-space:nowrap; }
+.tarj__precio{
+  margin-top:.35rem;
+  font-family: var(--serif); font-size: 1.05rem; color: var(--oro-luz); font-style: italic;
+}
+@media (max-width: 820px){ .tarj{ width: 82vw; } }
+
+/* ── ZOOM INMERSIVO ── */
+.zoom{ height: 300vh; position: relative; }
+.zoom__pin{ position: relative; height: 100vh; height: 100svh; overflow: hidden; display: grid; place-items: center; }
+.zoom__marco{ position:absolute; inset:0; clip-path: inset(38% 32% 38% 32%); will-change: clip-path; }
+.zoom__marco img{ will-change: transform; }
+.zoom__marco::after{
+  content:""; position:absolute; inset:0;
+  background: radial-gradient(70% 60% at 50% 50%, rgba(14,11,6,.55) 0%, rgba(14,11,6,.40) 100%);
+}
+.zoom__texto{
+  position: relative; z-index: 2;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5.6vw, 4.8rem);
+  line-height: 1.14; text-align: center; max-width: 17ch;
+  padding: 0 var(--pad);
+}
+.zoom__texto .palabra{ display:inline-block; opacity: 0; transform: translateY(.5em); }
+@media (prefers-reduced-motion: reduce){
+  .zoom{ height:auto; } .zoom__pin{ height:100svh; }
+  .zoom__marco{ clip-path: none; }
+  .zoom__texto .palabra{ opacity:1; transform:none; }
+}
+
+/* ── TIRAS a contra-scroll ── */
+.tiras{ overflow:hidden; padding: clamp(4rem,10vh,8rem) 0; display:grid; gap:.3rem; }
+.tira{
+  white-space: nowrap; will-change: transform;
+  font-family: var(--serif); font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1.05; color: transparent;
+  -webkit-text-stroke: 1px rgba(244,239,227,.22);
+}
+.tira em{ color: var(--oro); -webkit-text-stroke: 0; opacity:.85; }
+.tira--llena{ color: rgba(244,239,227,.11); -webkit-text-stroke: 0; }
+
+/* ── CATEGORÍAS (filas con foto que persigue al cursor) ── */
+.servicios{ padding: 0 var(--pad) clamp(6rem,14vh,11rem); }
+.servicios__cab{ margin-bottom: 3.2rem; }
+.servicios__cab h2{ font-size: clamp(2.1rem, 5.4vw, 4.4rem); max-width: 17ch; }
+.servicio{
+  display:grid; grid-template-columns: 6rem 1fr auto; gap: 1.2rem 1.5rem; align-items: baseline;
+  border-top: 1px solid var(--linea); padding: 1.8rem 0; position: relative;
+}
+.servicio:last-child{ border-bottom: 1px solid var(--linea); }
+.servicio__num{ font-family: var(--serif); color: var(--piedra); font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.servicio__nombre{ font-family: var(--serif); font-size: clamp(1.45rem, 3.3vw, 2.5rem); transition: color .4s ease, transform .5s cubic-bezier(.22,1,.36,1); }
+.servicio__desc{ grid-column: 2; max-width: 54ch; color: var(--piedra); font-size: .95rem; }
+.servicio__tag{ font-size:.7rem; letter-spacing:.19em; text-transform: uppercase; color: var(--piedra); }
+@media (hover:hover) and (pointer:fine){
+  .servicio:hover .servicio__nombre{ color: var(--oro-luz); transform: translateX(.6rem); }
+}
+@media (max-width: 720px){
+  .servicio{ grid-template-columns: 3rem 1fr; }
+  .servicio__tag{ display:none; }
+}
+.servicios__preview{
+  position: fixed; top:0; left:0; z-index: 40;
+  width: 19rem; aspect-ratio: 4/3;
+  pointer-events: none; overflow: hidden; opacity: 0;
+  background: var(--crema);
+}
+.servicios__preview img{ object-fit: contain; padding: 1rem; }
+.servicios__todas{ margin-top: 2.4rem; display:flex; flex-wrap:wrap; gap:.55rem; }
+.servicios__todas span{
+  border:1px solid var(--linea); border-radius:999px; padding:.5rem 1rem;
+  color: var(--piedra); font-size:.78rem; letter-spacing:.05em;
+}
+.servicios__todas i{ font-style:normal; color: var(--oro-luz); }
+
+/* ── CÓMO FUNCIONA (proceso real de compra) ── */
+.razones{ padding: 0 var(--pad) clamp(6rem,14vh,11rem); }
+.razones__cab{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 3.4rem; gap:2rem; flex-wrap:wrap; }
+.razones__cab h2{ font-size: clamp(2.1rem, 5.4vw, 4.4rem); }
+.razones__cab p{ color: var(--piedra); font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; }
+.razones__grid{
+  display:grid; gap: clamp(2rem,4vw,3.2rem) clamp(1.5rem,3vw,2.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem,100%), 1fr));
+  perspective: 1200px;
+}
+.razon{ border-top: 1px solid var(--linea); padding-top: 1.2rem; }
+.razon h3{ font-size: 1.6rem; margin-bottom:.45rem; }
+.razon h3 i{ font-style: normal; font-family: var(--sans); font-size:.68rem; letter-spacing:.2em; color: var(--oro-luz); vertical-align: super; margin-right:.5rem; }
+.razon p{ color: var(--piedra); font-size:.95rem; }
+.razones__nota{ margin-top: 2.4rem; color: var(--piedra); font-size:.82rem; max-width: 62ch; }
+.razones__nota a{ color: var(--crema); border-bottom: 1px solid var(--oro-suave); }
+
+/* ── CATÁLOGO CON FILTROS ── */
+.catalogo{ padding: 0 var(--pad) clamp(6rem,14vh,11rem); }
+.catalogo__cab{ margin-bottom: 2rem; }
+.catalogo__cab h2{ font-size: clamp(2.1rem, 5.4vw, 4.4rem); max-width: 20ch; }
+.catalogo__cab p{ color: var(--piedra); font-size:.86rem; max-width: 52ch; margin-top:.7rem; }
+.catalogo__filtros{ display:flex; flex-wrap:wrap; gap:.7rem .7rem; align-items:center; margin-bottom: 1.4rem; }
+.chip{
+  border:1px solid var(--linea); border-radius:999px; background:none; color: var(--piedra);
+  font: 300 .82rem/1 var(--sans); letter-spacing:.06em; padding:.62rem 1.15rem; cursor:pointer;
+  transition: border-color .3s ease, color .3s ease, background-color .3s ease;
+}
+.chip:hover{ border-color: var(--oro-suave); color: var(--crema); }
+.chip.activa{ background: var(--oro); border-color: var(--oro); color:#14100a; font-weight:500; }
+.catalogo__busca{
+  flex: 1 1 11rem; min-width: 9rem; display:flex; align-items:center; gap:.6rem;
+  border:1px solid var(--linea); border-radius:999px; padding:.55rem 1.1rem;
+}
+.catalogo__busca svg{ width:.95rem; height:.95rem; color: var(--piedra); flex:0 0 auto; }
+.catalogo__busca input{ background:none; border:none; outline:none; color: var(--crema); font: 300 .9rem var(--sans); width:100%; }
+.catalogo__busca input::placeholder{ color: rgba(168,156,134,.6); }
+.catalogo__orden{
+  background: var(--bg-2); border:1px solid var(--linea); border-radius:999px;
+  color: var(--piedra); font: 300 .82rem var(--sans); padding:.6rem 2rem .6rem 1rem; cursor:pointer;
+  appearance:none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a89c86' fill='none' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position: right .9rem center; background-size:.6rem;
+}
+.catalogo__n{ color: var(--piedra); font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom: 1.6rem; }
+.catalogo__grid{ display:grid; gap: clamp(1.4rem,2.6vw,2.2rem); grid-template-columns: repeat(auto-fill, minmax(min(15.5rem,100%),1fr)); }
+.prod{ display:flex; flex-direction:column; }
+.prod__marco{ position:relative; background: var(--crema); overflow:hidden; aspect-ratio: 12/11; }
+.prod__marco img{ object-fit: contain; padding: 1.2rem; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.prod:hover .prod__marco img{ transform: scale(1.05); }
+.prod__tag{
+  position:absolute; top:.8rem; left:.9rem;
+  font: 400 .62rem/1 var(--sans); letter-spacing:.16em; text-transform:uppercase;
+  color:#56492c; background: rgba(244,239,227,.85); border-radius:999px; padding:.35rem .7rem;
+}
+.prod h3{ font-size: 1.06rem; line-height:1.3; margin-top:.85rem; flex:1; font-weight:400; }
+.prod__pie{ display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-top:.55rem; }
+.prod__precio{ font-family: var(--serif); font-style: italic; font-size:.98rem; color: var(--oro-luz); }
+.prod__add{
+  border:1px solid var(--oro-suave); background:none; color: var(--crema); border-radius:999px;
+  font: 400 .7rem/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; padding:.55rem 1rem; cursor:pointer;
+  transition: background-color .3s ease, color .3s ease; white-space:nowrap;
+}
+.prod__add:hover{ background: var(--oro); color:#14100a; }
+.catalogo__vacio{ color: var(--piedra); padding: 3rem 0; text-align:center; display:none; }
+
+/* carrito de muestra en cabecera */
+.cabecera__cesta{
+  position:relative; display:grid; place-items:center; width:2.55rem; height:2.55rem;
+  border:1px solid var(--oro-suave); border-radius:50%; background:none; color: var(--crema);
+  cursor:pointer; transition: background-color .3s ease; flex: 0 0 auto;
+}
+.cabecera__cesta:hover{ background: rgba(217,168,60,.15); }
+.cabecera__cesta svg{ width:1.02rem; height:1.02rem; }
+.cabecera__cesta b{
+  position:absolute; top:-.35rem; right:-.35rem; min-width:1.15rem; height:1.15rem;
+  border-radius:999px; background: var(--oro); color:#14100a;
+  font: 600 .62rem/1.15rem var(--sans); text-align:center; padding:0 .2rem;
+}
+
+/* toast */
+.toast{
+  position:fixed; left:50%; bottom:1.6rem; transform:translate(-50%, 160%);
+  z-index:4000; background:#0e0b06; border:1px solid var(--oro-suave); color: var(--crema);
+  font: 300 .88rem var(--sans); padding:.9rem 1.4rem; border-radius:.6rem;
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
+  max-width:min(92vw,36rem); text-align:center; pointer-events:none;
+}
+.toast.ver{ transform:translate(-50%, 0); }
+
+/* ── PREGUNTAS FRECUENTES (las 6 reales de su web) ── */
+.faq{ padding: 0 var(--pad) clamp(6rem,14vh,11rem); }
+.faq__cab{ margin-bottom: 2.6rem; }
+.faq__cab h2{ font-size: clamp(2.1rem, 5.4vw, 4.4rem); max-width: 18ch; }
+.faq__cab p{ color: var(--piedra); font-size:.86rem; margin-top:.7rem; max-width: 52ch; }
+.faq details{ border-top: 1px solid var(--linea); }
+.faq details:last-of-type{ border-bottom: 1px solid var(--linea); }
+.faq summary{
+  cursor: pointer; list-style: none;
+  display:flex; justify-content:space-between; align-items:center; gap: 1.6rem;
+  padding: 1.5rem 0;
+  font-family: var(--serif); font-size: clamp(1.2rem, 2.6vw, 1.8rem); line-height: 1.2;
+  transition: color .35s ease;
+}
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color: var(--oro-luz); }
+.faq summary::after{
+  content:"+"; flex: 0 0 auto;
+  font-family: var(--sans); font-weight: 300; font-size: 1.6rem; color: var(--oro-luz);
+  transition: transform .4s cubic-bezier(.22,1,.36,1);
+}
+.faq details[open] summary::after{ transform: rotate(45deg); }
+.faq__resp{ padding: 0 0 1.8rem; max-width: 68ch; color: var(--piedra); font-size:.95rem; }
+.faq__resp strong{ color: var(--crema); font-weight: 500; }
+
+/* ── NOTICIAS (las publicadas en su web) ── */
+.noticias{ padding: 0 var(--pad) clamp(6rem,14vh,11rem); }
+.noticias__cab{ display:flex; justify-content:space-between; align-items:baseline; gap:2rem; flex-wrap:wrap; margin-bottom: 2.8rem; }
+.noticias__cab h2{ font-size: clamp(2.1rem, 5.4vw, 4.4rem); }
+.noticias__cab p{ color: var(--piedra); font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; }
+.noticias__grid{ display:grid; gap: clamp(1.6rem,3vw,2.6rem); grid-template-columns: repeat(auto-fit, minmax(min(18rem,100%),1fr)); }
+.noticia{ border-top: 1px solid var(--linea); padding-top: 1.2rem; display:flex; flex-direction:column; }
+.noticia__foto{ aspect-ratio: 16/10; overflow:hidden; margin-bottom: 1.1rem; background: var(--bg-2); }
+.noticia__foto img{ transition: transform .8s cubic-bezier(.22,1,.36,1); }
+.noticia:hover .noticia__foto img{ transform: scale(1.05); }
+.noticia time{ font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; color: var(--oro-luz); }
+.noticia h3{ font-size: 1.25rem; line-height: 1.3; margin: .6rem 0 .5rem; }
+.noticia p{ color: var(--piedra); font-size:.9rem; }
+
+/* ── CONTACTO + HORARIO ── */
+.contacto{
+  min-height: 92svh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; gap: 2.2rem; padding: 6rem var(--pad) 4rem;
+  border-top: 1px solid var(--linea);
+}
+.contacto__estado{
+  font-size:.72rem; letter-spacing:.25em; text-transform:uppercase; color: var(--piedra);
+  display:flex; align-items:center; gap:.7rem; text-align:left;
+}
+.contacto__estado::before{
+  content:""; width:.55rem; height:.55rem; border-radius:50%; flex:0 0 auto;
+  background: var(--oro-luz); box-shadow: 0 0 12px var(--oro-luz);
+  animation: latido 2400ms ease-in-out infinite;
+}
+@keyframes latido{ 50%{ opacity:.35; } }
+.contacto h2{ font-size: clamp(2.5rem, 8vw, 6.4rem); max-width: 14ch; }
+
+.magnetico{
+  display:inline-flex; align-items:center; gap:.9rem;
+  font: 500 .9rem/1 var(--sans); letter-spacing:.13em; text-transform:uppercase;
+  color: #14100a; background: var(--oro);
+  border:1px solid var(--oro); border-radius: 999px;
+  padding: 1.35rem 2.6rem; cursor: pointer;
+  transition: background-color .45s ease, border-color .45s ease;
+}
+.magnetico:hover{ background: var(--oro-luz); border-color: var(--oro-luz); }
+.magnetico .magnetico__label{ display:inline-block; }
+
+.contacto__datos{
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(13rem,1fr));
+  gap: 2rem; width: min(62rem, 100%); margin-top: 2rem;
+  text-align:left; font-size:.95rem;
+}
+.dato{ border-top:1px solid var(--linea); padding-top: 1.1rem; }
+.dato h4{ font: 400 .7rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
+.dato a:hover{ color: var(--oro-luz); }
+.dato p{ color: var(--piedra); }
+.dato p b{ color: var(--crema); font-weight: 400; }
+
+.horario{ display:grid; gap:.45rem; }
+.horario__fila{
+  display:flex; justify-content:space-between; gap:1.2rem;
+  color: var(--piedra);
+}
+.horario__fila span:last-child{ font-variant-numeric: tabular-nums; white-space:nowrap; }
+.horario__fila.horario-hoy{ color: var(--crema); }
+.horario__fila.horario-hoy span:first-child{ white-space: nowrap; }
+.horario__fila.horario-hoy span:first-child::after{
+  content:"· hoy"; color: var(--oro-luz); margin-left:.45rem;
+  font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+}
+
+.mapa{
+  width: min(62rem, 100%); margin-top: .6rem;
+  border:1px solid var(--linea); overflow:hidden;
+  filter: grayscale(1) brightness(.52) contrast(1.18);
+  transition: filter .6s ease;
+}
+.mapa:hover{ filter: grayscale(.1) brightness(.96) contrast(1); }
+.mapa iframe{ display:block; width:100%; height: clamp(14rem, 34vh, 22rem); border:0; }
+
+.pie__secciones{
+  display:flex; flex-wrap:wrap; gap:.5rem .6rem; justify-content:center;
+  padding: 2.6rem var(--pad) 0;
+}
+.pie__secciones span{
+  border:1px solid var(--linea); border-radius:999px; padding:.45rem .95rem;
+  color: var(--piedra); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+}
+.pie{
+  display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;
+  padding: 2rem var(--pad) 1rem;
+  color: var(--piedra); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+  border-top: 1px solid var(--linea); margin-top: 2.4rem;
+}
+.pie nav{ display:flex; gap:1.3rem; flex-wrap:wrap; }
+.pie a:hover, .pie button:hover{ color: var(--oro-luz); }
+.pie button{ background:none; border:none; cursor:pointer; color:inherit; font:inherit; letter-spacing:inherit; text-transform:inherit; padding:0; }
+.pie__marca{
+  background: var(--crema); border-radius: .5rem; padding:.5rem .8rem;
+  display:inline-flex; align-items:center;
+}
+.pie__marca img{ width: 8.5rem; height:auto; object-fit: contain; }
+.pie__nota{
+  padding: 0 var(--pad) 2.4rem;
+  color: rgba(168,156,134,.75); font-size:.7rem; letter-spacing:.06em; max-width: 76ch;
+}
+
+/* ── ASISTENTE DE LA TIENDA (muestra) ── */
+.asis-btn{
+  position:fixed; right:1.4rem; bottom:1.4rem; z-index:3990;
+  display:inline-flex; align-items:center; gap:.7rem;
+  background: var(--oro); color:#14100a; border:none; border-radius:999px;
+  padding: .95rem 1.35rem; font: 500 .82rem/1 var(--sans); letter-spacing:.05em; cursor:pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  transition: background-color .3s ease, transform .3s ease;
+}
+.asis-btn:hover{ background: var(--oro-luz); transform: translateY(-2px); }
+.asis-btn svg{ width:1.05rem; height:1.05rem; flex:0 0 auto; }
+.asis{
+  position:fixed; right:1.4rem; bottom:5.6rem; z-index:3991;
+  width:min(24rem, calc(100vw - 2rem)); max-height:min(34rem, calc(100svh - 8rem));
+  display:none; flex-direction:column;
+  background:#100c07; border:1px solid var(--linea); border-radius:1rem; overflow:hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,.55);
+}
+.asis.abierto{ display:flex; }
+.asis__cab{ display:flex; justify-content:space-between; align-items:center; gap:1rem; padding: .95rem 1.15rem; background: var(--bg-2); border-bottom:1px solid var(--linea); }
+.asis__cab h3{ font-size:1.05rem; }
+.asis__cab p{ color: var(--piedra); font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; margin-top:.2rem; }
+.asis__cerrar{ background:none; border:none; color: var(--piedra); cursor:pointer; font-size:1.25rem; line-height:1; padding:.2rem .4rem; }
+.asis__cerrar:hover{ color: var(--crema); }
+.asis__msgs{ padding: 1rem 1.15rem; overflow-y:auto; display:flex; flex-direction:column; gap:.7rem; flex:1; scrollbar-width:thin; scrollbar-color: var(--oro) transparent; }
+.msg{ max-width:88%; padding:.7rem .95rem; border-radius:.8rem; font-size:.88rem; line-height:1.5; }
+.msg--ia{ background: var(--bg-2); border:1px solid var(--linea); align-self:flex-start; border-bottom-left-radius:.2rem; }
+.msg--yo{ background: var(--oro); color:#14100a; align-self:flex-end; border-bottom-right-radius:.2rem; }
+.asis__chips{ display:flex; flex-wrap:wrap; gap:.5rem; padding: .2rem 1.15rem .8rem; }
+.asis__chips .chip{ font-size:.74rem; padding:.5rem .85rem; }
+.asis__pie{ border-top:1px solid var(--linea); padding:.7rem .9rem; display:flex; gap:.6rem; align-items:center; }
+.asis__pie input{ flex:1; background: var(--bg-2); border:1px solid var(--linea); border-radius:999px; color: var(--crema); font: 300 .86rem var(--sans); padding:.6rem 1rem; outline:none; }
+.asis__pie input:focus{ border-color: var(--oro-suave); }
+.asis__enviar{
+  width:2.5rem; height:2.5rem; border-radius:50%; border:none; background: var(--oro); color:#14100a;
+  display:grid; place-items:center; cursor:pointer; flex:0 0 auto;
+  transition: background-color .3s ease;
+}
+.asis__enviar:hover{ background: var(--oro-luz); }
+.asis__enviar svg{ width:1rem; height:1rem; }
+.asis__nota{ color: rgba(168,156,134,.7); font-size:.63rem; line-height:1.45; padding: 0 1.15rem .8rem; }
+@media (max-width:560px){
+  .asis{ right:.6rem; left:.6rem; width:auto; bottom:5rem; }
+  .asis-btn{ right:.9rem; bottom:.9rem; }
+  .asis-btn span{ display:none; }
+}
+
+[data-reveal]{ visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
+  .preloader{ display:none; }
+  .marquee__track{ animation:none; }
+  .progreso{ display:none; }
+  .carril{ scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ PRELOADER ════════ -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span>Trofeoshopping<b>Torneos</b> · Blanes</span></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
+</div>
+
+<!-- ════════ CAPAS DECORATIVAS ════════ -->
+<canvas id="fondo-gl" aria-hidden="true"></canvas>
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot"  aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
+
+<header class="cabecera">
+  <a class="cabecera__logo" href="#">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h8v3a4 4 0 0 1-8 0zM2 3h2v2a2.4 2.4 0 0 1-2-2zM12 3h2a2.4 2.4 0 0 1-2 2zM7 9h2v2H7zM5 12h6v2H5z" fill="#d9a83c"/></svg>
+    <span><b>TsT</b><span class="cabecera__logo-largo"> · TrofeoshoppingTorneos</span></span>
+  </a>
+  <nav class="cabecera__nav" aria-label="principal">
+    <a class="roll" href="#catalogo"   data-text="Tienda"><span>Tienda</span></a>
+    <a class="roll" href="#categorias" data-text="Categorías"><span>Categorías</span></a>
+    <a class="roll" href="#como"       data-text="Proceso"><span>Proceso</span></a>
+    <a class="roll" href="#preguntas"  data-text="Preguntas"><span>Preguntas</span></a>
+    <a class="roll" href="#noticias"   data-text="Noticias"><span>Noticias</span></a>
+    <a class="roll" href="#contacto"   data-text="Contacto"><span>Contacto</span></a>
+  </nav>
+  <div style="display:flex; align-items:center; gap:.7rem;">
+    <a class="cabecera__tel" href="tel:+34686211599">686 211 599</a>
+    <button class="cabecera__cesta" type="button" aria-label="Cesta (muestra)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 7h12l-1.2 12H7.2L6 7z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+      <b data-cesta-n>0</b>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="hero__media" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1705925716592-259267037a03?w=1800&q=80" alt="" loading="eager" data-hero-parallax>
+    </div>
+    <div class="hero__contenido">
+      <p class="hero__kicker" data-hero-reveal>Tienda online de trofeos · Blanes, Girona · desde 2011</p>
+      <h1 class="hero__titulo" data-hero-reveal>
+        Cada victoria merece <em>su trofeo</em>.
+      </h1>
+      <div class="hero__pie">
+        <div>
+          <p class="hero__sub" data-hero-reveal>
+            Copas, medallas, placas conmemorativas y trofeos personalizados para
+            eventos deportivos y culturales. Más de 1.000 opciones, fabricación
+            y grabado propios, y los mejores precios del sector.
+          </p>
+          <div class="hero__ctas" data-hero-reveal>
+            <a class="boton boton--solido" href="#catalogo">Ver la tienda</a>
+            <a class="boton" href="tel:+34686211599">Llamar al 686 211 599</a>
+          </div>
+        </div>
+        <p class="hero__scroll" data-hero-reveal>Baja despacio</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ MARQUEE ════════ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <div class="marquee__group">
+        <span>Trofeos <i>—</i></span><span>Copas <i>—</i></span>
+        <span>Medallas <i>—</i></span><span>Placas conmemorativas <i>—</i></span>
+        <span>Escarapelas <i>—</i></span><span>Grabado personalizado <i>—</i></span>
+        <span>Blanes · Girona <i>—</i></span>
+      </div>
+      <div class="marquee__group" aria-hidden="true">
+        <span>Trofeos <i>—</i></span><span>Copas <i>—</i></span>
+        <span>Medallas <i>—</i></span><span>Placas conmemorativas <i>—</i></span>
+        <span>Escarapelas <i>—</i></span><span>Grabado personalizado <i>—</i></span>
+        <span>Blanes · Girona <i>—</i></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ MANIFIESTO ════════ -->
+  <section class="manifiesto">
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="https://images.unsplash.com/photo-1514820720301-4c4790309f46?w=900&q=75" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="https://images.unsplash.com/photo-1706374503312-7a4a4c030d2d?w=700&q=75" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="https://images.unsplash.com/photo-1578269174936-2709b6aeb913?w=600&q=75" alt="" loading="lazy"></figure>
+    <p data-manifiesto>
+      Un trofeo no es un objeto: es el momento en que alguien lo levanta.
+      Por eso desde 2011 fabricamos, grabamos y asesoramos en casa,
+      al mejor precio del sector.
+    </p>
+  </section>
+
+  <!-- ════════ CIFRAS (solo datos comprobables de su web) ════════ -->
+  <section class="cifras">
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="2011" data-pad="4">0</span></div>
+      <p>abrimos la tienda online</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="1000">0</span><i>+</i></div>
+      <p>opciones en el catálogo</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="72" data-pad="2">0</span><i>h</i></div>
+      <p>servicio exprés 24/48/72 h en artículos de stock</p>
+    </div>
+    <div class="cifra">
+      <div class="cifra__valor"><span data-cuenta data-target="100">0</span><i>%</i></div>
+      <p>del valor del pedido, asegurado en el transporte</p>
+    </div>
+  </section>
+
+  <!-- ════════ LA SECCIÓN — un trofeo dibujado con el scroll ════════ -->
+  <section class="seccion" aria-label="Un trofeo dibujado pieza a pieza con el scroll">
+    <div class="seccion__pin">
+      <canvas class="seccion__lienzo" aria-hidden="true"></canvas>
+      <div class="seccion__hud">
+        <div class="seccion__cab">
+          <h2 class="seccion__titulo">Un trofeo, <em>pieza a pieza</em></h2>
+          <div class="seccion__num"><span data-seccion-num>0</span><i>%</i></div>
+        </div>
+        <div class="seccion__pie">
+          <p class="seccion__fase" data-seccion-fase>Fase I — La copa</p>
+          <p class="seccion__frase" data-seccion-frase>Más de 1.000 modelos para elegir: resina, cristal, metacrilato, madera, cerámica.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CARRUSEL DE NOVEDADES ════════ -->
+  <section class="obras" id="tienda" aria-label="Novedades del catálogo">
+    <div class="obras__cab">
+      <div>
+        <h2 data-reveal data-split="lines">Las novedades <em>del catálogo</em></h2>
+        <p data-reveal>Productos reales de tstorneos.com, con sus fotos. Su web actual no publica precios en el listado: se consultan por teléfono o desde cada ficha.</p>
+      </div>
+      <div class="obras__mando">
+        <p class="obras__indice"><b data-carril-num>01</b> / 06</p>
+        <button class="flecha" type="button" data-carril="prev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+        </button>
+        <button class="flecha" type="button" data-carril="next" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="carril" data-carril-pista tabindex="0" aria-label="Carrusel de novedades">
+      <article class="tarj">
+        <div class="tarj__marco" data-img-reveal>
+          <span class="tarj__num">01</span>
+          <img src="assets/sub-balon-oro.png" alt="Trofeo balón de oro" loading="lazy">
+        </div>
+        <div class="tarj__meta"><h3>Trofeo balón de oro</h3><span>Novedades</span></div>
+        <p class="tarj__precio">Precio a consultar</p>
+      </article>
+      <article class="tarj">
+        <div class="tarj__marco" data-img-reveal>
+          <span class="tarj__num">02</span>
+          <img src="assets/sub-medallas-pers.png" alt="Medallas personalizadas" loading="lazy">
+        </div>
+        <div class="tarj__meta"><h3>Medallas personalizadas</h3><span>Medallas</span></div>
+        <p class="tarj__precio">Precio a consultar</p>
+      </article>
+      <article class="tarj">
+        <div class="tarj__marco" data-img-reveal>
+          <span class="tarj__num">03</span>
+          <img src="assets/sub-copas-calidad.png" alt="Copas de calidad" loading="lazy">
+        </div>
+        <div class="tarj__meta"><h3>Copas de calidad</h3><span>Copas</span></div>
+        <p class="tarj__precio">Precio a consultar</p>
+      </article>
+      <article class="tarj">
+        <div class="tarj__marco" data-img-reveal>
+          <span class="tarj__num">04</span>
+          <img src="assets/sub-cristal.png" alt="Trofeos de cristal" loading="lazy">
+        </div>
+        <div class="tarj__meta"><h3>Trofeos de cristal</h3><span>Trofeos</span></div>
+        <p class="tarj__precio">Precio a consultar</p>
+      </article>
+      <article class="tarj">
+        <div class="tarj__marco" data-img-reveal>
+          <span class="tarj__num">05</span>
+          <img src="assets/sub-placa-madera.png" alt="Placa de madera premium" loading="lazy">
+        </div>
+        <div class="tarj__meta"><h3>Placa de madera premium</h3><span>Placas</span></div>
+        <p class="tarj__precio">Precio a consultar</p>
+      </article>
+      <article class="tarj">
+        <div class="tarj__marco" data-img-reveal>
+          <span class="tarj__num">06</span>
+          <img src="assets/sub-patinaje3d.png" alt="Trofeo de patinaje 3D" loading="lazy">
+        </div>
+        <div class="tarj__meta"><h3>Trofeo patinaje 3D</h3><span>Trofeos 3D</span></div>
+        <p class="tarj__precio">Precio a consultar</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ════════ ZOOM INMERSIVO ════════ -->
+  <section class="zoom" aria-label="Vitrina de trofeos iluminada">
+    <div class="zoom__pin">
+      <div class="zoom__marco"><img src="https://images.unsplash.com/photo-1770482228588-270b08d2d376?w=1800&q=80" alt="Vitrina de trofeos iluminada" loading="lazy"></div>
+      <p class="zoom__texto" data-zoom-texto>Detrás de cada torneo hay una <em>vitrina esperando</em>.</p>
+    </div>
+  </section>
+
+  <!-- ════════ CATEGORÍAS ════════ -->
+  <section class="servicios" id="categorias">
+    <div class="servicios__cab">
+      <h2 data-reveal data-split="lines">Todo lo que cabe <em>en un palmarés</em></h2>
+    </div>
+    <div class="servicios__lista">
+      <div class="servicio" data-reveal data-preview="assets/cat-trofeos.png">
+        <span class="servicio__num">01 / 06</span>
+        <h3 class="servicio__nombre">Trofeos</h3>
+        <span class="servicio__tag">Resina · cristal · madera</span>
+        <p class="servicio__desc">Por deportes, económicos, de artesanía, de carnaval y Halloween, alegorías, apliques, cerámica y grababels. La familia más grande de la casa.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/sub-copas-calidad.png">
+        <span class="servicio__num">02 / 06</span>
+        <h3 class="servicio__nombre">Copas</h3>
+        <span class="servicio__tag">Clásicas y de calidad</span>
+        <p class="servicio__desc">Clásicas, ABS, cerámica, columnas, deportes, ensaladeras, económicas y lotes indivisibles. La de toda la vida, en todos los tamaños.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/cat-medallas.png">
+        <span class="servicio__num">03 / 06</span>
+        <h3 class="servicio__nombre">Medallas</h3>
+        <span class="servicio__tag">De 50 a 90 mm</span>
+        <p class="servicio__desc">Hierro, zamac, cristal, madera, deportes en relieve, especiales a color y personalizadas con tu logo. Para colgar del cuello de todo un club.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/cat-placas.png">
+        <span class="servicio__num">04 / 06</span>
+        <h3 class="servicio__nombre">Placas conmemorativas</h3>
+        <span class="servicio__tag">Homenajes</span>
+        <p class="servicio__desc">Madera, cristal, inox, cerámica a color y metacrilato, con estuche para entregar en mano. Para los reconocimientos que no caben en una copa.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/cat-personalizados.png">
+        <span class="servicio__num">05 / 06</span>
+        <h3 class="servicio__nombre">Personalizados y 3D</h3>
+        <span class="servicio__tag">Diseño a medida</span>
+        <p class="servicio__desc">Trofeos especiales diseñados para tu evento: metacrilato a medida, números, siluetas y piezas en 3D. Si no existe, se fabrica.</p>
+      </div>
+      <div class="servicio" data-reveal data-preview="assets/cat-torneos.png">
+        <span class="servicio__num">06 / 06</span>
+        <h3 class="servicio__nombre">Escarapelas, textil y más</h3>
+        <span class="servicio__tag">Distribuidor Joma</span>
+        <p class="servicio__desc">Escarapelas y rosetas, plaquitas para trofeos, publicidad, material deportivo y ropa deportiva Joma: camisetas, pantalones y equipaciones.</p>
+      </div>
+    </div>
+    <div class="servicios__preview" aria-hidden="true"><img src="" alt=""></div>
+    <div class="servicios__todas" data-reveal>
+      <span><i>+</i> Catálogos</span><span><i>+</i> Novedades</span><span><i>+</i> Ofertas</span>
+      <span><i>+</i> Stock servicio 24/48/72 h</span><span><i>+</i> Trofeos outlet</span>
+      <span><i>+</i> Zona fuera stocks</span><span><i>+</i> Torneos</span>
+      <span><i>+</i> Trofeos carnaval</span><span><i>+</i> Trofeos Halloween</span>
+    </div>
+  </section>
+
+  <!-- ════════ CATÁLOGO CON FILTROS (tienda de verdad) ════════ -->
+  <section class="catalogo" id="catalogo" aria-label="Catálogo con filtros">
+    <div class="catalogo__cab">
+      <h2 data-reveal data-split="lines">El catálogo, como una <em>tienda de hoy</em></h2>
+      <p data-reveal>Filtra y busca entre 14 familias reales del catálogo, con sus fotos. En la web definitiva estarían las más de 1.000 opciones, con su precio y compra online.</p>
+    </div>
+    <div class="catalogo__filtros" role="group" aria-label="Filtros del catálogo">
+      <button class="chip activa" type="button" data-cat="todo">Todo</button>
+      <button class="chip" type="button" data-cat="trofeos">Trofeos</button>
+      <button class="chip" type="button" data-cat="copas">Copas</button>
+      <button class="chip" type="button" data-cat="medallas">Medallas</button>
+      <button class="chip" type="button" data-cat="placas">Placas</button>
+      <button class="chip" type="button" data-cat="novedades">Novedades</button>
+      <label class="catalogo__busca">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        <input type="search" placeholder="Buscar…" aria-label="Buscar en el catálogo" data-busca>
+      </label>
+      <select class="catalogo__orden" aria-label="Ordenar" data-orden>
+        <option value="rel">Orden: relevancia</option>
+        <option value="az">Nombre: de la A a la Z</option>
+        <option value="za">Nombre: de la Z a la A</option>
+      </select>
+    </div>
+    <p class="catalogo__n"><span data-cat-n>14</span> familias de producto</p>
+    <div class="catalogo__grid" data-grid></div>
+    <p class="catalogo__vacio" data-vacio>No hay resultados con esos filtros. Prueba a quitar alguno — o llámanos al 686 211 599: en el catálogo completo hay mucho más que en esta muestra.</p>
+  </section>
+
+  <!-- ════════ TIRAS a contra-scroll (deportes reales de su catálogo) ════════ -->
+  <div class="tiras" aria-hidden="true">
+    <p class="tira" data-tira="-1">Fútbol <em>—</em> Baloncesto <em>—</em> Pádel <em>—</em> Atletismo <em>—</em> Natación <em>—</em> Ciclismo <em>—</em> Ajedrez <em>—</em> Fútbol <em>—</em> Baloncesto <em>—</em> Pádel <em>—</em> Atletismo</p>
+    <p class="tira tira--llena" data-tira="1">Judo <em>—</em> Petanca <em>—</em> Golf <em>—</em> Tenis <em>—</em> Gimnasia <em>—</em> Motocross <em>—</em> Pesca <em>—</em> Judo <em>—</em> Petanca <em>—</em> Golf <em>—</em> Tenis</p>
+  </div>
+
+  <!-- ════════ CÓMO FUNCIONA (su proceso real de compra) ════════ -->
+  <section class="razones" id="como">
+    <div class="razones__cab">
+      <h2 data-reveal data-split="lines">De tu pedido al podio, <em>sin sustos</em></h2>
+      <p data-reveal>El proceso real, en 4 pasos</p>
+    </div>
+    <div class="razones__grid">
+      <div class="razon">
+        <h3><i>01</i>Eliges y personalizas.</h3>
+        <p>Navegas el catálogo por familias, eliges modelo, color y tamaño, y añades el grabado: pantógrafo, láser, color UV, sublimación o vinilo, según el producto.</p>
+      </div>
+      <div class="razon">
+        <h3><i>02</i>Pagas como prefieras.</h3>
+        <p>Con tarjeta a través de TPV o por transferencia o ingreso bancario. El pedido mínimo es de 20 € de base imponible; en pedidos urgentes, el justificante del pago lo agiliza todo.</p>
+      </div>
+      <div class="razon">
+        <h3><i>03</i>Lo fabricamos y grabamos.</h3>
+        <p>Confirmado el pago, se prepara el pedido: entre 4 y 7 días hábiles. En temporada alta de torneos (de mayo a agosto), entre 7 y 10. ¿Lo necesitas antes? Llámanos y tratamos de adaptarlo.</p>
+      </div>
+      <div class="razon">
+        <h3><i>04</i>Te llega asegurado.</h3>
+        <p>El envío va por transportista con el 100 % del valor del pedido asegurado frente a daños o pérdidas. Cualquier incidencia, con avisarnos en las primeras 24/48 h queda cubierta.</p>
+      </div>
+    </div>
+    <p class="razones__nota" data-reveal>
+      Es el mismo proceso que TrofeoshoppingTorneos aplica hoy — aquí solo está
+      contado claro y a la vista, para que comprar dé confianza en vez de dudas.
+    </p>
+  </section>
+
+  <!-- ════════ PREGUNTAS FRECUENTES (las 6 reales) ════════ -->
+  <section class="faq" id="preguntas">
+    <div class="faq__cab">
+      <h2 data-reveal data-split="lines">Las preguntas <em>de siempre</em></h2>
+      <p data-reveal>Las seis preguntas frecuentes publicadas en tstorneos.com, con sus respuestas — ordenadas y al grano.</p>
+    </div>
+    <details data-reveal>
+      <summary>¿Quién es TrofeoshoppingTorneos?</summary>
+      <p class="faq__resp">Una empresa que <strong>fabrica, comercializa y personaliza</strong> trofeos, copas y medallas para eventos deportivos y culturales. La tienda online abrió en <strong>2011</strong> con un concepto claro: los mejores precios del sector, añadiendo asesoramiento al cliente.</p>
+    </details>
+    <details data-reveal>
+      <summary>¿Cómo se graban los trofeos?</summary>
+      <p class="faq__resp">Con varios sistemas propios: <strong>pantógrafo, láser, color UV, sublimación y vinilo</strong>. Según el producto se aplica el tipo de grabado que mejor resultado da.</p>
+    </details>
+    <details data-reveal>
+      <summary>¿Cómo comprar?</summary>
+      <p class="faq__resp">Busca el producto por categorías, añádelo a la cesta, identifícate con tu email (o date de alta si es tu primera compra) y confirma el pedido revisando datos de envío, gastos y forma de pago. El <strong>importe mínimo de compra es de 20 €</strong> de base imponible.</p>
+    </details>
+    <details data-reveal>
+      <summary>¿Formas de pago?</summary>
+      <p class="faq__resp">Dos: <strong>TPV con tarjeta</strong> o <strong>transferencia / ingreso bancario</strong>. En pedidos urgentes conviene enviar el justificante del pago a info@tstorneos.com para agilizar la tramitación; si a los 5 días no consta el ingreso, el pedido se anula.</p>
+    </details>
+    <details data-reveal>
+      <summary>¿Plazo de entrega del pedido?</summary>
+      <p class="faq__resp">Confirmado el pago, el pedido se prepara y se envía por transportista en <strong>4–7 días hábiles</strong>. En mayo, junio, julio y agosto, entre <strong>7 y 10 días</strong>. Si lo necesitas antes, contacta y tratamos de adaptarlo a tu fecha. En trofeos especiales, consultar plazo.</p>
+    </details>
+    <details data-reveal>
+      <summary>¿Es seguro recibir el género en buen estado?</summary>
+      <p class="faq__resp">Sí: el <strong>100 % del valor del pedido va asegurado</strong>, cubriendo daños o pérdidas del transporte. Importante: cualquier incidencia hay que comunicarla en las <strong>24/48 h</strong> siguientes a recibir el pedido.</p>
+    </details>
+  </section>
+
+  <!-- ════════ NOTICIAS (las publicadas en su web) ════════ -->
+  <section class="noticias" id="noticias">
+    <div class="noticias__cab">
+      <h2 data-reveal data-split="lines">El deporte que <em>premiamos</em></h2>
+      <p data-reveal>Noticias publicadas en tstorneos.com</p>
+    </div>
+    <div class="noticias__grid">
+      <article class="noticia" data-reveal>
+        <div class="noticia__foto"><img src="assets/not-pilota.png" alt="Imagen de la Federación de Pelota Vasca" loading="lazy"></div>
+        <time datetime="2025-03-01">1 de marzo de 2025</time>
+        <h3>Pilota Zazpi Haizetara, proclamada vencedora de las elecciones de manera definitiva</h3>
+        <p>Tras no recibirse alegaciones, la Junta Electoral de la FPVE proclamó definitivamente vencedora a la candidatura Pilota Zazpi Haizetara.</p>
+      </article>
+      <article class="noticia" data-reveal>
+        <div class="noticia__foto"><img src="assets/not-artistica.png" alt="Equipo de gimnasia artística masculina" loading="lazy"></div>
+        <time datetime="2025-02-19">19 de febrero de 2025</time>
+        <h3>La artística masculina inicia la temporada internacional</h3>
+        <p>Del 18 al 24 de febrero se celebró en Alemania la Copa del Mundo de Cottbus, con representación del equipo de gimnasia artística masculina.</p>
+      </article>
+      <article class="noticia" data-reveal>
+        <div class="noticia__foto" aria-hidden="true"><img src="assets/hero-medallas.png" alt="" loading="lazy"></div>
+        <time datetime="2025-01-23">23 de enero de 2025</time>
+        <h3>Los Hispanos caen ante la anfitriona Noruega</h3>
+        <p>Primera derrota de los Hispanos en el Mundial de balonmano IHF 2025, ante una Noruega apoyada en el gran ambiente de su afición.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ════════ CONTACTO ════════ -->
+  <section class="contacto" id="contacto">
+    <p class="contacto__estado" data-reveal>Atención de lunes a viernes · Blanes y Madrid</p>
+    <h2 data-reveal data-split="lines">Cuéntanos tu <em>torneo</em></h2>
+    <a class="magnetico" href="tel:+34686211599" data-magnetico>
+      <span class="magnetico__label">Llamar al 686 211 599</span>
+    </a>
+    <div class="contacto__datos">
+      <div class="dato" data-reveal>
+        <h4>Dónde estamos</h4>
+        <p><b>Sede central</b><br>17300 Blanes (Girona)</p>
+        <p style="margin-top:.8rem;"><b>Delegación comercial</b> <br>Paseo de las Delicias · 28043 Madrid<br>(solo atención telefónica)</p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Contacto</h4>
+        <p><a href="tel:+34686211599"><b>686 211 599</b></a><br>
+        <a href="mailto:info@tstorneos.com">info@tstorneos.com</a></p>
+        <p style="margin-top:.8rem;">También en <a href="https://www.facebook.com/pages/TROFEOSshoppingTORNEOS/207709405987757" target="_blank" rel="noopener">Facebook</a>, <a href="https://twitter.com/tstorneos" target="_blank" rel="noopener">X</a>, <a href="http://www.youtube.com/user/Tstorneos12" target="_blank" rel="noopener">YouTube</a> y <a href="http://pinterest.com/trofeoshopping/" target="_blank" rel="noopener">Pinterest</a></p>
+      </div>
+      <div class="dato" data-reveal>
+        <h4>Horario de atención</h4>
+        <div class="horario">
+          <p class="horario__fila" data-dias="1,2,3,4,5"><span>Lunes a viernes</span><span>9:30–13:30 · 15:00–19:30</span></p>
+          <p class="horario__fila" data-dias="6,0"><span>Sábado y domingo</span><span>Tienda online 24 h</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="mapa" data-reveal>
+      <iframe
+        src="https://www.google.com/maps?q=Blanes%2C%20Girona&output=embed"
+        title="Mapa de Blanes (Girona)"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Secciones reales del pie de su web -->
+  <div class="pie__secciones" aria-label="Secciones de la web original">
+    <span>Trofeos deportivos</span><span>Trofeos pádel</span><span>Clientes</span>
+    <span>Trofeos artesanales</span><span>Trofeos personalizados</span>
+    <span>Distribuidores Joma</span><span>Copas</span><span>Medallas deportivas</span>
+    <span>Transporte</span><span>Trofeos metacrilato</span>
+  </div>
+
+  <footer class="pie">
+    <span>© 2026 TrofeoshoppingTorneos · Blanes</span>
+    <span class="pie__marca"><img src="assets/logo.png" alt="Logotipo de TrofeoshoppingTorneos"></span>
+    <nav>
+      <a href="legal/aviso-legal.html">Aviso legal</a>
+      <a href="legal/politica-privacidad.html">Privacidad</a>
+      <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+    </nav>
+    <span>Propuesta de diseño — G&amp;G Elcano</span>
+  </footer>
+  <p class="pie__nota">
+    Maqueta de demostración. Las categorías, productos, noticias, teléfono, direcciones,
+    horario y condiciones (plazos, pagos, seguro del envío) son los publicados hoy por
+    tstorneos.com; las fotos de producto son suyas y las de ambiente, imágenes de stock de
+    uso libre. Los textos son una propuesta de redacción. La cesta y el asistente son de
+    muestra: enseñan cómo funcionaría la web definitiva, sin compra real ni IA conectada
+    todavía. La web original está disponible en castellano, catalán y francés — la
+    definitiva mantendría los tres idiomas.
+  </p>
+</main>
+
+<!-- ════════ ASISTENTE DE LA TIENDA (muestra) ════════ -->
+<button class="asis-btn" type="button" data-asis-abrir>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H4l2-3a8 8 0 1 1 15-5z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>
+  <span>¿Te ayudo a elegir?</span>
+</button>
+<div class="asis" role="dialog" aria-label="Asistente de la tienda (muestra)">
+  <div class="asis__cab">
+    <div>
+      <h3>El asistente de TsT</h3>
+      <p>IA de la tienda · muestra</p>
+    </div>
+    <button class="asis__cerrar" type="button" data-asis-cerrar aria-label="Cerrar">×</button>
+  </div>
+  <div class="asis__msgs" data-asis-msgs>
+    <div class="msg msg--ia">Buenas — soy el asistente de la tienda de trofeos. Dime qué celebras y te oriento entre el catálogo. ¿Por dónde empezamos?</div>
+  </div>
+  <div class="asis__chips" data-asis-chips>
+    <button class="chip" type="button" data-tema="futbol">Torneo de fútbol</button>
+    <button class="chip" type="button" data-tema="carrera">Una carrera</button>
+    <button class="chip" type="button" data-tema="homenaje">Placa homenaje</button>
+    <button class="chip" type="button" data-tema="plazo">¿Cuánto tarda?</button>
+    <button class="chip" type="button" data-tema="grabado">Grabados</button>
+  </div>
+  <div class="asis__pie">
+    <input type="text" placeholder="Escribe tu pregunta…" aria-label="Tu pregunta" data-asis-input>
+    <button class="asis__enviar" type="button" data-asis-enviar aria-label="Enviar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+  <p class="asis__nota">Asistente de muestra con respuestas de ejemplo sobre productos reales. En la web definitiva responde una IA conectada al catálogo, y el asesoramiento final siempre es de la tienda.</p>
+</div>
+
+<!-- ════════ DEPENDENCIAS ════════ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+
+<script>
+'use strict';
+
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+CustomEase.create('hop',  '0.56, 0, 0.35, 0.98');
+
+const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
+const MOBILE       = matchMedia('(pointer: coarse)').matches || innerWidth < 900;
+const DPR          = Math.min(devicePixelRatio || 1, 2);
+
+/* ── 1) LENIS + SCROLLTRIGGER: un solo rAF ── */
+let lenis = null;
+if (!REDUCE) {
+  lenis = new Lenis({ autoRaf: false });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((t) => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+  window.lenis = lenis;
+}
+
+/* ── 2) FONDO WEBGL — simplex noise + domain warping, paleta bronce/oro ── */
+(function fondoGL(){
+  const canvas = document.getElementById('fondo-gl');
+  const gl = canvas.getContext('webgl', { antialias:false, alpha:false });
+  if (!gl) { canvas.style.background = 'radial-gradient(120% 90% at 30% 10%, #1c1710, #14100a)'; return; }
+
+  const OCTAVAS = FINE_POINTER ? 4 : 2;
+  const BG_DPR  = Math.min(DPR, 1.5);
+
+  const vsrc = `
+    attribute vec2 aPos;
+    void main(){ gl_Position = vec4(aPos, 0.0, 1.0); }`;
+
+  /* Simplex noise 3D de Ashima/McEwan (MIT) */
+  const fsrc = `
+    precision highp float;
+    uniform float uTime;
+    uniform vec2  uRes;
+    uniform vec2  uMouse;
+    uniform float uReposo;
+
+    vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec4 mod289(vec4 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+    vec4 permute(vec4 x){ return mod289(((x*34.0)+1.0)*x); }
+    vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }
+    float snoise(vec3 v){
+      const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+      const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+      vec3 i  = floor(v + dot(v, C.yyy));
+      vec3 x0 = v - i + dot(i, C.xxx);
+      vec3 g  = step(x0.yzx, x0.xyz);
+      vec3 l  = 1.0 - g;
+      vec3 i1 = min(g.xyz, l.zxy);
+      vec3 i2 = max(g.xyz, l.zxy);
+      vec3 x1 = x0 - i1 + C.xxx;
+      vec3 x2 = x0 - i2 + C.yyy;
+      vec3 x3 = x0 - D.yyy;
+      i = mod289(i);
+      vec4 p = permute(permute(permute(
+            i.z + vec4(0.0, i1.z, i2.z, 1.0))
+          + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+          + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+      float n_ = 0.142857142857;
+      vec3 ns = n_ * D.wyz - D.xzx;
+      vec4 j  = p - 49.0 * floor(p * ns.z * ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_);
+      vec4 x  = x_ * ns.x + ns.yyyy;
+      vec4 y  = y_ * ns.x + ns.yyyy;
+      vec4 h  = 1.0 - abs(x) - abs(y);
+      vec4 b0 = vec4(x.xy, y.xy);
+      vec4 b1 = vec4(x.zw, y.zw);
+      vec4 s0 = floor(b0)*2.0 + 1.0;
+      vec4 s1 = floor(b1)*2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+      vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+      vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+      vec3 p0 = vec3(a0.xy, h.x);
+      vec3 p1 = vec3(a0.zw, h.y);
+      vec3 p2 = vec3(a1.xy, h.z);
+      vec3 p3 = vec3(a1.zw, h.w);
+      vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+      p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+      vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+      m = m * m;
+      return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+    }
+
+    float fbm(vec3 p){
+      float v = 0.0, a = 0.5;
+      for (int i = 0; i < ${OCTAVAS}; i++){ v += a * snoise(p); p *= 2.0; a *= 0.5; }
+      return v;
+    }
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(12.9898,78.233))) * 43758.5453); }
+
+    void main(){
+      vec2 uv = gl_FragCoord.xy / uRes;
+      float aspecto = uRes.x / uRes.y;
+      vec2 p = uv * vec2(aspecto, 1.0);
+      float t = uTime * 0.045;
+
+      vec2 raton = mix(uMouse, vec2(0.45, 0.6), uReposo) * vec2(aspecto, 1.0);
+      vec2 haciaRaton = (raton - p) * 0.2;
+
+      float warp = fbm(vec3(p * 1.15 + haciaRaton, t));
+      float n    = fbm(vec3(p * 1.75 + warp * 0.85 + haciaRaton * 0.5, t + 10.0));
+      n = n * 0.5 + 0.5;
+
+      float halo = smoothstep(0.75, 0.0, distance(p, raton));
+      n += halo * 0.13;
+
+      /* bronce de vitrina, madera y oro (acento escaso) */
+      vec3 c1 = vec3(0.055, 0.043, 0.026);
+      vec3 c2 = vec3(0.102, 0.082, 0.051);
+      vec3 c3 = vec3(0.333, 0.251, 0.098);
+      vec3 c4 = vec3(0.851, 0.659, 0.235);
+      vec3 col = mix(c1, c2, smoothstep(0.20, 0.55, n));
+      col = mix(col, c3, smoothstep(0.55, 0.86, n));
+      col = mix(col, c4, smoothstep(0.93, 1.00, n));
+
+      float vig = smoothstep(1.3, 0.35, distance(uv, vec2(0.5)));
+      col *= mix(0.7, 1.0, vig);
+      col += (hash(gl_FragCoord.xy + fract(uTime) * 100.0) - 0.5) * 0.045;
+
+      gl_FragColor = vec4(col, 1.0);
+    }`;
+
+  function compilar(tipo, src){
+    const s = gl.createShader(tipo);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s));
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compilar(gl.VERTEX_SHADER, vsrc));
+  gl.attachShader(prog, compilar(gl.FRAGMENT_SHADER, fsrc));
+  gl.linkProgram(prog); gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const locPos = gl.getAttribLocation(prog, 'aPos');
+  gl.enableVertexAttribArray(locPos);
+  gl.vertexAttribPointer(locPos, 2, gl.FLOAT, false, 0, 0);
+
+  const uni = {
+    time:  gl.getUniformLocation(prog, 'uTime'),
+    res:   gl.getUniformLocation(prog, 'uRes'),
+    mouse: gl.getUniformLocation(prog, 'uMouse'),
+    reposo:gl.getUniformLocation(prog, 'uReposo'),
+  };
+
+  function redimensionar(){
+    canvas.width  = Math.round(innerWidth  * BG_DPR);
+    canvas.height = Math.round(innerHeight * BG_DPR);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  redimensionar();
+  addEventListener('resize', redimensionar);
+
+  const objetivo = { x: 0.45, y: 0.6 };
+  const suave    = { x: 0.45, y: 0.6 };
+  let reposo = 1, objetivoReposo = 1;
+  if (FINE_POINTER) {
+    addEventListener('pointermove', (e) => {
+      objetivo.x = e.clientX / innerWidth;
+      objetivo.y = 1 - e.clientY / innerHeight;
+      objetivoReposo = 0;
+    }, { passive: true });
+  }
+
+  let ultimo = 0;
+  function pintar(ms){
+    const t  = (ms * 0.001) % 3600;
+    const dt = Math.min((ms - ultimo) * 0.001, 1/30);
+    ultimo = ms;
+    const k = 1 - Math.exp(-5.0 * dt);
+    suave.x += (objetivo.x - suave.x) * k;
+    suave.y += (objetivo.y - suave.y) * k;
+    reposo  += (objetivoReposo - reposo) * k * 0.6;
+    gl.uniform1f(uni.time, t);
+    gl.uniform2f(uni.res, canvas.width, canvas.height);
+    gl.uniform2f(uni.mouse, suave.x, suave.y);
+    gl.uniform1f(uni.reposo, reposo);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  if (REDUCE) {
+    pintar(0);
+  } else {
+    let rafId = requestAnimationFrame(function loop(ms){ pintar(ms); rafId = requestAnimationFrame(loop); });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { cancelAnimationFrame(rafId); rafId = null; }
+      else if (!rafId) { ultimo = performance.now(); rafId = requestAnimationFrame(function loop(ms){ pintar(ms); rafId = requestAnimationFrame(loop); }); }
+    });
+  }
+})();
+
+/* ── 3) ESTELA FLUIDA (webgl-fluid-enhanced 0.8, MIT).
+   Va también en móvil. Fixes obligatorios: X escalada por DPR, touchmove,
+   resolución reducida + pausa por inactividad + splats coalescidos. ── */
+if (!REDUCE) {
+  import('https://cdn.jsdelivr.net/npm/webgl-fluid-enhanced@0.8.0/+esm').then((mod) => {
+    const WebGLFluidEnhanced = mod.default;
+    const cont = document.getElementById('fluid');
+    const sim = new WebGLFluidEnhanced(cont);
+    /* la lib pisa el position del contenedor: lo re-fijamos */
+    Object.assign(cont.style, {
+      position: 'fixed', inset: '0', width: '100%', height: '100%',
+      zIndex: '3998', pointerEvents: 'none',
+    });
+    dispatchEvent(new Event('resize'));
+    sim.setConfig({
+      simResolution:     MOBILE ? 96 : 128,
+      dyeResolution:     MOBILE ? 512 : 1024,
+      pressureIterations: MOBILE ? 8 : 10,
+      densityDissipation: 2.2,
+      velocityDissipation: 1.4,
+      curl: 28,
+      splatRadius: MOBILE ? 0.12 : 0.1,
+      splatForce: 5000,
+      hover: false,
+      colorful: false,
+      colorPalette: ['#d9a83c', '#ecc45e', '#8f6cc9'],   /* oro del trofeo + morado del logotipo */
+      transparent: true,
+      bloom: false,                 /* con transparent:true el bloom v0.8 rompe (pantalla blanca) */
+      sunrays: false,
+    });
+    sim.start();
+
+    /* pausa por inactividad: el solve eterno satura la GPU del móvil */
+    let fluidPaused = false;
+    const setFluid = (run) => { if (run === !fluidPaused) return; fluidPaused = sim.togglePause(); };
+    let idleT = 0;
+    const wake = () => { setFluid(true); clearTimeout(idleT); idleT = setTimeout(() => setFluid(false), 1400); };
+    wake();
+
+    /* la lib normaliza X por canvas.width (px de dispositivo) y la Y por
+       clientHeight (px CSS): con DPR>1 hay que escalar la X a mano */
+    const fcv = cont.querySelector('canvas');
+    const sx = () => (fcv && fcv.clientWidth) ? fcv.width / fcv.clientWidth : (devicePixelRatio || 1);
+
+    let lastX = null, lastY = null, accX = 0, accY = 0, curX = 0, curY = 0, pending = false;
+    const flush = () => {
+      pending = false;
+      if (Math.abs(accX) + Math.abs(accY) > 4) { wake(); sim.splatAtLocation(curX * sx(), curY, accX, accY); }
+      accX = accY = 0;
+    };
+    const feed = (x, y) => {
+      if (lastX !== null) { accX += (x - lastX) * 2.5; accY += (y - lastY) * 2.5; }
+      lastX = x; lastY = y; curX = x; curY = y;
+      if (!pending) { pending = true; requestAnimationFrame(flush); }
+    };
+    const resetTrail = () => { lastX = lastY = null; accX = accY = 0; };
+
+    addEventListener('pointermove', (e) => { if (e.pointerType !== 'touch') feed(e.clientX, e.clientY); }, { passive: true });
+    addEventListener('touchstart', (e) => { const t = e.touches[0]; if (t) { lastX = t.clientX; lastY = t.clientY; } }, { passive: true });
+    addEventListener('touchmove',  (e) => { const t = e.touches[0]; if (t) feed(t.clientX, t.clientY); }, { passive: true });
+    addEventListener('touchend', resetTrail, { passive: true });
+    addEventListener('touchcancel', resetTrail, { passive: true });
+    document.addEventListener('visibilitychange', () => { document.hidden ? setFluid(false) : wake(); });
+
+    /* ráfaga de bienvenida tras el preloader */
+    window.__fluidBurst = () => {
+      const W = innerWidth, H = innerHeight;
+      for (let i = 0; i <= 5; i++) {
+        const t = i / 5;
+        setTimeout(() => {
+          wake();
+          sim.splatAtLocation(W * (0.15 + t * 0.7) * sx(), H * (0.62 - Math.sin(t * Math.PI) * 0.2),
+                              180 * (1 - t * 0.4), -70 * Math.cos(t * Math.PI));
+        }, i * 70);
+      }
+    };
+  }).catch(() => { /* sin CDN no hay fluido; el resto de la página sigue viva */ });
+}
+
+/* ── Cursor dot + ring (el cursor nativo sigue visible) ── */
+if (FINE_POINTER && !REDUCE) (function cursor(){
+  const dot  = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  const dx = gsap.quickTo(dot,  'x', { duration: 0.12, ease: 'power3' });
+  const dy = gsap.quickTo(dot,  'y', { duration: 0.12, ease: 'power3' });
+  const rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' });
+  const ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+  let visto = false;
+  addEventListener('pointermove', (e) => {
+    if (!visto) { gsap.to([dot, ring], { opacity: 1, duration: 0.4 }); visto = true; }
+    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
+  }, { passive: true });
+  document.querySelectorAll('a, button, .servicio, .tarj, .faq summary').forEach((el) => {
+    el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' }));
+    el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1,   duration: 0.35, ease: 'power3.out' }));
+  });
+})();
+
+/* ── 3b) LA SECCIÓN — un trofeo dibujado pieza a pieza con el scroll.
+   Compuesto SOLO con las primitivas probadas del kit: polilíneas, arcos
+   paramétricos (copa y asas), cajas (peana y columna), puntos sembrados
+   (el confeti de la entrega) y cotas. Reconocible en un segundo: una copa. ── */
+(function seccionCanvas(){
+  const seccion = document.querySelector('.seccion');
+  const pinEl   = document.querySelector('.seccion__pin');
+  const canvas  = document.querySelector('.seccion__lienzo');
+  const ctx     = canvas.getContext('2d');
+  const elNum   = document.querySelector('[data-seccion-num]');
+  const elFase  = document.querySelector('[data-seccion-fase]');
+  const elFrase = document.querySelector('[data-seccion-frase]');
+
+  const CREMA = '#f4efe3', ORO = '#ecc45e', TURQ = '#3ab8bf', TENUE = 'rgba(244,239,227,0.30)';
+  const ROTULO = 'rgba(244,239,227,0.66)';
+  const ANCHO_D = 1000, ALTO_D = 520;
+  const ANCHO_VIS = MOBILE ? 760 : ANCHO_D;
+  const K = MOBILE ? 1.6 : 1;                 /* engorde de trazo y texto en móvil */
+
+  /* arco/elipse paramétrico: la primitiva con la que se compone la copa */
+  function elipseP(cx, cy, rx, ry, a0, a1, n){
+    const p = [];
+    for (let i = 0; i <= n; i++){
+      const a = a0 + (a1 - a0) * (i / n);
+      p.push([cx + rx * Math.cos(a), cy + ry * Math.sin(a)]);
+    }
+    return p;
+  }
+  const espejo = (pts) => pts.map(([x, y]) => [ANCHO_D - x, y]);
+
+  const CUENCO   = elipseP(500, 150, 118, 162, Math.PI, 0, 40);          /* el cuenco de la copa */
+  const ECO      = elipseP(500, 150, 90, 124, Math.PI * 0.94, Math.PI * 0.06, 32);
+  const ASA_IZQ  = elipseP(352, 196, 52, 60, -0.75, -5.45, 28);          /* asa en C */
+  const ASA_DER  = espejo(ASA_IZQ);
+
+  const trazos = [
+    /* FASE I — la copa */
+    { t:[0.00,0.16], w:2.2, c:CREMA, p:CUENCO,
+      label:{ t:'El cuenco', x:668, y:118, a:'left', c:ROTULO } },
+    { t:[0.10,0.16], w:2.2, c:CREMA, p:[[372,150],[628,150]] },
+    { t:[0.14,0.24], w:1.2, c:TENUE, p:ECO },
+    /* FASE II — las asas y la peana */
+    { t:[0.28,0.38], w:2.0, c:ORO, p:ASA_IZQ,
+      label:{ t:'Las asas', x:286, y:286, a:'right', c:ROTULO } },
+    { t:[0.28,0.38], w:2.0, c:ORO, p:ASA_DER },
+    { t:[0.38,0.43], w:2.0, c:CREMA, p:[[500,312],[500,332]] },
+    { t:[0.42,0.48], w:2.0, c:CREMA, p:[[484,332],[516,332],[508,392],[492,392],[484,332]],
+      label:{ t:'La columna', x:592, y:372, a:'left', c:ROTULO } },
+    { t:[0.46,0.52], w:2.0, c:CREMA, p:[[452,392],[548,392],[548,416],[452,416],[452,392]] },
+    { t:[0.50,0.56], w:2.0, c:CREMA, p:[[430,416],[570,416],[570,446],[430,446],[430,416]],
+      label:{ t:'La peana', x:592, y:440, a:'left', c:ROTULO } },
+    /* FASE III — el grabado */
+    { t:[0.56,0.64], w:1.8, c:ORO, p:[[462,421],[538,421],[538,441],[462,441],[462,421]] },
+    { t:[0.64,0.76], w:1.6, c:TURQ, p:[[470,434],[480,428],[490,434],[500,428],[510,434],[520,428],[530,434]],
+      label:{ t:'Tu texto, grabado', x:408, y:438, a:'right', c:TURQ } },
+    /* FASE IV — la entrega */
+    { t:[0.78,0.92], w:1.4, c:ORO, confeti:[320,48,680,132] },
+    { t:[0.90,1.00], w:1.2, c:ORO, p:[[382,478],[382,492],[382,485],[618,485],[618,478],[618,492]],
+      cota:'Blanes · Girona — fabricación propia desde 2011' },
+  ];
+  const fases = [
+    [0.00, 'Fase I — La copa',      'Más de 1.000 modelos para elegir: resina, cristal, metacrilato, madera, cerámica.'],
+    [0.28, 'Fase II — El montaje',  'Asas, columna y peana: cada pieza se monta en casa. Fabricación propia desde 2011.'],
+    [0.56, 'Fase III — El grabado', 'Pantógrafo, láser, color UV, sublimación o vinilo: tu texto y tu escudo, grabados.'],
+    [0.78, 'Fase IV — La entrega',  'En tus manos en 4–7 días hábiles, con el 100 % del valor del pedido asegurado.'],
+  ];
+
+  function longitudes(p){
+    const acc = [0];
+    for (let i = 1; i < p.length; i++)
+      acc.push(acc[i-1] + Math.hypot(p[i][0]-p[i-1][0], p[i][1]-p[i-1][1]));
+    return acc;
+  }
+  trazos.forEach(tr => { if (tr.p) tr.len = longitudes(tr.p); });
+
+  let escala = 1, offX = 0, offY = 0;
+  function redimensionar(){
+    const w = pinEl.clientWidth, h = pinEl.clientHeight;
+    canvas.width = Math.round(w * DPR); canvas.height = Math.round(h * DPR);
+    escala = Math.min(w / ANCHO_VIS, h / ALTO_D) * (MOBILE ? 1 : 0.82);
+    offX = (w - ANCHO_D * escala) / 2;
+    offY = (h - ALTO_D * escala) / 2;
+    pintar(progreso.valor, true);
+  }
+
+  function polilineaParcial(p, len, f){
+    const objetivo = len[len.length-1] * f;
+    ctx.beginPath();
+    ctx.moveTo(p[0][0], p[0][1]);
+    for (let i = 1; i < p.length; i++){
+      if (len[i] <= objetivo) { ctx.lineTo(p[i][0], p[i][1]); continue; }
+      const resto = (objetivo - len[i-1]) / (len[i] - len[i-1]);
+      if (resto > 0)
+        ctx.lineTo(p[i-1][0] + (p[i][0]-p[i-1][0]) * resto,
+                   p[i-1][1] + (p[i][1]-p[i-1][1]) * resto);
+      break;
+    }
+    ctx.stroke();
+  }
+
+  /* puntos sembrados con semilla fija (el confeti de la celebración) */
+  function sembrar(n, semilla, rMin, rMax){
+    const pool = [];
+    let s = semilla;
+    const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < n; i++) pool.push([rnd(), rnd(), rMin + rnd() * (rMax - rMin)]);
+    return pool;
+  }
+  const CONFETI = sembrar(42, 13, 2.2, 4.4);
+
+  function puntos(pool, [x0,y0,x1,y1], f){
+    const n = Math.round(pool.length * f);
+    ctx.beginPath();
+    for (let i = 0; i < n; i++){
+      const [u, v, r] = pool[i];
+      const x = x0 + u * (x1 - x0), y = y0 + v * (y1 - y0);
+      ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, Math.PI * 2);
+    }
+    ctx.fillStyle = 'rgba(236,196,94,0.16)'; ctx.fill();
+    ctx.stroke();
+  }
+
+  function etiqueta(l){
+    ctx.fillStyle = l.c;
+    ctx.font = `300 ${Math.round(19 * K)}px Archivo, sans-serif`;
+    ctx.textAlign = l.a;
+    ctx.fillText(l.t, l.x, l.y);
+  }
+
+  let ultimoPintado = -1;
+  function pintar(t, forzar){
+    const tick = Math.round(t * 800);
+    if (!forzar && tick === ultimoPintado) return;
+    ultimoPintado = tick;
+
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.clearRect(0, 0, canvas.width / DPR, canvas.height / DPR);
+    ctx.translate(offX, offY);
+    ctx.scale(escala, escala);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+    /* retícula de plano técnico */
+    const aGrid = Math.min(t * 4, 1) * 0.05;
+    if (aGrid > 0.004){
+      ctx.strokeStyle = `rgba(244,239,227,${aGrid.toFixed(3)})`;
+      ctx.lineWidth = 1 * K;
+      ctx.beginPath();
+      for (let x = 0; x <= ANCHO_D; x += 100){ ctx.moveTo(x, 0); ctx.lineTo(x, ALTO_D); }
+      for (let y = 0; y <= ALTO_D; y += 100){ ctx.moveTo(0, y); ctx.lineTo(ANCHO_D, y); }
+      ctx.stroke();
+    }
+
+    for (const tr of trazos){
+      const f = gsap.utils.clamp(0, 1, (t - tr.t[0]) / (tr.t[1] - tr.t[0]));
+      if (f <= 0) continue;
+      ctx.strokeStyle = tr.c;
+      ctx.lineWidth = tr.w * K;
+      if (tr.confeti)   puntos(CONFETI, tr.confeti, f);
+      else {
+        polilineaParcial(tr.p, tr.len, f);
+        if (tr.cota && f >= 1){
+          ctx.fillStyle = ORO;
+          ctx.font = `300 ${Math.round(20 * K)}px Archivo, sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.fillText(tr.cota, 500, 512);
+        }
+      }
+      /* en móvil la figura se escala tanto que las etiquetas laterales
+         quedarían ilegibles o fuera de cuadro: manda el HUD en HTML */
+      if (tr.label && f >= 1 && !MOBILE) etiqueta(tr.label);
+    }
+
+    elNum.textContent = Math.round(t * 100);
+    let fase = fases[0];
+    for (const f of fases) if (t >= f[0]) fase = f;
+    if (elFase.textContent !== fase[1]){
+      elFase.textContent = fase[1];
+      if (REDUCE) { elFrase.textContent = fase[2]; }
+      else {
+        gsap.to([elFase, elFrase], {
+          autoAlpha: 0, duration: 0.18, ease: 'power2.in', overwrite: true,
+          onComplete: () => {
+            elFrase.textContent = fase[2];
+            gsap.to([elFase, elFrase], { autoAlpha: 1, duration: 0.35, ease: 'power2.out' });
+          },
+        });
+      }
+    }
+  }
+
+  const progreso = { valor: REDUCE ? 1 : 0 };
+  if (!REDUCE){
+    gsap.to(progreso, {
+      valor: 1, ease: 'none',
+      onUpdate: () => pintar(progreso.valor),
+      scrollTrigger: {
+        trigger: seccion, start: 'top top', end: 'bottom bottom',
+        pin: pinEl, pinSpacing: false, scrub: 1, anticipatePin: 1,
+      },
+    });
+  }
+
+  addEventListener('resize', redimensionar);
+  document.fonts.ready.then(redimensionar);
+  redimensionar();
+})();
+
+/* ── 3c) Nada de arrastre nativo de imágenes: al hacer clic y mover, el
+   navegador arrancaba un drag y la vista previa se quedaba pegada al cursor ── */
+document.addEventListener('dragstart', (e) => { if (e.target.closest('img')) e.preventDefault(); });
+
+/* ── 3d) CATÁLOGO con filtros + cesta de muestra ── */
+const toast = (function(){
+  const el = document.createElement('p');
+  el.className = 'toast'; el.setAttribute('role', 'status');
+  document.body.appendChild(el);
+  let t = 0;
+  return (txt) => {
+    el.textContent = txt;
+    el.classList.add('ver');
+    clearTimeout(t);
+    t = setTimeout(() => el.classList.remove('ver'), 3200);
+  };
+})();
+
+(function catalogo(){
+  /* 14 familias reales del catálogo de tstorneos.com, con sus fotos (12-ago-2026).
+     Su web no publica precios en el listado: no se inventa ninguno. */
+  const PRODUCTOS = [
+    { n:'Trofeos por deportes',          cat:'trofeos',   tag:'Trofeos',   img:'assets/sub-deportes.png' },
+    { n:'Trofeos de cristal',            cat:'trofeos',   tag:'Trofeos',   img:'assets/sub-cristal.png' },
+    { n:'Trofeos alegorías',             cat:'trofeos',   tag:'Trofeos',   img:'assets/sub-alegorias.png' },
+    { n:'Copas ABS',                     cat:'copas',     tag:'Copas',     img:'assets/sub-copas-abs.png' },
+    { n:'Copas de calidad',              cat:'copas',     tag:'Copas',     img:'assets/sub-copas-calidad.png' },
+    { n:'Copas clásicas',                cat:'copas',     tag:'Copas',     img:'assets/sub-copas-clasicas.png' },
+    { n:'Ensaladeras',                   cat:'copas',     tag:'Copas',     img:'assets/sub-ensaladeras.png' },
+    { n:'Medallas personalizadas',       cat:'medallas',  tag:'Medallas',  img:'assets/sub-medallas-pers.png' },
+    { n:'Medalla de cristal',            cat:'medallas',  tag:'Medallas',  img:'assets/sub-medalla-cristal.png' },
+    { n:'Medallas deportes en relieve',  cat:'medallas',  tag:'Medallas',  img:'assets/sub-medallas-relieve.png' },
+    { n:'Placa de madera premium',       cat:'placas',    tag:'Placas',    img:'assets/sub-placa-madera.png' },
+    { n:'Trofeo balón de oro',           cat:'novedades', tag:'Novedades', img:'assets/sub-balon-oro.png' },
+    { n:'Trofeos de baloncesto',         cat:'novedades', tag:'Novedades', img:'assets/sub-baloncesto.png' },
+    { n:'Trofeo patinaje 3D',            cat:'novedades', tag:'Novedades', img:'assets/sub-patinaje3d.png' },
+  ];
+  const grid  = document.querySelector('[data-grid]');
+  const nEl   = document.querySelector('[data-cat-n]');
+  const vacio = document.querySelector('[data-vacio]');
+  const busca = document.querySelector('[data-busca]');
+  const orden = document.querySelector('[data-orden]');
+  if (!grid) return;
+  let cat = 'todo', q = '', ord = 'rel';
+
+  const quitarAcentos = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+  function render(){
+    let lista = PRODUCTOS.filter(pr => (cat === 'todo' || pr.cat === cat));
+    if (q) { const qq = quitarAcentos(q); lista = lista.filter(pr => quitarAcentos(pr.n + ' ' + pr.tag).includes(qq)); }
+    if (ord === 'az') lista = [...lista].sort((a,b) => a.n.localeCompare(b.n, 'es'));
+    if (ord === 'za') lista = [...lista].sort((a,b) => b.n.localeCompare(a.n, 'es'));
+    grid.innerHTML = lista.map(pr => `
+      <article class="prod">
+        <div class="prod__marco"><span class="prod__tag">${pr.tag}</span><img src="${pr.img}" alt="${pr.n}" loading="lazy"></div>
+        <h3>${pr.n}</h3>
+        <div class="prod__pie">
+          <p class="prod__precio">Precio a consultar</p>
+          <button class="prod__add" type="button">Añadir</button>
+        </div>
+      </article>`).join('');
+    nEl.textContent = lista.length;
+    vacio.style.display = lista.length ? 'none' : 'block';
+  }
+
+  document.querySelectorAll('.catalogo__filtros [data-cat]').forEach((ch) => {
+    ch.addEventListener('click', () => {
+      document.querySelectorAll('.catalogo__filtros [data-cat]').forEach(c => c.classList.remove('activa'));
+      ch.classList.add('activa');
+      cat = ch.dataset.cat;
+      render();
+    });
+  });
+  busca.addEventListener('input', () => { q = busca.value.trim(); render(); });
+  orden.addEventListener('change', () => { ord = orden.value; render(); });
+  render();
+
+  /* cesta de muestra */
+  let cesta = 0;
+  const badge = document.querySelector('[data-cesta-n]');
+  grid.addEventListener('click', (e) => {
+    const b = e.target.closest('.prod__add');
+    if (!b) return;
+    cesta++; badge.textContent = cesta;
+    toast('Añadido a la cesta de muestra. En la web definitiva, aquí se compra de verdad, con precio y grabado incluidos.');
+  });
+  document.querySelector('.cabecera__cesta').addEventListener('click', () => {
+    toast(cesta
+      ? `Llevas ${cesta} en la cesta de muestra — la compra real llegaría con la web definitiva.`
+      : 'Cesta de muestra: añade algo desde el catálogo para probarla.');
+  });
+})();
+
+/* ── 3e) ASISTENTE de la tienda (muestra con respuestas de ejemplo) ── */
+(function asistente(){
+  const panel  = document.querySelector('.asis');
+  const btn    = document.querySelector('[data-asis-abrir]');
+  const cerrar = document.querySelector('[data-asis-cerrar]');
+  const msgs   = document.querySelector('[data-asis-msgs]');
+  const input  = document.querySelector('[data-asis-input]');
+  const enviar = document.querySelector('[data-asis-enviar]');
+  if (!panel) return;
+
+  const RESP = {
+    futbol: ['Necesito trofeos para un torneo de fútbol',
+      'Para fútbol hay trofeos por deportes, copas clásicas y de ABS en varios tamaños (ideal para 1º, 2º y 3º) y medallas de fútbol en relieve para todos los jugadores. Dime cuántas categorías premias y te preparo la lista — y el presupuesto, en el 686 211 599.'],
+    carrera: ['Medallas para una carrera popular',
+      'Medallas de 50 a 90 mm en zamac, hierro, cristal o madera, personalizadas con tu logo por sublimación o láser. El plazo normal es de 4 a 7 días hábiles: si la carrera está cerca, llámanos y tratamos de adaptarlo a tu fecha.'],
+    homenaje: ['Busco una placa de homenaje',
+      'Placas conmemorativas en madera, cristal, inox, cerámica a color o metacrilato, con estuche para entregarla en mano. El texto va grabado con el sistema que mejor le va al material: pantógrafo, láser, UV o sublimación.'],
+    plazo: ['¿Cuánto tarda mi pedido?',
+      'Confirmado el pago, entre 4 y 7 días hábiles (de mayo a agosto, entre 7 y 10: es temporada alta de torneos). Hay además una zona de stock con servicio exprés en 24/48/72 h. Todo viaja con el 100 % del valor asegurado.'],
+    grabado: ['¿Cómo se graban los trofeos?',
+      'Según el producto: pantógrafo, láser, color UV, sublimación o vinilo. Tu texto, el escudo del club o el logo del patrocinador — en la ficha de cada producto se indica qué admite cada pieza.'],
+  };
+
+  const abrir = () => { panel.classList.add('abierto'); btn.style.display = 'none'; input.focus({ preventScroll: true }); };
+  const cierra = () => { panel.classList.remove('abierto'); btn.style.display = ''; };
+  btn.addEventListener('click', abrir);
+  cerrar.addEventListener('click', cierra);
+
+  function mensaje(texto, mio){
+    const el = document.createElement('div');
+    el.className = 'msg ' + (mio ? 'msg--yo' : 'msg--ia');
+    el.textContent = texto;
+    msgs.appendChild(el);
+    msgs.scrollTop = msgs.scrollHeight;
+    return el;
+  }
+  function respuestaIA(texto){
+    const el = mensaje('…', false);
+    setTimeout(() => { el.textContent = texto; msgs.scrollTop = msgs.scrollHeight; }, 650);
+  }
+
+  document.querySelectorAll('[data-tema]').forEach((ch) => {
+    ch.addEventListener('click', () => {
+      const r = RESP[ch.dataset.tema];
+      if (!r) return;
+      mensaje(r[0], true);
+      respuestaIA(r[1]);
+    });
+  });
+
+  function enviarTexto(){
+    const t = input.value.trim();
+    if (!t) return;
+    input.value = '';
+    mensaje(t, true);
+    respuestaIA('Buena pregunta — esto es una maqueta y aquí respondería la IA conectada al catálogo real de la tienda. Para ver cómo suena, prueba uno de los botones de arriba; y para una respuesta de verdad, el 686 211 599 no falla.');
+  }
+  enviar.addEventListener('click', enviarTexto);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') enviarTexto(); });
+})();
+
+/* ── 4) Cabecera: fondo sólido al bajar (el scrim se apaga solo) ── */
+(function cabecera(){
+  const el = document.querySelector('.cabecera');
+  const marcar = () => el.classList.toggle('scrolled', scrollY > 60);
+  marcar();
+  addEventListener('scroll', marcar, { passive: true });
+})();
+
+/* ── 4b) Horario: destacar el día de HOY ── */
+(function horarioHoy(){
+  const hoy = String(new Date().getDay());
+  document.querySelectorAll('.horario__fila').forEach((fila) => {
+    if ((fila.dataset.dias || '').split(',').includes(hoy)) fila.classList.add('horario-hoy');
+  });
+})();
+
+/* ── 5) CARRUSEL SIMPLE: carril nativo con encaje. Nada de pin. ── */
+(function carrusel(){
+  const pista = document.querySelector('[data-carril-pista]');
+  const num   = document.querySelector('[data-carril-num]');
+  const prev  = document.querySelector('[data-carril="prev"]');
+  const next  = document.querySelector('[data-carril="next"]');
+  if (!pista) return;
+  const tarjetas = [...pista.querySelectorAll('.tarj')];
+  const total = tarjetas.length;
+
+  const paso = () => {
+    if (tarjetas.length < 2) return tarjetas[0] ? tarjetas[0].offsetWidth : 1;
+    return tarjetas[1].offsetLeft - tarjetas[0].offsetLeft;
+  };
+
+  let pendiente = false;
+  function refrescar(){
+    pendiente = false;
+    const i = Math.min(total, Math.max(1, Math.round(pista.scrollLeft / paso()) + 1));
+    num.textContent = String(i).padStart(2, '0');
+    const fin = pista.scrollWidth - pista.clientWidth;
+    prev.disabled = pista.scrollLeft <= 2;
+    next.disabled = pista.scrollLeft >= fin - 2;
+  }
+  pista.addEventListener('scroll', () => {
+    if (!pendiente) { pendiente = true; requestAnimationFrame(refrescar); }
+  }, { passive: true });
+
+  prev.addEventListener('click', () => pista.scrollBy({ left: -paso(), behavior: 'smooth' }));
+  next.addEventListener('click', () => pista.scrollBy({ left:  paso(), behavior: 'smooth' }));
+
+  /* arrastre con ratón; en táctil manda el scroll nativo */
+  let arrastrando = false, x0 = 0, s0 = 0;
+  pista.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'touch') return;
+    arrastrando = true; x0 = e.clientX; s0 = pista.scrollLeft;
+    pista.style.scrollSnapType = 'none';
+    pista.setPointerCapture(e.pointerId);
+  });
+  pista.addEventListener('pointermove', (e) => {
+    if (!arrastrando) return;
+    pista.scrollLeft = s0 - (e.clientX - x0);
+  });
+  const soltar = () => {
+    if (!arrastrando) return;
+    arrastrando = false; pista.style.scrollSnapType = '';
+  };
+  pista.addEventListener('pointerup', soltar);
+  pista.addEventListener('pointercancel', soltar);
+  pista.addEventListener('pointerleave', soltar);
+
+  addEventListener('resize', refrescar);
+  refrescar();
+})();
+
+/* ── 6) REVELADOS, SCRUBS Y COREOGRAFÍA ── */
+document.fonts.ready.then(() => {
+  const mm = gsap.matchMedia();
+
+  mm.add({
+    motionOK: '(prefers-reduced-motion: no-preference)',
+    reduce:   '(prefers-reduced-motion: reduce)',
+  }, (ctx) => {
+    if (ctx.conditions.reduce) {
+      gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
+      document.querySelectorAll('[data-cuenta]').forEach((el) => {
+        const v = +el.dataset.target;
+        el.textContent = el.dataset.pad ? String(v).padStart(+el.dataset.pad, '0') : v.toLocaleString('es-ES');
+      });
+      const pre = document.querySelector('.preloader');
+      if (pre) pre.style.display = 'none';
+      return;
+    }
+
+    /* 6.1 Reveal del hero */
+    function revealHero(){
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+      tl.set('[data-hero-reveal]', { visibility: 'visible' });
+      tl.fromTo('.hero__media', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
+      tl.fromTo('.hero__media img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+      const st = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
+      tl.from(st.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.45);
+      const ss = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
+      tl.from(ss.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.72);
+      tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.6);
+      tl.from('.hero__ctas > *', { autoAlpha: 0, y: 20, duration: 0.8, stagger: 0.08 }, 0.95);
+      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 1.05);
+      return tl;
+    }
+
+    /* 6.2 Preloader: contador steps(14), cortina y hero */
+    const num = document.querySelector('.preloader__num');
+    const p = { v: 0 };
+    const cargaMinima = new Promise((res) => {
+      gsap.to(p, {
+        v: 100, duration: 1.9, ease: 'steps(14)',
+        onUpdate: () => { num.firstChild.textContent = Math.round(p.v); },
+        onComplete: res,
+      });
+    });
+    const cargaReal = new Promise((res) => {
+      if (document.readyState === 'complete') res();
+      else addEventListener('load', res, { once: true });
+    });
+
+    Promise.all([cargaMinima, cargaReal]).then(() => {
+      gsap.timeline()
+        .to('.preloader__num', { yPercent: -110, duration: 0.65, ease: 'expo.in' })
+        .to('.preloader__brand span', { yPercent: -110, duration: 0.5, ease: 'expo.in' }, '<')
+        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
+        .set('.preloader', { display: 'none' })
+        .add(revealHero(), '-=0.75')
+        .call(() => lenis && lenis.start(), null, '-=1.2')
+        .call(() => window.__fluidBurst && window.__fluidBurst(), null, '-=0.9');
+    });
+
+    /* 6.3 Salida del hero scrubada */
+    gsap.to('[data-hero-parallax]', {
+      yPercent: 14, scale: 1.12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+    gsap.to('.hero__contenido', {
+      yPercent: -14, autoAlpha: 0.25, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
+    });
+
+    /* barra de progreso lateral */
+    gsap.to('.progreso span', {
+      scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.5 },
+    });
+
+    /* tiras a contra-scroll */
+    document.querySelectorAll('[data-tira]').forEach((el) => {
+      const dir = +el.dataset.tira;
+      gsap.fromTo(el, { xPercent: dir * 6 }, {
+        xPercent: dir * -6, ease: 'none',
+        scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* fotos del manifiesto a distintas profundidades */
+    gsap.utils.toArray('.flotante').forEach((el) => {
+      const sp = +el.dataset.speed || 1;
+      gsap.fromTo(el, { yPercent: 16 * sp }, {
+        yPercent: -16 * sp, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top bottom', end: 'bottom top', scrub: 1 },
+      });
+    });
+
+    /* cifras escalonadas */
+    gsap.utils.toArray('.cifra').forEach((el, i) => {
+      gsap.fromTo(el, { y: 60 + i * 36, autoAlpha: 0 }, {
+        y: 0, autoAlpha: 1, ease: 'none',
+        scrollTrigger: { trigger: '.cifras', start: 'top 95%', end: 'top 45%', scrub: 1 },
+      });
+    });
+
+    /* marquee vivo ligado a la velocidad del scroll */
+    {
+      const track = document.querySelector('.marquee__track');
+      track.style.animation = 'none';
+      /* distancia exacta = ancho de UN grupo + el hueco que lo separa del siguiente */
+      const grupo = track.querySelector('.marquee__group');
+      const salto = () => grupo.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+      const marq = gsap.to(track, { x: -salto(), ease: 'none', duration: 8, repeat: -1 });
+      marq.totalTime(8 * 1000);
+      addEventListener('resize', () => { marq.vars.x = -salto(); marq.invalidate(); });
+      let objetivoTS = 1;
+      ScrollTrigger.create({
+        onUpdate: (self) => {
+          const v = self.getVelocity();
+          objetivoTS = gsap.utils.clamp(-3.5, 3.5, (v < 0 ? -1 : 1) * Math.max(1, Math.abs(v) / 500));
+        },
+      });
+      gsap.ticker.add(() => {
+        marq.timeScale(gsap.utils.interpolate(marq.timeScale(), objetivoTS, 0.06));
+        objetivoTS += (1 - objetivoTS) * 0.04;
+      });
+    }
+
+    /* pasos del proceso: caen en 3D */
+    gsap.utils.toArray('.razon').forEach((el, i) => {
+      gsap.fromTo(el, { rotationX: -35, autoAlpha: 0, y: 50, transformOrigin: 'top center' }, {
+        rotationX: 0, autoAlpha: 1, y: 0, duration: 1.1, ease: 'expo.out', delay: (i % 4) * 0.1,
+        scrollTrigger: { trigger: el, start: 'top 86%', once: true },
+      });
+    });
+
+    /* manifiesto: palabra a palabra con scrub */
+    SplitText.create('[data-manifiesto]', {
+      type: 'words',
+      onSplit: (self) => gsap.from(self.words, {
+        opacity: 0.13, stagger: 0.05, ease: 'none',
+        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
+      }),
+    });
+
+    /* 6.4 Zoom inmersivo */
+    {
+      const z = SplitText.create('[data-zoom-texto]', { type: 'words' });
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.zoom', start: 'top top', end: 'bottom bottom',
+          pin: '.zoom__pin', pinSpacing: false, scrub: 1, anticipatePin: 1,
+        },
+      })
+      .fromTo('.zoom__marco', { clipPath: 'inset(38% 32% 38% 32%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', duration: 0.6 }, 0)
+      .fromTo('.zoom__marco img', { scale: 1.35 }, { scale: 1, ease: 'none', duration: 0.85 }, 0)
+      .fromTo(z.words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.3, ease: 'none' }, 0.58);
+    }
+
+    /* 6.5 Reveals genéricos */
+    document.querySelectorAll('[data-reveal]').forEach((el) => {
+      if (el.dataset.split === 'lines') {
+        SplitText.create(el, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit: (self) => {
+            gsap.set(el, { visibility: 'visible' });
+            return gsap.from(self.lines, {
+              yPercent: 105, duration: 0.9, ease: 'expo.out', stagger: 0.05,
+              scrollTrigger: { trigger: el, start: 'top 82%', once: true },
+            });
+          },
+        });
+      } else {
+        gsap.fromTo(el, { autoAlpha: 0, y: 26 }, {
+          autoAlpha: 1, y: 0, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        });
+      }
+    });
+
+    /* 6.6 Tarjetas del carrusel: clip-reveal vertical (sin containerAnimation) */
+    gsap.utils.toArray('[data-img-reveal]').forEach((marco) => {
+      gsap.timeline({
+        scrollTrigger: { trigger: marco, start: 'top 90%', once: true },
+        defaults: { duration: 1.2, ease: 'power4.out' },
+      })
+      .fromTo(marco, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)' })
+      .fromTo(marco.querySelector('img'), { scale: 1.18 }, { scale: 1 }, 0);
+    });
+
+    /* 6.7 Count-up */
+    document.querySelectorAll('[data-cuenta]').forEach((el) => {
+      const objetivo = +el.dataset.target;
+      const pad = el.dataset.pad ? +el.dataset.pad : 0;
+      const c = { v: 0 };
+      gsap.to(c, {
+        v: objetivo, duration: 2, ease: 'power2.out', snap: { v: 1 },
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        onUpdate: () => {
+          const n = Math.round(c.v);
+          el.textContent = pad ? String(n).padStart(pad, '0') : n.toLocaleString('es-ES');
+        },
+      });
+    });
+
+    /* 6.8 Imagen que persigue al cursor sobre las categorías */
+    if (FINE_POINTER) {
+      const preview = document.querySelector('.servicios__preview');
+      const img = preview.querySelector('img');
+      gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0.92 });
+      const px = gsap.quickTo(preview, 'x', { duration: 0.5, ease: 'power3.out' });
+      const py = gsap.quickTo(preview, 'y', { duration: 0.5, ease: 'power3.out' });
+      const ocultar = () => gsap.to(preview, { opacity: 0, scale: 0.92, duration: 0.3, ease: 'power3.out', overwrite: true });
+      document.querySelectorAll('.servicio').forEach((fila) => {
+        fila.addEventListener('mouseenter', () => {
+          img.src = fila.dataset.preview;
+          gsap.to(preview, { opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out', overwrite: true });
+        });
+        fila.addEventListener('mouseleave', ocultar);
+      });
+      /* cinturón y tirantes: si el cursor ya no está sobre una fila (clic,
+         arrastre, scroll…), la foto se esconde en vez de quedarse pegada */
+      addEventListener('scroll', () => { if (!document.querySelector('.servicio:hover')) ocultar(); }, { passive: true });
+      document.addEventListener('mouseleave', ocultar);
+      addEventListener('pointermove', (e) => { px(e.clientX); py(e.clientY); }, { passive: true });
+    }
+
+    /* 6.9 Botón magnético */
+    if (FINE_POINTER) {
+      document.querySelectorAll('[data-magnetico]').forEach((el) => {
+        const label = el.querySelector('.magnetico__label');
+        const xTo = gsap.quickTo(el, 'x', { duration: 0.6, ease: 'power3.out' });
+        const yTo = gsap.quickTo(el, 'y', { duration: 0.6, ease: 'power3.out' });
+        const lx  = gsap.quickTo(label, 'x', { duration: 0.6, ease: 'power3.out' });
+        const ly  = gsap.quickTo(label, 'y', { duration: 0.6, ease: 'power3.out' });
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          const dx = e.clientX - (r.left + r.width / 2);
+          const dy = e.clientY - (r.top + r.height / 2);
+          xTo(dx * 0.35); yTo(dy * 0.35); lx(dx * 0.5); ly(dy * 0.5);
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to([el, label], { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.3)' });
+        });
+      });
+    }
+
+    ScrollTrigger.refresh();
+  });
+});
+</script>
+<script defer src="legal/cookie-banner.js"></script>
+</body>
+</html>
