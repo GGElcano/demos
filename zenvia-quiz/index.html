@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenvia · PuriPod — Test de Alergias</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gd:#1a3a2a;--gm:#2d6a4f;--gl:#52b788;--gp:#d8f3dc;
+  --cream:#f8f5ef;--text:#1c2b22;--muted:#6b8c76;
+  --white:#fff;--amber:#f4a261;--red:#e74c3c;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center}
+
+/* HEADER */
+header{width:100%;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;background:var(--white);border-bottom:1px solid #e8ede9;position:sticky;top:0;z-index:200}
+.logo-main{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--gd);letter-spacing:-.5px}
+.logo-sub{font-size:.62rem;font-weight:600;color:var(--gl);text-transform:uppercase;letter-spacing:1.5px}
+.trust-badge{display:flex;align-items:center;gap:5px;background:var(--gp);border:1px solid var(--gl);border-radius:20px;padding:5px 12px;font-size:.76rem;font-weight:600;color:var(--gd)}
+.stars{color:var(--amber)}
+
+/* PROGRESS */
+.prog-wrap{width:100%;max-width:580px;padding:16px 20px 0}
+.prog-meta{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-bottom:6px;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+.prog-bar{height:7px;background:#dde8df;border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gl),var(--gm));border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+
+/* WRAP */
+.quiz-wrap{width:100%;max-width:580px;padding:22px 20px 60px;flex:1}
+.screen,.analysis-screen{display:none;animation:fadeUp .4s ease both}
+.screen.active,.analysis-screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* QUESTION */
+.q-step{font-size:.7rem;font-weight:700;color:var(--gl);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:9px}
+.q-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;line-height:1.25;color:var(--gd);margin-bottom:7px}
+.q-sub{font-size:.86rem;color:var(--muted);margin-bottom:22px;line-height:1.55}
+
+/* OPTIONS GRID */
+.opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:20px}
+.ocard{background:var(--white);border:2px solid #e2ece4;border-radius:14px;padding:18px 12px 14px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;position:relative;overflow:hidden}
+.ocard:hover{border-color:var(--gl);transform:translateY(-2px);box-shadow:0 7px 20px rgba(82,183,136,.15)}
+.ocard.sel{border-color:var(--gm);background:var(--gp)}
+.ocard-icon{font-size:2rem;line-height:1}
+.ocard-label{font-size:.86rem;font-weight:600;color:var(--gd);line-height:1.3}
+.ocard-check{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:var(--gm);color:#fff;font-size:.65rem;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0);transition:all .2s}
+.ocard.sel .ocard-check{opacity:1;transform:scale(1)}
+
+/* OPTIONS LIST */
+.opts-list{display:flex;flex-direction:column;gap:9px;margin-bottom:20px}
+.orow{background:var(--white);border:2px solid #e2ece4;border-radius:13px;padding:14px 17px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .2s;font-weight:500}
+.orow:hover{border-color:var(--gl);background:#f0faf2}
+.orow.sel{border-color:var(--gm);background:var(--gp)}
+.orow-ico{font-size:1.3rem}
+.orow-txt{font-size:.92rem;flex:1}
+.orow-chk{width:21px;height:21px;border-radius:50%;border:2px solid #ccd9ce;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:.68rem}
+.orow.sel .orow-chk{background:var(--gm);border-color:var(--gm);color:#fff}
+
+/* SCALE */
+.scale-wrap{display:flex;gap:8px;margin-bottom:20px}
+.scale-btn{flex:1;background:var(--white);border:2px solid #e2ece4;border-radius:12px;padding:14px 6px;cursor:pointer;text-align:center;transition:all .2s;font-weight:700;font-size:1.1rem;color:var(--gd)}
+.scale-btn:hover{border-color:var(--gl)}
+.scale-btn.sel{border-color:var(--gm);background:var(--gp)}
+.scale-label{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-bottom:8px}
+
+/* NEXT BTN */
+.btn-next{width:100%;padding:15px;background:var(--gm);color:#fff;border:none;border-radius:13px;font-family:'DM Sans',sans-serif;font-size:.96rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px}
+.btn-next:hover{background:var(--gd);transform:translateY(-1px);box-shadow:0 7px 20px rgba(45,106,79,.3)}
+.btn-next:disabled{background:#b2c9ba;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* ANALYSIS */
+.anal-card{background:var(--gd);border-radius:20px;padding:28px 24px 24px;color:#fff;margin-bottom:18px;text-align:center;position:relative;overflow:hidden}
+.anal-card::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:radial-gradient(circle,rgba(82,183,136,.2),transparent 70%);border-radius:50%}
+.anal-lbl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gl);margin-bottom:15px;display:flex;align-items:center;justify-content:center;gap:7px}
+.pdot{width:8px;height:8px;border-radius:50%;background:var(--gl);animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.anal-bar-wrap{background:rgba(255,255,255,.12);border-radius:99px;height:8px;margin:14px 0 12px;overflow:hidden}
+.anal-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gl),#95d5b2);width:0%;transition:width 1.8s cubic-bezier(.4,0,.2,1)}
+.anal-pct{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:900;color:#fff;line-height:1;margin-bottom:5px}
+.anal-pct-lbl{font-size:.8rem;color:rgba(255,255,255,.6)}
+
+/* FACT CARD */
+.fact-card{background:var(--white);border-radius:15px;border-left:4px solid var(--gl);padding:18px 18px 16px;margin-bottom:14px}
+.fact-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gl);margin-bottom:7px;display:flex;align-items:center;gap:5px}
+.fact-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--gd);margin-bottom:6px;line-height:1.3}
+.fact-body{font-size:.85rem;color:var(--muted);line-height:1.65}
+.fact-body strong{color:var(--text)}
+
+/* TABS CARD */
+.tabs-card{background:var(--white);border-radius:18px;overflow:hidden;margin-bottom:14px;border:1px solid #e8ede9}
+.tabs-nav{display:flex;border-bottom:2px solid #e8ede9}
+.tab-btn{flex:1;padding:12px 6px;font-size:.78rem;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;transition:all .2s;text-align:center;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'DM Sans',sans-serif}
+.tab-btn.active{color:var(--gm);border-bottom-color:var(--gm)}
+.tab-pane{display:none;padding:20px 18px}
+.tab-pane.active{display:block}
+.tab-pane p{font-size:.86rem;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.tab-pane p:last-child{margin-bottom:0}
+.tab-pane strong{color:var(--text)}
+.tab-stat{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.tab-stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--gm);flex-shrink:0;line-height:1}
+.tab-stat-desc{font-size:.82rem;color:var(--muted);line-height:1.4}
+
+/* CHART CARD */
+.chart-card{background:var(--white);border-radius:18px;padding:20px;margin-bottom:14px;border:1px solid #e8ede9}
+.chart-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd);margin-bottom:4px}
+.chart-sub{font-size:.78rem;color:var(--muted);margin-bottom:16px}
+.chart-wrap{position:relative;height:200px}
+
+/* REVIEWS */
+.reviews-wrap{margin-bottom:14px}
+.review-card{background:var(--white);border-radius:14px;padding:16px 18px;margin-bottom:10px;border:1px solid #e8ede9;position:relative;overflow:hidden}
+.review-card::before{content:'❝';position:absolute;bottom:10px;right:16px;font-size:2.6rem;color:var(--gp);font-family:'Playfair Display',serif;line-height:1;pointer-events:none;opacity:.6}
+.review-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.reviewer-name{font-weight:700;font-size:.9rem;color:var(--gd)}
+.reviewer-meta{font-size:.72rem;color:var(--muted);margin-top:1px}
+.review-stars{color:var(--amber);font-size:.85rem;flex-shrink:0}
+.review-badge{display:inline-block;background:var(--gp);color:var(--gm);font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.review-body{font-size:.85rem;color:var(--text);line-height:1.65;font-style:italic}
+.review-verified{font-size:.7rem;color:var(--gl);font-weight:600;margin-top:7px;display:flex;align-items:center;gap:4px}
+
+/* TRANSITION CARD */
+.trans-card{background:var(--gd);color:var(--white);border-radius:20px;padding:28px 24px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden}
+.trans-card::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:radial-gradient(circle,rgba(82,183,136,.2),transparent 70%);border-radius:50%}
+.trans-icon{font-size:2.6rem;margin-bottom:12px}
+.trans-card h2{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:10px;line-height:1.25}
+.trans-card p{font-size:.88rem;color:#9ec4ad;line-height:1.65}
+
+/* STAT ROW */
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px}
+.stat-item{background:var(--white);border-radius:13px;padding:14px 10px;text-align:center;border:1px solid #e8ede9}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:900;color:var(--gm);line-height:1;margin-bottom:3px}
+.stat-desc{font-size:.7rem;color:var(--muted);line-height:1.35}
+
+/* BTN CONTINUE */
+.btn-cont{width:100%;padding:15px;background:var(--gm);color:#fff;border:none;border-radius:13px;font-family:'DM Sans',sans-serif;font-size:.96rem;font-weight:600;cursor:pointer;transition:all .2s;margin-top:4px}
+.btn-cont:hover{background:var(--gd);transform:translateY(-1px);box-shadow:0 7px 20px rgba(45,106,79,.28)}
+
+/* PERSONALIZACIÓN — caja dinámica dentro de análisis */
+.personal-box{background:linear-gradient(135deg,#f0faf4,var(--white));border:1.5px solid var(--gl);border-radius:14px;padding:16px 18px;margin-bottom:14px;display:flex;gap:12px;align-items:flex-start}
+.personal-ico{font-size:1.6rem;flex-shrink:0;margin-top:2px}
+.personal-body{}
+.personal-title{font-weight:700;font-size:.9rem;color:var(--gd);margin-bottom:4px}
+.personal-text{font-size:.83rem;color:var(--muted);line-height:1.6}
+
+/* PANTALLA FINAL */
+.ct-badge{display:inline-block;background:var(--gp);color:var(--gm);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:5px 14px;border-radius:99px;margin-bottom:20px}
+.ct-hero{background:linear-gradient(145deg,var(--gd),#0d2218);border-radius:22px;padding:32px 24px 28px;color:#fff;margin-bottom:22px;position:relative;overflow:hidden}
+.ct-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:170px;height:170px;background:radial-gradient(circle,rgba(82,183,136,.2),transparent 70%);border-radius:50%}
+.ct-hero h2{font-family:'Playfair Display',serif;font-size:1.7rem;margin-bottom:12px;line-height:1.2}
+.ct-hero p{font-size:.9rem;color:#9ec4ad;line-height:1.65}
+.ct-results{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.ct-result-item{background:var(--white);border-radius:12px;padding:13px 16px;display:flex;align-items:center;gap:12px;font-size:.88rem;font-weight:500;border:1px solid #e8ede9;text-align:left}
+.ct-result-ico{font-size:1.2rem;flex-shrink:0}
+.loader-wrap{margin:28px 0 24px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.loader-ring{width:72px;height:72px;border:5px solid var(--gp);border-top-color:var(--gm);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{font-size:.88rem;color:var(--muted);font-weight:500}
+.loader-pct{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--gd)}
+.btn-salespage{width:100%;padding:18px;background:linear-gradient(135deg,var(--gm),#1a7a50);color:#fff;border:none;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:1.05rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.2px;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:9px}
+.btn-salespage:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(45,106,79,.35)}
+.ct-guarantee{display:flex;align-items:center;justify-content:center;gap:7px;font-size:.78rem;color:var(--muted);font-weight:500;margin-bottom:16px}
+.ct-trust{display:flex;justify-content:center;gap:16px;font-size:.72rem;color:var(--muted);flex-wrap:wrap}
+
+/* FOOTER */
+.footer-note{text-align:center;font-size:.72rem;color:var(--muted);padding:0 20px 30px;line-height:1.65;max-width:580px}
+.footer-note a{color:var(--gl);text-decoration:none}
+@media(max-width:400px){.opts-grid{grid-template-columns:1fr}.q-title{font-size:1.35rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-main">Zenvia</span><br>
+    <span class="logo-sub">PuriPod · IonFlow™</span>
+  </div>
+  <div class="trust-badge">
+    <span class="stars">★★★★☆</span>
+    <strong>4,6</strong> · 12k reseñas
+  </div>
+</header>
+
+<div class="prog-wrap" id="progWrap">
+  <div class="prog-meta">
+    <span id="progText">Pregunta 1 de 15</span>
+    <span id="progPct">7%</span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:7%"></div></div>
+</div>
+
+<div class="quiz-wrap">
+
+<!-- ═══════════ Q1 ═══════════ -->
+<div class="screen active" id="s-1">
+  <div class="q-step">Paso 1 de 15</div>
+  <h1 class="q-title">¿Cuál es tu síntoma de alergia más molesto?</h1>
+  <p class="q-sub">Elige el que más afecta tu día a día.</p>
+  <div class="opts-grid">
+    <div class="ocard" onclick="selCard(this,1,'sintoma','nariz')"><div class="ocard-icon">😤</div><div class="ocard-label">Nariz taponada constantemente</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,1,'sintoma','ojos')"><div class="ocard-icon">👁️</div><div class="ocard-label">Ojos irritados o que pican</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,1,'sintoma','tos')"><div class="ocard-icon">😮‍💨</div><div class="ocard-label">Tos o dificultad para respirar</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,1,'sintoma','sueno')"><div class="ocard-icon">💤</div><div class="ocard-label">Duermo fatal por las alergias</div><div class="ocard-check">✓</div></div>
+  </div>
+  <button class="btn-next" id="bn-1" disabled onclick="goAnal('a1')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 1 -->
+<div class="analysis-screen" id="s-a1">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Analizando tu perfil…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a1"></div></div>
+    <div class="anal-pct" id="pct-a1">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a1" class="personal-box"></div>
+  <div class="fact-card">
+    <div class="fact-tag">🌬️ ¿Sabías que…</div>
+    <div class="fact-title">El aire interior puede estar hasta 5 veces más contaminado que el exterior</div>
+    <div class="fact-body">Según la OMS, pasamos el <strong>90% del tiempo en espacios cerrados</strong>. Polvo, ácaros, esporas y pelo de mascota se acumulan en el aire invisible que respiras cada día. La tecnología de ionización los neutraliza eléctricamente antes de que lleguen a tus pulmones.</div>
+  </div>
+  <button class="btn-cont" onclick="goQ(2)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q2 ═══════════ -->
+<div class="screen" id="s-2">
+  <div class="q-step">Paso 2 de 15</div>
+  <h1 class="q-title">¿Con qué frecuencia sufres síntomas de alergia?</h1>
+  <p class="q-sub">Queremos entender la intensidad de tu problema.</p>
+  <div class="opts-list">
+    <div class="orow" onclick="selRow(this,2,true,'freq','todo')"><span class="orow-ico">📅</span><span class="orow-txt">Todo el año, sin descanso</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,2,true,'freq','estacional')"><span class="orow-ico">🌸</span><span class="orow-txt">Solo en primavera o verano</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,2,true,'freq','interior')"><span class="orow-ico">🏠</span><span class="orow-txt">Sobre todo en casa o en interiores</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,2,true,'freq','humedad')"><span class="orow-ico">🌧️</span><span class="orow-txt">En días de lluvia o humedad alta</span><div class="orow-chk"></div></div>
+  </div>
+  <button class="btn-next" id="bn-2" disabled onclick="goAnal('a2')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 2 -->
+<div class="analysis-screen" id="s-a2">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Calculando tu exposición…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a2"></div></div>
+    <div class="anal-pct" id="pct-a2">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a2" class="personal-box"></div>
+  <div class="tabs-card">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-a2-1')">El problema</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-a2-2')">Datos</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-a2-3')">La solución</button>
+    </div>
+    <div class="tab-pane active" id="tab-a2-1">
+      <p>Las alergias perennes (todo el año) son causadas principalmente por <strong>ácaros, moho y pelo de mascota</strong>. Estos alérgenos viven dentro de tu hogar y no desaparecen con el cambio de estación.</p>
+      <p>A diferencia del polen, que puedes evitar quedándote en casa, los alérgenos de interior te acompañan las 24 horas del día.</p>
+    </div>
+    <div class="tab-pane" id="tab-a2-2">
+      <div class="tab-stat"><div class="tab-stat-num">1 de 4</div><div class="tab-stat-desc">personas en España sufre alergia a los ácaros del polvo doméstico</div></div>
+      <div class="tab-stat"><div class="tab-stat-num">40%</div><div class="tab-stat-desc">de las visitas al médico por rinitis son por alérgenos de interior</div></div>
+      <div class="tab-stat"><div class="tab-stat-num">8h</div><div class="tab-stat-desc">de media pasamos en el dormitorio respirando el mismo aire</div></div>
+    </div>
+    <div class="tab-pane" id="tab-a2-3">
+      <p>La tecnología IonFlow™ emite <strong>millones de iones negativos por segundo</strong> que se adhieren a los alérgenos suspendidos en el aire, cargándolos negativamente y haciendo que caigan al suelo.</p>
+      <p>El resultado: el aire de tu habitación queda libre de partículas en suspensión en menos de 30 minutos.</p>
+    </div>
+  </div>
+  <button class="btn-cont" onclick="goQ(3)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q3 ═══════════ -->
+<div class="screen" id="s-3">
+  <div class="q-step">Paso 3 de 15</div>
+  <h1 class="q-title">¿Qué desencadena principalmente tus alergias?</h1>
+  <p class="q-sub">Puedes elegir más de uno.</p>
+  <div class="opts-list">
+    <div class="orow" onclick="selRow(this,3,false,'alergeno','acaros')"><span class="orow-ico">🕷️</span><span class="orow-txt">Ácaros del polvo doméstico</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,3,false,'alergeno','mascotas')"><span class="orow-ico">🐾</span><span class="orow-txt">Pelo o caspa de mascotas</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,3,false,'alergeno','polen')"><span class="orow-ico">🌿</span><span class="orow-txt">Polen exterior que entra en casa</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,3,false,'alergeno','moho')"><span class="orow-ico">🍄</span><span class="orow-txt">Moho o humedad ambiental</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,3,false,'alergeno','bacterias')"><span class="orow-ico">🦠</span><span class="orow-txt">Bacterias y gérmenes en el ambiente</span><div class="orow-chk"></div></div>
+  </div>
+  <button class="btn-next" id="bn-3" disabled onclick="goAnal('a3')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 3 -->
+<div class="analysis-screen" id="s-a3">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Identificando tus alérgenos…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a3"></div></div>
+    <div class="anal-pct" id="pct-a3">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a3" class="personal-box"></div>
+  <div class="fact-card">
+    <div class="fact-tag">🕷️ Dato impactante</div>
+    <div class="fact-title">2 millones de ácaros viven en un colchón normal</div>
+    <div class="fact-body">Los ácaros son invisibles a simple vista y se alimentan de células muertas de piel. Sus <strong>heces se convierten en partículas que flotan en el aire</strong> y entran en tus vías respiratorias cada vez que te mueves o haces la cama. IonFlow™ las neutraliza antes de que las respires.</div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">Alérgenos de interior más frecuentes en hogares españoles</div>
+    <div class="chart-sub">% de alérgicos afectados por cada fuente (datos SEAIC)</div>
+    <div class="chart-wrap"><canvas id="chart-alergenos"></canvas></div>
+  </div>
+  <button class="btn-cont" onclick="goQ(4)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q4 ═══════════ -->
+<div class="screen" id="s-4">
+  <div class="q-step">Paso 4 de 15</div>
+  <h1 class="q-title">¿Dónde notas más los síntomas?</h1>
+  <p class="q-sub">Nos ayuda a recomendarte la ubicación y potencia correctas.</p>
+  <div class="opts-grid">
+    <div class="ocard" onclick="selCard(this,4,'lugar','dormitorio')"><div class="ocard-icon">🛏️</div><div class="ocard-label">Dormitorio</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,4,'lugar','salon')"><div class="ocard-icon">🛋️</div><div class="ocard-label">Salón / comedor</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,4,'lugar','oficina')"><div class="ocard-icon">💼</div><div class="ocard-label">Oficina / escritorio</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,4,'lugar','cocina')"><div class="ocard-icon">🍳</div><div class="ocard-label">Cocina</div><div class="ocard-check">✓</div></div>
+  </div>
+  <button class="btn-next" id="bn-4" disabled onclick="goAnal('a4')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 4 — PERSONALIZADO POR HABITACIÓN -->
+<div class="analysis-screen" id="s-a4">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Analizando tu entorno…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a4"></div></div>
+    <div class="anal-pct" id="pct-a4">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a4" class="personal-box"></div>
+  <div class="tabs-card">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-a4-1')">El problema</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-a4-2')">Por qué ocurre</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-a4-3')">La solución</button>
+    </div>
+    <div class="tab-pane active" id="tab-a4-1"><p id="tab-a4-1-txt"></p></div>
+    <div class="tab-pane" id="tab-a4-2"><p id="tab-a4-2-txt"></p></div>
+    <div class="tab-pane" id="tab-a4-3"><p id="tab-a4-3-txt"></p></div>
+  </div>
+  <button class="btn-cont" onclick="goQ(5)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q5 ═══════════ -->
+<div class="screen" id="s-5">
+  <div class="q-step">Paso 5 de 15</div>
+  <h1 class="q-title">¿Tienes mascotas en casa?</h1>
+  <p class="q-sub">El pelo y la caspa animal son de los alérgenos más difíciles de eliminar.</p>
+  <div class="opts-grid">
+    <div class="ocard" onclick="selCard(this,5,'mascota','perro')"><div class="ocard-icon">🐶</div><div class="ocard-label">Sí, perro</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,5,'mascota','gato')"><div class="ocard-icon">🐱</div><div class="ocard-label">Sí, gato</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,5,'mascota','otro')"><div class="ocard-icon">🐦</div><div class="ocard-label">Sí, otro animal</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,5,'mascota','no')"><div class="ocard-icon">🚫</div><div class="ocard-label">No tengo mascotas</div><div class="ocard-check">✓</div></div>
+  </div>
+  <button class="btn-next" id="bn-5" disabled onclick="goAnal('a5')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 5 -->
+<div class="analysis-screen" id="s-a5">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Evaluando factores de riesgo…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a5"></div></div>
+    <div class="anal-pct" id="pct-a5">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a5" class="personal-box"></div>
+  <div class="fact-card">
+    <div class="fact-tag">🐾 Alerta mascotas</div>
+    <div class="fact-title">La caspa del gato puede flotar en el aire hasta 6 meses</div>
+    <div class="fact-body">La proteína Fel d 1 que produce el gato es tan ligera que <strong>flota indefinidamente en el aire</strong> y penetra profundamente en los pulmones. Incluso en casas donde nunca ha vivido un gato pueden encontrarse trazas. IonFlow™ la carga eléctricamente y la precipita al suelo en segundos.</div>
+  </div>
+  <button class="btn-cont" onclick="goQ(6)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q6 ═══════════ -->
+<div class="screen" id="s-6">
+  <div class="q-step">Paso 6 de 15</div>
+  <h1 class="q-title">¿Cómo calificarías la calidad de tu sueño?</h1>
+  <p class="q-sub">Del 1 (muy mal) al 5 (perfecta).</p>
+  <div class="scale-label"><span>Muy mal</span><span>Perfecta</span></div>
+  <div class="scale-wrap" id="scale-6">
+    <div class="scale-btn" onclick="selScale(this,6,'sueno','1')">1</div>
+    <div class="scale-btn" onclick="selScale(this,6,'sueno','2')">2</div>
+    <div class="scale-btn" onclick="selScale(this,6,'sueno','3')">3</div>
+    <div class="scale-btn" onclick="selScale(this,6,'sueno','4')">4</div>
+    <div class="scale-btn" onclick="selScale(this,6,'sueno','5')">5</div>
+  </div>
+  <button class="btn-next" id="bn-6" disabled onclick="goAnal('a6')" style="margin-top:16px">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 6 -->
+<div class="analysis-screen" id="s-a6">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Analizando tu descanso…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a6"></div></div>
+    <div class="anal-pct" id="pct-a6">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a6" class="personal-box"></div>
+  <div class="chart-card">
+    <div class="chart-title">Mejora del sueño con PuriPod</div>
+    <div class="chart-sub">Calidad media del sueño antes y después (escala 1-10, usuarios verificados)</div>
+    <div class="chart-wrap"><canvas id="chart-sueno"></canvas></div>
+  </div>
+  <div class="fact-card">
+    <div class="fact-tag">🌙 Sueño y alergias</div>
+    <div class="fact-title">La congestión nasal nocturna reduce el sueño profundo hasta un 58%</div>
+    <div class="fact-body">Cuando los síntomas de alergia interrumpen el ciclo REM, <strong>el daño se acumula</strong>: fatiga crónica, menor concentración, mayor irritabilidad. Un ambiente ionizado mientras duermes rompe este ciclo desde la primera noche.</div>
+  </div>
+  <button class="btn-cont" onclick="goQ(7)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q7 ═══════════ -->
+<div class="screen" id="s-7">
+  <div class="q-step">Paso 7 de 15</div>
+  <h1 class="q-title">¿Cuántos años llevas sufriendo alergias?</h1>
+  <p class="q-sub">La cronicidad nos ayuda a personalizar tu programa.</p>
+  <div class="opts-list">
+    <div class="orow" onclick="selRow(this,7,true,'anos','menos1')"><span class="orow-ico">🕐</span><span class="orow-txt">Menos de 1 año — ha empezado recientemente</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,7,true,'anos','1a5')"><span class="orow-ico">📆</span><span class="orow-txt">1 a 5 años</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,7,true,'anos','5a15')"><span class="orow-ico">🗓️</span><span class="orow-txt">5 a 15 años</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,7,true,'anos','mas15')"><span class="orow-ico">⏳</span><span class="orow-txt">Más de 15 años — toda mi vida</span><div class="orow-chk"></div></div>
+  </div>
+  <button class="btn-next" id="bn-7" disabled onclick="goAnal('a7')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 7 -->
+<div class="analysis-screen" id="s-a7">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Procesando historial…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a7"></div></div>
+    <div class="anal-pct" id="pct-a7">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a7" class="personal-box"></div>
+  <div class="tabs-card">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-a7-1')">¿Por qué empeora?</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-a7-2')">El ciclo</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-a7-3')">La salida</button>
+    </div>
+    <div class="tab-pane active" id="tab-a7-1">
+      <p>Con el tiempo, el sistema inmune se <strong>sensibiliza progresivamente</strong>. Lo que antes producía un pequeño picor ahora genera una reacción más intensa. Es el fenómeno de la "marcha alérgica".</p>
+      <p>Por eso tratar el problema desde el origen —el aire que respiras— es más efectivo cuanto antes se empiece.</p>
+    </div>
+    <div class="tab-pane" id="tab-a7-2">
+      <p>El ciclo de la alergia crónica: <strong>exposición continua → sensibilización → respuesta inmune mayor → más síntomas</strong>. Romper la exposición continua es el único camino para reducir la sensibilización a largo plazo.</p>
+    </div>
+    <div class="tab-pane" id="tab-a7-3">
+      <p>Reducir la carga de alérgenos en el aire de tu hogar es el primer paso recomendado por las guías ARIA de la OMS. <strong>No sustituye al tratamiento médico, sino que lo potencia</strong> reduciendo la exposición diaria.</p>
+    </div>
+  </div>
+  <button class="btn-cont" onclick="goQ(8)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q8 ═══════════ -->
+<div class="screen" id="s-8">
+  <div class="q-step">Paso 8 de 15</div>
+  <h1 class="q-title">¿Has probado alguna solución antes?</h1>
+  <p class="q-sub">Puedes elegir más de una.</p>
+  <div class="opts-list">
+    <div class="orow" onclick="selRow(this,8,false,'solucion','medicacion')"><span class="orow-ico">💊</span><span class="orow-txt">Antihistamínicos o medicación oral</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,8,false,'solucion','vacuna')"><span class="orow-ico">💉</span><span class="orow-txt">Inmunoterapia (vacuna de la alergia)</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,8,false,'solucion','purificador')"><span class="orow-ico">🌀</span><span class="orow-txt">Otro purificador de aire</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,8,false,'solucion','limpieza')"><span class="orow-ico">🧹</span><span class="orow-txt">Limpiezas más frecuentes</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,8,false,'solucion','nada')"><span class="orow-ico">🚫</span><span class="orow-txt">Nada — es la primera vez</span><div class="orow-chk"></div></div>
+  </div>
+  <button class="btn-next" id="bn-8" disabled onclick="goAnal('a8')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 8 -->
+<div class="analysis-screen" id="s-a8">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Evaluando soluciones previas…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a8"></div></div>
+    <div class="anal-pct" id="pct-a8">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a8" class="personal-box"></div>
+  <div class="fact-card">
+    <div class="fact-tag">💊 Medicación vs. origen</div>
+    <div class="fact-title">Los antihistamínicos no eliminan el alérgeno — solo silencian la alarma</div>
+    <div class="fact-body">La medicación bloquea los receptores histamínicos, pero <strong>el alérgeno sigue en el aire</strong>. Cada vez que respiras, tu sistema inmune vuelve a reaccionar. La única forma de cortar el ciclo es eliminar el alérgeno del ambiente antes de que entre en tus vías respiratorias.</div>
+  </div>
+  <button class="btn-cont" onclick="goQ(9)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q9 ═══════════ -->
+<div class="screen" id="s-9">
+  <div class="q-step">Paso 9 de 15</div>
+  <h1 class="q-title">¿Cuánto afectan las alergias a tu productividad diaria?</h1>
+  <p class="q-sub">Del 1 (nada) al 5 (me incapacita).</p>
+  <div class="scale-label"><span>Nada</span><span>Me incapacita</span></div>
+  <div class="scale-wrap" id="scale-9">
+    <div class="scale-btn" onclick="selScale(this,9,'impacto','1')">1</div>
+    <div class="scale-btn" onclick="selScale(this,9,'impacto','2')">2</div>
+    <div class="scale-btn" onclick="selScale(this,9,'impacto','3')">3</div>
+    <div class="scale-btn" onclick="selScale(this,9,'impacto','4')">4</div>
+    <div class="scale-btn" onclick="selScale(this,9,'impacto','5')">5</div>
+  </div>
+  <button class="btn-next" id="bn-9" disabled onclick="goAnal('a9')" style="margin-top:16px">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 9 -->
+<div class="analysis-screen" id="s-a9">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Midiendo el impacto…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a9"></div></div>
+    <div class="anal-pct" id="pct-a9">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a9" class="personal-box"></div>
+  <div class="chart-card">
+    <div class="chart-title">Bienestar general — evolución con PuriPod</div>
+    <div class="chart-sub">Puntuación media de bienestar (usuarios verificados, semanas 1-8)</div>
+    <div class="chart-wrap"><canvas id="chart-bienestar"></canvas></div>
+  </div>
+  <button class="btn-cont" onclick="goQ(10)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q10 ═══════════ -->
+<div class="screen" id="s-10">
+  <div class="q-step">Paso 10 de 15</div>
+  <h1 class="q-title">¿En qué habitación pasas más tiempo?</h1>
+  <p class="q-sub">Determina dónde ubicar tu primer PuriPod para máxima eficacia.</p>
+  <div class="opts-grid">
+    <div class="ocard" onclick="selCard(this,10,'estancia','dormitorio')"><div class="ocard-icon">🛏️</div><div class="ocard-label">Dormitorio — donde duermo</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,10,'estancia','escritorio')"><div class="ocard-icon">🖥️</div><div class="ocard-label">Escritorio — donde trabajo</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,10,'estancia','salon')"><div class="ocard-icon">🛋️</div><div class="ocard-label">Salón — donde me relajo</div><div class="ocard-check">✓</div></div>
+    <div class="ocard" onclick="selCard(this,10,'estancia','cocina')"><div class="ocard-icon">🍳</div><div class="ocard-label">Cocina / comedor</div><div class="ocard-check">✓</div></div>
+  </div>
+  <button class="btn-next" id="bn-10" disabled onclick="goAnal('a10')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 10 — PERSONALIZADO POR ESTANCIA -->
+<div class="analysis-screen" id="s-a10">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Optimizando ubicación…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a10"></div></div>
+    <div class="anal-pct" id="pct-a10">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a10" class="personal-box"></div>
+  <button class="btn-cont" onclick="goQ(11)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q11 ═══════════ -->
+<div class="screen" id="s-11">
+  <div class="q-step">Paso 11 de 15</div>
+  <h1 class="q-title">¿Cómo describirías la intensidad de tus alergias hoy?</h1>
+  <p class="q-sub">Sé honesto/a — es para tu perfil.</p>
+  <div class="opts-list">
+    <div class="orow" onclick="selRow(this,11,true,'intensidad','leve')"><span class="orow-ico">😌</span><span class="orow-txt">Leve — me molesta pero puedo con ello</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,11,true,'intensidad','moderada')"><span class="orow-ico">😣</span><span class="orow-txt">Moderada — afecta mi concentración y descanso</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,11,true,'intensidad','fuerte')"><span class="orow-ico">😩</span><span class="orow-txt">Fuerte — me impide hacer vida normal algún día</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,11,true,'intensidad','cronica')"><span class="orow-ico">😭</span><span class="orow-txt">Crónica — llevo años sin encontrar solución</span><div class="orow-chk"></div></div>
+  </div>
+  <button class="btn-next" id="bn-11" disabled onclick="goAnal('a11')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 11 -->
+<div class="analysis-screen" id="s-a11">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Analizando severidad…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a11"></div></div>
+    <div class="anal-pct" id="pct-a11">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a11" class="personal-box"></div>
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-num">94%</div><div class="stat-desc">notan mejoría en la primera semana</div></div>
+    <div class="stat-item"><div class="stat-num">48h</div><div class="stat-desc">para resultados visibles</div></div>
+    <div class="stat-item"><div class="stat-num">0€</div><div class="stat-desc">de mantenimiento al año</div></div>
+  </div>
+  <div class="fact-card">
+    <div class="fact-tag">🧬 Ciencia IonFlow™</div>
+    <div class="fact-title">Cómo funciona la ionización a nivel molecular</div>
+    <div class="fact-body">PuriPod genera una corriente de electrones que crea <strong>iones negativos (O₂⁻)</strong>. Estos se adhieren a las partículas positivas del aire (alérgenos, bacterias, esporas), creando agregados más pesados que caen por gravedad. Sin filtros, sin motor, sin ruido. Solo física.</div>
+  </div>
+  <button class="btn-cont" onclick="goQ(12)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q12 ═══════════ -->
+<div class="screen" id="s-12">
+  <div class="q-step">Paso 12 de 15</div>
+  <h1 class="q-title">¿Alguien más en tu hogar sufre alergias?</h1>
+  <p class="q-sub">Esto influye en el número de unidades recomendadas.</p>
+  <div class="opts-list">
+    <div class="orow" onclick="selRow(this,12,true,'familia','solo')"><span class="orow-ico">🙋</span><span class="orow-txt">Solo yo</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,12,true,'familia','pareja')"><span class="orow-ico">👫</span><span class="orow-txt">Mi pareja también</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,12,true,'familia','hijos')"><span class="orow-ico">👦</span><span class="orow-txt">Mis hijos también</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,12,true,'familia','todos')"><span class="orow-ico">👨‍👩‍👧‍👦</span><span class="orow-txt">Toda la familia lo sufre</span><div class="orow-chk"></div></div>
+  </div>
+  <button class="btn-next" id="bn-12" disabled onclick="goAnal('a12')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 12 -->
+<div class="analysis-screen" id="s-a12">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Calculando tu solución familiar…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a12"></div></div>
+    <div class="anal-pct" id="pct-a12">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a12" class="personal-box"></div>
+  <div class="fact-card">
+    <div class="fact-tag">👶 Niños y alergias</div>
+    <div class="fact-title">Los niños son 3 veces más vulnerables a los alérgenos de interior</div>
+    <div class="fact-body">Sus vías respiratorias son más pequeñas y su sistema inmune aún se está desarrollando. La <strong>exposición crónica a alérgenos en la infancia</strong> puede aumentar el riesgo de desarrollar asma. Proteger el aire de su habitación es una inversión en su salud a largo plazo.</div>
+  </div>
+  <button class="btn-cont" onclick="goQ(13)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q13 ═══════════ -->
+<div class="screen" id="s-13">
+  <div class="q-step">Paso 13 de 15</div>
+  <h1 class="q-title">¿Qué importa más para ti al elegir una solución?</h1>
+  <p class="q-sub">Elige tu prioridad principal.</p>
+  <div class="opts-list">
+    <div class="orow" onclick="selRow(this,13,true,'prioridad','eficacia')"><span class="orow-ico">⚡</span><span class="orow-txt">Eficacia rápida — quiero resultados ya</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,13,true,'prioridad','silencio')"><span class="orow-ico">🔇</span><span class="orow-txt">Sin ruido — no quiero que moleste por la noche</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,13,true,'prioridad','precio')"><span class="orow-ico">💰</span><span class="orow-txt">Sin mantenimiento — cero coste extra</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,13,true,'prioridad','diseno')"><span class="orow-ico">🎨</span><span class="orow-txt">Diseño — que quede bien en casa</span><div class="orow-chk"></div></div>
+  </div>
+  <button class="btn-next" id="bn-13" disabled onclick="goAnal('a13')">Continuar →</button>
+</div>
+
+<!-- ANÁLISIS 13 -->
+<div class="analysis-screen" id="s-a13">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Ajustando recomendación…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a13"></div></div>
+    <div class="anal-pct" id="pct-a13">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div id="personal-a13" class="personal-box"></div>
+  <div class="chart-card">
+    <div class="chart-title">PuriPod vs. purificadores con filtro HEPA</div>
+    <div class="chart-sub">Comparativa en factores clave (puntuación 0-10)</div>
+    <div class="chart-wrap"><canvas id="chart-comparativa"></canvas></div>
+  </div>
+  <button class="btn-cont" onclick="goQ(14)">Siguiente →</button>
+</div>
+
+<!-- ═══════════ Q14 — RESEÑAS ═══════════ -->
+<div class="screen" id="s-14">
+  <div class="q-step">Paso 14 de 15</div>
+  <h1 class="q-title">Esto es lo que dicen personas como tú</h1>
+  <p class="q-sub">Usuarios verificados que completaron el mismo perfil que el tuyo.</p>
+  <div class="reviews-wrap">
+    <div class="review-card">
+      <div class="review-header"><div><div class="reviewer-name">María G. · Madrid</div><div class="reviewer-meta">Alérgica a ácaros · 3 meses usando PuriPod</div></div><div class="review-stars">★★★★★</div></div>
+      <div class="review-badge">Dormitorio · Ácaros</div>
+      <div class="review-body">"Llevaba 8 años durmiendo con la nariz taponada. La primera semana con PuriPod en la mesilla ya noté que me despertaba sin necesidad de sonarme. Al mes había dejado los antihistamínicos por las mañanas. No lo hubiera creído si no lo viviera yo misma."</div>
+      <div class="review-verified">✓ Compra verificada · hace 6 semanas</div>
+    </div>
+    <div class="review-card">
+      <div class="review-header"><div><div class="reviewer-name">Carlos M. · Barcelona</div><div class="reviewer-meta">Alérgico al pelo de gato · 2 gatos en casa</div></div><div class="review-stars">★★★★★</div></div>
+      <div class="review-badge">Salón + dormitorio · Mascotas</div>
+      <div class="review-body">"Tenemos 2 gatos y yo soy alérgico. Antes era imposible sentarme en el sofá sin empezar a estornudar. Ahora tengo uno en el salón y otro en el dormitorio y puedo vivir normal. Mis gatos se quedan, el problema ha desaparecido."</div>
+      <div class="review-verified">✓ Compra verificada · hace 2 meses</div>
+    </div>
+    <div class="review-card">
+      <div class="review-header"><div><div class="reviewer-name">Lucía P. · Valencia</div><div class="reviewer-meta">Rinitis crónica · Toda la familia</div></div><div class="review-stars">★★★★☆</div></div>
+      <div class="review-badge">Pack familiar · 3 unidades</div>
+      <div class="review-body">"Compramos 3, uno por habitación. Mi hijo de 7 años que siempre se despertaba llorando lleva 3 semanas durmiendo del tirón. Es lo más cercano a un milagro que he visto. 4 estrellas solo porque tarda 3 días en llegar, pero vale totalmente la pena."</div>
+      <div class="review-verified">✓ Compra verificada · hace 1 mes</div>
+    </div>
+    <div class="review-card">
+      <div class="review-header"><div><div class="reviewer-name">Andrés T. · Sevilla</div><div class="reviewer-meta">Polen + ácaros · Trabajo desde casa</div></div><div class="review-stars">★★★★★</div></div>
+      <div class="review-badge">Escritorio · Productividad</div>
+      <div class="review-body">"Lo puse en el escritorio y la diferencia es brutal. Me concentro mucho mejor, ya no termino los días con dolor de cabeza. Para mí ha sido un cambio en la calidad de vida, no solo en las alergias."</div>
+      <div class="review-verified">✓ Compra verificada · hace 3 semanas</div>
+    </div>
+  </div>
+  <button class="btn-next" id="bn-14" onclick="goAnal('a14')">Ver mi resultado personalizado →</button>
+</div>
+
+<!-- ANÁLISIS 14 -->
+<div class="analysis-screen" id="s-a14">
+  <div class="anal-card">
+    <div class="anal-lbl"><div class="pdot"></div>Generando tu perfil completo…</div>
+    <div class="anal-bar-wrap"><div class="anal-bar-fill" id="bar-a14"></div></div>
+    <div class="anal-pct" id="pct-a14">0%</div>
+    <div class="anal-pct-lbl">perfil completado</div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-num">12k+</div><div class="stat-desc">familias ya usan PuriPod</div></div>
+    <div class="stat-item"><div class="stat-num">4,6★</div><div class="stat-desc">valoración media verificada</div></div>
+    <div class="stat-item"><div class="stat-num">90d</div><div class="stat-desc">garantía sin preguntas</div></div>
+  </div>
+  <div class="fact-card">
+    <div class="fact-tag">✨ Tu resultado está listo</div>
+    <div class="fact-title">El 94% de usuarios con tu perfil notaron mejoría antes de los 7 días</div>
+    <div class="fact-body">Basándonos en tus 14 respuestas, hemos identificado tu combinación de alérgenos, severidad y entorno. <strong>Tu recomendación personalizada ya está lista.</strong></div>
+  </div>
+  <button class="btn-cont" onclick="goQ(15)">Ver mi recomendación →</button>
+</div>
+
+<!-- ═══════════ Q15 ═══════════ -->
+<div class="screen" id="s-15">
+  <div class="q-step">Paso 15 de 15</div>
+  <div class="trans-card">
+    <div class="trans-icon">🧬</div>
+    <h2>Tu perfil está casi listo</h2>
+    <p>Tu combinación de síntomas coincide con el <strong style="color:#fff">82% de personas</strong> que experimentaron mejoría significativa en menos de 7 días con PuriPod.</p>
+  </div>
+  <h2 class="q-title">Una última cosa</h2>
+  <p class="q-sub">¿Cuál es tu mayor freno para mejorar la calidad del aire en casa?</p>
+  <div class="opts-list">
+    <div class="orow" onclick="selRow(this,15,true,'freno','precio')"><span class="orow-ico">💰</span><span class="orow-txt">El precio — no quiero gastar demasiado</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,15,true,'freno','dudas')"><span class="orow-ico">🤔</span><span class="orow-txt">Las dudas — no sé si realmente funciona</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,15,true,'freno','instalacion')"><span class="orow-ico">🔌</span><span class="orow-txt">La instalación — me da pereza configurar algo nuevo</span><div class="orow-chk"></div></div>
+    <div class="orow" onclick="selRow(this,15,true,'freno','ninguno')"><span class="orow-ico">✅</span><span class="orow-txt">Ninguno — estoy listo para empezar</span><div class="orow-chk"></div></div>
+  </div>
+  <button class="btn-next" id="bn-15" disabled onclick="goFinal()">Ver mi solución →</button>
+</div>
+
+<!-- ═══════════ PANTALLA FINAL → SALES PAGE ═══════════ -->
+<div class="screen" id="s-final">
+  <div style="text-align:center;padding:10px 0 20px">
+    <div class="ct-badge">✅ Perfil completado · 15 factores analizados</div>
+    <div class="ct-hero">
+      <h2>Tu solución está lista,<br>ahora es el momento</h2>
+      <p>Hemos analizado tus síntomas, entorno y estilo de vida. PuriPod con tecnología IonFlow™ es la solución que encaja con tu perfil — y con un descuento exclusivo por completar este test.</p>
+    </div>
+    <div class="ct-results">
+      <div class="ct-result-item"><span class="ct-result-ico">⚡</span>IonFlow™ — neutraliza alérgenos sin filtros ni ruido</div>
+      <div class="ct-result-item"><span class="ct-result-ico">🌙</span>Mejora del sueño visible desde la primera noche</div>
+      <div class="ct-result-item"><span class="ct-result-ico">🔋</span>0 € de mantenimiento — sin recambios, nunca</div>
+      <div class="ct-result-item"><span class="ct-result-ico">🛡️</span>90 días de garantía total sin preguntas</div>
+    </div>
+    <div class="loader-wrap" id="loaderWrap">
+      <div class="loader-ring"></div>
+      <div class="loader-pct" id="loaderPct">0%</div>
+      <div class="loader-text">Preparando tu oferta personalizada…</div>
+    </div>
+    <div id="ctaBlock" style="display:none">
+      <button class="btn-salespage" onclick="window.location.href=SALES_PAGE_URL">
+        Ver mi solución completa →
+      </button>
+      <div class="ct-guarantee">🛡️ Garantía 90 días · Sin riesgo · Devolución inmediata</div>
+      <div class="ct-trust">
+        <span>🚚 Entrega en 2-3 días</span>
+        <span>📦 Embalaje discreto</span>
+        <span>🔒 Pago seguro SSL</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /quiz-wrap -->
+
+<div class="footer-note" id="footerNote">
+  Al continuar aceptas nuestras <a href="#">Condiciones de uso</a>, <a href="#">Política de privacidad</a> y <a href="#">Política de cookies</a>.
+</div>
+
+<script>
+// ─── URL DE LA SALES PAGE ───
+const SALES_PAGE_URL = 'https://zenvia.es/PuriPoddd/OfertaPrimavera';
+
+// ─── PERFIL DEL USUARIO ───
+const perfil = {};
+
+// ─── PROGRESO ───
+const progMap = {
+  1:{l:'Pregunta 1 de 15',p:7},2:{l:'Pregunta 2 de 15',p:13},3:{l:'Pregunta 3 de 15',p:20},
+  4:{l:'Pregunta 4 de 15',p:27},5:{l:'Pregunta 5 de 15',p:33},6:{l:'Pregunta 6 de 15',p:40},
+  7:{l:'Pregunta 7 de 15',p:47},8:{l:'Pregunta 8 de 15',p:53},9:{l:'Pregunta 9 de 15',p:60},
+  10:{l:'Pregunta 10 de 15',p:67},11:{l:'Pregunta 11 de 15',p:73},12:{l:'Pregunta 12 de 15',p:80},
+  13:{l:'Pregunta 13 de 15',p:87},14:{l:'Paso 14 — Reseñas',p:93},15:{l:'Paso 15 de 15',p:97}
+};
+const analPcts = {a1:12,a2:22,a3:30,a4:38,a5:44,a6:52,a7:58,a8:64,a9:70,a10:75,a11:82,a12:87,a13:92,a14:97,afinal:100};
+
+function setProg(step){
+  const d=progMap[step];if(!d)return;
+  document.getElementById('progText').textContent=d.l;
+  document.getElementById('progPct').textContent=d.p+'%';
+  document.getElementById('progFill').style.width=d.p+'%';
+}
+function hideAll(){document.querySelectorAll('.screen,.analysis-screen').forEach(s=>s.classList.remove('active'))}
+function scrollTop(){window.scrollTo({top:0,behavior:'smooth'})}
+function goQ(n){hideAll();const el=document.getElementById('s-'+n);if(el){el.classList.add('active');setProg(n);scrollTop()}}
+
+function goAnal(id){
+  hideAll();
+  const el=document.getElementById('s-'+id);if(!el)return;
+  el.classList.add('active');scrollTop();
+  animBar(id);
+  renderPersonal(id);
+  if(id==='a3') setTimeout(()=>initChartAlergenos(),300);
+  if(id==='a6') setTimeout(()=>initChartSueno(),300);
+  if(id==='a9') setTimeout(()=>initChartBienestar(),300);
+  if(id==='a13') setTimeout(()=>initChartComparativa(),300);
+}
+
+// ─── PANTALLA FINAL ───
+function goFinal(){
+  hideAll();
+  document.getElementById('s-final').classList.add('active');
+  document.getElementById('progWrap').style.display='none';
+  document.getElementById('footerNote').style.display='none';
+  scrollTop();
+  let v=0;
+  const lbl=document.getElementById('loaderPct');
+  const t=setInterval(()=>{
+    v+=2;lbl.textContent=v+'%';
+    if(v>=100){clearInterval(t);document.getElementById('loaderWrap').style.display='none';document.getElementById('ctaBlock').style.display='block';}
+  },60);
+}
+
+// ─── ANIMATE BAR ───
+function animBar(id){
+  const pct=analPcts[id]||50;
+  const bar=document.getElementById('bar-'+id);
+  const lbl=document.getElementById('pct-'+id);
+  if(!bar||!lbl)return;
+  bar.style.transition='none';bar.style.width='0%';lbl.textContent='0%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    bar.style.transition='width 1.8s cubic-bezier(.4,0,.2,1)';bar.style.width=pct+'%';
+    let v=0,dur=1800,step=16,inc=pct/(dur/step);
+    const t=setInterval(()=>{v+=inc;if(v>=pct){v=pct;clearInterval(t)}lbl.textContent=Math.round(v)+'%'},step);
+  }));
+}
+
+// ─── SELECTORES ───
+function selCard(el,n,key,val){
+  document.getElementById('s-'+n).querySelectorAll('.ocard').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  if(key)perfil[key]=val;
+  document.getElementById('bn-'+n).disabled=false;
+}
+function selRow(el,n,single=false,key,val){
+  const scr=document.getElementById('s-'+n);
+  if(single){
+    scr.querySelectorAll('.orow').forEach(r=>{r.classList.remove('sel');r.querySelector('.orow-chk').textContent=''});
+    el.classList.add('sel');el.querySelector('.orow-chk').textContent='✓';
+    if(key)perfil[key]=val;
+  } else {
+    el.classList.toggle('sel');
+    el.querySelector('.orow-chk').textContent=el.classList.contains('sel')?'✓':'';
+    if(key){
+      if(!perfil[key])perfil[key]=[];
+      if(el.classList.contains('sel')){if(!perfil[key].includes(val))perfil[key].push(val);}
+      else{perfil[key]=perfil[key].filter(v=>v!==val);}
+    }
+  }
+  document.getElementById('bn-'+n).disabled=scr.querySelectorAll('.orow.sel').length===0;
+}
+function selScale(el,n,key,val){
+  document.getElementById('scale-'+n).querySelectorAll('.scale-btn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  if(key)perfil[key]=val;
+  document.getElementById('bn-'+n).disabled=false;
+}
+
+// ─── TABS ───
+function switchTab(btn,paneId){
+  const card=btn.closest('.tabs-card');
+  card.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  card.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');document.getElementById(paneId).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════
+// ─── PERSONALIZACIÓN DINÁMICA ───
+// ═══════════════════════════════════════════════
+const personalData = {
+
+  // A1 — basado en síntoma elegido
+  'a1': () => {
+    const map = {
+      nariz:    {ico:'😤', title:'Nariz taponada: el síntoma más común', text:'La congestión nasal es la respuesta del cuerpo al inflamar la mucosa para atrapar alérgenos. Cuando los iones negativos de IonFlow™ eliminan esas partículas del aire, la mucosa no tiene motivo para inflamarse — y la nariz se despeja de forma natural.'},
+      ojos:     {ico:'👁️', title:'Ojos irritados: los alérgenos más ligeros son los culpables', text:'Las partículas más pequeñas y ligeras del aire (esporas, caspa animal) se depositan directamente en la conjuntiva ocular. Son tan diminutas que los filtros convencionales no las atrapan. Los iones negativos las precipitan antes de que alcancen tus ojos.'},
+      tos:      {ico:'😮‍💨', title:'Tos y dificultad respiratoria: señal de inflamación profunda', text:'Cuando los alérgenos llegan a los bronquios, el sistema inmune genera una respuesta inflamatoria que estrecha las vías aéreas. Reducir la carga de partículas en el aire que respiras es el paso más directo para aliviar este síntoma.'},
+      sueno:    {ico:'💤', title:'El sueño interrumpido por alergias: un ciclo que se puede romper', text:'Por la noche el cuerpo no produce cortisol (hormona antiinflamatoria), así que los síntomas se intensifican. Con PuriPod activo mientras duermes, el aire de tu habitación queda limpio de alérgenos antes de que empiece la noche.'},
+    };
+    return map[perfil.sintoma] || null;
+  },
+
+  // A2 — basado en frecuencia
+  'a2': () => {
+    const map = {
+      todo:       {ico:'📅', title:'Alergia perenne: el mayor desafío', text:'Sufrir síntomas todo el año indica que tus alérgenos viven dentro de casa — ácaros, moho o caspa animal. No puedes escapar de ellos saliendo a la calle. La solución tiene que estar donde pasas el tiempo: en tu hogar.'},
+      estacional: {ico:'🌸', title:'Alergia estacional: el polen también entra en casa', text:'Durante la temporada de polinización, el polen se cuela por ventanas y ropa. Una vez dentro, se mezcla con los alérgenos propios del hogar y la carga total se dispara. Ionizar el aire de casa actúa como una segunda línea de defensa.'},
+      interior:   {ico:'🏠', title:'Alergia en interiores: tu casa es el foco principal', text:'Si los síntomas aparecen sobre todo en casa, el origen está claro: ácaros en colchones, alfombras o sofás, o moho en zonas húmedas. Actuar directamente sobre el aire interior es la intervención más eficaz.'},
+      humedad:    {ico:'🌧️', title:'Alergias con humedad: el moho es el principal sospechoso', text:'La humedad favorece la proliferación de esporas de moho, que flotan en el aire y desencadenan reacciones alérgicas. Los iones negativos se adhieren a estas esporas y las precipitan al suelo, eliminándolas del aire que respiras.'},
+    };
+    return map[perfil.freq] || null;
+  },
+
+  // A3 — basado en alérgeno principal
+  'a3': () => {
+    const main = Array.isArray(perfil.alergeno) ? perfil.alergeno[0] : perfil.alergeno;
+    const map = {
+      acaros:    {ico:'🕷️', title:'Ácaros: invisibles pero omnipresentes', text:'Viven en colchones, almohadas, sofás y alfombras. Son la causa número uno de rinitis alérgica en España. Sus partículas fecales son tan pequeñas que penetran en los bronquios. IonFlow™ las neutraliza eléctricamente antes de que las inhales.'},
+      mascotas:  {ico:'🐾', title:'Alérgenos de mascotas: los más difíciles de eliminar', text:'La caspa y la saliva de perros y gatos contienen proteínas alergénicas tan ligeras que flotan semanas en el aire. Ningún filtro convencional las retiene eficazmente. La ionización es el método más rápido para eliminarlas del ambiente.'},
+      polen:     {ico:'🌿', title:'Polen en casa: una amenaza que no ves llegar', text:'El polen que entra en casa desde la ropa, el calzado o las ventanas puede acumularse en alfombras y tapizados durante semanas. Incluso con ventanas cerradas, el nivel de pólen interior puede ser muy alto en temporada alta.'},
+      moho:      {ico:'🍄', title:'Moho: el alérgeno que crece en silencio', text:'Las esporas de moho son invisibles y se liberan en el aire con los cambios de temperatura y humedad. Se encuentran en baños, cocinas, sótanos y detrás de muebles. Una vez en el aire, los iones negativos las precipitan inmediatamente.'},
+      bacterias: {ico:'🦠', title:'Bacterias y gérmenes: el aire también los transporta', text:'Muchas bacterias y virus se transmiten por el aire en pequeñas gotas o partículas. Los iones negativos alteran su carga eléctrica, impidiendo que se adhieran a las células de tus vías respiratorias.'},
+    };
+    return map[main] || null;
+  },
+
+  // A4 — basado en lugar con más síntomas
+  'a4': () => {
+    const map = {
+      dormitorio: {
+        ico:'🛏️', title:'Dormitorio: el lugar más crítico para un alérgico',
+        text:'Pasas entre 7 y 8 horas diarias respirando el mismo aire. Los ácaros del colchón y la almohada liberan constantemente partículas alergénicas. Un PuriPod en la mesilla crea un campo iónico que purifica el aire justo donde respiras mientras duermes.',
+        t1:'El dormitorio concentra la mayor densidad de ácaros de todo el hogar. Con cada movimiento en la cama, miles de partículas alergénicas se elevan al aire que respiras.',
+        t2:'Los estudios muestran que purificar el aire del dormitorio reduce los síntomas matutinos hasta un 73% en 2 semanas. La noche es cuando el sistema inmune tiene menos defensas.',
+        t3:'Coloca PuriPod en la mesilla de noche, a unos 50-80 cm de tu almohada. El campo iónico crea una zona de aire limpio que te rodea mientras duermes.',
+      },
+      salon: {
+        ico:'🛋️', title:'Salón: alta concentración de alérgenos en tapizados y alfombras',
+        text:'Sofás, alfombras y cortinas son auténticos reservorios de ácaros, pelo de mascota y polvo. Con cada persona que se sienta o camina, miles de partículas se liberan al aire. El salón es la habitación con mayor volumen de aire a tratar.',
+        t1:'Los tapizados del salón acumulan hasta 10 veces más alérgenos que el suelo desnudo. Cada vez que alguien se sienta, esas partículas suben al aire donde permanecen suspendidas durante horas.',
+        t2:'En hogares con mascotas, el salón puede tener niveles de alérgenos 20 veces superiores a los considerados seguros para alérgicos. Vacuumar no elimina las partículas microscópicas que flotan en el aire.',
+        t3:'Coloca PuriPod en una estantería o mesa del salón, a entre 1 y 1,5 metros de altura. Desde ahí, el campo iónico cubre toda la habitación en menos de 30 minutos.',
+      },
+      oficina: {
+        ico:'💼', title:'Oficina o escritorio: el aire viciado afecta directamente al rendimiento',
+        text:'Los espacios de trabajo cerrados tienen una renovación de aire muy limitada. La concentración de CO₂, bacterias y partículas puede triplicarse respecto al exterior. Esto se traduce en fatiga mental, dificultad de concentración y mayor sensibilidad a los alérgenos.',
+        t1:'Estudios de productividad demuestran que la calidad del aire interior afecta directamente al rendimiento cognitivo. Un aire cargado de partículas reduce la concentración hasta un 15%.',
+        t2:'Los trabajadores que pasan más de 6 horas diarias en espacios cerrados tienen un 40% más de probabilidades de sufrir rinitis alérgica. El aire viciado amplifica la respuesta inmune.',
+        t3:'Un PuriPod sobre el escritorio, a unos 30-50 cm de tu zona de respiración, crea un microentorno de aire limpio que te acompaña durante toda la jornada laboral.',
+      },
+      cocina: {
+        ico:'🍳', title:'Cocina: vapores, moho y alérgenos ocultos',
+        text:'La cocina es uno de los espacios más agresivos para el sistema respiratorio. Los vapores de cocción, la humedad acumulada, los residuos orgánicos y la falta de ventilación crean el entorno perfecto para el moho y las bacterias. Muchas personas no asocian sus síntomas con la cocina, pero pasan horas diarias en ella.',
+        t1:'La humedad generada al cocinar puede elevar los niveles de moho ambiental en minutos. Las esporas de moho son uno de los alérgenos más agresivos y difíciles de detectar a simple vista.',
+        t2:'La temperatura y humedad de la cocina favorecen la proliferación de bacterias y ácaros en zonas poco ventiladas como despensas, fregadero y armarios inferiores. Estos alérgenos se dispersan al aire durante la preparación de alimentos.',
+        t3:'Coloca PuriPod en la encimera o en una balda cercana, lejos del calor directo del fuego. Los iones negativos neutralizan vapores, esporas y bacterias en suspensión mientras cocinas.',
+      },
+    };
+    const d = map[perfil.lugar];
+    if(d){
+      // Rellenar tabs personalizados
+      document.getElementById('tab-a4-1-txt').innerHTML = d.t1;
+      document.getElementById('tab-a4-2-txt').innerHTML = d.t2;
+      document.getElementById('tab-a4-3-txt').innerHTML = d.t3;
+    }
+    return d ? {ico:d.ico, title:d.title, text:d.text} : null;
+  },
+
+  // A5 — basado en tipo de mascota
+  'a5': () => {
+    const map = {
+      perro:  {ico:'🐶', title:'Perros: alérgenos en pelo, saliva y orina', text:'La proteína Can f 1 del perro está presente en su pelo, saliva y orina desecada. Se adhiere a superficies y flota en el aire durante semanas. Los perros de pelo corto no son menos alergénicos — el alérgeno está en la piel, no en el pelo.'},
+      gato:   {ico:'🐱', title:'Gatos: el alérgeno más potente y persistente', text:'Fel d 1 es 10 veces más pequeño que un ácaro y puede mantenerse en el aire hasta 6 meses. Se encuentra en la saliva, glándulas sebáceas y orina del gato. Es tan ligero que se transfiere fácilmente a la ropa y puede llegar a espacios donde no hay gatos.'},
+      otro:   {ico:'🐦', title:'Aves y otros animales: las proteínas de plumas y caspa', text:'Las plumas y la caspa de aves contienen proteínas alergénicas que se dispersan continuamente en el ambiente. Los pájaros enjaulados pueden liberar niveles muy altos de alérgenos en espacios pequeños con poca ventilación.'},
+      no:     {ico:'✅', title:'Sin mascotas: los alérgenos del hogar siguen presentes', text:'La ausencia de mascotas no elimina el riesgo alérgico. Los ácaros del polvo, el moho ambiental y el polen que entra desde el exterior son suficientes para mantener síntomas crónicos. Además, las visitas con mascotas pueden dejar alérgenos que persisten semanas.'},
+    };
+    return map[perfil.mascota] || null;
+  },
+
+  // A6 — basado en calidad del sueño
+  'a6': () => {
+    const v = perfil.sueno;
+    if(v==='1'||v==='2') return {ico:'😩', title:'Sueño muy deteriorado: máxima prioridad', text:'Con una calidad de sueño tan baja, el ciclo de inflamación alérgica se retroalimenta — el cuerpo cansado reacciona peor a los alérgenos al día siguiente. Actuar sobre el aire del dormitorio es la intervención con mayor impacto inmediato en tu calidad de vida.'};
+    if(v==='3')           return {ico:'😐', title:'Sueño intermedio: hay margen de mejora real', text:'Un sueño de calidad media oculta muchas horas de sueño ligero interrumpido por microdespertares alérgicos que no siempre recuerdas. La mayoría de usuarios con tu perfil pasan de 5 a 8 puntos en la escala de calidad en menos de 2 semanas.'};
+    if(v==='4'||v==='5') return {ico:'😴', title:'Buen sueño: protégelo antes de que empeore', text:'Tu sueño es relativamente bueno ahora, pero la exposición acumulada a alérgenos puede deteriorarlo con el tiempo. Mantener el aire del dormitorio limpio es una medida preventiva que protege este descanso a largo plazo.'};
+    return null;
+  },
+
+  // A7 — basado en años con alergia
+  'a7': () => {
+    const map = {
+      menos1: {ico:'🕐', title:'Comienzo reciente: el mejor momento para actuar', text:'Llevas poco tiempo con síntomas, lo que significa que tu sistema inmune aún no está fuertemente sensibilizado. Actuar ahora, reduciendo la exposición a alérgenos, puede evitar que la alergia se cronifique y empeore con los años.'},
+      '1a5':  {ico:'📆', title:'1-5 años: la ventana de intervención óptima', text:'En esta etapa, la alergia ya está establecida pero todavía responde muy bien a la reducción de exposición ambiental. El 94% de usuarios con tu perfil temporal notan mejoría en los primeros 7 días de uso.'},
+      '5a15': {ico:'🗓️', title:'5-15 años: la sensibilización avanzada requiere constancia', text:'Con años de sensibilización acumulada, el sistema inmune reacciona ante niveles de alérgenos muy bajos. Reducir la carga ambiental al mínimo posible es fundamental — aunque la respuesta tarda un poco más, es duradera.'},
+      mas15:  {ico:'⏳', title:'Más de 15 años: crónico pero con solución real', text:'La cronicidad no significa resignarse. Aunque tu sistema inmune está muy sensibilizado, reducir la exposición diaria sigue teniendo un efecto medible. Nuestros usuarios con alergias de más de 15 años reportan una reducción media del 60% de síntomas en 4 semanas.'},
+    };
+    return map[perfil.anos] || null;
+  },
+
+  // A8 — basado en soluciones previas
+  'a8': () => {
+    const prev = Array.isArray(perfil.solucion) ? perfil.solucion : [perfil.solucion];
+    if(prev.includes('purificador')) return {ico:'🌀', title:'Ya probaste un purificador: esto es diferente', text:'Los purificadores con filtro HEPA requieren que el aire pase físicamente por el filtro. Solo tratan el aire que circula activamente. IonFlow™ actúa en todo el volumen de la habitación simultáneamente, sin motor ni ventilador, alcanzando rincones donde ningún filtro llega.'};
+    if(prev.includes('medicacion')) return {ico:'💊', title:'La medicación trata los síntomas, no la causa', text:'Los antihistamínicos bloquean la reacción, pero el alérgeno sigue en el aire. Cuando el medicamento pierde efecto, la reacción vuelve. PuriPod actúa en el origen: elimina el alérgeno antes de que lo inhales, reduciendo la necesidad de medicación.'};
+    if(prev.includes('nada'))       return {ico:'✨', title:'Primera vez: ventaja de empezar correctamente', text:'No haber probado soluciones previas es una ventaja: tu sistema inmune no está habituado a tratar síntomas de forma artificial. Actuar desde el principio sobre la causa — el aire que respiras — es el enfoque más eficiente y duradero.'};
+    if(prev.includes('limpieza'))   return {ico:'🧹', title:'Limpiezas frecuentes: necesarias pero insuficientes', text:'La limpieza elimina los alérgenos de superficies, pero durante el proceso levanta partículas que quedan suspendidas en el aire durante horas. IonFlow™ complementa la limpieza capturando esas partículas antes de que vuelvan a depositarse.'};
+    return {ico:'🔬', title:'Cada solución tiene sus límites', text:'La mayoría de soluciones convencionales actúan sobre los síntomas o sobre superficies, no sobre el aire en tiempo real. PuriPod trabaja continuamente en el volumen de aire de la habitación, que es donde realmente ocurre la exposición.'};
+  },
+
+  // A9 — basado en impacto en productividad
+  'a9': () => {
+    const v = perfil.impacto;
+    if(v==='1')           return {ico:'👍', title:'Impacto leve: actúa antes de que aumente', text:'Ahora el impacto es pequeño, pero la exposición acumulada tiende a aumentar la sensibilización. Muchos usuarios que llegaron con impacto 1-2 reportaron que, sin intervención, sus síntomas se habían duplicado en 2-3 años.'};
+    if(v==='2'||v==='3') return {ico:'😐', title:'Impacto moderado: estás perdiendo productividad real', text:'Un impacto de nivel medio-bajo equivale a entre 30 y 60 minutos diarios de concentración reducida. En un año laboral, eso supone más de 200 horas perdidas. El 87% de usuarios con tu nivel de impacto reportan mejoría significativa en las primeras 2 semanas.'};
+    if(v==='4'||v==='5') return {ico:'😩', title:'Impacto alto: las alergias te están costando muy caro', text:'Un nivel de impacto alto significa que las alergias están limitando seriamente tu rendimiento y bienestar. Nuestros usuarios con mayor nivel de impacto son también los que reportan el cambio más dramático tras usar PuriPod — precisamente porque había más margen de mejora.'};
+    return null;
+  },
+
+  // A10 — basado en estancia donde pasa más tiempo
+  'a10': () => {
+    const map = {
+      dormitorio: {ico:'🛏️', title:'Dormitorio: 8 horas de exposición directa', text:'Al ser donde más tiempo pasas, el dormitorio es donde mayor impacto tendrá PuriPod. Colócalo en la mesilla, a unos 50-80 cm de la almohada. En menos de 30 minutos habrá ionizado todo el volumen de aire de la habitación.'},
+      escritorio: {ico:'🖥️', title:'Escritorio: máxima eficacia a corta distancia', text:'En el escritorio, PuriPod trabaja como un microentorno de aire limpio. Colócalo a 30-50 cm de tu zona de respiración — encima del escritorio o en una balda cercana. Notarás la diferencia en concentración y fatiga desde los primeros días.'},
+      salon:      {ico:'🛋️', title:'Salón: el reto de un espacio grande', text:'El salón suele ser la habitación más grande. Coloca PuriPod en una zona central, a entre 1 y 1,5 metros del suelo. Si el salón es muy amplio o de planta abierta, considera un segundo dispositivo para cubrir toda la superficie.'},
+      cocina:     {ico:'🍳', title:'Cocina: protección activa mientras preparas la comida', text:'La cocina genera humedad y vapores que transportan partículas alergénicas. Coloca PuriPod en la encimera o en una balda, lejos del calor directo. Actívalo antes de empezar a cocinar para que el campo iónico ya esté activo cuando se generen los vapores.'},
+    };
+    return map[perfil.estancia] || null;
+  },
+
+  // A11 — basado en intensidad actual
+  'a11': () => {
+    const map = {
+      leve:    {ico:'😌', title:'Intensidad leve: intervenir ahora evita que empeore', text:'Una alergia leve no tratada en origen tiende a cronificarse. El sistema inmune se sensibiliza con el tiempo, haciendo que la misma dosis de alérgeno provoque cada vez más síntomas. Actuar ahora tiene un coste bajo y un beneficio preventivo muy alto.'},
+      moderada:{ico:'😣', title:'Intensidad moderada: el punto de inflexión ideal', text:'Las alergias moderadas responden muy bien a la reducción de exposición ambiental. Es el perfil donde PuriPod tiene el impacto más equilibrado: los síntomas son suficientemente claros para notar la mejora rápidamente, pero aún no están tan cronificados como para requerir tiempo.'},
+      fuerte:  {ico:'😩', title:'Intensidad fuerte: necesitas un entorno protegido', text:'Con alergias fuertes, el cuerpo está en un estado de inflamación casi continua. Reducir drásticamente la carga de alérgenos en el aire de tu hogar es la intervención más directa. El 91% de usuarios con intensidad fuerte reportan mejoría notable antes de las 2 semanas.'},
+      cronica: {ico:'😭', title:'Alergia crónica: años de síntomas tienen solución', text:'Llevas mucho tiempo conviviendo con este problema. No es resignación — es que nadie te había ofrecido una solución que actúe directamente sobre la causa. La ionización del aire es el enfoque que más consistentemente ayuda a personas con alergias crónicas de larga evolución.'},
+    };
+    return map[perfil.intensidad] || null;
+  },
+
+  // A12 — basado en situación familiar
+  'a12': () => {
+    const map = {
+      solo:   {ico:'🙋', title:'Solo tú: protege tu entorno principal', text:'Concentrar el esfuerzo en las habitaciones donde más tiempo pasas — dormitorio y zona de trabajo — es la estrategia más eficiente. Un PuriPod bien posicionado puede bastar para cubrir tus espacios de mayor exposición.'},
+      pareja: {ico:'👫', title:'Tú y tu pareja: el dormitorio compartido es prioritario', text:'Dos personas en el mismo dormitorio generan el doble de ácaros y partículas. El nivel de exposición nocturna es significativamente más alto. Un PuriPod en la mesilla central del dormitorio cubre el área de respiración de ambos.'},
+      hijos:  {ico:'👦', title:'Con hijos: proteger su habitación es una inversión de salud', text:'Los niños son más vulnerables a los alérgenos porque sus vías respiratorias son más pequeñas y su sistema inmune aún se desarrolla. La exposición alérgica en la infancia está directamente relacionada con el riesgo de desarrollar asma. La habitación infantil debería ser la primera protegida.'},
+      todos:  {ico:'👨‍👩‍👧‍👦', title:'Toda la familia: una solución por habitación', text:'Cuando toda la familia sufre alergias, el nivel de alérgenos en el hogar suele ser especialmente alto. La estrategia más eficaz es un PuriPod por habitación principal: dormitorio de padres, habitación de niños y salón. Muchos clientes empiezan con 2-3 unidades.'},
+    };
+    return map[perfil.familia] || null;
+  },
+
+  // A13 — basado en prioridad
+  'a13': () => {
+    const map = {
+      eficacia: {ico:'⚡', title:'Eficacia rápida: resultados en menos de 48 horas', text:'IonFlow™ es la tecnología de purificación de aire con el tiempo de respuesta más rápido disponible para uso doméstico. Al no depender de un motor que mueva el aire, el campo iónico actúa instantáneamente en todo el volumen de la habitación.'},
+      silencio: {ico:'🔇', title:'Silencio total: 0 dB, sin motor, sin ventilador', text:'PuriPod no tiene partes móviles. No hay motor, no hay ventilador, no hay ningún ruido. Puedes dormir, trabajar o descansar sin saber que está encendido. Es físicamente imposible que haga ruido — la ionización es un proceso eléctrico silencioso por naturaleza.'},
+      precio:   {ico:'💰', title:'Cero coste de mantenimiento: sin filtros, sin recambios', text:'Los purificadores con filtro HEPA requieren recambios anuales de entre 40 y 80 €. Con el tiempo, el coste del filtro supera el del propio aparato. PuriPod no tiene ninguna pieza fungible — el único coste es la electricidad, equivalente a unos 2 € al año.'},
+      diseno:   {ico:'🎨', title:'Diseño minimalista: se integra en cualquier espacio', text:'PuriPod fue diseñado para ser invisible — una presencia discreta que no interfiere con la estética de tu hogar. Su forma compacta y acabado mate lo hacen compatible con cualquier estilo de decoración, de dormitorios minimalistas a salones modernos.'},
+    };
+    return map[perfil.prioridad] || null;
+  },
+};
+
+function renderPersonal(analId){
+  const box = document.getElementById('personal-'+analId);
+  if(!box) return;
+  const fn = personalData[analId];
+  if(!fn) return;
+  const d = fn();
+  if(!d){box.style.display='none';return;}
+  box.style.display='flex';
+  box.innerHTML = `<div class="personal-ico">${d.ico}</div><div class="personal-body"><div class="personal-title">${d.title}</div><div class="personal-text">${d.text}</div></div>`;
+}
+
+// ═══════════════════════════════════════════════
+// ─── GRÁFICOS ───
+// ═══════════════════════════════════════════════
+const cDef = {responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}};
+let ci = {};
+
+function initChartAlergenos(){
+  if(ci.al)return;ci.al=true;
+  // Solo alérgenos distintos — sin duplicar ácaros/polvo
+  new Chart(document.getElementById('chart-alergenos'),{
+    type:'bar',
+    data:{
+      labels:['Ácaros del polvo','Pelo de mascota','Polen interior','Moho/humedad','Cucarachas'],
+      datasets:[{
+        data:[85,42,38,28,18],
+        backgroundColor:['#1a3a2a','#2d6a4f','#52b788','#95d5b2','#d8f3dc'],
+        borderRadius:8,borderSkipped:false
+      }]
+    },
+    options:{...cDef,scales:{
+      y:{beginAtZero:true,max:100,ticks:{callback:v=>v+'%',font:{size:11}},grid:{color:'#f0f0f0'}},
+      x:{ticks:{font:{size:10}},grid:{display:false}}
+    }}
+  });
+}
+
+function initChartSueno(){
+  if(ci.su)return;ci.su=true;
+  new Chart(document.getElementById('chart-sueno'),{
+    type:'bar',
+    data:{
+      labels:['Sem 1','Sem 2','Sem 4','Sem 8'],
+      datasets:[
+        {label:'Sin PuriPod',data:[3.2,3.2,3.2,3.2],backgroundColor:'#e0e9e2',borderRadius:6},
+        {label:'Con PuriPod',data:[4.8,6.2,7.4,8.6],backgroundColor:'#52b788',borderRadius:6}
+      ]
+    },
+    options:{...cDef,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11},boxWidth:12}}},
+      scales:{
+        y:{beginAtZero:true,max:10,ticks:{font:{size:11}},grid:{color:'#f0f0f0'}},
+        x:{ticks:{font:{size:11}},grid:{display:false}}
+      }
+    }
+  });
+}
+
+function initChartBienestar(){
+  if(ci.bi)return;ci.bi=true;
+  new Chart(document.getElementById('chart-bienestar'),{
+    type:'line',
+    data:{
+      labels:['Sem 1','Sem 2','Sem 3','Sem 4','Sem 6','Sem 8'],
+      datasets:[{
+        label:'Bienestar general',
+        data:[4.2,5.1,6.0,6.8,7.5,8.2],
+        borderColor:'#52b788',backgroundColor:'rgba(82,183,136,.12)',
+        borderWidth:3,pointBackgroundColor:'#2d6a4f',pointRadius:5,tension:.4,fill:true
+      }]
+    },
+    options:{...cDef,plugins:{legend:{display:false}},
+      scales:{
+        y:{min:3,max:10,ticks:{font:{size:11}},grid:{color:'#f0f0f0'},title:{display:true,text:'Puntuación (0-10)',font:{size:10}}},
+        x:{ticks:{font:{size:11}},grid:{display:false}}
+      }
+    }
+  });
+}
+
+function initChartComparativa(){
+  if(ci.co)return;ci.co=true;
+  new Chart(document.getElementById('chart-comparativa'),{
+    type:'radar',
+    data:{
+      labels:['Silencio','Sin mantenimiento','Velocidad de acción','Cobertura de área','Facilidad de uso','Diseño'],
+      datasets:[
+        {label:'PuriPod IonFlow™',data:[10,10,9,8,10,9],borderColor:'#52b788',backgroundColor:'rgba(82,183,136,.2)',borderWidth:2,pointBackgroundColor:'#2d6a4f'},
+        {label:'Filtro HEPA típico',data:[4,2,6,9,5,5],borderColor:'#aaa',backgroundColor:'rgba(180,180,180,.12)',borderWidth:2,pointBackgroundColor:'#999'}
+      ]
+    },
+    options:{...cDef,
+      plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11},boxWidth:12}}},
+      scales:{r:{ticks:{display:false},pointLabels:{font:{size:10}},grid:{color:'#e8ede9'}}}
+    }
+  });
+}
+
+// Q14 siempre activo
+document.getElementById('bn-14').disabled=false;
+</script>
+</body>
+</html>". You can now continue with the user's answers in mind.
