@@ -101,11 +101,11 @@ Google no encuentre huecos. Revísalos y corrige lo que no te suene natural:
 
 | Foto | Español (versión ES) | Árabe puesto (provisional) |
 |---|---|---|
-| hero.jpg | Sala de hammam de Royale Beauty en Las Palmas | قاعة الحمام في رويال بيوتي — لاس بالماس |
-| img1.jpg | Ritual de hammam tradicional | الحمام التقليدي |
-| img2.jpg | Ritual Prestige con masaje de aceite de argán | حمام برستيج مع مساج بزيت الأركان |
-| img3.jpg | Ritual Malaki, la experiencia completa | حمام ملكي — التجربة الكاملة |
-| img4.jpg | Rincón del hammam de Royale Beauty | ركن من حمام رويال بيوتي |
-| img5.jpg | Detalle de los rituales de Royale Beauty | تفاصيل طقوس رويال بيوتي |
-| flotante1.jpg | Sala de descanso de Royale Beauty | قاعة الاستراحة في رويال بيوتي |
-| flotante2.jpg | Productos y aceites de Royale Beauty | منتجات وزيوت رويال بيوتي |
+| hammam-spa-las-palmas.jpg | Sala de hammam de Royale Beauty, spa en el centro de Las Palmas de Gran Canaria | قاعة الحمام في رويال بيوتي — لاس بالماس |
+| ritual-hammam-tradicional.jpg | Ritual de hammam tradicional en Royale Beauty, Las Palmas | الحمام التقليدي |
+| ritual-prestige-masaje-argan.jpg | Ritual Prestige: hammam con masaje de aceite de argán en Las Palmas | حمام برستيج مع مساج بزيت الأركان |
+| ritual-malaki-experiencia-completa.jpg | Ritual Malaki, la experiencia de hammam más completa de Royale Beauty | حمام ملكي — التجربة الكاملة |
+| interior-hammam-royale-beauty.jpg | Interior del hammam de Royale Beauty en Las Palmas | ركن من حمام رويال بيوتي |
+| detalle-rituales-hammam.jpg | Detalle de los rituales del hammam y spa Royale Beauty | تفاصيل طقوس رويال بيوتي |
+| sala-descanso-spa-las-palmas.jpg | Sala de descanso del spa Royale Beauty en Las Palmas | قاعة الاستراحة في رويال بيوتي |
+| aceites-productos-hammam.jpg | Aceites y productos naturales del hammam Royale Beauty | منتجات وزيوت رويال بيوتي |

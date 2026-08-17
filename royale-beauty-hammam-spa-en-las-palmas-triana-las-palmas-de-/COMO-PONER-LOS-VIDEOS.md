@@ -9,14 +9,14 @@ En Instagram, abre el reel → los tres puntos → **Copiar enlace**. Pega así:
 
 ```js
 var VIDEOS = [
-  { instagram: "https://www.instagram.com/reel/ABC123/", portada: "assets/img4.jpg", pie: "Ritual de hammam" },
-  { instagram: "https://www.instagram.com/reel/DEF456/", portada: "assets/img5.jpg", pie: "Masaje con argán" },
+  { instagram: "https://www.instagram.com/reel/ABC123/", portada: "assets/interior-hammam-royale-beauty.jpg", pie: "Ritual de hammam" },
+  { instagram: "https://www.instagram.com/reel/DEF456/", portada: "assets/detalle-rituales-hammam.jpg", pie: "Masaje con argán" },
 ];
 ```
 
 - `portada` es la foto que se ve antes de darle al play. Puede ser cualquiera de `assets/`.
 - `pie` es opcional.
-- En la versión árabe las rutas llevan `../` delante: `"../assets/img4.jpg"`.
+- En la versión árabe las rutas llevan `../` delante: `"../assets/interior-hammam-royale-beauty.jpg"`.
 
 **El vídeo NO se carga hasta que el visitante lo toca.** Así la página sigue siendo rápida y no se
 descarga el código de Meta ni sus cookies sin que nadie lo haya pedido.
@@ -27,7 +27,7 @@ Si nos da los archivos de vídeo, se copian a `assets/` y se ponen así:
 
 ```js
 var VIDEOS = [
-  { archivo: "assets/reel1.mp4", portada: "assets/img4.jpg", pie: "Ritual de hammam" },
+  { archivo: "assets/reel1.mp4", portada: "assets/interior-hammam-royale-beauty.jpg", pie: "Ritual de hammam" },
 ];
 ```
 
