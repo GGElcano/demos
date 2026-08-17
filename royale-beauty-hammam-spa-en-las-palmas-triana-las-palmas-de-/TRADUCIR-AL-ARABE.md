@@ -93,3 +93,19 @@ Están dentro del código, al final de `ar/index.html`:
 | Español | Árabe |
 |---|---|
 | Royale Beauty · Hammam & Spa en Las Palmas de Gran Canaria | |
+
+## Textos internos de las fotos (los lee Google, no se ven en pantalla)
+
+Estos ya los hemos rellenado nosotros en árabe de forma provisional para que
+Google no encuentre huecos. Revísalos y corrige lo que no te suene natural:
+
+| Foto | Español (versión ES) | Árabe puesto (provisional) |
+|---|---|---|
+| hero.jpg | Sala de hammam de Royale Beauty en Las Palmas | قاعة الحمام في رويال بيوتي — لاس بالماس |
+| img1.jpg | Ritual de hammam tradicional | الحمام التقليدي |
+| img2.jpg | Ritual Prestige con masaje de aceite de argán | حمام برستيج مع مساج بزيت الأركان |
+| img3.jpg | Ritual Malaki, la experiencia completa | حمام ملكي — التجربة الكاملة |
+| img4.jpg | Rincón del hammam de Royale Beauty | ركن من حمام رويال بيوتي |
+| img5.jpg | Detalle de los rituales de Royale Beauty | تفاصيل طقوس رويال بيوتي |
+| flotante1.jpg | Sala de descanso de Royale Beauty | قاعة الاستراحة في رويال بيوتي |
+| flotante2.jpg | Productos y aceites de Royale Beauty | منتجات وزيوت رويال بيوتي |
