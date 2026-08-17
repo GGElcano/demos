@@ -109,3 +109,16 @@ Google no encuentre huecos. Revísalos y corrige lo que no te suene natural:
 | detalle-rituales-hammam.jpg | Detalle de los rituales del hammam y spa Royale Beauty | تفاصيل طقوس رويال بيوتي |
 | sala-descanso-spa-las-palmas.jpg | Sala de descanso del spa Royale Beauty en Las Palmas | قاعة الاستراحة في رويال بيوتي |
 | aceites-productos-hammam.jpg | Aceites y productos naturales del hammam Royale Beauty | منتجات وزيوت رويال بيوتي |
+
+## Sección de opiniones (añadida 17-ago)
+
+Los títulos llevan árabe provisional nuestro; revísalos como los demás. Las
+reseñas en sí NO se traducen: son palabras textuales de clientas reales.
+
+| Clave | Español | Árabe puesto (provisional) |
+|---|---|---|
+| `op.rotulo` | Opiniones | آراء |
+| `op.titulo` | Lo que cuentan nuestras clientas | ماذا تقول عميلاتنا |
+| `op.btn-google` | Escribir una reseña en Google | اكتبي رأيك في جوجل |
+| `op.btn-wa` | Cuéntanos la tuya por WhatsApp | شاركينا تجربتك عبر واتساب |
+| `op.nota` | ¿Nos escribes tu opinión? La leemos y la publicamos aquí, en nuestra web. | أرسلي لنا رأيك، نقرؤه وننشره هنا في موقعنا. |
