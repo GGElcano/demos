@@ -190,7 +190,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('img/hero.jpg');
+      background-image: url('img/restaurante-galanga-k11-galdakao.jpg');
       background-size: cover; background-position: center;
       transform: scale(1.08);
       transition: transform 8s var(--ease-out);
@@ -1156,7 +1156,61 @@
              box-shadow: 0 0 0 2px rgba(255,222,170,0.25), 0 0 90px 40px rgba(200,100,30,0.15); }
     }
     @media (prefers-reduced-motion: reduce) { .eclipse-wipe { display: none !important; } }
+    /* ─── PREGUNTAS FRECUENTES ─── */
+    .faq-section { background: var(--carbon-mid); padding: 100px 24px; }
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-inner .section-label { justify-content: center; }
+    .faq-inner .section-label::before { display: none; }
+    .faq-list { display: grid; gap: 12px; margin-top: 40px; }
+    .faq-list details { background: var(--carbon-light); border: 1px solid rgba(245,243,239,.08); border-radius: 12px; overflow: hidden; }
+    .faq-list summary { cursor: pointer; list-style: none; padding: 20px 52px 20px 22px; font-family: var(--font-serif); font-size: 1.05rem; color: var(--white); position: relative; }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after { content: "+"; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 24px; transition: transform .2s; }
+    .faq-list details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+    .faq-list details p { padding: 0 22px 20px; margin: 0; color: var(--text-muted); }
+    .btn-compartir-footer { background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
   </style>
+
+  <!-- Ficha de preguntas frecuentes para Google: las mismas que se ven en la sección "Preguntas frecuentes" -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué horario tenéis?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Abrimos de 10:30 a 21:00. En julio y agosto cerramos los martes por descanso del personal; el resto del año abrimos todos los días." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Dónde estáis?",
+        "acceptedAnswer": { "@type": "Answer", "text": "En Galdakao, junto al campo de golf Uraburu, con terraza y vistas a los Montes de Vizcaya." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Tenéis menú del día?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí: cocina vasca de mercado con menú del día y raciones. También carta con pintxos, brasa, pescados, postres y vinos." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo reservar mesa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí, llámanos al 695 95 89 86 y te guardamos el mejor sitio. Con mal tiempo conviene llamar antes de venir: en caso de temporal el restaurante puede permanecer cerrado. Y si la puerta está cerrada al llegar, llama al timbre." }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google Analytics 4 — PENDIENTE: falta el ID real de la propiedad del cliente.
+       Al tenerlo, sustituir G-XXXXXXXXXX y descomentar este bloque.
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
 </head>
 <body>
 
@@ -1570,6 +1624,32 @@
   </div>
 </section>
 
+<!-- PREGUNTAS FRECUENTES -->
+<section class="faq-section" id="preguntas" aria-labelledby="faq-heading">
+  <div class="faq-inner">
+    <p class="section-label reveal">Dudas rápidas</p>
+    <h2 class="section-title reveal reveal-delay-1" id="faq-heading" style="font-size:clamp(2rem,3vw,3rem);text-align:center">Preguntas <em>frecuentes</em></h2>
+    <div class="faq-list reveal">
+      <details>
+        <summary>¿Qué horario tenéis?</summary>
+        <p>Abrimos de 10:30 a 21:00. En julio y agosto cerramos los martes por descanso del personal; el resto del año abrimos todos los días.</p>
+      </details>
+      <details>
+        <summary>¿Dónde estáis?</summary>
+        <p>En Galdakao, junto al campo de golf Uraburu, con terraza y vistas a los Montes de Vizcaya.</p>
+      </details>
+      <details>
+        <summary>¿Tenéis menú del día?</summary>
+        <p>Sí: cocina vasca de mercado con menú del día y raciones. También carta con pintxos, brasa, pescados, postres y vinos.</p>
+      </details>
+      <details>
+        <summary>¿Puedo reservar mesa?</summary>
+        <p>Sí, llámanos al 695 95 89 86 y te guardamos el mejor sitio. Con mal tiempo conviene llamar antes de venir: en caso de temporal el restaurante puede permanecer cerrado. Y si la puerta está cerrada al llegar, llama al timbre.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- MAP -->
 <section style="background: var(--carbon); padding: 0;" aria-label="Mapa de ubicación">
   <iframe src="https://maps.google.com/maps?q=Galanga+K11+Galdakao+Uraburu&t=&z=16&ie=UTF8&iwloc=B&output=embed" width="100%" height="420" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Restaurante Galanga K11 en Galdakao"></iframe>
@@ -1624,6 +1704,7 @@
         <li><a href="https://maps.google.com/?q=Galanga+Gastro+Bar+Galdakao" target="_blank" rel="noopener" aria-label="Abrir ubicación en Google Maps (se abre en nueva pestaña)">Junto al Golf Uraburu, Galdakao</a></li>
         <li id="horario-footer">Verano: Lun y Mié a Dom · 10:30 a 21:00</li>
         <li id="horario-footer-martes" class="horario-cerrado">Martes cerrado (descanso del personal)</li>
+        <li><button type="button" class="btn-compartir-footer" id="btnCompartir" aria-label="Compartir esta página">Compartir esta web ↗</button></li>
       </ul>
     </div>
   </div>
@@ -1638,6 +1719,23 @@
 </footer>
 
 <script>
+  // ── COMPARTIR: menú nativo del móvil; en escritorio copia el enlace
+  (function () {
+    const b = document.getElementById('btnCompartir');
+    if (!b) return;
+    b.addEventListener('click', async () => {
+      const data = { title: document.title, url: location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (e) { /* cancelado */ }
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(location.href);
+        const t = b.textContent;
+        b.textContent = 'Enlace copiado ✓';
+        setTimeout(() => { b.textContent = t; }, 1600);
+      }
+    });
+  })();
+
   // ── HORARIO: martes cerrado SOLO en julio y agosto; el resto del año vuelve solo al horario normal
   (function () {
     const mes = new Date().getMonth(); // 6 = julio, 7 = agosto

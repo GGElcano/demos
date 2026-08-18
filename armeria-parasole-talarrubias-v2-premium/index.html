@@ -4,8 +4,24 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Armería Parasole — Caza y pesca en Talarrubias (Badajoz)</title>
-<meta name="description" content="Armería Parasole, en Talarrubias (Badajoz). Más de 30 años de oficio, más de 3.000 referencias de caza, pesca y carpfishing, y taller de reparación propio. Teléfono 924 638 135.">
+<meta name="description" content="Armería Parasole, caza y pesca en Talarrubias (Badajoz). Más de 30 años de oficio, +3.000 referencias y taller de reparación propio. Tel. 924 638 135.">
 <meta name="robots" content="noindex, nofollow">
+
+<!-- Capa SEO de serie G&G. DEMO: al mudar al dominio real (armeriaparasole.com), cambiar
+     estas URLs (canonical, og:url, og:image, twitter:image) y las de sitemap.xml/robots.txt/llms.txt -->
+<link rel="canonical" href="https://ggelcano.github.io/demos/armeria-parasole-talarrubias-v2-premium/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Armería Parasole">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Armería Parasole — Caza y pesca en Talarrubias (Badajoz)">
+<meta property="og:description" content="Armería Parasole, caza y pesca en Talarrubias (Badajoz). Más de 30 años de oficio, +3.000 referencias y taller de reparación propio. Tel. 924 638 135.">
+<meta property="og:url" content="https://ggelcano.github.io/demos/armeria-parasole-talarrubias-v2-premium/">
+<meta property="og:image" content="https://ggelcano.github.io/demos/armeria-parasole-talarrubias-v2-premium/assets/hero-cazador.jpg">
+<meta property="og:image:alt" content="Cazador con la funda del rifle al hombro caminando por el monte">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Armería Parasole — Caza y pesca en Talarrubias (Badajoz)">
+<meta name="twitter:description" content="Armería Parasole, caza y pesca en Talarrubias (Badajoz). Más de 30 años de oficio, +3.000 referencias y taller de reparación propio. Tel. 924 638 135.">
+<meta name="twitter:image" content="https://ggelcano.github.io/demos/armeria-parasole-talarrubias-v2-premium/assets/hero-cazador.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 13 8 3l6 10z' fill='%232fa8c9'/%3E%3Cpath d='M5.4 13 8 8.6 10.6 13z' fill='%238fa32e'/%3E%3C/svg%3E">
 
 <!-- ============================================================
@@ -260,6 +276,8 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
 .boton--solido{ background: var(--oliva); border-color: var(--oliva); color:#10150f; font-weight: 500; }
 .boton:hover{ background: var(--oliva); border-color: var(--oliva); color:#10150f; }
 .boton--solido:hover{ background: var(--oliva-luz); border-color: var(--oliva-luz); }
+button.boton{ background:none; cursor:pointer; }
+.boton svg{ width:1rem; height:1rem; flex:0 0 auto; }
 
 /* ── MARQUEE ── */
 .marquee{
@@ -458,6 +476,29 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
 .razones__nota{ margin-top: 2.4rem; color: var(--piedra); font-size:.82rem; max-width: 62ch; }
 .razones__nota a{ color: var(--crema); border-bottom: 1px solid var(--oliva-suave); }
 
+/* ── FAQ ── */
+.faq{ padding: 0 var(--pad) clamp(6rem,14vh,11rem); }
+.faq__cab{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 2.6rem; gap:2rem; flex-wrap:wrap; }
+.faq__cab h2{ font-size: clamp(2.1rem, 5.4vw, 4.4rem); }
+.faq__cab p{ color: var(--piedra); font-size:.82rem; letter-spacing:.2em; text-transform:uppercase; }
+.faq__lista{ width:min(52rem,100%); }
+.faq__item{ border-top:1px solid var(--linea); }
+.faq__item:last-child{ border-bottom:1px solid var(--linea); }
+.faq__item summary{
+  display:flex; justify-content:space-between; align-items:center; gap:1.4rem;
+  padding: 1.3rem 0; cursor:pointer; list-style:none;
+}
+.faq__item summary::-webkit-details-marker{ display:none; }
+.faq__item summary h3{ font-size: clamp(1.15rem, 2.6vw, 1.45rem); }
+.faq__mas{
+  flex:0 0 auto; width:2rem; height:2rem; border:1px solid var(--oliva-suave); border-radius:50%;
+  display:grid; place-items:center; color: var(--oliva-luz); font-family: var(--sans); font-size:1.05rem; font-style:normal;
+  transition: transform .35s ease, background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+.faq__item[open] .faq__mas{ transform: rotate(45deg); background: var(--oliva); color:#10150f; border-color: var(--oliva); }
+.faq__item summary:hover .faq__mas{ border-color: var(--oliva); }
+.faq__item > p{ color: var(--piedra); font-size:.95rem; max-width: 62ch; padding: 0 0 1.4rem; }
+
 /* ── CONTACTO + HORARIO ── */
 .contacto{
   min-height: 92svh;
@@ -494,7 +535,7 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
   text-align:left; font-size:.95rem;
 }
 .dato{ border-top:1px solid var(--linea); padding-top: 1.1rem; }
-.dato h4{ font: 400 .7rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
+.dato h3{ font: 400 .7rem/1 var(--sans); letter-spacing:.24em; text-transform:uppercase; color: var(--piedra); margin-bottom:.8rem; }
 .dato a:hover{ color: var(--oliva-luz); }
 
 .horario{ display:grid; gap:.45rem; }
@@ -667,6 +708,64 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
   .carril{ scroll-behavior: auto; }
 }
 </style>
+
+<!-- Datos estructurados (JSON-LD). Solo datos verificados; sin aggregateRating (Google
+     penaliza marcar reseñas de terceros). Al mudar al dominio real, cambiar "url" e "image". -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportingGoodsStore",
+  "name": "Armería Parasole",
+  "legalName": "Guijalvarez S.L.",
+  "description": "Armería de caza y pesca en Talarrubias (Badajoz): rifles, escopetas, munición, pesca y carpfishing, con taller de reparación propio y más de 30 años de experiencia.",
+  "url": "https://ggelcano.github.io/demos/armeria-parasole-talarrubias-v2-premium/",
+  "image": "https://ggelcano.github.io/demos/armeria-parasole-talarrubias-v2-premium/assets/hero-cazador.jpg",
+  "telephone": ["+34924638135", "+34924626177"],
+  "email": "info@armeriaparasole.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Candelaria, s/n",
+    "addressLocality": "Talarrubias",
+    "addressRegion": "Badajoz",
+    "postalCode": "06640",
+    "addressCountry": "ES"
+  },
+  "openingHours": ["Mo-Fr 09:00-13:30", "Mo-Fr 17:00-20:00", "Sa 10:00-13:00"],
+  "paymentAccepted": "Transferencia bancaria, tarjeta de débito o crédito, PayPal"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué horario tiene la tienda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De lunes a viernes, de 9:00 a 13:30 y de 17:00 a 20:00. Los sábados, de 10:00 a 13:00. Los domingos, cerrado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué formas de pago aceptáis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Transferencia bancaria, tarjeta de débito o crédito y PayPal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se envían las armas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Por Seur, hasta la Intervención de Armas de la Guardia Civil que corresponde al comprador, como marca la normativa. La munición viaja por agencia a domicilio, y también se puede recoger todo en tienda."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -708,7 +807,7 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
   <!-- ════════ HERO ════════ -->
   <section class="hero">
     <div class="hero__media" aria-hidden="true">
-      <img src="assets/hero-cazador.jpg" alt="" loading="eager" data-hero-parallax>
+      <img src="assets/hero-cazador.jpg" alt="Cazador de espaldas, con la funda del rifle al hombro y el morral, caminando por el monte en otoño" loading="eager" data-hero-parallax>
     </div>
     <div class="hero__contenido">
       <p class="hero__kicker" data-hero-reveal>Armería · Caza y pesca · Talarrubias, Badajoz</p>
@@ -752,9 +851,9 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
 
   <!-- ════════ MANIFIESTO ════════ -->
   <section class="manifiesto">
-    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="https://images.unsplash.com/photo-1670505343033-ae36ef2854f9?w=900&q=75" alt="" loading="lazy"></figure>
-    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="https://images.unsplash.com/photo-1517651468335-5164984ba2c5?w=700&q=75" alt="" loading="lazy"></figure>
-    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="https://images.unsplash.com/photo-1724514415178-c87e1d00acd0?w=600&q=75" alt="" loading="lazy"></figure>
+    <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="https://images.unsplash.com/photo-1670505343033-ae36ef2854f9?w=900&q=75" alt="Fotografía de ambiente de caza" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="https://images.unsplash.com/photo-1517651468335-5164984ba2c5?w=700&q=75" alt="Fotografía de ambiente de armas de caza" loading="lazy"></figure>
+    <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="https://images.unsplash.com/photo-1724514415178-c87e1d00acd0?w=600&q=75" alt="Fotografía de ambiente de pesca" loading="lazy"></figure>
     <p data-manifiesto>
       Cada salida al campo empieza mucho antes: eligiendo bien. Por eso aquí
       se despacha con calma, se responde a todo y se repara en casa. Treinta
@@ -901,7 +1000,7 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
         <p class="servicio__desc">Reparación de armas en taller propio y repuestos y accesorios: cantoneras, cananas, cargadores, iluminación y puesta a punto.</p>
       </div>
     </div>
-    <div class="servicios__preview" aria-hidden="true"><img src="" alt=""></div>
+    <div class="servicios__preview" aria-hidden="true"><img src="" alt="Vista previa de la categoría señalada"></div>
   </section>
 
   <!-- ════════ CATÁLOGO CON FILTROS (tienda de verdad) ════════ -->
@@ -964,6 +1063,28 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
     </p>
   </section>
 
+  <!-- ════════ FAQ (solo datos verificados; las 3 preguntas están también en el schema FAQPage) ════════ -->
+  <section class="faq" id="faq" aria-label="Preguntas frecuentes">
+    <div class="faq__cab">
+      <h2 data-reveal data-split="lines">Lo que más nos <em>preguntáis</em></h2>
+      <p data-reveal>Respuestas cortas, sin letra pequeña</p>
+    </div>
+    <div class="faq__lista">
+      <details class="faq__item" data-reveal>
+        <summary><h3>¿Qué horario tiene la tienda?</h3><span class="faq__mas" aria-hidden="true">+</span></summary>
+        <p>De lunes a viernes, de 9:00 a 13:30 y de 17:00 a 20:00. Los sábados, de 10:00 a 13:00. Los domingos, cerrado.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary><h3>¿Qué formas de pago aceptáis?</h3><span class="faq__mas" aria-hidden="true">+</span></summary>
+        <p>Transferencia bancaria, tarjeta de débito o crédito y PayPal.</p>
+      </details>
+      <details class="faq__item" data-reveal>
+        <summary><h3>¿Cómo se envían las armas?</h3><span class="faq__mas" aria-hidden="true">+</span></summary>
+        <p>Por Seur, hasta la Intervención de Armas de la Guardia Civil que corresponde al comprador, como marca la normativa. La munición viaja por agencia a domicilio, y también se puede recoger todo en tienda.</p>
+      </details>
+    </div>
+  </section>
+
   <!-- ════════ CONTACTO ════════ -->
   <section class="contacto" id="contacto">
     <p class="contacto__estado" data-reveal>Tienda física y online</p>
@@ -971,18 +1092,22 @@ body::after { mix-blend-mode: screen;   opacity: .10; }
     <a class="magnetico" href="tel:+34924638135" data-magnetico>
       <span class="magnetico__label">Llamar al 924 638 135</span>
     </a>
+    <button class="boton" type="button" data-compartir aria-label="Compartir esta página">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="6" cy="12" r="2.4"/><circle cx="17.5" cy="5.5" r="2.4"/><circle cx="17.5" cy="18.5" r="2.4"/><path d="M8.2 10.8 15.3 6.7M8.2 13.2l7.1 4.1"/></svg>
+      Compartir esta página
+    </button>
     <div class="contacto__datos">
       <div class="dato" data-reveal>
-        <h4>Dónde estamos</h4>
+        <h3>Dónde estamos</h3>
         <p>Calle Candelaria, s/n<br>06640 Talarrubias (Badajoz)</p>
       </div>
       <div class="dato" data-reveal>
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <p><a href="tel:+34924638135">924 638 135</a> · <a href="tel:+34924626177">924 626 177</a><br>
         <a href="mailto:info@armeriaparasole.com">info@armeriaparasole.com</a></p>
       </div>
       <div class="dato" data-reveal>
-        <h4>Horario</h4>
+        <h3>Horario</h3>
         <div class="horario">
           <p class="horario__fila" data-dias="1,2,3,4,5"><span>Lunes a viernes</span><span>9:00–13:30 · 17:00–20:00</span></p>
           <p class="horario__fila" data-dias="6"><span>Sábado</span><span>10:00–13:00</span></p>
@@ -1583,6 +1708,23 @@ const toast = (function(){
     clearTimeout(t);
     t = setTimeout(() => el.classList.remove('ver'), 3200);
   };
+})();
+
+/* ── 3d bis) Botón compartir: navigator.share y, si no lo hay, copiar el enlace ── */
+(function compartir(){
+  const btn = document.querySelector('[data-compartir]');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    const data = { title: document.title, url: location.href };
+    if (navigator.share) {
+      try { await navigator.share(data); } catch (e) { /* el usuario canceló */ }
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      try { await navigator.clipboard.writeText(location.href); toast('Enlace copiado — pégalo donde quieras.'); }
+      catch (e) { toast('No se pudo copiar el enlace automáticamente.'); }
+    } else {
+      toast('Copia la dirección desde la barra del navegador.');
+    }
+  });
 })();
 
 (function catalogo(){

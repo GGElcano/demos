@@ -94,6 +94,16 @@ Están dentro del código, al final de `ar/index.html`:
 |---|---|
 | Royale Beauty · Hammam & Spa en Las Palmas de Gran Canaria | |
 
+## Y la descripción que sale en Google (no se ve en la página)
+
+Es el texto que Google enseña debajo del enlace. La versión árabe actual es
+provisional y demasiado corta; lo ideal es una frase de unos 120-155
+caracteres. Tradúcela con naturalidad, no hace falta que sea literal:
+
+| Español (referencia) | Árabe |
+|---|---|
+| Hammam tradicional, rituales y masajes en el centro de Las Palmas. Calle Francisco Gourié 4. Reserva online y regala bonos de bienestar. 4,9 ★ en Google. | |
+
 ## Textos internos de las fotos (los lee Google, no se ven en pantalla)
 
 Estos ya los hemos rellenado nosotros en árabe de forma provisional para que

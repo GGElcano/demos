@@ -3,9 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- noindex a propósito: es una demo; al mudar al dominio real, QUITAR esta línea -->
 <meta name="robots" content="noindex, nofollow">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<title>Coffee Brunch Lina · Reservas — Demostración</title>
+<title>Coffee Brunch Lina · Reservas online en Granada — Demostración</title>
+<meta name="description" content="Cafetería y brunch en Granada: reserva tu mesa online en Coffee Brunch Lina, en la Calle Pío Baroja 3. Abierto de lunes a sábado de 8:00 a 20:00.">
+<!-- SEO: estas URLs apuntan a la demo; al mudar al dominio real (coffeebrunchlina.com), cambiar -->
+<link rel="canonical" href="https://ggelcano.github.io/demos/coffee-brunch-lina/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Coffee Brunch Lina">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Coffee Brunch Lina · Reservas online en Granada">
+<meta property="og:description" content="Cafetería y brunch en Granada: reserva tu mesa online en Coffee Brunch Lina, en la Calle Pío Baroja 3. Abierto de lunes a sábado de 8:00 a 20:00.">
+<meta property="og:url" content="https://ggelcano.github.io/demos/coffee-brunch-lina/">
+<!-- og:image omitido: la carpeta de la demo no contiene ninguna imagen; al añadir una foto real, ponerla aquí en URL absoluta -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Coffee Brunch Lina · Reservas online en Granada">
+<meta name="twitter:description" content="Cafetería y brunch en Granada: reserva tu mesa online en Coffee Brunch Lina, en la Calle Pío Baroja 3. Abierto de lunes a sábado de 8:00 a 20:00.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -46,7 +60,49 @@
   footer{background:#0d0d0d;color:rgba(250,250,248,.65);text-align:center;padding:2rem 1.25rem;font-size:.85rem}
   footer a{color:var(--primary);text-decoration:none}
   .footer-demo{max-width:680px;margin:0 auto .8rem;color:rgba(250,250,248,.8)}
+
+  /* Enlace de teléfono en la línea de datos */
+  .datos a{color:var(--primary-dark);text-decoration:none;font-weight:500;white-space:nowrap}
+  .datos a:hover{text-decoration:underline}
+
+  /* Botón compartir */
+  .compartir-wrap{text-align:center;margin-top:1.1rem}
+  .btn-compartir{font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:500;
+    color:var(--primary-dark);background:var(--card-bg);border:1px solid rgba(77,184,212,.45);
+    border-radius:999px;padding:.55rem 1.4rem;cursor:pointer;box-shadow:var(--shadow-card);
+    transition:background .2s,color .2s}
+  .btn-compartir:hover{background:var(--primary);color:#121212;border-color:var(--primary)}
+
+  /* Aviso "enlace copiado" (fallback del compartir) */
+  .toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%) translateY(8px);
+    background:#1a1a18;color:#fafaf8;padding:.6rem 1.2rem;border-radius:999px;font-size:.85rem;
+    box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:9999}
+  .toast.visible{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* CTA fijo de llamada — solo móvil */
+  .cta-llamar{position:fixed;bottom:16px;right:16px;z-index:9999;
+    padding:14px 22px;border-radius:999px;
+    background:var(--primary);color:#121212;text-decoration:none;
+    font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.3);display:none}
+  @media (max-width:768px){ .cta-llamar{display:block} }
 </style>
+<!-- Datos estructurados con SOLO datos verificados; "url" apunta a la demo — al mudar al dominio real (coffeebrunchlina.com), cambiar -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Coffee Brunch Lina",
+  "url": "https://ggelcano.github.io/demos/coffee-brunch-lina/",
+  "telephone": "+34 640 21 77 63",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Pío Baroja 3",
+    "addressLocality": "Granada",
+    "addressCountry": "ES"
+  },
+  "openingHours": "Mo-Sa 08:00-20:00"
+}
+</script>
 </head>
 <body>
 
@@ -65,13 +121,42 @@
   <div class="booking-card">
     <iframe src="https://gg-reservas-admin.pages.dev/book/coffee-brunch-lina" loading="lazy" title="Reservar mesa en Coffee Brunch Lina"></iframe>
   </div>
-  <p class="datos">Calle Pío Baroja Nº 3, Granada · Lunes a Sábado 8:00 – 20:00 · 640 217 763</p>
+  <p class="datos">Calle Pío Baroja Nº 3, Granada · Lunes a Sábado 8:00 – 20:00 · <a href="tel:+34640217763">640 21 77 63</a></p>
+  <p class="compartir-wrap"><button type="button" class="btn-compartir" aria-label="Compartir esta página">Compartir esta página</button></p>
 </main>
 
 <footer>
   <p class="footer-demo"><strong>Esta página es una demostración</strong> preparada por G&amp;G Elcano para Coffee Brunch Lina. No es la web oficial del negocio y las reservas realizadas aquí son únicamente de prueba.</p>
   <p>G&amp;G Elcano · webs, apps y soluciones IA a medida · <a href="https://ggelcano.com">ggelcano.com</a> · raul@ggelcano.com · 614 752 539</p>
 </footer>
+
+<a href="tel:+34640217763" class="cta-llamar" aria-label="Llamar a Coffee Brunch Lina">&#128222; Llamar</a>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var btn=document.querySelector('.btn-compartir');
+  var toast=document.getElementById('toast');
+  var toastTimer;
+  function showToast(msg){
+    toast.textContent=msg;
+    toast.classList.add('visible');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){toast.classList.remove('visible');},2200);
+  }
+  btn.addEventListener('click',async function(){
+    var data={title:document.title,url:location.href};
+    if(navigator.share){
+      try{await navigator.share(data);}catch(e){}
+    }else if(navigator.clipboard&&navigator.clipboard.writeText){
+      try{await navigator.clipboard.writeText(location.href);showToast('Enlace copiado');}
+      catch(e){showToast('No se pudo copiar el enlace');}
+    }else{
+      showToast('Copia la dirección desde la barra del navegador');
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

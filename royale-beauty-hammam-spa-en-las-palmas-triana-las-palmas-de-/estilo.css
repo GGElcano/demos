@@ -141,6 +141,23 @@ h2{font-family:var(--brand);font-weight:400;font-size:clamp(1.55rem,5vw,2.7rem);
 .horario li[data-hoy]{color:var(--oro-osc);font-weight:500}
 .mapa{border:0;width:100%;aspect-ratio:4/3;border-radius:4px;filter:grayscale(.35) contrast(1.05)}
 
+/* ── Botón compartir (solo lo usa la página en español) ──────────────────
+   Mismo lenguaje que el resto: línea dorada, relleno oro al pasar. El
+   avisito de "Enlace copiado" sale POR ENCIMA de la barra fija del móvil
+   (.flota, z-index 60) para no taparla. Propiedades lógicas, como toda
+   la hoja, por si algún día se usa también en la versión árabe. */
+.btn-compartir{border-color:var(--oro);color:var(--oro-osc);margin-block-start:1.6rem}
+.btn-compartir:hover{background:var(--oro);color:var(--tinta-2)}
+.btn-compartir svg{width:15px;height:15px;fill:currentColor;flex:none}
+.toast-compartir{position:fixed;inset-inline:0;bottom:calc(96px + env(safe-area-inset-bottom));
+  margin-inline:auto;width:max-content;max-width:90vw;z-index:70;
+  background:var(--tinta);color:var(--oro-luz);font-size:.85rem;letter-spacing:.04em;
+  padding:.6rem 1.2rem;border-radius:99px;border:1px solid rgba(201,169,110,.4);
+  opacity:0;transform:translateY(8px);pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease}
+.toast-compartir.ver{opacity:1;transform:none}
+@media(min-width:820px){.toast-compartir{bottom:24px}}
+
 /* pie */
 footer{background:var(--tinta-2);color:#B9B2A8;padding-block:2.6rem;font-size:.86rem}
 footer .env{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between}

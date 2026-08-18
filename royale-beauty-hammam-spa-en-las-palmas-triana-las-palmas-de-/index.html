@@ -288,6 +288,12 @@
             </ul>
           </dd>
         </dl>
+        <!-- Compartir: en el móvil abre el menú nativo (WhatsApp, etc.);
+             en escritorio copia el enlace y avisa con un toque dorado. -->
+        <button type="button" class="btn btn-linea btn-compartir" id="btn-compartir" aria-label="Compartir esta página">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81A2.99 2.99 0 0 0 3 12a3 3 0 0 0 5.04 2.19l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 1 0 2.92-2.92z"/></svg>
+          Compartir esta página
+        </button>
       </div>
       <iframe class="mapa rv" loading="lazy" title="Mapa de Royale Beauty"
         src="https://www.google.com/maps?q=Royale+Beauty+Hammam+Spa+C+Francisco+Gourie+4+Las+Palmas+de+Gran+Canaria&output=embed"></iframe>
@@ -431,6 +437,33 @@ var VIDEOS = [
     pista.addEventListener("scroll", estado);
     setTimeout(estado, 60);
   }
+})();
+
+// Boton compartir: menu nativo del movil si existe; si no, copia el enlace.
+(function(){
+  var btn = document.getElementById("btn-compartir");
+  if(!btn) return;
+  var aviso = document.createElement("div");
+  aviso.className = "toast-compartir";
+  aviso.setAttribute("role","status");
+  aviso.textContent = "Enlace copiado";
+  document.body.appendChild(aviso);
+  var t;
+  function copiado(){
+    aviso.classList.add("ver");
+    clearTimeout(t);
+    t = setTimeout(function(){ aviso.classList.remove("ver"); }, 2200);
+  }
+  function aMano(){ window.prompt("Copia el enlace:", location.href); }
+  btn.addEventListener("click", function(){
+    if(navigator.share){
+      navigator.share({ title: document.title, url: location.href }).catch(function(){});
+    } else if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(location.href).then(copiado, aMano);
+    } else {
+      aMano();
+    }
+  });
 })();
 
 // Aparicion suave al bajar. Sin librerias: en movil se nota mucho.
