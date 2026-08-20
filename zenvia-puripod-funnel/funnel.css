@@ -1,0 +1,92 @@
+/* Funnel PuriPod — hoja común. Paleta y tipografías heredadas del quiz de Zenvia
+   para que las cuatro páginas y el test parezcan la misma marca. Móvil primero:
+   este tipo de funnel se ve en el 90% de los casos desde el teléfono. */
+:root{
+  --gd:#1a3a2a; --gm:#2d6a4f; --gl:#52b788; --gp:#d8f3dc;
+  --cream:#f8f5ef; --white:#fff; --text:#1c2b22; --muted:#6b8c76;
+  --amber:#f4a261; --red:#e74c3c; --ink:#0f1a14;
+  --serif:"Playfair Display",Georgia,serif;
+  --sans:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --wrap:680px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--text);background:var(--cream);line-height:1.62;font-size:17px}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+
+/* Aviso de maqueta: va DENTRO de la página, no en un email aparte. Quien abra
+   esto tiene que saber en 2 segundos que el producto y las opiniones son de ejemplo. */
+.demo-note{background:var(--ink);color:#cfe6d8;font-size:13px;line-height:1.5;padding:10px 16px;text-align:center}
+.demo-note b{color:#fff}
+
+h1,h2,h3{font-family:var(--serif);line-height:1.18;font-weight:700}
+h1{font-size:31px;letter-spacing:-.01em}
+h2{font-size:25px;margin-bottom:14px}
+h3{font-size:20px}
+p{margin-bottom:16px}
+.lead{font-size:19px}
+.small{font-size:14px;color:var(--muted)}
+.center{text-align:center}
+mark{background:#ffe680;padding:2px 5px;border-radius:3px}
+
+section{padding:34px 0}
+.band{background:var(--white)}
+.band-dark{background:var(--gd);color:#e8f3ec}
+.band-dark h2,.band-dark h3{color:#fff}
+.band-soft{background:var(--gp)}
+
+.btn{display:block;width:100%;max-width:460px;margin:22px auto;padding:19px 24px;background:var(--gl);
+  color:#06251a;font-weight:700;font-size:19px;text-align:center;text-decoration:none;border:0;border-radius:14px;
+  box-shadow:0 6px 0 #3d9970;cursor:pointer;font-family:var(--sans)}
+.btn:active{transform:translateY(3px);box-shadow:0 3px 0 #3d9970}
+.btn-amber{background:var(--amber);box-shadow:0 6px 0 #d4864a;color:#3a1f08}
+
+ul.check,ul.cross{list-style:none;margin:0 0 18px}
+ul.check li,ul.cross li{position:relative;padding-left:32px;margin-bottom:11px}
+ul.check li:before{content:"✓";position:absolute;left:0;color:var(--gm);font-weight:700}
+ul.cross li:before{content:"✗";position:absolute;left:0;color:var(--red);font-weight:700}
+
+.card{background:var(--white);border:1px solid #e4ded2;border-radius:16px;padding:20px;margin-bottom:16px}
+.stars{color:var(--amber);letter-spacing:2px}
+.verified{color:#c1701f;font-weight:600;font-size:13px}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--gp);display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:var(--gm);flex:0 0 46px;font-size:17px}
+.row{display:flex;gap:12px;align-items:center}
+
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--white)}
+th,td{padding:11px 9px;border-bottom:1px solid #e8e2d6;text-align:center}
+th:first-child,td:first-child{text-align:left}
+thead th{background:var(--gd);color:#fff;font-family:var(--sans);font-weight:600}
+.yes{color:var(--gm);font-weight:700}
+.no{color:var(--red)}
+
+.media-logos{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;
+  font-family:var(--serif);color:#9aa79f;letter-spacing:.14em;font-size:15px;text-transform:uppercase}
+.pill{display:inline-block;background:var(--gp);color:var(--gm);padding:5px 13px;border-radius:99px;font-size:13px;font-weight:600}
+.topbar{background:var(--gd);color:#cfe6d8;font-size:13px;padding:9px 0}
+.topbar .wrap{display:flex;justify-content:space-between;gap:10px}
+
+/* El "producto" es un dibujo, no una foto: no tenemos foto real de PuriPod y no se
+   va a colar aquí la foto de un producto de otra marca. */
+.device{width:150px;height:210px;margin:0 auto;border-radius:56px;position:relative;
+  background:linear-gradient(160deg,#fdfdfb 0%,#e7ece8 48%,#cdd8d1 100%);
+  box-shadow:0 18px 40px rgba(20,45,32,.24),inset 0 -8px 18px rgba(0,0,0,.07)}
+.device:before{content:"";position:absolute;inset:16px 16px auto;height:112px;border-radius:44px;
+  background:radial-gradient(circle at 50% 34%,#eafaf1,#bfe6cf 62%,#8fd0ae)}
+.device:after{content:"";position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+  width:34px;height:5px;border-radius:99px;background:var(--gl);box-shadow:0 0 14px var(--gl)}
+.device-sm{width:96px;height:134px;border-radius:36px}
+.device-sm:before{inset:10px 10px auto;height:70px;border-radius:28px}
+.device-sm:after{bottom:16px;width:22px;height:4px}
+
+.grid3{display:grid;gap:14px}
+.stat{background:var(--white);border-radius:14px;padding:16px;text-align:center;border:1px solid #e4ded2}
+.stat b{display:block;font-family:var(--serif);font-size:29px;color:var(--gm);line-height:1.1}
+.offerbar{background:var(--ink);color:#ffe680;text-align:center;padding:11px;font-weight:600;font-size:15px}
+footer{background:var(--gd);color:#a9c4b6;font-size:13px;padding:26px 0;text-align:center}
+footer a{color:#cfe6d8}
+@media(min-width:620px){
+  h1{font-size:40px} h2{font-size:30px} .grid3{grid-template-columns:repeat(3,1fr)}
+}
