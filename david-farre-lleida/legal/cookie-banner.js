@@ -159,9 +159,13 @@
     return root;
   }
 
+  /* Las fichas viven en /producto/, así que la ruta a los legales
+     depende de la página: se declara con window.GG_BASE. */
+  function base() { return (typeof window.GG_BASE === 'string') ? window.GG_BASE : ''; }
+
   function buildBanner() {
-    var linkCookies = h('a', { href: 'legal/politica-cookies.html' }, ['política de cookies']);
-    var linkPriv = h('a', { href: 'legal/politica-privacidad.html' }, ['política de privacidad']);
+    var linkCookies = h('a', { href: base() + 'legal/politica-cookies.html' }, ['política de cookies']);
+    var linkPriv = h('a', { href: base() + 'legal/politica-privacidad.html' }, ['política de privacidad']);
 
     var text = h('div', null, [
       h('h2', null, ['Utilizamos cookies']),

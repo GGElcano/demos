@@ -1,0 +1,117 @@
+/* Ficha de producto, cesta y guía de tallas — David Farré
+   Se carga DESPUÉS de producto.css y añade lo que la ficha nueva necesita. */
+
+/* ---------- cesta en la barra de navegación ---------- */
+.nav-cesta{position:relative;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;margin-left:6px;color:var(--tierra);transition:.2s}
+.nav-cesta:hover{color:var(--brasa)}
+.nav-cesta svg{width:21px;height:21px;flex:0 0 auto}
+.nav-cesta [data-cesta-num]{min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:var(--linea);color:var(--tierra);font-size:11px;font-weight:700;display:grid;place-items:center;line-height:1}
+.nav-cesta.con-cosas [data-cesta-num]{background:var(--brasa);color:#fff}
+.mm-cesta{display:flex;align-items:center;gap:10px}
+/* En móvil el menú se esconde, pero la cesta tiene que seguir a la vista */
+@media(max-width:1024px){.nav-cesta{margin-left:auto;margin-right:4px;padding:8px 10px}}
+
+/* ---------- aviso flotante al añadir ---------- */
+.gg-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:9500;background:var(--tierra);color:var(--crema);padding:15px 20px;display:flex;align-items:center;gap:16px;font-size:13.5px;box-shadow:0 16px 40px rgba(42,31,24,.3);opacity:0;transition:opacity .3s,transform .3s;max-width:calc(100vw - 32px)}
+.gg-toast.visible{opacity:1;transform:translate(-50%,0)}
+.gg-toast a{color:#fff;border-bottom:1px solid rgba(255,255,255,.5);font-weight:600;white-space:nowrap}
+
+/* ---------- estados de la rejilla ---------- */
+.eje-cab{flex-wrap:wrap}
+.eje-guia{margin-right:auto;margin-left:12px;background:none;border:0;padding:0;font-family:inherit;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--brasa);cursor:pointer;border-bottom:1px solid rgba(139,94,60,.45)}
+.eje-guia:hover{color:var(--brasa-2)}
+.op.agotada{opacity:.55}
+.op.agotada::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - .6px),rgba(107,95,80,.55) 50%,transparent calc(50% + .6px))}
+.estado-si{border-left-color:#3f7d4e}
+.estado-no{border-left-color:#a8452f}
+
+/* muestras de piel: los colores reales del catálogo */
+.piel-crema-beige{background:radial-gradient(circle at 32% 28%,#efe0c6,#d6c19c 78%)}
+.piel-gris{background:radial-gradient(circle at 32% 28%,#9a9691,#5f5b57 78%)}
+.piel-blanco{background:radial-gradient(circle at 32% 28%,#fdfcf9,#e2ddd3 78%);border:1px solid var(--linea)}
+.piel-rojo{background:radial-gradient(circle at 32% 28%,#a8302c,#6d1b18 78%)}
+.piel-naranja{background:radial-gradient(circle at 32% 28%,#d9762f,#a04f16 78%)}
+.piel-marron-envejecido{background:radial-gradient(circle at 32% 28%,#a97a4d,#5d3a1e 78%)}
+.piel-verde-camboya{background:radial-gradient(circle at 32% 28%,#6d7355,#3c412c 78%)}
+.piel-azul{background:radial-gradient(circle at 32% 28%,#3d5a7a,#1f3348 78%)}
+.piel-camel{background:radial-gradient(circle at 32% 28%,#c39a63,#8d6535 78%)}
+.piel-wisky{background:radial-gradient(circle at 32% 28%,#b07434,#70441a 78%)}
+.piel-negro-envejecido{background:radial-gradient(circle at 32% 28%,#3b332d,#171310 78%)}
+.piel-ante{background:radial-gradient(circle at 32% 28%,#b59a76,#7d6444 78%)}
+
+/* ---------- avisos de la ficha ---------- */
+.aviso-encargo{border:1px solid var(--linea);background:#fff;padding:16px 18px;margin:0 0 20px;font-size:13px;line-height:1.65;color:var(--gris)}
+.aviso-encargo b{color:var(--tierra)}
+.aviso-encargo a{color:var(--brasa);font-weight:600;border-bottom:1px solid rgba(139,94,60,.4)}
+.ficha-ref{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);margin-bottom:14px}
+.ficha-ref b{color:var(--tierra);font-weight:700}
+.comprar .btn-comprar-ya{background:var(--tierra);color:var(--crema);border-color:var(--tierra)}
+.comprar .btn-comprar-ya:hover{background:transparent;color:var(--tierra)}
+
+/* ---------- guía de tallas ---------- */
+.modal{position:fixed;inset:0;z-index:9600;background:rgba(26,20,15,.62);display:grid;place-items:center;padding:20px;overflow-y:auto}
+.modal[hidden]{display:none}
+.modal-caja{background:var(--hueso);max-width:720px;width:100%;max-height:88vh;overflow-y:auto;position:relative;padding:38px 34px;border:1px solid var(--linea)}
+.modal-cerrar{position:absolute;top:12px;right:14px;background:none;border:0;font-size:30px;line-height:1;color:var(--gris);cursor:pointer;padding:6px 10px;font-family:inherit}
+.modal-cerrar:hover{color:var(--brasa)}
+.modal-caja h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;color:var(--tierra);margin-bottom:6px}
+.modal-caja h3{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--tierra);margin:26px 0 10px}
+.modal-caja p{font-size:13.5px;color:var(--gris);line-height:1.7}
+.modal-caja ol{font-size:13.5px;color:var(--gris);line-height:1.8;padding-left:20px;margin-top:8px}
+.tabla-tallas{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+.tabla-tallas th,.tabla-tallas td{border:1px solid var(--linea);padding:9px 10px;text-align:center}
+.tabla-tallas th{background:var(--crema);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--tierra)}
+.tabla-tallas td{color:var(--gris)}
+.tabla-tallas tr.destacada td{background:rgba(139,94,60,.1);color:var(--tierra);font-weight:600}
+.nota-provisional{border-left:3px solid #b8862b;background:#fdf6e6;padding:13px 15px;margin:16px 0 4px;font-size:12.5px;line-height:1.65;color:#6b5320}
+.nota-provisional b{color:#4a3812}
+
+/* ---------- página de la cesta ---------- */
+.cesta-wrap{max-width:1080px;margin:0 auto;padding:48px 24px 90px}
+.cesta-wrap h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,4vw,44px);color:var(--tierra);margin-bottom:8px}
+.cesta-sub{font-size:14px;color:var(--gris);margin-bottom:34px}
+.cesta-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:44px;align-items:start}
+.cesta-linea{display:grid;grid-template-columns:96px 1fr auto;gap:18px;padding:18px 0;border-bottom:1px solid var(--linea);align-items:center}
+.cesta-linea img{width:96px;height:128px;object-fit:cover;background:var(--crema);border:1px solid var(--linea)}
+.cesta-sinfoto{width:96px;height:128px;display:grid;place-items:center;background:var(--crema);border:1px solid var(--linea);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gris);text-align:center;padding:6px}
+.cesta-linea h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--tierra);line-height:1.2}
+.cesta-modelo{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brasa);font-weight:700}
+.cesta-opciones{font-size:13px;color:var(--gris);margin-top:4px}
+.cesta-precio{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:22px;color:var(--brasa);white-space:nowrap;text-align:right}
+.cesta-cantidad{display:inline-flex;align-items:center;border:1px solid var(--linea);background:#fff;margin-top:10px}
+.cesta-cantidad button{width:34px;height:34px;border:0;background:none;font-size:17px;color:var(--tierra);cursor:pointer;font-family:inherit;line-height:1}
+.cesta-cantidad button:hover{color:var(--brasa)}
+.cesta-cantidad span{min-width:34px;text-align:center;font-size:14px;font-weight:600;color:var(--tierra)}
+.cesta-quitar{background:none;border:0;padding:0;margin-top:10px;margin-left:14px;font-family:inherit;font-size:12px;color:var(--gris);cursor:pointer;border-bottom:1px solid var(--linea)}
+.cesta-quitar:hover{color:#a8452f}
+.cesta-resumen{border:1px solid var(--linea);background:#fff;padding:28px 26px;position:sticky;top:96px}
+.cesta-resumen h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:var(--tierra);margin-bottom:18px}
+.cesta-fila{display:flex;justify-content:space-between;gap:14px;font-size:13.5px;color:var(--gris);padding:9px 0;border-bottom:1px solid var(--linea)}
+.cesta-fila:last-of-type{border-bottom:0}
+.cesta-total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin:16px 0 22px;padding-top:16px;border-top:2px solid var(--tierra)}
+.cesta-total span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--tierra)}
+.cesta-total b{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:32px;color:var(--brasa)}
+.cesta-resumen .btn{width:100%;justify-content:center}
+.cesta-legal{font-size:12px;color:var(--gris);line-height:1.7;margin-top:18px}
+.cesta-legal a{color:var(--brasa);font-weight:600}
+.cesta-vacia{border:1px solid var(--linea);background:#fff;padding:52px 34px;text-align:center}
+.cesta-vacia p{font-size:15px;color:var(--gris);margin-bottom:22px}
+.aviso-demo{border-left:3px solid var(--brasa);background:var(--crema);padding:16px 18px;margin-bottom:30px;font-size:13px;line-height:1.7;color:var(--tierra)}
+.aviso-demo b{color:var(--brasa-2)}
+
+@media(max-width:900px){
+  .cesta-grid{grid-template-columns:1fr;gap:30px}
+  .cesta-resumen{position:static}
+  .cesta-linea{grid-template-columns:74px 1fr;gap:14px}
+  .cesta-linea img,.cesta-sinfoto{width:74px;height:99px}
+  .cesta-precio{grid-column:2;text-align:left;font-size:20px}
+  .modal-caja{padding:30px 20px}
+  .tabla-tallas{font-size:12px}
+  .tabla-tallas th,.tabla-tallas td{padding:7px 5px}
+}
+
+/* ---------- su texto, debajo de la ficha ---------- */
+.ficha-texto{border-top:1px solid var(--linea);background:#fff}
+.ficha-texto .wrap-texto{max-width:820px;margin:0 auto;padding:54px 24px 60px}
+.ficha-texto h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3vw,34px);color:var(--tierra);margin-bottom:16px}
+.ficha-texto p{font-size:15px;line-height:1.85;color:var(--gris)}
