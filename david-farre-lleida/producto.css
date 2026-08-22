@@ -98,3 +98,42 @@
   .op-muestra{width:64px}
   .idiomas{margin-left:10px}
 }
+
+/* ── Bloques desplegables de la ficha ──────────────────────────────────────
+   Esquema de las marcas de piel grandes (lo que hace Belstaff): debajo del
+   botón de comprar, secciones que se abren en vez de un ladrillo de texto.
+   El estilo es el nuestro — Cormorant, tierra y brasa —, no el suyo.
+   <details> de HTML puro: sin JavaScript, y el teclado ya sabe qué son.
+   Sustituye a la caja «ficha-extras» (envío suelto arriba) y al «Sobre esta
+   prenda» del final de la página, que casi nadie bajaba a leer. */
+.fbloques{margin-top:28px;border-top:1px solid var(--linea)}
+.fbloque{border-bottom:1px solid var(--linea)}
+.fbloque > summary{
+  cursor:pointer;list-style:none;padding:15px 2px;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--tierra);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  -webkit-user-select:none;user-select:none;
+}
+.fbloque > summary::-webkit-details-marker{display:none}
+.fbloque > summary:hover{color:var(--brasa-2)}
+.fbloque > summary:focus-visible{outline:2px solid var(--brasa);outline-offset:2px}
+.fbloque > summary::after{content:"+";font-size:19px;font-weight:400;line-height:1;color:var(--gris)}
+.fbloque[open] > summary::after{content:"−"}
+.fbloque-txt{padding:0 2px 20px;font-size:14.5px;line-height:1.8;color:var(--gris)}
+.fbloque-txt p{margin:0 0 12px}
+.fbloque-txt p:last-child{margin:0}
+
+.fdatos{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0}
+.fdatos dt{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tierra);margin:0}
+.fdatos dd{margin:0;color:var(--gris)}
+.flista{margin:0 0 12px;padding-left:18px}
+.flista li{margin-bottom:6px}
+.fenlace{color:var(--brasa-2);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.fenlace:hover{color:var(--tierra)}
+
+@media (max-width:640px){
+  .fdatos{grid-template-columns:1fr;gap:2px 0}
+  .fdatos dd{margin-bottom:9px}
+  .fbloque > summary{padding:17px 2px}
+}
