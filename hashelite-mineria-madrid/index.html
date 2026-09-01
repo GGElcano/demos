@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="robots" content="noindex, nofollow">
+<title>Antminer S21XP 270TH · ficha rehecha para HashElite</title>
+<meta name="description" content="Propuesta de G&amp;G Elcano sobre la ficha real del Antminer S21XP de hashelite.es: precio con IVA, stock, plazo y calculadora de consumo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#29225b; --navy-2:#1e1943; --teal:#59b9a7; --teal-dark:#3f9f8e;
+  --tinta:#241f45; --gris:#6b6880; --linea:#e5e2ee; --fondo:#f7f6fb; --blanco:#fff;
+  --ok:#2e9e6b; --aviso:#c9962b;
+  --sombra:0 1px 2px rgba(41,34,91,.06), 0 8px 28px rgba(41,34,91,.09);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Kanit,"Segoe UI",system-ui,-apple-system,sans-serif;
+     color:var(--tinta);background:var(--fondo);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* ---------- aviso de demo (obligatorio: hay datos de ejemplo) ---------- */
+.aviso{background:#fff6e0;border-bottom:2px solid #f0d089;color:#6b5416;
+       font-size:.86rem;padding:11px 20px;text-align:center;line-height:1.5}
+.aviso b{font-weight:600}
+
+/* ---------- cabecera ---------- */
+header{background:var(--navy);position:sticky;top:0;z-index:40;box-shadow:0 2px 18px rgba(0,0,0,.18)}
+.head-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+.logo img{height:26px;width:auto}
+nav{display:flex;gap:26px;font-size:.92rem;color:#cfc9e6;font-weight:400}
+nav a{text-decoration:none}
+nav a:hover{color:var(--teal)}
+.tel-head{color:var(--teal);font-weight:600;font-size:.95rem;text-decoration:none;white-space:nowrap}
+@media(max-width:880px){nav{display:none}}
+
+/* ---------- migas ---------- */
+.migas{font-size:.82rem;color:var(--gris);padding:18px 0 4px}
+.migas a{text-decoration:none;color:var(--teal-dark)}
+
+/* ---------- ficha ---------- */
+.ficha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;padding:14px 0 50px;align-items:start}
+@media(max-width:900px){.ficha{grid-template-columns:1fr;gap:26px}}
+
+.galeria{background:var(--blanco);border:1px solid var(--linea);border-radius:16px;padding:26px;box-shadow:var(--sombra);position:sticky;top:96px}
+@media(max-width:900px){
+  .galeria{position:static;padding:16px}
+  /* en movil la foto a tamano completo empujaba el precio y el boton fuera de
+     pantalla, que es justo el fallo que estamos arreglando. Se limita la altura. */
+  .galeria .principal img{max-height:290px;width:auto;margin:0 auto;object-fit:contain}
+  .pie-foto{font-size:.78rem}
+}
+.galeria .principal{background:#fbfaff;border-radius:12px;padding:12px;cursor:zoom-in;overflow:hidden}
+.galeria .principal img{transition:transform .45s cubic-bezier(.2,.7,.3,1)}
+.galeria .principal:hover img{transform:scale(1.08)}
+.pie-foto{margin:14px 0 0;font-size:.82rem;color:var(--gris);line-height:1.5;text-align:center}
+.minis button{width:64px;height:64px;border:2px solid var(--linea);border-radius:10px;background:#fbfaff;
+              padding:5px;cursor:pointer;transition:border-color .2s}
+.minis button.on,.minis button:hover{border-color:var(--teal)}
+
+h1{font-size:2.05rem;line-height:1.22;margin:6px 0 14px;font-weight:600;letter-spacing:-.01em}
+@media(max-width:600px){h1{font-size:1.6rem}}
+.marca{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-dark);font-weight:600}
+
+.badges{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 20px}
+.b{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;font-weight:400;
+   padding:6px 13px;border-radius:100px;border:1px solid var(--linea);background:var(--blanco)}
+.b.stock{color:#1d7a4f;border-color:#b9e3cd;background:#effaf4;font-weight:500}
+.b.stock::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok);
+                 box-shadow:0 0 0 4px rgba(46,158,107,.18)}
+
+/* precio */
+.precio-caja{background:var(--blanco);border:1px solid var(--linea);border-radius:16px;padding:24px;box-shadow:var(--sombra)}
+.precio-fila{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.precio{font-size:2.5rem;font-weight:700;letter-spacing:-.02em;color:var(--navy)}
+.precio small{font-size:.95rem;font-weight:400;color:var(--gris)}
+.desglose{margin-top:10px;font-size:.9rem;color:var(--gris);display:grid;gap:4px}
+.desglose div{display:flex;justify-content:space-between;max-width:330px}
+.desglose .tot{color:var(--tinta);font-weight:600;border-top:1px solid var(--linea);padding-top:6px;margin-top:3px}
+
+.opcion{margin:22px 0 0}
+.opcion .preg{display:block;font-size:.88rem;font-weight:500;margin-bottom:9px}
+.radios{display:grid;gap:10px}
+.radio{display:flex;gap:12px;align-items:flex-start;border:2px solid var(--linea);border-radius:12px;
+       padding:13px 15px;cursor:pointer;transition:.18s;background:var(--blanco)}
+.radio:hover{border-color:#c9c2e0}
+.radio.on{border-color:var(--teal);background:#f2fbf9}
+.radio input{margin:4px 0 0;flex:0 0 auto;accent-color:var(--teal-dark);width:17px;height:17px}
+.radio>span{flex:1 1 auto;min-width:0}
+.radio .t{font-weight:500;font-size:.95rem;display:block;margin-bottom:2px}
+.radio .d{font-size:.84rem;color:var(--gris);line-height:1.45;display:block}
+
+.comprar{display:flex;gap:12px;margin-top:22px;align-items:stretch}
+.cant{display:flex;align-items:center;border:1px solid var(--linea);border-radius:12px;background:var(--blanco)}
+.cant button{width:42px;border:0;background:none;font-size:1.25rem;cursor:pointer;color:var(--gris)}
+.cant span{width:34px;text-align:center;font-weight:500}
+.btn{flex:1;background:var(--teal);color:#08302a;border:0;border-radius:12px;padding:17px 24px;
+     font-family:inherit;font-size:1.06rem;font-weight:600;cursor:pointer;letter-spacing:.01em;
+     transition:.2s;box-shadow:0 6px 20px rgba(89,185,167,.4)}
+.btn:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.garantias{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;font-size:.85rem;color:var(--gris)}
+.garantias div{display:flex;gap:9px;align-items:flex-start}
+.garantias b{color:var(--tinta);font-weight:500;display:block;font-size:.88rem}
+.tick{color:var(--teal-dark);flex:0 0 auto;margin-top:3px}
+
+/* ---------- calculadora ---------- */
+.calc{background:var(--navy);color:#eceafa;border-radius:18px;padding:30px;margin:8px 0 46px}
+.calc h2{margin:0 0 6px;font-size:1.4rem;font-weight:600;color:#fff}
+.calc .sub{font-size:.9rem;color:#b9b2d9;margin-bottom:22px}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:820px){.calc-grid{grid-template-columns:1fr;gap:22px}}
+.campo{margin-bottom:18px}
+.campo label{display:block;font-size:.86rem;color:#cfc9e6;margin-bottom:7px}
+.campo .fila{display:flex;align-items:center;gap:12px}
+.campo input[type=range]{flex:1;accent-color:var(--teal)}
+.campo .val{font-weight:600;color:var(--teal);min-width:96px;text-align:right;font-size:1.02rem}
+.res{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:20px}
+.res-fila{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+.res-fila:last-child{border:0}
+.res-fila span{font-size:.9rem;color:#b9b2d9}
+.res-fila b{font-size:1.18rem;font-weight:600;color:#fff}
+.res-fila.big b{font-size:1.6rem;color:var(--teal)}
+.nota{font-size:.79rem;color:#a49cc9;margin-top:14px;line-height:1.55}
+
+
+/* ---------- otros equipos ---------- */
+.rel{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.rel{grid-template-columns:1fr}}
+.card{border:1px solid var(--linea);border-radius:14px;padding:16px;background:var(--blanco);
+      transition:.2s;display:flex;flex-direction:column;gap:10px}
+.card:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:var(--sombra)}
+.card .foto{background:#fbfaff;border-radius:10px;padding:10px;display:grid;place-items:center;min-height:150px}
+.card .foto img{max-height:150px;width:auto;object-fit:contain}
+.card .nom{font-size:.95rem;font-weight:500;line-height:1.35}
+.card .pr{margin-top:auto}
+.card .pr b{font-size:1.16rem;font-weight:600;color:var(--navy);display:block}
+.card .pr span{font-size:.8rem;color:var(--gris)}
+
+/* ---------- specs / opiniones ---------- */
+section.bloque{background:var(--blanco);border:1px solid var(--linea);border-radius:16px;padding:28px;margin-bottom:26px;box-shadow:var(--sombra)}
+section.bloque h2{margin:0 0 18px;font-size:1.25rem;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:.94rem}
+td{padding:11px 4px;border-bottom:1px solid var(--linea)}
+td:first-child{color:var(--gris);width:46%}
+td:last-child{font-weight:500;text-align:right}
+tr:last-child td{border-bottom:0}
+.op{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--linea)}
+.op:last-child{border:0;padding-bottom:0}
+.av{width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;
+    font-weight:600;flex:0 0 auto;font-size:.95rem}
+.estrellas{color:#e8a92b;display:flex;gap:2px;align-items:center}
+.op p{margin:5px 0 0;font-size:.93rem}
+.op .quien{font-size:.85rem;color:var(--gris)}
+
+/* ---------- panel de cambios ---------- */
+.cambios{position:fixed;left:20px;bottom:20px;z-index:50;width:330px;max-width:calc(100vw - 40px);
+         background:var(--blanco);border:1px solid var(--linea);border-radius:16px;
+         box-shadow:0 18px 50px rgba(41,34,91,.24);overflow:hidden}
+.cambios h3{margin:0;font-size:.95rem;font-weight:600;padding:15px 18px;background:var(--navy);color:#fff;
+            cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.cambios h3 span.n{background:var(--teal);color:#08302a;border-radius:100px;padding:1px 9px;font-size:.8rem}
+.cambios ol{margin:0;padding:14px 18px 18px 34px;font-size:.87rem;line-height:1.55;display:grid;gap:11px}
+.cambios li strong{font-weight:600;display:block}
+.cambios li em{font-style:normal;color:var(--gris);font-size:.85rem}
+.cambios.cerrado ol{display:none}
+@media(max-width:700px){.cambios{left:10px;right:10px;bottom:10px;width:auto}.cambios ol{max-height:44vh;overflow:auto}}
+
+footer{background:var(--navy-2);color:#a9a2cc;padding:34px 0;font-size:.86rem;margin-top:20px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer b{color:#fff;font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="aviso">
+  <b>Demo preparada por G&amp;G Elcano</b> sobre la ficha real del Antminer S21XP de hashelite.es.
+  El equipo, el precio y las especificaciones son los vuestros. El <b>stock, el plazo de entrega y las opiniones son datos de ejemplo</b>
+  puestos para enseñar el formato, no son reales.
+</div>
+
+<header>
+  <div class="wrap head-in">
+    <div class="logo"><img src="logo-blanco.svg" alt="HashElite" width="150" height="26"></div>
+    <nav>
+      <a href="#">Inicio</a><a href="#">Nosotros</a><a href="#">Hosting</a>
+      <a href="#">Asic Miner</a><a href="#">Contacto</a>
+    </nav>
+    <a class="tel-head" href="tel:+34619491987">619 491 987</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="migas"><a href="#">Inicio</a> › <a href="#">ASIC Bitcoin (BTC)</a> › Antminer S21XP 270TH</div>
+
+  <div class="ficha">
+    <!-- ---------- galería ---------- -->
+    <div class="galeria">
+      <div class="principal"><img id="foto" src="producto.webp" alt="Bitmain Antminer S21XP 270TH" width="1200" height="1200"></div>
+      <p class="pie-foto">Foto del equipo tal y como la tenéis en la tienda. Aquí irían las vistas
+      reales del equipo: frontal, lateral y panel de conexiones.</p>
+    </div>
+
+    <!-- ---------- compra ---------- -->
+    <div>
+      <div class="marca">Bitmain</div>
+      <h1>Antminer S21XP 270TH · ASIC Bitcoin</h1>
+
+      <div class="badges">
+        <span class="b stock">En stock, 4 unidades</span>
+        <span class="b">Entrega en 3 a 5 días laborables</span>
+        <span class="b">Garantía 12 meses</span>
+      </div>
+
+      <div class="precio-caja">
+        <div class="precio-fila">
+          <div class="precio" id="precioTot">4.940,43 €</div>
+          <small>IVA incluido</small>
+        </div>
+        <div class="desglose">
+          <div><span>Equipo</span><span id="pBase">4.083,00 €</span></div>
+          <div><span>IVA 21%</span><span id="pIva">857,43 €</span></div>
+          <div class="tot"><span>Total a pagar</span><span id="pTot">4.940,43 €</span></div>
+        </div>
+
+        <div class="opcion">
+          <label class="preg">¿Dónde quieres que funcione el equipo?</label>
+          <div class="radios">
+            <label class="radio on">
+              <input type="radio" name="destino" value="casa" checked>
+              <span><span class="t">Me lo envías</span><span class="d">Recibes el equipo y lo instalas en tus instalaciones. Envío asegurado incluido.</span></span>
+            </label>
+            <label class="radio">
+              <input type="radio" name="destino" value="dubai">
+              <span><span class="t">Hosting en Dubái</span><span class="d">Lo instalamos y lo operamos nosotros, con mantenimiento y vigilancia incluidos. Te decimos la cuota exacta antes de cerrar el pedido.</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="comprar">
+          <div class="cant">
+            <button type="button" id="menos" aria-label="Quitar uno">−</button>
+            <span id="cantidad">1</span>
+            <button type="button" id="mas" aria-label="Añadir uno">+</button>
+          </div>
+          <button class="btn" type="button" id="btnComprar">Añadir al carrito</button>
+        </div>
+
+        <div class="garantias">
+          <div><svg class="tick" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2 8.4l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Envío asegurado</b>Seguimiento desde que sale</span></div>
+          <div><svg class="tick" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2 8.4l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Garantía de 12 meses</b>Gestionada por nosotros</span></div>
+          <div><svg class="tick" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2 8.4l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Pago con tarjeta o transferencia</b>Factura con IVA</span></div>
+          <div><svg class="tick" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2 8.4l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Asesoramiento incluido</b>Técnico, legal y fiscal</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- calculadora ---------- -->
+  <div class="calc" id="calculadora">
+    <h2>¿Cuánta luz gasta este equipo?</h2>
+    <div class="sub">Mueve el precio del kWh que pagas y verás el coste exacto. Cuentas del propio equipo, sin estimar nada.</div>
+    <div class="calc-grid">
+      <div>
+        <div class="campo">
+          <label>Precio de tu kWh</label>
+          <div class="fila">
+            <input type="range" id="kwh" min="0.02" max="0.35" step="0.005" value="0.15">
+            <span class="val" id="kwhVal">0,150 €</span>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Horas encendido al día</label>
+          <div class="fila">
+            <input type="range" id="horas" min="1" max="24" step="1" value="24">
+            <span class="val" id="horasVal">24 h</span>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Equipos</label>
+          <div class="fila">
+            <input type="range" id="equipos" min="1" max="20" step="1" value="1">
+            <span class="val" id="equiposVal">1</span>
+          </div>
+        </div>
+        <div class="nota">
+          El S21XP consume <b>3.645 W</b> y da <b>270 TH/s</b>, según vuestra propia ficha.
+          Eso son <b>13,5 julios por terahash</b>, que es el dato con el que se comparan los equipos entre sí.
+        </div>
+      </div>
+      <div class="res">
+        <div class="res-fila"><span>Consume al día</span><b id="rKwh">87,5 kWh</b></div>
+        <div class="res-fila"><span>Cuesta al día</span><b id="rDia">13,12 €</b></div>
+        <div class="res-fila"><span>Al mes</span><b id="rMes">393,66 €</b></div>
+        <div class="res-fila big"><span>Al año</span><b id="rAno">4.789 €</b></div>
+        <div class="nota">
+          Esto es solo el gasto de luz. Lo que produzca depende del bitcoin y de la dificultad de la red,
+          que cambian solos, así que aquí no se inventa ninguna cifra de ingresos.
+          Si eliges hosting en Dubái, esta factura no la pagas tú.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="bloque">
+    <h2>Especificaciones</h2>
+    <table>
+      <tr><td>Hashrate</td><td>270 TH/s</td></tr>
+      <tr><td>Consumo</td><td>3.645 W</td></tr>
+      <tr><td>Eficiencia</td><td>13,5 J/TH</td></tr>
+      <tr><td>Algoritmo</td><td>SHA-256</td></tr>
+      <tr><td>Monedas</td><td>Bitcoin</td></tr>
+      <tr><td>Fabricante</td><td>Bitmain</td></tr>
+      <tr><td>Referencia</td><td>BIT-S21XP-270</td></tr>
+    </table>
+  </section>
+
+  <section class="bloque">
+    <h2>Otros equipos de vuestra tienda</h2>
+    <div class="rel">
+      <div class="card">
+        <div class="foto"><img src="rel-m60s.webp" alt="WhatsMiner M60S+ 208TH" width="600" height="600"></div>
+        <div class="nom">WhatsMiner M60S+ 208TH<br><span style="color:var(--gris);font-weight:300;font-size:.85rem">ASIC Bitcoin</span></div>
+        <div class="pr"><b>2.547,05 €</b><span>IVA incluido (2.105,00 € + IVA)</span></div>
+      </div>
+      <div class="card">
+        <div class="foto"><img src="rel-s21hyd.webp" alt="Bitmain Antminer S21+ Hyd 358TH" width="600" height="600"></div>
+        <div class="nom">Bitmain Antminer S21+ Hyd 358TH<br><span style="color:var(--gris);font-weight:300;font-size:.85rem">ASIC Bitcoin</span></div>
+        <div class="pr"><b>3.327,50 €</b><span>IVA incluido (2.750,00 € + IVA)</span></div>
+      </div>
+      <div class="card">
+        <div class="foto"><img src="rel-l9.webp" alt="Bitmain Antminer L9 15GH" width="1024" height="1024"></div>
+        <div class="nom">Bitmain Antminer L9 15GH<br><span style="color:var(--gris);font-weight:300;font-size:.85rem">ASIC Litecoin y Dogecoin</span></div>
+        <div class="pr"><b>3.690,50 €</b><span>IVA incluido (3.050,00 € + IVA)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloque">
+    <h2>Opiniones de clientes <span style="font-size:.8rem;font-weight:400;color:var(--gris)">(ejemplo, no son reales)</span></h2>
+    <div class="op">
+      <div class="av">JM</div>
+      <div>
+        <div class="estrellas"><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg></div>
+        <div class="quien">José M. · compra verificada</div>
+        <p>Llegó en cuatro días y con la factura correcta. Me ayudaron con el tema fiscal, que era lo que más me frenaba.</p>
+      </div>
+    </div>
+    <div class="op">
+      <div class="av">AR</div>
+      <div>
+        <div class="estrellas"><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg><svg viewBox="0 0 20 19" width="14" height="14" aria-hidden="true"><path d="M10 0l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L10 14.2 4.2 17.8l1.6-6.6L.6 6.8l6.8-.5z" fill="currentColor"/></svg></div>
+        <div class="quien">Ana R. · compra verificada</div>
+        <p>Segundo equipo que compro. Esta vez lo dejé en Dubái con ellos y me despreocupo del ruido y de la luz.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="cambios cerrado" id="panel">
+  <h3 id="panelTit">Qué hemos cambiado <span class="n">6</span></h3>
+  <ol>
+    <li><strong>El IVA, desde el principio</strong><em>Vuestra ficha pone 4.083 € y el IVA (857 €) aparece al final del pedido. Aquí se ve el total desde el primer momento.</em></li>
+    <li><strong>Stock y plazo a la vista</strong><em>Ninguna ficha dice si hay unidades ni cuándo llega. Es lo primero que pregunta quien se va a gastar 5.000 €.</em></li>
+    <li><strong>Sin mandar a nadie al correo</strong><em>Vuestra ficha pide escribir a info@hashelite.es para confirmar disponibilidad y envío. Eso se resuelve aquí dentro.</em></li>
+    <li><strong>Calculadora de consumo</strong><em>Dais 270 TH/s y 3.645 W en crudo. Traducido a euros de luz, con sus números.</em></li>
+    <li><strong>Fuera la barra lateral</strong><em>En vuestra ficha, el buscador y las categorías (con "Sin categorizar, 0 productos") se comen un tercio de la pantalla.</em></li>
+    <li><strong>Garantía, envío y opiniones</strong><em>Vuestras fichas ponen "Valoraciones (0)" y "SKU: N/D". Aquí hay referencia, garantía y prueba social donde se decide.</em></li>
+  </ol>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div><b>Demo de trabajo para HashElite</b><br>Preparada por G&amp;G Elcano · raul@ggelcano.es</div>
+    <div>Sobre la ficha real de hashelite.es · datos de stock, plazo y opiniones de ejemplo</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var BASE = 4083, IVA = 0.21, VATIOS = 3645;
+  // Formato español a mano (1.234,56). No se usa toLocaleString porque el separador
+  // de miles depende del ICU del navegador y en algunos se queda en "4940,43".
+  var num = function(n, dec){
+    dec = (dec === undefined) ? 2 : dec;
+    var neg = n < 0; n = Math.abs(n);
+    var partes = n.toFixed(dec).split('.');
+    partes[0] = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return (neg ? '-' : '') + partes[0] + (dec ? ',' + partes[1] : '');
+  };
+  var eur = function(n, dec){ return num(n, dec) + ' €'; };
+
+  // ----- cantidad y precio -----
+  var cant = 1;
+  function pintaPrecio(){
+    var base = BASE * cant, iva = base * IVA, tot = base + iva;
+    document.getElementById('pBase').textContent = eur(base);
+    document.getElementById('pIva').textContent  = eur(iva);
+    document.getElementById('pTot').textContent  = eur(tot);
+    document.getElementById('precioTot').textContent = eur(tot);
+    document.getElementById('cantidad').textContent = cant;
+  }
+  document.getElementById('mas').onclick   = function(){ if(cant<20){cant++; pintaPrecio();} };
+  document.getElementById('menos').onclick = function(){ if(cant>1){cant--; pintaPrecio();} };
+
+  // ----- opciones de destino -----
+  Array.prototype.forEach.call(document.querySelectorAll('.radio'), function(r){
+    r.addEventListener('click', function(){
+      Array.prototype.forEach.call(document.querySelectorAll('.radio'), function(x){ x.classList.remove('on'); });
+      r.classList.add('on');
+    });
+  });
+
+  // ----- calculadora de consumo -----
+  var kwh = document.getElementById('kwh'),
+      horas = document.getElementById('horas'),
+      equipos = document.getElementById('equipos');
+  function calcula(){
+    var p = parseFloat(kwh.value), h = parseInt(horas.value,10), n = parseInt(equipos.value,10);
+    var kwhDia = (VATIOS/1000) * h * n;
+    var dia = kwhDia * p;
+    document.getElementById('kwhVal').textContent = num(p, 3) + ' €';
+    document.getElementById('horasVal').textContent = h + ' h';
+    document.getElementById('equiposVal').textContent = n;
+    document.getElementById('rKwh').textContent = num(kwhDia, 1) + ' kWh';
+    document.getElementById('rDia').textContent = eur(dia);
+    document.getElementById('rMes').textContent = eur(dia*30);
+    document.getElementById('rAno').textContent = eur(dia*365, 0);
+  }
+  kwh.addEventListener('input', calcula);
+  horas.addEventListener('input', calcula);
+  equipos.addEventListener('input', calcula);
+
+  // ----- panel de cambios plegable -----
+  var panel = document.getElementById('panel');
+  document.getElementById('panelTit').addEventListener('click', function(){ panel.classList.toggle('cerrado'); });
+  panel.classList.add('cerrado');  // arranca plegado: abierto tapaba la tabla de specs
+
+  // ----- botón de demo -----
+  document.getElementById('btnComprar').addEventListener('click', function(){
+    this.textContent = 'Esto es una demo · el carrito no está conectado';
+    var b = this;
+    setTimeout(function(){ b.textContent = 'Añadir al carrito'; }, 2600);
+  });
+
+  pintaPrecio(); calcula();
+})();
+</script>
+</body>
+</html>
