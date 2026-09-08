@@ -1169,9 +1169,13 @@
     }
     .local-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      /* 6 fotos: siempre filas completas (3+3, 2+2+2 o 1 por fila).
+         Con auto-fit las pantallas anchas dejaban dos huecos vacios. */
+      grid-template-columns: repeat(3, 1fr);
       gap: 3px;
     }
+    @media (max-width: 980px) { .local-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px) { .local-grid { grid-template-columns: 1fr; } }
     .local-item {
       position: relative; overflow: hidden; margin: 0;
       aspect-ratio: 4 / 3; background: var(--carbon-light);
