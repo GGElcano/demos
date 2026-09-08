@@ -947,6 +947,12 @@
       min-height: 24px; display: inline-flex; align-items: center;
     }
     .footer-legal a:hover { color: var(--white); }
+    .footer-legal-btn {
+      font-family: inherit; font-size: 0.78rem; color: rgba(245,243,239,0.7);
+      background: none; border: 0; padding: 0; cursor: pointer; letter-spacing: 0.05em;
+      transition: color 0.3s; min-height: 24px; display: inline-flex; align-items: center;
+    }
+    .footer-legal-btn:hover, .footer-legal-btn:focus-visible { color: var(--white); }
 
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -1128,7 +1134,110 @@
     @media (max-width: 720px) {
       .eclipse-band-inner { flex-direction: column-reverse; align-items: flex-start; text-align: left; }
       .eclipse-band-orb { align-self: center; }
+      .eclipse-band-video { align-self: center; width: min(300px, 76vw); }
     }
+
+    /* ── VÍDEO DEL EVENTO DEL ECLIPSE ─────────────────────────── */
+    .eclipse-band-video {
+      position: relative; flex-shrink: 0;
+      width: clamp(210px, 26vw, 300px);
+    }
+    .eclipse-band-video video {
+      display: block; width: 100%; height: auto;
+      aspect-ratio: 464 / 832;
+      background: #060403;
+      border-radius: 18px;
+      border: 1px solid rgba(233,169,77,0.35);
+      box-shadow: 0 0 40px 6px rgba(233,169,77,0.18), 0 22px 60px rgba(0,0,0,0.55);
+    }
+    .eclipse-video-cap {
+      margin-top: 12px; text-align: center;
+      font-size: 0.74rem !important; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,212,138,0.75) !important; margin-bottom: 0 !important;
+    }
+
+    /* ── EL LOCAL (galería de fotos reales) ───────────────────── */
+    .local-section {
+      background: var(--carbon);
+      padding: clamp(70px, 11vh, 130px) clamp(20px, 6vw, 80px);
+    }
+    .local-inner { max-width: 1400px; margin: 0 auto; }
+    .local-header { max-width: 760px; margin-bottom: 56px; }
+    .local-text {
+      font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+      color: rgba(245,243,239,0.72); font-weight: 300; margin-top: 22px;
+    }
+    .local-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3px;
+    }
+    .local-item {
+      position: relative; overflow: hidden; margin: 0;
+      aspect-ratio: 4 / 3; background: var(--carbon-light);
+    }
+    .local-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.9s var(--ease-out);
+    }
+    .local-item:hover img { transform: scale(1.05); }
+    .local-item figcaption {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 44px 24px 20px;
+      background: linear-gradient(to top, rgba(8,8,8,0.88) 0%, rgba(8,8,8,0.35) 55%, transparent 100%);
+      font-size: 0.78rem; letter-spacing: 0.08em;
+      color: rgba(245,243,239,0.92);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.75);
+    }
+    @media (prefers-reduced-motion: reduce) { .local-item img { transition: none; } }
+
+    /* ── MENÚ DE ESTA SEMANA ──────────────────────────────────── */
+    .semana-card {
+      background: var(--carbon-mid);
+      border: 1px solid rgba(123,158,107,0.16);
+      border-radius: 6px;
+      padding: clamp(28px, 4vw, 48px);
+      margin-bottom: 40px;
+    }
+    .semana-title {
+      font-family: var(--font-serif); font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+      font-weight: 400; margin-bottom: 6px;
+    }
+    .semana-sub {
+      font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 30px;
+    }
+    .semana-dias {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2px; background: rgba(123,158,107,0.14);
+      border-top: 1px solid rgba(123,158,107,0.14);
+      border-bottom: 1px solid rgba(123,158,107,0.14);
+    }
+    .semana-dia { background: var(--carbon-mid); padding: 24px 20px; }
+    .semana-dia h4 {
+      font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--accent-light); font-weight: 600; margin-bottom: 16px;
+    }
+    .semana-dia dl { margin: 0; }
+    .semana-dia dt {
+      font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 3px;
+    }
+    .semana-dia dd {
+      margin: 0 0 14px; font-size: 0.95rem; font-weight: 300;
+      color: rgba(245,243,239,0.92); line-height: 1.45;
+    }
+    .semana-dia dd:last-child { margin-bottom: 0; }
+    .semana-incluye {
+      margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center;
+      gap: 10px 26px; font-size: 0.88rem; color: rgba(245,243,239,0.8); font-weight: 300;
+    }
+    .semana-incluye strong { color: var(--white); font-weight: 600; }
+    .semana-precio {
+      display: inline-flex; align-items: baseline; gap: 8px;
+      font-family: var(--font-serif); color: var(--accent-light);
+    }
+    .semana-precio b { font-size: 1.3rem; font-weight: 400; }
 
     /* ── TRANSICIÓN "SE HACE EL ECLIPSE" hacia /eclipse ───────── */
     .eclipse-wipe {
@@ -1211,6 +1320,7 @@
     gtag('config', 'G-XXXXXXXXXX');
   </script>
   -->
+  <link rel="stylesheet" href="legal/cookie-banner.css">
 </head>
 <body>
 
@@ -1234,7 +1344,7 @@
     <li><a href="#carta">Carta</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Especialidades</a></li>
-    <li><a href="eclipse/" class="nav-eclipse">Eclipse 12-ago</a></li>
+    <li><a href="eclipse/" class="nav-eclipse">El eclipse</a></li>
     <li><a href="#contacto" class="nav-cta">Reservar</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu">
@@ -1248,7 +1358,7 @@
   <a href="#carta" onclick="closeMobile()">Carta</a>
   <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
   <a href="#servicios" onclick="closeMobile()">Especialidades</a>
-  <a href="eclipse/">Eclipse 12-ago</a>
+  <a href="eclipse/">El eclipse</a>
   <a href="#contacto" onclick="closeMobile()">Reservar</a>
 </div>
 
@@ -1305,25 +1415,33 @@
   </div>
 </div>
 
-<!-- BANNER EVENTO: CENA BAJO EL ECLIPSE (12 ago) -->
+<!-- EL EVENTO DEL ECLIPSE (12 ago 2026) · vídeo cedido por el restaurante -->
 <section class="eclipse-band" id="eclipse" aria-labelledby="eclipse-band-title">
   <div class="eclipse-band-inner">
     <div class="eclipse-band-text reveal">
-      <p class="eyebrow">Evento único · 12 de agosto</p>
-      <h2 id="eclipse-band-title">Cena bajo el <em>eclipse</em></h2>
-      <p>Una cena en nuestra terraza la tarde del eclipse: menú exclusivo, DJ en directo, vino incluido y gafas para verlo. Vistas privilegiadas a los Montes de Vizcaya. Plazas limitadas.</p>
+      <p class="eyebrow">Ocurrió aquí · 12 de agosto de 2026</p>
+      <h2 id="eclipse-band-title">El evento del <em>eclipse</em></h2>
+      <p>Llenamos la terraza para ver el eclipse desde uno de los mejores palcos de Galdakao: menú especial, DJ en directo, vino incluido y gafas para mirar al cielo. Así se vivió aquella tarde, con los Montes de Vizcaya de fondo.</p>
       <div class="eclipse-band-actions">
         <a href="eclipse/" class="btn-eclipse">
-          Ver el evento
+          Ver cómo fue
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <a href="tel:+34695958986" class="btn-eclipse-ghost">
-          Reservar plaza
+          Reservar mesa
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </a>
       </div>
     </div>
-    <div class="eclipse-band-orb reveal reveal-delay-1" aria-hidden="true"></div>
+    <div class="eclipse-band-video reveal reveal-delay-1">
+      <video src="img/eclipse-cena-2026.mp4"
+             poster="img/eclipse-cena-poster.jpg"
+             controls playsinline preload="none"
+             aria-label="Vídeo de la cena bajo el eclipse en la terraza del Restaurante Galanga K11, el 12 de agosto de 2026">
+        Tu navegador no puede reproducir este vídeo.
+      </video>
+      <p class="eclipse-video-cap">La terraza, esa tarde</p>
+    </div>
   </div>
 </section>
 
@@ -1344,7 +1462,7 @@
       <div class="project-info">
         <p class="project-cat">Cocina diaria · Cambia cada semana</p>
         <h3 class="project-name">Menú del día</h3>
-        <p class="project-meta">Menú completo 20 € · Medio menú 15 €. Primero, segundo, postre y bebida.</p>
+        <p class="project-meta">Menú completo 20 € · Medio menú 15 €, IVA incluido. Primero, segundo, postre y bebida.</p>
       </div>
     </div>
     <div class="project-card">
@@ -1423,6 +1541,43 @@
   </div>
 </section>
 
+<!-- EL LOCAL · fotos reales cedidas por el restaurante (sep 2026) -->
+<section class="local-section" id="local" aria-labelledby="local-heading">
+  <div class="local-inner">
+    <div class="local-header">
+      <p class="section-label reveal">El local</p>
+      <h2 class="section-title reveal reveal-delay-1" id="local-heading">Un salón con<br><em>el monte delante</em></h2>
+      <p class="local-text reveal reveal-delay-2">Techos altos de madera, ventanales de suelo a techo y el campo de golf Uraburu al otro lado del cristal. Mesas para comer a diario y salones grandes para celebraciones, comidas de grupo y comidas de empresa.</p>
+    </div>
+    <div class="local-grid">
+      <figure class="local-item reveal">
+        <img src="img/salon-mesa-vistas-golf.jpg" alt="Mesa redonda preparada junto al ventanal, con el campo de golf y los Montes de Vizcaya al fondo" loading="lazy" width="1600" height="1209">
+        <figcaption>Mesa preparada frente al ventanal</figcaption>
+      </figure>
+      <figure class="local-item reveal reveal-delay-1">
+        <img src="img/ventanales-campo-golf.jpg" alt="Comedor con grandes ventanales abiertos al campo de golf Uraburu" loading="lazy" width="1600" height="1555">
+        <figcaption>Ventanales al campo de golf Uraburu</figcaption>
+      </figure>
+      <figure class="local-item reveal reveal-delay-2">
+        <img src="img/mesa-larga-celebracion.jpg" alt="Mesa larga vestida con mantel blanco, montada para una celebración" loading="lazy" width="1576" height="2048">
+        <figcaption>Mesa larga para celebraciones</figcaption>
+      </figure>
+      <figure class="local-item reveal">
+        <img src="img/barra-gastrobar.jpg" alt="Barra del gastrobar con taburetes y mesas altas" loading="lazy" width="1600" height="974">
+        <figcaption>La barra del gastrobar</figcaption>
+      </figure>
+      <figure class="local-item reveal reveal-delay-1">
+        <img src="img/salon-principal.jpg" alt="Salón principal con techos altos de madera y lámparas rojas" loading="lazy" width="1600" height="1067">
+        <figcaption>Salón principal</figcaption>
+      </figure>
+      <figure class="local-item reveal reveal-delay-2">
+        <img src="img/comedor-vistas-monte.jpg" alt="Comedor con mesas vestidas y vistas al monte a través de los ventanales" loading="lazy" width="1600" height="1067">
+        <figcaption>Comedor con vistas al monte</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES / ESPECIALIDADES -->
 <section class="services-section" id="servicios">
   <div style="max-width:1400px; margin:0 auto">
@@ -1477,8 +1632,48 @@
         Cocina honesta,<br><em>cada semana distinta</em>
       </h2>
       <p class="menu-dia-text reveal reveal-delay-2">
-        Tenemos menús semanales que vamos cambiando con producto fresco de temporada. Más una carta de raciones, bocatas, ensaladas, desayunos y postres caseros. Pregúntanos por el menú de hoy.
+        Cambiamos el menú cada semana con producto fresco de temporada. Este es el de esta semana, y además tienes carta de raciones, bocatas, ensaladas, desayunos y postres caseros.
       </p>
+    </div>
+
+    <div class="semana-card reveal reveal-delay-2">
+      <h3 class="semana-title">Menú de la semana</h3>
+      <p class="semana-sub">De martes a viernes</p>
+      <div class="semana-dias">
+        <div class="semana-dia">
+          <h4>Martes</h4>
+          <dl>
+            <dt>Primero</dt><dd>Ensalada campera</dd>
+            <dt>Segundo</dt><dd>Delicias de pollo en su salsa</dd>
+          </dl>
+        </div>
+        <div class="semana-dia">
+          <h4>Miércoles</h4>
+          <dl>
+            <dt>Primero</dt><dd>Garbanzos con chorizo</dd>
+            <dt>Segundo</dt><dd>Pimientos rellenos de carne</dd>
+          </dl>
+        </div>
+        <div class="semana-dia">
+          <h4>Jueves</h4>
+          <dl>
+            <dt>Primero</dt><dd>Pisto a la bilbaína</dd>
+            <dt>Segundo</dt><dd>Revuelto de ajetes con gambas</dd>
+          </dl>
+        </div>
+        <div class="semana-dia">
+          <h4>Viernes</h4>
+          <dl>
+            <dt>Primero</dt><dd>Ensalada alemana</dd>
+            <dt>Segundo</dt><dd>Bacalao con piperrada</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="semana-incluye">
+        <span><strong>Incluye</strong> postre, pan y vino cosechero o agua</span>
+        <span class="semana-precio">Menú completo <b>20 €</b></span>
+        <span class="semana-precio">Medio menú <b>15 €</b></span>
+      </div>
     </div>
 
     <div class="menu-dia-grid">
@@ -1498,7 +1693,7 @@
         </div>
         <div class="menu-dia-note">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          <span>El menú cambia cada semana. Llámanos o escríbenos por WhatsApp y te contamos qué hay hoy.</span>
+          <span>El menú cambia cada semana. Si quieres confirmar el plato de hoy, llámanos o escríbenos por WhatsApp. <strong>Precios con IVA incluido.</strong> Si tienes alguna alergia o intolerancia, dínoslo al reservar o al llegar y te informamos de los alérgenos de cada plato.</span>
         </div>
       </div>
 
@@ -1652,7 +1847,12 @@
 
 <!-- MAP -->
 <section style="background: var(--carbon); padding: 0;" aria-label="Mapa de ubicación">
-  <iframe src="https://maps.google.com/maps?q=Galanga+K11+Galdakao+Uraburu&t=&z=16&ie=UTF8&iwloc=B&output=embed" width="100%" height="420" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Restaurante Galanga K11 en Galdakao"></iframe>
+  <div data-consent="terceros" style="position:relative;min-height:420px"
+           data-fallback="El mapa lo sirve Google y usa cookies suyas. Se carga solo si las aceptas.">
+        <template data-consent-payload>
+          <iframe src="https://maps.google.com/maps?q=Galanga+K11+Galdakao+Uraburu&t=&z=16&ie=UTF8&iwloc=B&output=embed" width="100%" height="420" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Restaurante Galanga K11 en Galdakao"></iframe>
+        </template>
+      </div>
 </section>
 </main>
 
@@ -1714,6 +1914,7 @@
       <a href="politica-privacidad.html">Política de Privacidad</a>
       <a href="aviso-legal.html">Aviso Legal</a>
       <a href="cookies.html">Cookies</a>
+      <button type="button" class="footer-legal-btn" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
     </nav>
   </div>
 </footer>
@@ -1893,5 +2094,6 @@
     }, { passive: true });
   }
 </script>
+  <script defer src="legal/cookie-banner.js"></script>
 </body>
 </html>
