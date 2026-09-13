@@ -1212,7 +1212,10 @@
       color: var(--accent); margin-bottom: 30px;
     }
     .semana-dias {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      display: grid;
+      /* 5 dias: 5 columnas en ancho; por debajo, una banda por dia.
+         Con auto-fit quedaba un dia suelto y un hueco en pantallas medianas. */
+      grid-template-columns: repeat(5, 1fr);
       gap: 2px; background: rgba(123,158,107,0.14);
       border-top: 1px solid rgba(123,158,107,0.14);
       border-bottom: 1px solid rgba(123,158,107,0.14);
@@ -1222,16 +1225,36 @@
       font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase;
       color: var(--accent-light); font-weight: 600; margin-bottom: 16px;
     }
+    .semana-dia h4 span {
+      display: block; margin-top: 4px; font-size: 0.62rem; letter-spacing: 0.18em;
+      color: var(--text-muted); font-weight: 400;
+    }
     .semana-dia dl { margin: 0; }
+    .semana-dia dl > div + div { margin-top: 14px; }
     .semana-dia dt {
       font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--text-muted); margin-bottom: 3px;
     }
     .semana-dia dd {
-      margin: 0 0 14px; font-size: 0.95rem; font-weight: 300;
+      margin: 0; font-size: 0.95rem; font-weight: 300;
       color: rgba(245,243,239,0.92); line-height: 1.45;
     }
-    .semana-dia dd:last-child { margin-bottom: 0; }
+    @media (max-width: 1180px) {
+      .semana-dias { grid-template-columns: 1fr; }
+      .semana-dia {
+        display: grid; grid-template-columns: 150px 1fr; gap: 16px 24px;
+        align-items: start; padding: 20px;
+      }
+      .semana-dia h4 { margin-bottom: 0; padding-top: 2px; }
+      .semana-dia h4 span { display: inline; margin: 0 0 0 8px; }
+      .semana-dia dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+      .semana-dia dl > div + div { margin-top: 0; }
+    }
+    @media (max-width: 620px) {
+      .semana-dia { grid-template-columns: 1fr; gap: 12px; }
+      .semana-dia dl { grid-template-columns: 1fr; }
+      .semana-dia dl > div + div { margin-top: 12px; }
+    }
     .semana-incluye {
       margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center;
       gap: 10px 26px; font-size: 0.88rem; color: rgba(245,243,239,0.8); font-weight: 300;
@@ -1642,34 +1665,41 @@
 
     <div class="semana-card reveal reveal-delay-2">
       <h3 class="semana-title">Menú de la semana</h3>
-      <p class="semana-sub">De martes a viernes</p>
+      <p class="semana-sub">De lunes a viernes · del 14 al 18 de septiembre</p>
       <div class="semana-dias">
         <div class="semana-dia">
-          <h4>Martes</h4>
+          <h4>Lunes <span>14 sep</span></h4>
           <dl>
-            <dt>Primero</dt><dd>Ensalada campera</dd>
-            <dt>Segundo</dt><dd>Delicias de pollo en su salsa</dd>
+            <div><dt>Primero</dt><dd>Ensalada mixta</dd></div>
+            <div><dt>Segundo</dt><dd>Lomo con patatas y pimientos</dd></div>
           </dl>
         </div>
         <div class="semana-dia">
-          <h4>Miércoles</h4>
+          <h4>Martes <span>15 sep</span></h4>
           <dl>
-            <dt>Primero</dt><dd>Garbanzos con chorizo</dd>
-            <dt>Segundo</dt><dd>Pimientos rellenos de carne</dd>
+            <div><dt>Primero</dt><dd>Alubias blancas con almejas y calamares</dd></div>
+            <div><dt>Segundo</dt><dd>Albóndigas en salsa</dd></div>
           </dl>
         </div>
         <div class="semana-dia">
-          <h4>Jueves</h4>
+          <h4>Miércoles <span>16 sep</span></h4>
           <dl>
-            <dt>Primero</dt><dd>Pisto a la bilbaína</dd>
-            <dt>Segundo</dt><dd>Revuelto de ajetes con gambas</dd>
+            <div><dt>Primero</dt><dd>Arroz a la cubana</dd></div>
+            <div><dt>Segundo</dt><dd>Pechuga de pollo a la provenzal con ensalada</dd></div>
           </dl>
         </div>
         <div class="semana-dia">
-          <h4>Viernes</h4>
+          <h4>Jueves <span>17 sep</span></h4>
           <dl>
-            <dt>Primero</dt><dd>Ensalada alemana</dd>
-            <dt>Segundo</dt><dd>Bacalao con piperrada</dd>
+            <div><dt>Primero</dt><dd>Pasta al ajillo con jamón</dd></div>
+            <div><dt>Segundo</dt><dd>Pimientos de mariscos</dd></div>
+          </dl>
+        </div>
+        <div class="semana-dia">
+          <h4>Viernes <span>18 sep</span></h4>
+          <dl>
+            <div><dt>Primero</dt><dd>Ensalada del chef</dd></div>
+            <div><dt>Segundo</dt><dd>Huevos fritos con bacon</dd></div>
           </dl>
         </div>
       </div>
