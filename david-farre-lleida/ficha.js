@@ -11,12 +11,14 @@
   var recientes = [];
   P.ejes.forEach(function (e) { sel[e.id] = null; });
 
-  var NOMBRE_EJE = { color: 'Color', composicion: 'Piel', talla: 'Talla' };
-  var NOMBRE_EJE_MIN = { color: 'el color', composicion: 'la piel', talla: 'la talla' };
+  var NOMBRE_EJE = { color: 'Color', composicion: 'Piel', talla: 'Talla', ancho: 'Ancho' };
+  var NOMBRE_EJE_MIN = { color: 'el color', composicion: 'la piel', talla: 'la talla', ancho: 'el ancho' };
 
   function nombreDe(ejeId, valor) {
-    if (ejeId === 'talla') return (P.nombres[valor] || valor).toUpperCase();
-    return P.nombres[valor] || valor;
+    /* El nombre viene ya preparado desde la ficha (tallas en mayúscula, «100 cm»
+       en los cinturones); solo se pone en mayúsculas si no hay nombre. */
+    if (P.nombres[valor]) return P.nombres[valor];
+    return ejeId === 'talla' ? valor.toUpperCase() : valor;
   }
 
   /* ---------- combinaciones ---------- */
