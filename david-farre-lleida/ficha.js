@@ -54,7 +54,7 @@
     var f = {};
     for (var k in sel) { if (k !== ejeId && sel[k]) f[k] = sel[k]; }
     f[ejeId] = valor;
-    return combinacionesQue(f).some(function (c) { return c.stock; });
+    return combinacionesQue(f).some(function (c) { return c.stock || c.encargo; });
   }
 
   /* Al pulsar algo incompatible se reordena la elección alrededor de lo
@@ -215,6 +215,17 @@
 
     var descripcion = P.ejes.map(function (e) { return nombreDe(e.id, sel[e.id]); }).join(' · ');
 
+    if (!combo.stock && combo.encargo) {
+      // Talla que David fabrica a medida: se puede pedir, y se dice que es bajo encargo.
+      caja.className = 'estado estado-si';
+      caja.innerHTML = 'Bajo encargo: <b>' + descripcion + '</b>. Se hace en el taller y te decimos el plazo por WhatsApp.';
+      btnCesta.disabled = false; btnYa.disabled = false;
+      btnCesta.innerHTML = 'Añadir a la cesta (bajo encargo) &middot; ' + GGCesta.euros(combo.precio);
+      btnYa.textContent = 'Pedir ahora';
+      if (agotado) agotado.hidden = true;
+      return;
+    }
+
     if (!combo.stock) {
       caja.className = 'estado estado-no';
       caja.innerHTML = '<b>' + descripcion + '</b>: agotada ahora mismo. ' +
@@ -235,13 +246,13 @@
   /* ---------- cesta ---------- */
   function lineaActual() {
     var combo = combinacionElegida();
-    if (!combo || !combo.stock) return null;
+    if (!combo || !(combo.stock || combo.encargo)) return null;
     var opciones = {};
     P.ejes.forEach(function (e) { opciones[e.id] = nombreDe(e.id, sel[e.id]); });
     return {
       slug: P.slug, modelo: P.modelo, titulo: P.titulo,
       precio: combo.precio, imagen: P.imagenCesta, url: P.urlCesta,
-      sku: combo.sku || '', opciones: opciones
+      sku: combo.sku || '', opciones: opciones, encargo: !combo.stock && !!combo.encargo
     };
   }
 

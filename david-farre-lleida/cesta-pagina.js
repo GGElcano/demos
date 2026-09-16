@@ -8,9 +8,11 @@
     var op = l.opciones || {};
     var orden = ['color', 'composicion', 'talla'];
     var etq = { color: 'Color', composicion: 'Piel', talla: 'Talla' };
-    return orden.filter(function (k) { return op[k]; })
-                .map(function (k) { return etq[k] + ': ' + op[k]; })
-                .join('  ·  ');
+    var t = orden.filter(function (k) { return op[k]; })
+                 .map(function (k) { return etq[k] + ': ' + op[k]; })
+                 .join('  ·  ');
+    if (l.encargo) t += (t ? '  ·  ' : '') + 'Bajo encargo (se hace en el taller)';
+    return t;
   }
 
   function pintar() {
