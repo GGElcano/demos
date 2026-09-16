@@ -218,14 +218,14 @@
     if (!combo.stock) {
       caja.className = 'estado estado-no';
       caja.innerHTML = '<b>' + descripcion + '</b>: agotada ahora mismo. ' +
-                       'La hacemos bajo encargo en el taller — escríbenos y te decimos el plazo.';
+                       'La hacemos bajo encargo en el taller: escríbenos por WhatsApp y te decimos el plazo.';
       apagar('Agotada');
       if (agotado) agotado.hidden = false;
       return;
     }
 
     caja.className = 'estado estado-si';
-    caja.innerHTML = 'Disponible: <b>' + descripcion + '</b>. Sale del taller en 24-48 h.';
+    caja.innerHTML = 'Disponible: <b>' + descripcion + '</b>. Te avisamos por WhatsApp cuando salga del taller.';
     btnCesta.disabled = false; btnYa.disabled = false;
     btnCesta.innerHTML = 'Añadir a la cesta &middot; ' + GGCesta.euros(combo.precio);
     btnYa.textContent = 'Comprar ahora';

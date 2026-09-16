@@ -113,8 +113,8 @@
     lineas.forEach(function (l) {
       t += '\n· ' + l.titulo + ' (modelo ' + l.modelo + ')';
       var op = opcionesTexto(l);
-      if (op) t += ' — ' + op.replace(/\s+·\s+/g, ', ');
-      t += ' — ' + (l.cant || 1) + ' ud. — ' + GGCesta.euros(l.precio * (l.cant || 1));
+      if (op) t += ' (' + op.replace(/\s+·\s+/g, ', ') + ')';
+      t += ' · ' + (l.cant || 1) + ' ud. · ' + GGCesta.euros(l.precio * (l.cant || 1));
     });
     t += '\n\nTotal: ' + GGCesta.euros(GGCesta.total());
     return t;
