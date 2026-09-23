@@ -1,0 +1,161 @@
+/* Muestra del asistente para CPS Spain (G&G Elcano, 23-sep-2026).
+   Colores tomados de su propia web: amarillo #F3E663, negro #0C0D10, rojo #C0392B. */
+:root {
+  --negro: #0c0d10;
+  --negro-2: #1c1c1c;
+  --amarillo: #f3e663;
+  --rojo: #c0392b;
+  --gris: #6b7078;
+  --linea: #e4e6ea;
+  --fondo: #ffffff;
+  --fondo-2: #f7f8fa;
+  --texto: #15171b;
+  --radio: 12px;
+  --sombra: 0 10px 30px rgba(12, 13, 16, .12);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--fondo); color: var(--texto);
+  font: 16px/1.6 "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+
+/* Cinta de maqueta: siempre visible, dentro de la página */
+.cinta {
+  background: var(--amarillo); color: var(--negro); text-align: center;
+  padding: 9px 16px; font-size: 13.5px; font-weight: 600; line-height: 1.45;
+}
+.cinta span { font-weight: 400; }
+
+header.barra {
+  background: var(--negro); color: #fff; padding: 14px 16px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+header.barra .logo { height: 30px; width: auto; filter: brightness(0) invert(1); }
+header.barra nav { margin-left: auto; display: flex; gap: 18px; font-size: 14px; color: #cfd2d8; flex-wrap: wrap; }
+
+.envoltorio { max-width: 1120px; margin: 0 auto; padding: 28px 16px 80px; }
+.miga { font-size: 13px; color: var(--gris); margin-bottom: 18px; }
+
+.ficha { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 34px; align-items: start; }
+@media (max-width: 860px) { .ficha { grid-template-columns: 1fr; gap: 22px; } }
+
+.foto { background: var(--fondo-2); border: 1px solid var(--linea); border-radius: var(--radio); padding: 18px; }
+.marca { display: inline-block; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--gris); margin-bottom: 10px; }
+h1 { font-size: clamp(22px, 3.2vw, 30px); line-height: 1.25; margin: 0 0 12px; }
+.resumen { color: #3c4048; margin: 0 0 18px; }
+
+.precio { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.precio strong { font-size: 27px; }
+.precio .iva { font-size: 13px; color: var(--gris); }
+.dispo { font-size: 14px; margin: 10px 0 20px; }
+.dispo b { color: #1c7c4a; }
+.dispo.reserva b { color: #b26a00; }
+
+.packs { border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; margin-bottom: 22px; }
+.packs h2 { font-size: 15px; margin: 0; padding: 12px 16px; background: var(--fondo-2); border-bottom: 1px solid var(--linea); }
+.pack { padding: 13px 16px; border-bottom: 1px solid var(--linea); display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; }
+.pack:last-child { border-bottom: 0; }
+.pack .nom { font-weight: 600; }
+.pack .pre { font-weight: 700; white-space: nowrap; }
+.pack ul { grid-column: 1 / -1; margin: 4px 0 0; padding-left: 18px; color: var(--gris); font-size: 14px; }
+
+.claves { margin: 0 0 24px; padding-left: 20px; }
+.claves li { margin-bottom: 7px; }
+
+.botonera { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 26px; }
+.btn {
+  display: inline-block; padding: 12px 18px; border-radius: 10px; text-decoration: none;
+  font-weight: 600; font-size: 15px; border: 1px solid var(--negro); cursor: pointer;
+}
+.btn--negro { background: var(--negro); color: #fff; }
+.btn--claro { background: #fff; color: var(--negro); }
+
+.bloque-tecnico { margin-top: 40px; border-top: 1px solid var(--linea); padding-top: 26px; }
+.bloque-tecnico h2 { font-size: 19px; }
+.bloque-tecnico pre {
+  white-space: pre-wrap; font: 14px/1.6 inherit; color: #3c4048;
+  background: var(--fondo-2); border: 1px solid var(--linea); border-radius: var(--radio);
+  padding: 16px; max-height: 340px; overflow: auto;
+}
+
+/* Explicación de G&G (lo que se viene a ver) */
+.nota-gg {
+  margin: 34px 0 0; background: var(--negro); color: #fff; border-radius: var(--radio); padding: 22px 22px 18px;
+}
+.nota-gg h2 { margin: 0 0 8px; font-size: 18px; color: var(--amarillo); }
+.nota-gg p { margin: 0 0 10px; color: #dfe2e7; font-size: 15px; }
+.nota-gg ul { margin: 0; padding-left: 20px; color: #dfe2e7; font-size: 15px; }
+
+/* Portada */
+.hero { padding: 42px 0 10px; }
+.hero h1 { font-size: clamp(26px, 4vw, 38px); }
+.hero p.entrada { font-size: 18px; color: #3c4048; max-width: 70ch; }
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 26px; }
+.tarjeta { border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; text-decoration: none; display: block; }
+.tarjeta img { background: var(--fondo-2); }
+.tarjeta .cuerpo { padding: 16px; }
+.tarjeta .cuerpo h3 { margin: 0 0 6px; font-size: 17px; }
+.tarjeta .cuerpo p { margin: 0; color: var(--gris); font-size: 14px; }
+
+/* Asistente */
+.chat { position: fixed; right: 18px; bottom: 18px; z-index: 50; font-size: 15px; }
+.chat-lanzador {
+  background: var(--negro); color: var(--amarillo); border: 0; border-radius: 999px;
+  padding: 14px 20px; font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: var(--sombra);
+  display: flex; align-items: center; gap: 9px;
+}
+.chat-lanzador::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #35c26a; }
+.chat-panel {
+  position: absolute; right: 0; bottom: 64px; width: min(400px, calc(100vw - 36px));
+  background: #fff; border: 1px solid var(--linea); border-radius: 16px; box-shadow: var(--sombra);
+  display: none; overflow: hidden;
+}
+.chat--abierto .chat-panel { display: block; }
+.chat-cabecera { background: var(--negro); color: #fff; padding: 13px 16px; display: flex; align-items: center; gap: 10px; }
+.chat-cabecera .quien { font-weight: 700; }
+.chat-cabecera .que { font-size: 12.5px; color: #b9bdc5; }
+.chat-minimizar { margin-left: auto; background: transparent; border: 0; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; padding: 2px 6px; border-radius: 6px; }
+.chat-minimizar:hover { background: rgba(255,255,255,.14); }
+.chat-separador { text-align: center; font-size: 12px; color: var(--gris); margin: 6px 0 12px; position: relative; }
+.chat-separador::before, .chat-separador::after { content: ""; position: absolute; top: 50%; width: 26%; height: 1px; background: var(--linea); }
+.chat-separador::before { left: 0; }
+.chat-separador::after { right: 0; }
+.chat-pie-acciones { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 0 12px 12px; }
+.chat-borrar { background: transparent; border: 0; color: var(--gris); font: inherit; font-size: 11.5px; text-decoration: underline; cursor: pointer; padding: 0; white-space: nowrap; }
+.chat-borrar:hover { color: var(--rojo); }
+.chat-mensajes { padding: 14px; height: 330px; overflow-y: auto; background: var(--fondo-2); }
+.chat-msg { margin-bottom: 10px; padding: 10px 13px; border-radius: 14px; max-width: 88%; white-space: pre-wrap; }
+.chat-msg--bot { background: #fff; border: 1px solid var(--linea); border-bottom-left-radius: 5px; }
+.chat-msg--yo { background: var(--negro); color: #fff; margin-left: auto; border-bottom-right-radius: 5px; }
+.chat-msg--esperando { color: var(--gris); font-style: italic; }
+.chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--linea); }
+.chat-input { flex: 1; padding: 11px 13px; border: 1px solid var(--linea); border-radius: 10px; font: inherit; min-width: 0; }
+.chat-form button { background: var(--negro); color: #fff; border: 0; border-radius: 10px; padding: 0 16px; font-weight: 700; cursor: pointer; }
+.chat-pie { font-size: 11.5px; color: var(--gris); line-height: 1.4; }
+
+.barra-sesion {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding-right: 26%;
+  background: var(--fondo-2); border: 1px solid var(--linea); border-radius: var(--radio);
+  padding: 12px 16px; margin: 0 0 18px; font-size: 14.5px; color: #3c4048;
+}
+.barra-sesion .etiqueta { font-weight: 600; }
+/* A la IZQUIERDA a propósito: a la derecha queda debajo del panel del chat y no se puede pulsar. */
+.btn-sesion {
+  order: -1; background: var(--negro); color: #fff; border: 0; border-radius: 999px;
+  padding: 9px 16px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+.btn-sesion.sesion--dentro { background: #fff; color: var(--negro); border: 1px solid var(--negro); }
+.chat--con-cliente .chat-lanzador::before { background: var(--amarillo); }
+.chat--con-cliente .chat-cabecera { background: #16181d; }
+
+.sugerencias { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 24px; }
+.chat-sugerencia {
+  background: #fff; border: 1px dashed var(--negro); border-radius: 999px; padding: 9px 14px;
+  font: inherit; font-size: 14px; cursor: pointer;
+}
+.chat-sugerencia:hover { background: var(--amarillo); }
+
+footer.pie { border-top: 1px solid var(--linea); padding: 22px 16px 40px; color: var(--gris); font-size: 13.5px; text-align: center; }
