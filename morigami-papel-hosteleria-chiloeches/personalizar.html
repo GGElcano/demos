@@ -7,7 +7,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Personaliza · Morigami</title>
-<meta name="description" content="Servilletas y manteles personalizados con tu logo: elige formato, color y cantidad y pide presupuesto a Morigami.">
+<meta name="description" content="Monta tu servilleta personalizada sobre nuestro catálogo real: 22 referencias con sus colores, plegados y precios. Sube tu logo y colócalo donde quieras, girado y al tamaño que quieras.">
 <meta name="theme-color" content="#2E0612">
 <!-- Maqueta: mientras vive en la carpeta de demos va SIN indexar, para no competir en
      Google con la tienda real del cliente. Al mudarla a su dominio se quita esta línea. -->
@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Morigami">
 <meta property="og:title" content="Personaliza · Morigami">
-<meta property="og:description" content="Servilletas y manteles personalizados con tu logo: elige formato, color y cantidad y pide presupuesto a Morigami.">
+<meta property="og:description" content="Monta tu servilleta personalizada sobre nuestro catálogo real: 22 referencias con sus colores, plegados y precios. Sube tu logo y colócalo donde quieras, girado y al tamaño que quieras.">
 <meta property="og:url" content="https://ggelcano.github.io/demos/morigami-papel-hosteleria-chiloeches/personalizar.html">
 <meta property="og:image" content="https://ggelcano.github.io/demos/morigami-papel-hosteleria-chiloeches/assets/desayuno-hotel-servilleta-naranja-morigami.webp">
 <meta property="og:locale" content="es_ES">
@@ -38,17 +38,21 @@
 @media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
 </style>
 <style>
-.gg-pers{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:44px;align-items:start}
-@media(max-width:980px){.gg-pers{grid-template-columns:1fr;gap:28px}}
+.gg-pers{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:44px;align-items:stretch}
+@media(max-width:980px){
+  .gg-pers{display:flex;flex-direction:column;gap:18px}
+  .gg-pers>div:last-child{order:-1;position:sticky;top:64px;z-index:6;margin:0 -16px}
+  .gg-pers>div:last-child .pz-escena{box-shadow:0 10px 24px rgba(40,24,18,.14)}
+}
 .gg-pers h1{font-family:var(--f-titulo);font-weight:600;font-size:clamp(30px,4vw,48px);color:var(--tierra);line-height:1.05;margin-bottom:12px}
-.gg-pers .gg-intro{color:var(--gris);font-size:15px;line-height:1.7;max-width:56ch;margin-bottom:20px}
+.gg-pers .gg-intro{color:var(--gris);font-size:15px;line-height:1.7;max-width:58ch;margin-bottom:20px}
 
 /* ── Progreso de los pasos ─────────────────────────────────────────── */
 .pz-progreso{height:3px;background:var(--linea);margin:0 0 20px;overflow:hidden}
 .pz-progreso i{display:block;height:100%;width:0;background:var(--tierra);transition:width .5s cubic-bezier(.22,1,.36,1)}
 
 .pasos{display:grid;gap:12px}
-.paso{background:#fff;border:1px solid var(--linea);padding:18px 20px;transition:border-color .35s ease,box-shadow .35s ease,opacity .35s ease}
+.paso{background:#fff;border:1px solid var(--linea);padding:18px 20px;transition:border-color .35s ease,box-shadow .35s ease}
 .paso[data-hecho="si"]{border-color:rgba(122,31,51,.35)}
 .paso:focus-within{box-shadow:0 0 0 3px rgba(122,31,51,.08)}
 .paso__cab{display:flex;align-items:center;gap:12px;margin-bottom:12px}
@@ -60,38 +64,96 @@
 .opciones button{border:1px solid var(--linea);background:#fff;padding:9px 13px;font:inherit;font-size:13.5px;cursor:pointer;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .18s ease}
 .opciones button:hover{border-color:var(--tierra);transform:translateY(-1px)}
 .opciones button[aria-pressed="true"]{background:var(--tierra);border-color:var(--tierra);color:#fff}
+.opciones--mini button{padding:7px 11px;font-size:12.5px}
+
+/* ── Gamas y referencias del catálogo ──────────────────────────────── */
+.gamas{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;border-bottom:1px solid var(--linea)}
+.gamas button{border:0;background:none;font:inherit;font-size:13.5px;color:var(--gris);padding:8px 12px 10px;cursor:pointer;position:relative;transition:color .25s ease}
+.gamas button span{font-size:11.5px;opacity:.6;margin-left:5px}
+.gamas button::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:var(--tierra);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.gamas button:hover{color:var(--tierra)}
+.gamas button[aria-selected="true"]{color:var(--tierra);font-weight:600}
+.gamas button[aria-selected="true"]::after{transform:scaleX(1)}
+
+.refs{display:grid;gap:6px;max-height:330px;overflow-y:auto;padding-right:4px;scrollbar-width:thin}
+.ref{display:grid;grid-template-columns:46px 1fr auto;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid var(--linea);background:#fff;padding:8px 11px;font:inherit;cursor:pointer;transition:border-color .25s ease,background .25s ease,transform .18s ease}
+.ref:hover{border-color:var(--tierra);transform:translateX(2px)}
+.ref[aria-pressed="true"]{border-color:var(--tierra);background:rgba(122,31,51,.045);box-shadow:inset 3px 0 0 var(--tierra)}
+.ref img{width:46px;height:46px;object-fit:cover;background:#f6f2ec;border:1px solid var(--linea)}
+.ref__t{display:block;font-size:13.5px;color:var(--tinta);line-height:1.25}
+.ref__m{display:block;font-size:11.5px;color:var(--gris);margin-top:3px}
+.ref__p{text-align:right;font-size:13px;color:var(--tierra);white-space:nowrap}
+.ref__p small{display:block;font-size:10.5px;color:var(--gris);font-weight:400}
+.ref__et{display:inline-block;margin-left:6px;padding:1px 6px;border:1px solid currentColor;border-radius:999px;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--brasa);vertical-align:1px}
 
 .colores{display:flex;flex-wrap:wrap;gap:9px}
 .colores button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.14);cursor:pointer;position:relative;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease}
 .colores button:hover{transform:scale(1.12)}
 .colores button[aria-pressed="true"]{transform:scale(1.18);box-shadow:0 0 0 2px #fff,0 0 0 4px var(--tierra)}
 
+/* ── Mandos del logo ───────────────────────────────────────────────── */
+.mandos{display:grid;gap:10px;margin:14px 0 4px;padding:14px;background:var(--hueso);border:1px solid var(--linea)}
+.mando{display:grid;grid-template-columns:54px 1fr;align-items:center;gap:10px;font-size:12.5px;color:var(--gris)}
+.mando--tinta{align-items:start}
+.mando input[type=range]{width:100%;accent-color:var(--tierra)}
+.pz-medidas{margin:2px 0 0!important;font-size:12.5px;color:var(--tierra)!important}
+.pz-aviso{margin:0!important;font-size:12.5px;color:var(--brasa)!important}
+
 /* ── La escena ─────────────────────────────────────────────────────── */
 .pz-escena{position:sticky;top:96px;border:1px solid var(--linea);overflow:hidden;background:#efe9e2}
-@media(max-width:980px){.pz-escena{position:static}}
 .pz-escena__mesa{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.86) brightness(1.04);transform:scale(1.04)}
 .pz-escena__velo{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 20%,rgba(255,255,255,.34),rgba(28,22,18,.22) 78%)}
-.pz-lienzo{position:relative;aspect-ratio:4/3;display:grid;place-items:center;padding:9% 9% 11%;overflow:hidden}
+.pz-lienzo{position:relative;aspect-ratio:4/3;overflow:hidden}
+.pz-centro{position:absolute;inset:7%;display:grid;place-items:center}
 
-.serv{position:relative;width:62%;max-width:100%;max-height:100%;aspect-ratio:1/1;transform:rotate(-4deg);transition:width .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1),aspect-ratio .55s cubic-bezier(.22,1,.36,1),background-color .5s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);box-shadow:0 18px 38px rgba(40,24,18,.26),0 2px 0 rgba(255,255,255,.5) inset;background:#7A1F33}
+.serv{position:relative;width:62%;max-width:100%;max-height:100%;aspect-ratio:1/1;transform:rotate(-4deg);box-shadow:0 18px 38px rgba(40,24,18,.26),0 2px 0 rgba(255,255,255,.5) inset;background:#7A1F33;transition:width .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1),aspect-ratio .55s cubic-bezier(.22,1,.36,1),background-color .5s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1),filter .5s ease}
 .serv::after{content:"";position:absolute;inset:0;background-image:var(--papel);background-size:150px;mix-blend-mode:multiply;opacity:.22;pointer-events:none}
 .serv__pliegue{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .45s ease}
 .serv__pliegue i{position:absolute;background:rgba(0,0,0,.14);box-shadow:0 1px 0 rgba(255,255,255,.18)}
 .serv[data-pliegue="si"] .serv__pliegue{opacity:1}
+.serv__marca{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-titulo);font-size:clamp(15px,2.4vw,26px);letter-spacing:.14em;text-transform:uppercase;opacity:.75;transition:color .5s ease,opacity .4s ease;pointer-events:none}
 
-.serv__logo{position:absolute;inset:0;display:grid;place-items:center;padding:16%}
-.serv__logo img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;opacity:0;transform:scale(.94);transition:opacity .5s ease,transform .6s cubic-bezier(.22,1,.36,1);filter:contrast(1.08)}
-.serv__logo img.puesto{opacity:.9;transform:scale(1)}
-.serv__marca{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-titulo);font-size:clamp(15px,2.4vw,26px);letter-spacing:.14em;text-transform:uppercase;opacity:.75;transition:color .5s ease,opacity .4s ease}
+/* texturas y acabados del catálogo */
+.serv__textura{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:0;transition:opacity .5s ease;background-repeat:repeat}
+.serv__diseno{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:0;transition:opacity .5s ease;background-repeat:repeat}
+.serv__cenefa{position:absolute;inset:7%;border:2px solid rgba(255,255,255,.35);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);opacity:0;transition:opacity .5s ease;pointer-events:none}
+.serv[data-cenefa="si"] .serv__cenefa{opacity:1}
+.serv[data-reciclado="si"]{filter:saturate(.82) sepia(.1)}
 
 /* el barrido de tinta al imprimir */
 .serv__tinta{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 45%,rgba(255,255,255,0) 100%);transform:translateY(-120%);opacity:0}
 .serv.imprimiendo .serv__tinta{animation:tinta .85s cubic-bezier(.4,0,.2,1)}
 @keyframes tinta{0%{transform:translateY(-120%);opacity:.9}100%{transform:translateY(120%);opacity:0}}
 
+/* ── El logo que se mueve, gira y crece ────────────────────────────── */
+.serv__campo{position:absolute;inset:0;overflow:hidden}
+.serv__guia{position:absolute;inset:8%;border:1px dashed rgba(255,255,255,.5);opacity:0;transition:opacity .3s ease;pointer-events:none}
+.serv.editando .serv__guia{opacity:1}
+
+/* la tinta impresa: se queda dentro del papel */
+.logo-tinta{position:absolute;left:50%;top:50%;width:38%;transform:translate(-50%,-50%) rotate(0deg);pointer-events:none}
+.logo-tinta[hidden]{display:none}
+.logo-tinta img{display:block;width:100%;height:auto;mix-blend-mode:multiply;opacity:.92;filter:contrast(1.08);transition:opacity .4s ease,filter .4s ease}
+.logo-tinta[data-t="negra"] img{filter:brightness(0) saturate(0);opacity:.88}
+.logo-tinta[data-t="blanca"] img{filter:brightness(0) invert(1);mix-blend-mode:screen;opacity:.9}
+
+/* el marco y los tiradores: por encima, sin recortar */
+.logo-pieza{position:absolute;left:50%;top:50%;width:38%;height:14%;transform:translate(-50%,-50%) rotate(0deg);touch-action:none;cursor:grab;outline:0;z-index:3}
+.logo-pieza[hidden]{display:none}
+.logo-tinta:not(.quieta),.logo-pieza:not(.quieta){transition:left .45s cubic-bezier(.22,1,.36,1),top .45s cubic-bezier(.22,1,.36,1),width .45s cubic-bezier(.22,1,.36,1),height .45s cubic-bezier(.22,1,.36,1),transform .45s cubic-bezier(.22,1,.36,1)}
+.logo-pieza.arrastrando{cursor:grabbing}
+.logo-pieza::before{content:"";position:absolute;inset:-8px;border:1px solid rgba(255,255,255,.8);box-shadow:0 0 0 1px rgba(0,0,0,.16);opacity:0;transition:opacity .25s ease;pointer-events:none}
+.logo-pieza:hover::before,.logo-pieza.activa::before,.logo-pieza:focus-visible::before{opacity:1}
+.tirador{position:absolute;width:24px;height:24px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,.18);box-shadow:0 2px 7px rgba(40,24,18,.34);display:grid;place-items:center;color:var(--tierra);opacity:0;transition:opacity .25s ease,transform .18s ease;touch-action:none;cursor:grab}
+.tirador svg{width:13px;height:13px}
+.logo-pieza:hover .tirador,.logo-pieza.activa .tirador,.logo-pieza:focus-visible .tirador{opacity:1}
+.tirador:hover{transform:scale(1.12)}
+.tirador--giro{top:-12px;left:50%;margin-left:-12px}
+.tirador--tam{right:-12px;bottom:-12px;cursor:nwse-resize}
+@media(hover:none){.tirador{opacity:1}}
+
 .pz-pie{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 18px;background:#fff;border-top:1px solid var(--linea)}
-.pz-resumen{flex:1 1 260px;min-width:0}
-.pz-resumen{font-size:14px;color:var(--tierra)}
+.pz-resumen{flex:1 1 260px;min-width:0;font-size:14px;color:var(--tierra)}
 .pz-resumen b{font-weight:700}
 .pz-resumen small{display:block;color:var(--gris);font-size:12.5px;margin-top:2px}
 
@@ -100,184 +162,622 @@
 .pz-quitar{background:none;border:0;color:var(--gris);font:inherit;font-size:12.5px;text-decoration:underline;cursor:pointer;padding:0}
 
 @media(prefers-reduced-motion:reduce){
-  .serv,.serv__logo img,.pz-progreso i,.paso__num,.opciones button,.colores button{transition:none!important}
+  .serv,.logo-pieza,.logo-tinta,.logo-tinta img,.pz-progreso i,.paso__num,.opciones button,.colores button,.ref,.gamas button::after{transition:none!important}
   .serv.imprimiendo .serv__tinta{animation:none}
 }
 
-/* ── Texturas del papel por gama (catálogo real de Morigami) ───────── */
-.serv__textura{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:0;transition:opacity .5s ease;background-repeat:repeat}
-.serv__textura.viva{opacity:.5}
-.serv__cenefa{position:absolute;inset:7%;border:2px solid rgba(255,255,255,.35);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);opacity:0;transition:opacity .5s ease;pointer-events:none}
-.serv[data-cenefa="si"] .serv__cenefa{opacity:1}
-.serv[data-reciclado="si"]{filter:saturate(.82) sepia(.1)}
-.serv{transition:width .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1),aspect-ratio .55s cubic-bezier(.22,1,.36,1),background-color .5s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1),filter .5s ease}
-.pz-gama{display:inline-block;margin-left:8px;padding:2px 8px;border:1px solid currentColor;border-radius:999px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;opacity:.7}
+/* ── Móvil: la servilleta manda, los pasos debajo ──────────────────── */
+@media(max-width:980px){
+  .pz-escena{position:static}
+  .pz-lienzo{aspect-ratio:3/2}
+  .pz-centro{inset:5%}
+  .pz-pie{padding:9px 12px;gap:10px;flex-wrap:nowrap}
+  .pz-resumen{font-size:12.5px;flex:1 1 auto;line-height:1.35}
+  .pz-resumen small{display:none}
+  .pz-subir{padding:8px 11px;font-size:12.5px;white-space:nowrap}
+  .pz-subir svg{width:15px;height:15px}
+  .pz-quitar{display:none}
+  .gamas{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .gamas::-webkit-scrollbar{display:none}
+  .gamas button{white-space:nowrap}
+  .refs{max-height:none}
+}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function personalizador(){
   var REDUCIDO = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var estado = { formato:'20×20 cocktail', acabado:'Pro · punta punta', color:'Burdeos', hex:'#7A1F33', cantidad:'5.000 a 20.000 uds', logo:null };
-  var serv = document.querySelector('[data-servilleta]');
-  var marca = document.querySelector('[data-servilleta-texto]');
-  var img = document.querySelector('[data-logo-img]');
-  var pliegue = document.querySelector('[data-pliegue-lineas]');
-  var resumen = document.querySelector('[data-resumen]');
-  var barra = document.querySelector('[data-progreso]');
-  var enviar = document.querySelector('[data-enviar]');
-  var quitar = document.querySelector('[data-quitar]');
-  var subirTxt = document.querySelector('[data-subir-txt]');
-  var capaTex = document.querySelector('[data-textura]');
-  var notaAcab = document.querySelector('[data-acabado-nota]');
-  if (!serv) return;
-  var tocados = {};
 
-  // Cada formato trae su proporción, su tamaño en la escena y sus pliegues
+  /* ── Los colores de papel de nuestro catálogo ─────────────────────── */
+  var COLORES = {
+    'Amarillo':'#E9C227','Azul':'#1F4E9C','Azul cielo':'#7FB2DD','Azul turquesa':'#2BA3B5',
+    'Blanco':'#F4F4F2','Burdeos':'#7A1F33','Caramelo':'#C98B4B','Champagne':'#E6D4B8',
+    'Chocolate':'#5A3A2E','Ciruela':'#6B2B4F','Crema':'#EFE3C8','Decorado Burdeos':'#7A1F33',
+    'Frambuesa':'#C2306B','Fucsia':'#D0337F','Gris':'#9A9A95','Gris breton':'#8C9AA3',
+    'Gris grafito':'#595B5E','Kiwi':'#8DB63C','Naranja':'#E8762B','Natural':'#D9C7A8',
+    'Negro':'#1E1E1E','Oro':'#C9A227','Rojo':'#C8202F','Rosa':'#EFA9BE','Salmón':'#F09B7A',
+    'Verde':'#2F7A4E','Vichy rojo':'#C8202F'
+  };
 
-  // Las cuatro gamas de su catálogo, con su textura y lo que las distingue
-  var ACABADOS = {
-    'Play · liso con cenefa': {
-      cenefa:'si', reciclado:'no', textura:'liso',
-      nota:'Liso con una cenefa en relieve por dentro del borde. Es la gama de diario para eventos y celebraciones.'
+  /* ── El catálogo de servilletas, tal y como está en la tienda ─────── */
+  var REFS = [
+    /* Play */
+    {id:'p17', gama:'Play', n:'Servilleta 17×17 Miniservice Gofrado', w:17, h:17,
+     acabado:'Gofrado', plegado:'Dispensador', capas:'1 capa', uds:1800, udsMax:14000, precio:15,
+     img:'producto-servilleta-1717-miniservice-gofrado.webp',
+     colores:['Blanco','Natural'],
+     nota:'La pequeña de barra, para dispensador. Con el logo centrado se lee perfectamente aunque la servilleta sea pequeña.'},
+    {id:'p30g', gama:'Play', n:'Servilleta 30×30 Gofrado Blanco', w:30, h:30,
+     acabado:'Gofrado', plegado:'1/4', capas:'1 capa', uds:7200, precio:60,
+     img:'ref-30x30-gofrado-blanco.webp',
+     colores:['Blanco'],
+     nota:'La caja grande de diario: 7.200 servilletas. Blanco gofrado, el fondo que mejor aguanta un logo a una tinta.'},
+    {id:'p30c', gama:'Play', n:'Servilleta 30×30 Play Liso con Cenefa', w:30, h:30,
+     acabado:'Liso con cenefa', plegado:'1/4', capas:'2 capas', uds:3200, precio:44.5,
+     img:'ref-30x30-play-liso-cenefa.webp',
+     colores:['Blanco'],
+     nota:'Lisa, con la cenefa en relieve por dentro del borde. El logo va dentro de la cenefa, nunca encima.'},
+    /* Pro */
+    {id:'o20p', gama:'Pro', n:'Servilletas Cocktail 20×20 Punta Punta', w:20, h:20,
+     acabado:'Punta Punta', plegado:'1/4', capas:'2 capas', uds:2700, precio:33,
+     img:'servilleta-cocktail-20x20-burdeos.webp',
+     colores:['Amarillo','Azul','Blanco','Burdeos','Caramelo','Chocolate','Kiwi','Naranja','Natural','Negro','Rojo'],
+     nota:'La de copa y café. Once colores y la caja más barata del catálogo para empezar con logo.'},
+    {id:'o20c', gama:'Pro', n:'Servilleta 20×20 Liso con cenefa', w:20, h:20,
+     acabado:'Liso con cenefa', plegado:'1/4', capas:'2 capas', uds:4800, udsMax:5600, precio:69.56,
+     img:'producto-servilleta-2020-liso-con-cenefa.webp',
+     colores:['Azul','Blanco','Burdeos','Chocolate','Crema','Kiwi','Naranja','Natural','Negro','Rojo'],
+     nota:'Cocktail con cenefa en relieve. Diez colores y hasta 5.600 unidades por caja.'},
+    {id:'o33p', gama:'Pro', n:'Servilleta 33×33 Punta Punta', w:33, h:33,
+     acabado:'Punta Punta', plegado:'1/4', capas:'2 capas', uds:1800, precio:51,
+     img:'ref-33x33-punta-punta.webp',
+     colores:['Amarillo','Azul','Azul cielo','Blanco','Burdeos','Crema','Natural','Negro','Rojo','Rosa','Salmón'],
+     nota:'La medida de menú del día. Once colores y el relieve punta punta, que agarra bien la tinta.'},
+    {id:'o33c', gama:'Pro', n:'Servilleta 33×33 Liso con cenefa', w:33, h:33,
+     acabado:'Liso con cenefa', plegado:'1/4', capas:'2 capas', uds:2700, precio:80,
+     img:'ref-33x33-liso-cenefa.webp',
+     colores:['Amarillo','Blanco','Rojo'],
+     nota:'33×33 con cenefa, en tres colores. Caja de 2.700.'},
+    {id:'onav', gama:'Pro', n:'Servilletas con diseños de Navidad', w:33, h:33,
+     acabado:'Punta Punta', plegado:'1/4', capas:'2 capas', uds:1800, udsMax:2160, precio:60,
+     img:'ref-navidad-33x33.webp', diseno:'navidad', etiqueta:'11 diseños',
+     colores:['Blanco','Natural','Rojo'],
+     nota:'Once diseños de Navidad ya impresos, del abeto al belén. El logo se coloca sin pisar el dibujo, en una esquina o abajo.'},
+    {id:'o3040a', gama:'Pro', n:'Servilleta 30×40 Punta Punta Pliegue 1/4', w:30, h:40,
+     acabado:'Punta Punta', plegado:'1/4', capas:'2 capas', uds:1600, precio:57,
+     img:'ref-30x40-punta-punta-1-4.webp',
+     colores:['Burdeos','Chocolate','Crema','Kiwi','Naranja','Natural','Rojo'],
+     nota:'La rectangular de mantel individual. Abierta se ve entera, así que el logo luce mucho.'},
+    {id:'o3040b', gama:'Pro', n:'Servilleta 30×40 Punta Punta 1/6', w:30, h:40,
+     acabado:'Punta Punta', plegado:'1/6', capas:'2 capas', uds:2400, precio:53,
+     img:'servilleta-30x40-punta-punta-1-6-burdeos.webp',
+     colores:['Amarillo','Azul','Azul turquesa','Blanco','Burdeos','Chocolate','Fucsia','Gris','Naranja','Natural','Negro','Rojo'],
+     nota:'Doce colores. Con el pliegue 1/6 queda estrecha en la mesa y el logo se lee en la franja de arriba.'},
+    {id:'okan', gama:'Pro', n:'Servilleta Kanguro', w:30, h:40,
+     acabado:'Punta Punta', plegado:'1/8', capas:'2 capas', uds:1440, udsMax:1800, precio:57.85,
+     img:'servilleta-kanguro-blanca.webp', etiqueta:'Con bolsillo',
+     colores:['Blanco','Burdeos','Chocolate','Decorado Burdeos','Naranja','Natural','Negro'],
+     nota:'La del bolsillo para los cubiertos. El logo va en la cara que queda a la vista, centrado arriba.'},
+    {id:'o40p', gama:'Pro', n:'Servilleta 40×40 Punta Punta', w:40, h:40,
+     acabado:'Punta Punta', plegado:'1/4', capas:'2 capas', uds:1800, precio:47,
+     img:'servilleta-40x40-punta-punta-burdeos-prune.webp',
+     colores:['Amarillo','Azul','Azul cielo','Azul turquesa','Blanco','Burdeos','Chocolate','Ciruela','Crema','Frambuesa','Fucsia','Gris','Kiwi','Naranja','Natural','Negro','Oro','Rojo','Salmón','Verde'],
+     nota:'La más pedida con logo: veinte colores y la grande de mesa puesta.'},
+    {id:'o40p8', gama:'Pro', n:'Servilleta 40×40 Punta Punta Pliegue 1/8', w:40, h:40,
+     acabado:'Punta Punta', plegado:'1/8', capas:'2 capas', uds:1920, precio:75,
+     img:'servilleta-40x40-punta-punta-1-8-crema.webp',
+     colores:['Amarillo','Azul','Blanco','Chocolate','Crema','Fucsia','Gris','Kiwi','Naranja','Natural','Negro','Rojo','Verde'],
+     nota:'Pliegue 1/8: llega a la mesa en formato estrecho y vertical. El logo se pone arriba, en el cuarto que queda a la vista.'},
+    {id:'o40c', gama:'Pro', n:'Servilleta 40×40 Liso con cenefa', w:40, h:40,
+     acabado:'Liso con cenefa', plegado:'1/4', capas:'2 capas', uds:2400, precio:58,
+     img:'servilleta-40x40-lisa-cenefa-rojo.webp',
+     colores:['Amarillo','Azul','Azul cielo','Azul turquesa','Blanco','Burdeos','Chocolate','Ciruela','Crema','Frambuesa','Fucsia','Gris','Kiwi','Naranja','Natural','Negro','Oro','Rojo','Salmón','Verde'],
+     nota:'Veinte colores y la cenefa marcando el borde. Caja de 2.400.'},
+    {id:'odec', gama:'Pro', n:'Servilletas 40×40 Decoradas', w:40, h:40,
+     acabado:'Punta Punta', plegado:'1/4', capas:'2 capas', uds:1000, udsMax:1800, precio:60.97,
+     img:'servilleta-40x40-decorada-vichy.webp', diseno:'vichy', etiqueta:'9 diseños',
+     colores:['Vichy rojo'],
+     nota:'Nueve diseños ya impresos, del vichy a la orla y la cruz occitana. El logo se añade en una esquina, sobre la parte lisa.'},
+    /* Premium */
+    {id:'e20a', gama:'Premium', n:'Servilleta 20×20 Airlaid Cocktail', w:20, h:20,
+     acabado:'Airlaid', plegado:'1/4', capas:'1 capa', uds:2800, precio:91.14,
+     img:'servilleta-20x20-airlaid-cocktail.webp',
+     colores:['Blanco','Negro'],
+     nota:'Airlaid: parece tela. Es la de coctelería de hotel, en blanco o negro.'},
+    {id:'e3033w', gama:'Premium', n:'Servilleta 30×33 Premium Whisper Luxi', w:30, h:33,
+     acabado:'Airlaid', plegado:'', capas:'1 capa', uds:400, precio:34,
+     img:'ref-30x33-whisper-luxi.webp',
+     colores:['Blanco'],
+     nota:'Airlaid blanco de tacto textil. Caja pequeña, de 400, para probar sin comprometerse.'},
+    {id:'e3033m', gama:'Premium', n:'Servilleta 30×33 Plegado Médico', w:30, h:33,
+     acabado:'Airlaid', plegado:'Plegado médico', capas:'1 capa', uds:1500, precio:108,
+     img:'ref-30x33-plegado-medico.webp', etiqueta:'Clínicas',
+     colores:['Blanco'],
+     nota:'La de clínicas y centros dentales, con plegado médico. Un logo pequeño arriba es lo habitual aquí.'},
+    {id:'e40a', gama:'Premium', n:'Servilleta 40×40 Airlaid', w:40, h:40,
+     acabado:'Airlaid', plegado:'1/4', capas:'1 capa', uds:1000, precio:96,
+     img:'servilleta-40x40-airlaid-blanco.webp',
+     colores:['Amarillo','Azul','Blanco','Burdeos','Chocolate','Crema','Frambuesa','Gris breton','Gris grafito','Kiwi','Naranja','Natural','Negro','Rojo','Verde'],
+     nota:'La de mesa puesta: quince colores en airlaid, con cuerpo de tela.'},
+    {id:'e40a8', gama:'Premium', n:'Servilleta 40×40 Airlaid 1/8', w:40, h:40,
+     acabado:'Airlaid', plegado:'1/8', capas:'1 capa', uds:960, precio:90,
+     img:'ref-40x40-airlaid-1-8.webp',
+     colores:['Blanco','Champagne','Chocolate','Negro','Rojo'],
+     nota:'Airlaid con pliegue 1/8, para poner sobre el plato. Champagne y chocolate son las de banquete.'},
+    /* Ecogami */
+    {id:'g30', gama:'Ecogami', n:'Servilleta 30×30 Gofrado 1/6', w:30, h:30,
+     acabado:'Gofrado', plegado:'1/6', capas:'2 capas', uds:6750, precio:60, reciclado:true,
+     img:'producto-servilleta-3030-gofrado-1-6.webp',
+     colores:['Natural'],
+     nota:'Papel natural sin blanquear: los colores salen más apagados y eso también se ve aquí. Caja de 6.750.'},
+    {id:'g17', gama:'Ecogami', n:'Servilleta 17×20 Interplegada Gofrado', w:17, h:20,
+     acabado:'Gofrado', plegado:'Interplegada', capas:'2 capas', uds:4000, udsMax:4500, precio:25, reciclado:true,
+     img:'ref-17x20-interplegada.webp', etiqueta:'Dispensador',
+     colores:['Blanco','Natural'],
+     nota:'Interplegada, sale de una en una del dispensador. Reciclada o de pasta virgen.'}
+  ];
+
+  var GAMAS = ['Play','Pro','Premium','Ecogami'];
+  var TEXTO_GAMA = {
+    'Play':'Gama de diario, para el volumen del día a día.',
+    'Pro':'La más amplia en colores y plegados. Es la que más se personaliza.',
+    'Premium':'Airlaid, con apariencia y tacto de tela.',
+    'Ecogami':'Papel reciclado y natural, sin blanquear.'
+  };
+
+  var TEXTURAS = {
+    'Liso con cenefa': "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='none'/%3E%3C/svg%3E",
+    'Punta Punta':     "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='3' cy='3' r='1.3' fill='rgba(0,0,0,.26)'/%3E%3Ccircle cx='10' cy='10' r='1.3' fill='rgba(0,0,0,.26)'/%3E%3C/svg%3E",
+    'Airlaid':         "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Cpath d='M0 .5h6M0 3.5h6' stroke='rgba(0,0,0,.14)' stroke-width='.6'/%3E%3Cpath d='M.5 0v6M3.5 0v6' stroke='rgba(0,0,0,.09)' stroke-width='.6'/%3E%3C/svg%3E",
+    'Gofrado':         "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Cpath d='M0 11 11 0l11 11-11 11z' fill='none' stroke='rgba(0,0,0,.2)' stroke-width='1.1'/%3E%3C/svg%3E"
+  };
+  var TAM    = {'Liso con cenefa':'40px','Punta Punta':'14px','Airlaid':'6px','Gofrado':'22px'};
+  var FUERZA = {'Liso con cenefa':0,'Punta Punta':.5,'Airlaid':.42,'Gofrado':.5};
+
+  /* Los diseños ya impresos (Navidad y Decoradas): claros sobre papel oscuro
+     y oscuros sobre papel claro, como salen de máquina */
+  var DISENOS = {
+    vichy: {
+      claro:  {src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Crect width='14' height='14' fill='rgba(200,32,47,.62)'/%3E%3Crect x='14' y='14' width='14' height='14' fill='rgba(200,32,47,.62)'/%3E%3C/svg%3E", tam:'28px', op:.85, blend:'multiply'},
+      oscuro: {src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Crect width='14' height='14' fill='rgba(255,255,255,.96)'/%3E%3Crect x='14' y='14' width='14' height='14' fill='rgba(255,255,255,.96)'/%3E%3C/svg%3E", tam:'28px', op:.93, blend:'screen'}
     },
-    'Pro · punta punta': {
-      cenefa:'no', reciclado:'no', textura:'puntos',
-      nota:'Acabado punta punta: el relieve de puntos que se nota al tacto y aguanta bien el logo a una o dos tintas.'
-    },
-    'Premium · airlaid': {
-      cenefa:'no', reciclado:'no', textura:'tejido',
-      nota:'Airlaid, con apariencia y tacto de tela. Es la de mesa puesta, cuando la servilleta forma parte del cubierto.'
-    },
-    'Ecogami · gofrado natural': {
-      cenefa:'no', reciclado:'si', textura:'gofrado',
-      nota:'Gama natural reciclada con acabado gofrado. El papel sin blanquear apaga un poco los colores, y eso se ve aquí.'
+    navidad: {
+      claro:  {src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46'%3E%3Cg stroke='rgba(40,20,20,.45)' stroke-width='1.3' fill='none'%3E%3Cpath d='M11 4v14M4 11h14M6 6l10 10M16 6 6 16'/%3E%3Cpath d='M34 27v14M27 34h14M29 29l10 10M39 29 29 39'/%3E%3C/g%3E%3C/svg%3E", tam:'46px', op:.7, blend:'multiply'},
+      oscuro: {src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46'%3E%3Cg stroke='rgba(255,255,255,.8)' stroke-width='1.3' fill='none'%3E%3Cpath d='M11 4v14M4 11h14M6 6l10 10M16 6 6 16'/%3E%3Cpath d='M34 27v14M27 34h14M29 29l10 10M39 29 29 39'/%3E%3C/g%3E%3C/svg%3E", tam:'46px', op:.6, blend:'screen'}
     }
   };
-  var TEXTURAS = {
-    liso:    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='none'/%3E%3C/svg%3E",
-    puntos:  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='3' cy='3' r='1.3' fill='rgba(0,0,0,.26)'/%3E%3Ccircle cx='10' cy='10' r='1.3' fill='rgba(0,0,0,.26)'/%3E%3C/svg%3E",
-    tejido:  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Cpath d='M0 .5h6M0 3.5h6' stroke='rgba(0,0,0,.14)' stroke-width='.6'/%3E%3Cpath d='M.5 0v6M3.5 0v6' stroke='rgba(0,0,0,.09)' stroke-width='.6'/%3E%3C/svg%3E",
-    gofrado: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Cpath d='M0 11 11 0l11 11-11 11z' fill='none' stroke='rgba(0,0,0,.2)' stroke-width='1.1'/%3E%3C/svg%3E"
-  };
-  var TAM = { liso:'40px', puntos:'14px', tejido:'6px', gofrado:'22px' };
-  var FUERZA = { liso:0, puntos:.5, tejido:.42, gofrado:.5 };   // cada papel marca lo suyo
 
-  var FORMATOS = {
-    '17×17 miniservice':   { r:'1/1',  w:'46%', pliegues:0 },
-    '20×20 cocktail':      { r:'1/1',  w:'54%', pliegues:0 },
-    '30×30':               { r:'1/1',  w:'66%', pliegues:0 },
-    '33×33':               { r:'1/1',  w:'70%', pliegues:0 },
-    '40×40 pliegue 1/4':   { r:'1/1',  w:'76%', pliegues:4 },
-    '30×40 pliegue 1/6':   { r:'3/4',  w:'58%', h:'88%', pliegues:6 },
-    '40×40 pliegue 1/8':   { r:'1/2',  w:'44%', h:'92%', pliegues:8 },
-    'Mantel 30×40':        { r:'4/3',  w:'86%', pliegues:0 }
+  var PLIEGUES = {
+    '1/4':            {v:[50],          h:[50]},
+    '1/6':            {v:[33.3,66.6],   h:[50]},
+    '1/8':            {v:[25,50,75],    h:[50]},
+    'Plegado médico': {v:[],            h:[50]},
+    'Interplegada':   {v:[],            h:[33.3,66.6]},
+    'Dispensador':    {v:[],            h:[]},
+    '':               {v:[],            h:[]}
   };
 
-  function claro(hex){ var n=parseInt(hex.slice(1),16), r=n>>16, g=(n>>8)&255, b=n&255;
-    return (0.299*r + 0.587*g + 0.114*b) > 170; }
+  var serv     = document.querySelector('[data-servilleta]');
+  if (!serv) return;
+  var lienzo   = serv.parentElement;
+  var marca    = document.querySelector('[data-servilleta-texto]');
+  var pieza    = document.querySelector('[data-pieza]');
+  var tinta    = document.querySelector('[data-tinta]');
+  var img      = document.querySelector('[data-logo-img]');
+  var lineas   = document.querySelector('[data-pliegue-lineas]');
+  var capaTex  = document.querySelector('[data-textura]');
+  var capaDis  = document.querySelector('[data-diseno]');
+  var resumen  = document.querySelector('[data-resumen]');
+  var barra    = document.querySelector('[data-progreso]');
+  var contGam  = document.querySelector('[data-gamas]');
+  var contRef  = document.querySelector('[data-refs]');
+  var contCol  = document.querySelector('[data-colores]');
+  var contCaj  = document.querySelector('[data-cajas]');
+  var notaRef  = document.querySelector('[data-ref-nota]');
+  var notaCol  = document.querySelector('[data-color-nota]');
+  var notaCan  = document.querySelector('[data-cantidad-nota]');
+  var mandos   = document.querySelector('[data-mandos]');
+  var mTam     = document.querySelector('[data-m-tam]');
+  var mGiro    = document.querySelector('[data-m-giro]');
+  var medidas  = document.querySelector('[data-medidas]');
+  var aviso    = document.querySelector('[data-aviso]');
+  var enviar   = document.querySelector('[data-enviar]');
+  var quitar   = document.querySelector('[data-quitar]');
+  var subirTxt = document.querySelector('[data-subir-txt]');
+  var input    = document.querySelector('[data-logo]');
 
-  function dibujaPliegues(n){
-    pliegue.innerHTML = '';
-    serv.dataset.pliegue = n ? 'si' : 'no';
-    for (var i = 1; i < n; i++) {
-      var l = document.createElement('i');
-      var p = (i / n) * 100;
-      if (n <= 4) { l.style.cssText = 'left:' + p + '%;top:0;bottom:0;width:1px'; }
-      else { l.style.cssText = 'top:' + p + '%;left:0;right:0;height:1px'; }
-      pliegue.appendChild(l);
+  var estado = { ref:REFS[11], color:'Burdeos', cajas:2, logo:null, lx:50, ly:50, ls:38, lg:0, prop:1, tinta:'tal' };
+  var tintaTocada = false;
+  var gamaVista = 'Pro';
+  var tocados = {};
+
+  function num(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function eur(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' €'; }
+  function cm(n){ return n.toLocaleString('es-ES',{minimumFractionDigits:1,maximumFractionDigits:1}) + ' cm'; }
+  function claro(hex){ var n=parseInt(hex.slice(1),16);
+    return (0.299*(n>>16) + 0.587*((n>>8)&255) + 0.114*(n&255)) > 170; }
+
+  /* ── Paso 1: las gamas y sus referencias ──────────────────────────── */
+  function pintaGamas(){
+    contGam.innerHTML = '';
+    GAMAS.forEach(function(g){
+      var n = REFS.filter(function(r){ return r.gama === g; }).length;
+      var b = document.createElement('button');
+      b.type = 'button'; b.setAttribute('role','tab');
+      b.setAttribute('aria-selected', g === gamaVista ? 'true' : 'false');
+      b.innerHTML = g + '<span>' + n + '</span>';
+      b.addEventListener('click', function(){ gamaVista = g; pintaGamas(); pintaRefs(); });
+      contGam.appendChild(b);
+    });
+  }
+
+  function pintaRefs(){
+    contRef.innerHTML = '';
+    REFS.filter(function(r){ return r.gama === gamaVista; }).forEach(function(r){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'ref'; b.dataset.id = r.id;
+      b.setAttribute('aria-pressed', r.id === estado.ref.id ? 'true' : 'false');
+      var meta = r.w + '×' + r.h + ' cm · ' + (r.plegado ? 'pliegue ' + r.plegado : r.capas) + ' · ' +
+                 (r.colores.length > 1 ? r.colores.length + ' colores' : r.colores[0]);
+      b.innerHTML =
+        '<img src="assets/' + r.img + '" alt="" width="46" height="46" loading="lazy">' +
+        '<span><span class="ref__t">' + r.n + (r.etiqueta ? '<span class="ref__et">' + r.etiqueta + '</span>' : '') + '</span>' +
+        '<span class="ref__m">' + meta + '</span></span>' +
+        '<span class="ref__p">' + eur(r.precio) + '<small>caja de ' + num(r.uds) + (r.udsMax ? ' a ' + num(r.udsMax) : '') + '</small></span>';
+      b.addEventListener('click', function(){ elegirRef(r); });
+      contRef.appendChild(b);
+    });
+    notaRef.textContent = TEXTO_GAMA[gamaVista];
+  }
+
+  function elegirRef(r){
+    estado.ref = r;
+    if (r.colores.indexOf(estado.color) < 0) estado.color = r.colores[0];
+    tocados.ref = true;
+    var caja = document.querySelector('[data-paso="ref"]'); if (caja) caja.dataset.hecho = 'si';
+    pintaRefs(); pintaColores(); pintaCajas(); pintar(false);
+  }
+
+  /* ── Paso 2: solo los colores que existen en esa referencia ───────── */
+  function pintaColores(){
+    contCol.innerHTML = '';
+    estado.ref.colores.forEach(function(c){
+      var b = document.createElement('button');
+      b.type = 'button'; b.style.background = COLORES[c] || '#ccc';
+      b.setAttribute('aria-label', c); b.title = c;
+      b.setAttribute('aria-pressed', c === estado.color ? 'true' : 'false');
+      b.addEventListener('click', function(){
+        estado.color = c; tocados.color = true;
+        var caja = document.querySelector('[data-paso="color"]'); if (caja) caja.dataset.hecho = 'si';
+        pintaColores(); pintar(false);
+      });
+      contCol.appendChild(b);
+    });
+    var n = estado.ref.colores.length;
+    notaCol.textContent = n > 1
+      ? 'Esta referencia se fabrica en ' + n + ' colores: ' + estado.ref.colores.join(', ') + '. Te decimos antes de fabricar si la tinta de tu logo combina con el papel que eliges.'
+      : 'Esta referencia se fabrica solo en ' + estado.ref.colores[0] + '. Si quieres ese formato en otro color, te decimos cuál es la referencia equivalente.';
+  }
+
+  /* ── Paso 3: cajas, con el precio de catálogo ─────────────────────── */
+  function pintaCajas(){
+    contCaj.innerHTML = '';
+    [1,2,5,10,'más'].forEach(function(c){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = c === 'más' ? 'más de 10' : (c === 1 ? '1 caja' : c + ' cajas');
+      b.setAttribute('aria-pressed', c === estado.cajas ? 'true' : 'false');
+      b.addEventListener('click', function(){
+        estado.cajas = c; tocados.cajas = true;
+        var caja = document.querySelector('[data-paso="cantidad"]'); if (caja) caja.dataset.hecho = 'si';
+        pintaCajas(); pintar(false);
+      });
+      contCaj.appendChild(b);
+    });
+    var r = estado.ref;
+    if (estado.cajas === 'más') {
+      notaCan.textContent = 'A partir de diez cajas el precio lo ajustamos sobre el pedido. Dinos cuántas necesitas y te lo pasamos cerrado.';
+    } else {
+      var u = r.uds * estado.cajas;
+      notaCan.textContent = estado.cajas + (estado.cajas === 1 ? ' caja: ' : ' cajas: ') +
+        num(u) + (r.udsMax ? ' a ' + num(r.udsMax * estado.cajas) : '') + ' servilletas, ' +
+        eur(r.precio * estado.cajas) + ' a precio de catálogo, sin IVA y sin personalizar. ' +
+        'La impresión del logo y el cliché van en el presupuesto, y el cliché se cobra una vez: las repeticiones ya no lo llevan.';
     }
   }
 
+  /* ── La escena ────────────────────────────────────────────────────── */
+  function dibujaPliegues(p){
+    var t = PLIEGUES[p] || PLIEGUES[''];
+    lineas.innerHTML = '';
+    serv.dataset.pliegue = (t.v.length + t.h.length) ? 'si' : 'no';
+    t.v.forEach(function(x){
+      var i = document.createElement('i');
+      i.style.cssText = 'left:' + x + '%;top:0;bottom:0;width:1px'; lineas.appendChild(i);
+    });
+    t.h.forEach(function(y){
+      var i = document.createElement('i');
+      i.style.cssText = 'top:' + y + '%;left:0;right:0;height:1px'; lineas.appendChild(i);
+    });
+  }
+
+  function alturaEscena(r){
+    var cs = getComputedStyle(lienzo);
+    var util = lienzo.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    var anchoUtil = lienzo.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var alto = util * .94 * (r.h / 40);
+    var ancho = alto * (r.w / r.h);
+    if (ancho > anchoUtil * .94) alto = anchoUtil * .94 * (r.h / r.w);
+    return Math.round(alto);
+  }
+
+  var reajuste;
+  addEventListener('resize', function(){
+    clearTimeout(reajuste);
+    reajuste = setTimeout(function(){ pintar(false); }, 120);
+  });
+
   function pintar(cambioLogo){
-    var f = FORMATOS[estado.formato] || FORMATOS['20×20 cocktail'];
-    var partes = f.r.split('/');
-    var proporcion = parseFloat(partes[0]) / parseFloat(partes[1]);
-    serv.style.aspectRatio = f.r;
-    if (proporcion < 0.95) {            // más alta que ancha: la altura manda y no se sale del marco
-      serv.style.height = f.h || '94%';
-      serv.style.width = 'auto';
-    } else {
-      serv.style.height = 'auto';
-      serv.style.width = f.w;
-    }
-    serv.style.backgroundColor = estado.hex;
-    var a = ACABADOS[estado.acabado] || ACABADOS['Pro · punta punta'];
-    serv.dataset.cenefa = a.cenefa;
-    serv.dataset.reciclado = a.reciclado;
+    var r = estado.ref;
+    serv.style.aspectRatio = r.w + '/' + r.h;
+    serv.style.height = alturaEscena(r) + 'px';   // a escala: 40 cm llena la escena
+    serv.style.width = 'auto';
+    serv.style.backgroundColor = COLORES[estado.color] || '#7A1F33';
+    serv.dataset.cenefa = r.acabado === 'Liso con cenefa' ? 'si' : 'no';
+    serv.dataset.reciclado = r.reciclado ? 'si' : 'no';
     if (capaTex) {
-      capaTex.style.backgroundImage = 'url("' + TEXTURAS[a.textura] + '")';
-      capaTex.style.backgroundSize = TAM[a.textura];
-      capaTex.classList.toggle('viva', a.textura !== 'liso');
-      capaTex.style.opacity = FUERZA[a.textura] || 0;
+      capaTex.style.backgroundImage = 'url("' + TEXTURAS[r.acabado] + '")';
+      capaTex.style.backgroundSize = TAM[r.acabado];
+      capaTex.style.opacity = FUERZA[r.acabado] || 0;
     }
-    if (notaAcab) notaAcab.textContent = a.nota;
-    dibujaPliegues(f.pliegues);
-    var oscuro = !claro(estado.hex);
+    var papelClaro = claro(COLORES[estado.color] || '#7A1F33');
+    if (capaDis) {
+      var d = r.diseno ? DISENOS[r.diseno][papelClaro ? 'claro' : 'oscuro'] : null;
+      capaDis.style.backgroundImage = d ? 'url("' + d.src + '")' : 'none';
+      capaDis.style.backgroundSize = d ? d.tam : 'auto';
+      capaDis.style.opacity = d ? d.op : 0;
+      capaDis.style.mixBlendMode = d ? d.blend : 'multiply';
+    }
+    dibujaPliegues(r.plegado);
+    var oscuro = !papelClaro;
+    if (!tintaTocada) estado.tinta = oscuro ? 'blanca' : 'tal';   // sobre papel oscuro, tinta blanca
+    pintaTinta();
     marca.style.color = oscuro ? 'rgba(255,255,255,.92)' : 'rgba(31,31,29,.78)';
     marca.style.opacity = estado.logo ? 0 : .75;
-    img.classList.toggle('puesto', !!estado.logo);
     if (cambioLogo && estado.logo && !REDUCIDO) {
       serv.classList.remove('imprimiendo'); void serv.offsetWidth; serv.classList.add('imprimiendo');
     }
-    resumen.innerHTML = '<b>' + estado.formato + '</b> · ' + estado.acabado + ' · ' + estado.color + ' · ' + estado.cantidad +
-      '<small>' + (estado.logo ? 'Con tu logo puesto. ' : 'Sube tu logo y lo verás impreso. ') +
-      'El presupuesto lo preparamos sobre esto mismo.</small>';
-    var hechos = Object.keys(tocados).length + (estado.logo ? 1 : 0);
-    if (barra) barra.style.width = Math.min(100, (hechos / 5) * 100) + '%';
+    colocar();
+    refrescarResumen();
   }
 
-  function grupo(sel, clave, cb){
-    var cont = document.querySelector(sel); if (!cont) return;
-    Array.prototype.forEach.call(cont.querySelectorAll('button'), function(b){
-      b.addEventListener('click', function(){
-        Array.prototype.forEach.call(cont.querySelectorAll('button'), function(x){ x.setAttribute('aria-pressed','false'); });
-        b.setAttribute('aria-pressed','true');
-        estado[clave] = b.dataset.valor;
-        tocados[clave] = true;
-        var caja = b.closest('.paso'); if (caja) caja.dataset.hecho = 'si';
-        if (cb) cb(b);
-        pintar(false);
-      });
+  function colocar(){
+    if (!estado.logo) { pieza.hidden = true; tinta.hidden = true; if (mandos) mandos.hidden = true; return; }
+    pieza.hidden = false; tinta.hidden = false;
+    if (mandos) mandos.hidden = false;
+    var alto = estado.ls * estado.prop * (serv.offsetWidth / (serv.offsetHeight || 1));
+    [tinta, pieza].forEach(function(el){
+      el.style.left = estado.lx + '%';
+      el.style.top = estado.ly + '%';
+      el.style.width = estado.ls + '%';
+      el.style.transform = 'translate(-50%,-50%) rotate(' + estado.lg + 'deg)';
+    });
+    pieza.style.height = alto + '%';
+    tinta.dataset.t = estado.tinta;
+    if (mTam) mTam.value = estado.ls;
+    if (mGiro) mGiro.value = estado.lg;
+    refrescarMedidas();
+  }
+
+  function refrescarMedidas(){
+    if (!estado.logo || !medidas) return;
+    var r = estado.ref;
+    var ancho = estado.ls / 100 * r.w;
+    var alto = ancho * estado.prop;
+    medidas.innerHTML = 'Logo de <b>' + cm(ancho) + ' de ancho</b> por ' + cm(alto) +
+      ', girado ' + Math.round(estado.lg) + '°. Centro a ' + cm(estado.lx / 100 * r.w) +
+      ' del lado izquierdo y ' + cm(estado.ly / 100 * r.h) + ' del borde de arriba, sobre la servilleta abierta.';
+    var rp = tinta.getBoundingClientRect(), rs = serv.getBoundingClientRect(), m = .05;
+    var fuera = rp.left < rs.left + rs.width * m || rp.right > rs.right - rs.width * m ||
+                rp.top < rs.top + rs.height * m || rp.bottom > rs.bottom - rs.height * m;
+    if (aviso) {
+      aviso.hidden = !fuera;
+      aviso.textContent = fuera ? 'El logo llega muy al borde. En fabricación dejamos un margen, así que lo retocamos contigo en el artfinal.' : '';
+    }
+  }
+
+  function refrescarResumen(){
+    var r = estado.ref;
+    var precio = estado.cajas === 'más' ? 'a presupuestar' : eur(r.precio * estado.cajas);
+    resumen.innerHTML = '<b>' + r.n + '</b> · ' + estado.color + ' · ' +
+      (estado.cajas === 'más' ? 'más de 10 cajas' : estado.cajas + (estado.cajas === 1 ? ' caja' : ' cajas')) +
+      ' · ' + precio +
+      '<small>' + (estado.logo
+        ? 'Arrastra el logo, gíralo con el tirador de arriba y cámbiale el tamaño con el de la esquina.'
+        : 'Sube tu logo y lo verás impreso, para moverlo donde quieras.') + '</small>';
+    var hechos = Object.keys(tocados).length + (estado.logo ? 1 : 0);
+    if (barra) barra.style.width = Math.min(100, (hechos / 4) * 100) + '%';
+  }
+
+  /* ── Mover, girar y escalar el logo ───────────────────────────────── */
+  function local(px, py){                       // de pantalla a la servilleta sin rotar
+    var r = serv.getBoundingClientRect();
+    var dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2);
+    try {
+      var m = new DOMMatrix(getComputedStyle(serv).transform);
+      var det = m.a * m.d - m.b * m.c;
+      if (det) return { x:( m.d * dx - m.c * dy) / det, y:(-m.b * dx + m.a * dy) / det };
+    } catch (e) {}
+    return { x:dx, y:dy };
+  }
+  function pct(p){                              // ... y de ahí a % de la servilleta
+    return { x:50 + p.x / serv.offsetWidth * 100, y:50 + p.y / serv.offsetHeight * 100 };
+  }
+  function tope(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+  var gesto = null;
+  function empezar(e){
+    if (!estado.logo) return;
+    var t = e.target.closest('[data-tirador]');
+    var p = pct(local(e.clientX, e.clientY));
+    gesto = { tipo: t ? t.dataset.tirador : 'mover', id:e.pointerId,
+              dx:estado.lx - p.x, dy:estado.ly - p.y, s0:estado.ls, g0:estado.lg };
+    if (gesto.tipo !== 'mover') {
+      var q = local(e.clientX, e.clientY);
+      var cx = (estado.lx - 50) / 100 * serv.offsetWidth, cy = (estado.ly - 50) / 100 * serv.offsetHeight;
+      gesto.d0 = Math.max(6, Math.hypot(q.x - cx, q.y - cy));
+      gesto.a0 = Math.atan2(q.y - cy, q.x - cx) * 180 / Math.PI;
+    }
+    pieza.classList.add('quieta', 'activa', 'arrastrando'); tinta.classList.add('quieta');
+    serv.classList.add('editando');
+    (t || pieza).setPointerCapture(e.pointerId);
+    e.preventDefault();
+  }
+  function mover(e){
+    if (!gesto || e.pointerId !== gesto.id) return;
+    if (gesto.tipo === 'mover') {
+      var p = pct(local(e.clientX, e.clientY));
+      estado.lx = tope(p.x + gesto.dx, 2, 98);
+      estado.ly = tope(p.y + gesto.dy, 2, 98);
+    } else {
+      var q = local(e.clientX, e.clientY);
+      var cx = (estado.lx - 50) / 100 * serv.offsetWidth, cy = (estado.ly - 50) / 100 * serv.offsetHeight;
+      if (gesto.tipo === 'tam') {
+        estado.ls = tope(gesto.s0 * Math.hypot(q.x - cx, q.y - cy) / gesto.d0, 8, 92);
+      } else {
+        var a = Math.atan2(q.y - cy, q.x - cx) * 180 / Math.PI;
+        var g = gesto.g0 + (a - gesto.a0);
+        g = ((g + 180) % 360 + 360) % 360 - 180;
+        var cerca = Math.round(g / 15) * 15;
+        estado.lg = Math.abs(g - cerca) < 3.5 ? cerca : Math.round(g);
+      }
+    }
+    colocar();
+  }
+  function soltar(e){
+    if (!gesto) return;
+    gesto = null;
+    pieza.classList.remove('quieta', 'arrastrando'); tinta.classList.remove('quieta');
+    serv.classList.remove('editando');
+    refrescarMedidas();
+  }
+  pieza.addEventListener('pointerdown', empezar);
+  pieza.addEventListener('pointermove', mover);
+  pieza.addEventListener('pointerup', soltar);
+  pieza.addEventListener('pointercancel', soltar);
+  Array.prototype.forEach.call(pieza.querySelectorAll('[data-tirador]'), function(t){
+    t.addEventListener('pointerdown', empezar);
+    t.addEventListener('pointermove', mover);
+    t.addEventListener('pointerup', soltar);
+    t.addEventListener('pointercancel', soltar);
+  });
+
+  pieza.addEventListener('keydown', function(e){
+    if (!estado.logo) return;
+    var s = e.shiftKey ? 5 : 1, usada = true;
+    switch (e.key) {
+      case 'ArrowLeft':  estado.lx = tope(estado.lx - s, 2, 98); break;
+      case 'ArrowRight': estado.lx = tope(estado.lx + s, 2, 98); break;
+      case 'ArrowUp':    estado.ly = tope(estado.ly - s, 2, 98); break;
+      case 'ArrowDown':  estado.ly = tope(estado.ly + s, 2, 98); break;
+      case '+': case '=': estado.ls = tope(estado.ls + 2, 8, 92); break;
+      case '-': case '_': estado.ls = tope(estado.ls - 2, 8, 92); break;
+      case '[': estado.lg = Math.round(estado.lg) - 5; break;
+      case ']': estado.lg = Math.round(estado.lg) + 5; break;
+      case '0': estado.lx = 50; estado.ly = 50; estado.lg = 0; break;
+      default: usada = false;
+    }
+    if (usada) { e.preventDefault(); colocar(); }
+  });
+
+  if (mTam) mTam.addEventListener('input', function(){ estado.ls = +this.value; pieza.classList.add('quieta'); tinta.classList.add('quieta'); colocar(); });
+  if (mGiro) mGiro.addEventListener('input', function(){ estado.lg = +this.value; pieza.classList.add('quieta'); tinta.classList.add('quieta'); colocar(); });
+  [mTam, mGiro].forEach(function(m){ if (m) m.addEventListener('change', function(){ pieza.classList.remove('quieta'); tinta.classList.remove('quieta'); }); });
+
+  var POSES = {
+    centro:   {lx:50, ly:50, lg:0,   ls:38},
+    esquina:  {lx:27, ly:26, lg:0,   ls:24},
+    diagonal: {lx:50, ly:50, lg:-38, ls:52},
+    canto:    {lx:50, ly:82, lg:0,   ls:30}
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-poner]'), function(b){
+    b.addEventListener('click', function(){
+      var p = POSES[b.dataset.poner]; if (!p) return;
+      pieza.classList.remove('quieta'); tinta.classList.remove('quieta');
+      estado.lx = p.lx; estado.ly = p.ly; estado.lg = p.lg; estado.ls = p.ls;
+      colocar();
+    });
+  });
+
+  /* ── La tinta: tal cual, a una tinta oscura o a una blanca ────────── */
+  function pintaTinta(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-tinta-v]'), function(b){
+      b.setAttribute('aria-pressed', b.dataset.tintaV === estado.tinta ? 'true' : 'false');
     });
   }
-  grupo('[data-formato]','formato');
-  grupo('[data-acabado]','acabado');
-  grupo('[data-color]','color', function(b){ estado.hex = b.dataset.hex; });
-  grupo('[data-cantidad]','cantidad');
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tinta-v]'), function(b){
+    b.addEventListener('click', function(){
+      estado.tinta = b.dataset.tintaV; tintaTocada = true;
+      pintaTinta(); colocar();
+      if (!REDUCIDO) { serv.classList.remove('imprimiendo'); void serv.offsetWidth; serv.classList.add('imprimiendo'); }
+    });
+  });
 
-  var input = document.querySelector('[data-logo]');
+  /* ── Subir y quitar el logo ───────────────────────────────────────── */
   if (input) input.addEventListener('change', function(){
     var file = this.files && this.files[0]; if (!file) return;
     var lector = new FileReader();
-    lector.onload = function(e){
-      estado.logo = e.target.result;
+    lector.onload = function(ev){
+      estado.logo = ev.target.result;
+      img.onload = function(){
+        estado.prop = (img.naturalHeight && img.naturalWidth) ? img.naturalHeight / img.naturalWidth : 1;
+        refrescarMedidas();
+      };
       img.src = estado.logo;
+      estado.lx = 50; estado.ly = 50; estado.ls = 38; estado.lg = 0;
       if (quitar) quitar.hidden = false;
       if (subirTxt) subirTxt.textContent = 'Cambiar el logo';
-      var caja = document.querySelector('[data-paso-logo]'); if (caja) caja.dataset.hecho = 'si';
+      var caja = document.querySelector('[data-paso="logo"]'); if (caja) caja.dataset.hecho = 'si';
       pintar(true);
+      try { pieza.focus({preventScroll:true}); } catch (e) {}
     };
     lector.readAsDataURL(file);
   });
   if (quitar) quitar.addEventListener('click', function(){
-    estado.logo = null; img.removeAttribute('src'); this.hidden = true;
+    estado.logo = null; img.removeAttribute('src'); this.hidden = true; tintaTocada = false; estado.tinta = 'tal';
     if (input) input.value = '';
     if (subirTxt) subirTxt.textContent = 'Subir mi logo';
+    var caja = document.querySelector('[data-paso="logo"]'); if (caja) caja.dataset.hecho = 'no';
     pintar(false);
   });
 
+  /* ── La petición, con la medida lista para el artfinal ────────────── */
   if (enviar) enviar.addEventListener('click', function(){
+    var r = estado.ref;
+    var ancho = estado.ls / 100 * r.w;
     var cuerpo = 'Hola, quiero presupuesto de servilletas personalizadas.\n\n' +
-      'Formato: ' + estado.formato + '\nColor del papel: ' + estado.color + '\nCantidad: ' + estado.cantidad +
-      '\nLogo: ' + (estado.logo ? 'lo adjunto a este correo' : 'os lo paso en cuanto me digáis') +
-      '\n\nNombre del local:\nPersona de contacto:\nTeléfono:\n';
-    location.href = 'mailto:info@morigami.es?subject=' + encodeURIComponent('Presupuesto de servilletas personalizadas') +
+      'Referencia: ' + r.n + '\n' +
+      'Gama: ' + r.gama + ' · acabado ' + r.acabado + (r.plegado ? ' · plegado ' + r.plegado : '') + '\n' +
+      'Formato: ' + r.w + '×' + r.h + ' cm (' + r.capas + ')\n' +
+      'Color del papel: ' + estado.color + '\n' +
+      'Cantidad: ' + (estado.cajas === 'más' ? 'más de 10 cajas' : estado.cajas + (estado.cajas === 1 ? ' caja' : ' cajas') +
+        ' (' + num(r.uds * estado.cajas) + ' uds aprox.)') + '\n\n' +
+      'Mi logo:\n' +
+      '  Archivo: ' + (estado.logo ? 'lo adjunto a este correo' : 'os lo paso en cuanto me digáis') + '\n' +
+      '  Ancho: ' + cm(ancho) + ' (' + Math.round(estado.ls) + '% del ancho de la servilleta)\n' +
+      '  Alto: ' + cm(ancho * estado.prop) + '\n' +
+      '  Tinta: ' + ({tal:'los colores de mi logo', negra:'una tinta oscura', blanca:'una tinta blanca'})[estado.tinta] + '\n' +
+      '  Giro: ' + Math.round(estado.lg) + '°\n' +
+      '  Centro: a ' + cm(estado.lx / 100 * r.w) + ' del lado izquierdo y ' + cm(estado.ly / 100 * r.h) +
+        ' del borde de arriba, sobre la servilleta abierta\n\n' +
+      'Nombre del local:\nPersona de contacto:\nTeléfono:\n';
+    location.href = 'mailto:info@morigami.es?subject=' +
+      encodeURIComponent('Presupuesto: ' + r.n + ' en ' + estado.color) +
       '&body=' + encodeURIComponent(cuerpo);
   });
 
-  pintar(false);
+  pintaGamas(); pintaRefs(); pintaColores(); pintaCajas(); pintaTinta(); pintar(false);
 });
 </script>
-
 </head>
 <body>
 <a class="gg-saltar" href="#gg-contenido">Ir al contenido</a>
@@ -336,62 +836,53 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
     <p class="gg-migas"><a href="index.html">Inicio</a> / Personaliza</p>
     <div class="gg-pers">
   <div>
-    <h1>Tu logo en la mesa, paso a paso</h1>
-    <p class="gg-intro">Eliges formato y color, subes el logo y lo ves puesto al momento. Nos llega la petición con todo lo que hace falta para el artfinal, lo validas, lo fabricamos y guardamos el cliché para repetir cuando quieras.</p>
+    <h1>Tu logo en nuestras servilletas, paso a paso</h1>
+    <p class="gg-intro">Nuestro catálogo entero, con los colores y los plegados que de verdad fabricamos. Eliges la referencia, subes tu logo y lo colocas donde quieras: lo mueves, lo giras y lo haces más grande o más pequeño sobre la servilleta. Nos llega la petición con la medida exacta para el artfinal, lo validas, lo fabricamos y guardamos el cliché para repetir cuando quieras.</p>
     <div class="pz-progreso" aria-hidden="true"><i data-progreso></i></div>
-<div class="pasos">
-      <div class="paso">
-        <div class="paso__cab"><span class="paso__num">1</span><b>Formato</b></div>
-        <div class="opciones" data-formato>
-          <button type="button" aria-pressed="false" data-valor="17×17 miniservice">17×17 miniservice</button>
-          <button type="button" aria-pressed="true" data-valor="20×20 cocktail">20×20 cocktail</button>
-          <button type="button" aria-pressed="false" data-valor="30×30">30×30</button>
-          <button type="button" aria-pressed="false" data-valor="33×33">33×33</button>
-          <button type="button" aria-pressed="false" data-valor="40×40 pliegue 1/4">40×40 pliegue 1/4</button>
-          <button type="button" aria-pressed="false" data-valor="30×40 pliegue 1/6">30×40 pliegue 1/6</button>
-          <button type="button" aria-pressed="false" data-valor="40×40 pliegue 1/8">40×40 pliegue 1/8</button>
-          <button type="button" aria-pressed="false" data-valor="Mantel 30×40">Mantel 30×40</button>
-        </div>
+    <div class="pasos">
+
+      <div class="paso" data-paso="ref">
+        <div class="paso__cab"><span class="paso__num">1</span><b>Elige tu servilleta</b></div>
+        <div class="gamas" data-gamas role="tablist" aria-label="Gamas"></div>
+        <div class="refs" data-refs></div>
+        <p data-ref-nota></p>
       </div>
-            <div class="paso" data-paso-acabado>
-        <div class="paso__cab"><span class="paso__num">2</span><b>Calidad y acabado</b></div>
-        <div class="opciones" data-acabado>
-          <button type="button" aria-pressed="false" data-valor="Play · liso con cenefa">Play · liso con cenefa</button>
-          <button type="button" aria-pressed="true" data-valor="Pro · punta punta">Pro · punta punta</button>
-          <button type="button" aria-pressed="false" data-valor="Premium · airlaid">Premium · airlaid</button>
-          <button type="button" aria-pressed="false" data-valor="Ecogami · gofrado natural">Ecogami · gofrado natural</button>
-        </div>
-        <p data-acabado-nota></p>
+
+      <div class="paso" data-paso="color">
+        <div class="paso__cab"><span class="paso__num">2</span><b>Color del papel</b></div>
+        <div class="colores" data-colores></div>
+        <p data-color-nota></p>
       </div>
-<div class="paso">
-        <div class="paso__cab"><span class="paso__num">3</span><b>Color del papel y cantidad</b></div>
-        <div class="colores" data-color>
-          <button type="button" aria-pressed="true" data-valor="Burdeos" data-hex="#7A1F33" style="background:#7A1F33" aria-label="Burdeos"></button>
-          <button type="button" aria-pressed="false" data-valor="Rojo" data-hex="#C8202F" style="background:#C8202F" aria-label="Rojo"></button>
-          <button type="button" aria-pressed="false" data-valor="Frambuesa" data-hex="#C2306B" style="background:#C2306B" aria-label="Frambuesa"></button>
-          <button type="button" aria-pressed="false" data-valor="Naranja" data-hex="#E8762B" style="background:#E8762B" aria-label="Naranja"></button>
-          <button type="button" aria-pressed="false" data-valor="Amarillo" data-hex="#E9C227" style="background:#E9C227" aria-label="Amarillo"></button>
-          <button type="button" aria-pressed="false" data-valor="Kiwi" data-hex="#8DB63C" style="background:#8DB63C" aria-label="Kiwi"></button>
-          <button type="button" aria-pressed="false" data-valor="Verde" data-hex="#2F7A4E" style="background:#2F7A4E" aria-label="Verde"></button>
-          <button type="button" aria-pressed="false" data-valor="Azul turquesa" data-hex="#2BA3B5" style="background:#2BA3B5" aria-label="Azul turquesa"></button>
-          <button type="button" aria-pressed="false" data-valor="Azul" data-hex="#1F4E9C" style="background:#1F4E9C" aria-label="Azul"></button>
-          <button type="button" aria-pressed="false" data-valor="Chocolate" data-hex="#5A3A2E" style="background:#5A3A2E" aria-label="Chocolate"></button>
-          <button type="button" aria-pressed="false" data-valor="Negro" data-hex="#1E1E1E" style="background:#1E1E1E" aria-label="Negro"></button>
-          <button type="button" aria-pressed="false" data-valor="Crema" data-hex="#EFE3C8" style="background:#EFE3C8" aria-label="Crema"></button>
-          <button type="button" aria-pressed="false" data-valor="Blanco" data-hex="#F4F4F2" style="background:#F4F4F2" aria-label="Blanco"></button>
-        </div>
-        <div class="opciones" data-cantidad style="margin-top:12px">
-          <button type="button" aria-pressed="false" data-valor="hasta 5.000 uds">hasta 5.000 uds</button>
-          <button type="button" aria-pressed="true" data-valor="5.000 a 20.000 uds">5.000 a 20.000</button>
-          <button type="button" aria-pressed="false" data-valor="20.000 a 50.000 uds">20.000 a 50.000</button>
-          <button type="button" aria-pressed="false" data-valor="más de 50.000 uds">más de 50.000</button>
-        </div>
-        <p>Los colores del papel y las tintas que combinan bien están en nuestra tabla: un logo blanco sobre servilleta negra, por ejemplo, se pierde. Te lo decimos antes de fabricar.</p>
+
+      <div class="paso" data-paso="cantidad">
+        <div class="paso__cab"><span class="paso__num">3</span><b>Cuántas cajas</b></div>
+        <div class="opciones" data-cajas></div>
+        <p data-cantidad-nota></p>
       </div>
-      <div class="paso" data-paso-logo>
-        <div class="paso__cab"><span class="paso__num">4</span><b>Tu logo</b></div>
-        <p style="margin-top:0">Súbelo con el botón que hay bajo la servilleta y lo verás impreso al momento. PNG o SVG con fondo transparente, si lo tienes. Se queda en tu navegador: solo viaja cuando envías la petición.</p>
-        <p>Recibirás tu pedido unos 30 días después de validar el artfinal. Guardamos el diseño y el cliché para que repitas cuando quieras.</p>
+
+      <div class="paso" data-paso="logo">
+        <div class="paso__cab"><span class="paso__num">4</span><b>Tu logo, puesto a tu manera</b></div>
+        <p style="margin-top:0">Súbelo con el botón de debajo de la servilleta. Después arrástralo con el ratón o el dedo, gíralo con el tirador de arriba y cámbiale el tamaño con el de la esquina. Se queda en tu navegador: solo viaja cuando envías la petición.</p>
+        <div class="mandos" data-mandos hidden>
+          <div class="mando mando--tinta"><span>Tinta</span>
+            <div class="opciones opciones--mini" data-tinta-sel>
+              <button type="button" data-tinta-v="tal" aria-pressed="true">Mi logo tal cual</button>
+              <button type="button" data-tinta-v="negra" aria-pressed="false">A una tinta oscura</button>
+              <button type="button" data-tinta-v="blanca" aria-pressed="false">A una tinta blanca</button>
+            </div>
+          </div>
+          <label class="mando"><span>Tamaño</span><input type="range" min="8" max="92" step="1" value="38" data-m-tam aria-label="Tamaño del logo"></label>
+          <label class="mando"><span>Giro</span><input type="range" min="-180" max="180" step="1" value="0" data-m-giro aria-label="Giro del logo"></label>
+          <div class="opciones opciones--mini">
+            <button type="button" data-poner="centro">Centrado</button>
+            <button type="button" data-poner="esquina">A una esquina</button>
+            <button type="button" data-poner="diagonal">En diagonal</button>
+            <button type="button" data-poner="canto">De canto</button>
+          </div>
+          <p class="pz-medidas" data-medidas></p>
+          <p class="pz-aviso" data-aviso hidden></p>
+        </div>
+        <p>Recibes el pedido unos 30 días después de validar el artfinal. Guardamos el diseño y el cliché para que repitas cuando quieras.</p>
       </div>
     </div>
     <button type="button" class="btn btn-primary" data-enviar style="margin-top:16px">Pedir presupuesto</button>
@@ -402,13 +893,27 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
       <div class="pz-lienzo">
         <div class="pz-escena__mesa" style="background-image:url(assets/desayuno-hotel-servilleta-naranja-morigami.webp)" aria-hidden="true"></div>
         <div class="pz-escena__velo" aria-hidden="true"></div>
-        <div class="serv" data-servilleta data-pliegue="no" style="--papel:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E&quot;)">
+        <div class="pz-centro">
+        <div class="serv" data-servilleta style="--papel:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E&quot;)">
           <div class="serv__textura" data-textura aria-hidden="true"></div>
+          <div class="serv__diseno" data-diseno aria-hidden="true"></div>
           <div class="serv__cenefa" aria-hidden="true"></div>
           <div class="serv__pliegue" data-pliegue-lineas aria-hidden="true"></div>
           <div class="serv__tinta" aria-hidden="true"></div>
           <div class="serv__marca" data-servilleta-texto>Tu logo</div>
-          <div class="serv__logo"><img alt="" data-logo-img></div>
+          <div class="serv__campo" data-campo>
+            <div class="serv__guia" aria-hidden="true"></div>
+            <div class="logo-tinta" data-tinta hidden><img alt="" data-logo-img></div>
+          </div>
+          <div class="logo-pieza" data-pieza tabindex="0" role="application" aria-label="Tu logo. Arrástralo para moverlo. Con el teclado: flechas para mover, más y menos para el tamaño, corchetes para girar." hidden>
+            <span class="tirador tirador--giro" data-tirador="giro" title="Girar el logo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.3-6.96"/><path d="M21 3v5h-5"/></svg>
+            </span>
+            <span class="tirador tirador--tam" data-tirador="tam" title="Cambiar el tamaño" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-8 8"/><path d="M3 21l8-8"/></svg>
+            </span>
+          </div>
+        </div>
         </div>
       </div>
       <div class="pz-pie">
