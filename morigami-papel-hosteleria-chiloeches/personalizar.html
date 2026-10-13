@@ -103,11 +103,20 @@
   .serv,.serv__logo img,.pz-progreso i,.paso__num,.opciones button,.colores button{transition:none!important}
   .serv.imprimiendo .serv__tinta{animation:none}
 }
+
+/* ── Texturas del papel por gama (catálogo real de Morigami) ───────── */
+.serv__textura{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:0;transition:opacity .5s ease;background-repeat:repeat}
+.serv__textura.viva{opacity:.5}
+.serv__cenefa{position:absolute;inset:7%;border:2px solid rgba(255,255,255,.35);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);opacity:0;transition:opacity .5s ease;pointer-events:none}
+.serv[data-cenefa="si"] .serv__cenefa{opacity:1}
+.serv[data-reciclado="si"]{filter:saturate(.82) sepia(.1)}
+.serv{transition:width .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1),aspect-ratio .55s cubic-bezier(.22,1,.36,1),background-color .5s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1),filter .5s ease}
+.pz-gama{display:inline-block;margin-left:8px;padding:2px 8px;border:1px solid currentColor;border-radius:999px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;opacity:.7}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function personalizador(){
   var REDUCIDO = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var estado = { formato:'20×20 cocktail', color:'Burdeos', hex:'#7A1F33', cantidad:'5.000 a 20.000 uds', logo:null };
+  var estado = { formato:'20×20 cocktail', acabado:'Pro · punta punta', color:'Burdeos', hex:'#7A1F33', cantidad:'5.000 a 20.000 uds', logo:null };
   var serv = document.querySelector('[data-servilleta]');
   var marca = document.querySelector('[data-servilleta-texto]');
   var img = document.querySelector('[data-logo-img]');
@@ -117,10 +126,41 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
   var enviar = document.querySelector('[data-enviar]');
   var quitar = document.querySelector('[data-quitar]');
   var subirTxt = document.querySelector('[data-subir-txt]');
+  var capaTex = document.querySelector('[data-textura]');
+  var notaAcab = document.querySelector('[data-acabado-nota]');
   if (!serv) return;
   var tocados = {};
 
   // Cada formato trae su proporción, su tamaño en la escena y sus pliegues
+
+  // Las cuatro gamas de su catálogo, con su textura y lo que las distingue
+  var ACABADOS = {
+    'Play · liso con cenefa': {
+      cenefa:'si', reciclado:'no', textura:'liso',
+      nota:'Liso con una cenefa en relieve por dentro del borde. Es la gama de diario para eventos y celebraciones.'
+    },
+    'Pro · punta punta': {
+      cenefa:'no', reciclado:'no', textura:'puntos',
+      nota:'Acabado punta punta: el relieve de puntos que se nota al tacto y aguanta bien el logo a una o dos tintas.'
+    },
+    'Premium · airlaid': {
+      cenefa:'no', reciclado:'no', textura:'tejido',
+      nota:'Airlaid, con apariencia y tacto de tela. Es la de mesa puesta, cuando la servilleta forma parte del cubierto.'
+    },
+    'Ecogami · gofrado natural': {
+      cenefa:'no', reciclado:'si', textura:'gofrado',
+      nota:'Gama natural reciclada con acabado gofrado. El papel sin blanquear apaga un poco los colores, y eso se ve aquí.'
+    }
+  };
+  var TEXTURAS = {
+    liso:    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='none'/%3E%3C/svg%3E",
+    puntos:  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='3' cy='3' r='1.3' fill='rgba(0,0,0,.26)'/%3E%3Ccircle cx='10' cy='10' r='1.3' fill='rgba(0,0,0,.26)'/%3E%3C/svg%3E",
+    tejido:  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Cpath d='M0 .5h6M0 3.5h6' stroke='rgba(0,0,0,.14)' stroke-width='.6'/%3E%3Cpath d='M.5 0v6M3.5 0v6' stroke='rgba(0,0,0,.09)' stroke-width='.6'/%3E%3C/svg%3E",
+    gofrado: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22'%3E%3Cpath d='M0 11 11 0l11 11-11 11z' fill='none' stroke='rgba(0,0,0,.2)' stroke-width='1.1'/%3E%3C/svg%3E"
+  };
+  var TAM = { liso:'40px', puntos:'14px', tejido:'6px', gofrado:'22px' };
+  var FUERZA = { liso:0, puntos:.5, tejido:.42, gofrado:.5 };   // cada papel marca lo suyo
+
   var FORMATOS = {
     '17×17 miniservice':   { r:'1/1',  w:'46%', pliegues:0 },
     '20×20 cocktail':      { r:'1/1',  w:'54%', pliegues:0 },
@@ -160,6 +200,16 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
       serv.style.width = f.w;
     }
     serv.style.backgroundColor = estado.hex;
+    var a = ACABADOS[estado.acabado] || ACABADOS['Pro · punta punta'];
+    serv.dataset.cenefa = a.cenefa;
+    serv.dataset.reciclado = a.reciclado;
+    if (capaTex) {
+      capaTex.style.backgroundImage = 'url("' + TEXTURAS[a.textura] + '")';
+      capaTex.style.backgroundSize = TAM[a.textura];
+      capaTex.classList.toggle('viva', a.textura !== 'liso');
+      capaTex.style.opacity = FUERZA[a.textura] || 0;
+    }
+    if (notaAcab) notaAcab.textContent = a.nota;
     dibujaPliegues(f.pliegues);
     var oscuro = !claro(estado.hex);
     marca.style.color = oscuro ? 'rgba(255,255,255,.92)' : 'rgba(31,31,29,.78)';
@@ -168,11 +218,11 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
     if (cambioLogo && estado.logo && !REDUCIDO) {
       serv.classList.remove('imprimiendo'); void serv.offsetWidth; serv.classList.add('imprimiendo');
     }
-    resumen.innerHTML = '<b>' + estado.formato + '</b> · ' + estado.color + ' · ' + estado.cantidad +
+    resumen.innerHTML = '<b>' + estado.formato + '</b> · ' + estado.acabado + ' · ' + estado.color + ' · ' + estado.cantidad +
       '<small>' + (estado.logo ? 'Con tu logo puesto. ' : 'Sube tu logo y lo verás impreso. ') +
       'El presupuesto lo preparamos sobre esto mismo.</small>';
     var hechos = Object.keys(tocados).length + (estado.logo ? 1 : 0);
-    if (barra) barra.style.width = Math.min(100, (hechos / 4) * 100) + '%';
+    if (barra) barra.style.width = Math.min(100, (hechos / 5) * 100) + '%';
   }
 
   function grupo(sel, clave, cb){
@@ -190,6 +240,7 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
     });
   }
   grupo('[data-formato]','formato');
+  grupo('[data-acabado]','acabado');
   grupo('[data-color]','color', function(b){ estado.hex = b.dataset.hex; });
   grupo('[data-cantidad]','cantidad');
 
@@ -285,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
     <p class="gg-migas"><a href="index.html">Inicio</a> / Personaliza</p>
     <div class="gg-pers">
   <div>
-    <h1>Tu logo en la mesa, en tres pasos</h1>
+    <h1>Tu logo en la mesa, paso a paso</h1>
     <p class="gg-intro">Eliges formato y color, subes el logo y lo ves puesto al momento. Nos llega la petición con todo lo que hace falta para el artfinal, lo validas, lo fabricamos y guardamos el cliché para repetir cuando quieras.</p>
     <div class="pz-progreso" aria-hidden="true"><i data-progreso></i></div>
 <div class="pasos">
@@ -302,8 +353,18 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
           <button type="button" aria-pressed="false" data-valor="Mantel 30×40">Mantel 30×40</button>
         </div>
       </div>
-      <div class="paso">
-        <div class="paso__cab"><span class="paso__num">2</span><b>Color del papel y cantidad</b></div>
+            <div class="paso" data-paso-acabado>
+        <div class="paso__cab"><span class="paso__num">2</span><b>Calidad y acabado</b></div>
+        <div class="opciones" data-acabado>
+          <button type="button" aria-pressed="false" data-valor="Play · liso con cenefa">Play · liso con cenefa</button>
+          <button type="button" aria-pressed="true" data-valor="Pro · punta punta">Pro · punta punta</button>
+          <button type="button" aria-pressed="false" data-valor="Premium · airlaid">Premium · airlaid</button>
+          <button type="button" aria-pressed="false" data-valor="Ecogami · gofrado natural">Ecogami · gofrado natural</button>
+        </div>
+        <p data-acabado-nota></p>
+      </div>
+<div class="paso">
+        <div class="paso__cab"><span class="paso__num">3</span><b>Color del papel y cantidad</b></div>
         <div class="colores" data-color>
           <button type="button" aria-pressed="true" data-valor="Burdeos" data-hex="#7A1F33" style="background:#7A1F33" aria-label="Burdeos"></button>
           <button type="button" aria-pressed="false" data-valor="Rojo" data-hex="#C8202F" style="background:#C8202F" aria-label="Rojo"></button>
@@ -328,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
         <p>Los colores del papel y las tintas que combinan bien están en nuestra tabla: un logo blanco sobre servilleta negra, por ejemplo, se pierde. Te lo decimos antes de fabricar.</p>
       </div>
       <div class="paso" data-paso-logo>
-        <div class="paso__cab"><span class="paso__num">3</span><b>Tu logo</b></div>
+        <div class="paso__cab"><span class="paso__num">4</span><b>Tu logo</b></div>
         <p style="margin-top:0">Súbelo con el botón que hay bajo la servilleta y lo verás impreso al momento. PNG o SVG con fondo transparente, si lo tienes. Se queda en tu navegador: solo viaja cuando envías la petición.</p>
         <p>Recibirás tu pedido unos 30 días después de validar el artfinal. Guardamos el diseño y el cliché para que repitas cuando quieras.</p>
       </div>
@@ -342,6 +403,8 @@ document.addEventListener('DOMContentLoaded', function personalizador(){
         <div class="pz-escena__mesa" style="background-image:url(assets/desayuno-hotel-servilleta-naranja-morigami.webp)" aria-hidden="true"></div>
         <div class="pz-escena__velo" aria-hidden="true"></div>
         <div class="serv" data-servilleta data-pliegue="no" style="--papel:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E&quot;)">
+          <div class="serv__textura" data-textura aria-hidden="true"></div>
+          <div class="serv__cenefa" aria-hidden="true"></div>
           <div class="serv__pliegue" data-pliegue-lineas aria-hidden="true"></div>
           <div class="serv__tinta" aria-hidden="true"></div>
           <div class="serv__marca" data-servilleta-texto>Tu logo</div>
