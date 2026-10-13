@@ -151,3 +151,49 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel.classList.contains('abierto')) cerrar(); });
   }
 })();
+
+/* ── Ventana de salida con descuento (13-oct-2026) ─────────────────────────────
+   Salta cuando el visitante hace amago de cerrar (el ratón sale por arriba) o,
+   en móvil, tras un rato leyendo sin comprar. Se enseña UNA vez por visitante.
+   En la demostración no manda nada a ningún sitio: solo da las gracias. */
+(function () {
+  var caja = document.querySelector('[data-salida]');
+  if (!caja) return;
+  var CLAVE = 'gg-salida-vista';
+  var mostrada = false;
+  try { if (sessionStorage.getItem(CLAVE)) mostrada = true; } catch (e) { /* incógnito */ }
+
+  function abrir() {
+    if (mostrada) return;
+    mostrada = true;
+    try { sessionStorage.setItem(CLAVE, '1'); } catch (e) { /* incógnito */ }
+    caja.hidden = false;
+    document.body.style.overflow = 'hidden';
+    var inp = caja.querySelector('input[type="email"]');
+    if (inp) setTimeout(function () { inp.focus(); }, 150);
+  }
+  function cerrar() {
+    caja.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('mouseout', function (e) {
+    if (!e.relatedTarget && e.clientY <= 8) abrir();
+  });
+  // En móvil no hay ratón: a los 35 segundos de lectura
+  if (window.matchMedia('(max-width: 860px)').matches) setTimeout(abrir, 35000);
+
+  caja.addEventListener('click', function (e) {
+    if (e.target === caja || e.target.closest('[data-salida-cerrar]')) cerrar();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !caja.hidden) cerrar(); });
+
+  var form = caja.querySelector('[data-salida-form]');
+  if (form) form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    form.hidden = true;
+    var ok = caja.querySelector('[data-salida-ok]');
+    if (ok) ok.hidden = false;
+    setTimeout(cerrar, 2600);
+  });
+})();
