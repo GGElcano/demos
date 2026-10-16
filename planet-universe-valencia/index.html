@@ -55,6 +55,17 @@
 .gg-ficha-foto img{padding:0}
 .gg-prenda-foto img{object-fit:cover}
 @media(max-width:768px){.brand-logo{height:44px!important}}
+/* 16-oct-2026 (Sergio): cabecera con vídeo a lo Deus Ex Machina y botones a la DERECHA */
+.hero-min{min-height:calc(100vh - 124px);min-height:calc(100svh - 124px)}
+@media(min-width:901px){.hero-content-min{padding-bottom:96px}}
+.hero-overlay-min{background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.05) 35%,rgba(0,0,0,.72) 100%)}
+.hero-overlay-min::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(0,0,0,.42) 1px,transparent 1.4px);background-size:3px 3px;opacity:.6}
+.hero-content-min{width:100%;max-width:none;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.hero-content-min h1{margin-bottom:0}
+.hero-min .quick-actions{justify-content:flex-end;flex-wrap:nowrap;margin-left:auto}
+@media(max-width:900px){.hero-content-min{flex-direction:column;align-items:stretch;gap:22px}.hero-min .quick-actions{flex-wrap:wrap}}
+.hero-content-min h1{max-width:16ch}
+.hero-content-min h1 em{font-size:.5em;max-width:24ch}
 
 @media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
 </style>
@@ -108,11 +119,11 @@
 
 <main id="gg-contenido" tabindex="-1" class="gg-portada">
 <header class="hero hero-min" id="inicio">
-  <style>.hero-pase{opacity:0}@keyframes hero-pase-2{0%,26.66%{opacity:0}33.33%,93.33%{opacity:1}100%{opacity:0}}.hero-pase-2{animation:hero-pase-2 18s linear infinite}@keyframes hero-pase-3{0%,60.0%{opacity:0}66.67%,93.33%{opacity:1}100%{opacity:0}}.hero-pase-3{animation:hero-pase-3 18s linear infinite}@media (prefers-reduced-motion:reduce){.hero-pase{animation:none}}</style><img src="assets/tienda-mercat-central-valencia.webp" srcset="assets/tienda-mercat-central-valencia-movil.webp 1200w, assets/tienda-mercat-central-valencia.webp 2048w" sizes="100vw" alt="" class="hero-photo" fetchpriority="high" decoding="async" width="2048" height="1365" style="object-position:50% 50%"><img src="assets/tienda-planet-universe-calaveras.webp" srcset="assets/tienda-planet-universe-calaveras-movil.webp 1200w, assets/tienda-planet-universe-calaveras.webp 1440w" sizes="100vw" alt="" class="hero-photo hero-pase hero-pase-2" decoding="async" width="1440" height="959" style="object-position:50% 50%"><img src="assets/tienda-planet-universe-gorras.webp" srcset="assets/tienda-planet-universe-gorras-movil.webp 1200w, assets/tienda-planet-universe-gorras.webp 2048w" sizes="100vw" alt="" class="hero-photo hero-pase hero-pase-3" decoding="async" width="2048" height="1365" style="object-position:50% 50%">
+  <video class="hero-photo hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/video-portada-planet-universe-poster.webp" width="1920" height="1080" aria-hidden="true"><source src="assets/video-portada-planet-universe-movil.mp4" type="video/mp4" media="(max-width: 900px)"><source src="assets/video-portada-planet-universe.mp4" type="video/mp4"></video><button type="button" class="hero-pausa" id="heroPausa" aria-label="Pausar el vídeo"><svg class="ico-pausa" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10" fill="#fff"/><rect x="7" y="1" width="3" height="10" fill="#fff"/></svg><svg class="ico-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1l8 5-8 5z" fill="#fff"/></svg></button><style>.hero-pausa{position:absolute;top:18px;right:18px;z-index:4;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.28);color:#fff;font-size:11px;letter-spacing:-1px;cursor:pointer;display:grid;place-items:center;padding:0}.hero-pausa:hover{background:rgba(0,0,0,.5)}.hero-pausa:focus-visible{outline:2px solid #fff;outline-offset:2px}.hero-pausa .ico-play,.hero-pausa.parado .ico-pausa{display:none}.hero-pausa.parado .ico-play{display:block}</style><script>(function(){var v=document.getElementById("heroVideo"),b=document.getElementById("heroPausa");if(!v)return;v.muted=true;function arranca(){var p=v.play();if(p&&p.catch)p.catch(function(){});}arranca();v.addEventListener("canplay",function(){if(!v.dataset.parado)arranca();},{once:true});["touchstart","pointerdown","scroll","keydown"].forEach(function(e){window.addEventListener(e,function(){if(v.paused&&!v.dataset.parado)arranca();},{once:true,passive:true});});b.addEventListener("click",function(){if(v.paused){delete v.dataset.parado;arranca();b.classList.remove("parado");b.setAttribute("aria-label","Pausar el vídeo");}else{v.pause();v.dataset.parado="1";b.classList.add("parado");b.setAttribute("aria-label","Reproducir el vídeo");}});})();</script>
   <div class="hero-img-overlay hero-overlay-min"></div>
   <div class="hero-content hero-content-min">
-    <h1>Diseños exclusivos, <em>estilo que inspira</em></h1>
-    <div class="quick-actions"><a href="personalizar.html" class="btn btn-primary">Diseña tu camiseta</a><a href="tienda.html" class="btn btn-ghost">Ver la tienda</a></div>
+    <h1>Nueva colección Motorcycle Biker <em>10 % de bienvenida en tu primera compra</em></h1>
+    <div class="quick-actions"><a href="tienda.html#motorcycle-biker" class="btn btn-primary">Ver la colección</a><a href="personalizar.html" class="btn btn-ghost">Diseña tu camiseta</a></div>
   </div>
 </header>
 <section class="gg-marcas" aria-label="Clientes"><p>Nuestras marcas propias</p><div class="gg-marcas-fila"><img src="assets/marca-motorcycle-custom.webp" alt="Motorcycle Custom" width="600" height="280" loading="lazy"><img src="assets/marca-motorcycle-biker.webp" alt="Motorcycle Biker" width="600" height="280" loading="lazy"><img src="assets/marca-rock-forever.webp" alt="Rock Forever" width="600" height="280" loading="lazy"></div></section>
