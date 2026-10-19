@@ -36,6 +36,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="legal/cookie-banner.css">
 <link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="dinamico.css">
+<script>try{if(localStorage.getItem("dt-quieto")!=="1")document.documentElement.classList.add("dinamico")}catch(e){document.documentElement.classList.add("dinamico")}</script>
 
 <!-- Ficha para Google. Si cambian teléfono, zona o servicios, cambiarlo TAMBIÉN aquí.
      Sin precios a propósito: están por confirmar con Dámaris. -->
@@ -79,6 +81,17 @@
 </head>
 <body>
 
+<!-- Pantalla de entrada (solo con animaciones activas) -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span>DÁMARIS TORO</span><small>El arte del tacto</small></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
+</div>
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
+
 <!-- Quitar este aviso cuando Dámaris confirme precios, duraciones y zona. -->
 <aside class="aviso-maqueta">
   <b>Muestra para Dámaris:</b> precios, duración de las sesiones y zona exacta están por confirmar. Las fotos y las frases entre comillas son suyas, de Instagram.
@@ -100,7 +113,7 @@
 <main>
 <section class="hero">
   <div class="env">
-    <div>
+    <div class="hero__contenido">
       <p class="hoy"><span class="punto"></span>Málaga · con cita previa</p>
       <h1>Masaje tántrico <em>tradicional</em> en Málaga</h1>
       <p class="claim">«Hay lugares a los que vas a desconectar… y espacios a los que vienes a reconectar.»<span>Dámaris Toro</span></p>
@@ -111,9 +124,13 @@
         <a class="btn btn-linea" href="#sesiones">Ver las sesiones</a>
       </div>
       <p class="alt-contacto">¿Prefieres escribir antes? <a href="https://www.instagram.com/superdama79/" target="_blank" rel="noopener">Mándame un mensaje por Instagram</a></p>
+      <a class="bajar" href="#sobre-mi" aria-hidden="true" tabindex="-1"><i></i>Desliza</a>
     </div>
     <figure class="arco">
-      <img src="assets/masaje-tantrico-malaga-damaris-toro.jpg" width="500" height="640" alt="Dámaris Toro, terapeuta de masaje tántrico en Málaga, con las manos sobre el pecho" fetchpriority="high">
+      <span class="halo" aria-hidden="true"></span>
+      <div data-hero-media>
+        <img src="assets/masaje-tantrico-malaga-damaris-toro.jpg" width="500" height="640" alt="Dámaris Toro, terapeuta de masaje tántrico en Málaga, con las manos sobre el pecho" fetchpriority="high">
+      </div>
       <figcaption><b>Tacto consciente</b>Respiración, presencia y respeto</figcaption>
     </figure>
   </div>
@@ -124,7 +141,7 @@
 <section class="prueba" aria-label="Comunidad en Instagram">
   <div class="env">
     <p>
-      <b>83,9 mil</b>
+      <b><span data-cuenta="83.9" data-dec="1">83,9</span> mil</b>
       <span class="detalle">personas siguen su trabajo en Instagram</span>
       <svg class="verif" viewBox="0 0 24 24" aria-label="Cuenta verificada" role="img"><path d="M23 12l-2.4-2.8.3-3.7-3.6-.8-1.9-3.2L12 3 8.6 1.5 6.7 4.7l-3.6.8.3 3.7L1 12l2.4 2.8-.3 3.7 3.6.8 1.9 3.2L12 21l3.4 1.5 1.9-3.2 3.6-.8-.3-3.7zm-12.9 4.6-3.8-3.8 1.4-1.4 2.4 2.4 6.1-6.1 1.4 1.4z"/></svg>
     </p>
@@ -132,7 +149,7 @@
   </div>
 </section>
 
-<section class="claves" aria-label="Lo esencial de un vistazo">
+<section class="claves" data-oscuro aria-label="Lo esencial de un vistazo">
   <div class="env">
     <ul>
       <li>Masaje tántrico profundo y sexualidad holística en <b>Málaga</b>, con Dámaris Toro.</li>
@@ -142,15 +159,25 @@
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__group"><span>Tacto consciente</span><i>✦</i><span>Respiración</span><i>✦</i><span>Presencia</span><i>✦</i><span>Respeto</span><i>✦</i><span>Tantra</span><i>✦</i><span>Málaga</span><i>✦</i><span>El arte del tacto</span><i>✦</i></div>
+    <div class="marquee__group"><span>Tacto consciente</span><i>✦</i><span>Respiración</span><i>✦</i><span>Presencia</span><i>✦</i><span>Respeto</span><i>✦</i><span>Tantra</span><i>✦</i><span>Málaga</span><i>✦</i><span>El arte del tacto</span><i>✦</i></div>
+  </div>
+</div>
+
 <section class="sobre" id="sobre-mi">
   <div class="env">
-    <img class="rv" src="assets/damaris-toro-terapeuta-tantrica-malaga.jpg" width="509" height="640" alt="Retrato de Dámaris Toro en su casa de Málaga, entre plantas" loading="lazy">
+    <div class="sobre__foto" data-speed="0.6"><div data-img-reveal>
+      <img src="assets/damaris-toro-terapeuta-tantrica-malaga.jpg" width="509" height="640" alt="Retrato de Dámaris Toro en su casa de Málaga, entre plantas" loading="lazy">
+    </div></div>
+    <div class="flotante" data-speed="2.2" aria-hidden="true"><img src="assets/tacto-consciente-masaje-tantrico.jpg" width="640" height="640" alt="" loading="lazy"></div>
     <div class="rv">
       <p class="rotulo">El arte del tacto</p>
-      <h2>Mi gabinete no es solo una sala de masajes</h2>
+      <h2 data-reveal="lineas">Mi gabinete no es solo una sala de masajes</h2>
       <p>Es un templo de presencia sostenida, un espacio sagrado donde la energía se mueve, la mente se calma y el cuerpo vuelve a recordar su propia sabiduría.</p>
       <p>Aquí no hay prisa, no hay juicios. Solo un espacio seguro para sentirte, habitarte y volver a ti a través del tacto consciente.</p>
-      <p class="cita-grande">«No soy una flor de jardín para ser decorativa; soy la raíz salvaje que rompe el asfalto.»</p>
+      <p class="cita-grande" data-manifiesto>«No soy una flor de jardín para ser decorativa; soy la raíz salvaje que rompe el asfalto.»</p>
       <p class="firma">Dámaris</p>
     </div>
   </div>
@@ -161,12 +188,12 @@
 <section class="sesiones" id="sesiones">
   <div class="env">
     <p class="rotulo rv">Sesiones</p>
-    <h2 class="rv">¿Y si existiera otra manera de habitar tu cuerpo?</h2>
+    <h2 class="rv" data-reveal="lineas">¿Y si existiera otra manera de habitar tu cuerpo?</h2>
     <p class="entradilla rv">Un espacio donde el tiempo se detiene y las prisas se desvanecen. Donde no hay metas que alcanzar, ni expectativas que cumplir, ni nada que demostrar.</p>
     <div class="tarjetas">
       <article class="tarjeta destacada rv">
         <span class="cinta">Mi especialidad</span>
-        <img src="assets/tacto-consciente-masaje-tantrico.jpg" width="640" height="640" alt="Manos de Dámaris en un masaje tántrico profundo en Málaga" loading="lazy">
+        <div class="marco-img"><img src="assets/tacto-consciente-masaje-tantrico.jpg" width="640" height="640" alt="Manos de Dámaris en un masaje tántrico profundo en Málaga" loading="lazy"></div>
         <div class="cuerpo">
           <h3>Masaje tántrico profundo</h3>
           <p>El masaje tántrico tradicional: contacto suave, respiración y escucha profunda para que el cuerpo se sienta seguro y suelte lo que llevaba sosteniendo en silencio.</p>
@@ -174,7 +201,7 @@
         </div>
       </article>
       <article class="tarjeta rv">
-        <img src="assets/sexualidad-holistica-malaga.jpg" width="360" height="640" alt="Dámaris Toro en su espacio a la luz roja de las velas, sexualidad holística en Málaga" loading="lazy">
+        <div class="marco-img"><img src="assets/sexualidad-holistica-malaga.jpg" width="360" height="640" alt="Dámaris Toro en su espacio a la luz roja de las velas, sexualidad holística en Málaga" loading="lazy"></div>
         <div class="cuerpo">
           <h3>Sexualidad holística</h3>
           <p>Acompañamiento para reconectar con tu cuerpo y tu sexualidad desde un lugar de amor y presencia, a tu ritmo.</p>
@@ -182,7 +209,7 @@
         </div>
       </article>
       <article class="tarjeta rv">
-        <img src="assets/formacion-tacto-consciente-naturaleza.jpg" width="640" height="640" alt="Encuentro de tacto consciente al aire libre, entre flores y luz" loading="lazy">
+        <div class="marco-img"><img src="assets/formacion-tacto-consciente-naturaleza.jpg" width="640" height="640" alt="Encuentro de tacto consciente al aire libre, entre flores y luz" loading="lazy"></div>
         <div class="cuerpo">
           <h3>Retiros y encuentros</h3>
           <p>Días fuera de la sala para parar, respirar y compartir. Las próximas fechas las anuncio en Instagram.</p>
@@ -194,37 +221,46 @@
   </div>
 </section>
 
-<section class="ritual" id="como-es">
-  <div class="env">
-    <p class="rotulo rv">Cómo es una sesión</p>
-    <h2 class="rv">El arte de tocar empieza mucho antes del contacto</h2>
-    <p class="entradilla rv">Sostener un masaje tántrico conlleva una hermosa responsabilidad. Así lo vivimos, paso a paso.</p>
-    <ol class="pasos">
-      <li class="rv">
-        <h3>Preparo la sala</h3>
-        <p><q>Antes de recibirte, habito la presencia.</q> Encender una vela no es solo iluminar un espacio: es inaugurar un templo de presencia.</p>
-      </li>
-      <li class="rv">
-        <h3>Hablamos</h3>
-        <p>Qué buscas, qué necesitas y dónde están tus límites. Tus límites y tu ritmo son lo más importante.</p>
-      </li>
-      <li class="rv">
-        <h3>El tacto</h3>
-        <p>La presencia plena y la escucha profunda son el único lenguaje. <q>El sistema nervioso no escucha tus afirmaciones. Escucha tu respiración.</q></p>
-      </li>
-      <li class="rv">
-        <h3>Volver a ti</h3>
-        <p><q>Cuando el cuerpo se siente seguro, empieza a soltar lo que llevaba sosteniendo en silencio.</q></p>
-      </li>
-    </ol>
+<!-- PIEZA SINGULAR: con el scroll se encienden dos velas, se abre el loto
+     y suben los siete chakras. Las cuatro fases son los cuatro pasos de su
+     sesión, con sus palabras (dinamico.js, bloque 4). -->
+<section class="energia" id="como-es" data-oscuro aria-label="Cómo es una sesión">
+  <div class="energia__pin">
+    <canvas class="energia__lienzo" aria-hidden="true"></canvas>
+    <div class="energia__hud">
+      <div class="energia__cab">
+        <div>
+          <p class="rotulo">Cómo es una sesión</p>
+          <h2 class="energia__titulo">El arte de tocar empieza mucho antes del contacto</h2>
+        </div>
+        <div class="energia__num" aria-hidden="true"><span data-energia-num>0</span><i>%</i></div>
+      </div>
+      <div class="energia__pie" aria-hidden="true">
+        <p class="energia__fase" data-energia-fase>I · Preparo la sala</p>
+        <p class="energia__frase"><span data-energia-frase>Antes de recibirte, habito la presencia. Encender una vela es inaugurar un templo.</span></p>
+      </div>
+      <ol class="solo-lector">
+        <li><b>Preparo la sala</b>: Antes de recibirte, habito la presencia. Encender una vela no es solo iluminar un espacio: es inaugurar un templo de presencia.</li>
+        <li><b>Hablamos</b>: Qué buscas, qué necesitas y dónde están tus límites. Tus límites y tu ritmo son lo más importante.</li>
+        <li><b>El tacto</b>: La presencia plena y la escucha profunda son el único lenguaje. El sistema nervioso no escucha tus afirmaciones. Escucha tu respiración.</li>
+        <li><b>Volver a ti</b>: Cuando el cuerpo se siente seguro, empieza a soltar lo que llevaba sosteniendo en silencio.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="zoom" data-oscuro aria-label="El espacio">
+  <div class="zoom__pin">
+    <div class="zoom__marco"><img src="assets/gabinete-masaje-tantrico-malaga.jpg" width="640" height="640" alt="Gabinete de masaje tántrico de Dámaris Toro en Málaga" loading="lazy"></div>
+    <p class="zoom__texto" data-zoom-texto>Un rincón de <em>paz</em> te espera</p>
   </div>
 </section>
 
 <section id="espacio">
   <div class="env">
     <p class="rotulo rv">El espacio</p>
-    <h2 class="rv">Un rincón de paz te espera</h2>
-    <p class="entradilla rv">Luz suave, plantas, velas y silencio. Date el descanso que te mereces.</p>
+    <h2 class="rv" data-reveal="lineas">Luz suave, plantas, velas y silencio</h2>
+    <p class="entradilla rv">Date el descanso que te mereces.</p>
     <div class="espacio-grid rv">
       <figure class="g1"><img src="assets/gabinete-masaje-tantrico-malaga.jpg" width="640" height="640" alt="Gabinete de masaje tántrico de Dámaris Toro en Málaga, con camilla, biombo y plantas" loading="lazy"><figcaption>El gabinete</figcaption></figure>
       <figure class="g2"><img src="assets/reel-sala-velas-presencia.jpg" width="361" height="640" alt="Sala de masaje tántrico iluminada con velas antes de la sesión" loading="lazy" style="object-position:50% 30%"><figcaption>La sala, a la luz de las velas</figcaption></figure>
@@ -236,7 +272,7 @@
 <section id="instagram" style="padding-top:0">
   <div class="env">
     <p class="rotulo rv">Instagram</p>
-    <h2 class="rv">Reflexiones y momentos</h2>
+    <h2 class="rv" data-reveal="lineas">Reflexiones y momentos</h2>
     <p class="entradilla rv">Lo que comparto cada semana con más de 83 mil personas. Sígueme en <a href="https://www.instagram.com/superdama79/" target="_blank" rel="noopener">@superdama79</a>.</p>
     <div class="reels-zona rv">
       <button class="reels-nav izq" id="reel-izq" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg></button>
@@ -250,10 +286,15 @@
 <!-- SUS PALABRAS: frases de Dámaris copiadas literalmente de sus publicaciones
      de Instagram. NO son reseñas de clientes. Cuando tenga ficha de Google con
      reseñas reales, aquí pueden ir las reseñas (copiadas literal, nunca inventadas). -->
+<div class="tiras" aria-hidden="true">
+  <p class="tira" data-tira="1">El arte del <em>tacto</em> · El arte del <em>tacto</em> ·</p>
+  <p class="tira tira--llena" data-tira="-1">Tantra · Presencia · Respeto · Tantra · Presencia ·</p>
+</div>
+
 <section class="palabras" id="palabras">
   <div class="env">
     <p class="rotulo rv">En sus palabras</p>
-    <h2 class="rv">Tu cuerpo lo sabe</h2>
+    <h2 class="rv" data-reveal="lineas">Tu cuerpo lo sabe</h2>
     <div class="citas">
       <figure class="cita rv">
         <blockquote>Hay una diferencia entre estar cansado y llevar meses sin escucharte. Tu cuerpo lo sabe y te lo dice en los hombros que nunca bajan.</blockquote>
@@ -274,7 +315,7 @@
 <section id="preguntas">
   <div class="env">
     <p class="rotulo rv">Preguntas frecuentes</p>
-    <h2 class="rv">Lo que más me preguntáis</h2>
+    <h2 class="rv" data-reveal="lineas">Lo que más me preguntáis</h2>
     <div class="faq rv">
       <details>
         <summary>¿Qué es un masaje tántrico tradicional?</summary>
@@ -300,14 +341,14 @@
   </div>
 </section>
 
-<section class="reservar" id="reservar">
+<section class="reservar" data-oscuro id="reservar">
   <div class="env">
     <div class="rv">
       <p class="rotulo">Reservar</p>
       <h2>¿Te concedes el permiso de habitar la calma?</h2>
       <p class="entradilla">Si sientes la necesidad de reconectar contigo desde un lugar de amor y presencia, escríbeme.</p>
       <div class="acciones">
-        <a class="btn btn-vela" href="https://wa.me/34672076034?text=Hola%20D%C3%A1maris%2C%20me%20gustar%C3%ADa%20reservar%20una%20sesi%C3%B3n" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+        <a class="btn btn-vela" data-magnetico href="https://wa.me/34672076034?text=Hola%20D%C3%A1maris%2C%20me%20gustar%C3%ADa%20reservar%20una%20sesi%C3%B3n" target="_blank" rel="noopener"><span class="magnetico__label">Reservar por WhatsApp</span></a>
         <a class="btn btn-linea" href="https://www.instagram.com/superdama79/" target="_blank" rel="noopener">Mensaje por Instagram</a>
       </div>
     </div>
@@ -340,6 +381,7 @@
       <a href="legal/aviso-legal.html">Aviso legal</a>
       <a href="legal/politica-privacidad.html">Privacidad</a>
       <a href="legal/politica-cookies.html">Cookies</a>
+      <button type="button" class="quietud" data-quietud>Reducir animaciones</button>
     </div>
   </div>
 </footer>
@@ -374,5 +416,11 @@ var VIDEOS = [
 var TXT = { ver: "Ver el vídeo", cerrar: "Cerrar", iframe: "Vídeo de Instagram", copiado: "Enlace copiado", copia: "Copia el enlace:" };
 </script>
 <script src="comun.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script src="dinamico.js"></script>
 </body>
 </html>

@@ -33,6 +33,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../legal/cookie-banner.css">
 <link rel="stylesheet" href="../estilo.css">
+<link rel="stylesheet" href="../dinamico.css">
+<script>try{if(localStorage.getItem("dt-quieto")!=="1")document.documentElement.classList.add("dinamico")}catch(e){document.documentElement.classList.add("dinamico")}</script>
 
 <!-- Misma ficha que la española (mismo @id), en inglés. -->
 <script type="application/ld+json">
@@ -75,6 +77,17 @@
 </head>
 <body>
 
+<!-- Pantalla de entrada (solo con animaciones activas) -->
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__curtain"></div>
+  <div class="preloader__brand"><span>DÁMARIS TORO</span><small>The art of touch</small></div>
+  <div class="preloader__counter"><span class="preloader__num">0<i>%</i></span></div>
+</div>
+<div id="fluid" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="progreso" aria-hidden="true"><span></span></div>
+
 <!-- Quitar este aviso cuando Dámaris confirme precios, duraciones y zona. -->
 <aside class="aviso-maqueta">
   <b>Preview for Dámaris:</b> prices, session length and exact location are still to be confirmed. Photos and quoted words are hers, from Instagram.
@@ -96,7 +109,7 @@
 <main>
 <section class="hero">
   <div class="env">
-    <div>
+    <div class="hero__contenido">
       <p class="hoy"><span class="punto"></span>Málaga · by appointment</p>
       <h1>Traditional <em>tantric</em> massage in Málaga</h1>
       <p class="claim">“There are places you go to switch off… and spaces you come to reconnect.”<span>Dámaris Toro</span></p>
@@ -107,9 +120,13 @@
         <a class="btn btn-linea" href="#sessions">See the sessions</a>
       </div>
       <p class="alt-contacto">Rather write first? <a href="https://www.instagram.com/superdama79/" target="_blank" rel="noopener">Send me a message on Instagram</a></p>
+      <a class="bajar" href="#sobre-mi" aria-hidden="true" tabindex="-1"><i></i>Scroll</a>
     </div>
     <figure class="arco">
-      <img src="../assets/masaje-tantrico-malaga-damaris-toro.jpg" width="500" height="640" alt="Dámaris Toro, tantric massage therapist in Málaga, with her hands on her chest" fetchpriority="high">
+      <span class="halo" aria-hidden="true"></span>
+      <div data-hero-media>
+        <img src="../assets/masaje-tantrico-malaga-damaris-toro.jpg" width="500" height="640" alt="Dámaris Toro, tantric massage therapist in Málaga, with her hands on her chest" fetchpriority="high">
+      </div>
       <figcaption><b>Conscious touch</b>Breath, presence and respect</figcaption>
     </figure>
   </div>
@@ -119,7 +136,7 @@
 <section class="prueba" aria-label="Instagram community">
   <div class="env">
     <p>
-      <b>83.9K</b>
+      <b><span data-cuenta="83.9" data-dec="1">83.9</span>K</b>
       <span class="detalle">people follow her work on Instagram</span>
       <svg class="verif" viewBox="0 0 24 24" aria-label="Verified account" role="img"><path d="M23 12l-2.4-2.8.3-3.7-3.6-.8-1.9-3.2L12 3 8.6 1.5 6.7 4.7l-3.6.8.3 3.7L1 12l2.4 2.8-.3 3.7 3.6.8 1.9 3.2L12 21l3.4 1.5 1.9-3.2 3.6-.8-.3-3.7zm-12.9 4.6-3.8-3.8 1.4-1.4 2.4 2.4 6.1-6.1 1.4 1.4z"/></svg>
     </p>
@@ -127,7 +144,7 @@
   </div>
 </section>
 
-<section class="claves" aria-label="Key facts at a glance">
+<section class="claves" data-oscuro aria-label="Key facts at a glance">
   <div class="env">
     <ul>
       <li>Deep tantric massage and holistic sexuality in <b>Málaga</b>, with Dámaris Toro.</li>
@@ -137,15 +154,25 @@
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__group"><span>Conscious touch</span><i>✦</i><span>Breath</span><i>✦</i><span>Presence</span><i>✦</i><span>Respect</span><i>✦</i><span>Tantra</span><i>✦</i><span>Málaga</span><i>✦</i><span>The art of touch</span><i>✦</i></div>
+    <div class="marquee__group"><span>Conscious touch</span><i>✦</i><span>Breath</span><i>✦</i><span>Presence</span><i>✦</i><span>Respect</span><i>✦</i><span>Tantra</span><i>✦</i><span>Málaga</span><i>✦</i><span>The art of touch</span><i>✦</i></div>
+  </div>
+</div>
+
 <section class="sobre" id="about">
   <div class="env">
-    <img class="rv" src="../assets/damaris-toro-terapeuta-tantrica-malaga.jpg" width="509" height="640" alt="Portrait of Dámaris Toro at home in Málaga, among plants" loading="lazy">
+    <div class="sobre__foto" data-speed="0.6"><div data-img-reveal>
+      <img src="../assets/damaris-toro-terapeuta-tantrica-malaga.jpg" width="509" height="640" alt="Portrait of Dámaris Toro at home in Málaga, among plants" loading="lazy">
+    </div></div>
+    <div class="flotante" data-speed="2.2" aria-hidden="true"><img src="../assets/tacto-consciente-masaje-tantrico.jpg" width="640" height="640" alt="" loading="lazy"></div>
     <div class="rv">
       <p class="rotulo">The art of touch</p>
-      <h2>My space is not just a massage room</h2>
+      <h2 data-reveal="lineas">My space is not just a massage room</h2>
       <p>It is a temple of sustained presence, a sacred space where energy moves, the mind settles and the body remembers its own wisdom.</p>
       <p>No rush, no judgement. Just a safe space to feel yourself, inhabit yourself and come back to you through conscious touch.</p>
-      <p class="cita-grande">“I am not a garden flower meant to be decorative; I am the wild root that breaks through the asphalt.”</p>
+      <p class="cita-grande" data-manifiesto>“I am not a garden flower meant to be decorative; I am the wild root that breaks through the asphalt.”</p>
       <p class="firma">Dámaris</p>
     </div>
   </div>
@@ -155,12 +182,12 @@
 <section class="sesiones" id="sessions">
   <div class="env">
     <p class="rotulo rv">Sessions</p>
-    <h2 class="rv">What if there were another way to inhabit your body?</h2>
+    <h2 class="rv" data-reveal="lineas">What if there were another way to inhabit your body?</h2>
     <p class="entradilla rv">A space where time stands still and the rush fades away. No goals to reach, no expectations to meet, nothing to prove.</p>
     <div class="tarjetas">
       <article class="tarjeta destacada rv">
         <span class="cinta">My speciality</span>
-        <img src="../assets/tacto-consciente-masaje-tantrico.jpg" width="640" height="640" alt="Dámaris's hands during a deep tantric massage in Málaga" loading="lazy">
+        <div class="marco-img"><img src="../assets/tacto-consciente-masaje-tantrico.jpg" width="640" height="640" alt="Dámaris's hands during a deep tantric massage in Málaga" loading="lazy"></div>
         <div class="cuerpo">
           <h3>Deep tantric massage</h3>
           <p>Traditional tantric massage: gentle touch, breath and deep listening so the body feels safe and lets go of what it has been holding in silence.</p>
@@ -168,7 +195,7 @@
         </div>
       </article>
       <article class="tarjeta rv">
-        <img src="../assets/sexualidad-holistica-malaga.jpg" width="360" height="640" alt="Dámaris Toro in her space under warm red candlelight, holistic sexuality in Málaga" loading="lazy">
+        <div class="marco-img"><img src="../assets/sexualidad-holistica-malaga.jpg" width="360" height="640" alt="Dámaris Toro in her space under warm red candlelight, holistic sexuality in Málaga" loading="lazy"></div>
         <div class="cuerpo">
           <h3>Holistic sexuality</h3>
           <p>Guidance to reconnect with your body and your sexuality from a place of love and presence, at your own pace.</p>
@@ -176,7 +203,7 @@
         </div>
       </article>
       <article class="tarjeta rv">
-        <img src="../assets/formacion-tacto-consciente-naturaleza.jpg" width="640" height="640" alt="Conscious touch gathering outdoors, among flowers and light" loading="lazy">
+        <div class="marco-img"><img src="../assets/formacion-tacto-consciente-naturaleza.jpg" width="640" height="640" alt="Conscious touch gathering outdoors, among flowers and light" loading="lazy"></div>
         <div class="cuerpo">
           <h3>Retreats and gatherings</h3>
           <p>Days away from the room to pause, breathe and share. I announce the next dates on Instagram.</p>
@@ -188,37 +215,46 @@
   </div>
 </section>
 
-<section class="ritual" id="how">
-  <div class="env">
-    <p class="rotulo rv">How a session works</p>
-    <h2 class="rv">The art of touch begins long before contact</h2>
-    <p class="entradilla rv">Holding a tantric massage is a beautiful responsibility. This is how it unfolds, step by step.</p>
-    <ol class="pasos">
-      <li class="rv">
-        <h3>I prepare the room</h3>
-        <p><q>Before I receive you, I settle into presence.</q> Lighting a candle is not just lighting a room: it opens a temple of presence.</p>
-      </li>
-      <li class="rv">
-        <h3>We talk</h3>
-        <p>What you are looking for, what you need and where your boundaries are. Your boundaries and your pace matter most.</p>
-      </li>
-      <li class="rv">
-        <h3>Touch</h3>
-        <p>Full presence and deep listening are the only language. <q>Your nervous system doesn't listen to your affirmations. It listens to your breath.</q></p>
-      </li>
-      <li class="rv">
-        <h3>Coming back to you</h3>
-        <p><q>When the body feels safe, it starts to release what it has been holding in silence.</q></p>
-      </li>
-    </ol>
+<!-- PIEZA SINGULAR: con el scroll se encienden dos velas, se abre el loto
+     y suben los siete chakras. Las cuatro fases son los cuatro pasos de su
+     sesión, con sus palabras (dinamico.js, bloque 4). -->
+<section class="energia" id="how" data-oscuro aria-label="How a session works">
+  <div class="energia__pin">
+    <canvas class="energia__lienzo" aria-hidden="true"></canvas>
+    <div class="energia__hud">
+      <div class="energia__cab">
+        <div>
+          <p class="rotulo">How a session works</p>
+          <h2 class="energia__titulo">The art of touch begins long before contact</h2>
+        </div>
+        <div class="energia__num" aria-hidden="true"><span data-energia-num>0</span><i>%</i></div>
+      </div>
+      <div class="energia__pie" aria-hidden="true">
+        <p class="energia__fase" data-energia-fase>I · I prepare the room</p>
+        <p class="energia__frase"><span data-energia-frase>Before I receive you, I settle into presence. Lighting a candle opens a temple.</span></p>
+      </div>
+      <ol class="solo-lector">
+        <li><b>I prepare the room</b>: Before I receive you, I settle into presence. Lighting a candle is not just lighting a room: it opens a temple of presence.</li>
+        <li><b>We talk</b>: What you are looking for, what you need and where your boundaries are. Your boundaries and your pace matter most.</li>
+        <li><b>Touch</b>: Full presence and deep listening are the only language. Your nervous system doesn't listen to your affirmations. It listens to your breath.</li>
+        <li><b>Coming back to you</b>: When the body feels safe, it starts to release what it has been holding in silence.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="zoom" data-oscuro aria-label="The space">
+  <div class="zoom__pin">
+    <div class="zoom__marco"><img src="../assets/gabinete-masaje-tantrico-malaga.jpg" width="640" height="640" alt="Dámaris Toro's tantric massage room in Málaga" loading="lazy"></div>
+    <p class="zoom__texto" data-zoom-texto>A corner of <em>peace</em> awaits you</p>
   </div>
 </section>
 
 <section id="space">
   <div class="env">
     <p class="rotulo rv">The space</p>
-    <h2 class="rv">A corner of peace awaits you</h2>
-    <p class="entradilla rv">Soft light, plants, candles and silence. Give yourself the rest you deserve.</p>
+    <h2 class="rv" data-reveal="lineas">Soft light, plants, candles and silence</h2>
+    <p class="entradilla rv">Give yourself the rest you deserve.</p>
     <div class="espacio-grid rv">
       <figure class="g1"><img src="../assets/gabinete-masaje-tantrico-malaga.jpg" width="640" height="640" alt="Dámaris Toro's tantric massage room in Málaga, with massage table, screen and plants" loading="lazy"><figcaption>The treatment room</figcaption></figure>
       <figure class="g2"><img src="../assets/reel-sala-velas-presencia.jpg" width="361" height="640" alt="Tantric massage room lit by candles before a session" loading="lazy" style="object-position:50% 30%"><figcaption>The room by candlelight</figcaption></figure>
@@ -230,7 +266,7 @@
 <section id="instagram" style="padding-top:0">
   <div class="env">
     <p class="rotulo rv">Instagram</p>
-    <h2 class="rv">Reflections and moments</h2>
+    <h2 class="rv" data-reveal="lineas">Reflections and moments</h2>
     <p class="entradilla rv">What I share every week with more than 83,000 people (in Spanish). Follow me at <a href="https://www.instagram.com/superdama79/" target="_blank" rel="noopener">@superdama79</a>.</p>
     <div class="reels-zona rv">
       <button class="reels-nav izq" id="reel-izq" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg></button>
@@ -242,10 +278,15 @@
 </section>
 
 <!-- Frases de Dámaris traducidas de sus publicaciones. NO son reseñas. -->
+<div class="tiras" aria-hidden="true">
+  <p class="tira" data-tira="1">The art of <em>touch</em> · The art of <em>touch</em> ·</p>
+  <p class="tira tira--llena" data-tira="-1">Tantra · Presence · Respect · Tantra · Presence ·</p>
+</div>
+
 <section class="palabras" id="words">
   <div class="env">
     <p class="rotulo rv">In her words</p>
-    <h2 class="rv">Your body knows</h2>
+    <h2 class="rv" data-reveal="lineas">Your body knows</h2>
     <div class="citas">
       <figure class="cita rv">
         <blockquote>There is a difference between being tired and spending months without listening to yourself. Your body knows, and it tells you in the shoulders that never drop.</blockquote>
@@ -266,7 +307,7 @@
 <section id="faq">
   <div class="env">
     <p class="rotulo rv">Questions</p>
-    <h2 class="rv">What people ask me most</h2>
+    <h2 class="rv" data-reveal="lineas">What people ask me most</h2>
     <div class="faq rv">
       <details>
         <summary>What is a traditional tantric massage?</summary>
@@ -292,14 +333,14 @@
   </div>
 </section>
 
-<section class="reservar" id="book">
+<section class="reservar" data-oscuro id="book">
   <div class="env">
     <div class="rv">
       <p class="rotulo">Book</p>
       <h2>Will you give yourself permission to rest in calm?</h2>
       <p class="entradilla">If you feel the need to reconnect with yourself from a place of love and presence, write to me.</p>
       <div class="acciones">
-        <a class="btn btn-vela" href="https://wa.me/34672076034?text=Hi%20D%C3%A1maris%2C%20I%27d%20like%20to%20book%20a%20session" target="_blank" rel="noopener">Book on WhatsApp</a>
+        <a class="btn btn-vela" data-magnetico href="https://wa.me/34672076034?text=Hi%20D%C3%A1maris%2C%20I%27d%20like%20to%20book%20a%20session" target="_blank" rel="noopener"><span class="magnetico__label">Book on WhatsApp</span></a>
         <a class="btn btn-linea" href="https://www.instagram.com/superdama79/" target="_blank" rel="noopener">Message on Instagram</a>
       </div>
     </div>
@@ -332,6 +373,7 @@
       <a href="../legal/aviso-legal.html" hreflang="es">Legal notice (ES)</a>
       <a href="../legal/politica-privacidad.html" hreflang="es">Privacy (ES)</a>
       <a href="../legal/politica-cookies.html" hreflang="es">Cookies (ES)</a>
+      <button type="button" class="quietud" data-quietud>Reduce animations</button>
     </div>
   </div>
 </footer>
@@ -357,5 +399,11 @@ var VIDEOS = [
 var TXT = { ver: "Watch the video", cerrar: "Close", iframe: "Instagram video", copiado: "Link copied", copia: "Copy the link:" };
 </script>
 <script src="../comun.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
+<script src="../dinamico.js"></script>
 </body>
 </html>
