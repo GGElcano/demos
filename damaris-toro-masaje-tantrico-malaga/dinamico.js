@@ -2,9 +2,10 @@
    CAPA DINÁMICA · Dámaris Toro (kit premium de la casa)
    Piezas: preloader, scroll suave (Lenis), estela fluida, cursor, hero
    coreografiado, marquee vivo, manifiesto palabra a palabra, cifra que
-   cuenta, LOTO Y SIETE CHAKRAS (pieza singular), zoom del gabinete, tiras
-   a contra-scroll, citas que entran por los lados y botón magnético.
-   Compartido por / (español) y /en/ (inglés): el idioma sale de <html lang>.
+   cuenta, LOTO Y SIETE CHAKRAS (pieza singular), zoom del gabinete,
+   rejillas que suben escalonadas, vídeo que se abre y botón magnético.
+   Compartido por todas las páginas (ES y EN): el idioma sale de <html lang>
+   y cada pieza solo se monta si su bloque está en la página.
    No se frena con prefers-reduced-motion (el Chrome de Sergio lo tiene
    puesto y la web le salía quieta). El botón «Reducir animaciones» del pie
    la deja estática para quien lo pida.
@@ -83,7 +84,7 @@
         pressureIterations: MOBILE ? 8 : 10, curl: 24,
         splatRadius: MOBILE ? 0.12 : 0.1, splatForce: 5000,
         hover: false, colorful: false,
-        colorPalette: ['#B5482F', '#E39A7C', '#8C3420'],
+        colorPalette: ['#E0785C', '#F0A47E', '#C9583F'],  /* «como el fuego» (le encantó a Dámaris, audio 21-oct): coral y ámbar vivos */
         transparent: true, bloom: false, sunrays: false,
       });
       sim.start();
@@ -129,11 +130,6 @@
         })(i);
       };
     }).catch(function(){});
-    /* sobre los bloques oscuros la estela pasa a «luz» (screen) */
-    document.querySelectorAll('[data-oscuro]').forEach(function(sec){
-      ScrollTrigger.create({ trigger: sec, start: 'top 50%', end: 'bottom 50%',
-        onToggle: function(self){ fluidEl.classList.toggle('fluid--screen', self.isActive); } });
-    });
   }
 
   /* ── 3) Cursor dot + ring (decorativo) ── */
@@ -148,10 +144,10 @@
       dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
     }, { passive: true });
     document.addEventListener('mouseenter', function(e){
-      if (e.target.closest && e.target.closest('a, button, .reel')) gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' });
+      if (e.target.closest && e.target.closest('a, button')) gsap.to(ring, { scale: 1.9, duration: 0.35, ease: 'power3.out' });
     }, true);
     document.addEventListener('mouseleave', function(e){
-      if (e.target.closest && e.target.closest('a, button, .reel')) gsap.to(ring, { scale: 1, duration: 0.35, ease: 'power3.out' });
+      if (e.target.closest && e.target.closest('a, button')) gsap.to(ring, { scale: 1, duration: 0.35, ease: 'power3.out' });
     }, true);
   })();
 
@@ -168,7 +164,7 @@
     var elNum = seccion.querySelector('[data-energia-num]');
     var elFase = seccion.querySelector('[data-energia-fase]');
     var elFrase = seccion.querySelector('[data-energia-frase]');
-    var VELA = 'rgba(227,154,124,.92)', TENUE = 'rgba(227,154,124,.34)';
+    var VELA = 'rgba(142,69,56,.82)', TENUE = 'rgba(178,92,77,.36)';
 
     function petalo(angDeg, len, anchura, n){
       n = n || 14;
@@ -278,7 +274,7 @@
       ctx.beginPath(); ctx.arc(cx, cy, r * 0.42, 0, Math.PI*2); ctx.fill();
       if (f > 0.55){
         ctx.globalAlpha = (f - 0.55) / 0.45;
-        ctx.fillStyle = 'rgba(246,233,223,.85)'; ctx.font = '300 19px Jost, sans-serif'; ctx.textAlign = 'left';
+        ctx.fillStyle = 'rgba(59,43,39,.78)'; ctx.font = '300 19px Jost, sans-serif'; ctx.textAlign = 'left';
         ctx.fillText(EN ? c[4] : c[3], cx + r * 3.1, cy + 6);
       }
       ctx.globalAlpha = 1;
@@ -304,12 +300,12 @@
         if (tr.llama){
           /* resplandor de la llama */
           var g = ctx.createRadialGradient(tr.llama[0], tr.llama[1] - 12, 0, tr.llama[0], tr.llama[1] - 12, 46);
-          g.addColorStop(0, 'rgba(255,190,120,' + (0.55 * f) + ')'); g.addColorStop(1, 'rgba(255,190,120,0)');
+          g.addColorStop(0, 'rgba(240,150,100,' + (0.5 * f) + ')'); g.addColorStop(1, 'rgba(240,150,100,0)');
           ctx.fillStyle = g; ctx.beginPath(); ctx.arc(tr.llama[0], tr.llama[1] - 12, 46, 0, Math.PI * 2); ctx.fill();
         }
         parcial(tr.p, tr.len, f);
         if (tr.cota && f >= 1){
-          ctx.fillStyle = 'rgba(227,154,124,.8)'; ctx.font = '300 20px Jost, sans-serif'; ctx.textAlign = 'center';
+          ctx.fillStyle = 'rgba(142,69,56,.8)'; ctx.font = '300 20px Jost, sans-serif'; ctx.textAlign = 'center';
           ctx.fillText(tr.cota, 500, 636);
         }
       });
@@ -336,11 +332,14 @@
 
   /* ── 5) Coreografía de la página ── */
   function coreografia(){
-    /* hero: la foto se acerca y el texto se retira al bajar */
-    gsap.to('[data-hero-media] img', { scale: 1.14, yPercent: 6, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-    gsap.to('.hero__contenido', { yPercent: -14, autoAlpha: 0.25, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 25%', scrub: true } });
+    /* hero (solo en la portada): la foto se acerca y el texto se retira al bajar */
+    if (document.querySelector('.hero')) {
+      gsap.to('[data-hero-media] img', { scale: 1.14, yPercent: 6, ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+      /* fromTo con opacity fija: con autoAlpha tomaba el «oculto» del arranque como punto de partida y el texto se quedaba invisible */
+      gsap.fromTo('.hero__contenido', { yPercent: 0, opacity: 1 }, { yPercent: -14, opacity: 0.25, ease: 'none', immediateRender: false,
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 25%', scrub: true } });
+    }
 
     /* marquee vivo: corre solo y acelera (o se da la vuelta) con el scroll */
     var track = document.querySelector('.marquee__track');
@@ -414,16 +413,19 @@
         scrollTrigger: { trigger: '.tiras', start: 'top bottom', end: 'bottom top', scrub: 1 } });
     });
 
-    /* citas que entran alternando lado, cosidas al scroll */
-    document.querySelectorAll('.cita').forEach(function(el, i){
-      gsap.fromTo(el, { x: i % 2 ? 90 : -90, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top 98%', end: 'top 64%', scrub: 1 } });
-    });
 
-    /* reels: entran en abanico */
-    var reels = gsap.utils.toArray('.reel');
-    if (reels.length) gsap.fromTo(reels, { y: 120, autoAlpha: 0, rotate: 4 }, { y: 0, autoAlpha: 1, rotate: 0, duration: 1, ease: 'expo.out', stagger: 0.08,
-      scrollTrigger: { trigger: '.reels', start: 'top 88%', once: true } });
+    /* bloques en rejilla (lo que hago, pilares, pasos, entradas del blog): suben escalonados */
+    ['.haceres', '.pilares__grid', '.camino__lista', '.pasos', '.citas', '.entradas'].forEach(function(sel){
+      var caja = document.querySelector(sel);
+      if (!caja || !caja.children.length) return;
+      gsap.fromTo(caja.children, { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, ease: 'expo.out', stagger: 0.1,
+        scrollTrigger: { trigger: caja, start: 'top 88%', once: true } });
+    });
+    /* vídeo de la portada: se abre como una cortina */
+    var vcaja = document.querySelector('.video__caja');
+    if (vcaja) gsap.fromTo(vcaja, { clipPath: 'inset(18% 18% 18% 18% round 22px)', scale: 0.92 },
+      { clipPath: 'inset(0% 0% 0% 0% round 22px)', scale: 1, ease: 'none',
+        scrollTrigger: { trigger: '.video', start: 'top 85%', end: 'center 55%', scrub: 1 } });
 
     /* títulos: suben línea a línea desde una máscara */
     document.querySelectorAll('[data-reveal]').forEach(function(el){
@@ -462,34 +464,54 @@
   function revealHero(){
     var tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
     tl.set('[data-hero-reveal]', { visibility: 'visible' }, 0);
-    tl.from('.barra', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
-    tl.fromTo('[data-hero-media]', { clipPath: 'inset(100% 0 0 0 round 999px 999px 18px 18px)' },
-      { clipPath: 'inset(0% 0 0 0 round 999px 999px 18px 18px)', duration: 1.5, ease: 'hop' }, 0);
-    tl.fromTo('[data-hero-media] img', { scale: 1.3 }, { scale: 1, duration: 1.9, ease: 'power4.out' }, 0);
-    tl.from('.arco figcaption', { autoAlpha: 0, x: -30, duration: 1 }, 1.1);
-    var tit = SplitText.create('.hero h1', { type: 'words, chars', mask: 'chars' });
-    tl.from(tit.chars, { yPercent: 120, duration: 1, stagger: 0.016 }, 0.35);
-    var cl = SplitText.create('.hero .claim', { type: 'lines', mask: 'lines' });
-    tl.from(cl.lines, { yPercent: 110, duration: 0.9, stagger: 0.08 }, 0.7);
-    tl.from('.hero .hoy', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.5);
-    tl.from('.hero .acciones .btn', { autoAlpha: 0, y: 24, duration: 0.9, stagger: 0.1 }, 0.95);
-    tl.from('.hero .alt-contacto, .hero .bajar', { autoAlpha: 0, duration: 0.9 }, 1.1);
+    if (!raiz.classList.contains('visto')) tl.from('.barra', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
+    if (document.querySelector('.hero')) {
+      tl.fromTo('[data-hero-media]', { clipPath: 'inset(100% 0 0 0 round 999px 999px 18px 18px)' },
+        { clipPath: 'inset(0% 0 0 0 round 999px 999px 18px 18px)', duration: 1.5, ease: 'hop' }, 0);
+      tl.fromTo('[data-hero-media] img', { scale: 1.3 }, { scale: 1, duration: 1.9, ease: 'power4.out' }, 0);
+      var tit = SplitText.create('.hero .h1-grande', { type: 'words, chars', mask: 'chars' });
+      tl.from(tit.chars, { yPercent: 120, duration: 1, stagger: 0.02 }, 0.35);
+      tl.from('.hero .h1-sub', { autoAlpha: 0, y: 14, duration: 0.9 }, 0.75);
+      var cl = SplitText.create('.hero .claim', { type: 'lines', mask: 'lines' });
+      tl.from(cl.lines, { yPercent: 110, duration: 0.9, stagger: 0.08 }, 0.8);
+      tl.from('.hero .hoy', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.5);
+      /* la caja y no el botón: el botón es magnético y las dos animaciones se pisarían (se quedaba 24 px abajo) */
+      tl.from('.hero .acciones', { autoAlpha: 0, y: 24, duration: 0.9 }, 1.0);
+      tl.from('.hero .redes-mini', { autoAlpha: 0, duration: 0.9 }, 1.15);
+    } else if (document.querySelector('.cabecera h1')) {
+      var ct = SplitText.create('.cabecera h1', { type: 'lines', mask: 'lines' });
+      tl.from(ct.lines, { yPercent: 110, duration: 1.1, stagger: 0.08 }, 0.2);
+      tl.from('.cabecera .rotulo, .cabecera .entradilla', { autoAlpha: 0, y: 18, duration: 0.9, stagger: 0.1 }, 0.45);
+    }
     return tl;
   }
 
+  /* «visto» lo pone el <head> si ya se abrió otra página en esta visita */
+  var visto = raiz.classList.contains('visto');
+  try { sessionStorage.setItem('dt-visto', '1'); } catch(e){}
   document.fonts.ready.then(function(){
     var num = document.querySelector('.preloader__num');
     var p = { v: 0 };
     var minimo = new Promise(function(res){
+      if (visto) { res(); return; }
       gsap.to(p, { v: 100, duration: 1.8, ease: 'steps(14)', onUpdate: function(){ num.firstChild.textContent = Math.round(p.v); }, onComplete: res });
     });
-    var real = new Promise(function(res){ if (document.readyState === 'complete') res(); else addEventListener('load', res, { once: true }); });
+    /* la primera vez se espera a que cargue todo (lo tapa la cortina); al cambiar de página, no:
+       la página ya está a la vista y esperar a las fotos la dejaba congelada */
+    var real = new Promise(function(res){ if (visto || document.readyState === 'complete') res(); else addEventListener('load', res, { once: true }); });
     Promise.all([minimo, real]).then(function(){
+      if (visto) {
+        coreografia();
+        revealHero();
+        lenis.start();
+        addEventListener('load', function(){ ScrollTrigger.refresh(); }, { once: true });
+        return;
+      }
       coreografia();
       gsap.timeline()
         .to('.preloader__num', { yPercent: -110, duration: 0.6, ease: 'expo.in' })
         .to('.preloader__brand > *', { yPercent: -140, autoAlpha: 0, duration: 0.6, ease: 'expo.in', stagger: 0.05 }, '<')
-        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'hop' }, '-=0.1')
+        .to('.preloader__curtain', { clipPath: 'inset(0 0 100% 0)', duration: visto ? 0.8 : 1.1, ease: 'hop' }, '-=0.1')
         .set('.preloader', { display: 'none' })
         .add(revealHero(), '-=0.75')
         .call(function(){ lenis.start(); }, null, '-=1.2')
