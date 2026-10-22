@@ -302,3 +302,14 @@ body {
   color: var(--lg-text);
   text-decoration: underline;
 }
+
+/* Móvil: cada fila de la tabla pasa a ser una ficha (en 360-390 px no cabían 4 columnas) */
+@media (max-width: 600px) {
+  .legal-table-wrap { overflow: visible; }
+  .legal-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .legal-table, .legal-table caption, .legal-table tbody, .legal-table tr, .legal-table td { display: block; width: 100%; }
+  .legal-table tr { border-bottom: 1px solid var(--lg-border); padding: 6px 0; }
+  .legal-table tr:last-child { border-bottom: none; }
+  .legal-table td { display: grid; grid-template-columns: 6.5rem 1fr; gap: 10px; padding: 6px 14px; border-bottom: none; overflow-wrap: anywhere; }
+  .legal-table td::before { content: attr(data-label); font-weight: 600; font-size: 13px; color: var(--lg-muted); }
+}

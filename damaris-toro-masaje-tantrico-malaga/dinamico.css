@@ -97,7 +97,7 @@ html.saliendo body{opacity:0}
 .tarjeta:hover .marco-img img{transform:scale(1.07)}
 
 /* PIEZA SINGULAR: el loto y los siete chakras, en pastel */
-.energia{height:360vh;position:relative;background:var(--crema-2)}
+.energia{height:360vh;position:relative;background:var(--crema-2);padding:0} /* sin el relleno general de section: si no, la parte fija se clavaba 112 px más abajo y se cortaba */
 .energia__pin{position:relative;height:100vh;height:100svh;overflow:hidden;display:grid;color:var(--tinta);
   background:radial-gradient(50% 55% at 50% 58%,rgba(255,251,248,.9),transparent 70%),linear-gradient(170deg,var(--rosa),var(--melocoton))}
 .energia__lienzo{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -112,6 +112,8 @@ html.saliendo body{opacity:0}
   border-inline-start:2px solid var(--vela);padding-inline-start:1rem;margin:0}
 .energia__frase{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2.1vw,1.55rem);color:var(--tinta);
   padding-inline-start:1rem;min-height:3.2em;margin:0}
+/* apaisado (mismo corte que dinamico.js): los textos en la columna izquierda, la figura a la derecha */
+@media(min-width:900px) and (min-aspect-ratio:23/20){.energia__pie{max-width:min(38rem,36vw)}.energia__titulo{max-width:min(17ch,36vw)}}
 @media(max-width:700px){.energia__cab{gap:1rem}.energia__num{font-size:1.7rem}.energia__frase{min-height:4.4em}
   .energia__hud{padding-bottom:calc(84px + env(safe-area-inset-bottom))}}
 .solo-lector{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -121,7 +123,9 @@ html.saliendo body{opacity:0}
 .zoom__pin{position:relative;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center;background:var(--crema)}
 .zoom__marco{position:absolute;inset:0;clip-path:inset(34% 34% 34% 34% round 24px);will-change:clip-path}
 .zoom__marco img{width:100%;height:100%;object-fit:cover;will-change:transform}
-.zoom__marco::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(142,69,56,.28),rgba(59,43,39,.5))}
+/* capa oscura: la foto nueva del gabinete es muy luminosa; detrás de la frase llega a ~.7 para que se lea siempre */
+.zoom__marco::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 45% at 50% 50%,rgba(52,36,31,.42),rgba(52,36,31,0) 75%),linear-gradient(180deg,rgba(142,69,56,.34),rgba(59,43,39,.58))}
 /* la foto mide 640 px: una trama fina hace que lo blando se lea como estilo */
 .zoom__marco::before{content:"";position:absolute;inset:0;z-index:1;opacity:.28;pointer-events:none;
   background-image:radial-gradient(rgba(0,0,0,.5) 1px,transparent 1.2px);background-size:4px 4px}
@@ -139,6 +143,7 @@ html.saliendo body{opacity:0}
 
 /* modo estático (sin librerías o por elección): todo a la vista */
 html:not(.dinamico) .energia{height:auto}
+html:not(.dinamico) .energia__num{display:none}
 html:not(.dinamico) .zoom{height:auto}
 html:not(.dinamico) .zoom__marco{clip-path:none}
 html:not(.dinamico) #fluid,html:not(.dinamico) .cursor-dot,html:not(.dinamico) .cursor-ring,html:not(.dinamico) .progreso{display:none}

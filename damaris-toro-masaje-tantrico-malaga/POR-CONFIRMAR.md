@@ -56,3 +56,10 @@ texto propio de Apertura de corazón y fechas de Barcelona.
 uno). Se rehace con `~/Documents/damaris-material-22oct/montar_video_portada.py <carpeta assets>`.
 Arco de la portada: el abrazo recortado en su cara (`damaris-toro-abrazo-portada.jpg`); el selfie y
 la foto vieja de las manos en el pecho ya no se usan (no le gustaban). Sobre mí: ella dando el masaje.
+
+**22-oct-2026 (noche), repaso de encaje de textos:** la sección del dibujo (loto y chakras) se
+cortaba por abajo en el ordenador (heredaba el relleno general de `section`: 112 px); ahora el
+dibujo se encaja midiendo los textos (ordenador: textos a la izquierda y dibujo a la derecha;
+móvil: entre el título y la frase), nombres de los chakras fuera de los pétalos y modo estático
+con la figura terminada. Además: capa más oscura tras «Un rincón de paz te espera», tabla de
+cookies en fichas en el móvil y cortes de línea equilibrados (`text-wrap`) en toda la web.

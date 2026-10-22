@@ -34,6 +34,7 @@
     var pre = document.querySelector('.preloader'); if (pre) pre.style.display = 'none';
     document.querySelectorAll('.rv').forEach(function(e){ e.classList.add('visible'); });
     document.querySelectorAll('[data-cuenta]').forEach(function(el){ el.textContent = formato(+el.dataset.cuenta, +el.dataset.dec || 0); });
+    var e = crearEnergia(); if (e) e.final();
   }
   function formato(v, dec){ return v.toLocaleString(EN ? 'en-GB' : 'es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec }); }
 
@@ -155,9 +156,14 @@
      Figura y trazos reutilizados de la demo de Tantra Málaga (verificada a
      ojo al 30/60/95 %). Las cuatro fases son los cuatro pasos de la sesión
      de Dámaris, con sus palabras. */
-  var energia = (function(){
+  /* Es una función con nombre para poder llamarla también desde estatico()
+     (ahí se pinta la figura terminada, sin scroll). Por eso no usa gsap para
+     dibujar y calcula su propio DPR. */
+  function crearEnergia(){
     var seccion = document.querySelector('.energia');
     if (!seccion) return null;
+    var DPR = Math.min(devicePixelRatio || 1, 2);
+    var hud = seccion.querySelector('.energia__hud');
     var pinEl = seccion.querySelector('.energia__pin');
     var canvas = seccion.querySelector('.energia__lienzo');
     var ctx = canvas.getContext('2d');
@@ -203,12 +209,12 @@
     var trazos = [
       /* I · preparo la sala: suelo, dos velas y su humo */
       { t:[0.00,0.07], w:1.8, c:TENUE, p:[[180,560],[380,552],[620,554],[820,560]] },
-      { t:[0.03,0.09], w:1.5, c:VELA,  p: vela(250, 552) },
-      { t:[0.05,0.11], w:1.5, c:VELA,  p: vela(750, 552) },
-      { t:[0.09,0.13], w:1.6, c:VELA,  llama:[250, 500] },
-      { t:[0.10,0.14], w:1.6, c:VELA,  llama:[750, 500] },
-      { t:[0.11,0.18], w:1.2, c:TENUE, p: vapor(250, 470, 130, 2.5) },
-      { t:[0.12,0.19], w:1.2, c:TENUE, p: vapor(750, 470, 150, 3) },
+      { t:[0.03,0.09], w:1.5, c:VELA,  p: vela(225, 552) },
+      { t:[0.05,0.11], w:1.5, c:VELA,  p: vela(775, 552) },
+      { t:[0.09,0.13], w:1.6, c:VELA,  llama:[225, 500] },
+      { t:[0.10,0.14], w:1.6, c:VELA,  llama:[775, 500] },
+      { t:[0.11,0.18], w:1.2, c:TENUE, p: vapor(225, 470, 78, 1.5) },
+      { t:[0.12,0.19], w:1.2, c:TENUE, p: vapor(775, 470, 70, 1.5) },
       /* II · hablamos y respiramos: el loto se abre pétalo a pétalo */
       { t:[0.20,0.27], w:1.7, c:VELA,  p: petalo(-45, 150, 34) },
       { t:[0.22,0.29], w:1.7, c:VELA,  p: petalo(-135, 150, 34) },
@@ -239,18 +245,46 @@
     function longitudes(p){ var acc = [0]; for (var i = 1; i < p.length; i++) acc.push(acc[i-1] + Math.hypot(p[i][0]-p[i-1][0], p[i][1]-p[i-1][1])); return acc; }
     trazos.forEach(function(tr){ if (tr.llama) tr.p = llama(tr.llama[0], tr.llama[1]); if (tr.p) tr.len = longitudes(tr.p); });
 
+    /* caja que ocupa la figura entera, en unidades del dibujo: suelo, velas,
+       halo de la corona, nombres de los chakras y firma */
+    var CAJA = { x0: 180, y0: 56, x1: 820, y1: 648 };
     var escala = 1, offX = 0, offY = 0, prog = { v: 0 };
+    /* el hueco de la frase es el de la más larga: así nada salta al cambiar de fase */
+    function reservarFrase(){
+      var p = elFrase.parentNode, actual = elFrase.textContent, alto = 0;
+      p.style.minHeight = '0px';
+      FASES.forEach(function(fs){ elFrase.textContent = fs[2]; alto = Math.max(alto, p.offsetHeight); });
+      elFrase.textContent = actual;
+      p.style.minHeight = alto + 'px';
+    }
     function medir(){
       var w = pinEl.clientWidth, h = pinEl.clientHeight;
       if (!w || !h) return;
       canvas.width = w * DPR; canvas.height = h * DPR;
-      var movil = w < 700;
-      /* en móvil se encuadra solo la figura (x 230-770), no todo el lienzo */
-      escala = movil ? Math.min(w / 640, h / 760) : Math.min(w / 1000, h / 660) * 0.86;
-      offX = (w - 1000 * escala) / 2;
-      offY = (h - 660 * escala) / 2 + h * (movil ? 0.01 : 0.04);
+      reservarFrase();
+      var pr = pinEl.getBoundingClientRect(), cs = getComputedStyle(hud);
+      var rc = function(sel){ var r = seccion.querySelector(sel).getBoundingClientRect(); return { l: r.left - pr.left, t: r.top - pr.top, r: r.right - pr.left, b: r.bottom - pr.top }; };
+      var cab = rc('.energia__cab'), tit = rc('.energia__titulo'), num = rc('.energia__num'), pie = rc('.energia__pie');
+      var pad = parseFloat(cs.paddingLeft) || 20, gap = Math.max(16, Math.min(40, w * 0.03));
+      var x0, x1, y0, y1;
+      if (w / h > 1.15 && w >= 900) {
+        /* apaisado: los textos van en la columna izquierda y la figura a la derecha */
+        x0 = Math.max(tit.r, pie.r) + gap * 1.5; x1 = w - pad;
+        /* el «%» no se ve en modo estático: entonces se empieza a la altura del título */
+        y0 = (num.b > num.t ? num.b : tit.t) + gap; y1 = h - (parseFloat(cs.paddingBottom) || 32);
+      } else {
+        /* vertical: título arriba, frase abajo y la figura en el hueco de en medio */
+        x0 = pad / 2; x1 = w - pad / 2;
+        y0 = cab.b + gap; y1 = pie.t - gap;
+      }
+      var cw = CAJA.x1 - CAJA.x0, ch = CAJA.y1 - CAJA.y0;
+      escala = Math.max(0.2, Math.min((x1 - x0) / cw, (y1 - y0) / ch));
+      offX = x0 + ((x1 - x0) - cw * escala) / 2 - CAJA.x0 * escala;
+      offY = y0 + ((y1 - y0) - ch * escala) / 2 - CAJA.y0 * escala;
       pintar(prog.v, true);
     }
+    /* letra del dibujo: nunca por debajo de ~12,5 px en pantalla */
+    function letra(u){ return '300 ' + Math.max(u, 12.5 / escala).toFixed(1) + 'px Jost, sans-serif'; }
     function parcial(p, len, f){
       var obj = len[len.length-1] * f;
       ctx.beginPath(); ctx.moveTo(p[0][0], p[0][1]);
@@ -273,9 +307,12 @@
       ctx.globalAlpha = f; ctx.fillStyle = color;
       ctx.beginPath(); ctx.arc(cx, cy, r * 0.42, 0, Math.PI*2); ctx.fill();
       if (f > 0.55){
+        /* fuera de los pétalos (llegan a x 635) y antes del humo de la vela (x 765) */
         ctx.globalAlpha = (f - 0.55) / 0.45;
-        ctx.fillStyle = 'rgba(59,43,39,.78)'; ctx.font = '300 19px Jost, sans-serif'; ctx.textAlign = 'left';
-        ctx.fillText(EN ? c[4] : c[3], cx + r * 3.1, cy + 6);
+        ctx.fillStyle = color; ctx.beginPath(); ctx.arc(652, cy, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(59,43,39,.82)'; ctx.font = letra(17); ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+        ctx.fillText(EN ? c[4] : c[3], 664, cy + 1);
+        ctx.textBaseline = 'alphabetic';
       }
       ctx.globalAlpha = 1;
     }
@@ -289,7 +326,7 @@
       ctx.translate(offX, offY); ctx.scale(escala, escala);
       ctx.lineCap = 'round'; ctx.lineJoin = 'round';
       trazos.forEach(function(tr){
-        var f = gsap.utils.clamp(0, 1, (t - tr.t[0]) / (tr.t[1] - tr.t[0]));
+        var f = Math.max(0, Math.min(1, (t - tr.t[0]) / (tr.t[1] - tr.t[0])));
         if (f <= 0) return;
         if (tr.chakra !== undefined) { chakra(tr.chakra, f); return; }
         ctx.strokeStyle = tr.c; ctx.lineWidth = tr.w;
@@ -305,7 +342,7 @@
         }
         parcial(tr.p, tr.len, f);
         if (tr.cota && f >= 1){
-          ctx.fillStyle = 'rgba(142,69,56,.8)'; ctx.font = '300 20px Jost, sans-serif'; ctx.textAlign = 'center';
+          ctx.fillStyle = 'rgba(142,69,56,.8)'; ctx.font = letra(19); ctx.textAlign = 'center';
           ctx.fillText(tr.cota, 500, 636);
         }
       });
@@ -314,6 +351,7 @@
       FASES.forEach(function(fs){ if (t >= fs[0]) fase = fs; });
       if (elFase.textContent !== fase[1]){
         elFase.textContent = fase[1];
+        if (!raiz.classList.contains('dinamico')) { elFrase.textContent = fase[2]; return; }
         gsap.timeline()
           .to(elFrase, { autoAlpha: 0, duration: 0.18, ease: 'power1.in' })
           .add(function(){ elFrase.textContent = fase[2]; })
@@ -321,14 +359,19 @@
       }
     }
     addEventListener('resize', medir);
+    /* las letras de Google llegan tarde y cambian el alto de los textos: volver a encuadrar */
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ medir(); });
+    addEventListener('load', function(){ medir(); });
     return {
+      final: function(){ prog.v = 1; medir(); },
       montar: function(){
         medir();
         gsap.to(prog, { v: 1, ease: 'none', onUpdate: function(){ pintar(prog.v); },
           scrollTrigger: { trigger: seccion, start: 'top top', end: 'bottom bottom', pin: pinEl, pinSpacing: false, scrub: 1, anticipatePin: 1 } });
       },
     };
-  })();
+  }
+  var energia = crearEnergia();
 
   /* ── 5) Coreografía de la página ── */
   function coreografia(){
