@@ -23,9 +23,8 @@ pecho, brazos, cara y cráneo), Alquimia de dos (pareja, con uno o dos masajista
 sincronía (cuatro manos, masajista hombre y mujer), Talleres y retiros. Más «Un espacio de
 confianza» y «Para personas que…». Quitada la tarjeta «Sexualidad holística» (no está en su lista).
 
-**Precios: SÍ se publican** (21-oct, ella dijo «pues la ponemos»). Pendiente que los mande:
-cambiar «Precio por confirmar» / «Price to be confirmed» en cada tarjeta y la pregunta
-«¿Cuánto cuesta una sesión?» (también en el JSON-LD de arriba).
+**Precios: PUESTOS (audio 22-oct 10:59):** individuales (Despertar solar y lunar) 100 € / 1 h; pareja 200 € / 1 h
+(ella suele alargarla en el gabinete); cuatro manos 200 € / 1 h; Apertura de corazón 60 € / 45 min.
 
 Pendiente también: texto propio de «Apertura de corazón» (dijo que lo manda escrito),
 duración de pareja y cuatro manos, si añade un masaje relajante NO tántrico (lo pregunta ella),
