@@ -233,12 +233,12 @@
     ];
     var FASES = EN ? [
       [0.00, 'I · I prepare the room', 'Before I receive you, I settle into presence. Lighting a candle opens a temple.'],
-      [0.20, 'II · The Welcome Ritual', 'A conversation, breathing and a guided relaxation. Your boundaries and your pace matter most.'],
+      [0.20, 'II · The Welcome Ritual', 'A conversation using Nonviolent Communication to agree on your boundaries, and breathing to settle into trust.'],
       [0.42, 'III · Touch', 'Your nervous system doesn’t listen to your affirmations. It listens to your breath.'],
       [0.87, 'IV · Coming back to you', 'When the body feels safe, it starts to release what it has been holding in silence.'],
     ] : [
       [0.00, 'I · Preparo la sala', 'Antes de recibirte, habito la presencia. Encender una vela es inaugurar un templo.'],
-      [0.20, 'II · El Ritual de Bienvenida', 'Una charla, respiración y una relajación guiada. Tus límites y tu ritmo son lo más importante.'],
+      [0.20, 'II · El Ritual de Bienvenida', 'Una charla desde la Comunicación No Violenta para acordar tus límites, y respiración para entrar en confianza.'],
       [0.42, 'III · El tacto', 'El sistema nervioso no escucha tus afirmaciones. Escucha tu respiración.'],
       [0.87, 'IV · Volver a ti', 'Cuando el cuerpo se siente seguro, empieza a soltar lo que llevaba sosteniendo en silencio.'],
     ];

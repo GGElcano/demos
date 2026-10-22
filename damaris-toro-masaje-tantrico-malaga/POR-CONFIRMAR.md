@@ -63,3 +63,9 @@ dibujo se encaja midiendo los textos (ordenador: textos a la izquierda y dibujo 
 móvil: entre el título y la frase), nombres de los chakras fuera de los pétalos y modo estático
 con la figura terminada. Además: capa más oscura tras «Un rincón de paz te espera», tabla de
 cookies en fichas en el móvil y cortes de línea equilibrados (`text-wrap`) en toda la web.
+
+**22-oct-2026 (tarde), su WhatsApp de las 14:01-14:06, aplicado:** «Sobre mí» con SU texto (frase de
+entrada, quién es, «¿A quién acompaño?», «Mi enfoque y herramientas» y cierre), traducido al inglés;
+la trayectoria, el propósito/visión/misión y sus frases de Instagram se mantienen. Servicios: sección
+nueva «Qué esperar en la sesión» (charla previa con CNV para acordar límites + respiración) y paso
+«El Ritual de Bienvenida» ampliado (también en el dibujo de la portada).
