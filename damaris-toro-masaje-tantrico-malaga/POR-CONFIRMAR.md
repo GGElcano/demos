@@ -37,3 +37,16 @@ talleres, eventos especiales»: en la web definitiva necesita un panel para subi
 Al tenerlo todo: quitar el `<aside class="aviso-maqueta">` de las 8 páginas, las etiquetas
 «Texto provisional» y la línea `<meta name="robots" content="noindex">`, y cambiar las URLs
 ggelcano.github.io por su dominio.
+
+**22-oct-2026, material recibido por WhatsApp (18 fotos + 11 vídeos):** guardado fuera del repo en
+`~/Documents/damaris-material-22oct/` (buenas / dudosas / descartadas / videos). Su TikTok es
+**@damaris_arte_del_tacto** (sale en la marca de agua de sus vídeos): cambiar `https://www.tiktok.com/`.
+Sus vídeos V2 y V3 anuncian **agenda abierta en Madrid del 2 al 4 de noviembre** (para el blog/agenda).
+
+**22-oct-2026 (tarde), aplicado y publicado:** fotos suyas nuevas en servicios, Sobre mí y portada;
+«Sobre mí» reescrito con su documento de marca (deporte profesional, cambio vital, formación,
+referentes, promesa); «El Ritual de Bienvenida» en cómo es una sesión; pregunta de desnudez
+(«no es un servicio sexual», criterio de Sergio: es tantra, se da a entender sin ofrecer servicio
+sexual); TikTok @damaris_arte_del_tacto en las 8 páginas; Madrid 2 al 4 de noviembre en el blog;
+fuera «sexualidad holística» de la portada. Falta de ella: que revise su historia en «Sobre mí»,
+texto propio de Apertura de corazón y fechas de Barcelona.
