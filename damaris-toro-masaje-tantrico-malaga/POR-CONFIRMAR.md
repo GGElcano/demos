@@ -50,3 +50,9 @@ referentes, promesa); «El Ritual de Bienvenida» en cómo es una sesión; pregu
 sexual); TikTok @damaris_arte_del_tacto en las 8 páginas; Madrid 2 al 4 de noviembre en el blog;
 fuera «sexualidad holística» de la portada. Falta de ella: que revise su historia en «Sobre mí»,
 texto propio de Apertura de corazón y fechas de Barcelona.
+
+**22-oct-2026 (noche), portada:** vídeo de fondo (montaje de sus vídeos y fotos:
+`assets/portada-video.mp4` 16:9 para ordenador y `portada-video-movil.mp4` 9:16, con póster cada
+uno). Se rehace con `~/Documents/damaris-material-22oct/montar_video_portada.py <carpeta assets>`.
+Arco de la portada: el abrazo recortado en su cara (`damaris-toro-abrazo-portada.jpg`); el selfie y
+la foto vieja de las manos en el pecho ya no se usan (no le gustaban). Sobre mí: ella dando el masaje.

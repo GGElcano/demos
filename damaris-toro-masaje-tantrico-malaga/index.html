@@ -100,6 +100,17 @@ try{if(sessionStorage.getItem("dt-visto")==="1")document.documentElement.classLi
 <!-- PORTADA MINIMALISTA (lo pidió ella en su audio del 21-oct): una frase de
      qué hace, su cita, un solo botón de WhatsApp y nada más. -->
 <section class="hero">
+  <!-- VÍDEO DE FONDO (22-oct): montaje de sus vídeos y fotos con
+       ~/Documents/damaris-material-22oct/montar_video_portada.py (ordenador 16:9 y móvil 9:16).
+       Se mueve SIEMPRE, aunque el sistema pida menos movimiento, y tiene botón de pausa; solo
+       arranca parado si la visita pulsó «Reducir animaciones» en el pie (comun.js). -->
+  <div class="hero__fondo" aria-hidden="true">
+    <video class="hero__video" muted autoplay loop playsinline preload="auto" disablepictureinpicture>
+      <source src="assets/portada-video-movil.mp4" type="video/mp4" media="(max-width: 820px)">
+      <source src="assets/portada-video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <button type="button" class="hero__pausa" aria-label="Pausar el vídeo de fondo" aria-pressed="false"><svg class="ico-pausa" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zm6.5 0H17v14h-3.5z"/></svg><svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
   <div class="env">
     <div class="hero__contenido" data-hero-reveal>
       <p class="hoy"><span class="punto"></span>Málaga · con cita previa</p>
@@ -111,7 +122,7 @@ try{if(sessionStorage.getItem("dt-visto")==="1")document.documentElement.classLi
     <figure class="arco">
       <span class="halo" aria-hidden="true"></span>
       <div data-hero-media>
-        <img src="assets/damaris-toro-retrato.jpg" width="972" height="1296" alt="Dámaris Toro, terapeuta de tantra en Málaga, en su espacio" fetchpriority="high" style="object-position:50% 35%">
+        <img src="assets/damaris-toro-abrazo-portada.jpg" width="840" height="1050" alt="Dámaris Toro abrazando a una persona al terminar una sesión de tantra en Málaga" fetchpriority="high">
       </div>
     </figure>
   </div>

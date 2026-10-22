@@ -356,3 +356,32 @@ footer .legales a{text-decoration:none}
 .tarjetas.carta{grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
 @media (min-width:1100px){.tarjetas.carta{grid-template-columns:repeat(3,1fr)}}
 .tarjetas.carta .btn{max-width:100%;white-space:normal;text-align:center}
+
+/* ---------- portada con vídeo de fondo (22-oct) ----------
+   El póster va de fondo (ordenador / móvil) hasta que el vídeo arranca; el velo crema deja el
+   texto siempre legible (casi opaco donde hay letra) y la trama de puntos disimula la poca
+   resolución de sus vídeos. */
+.hero__fondo{position:absolute;inset:0;z-index:0;overflow:hidden;
+  background:var(--crema) url(assets/portada-video-poster.jpg) center/cover no-repeat}
+.hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+.hero__fondo.en-marcha .hero__video{opacity:1}
+.hero__fondo::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(rgba(251,244,239,.22) .7px,transparent 1.2px) 0 0/3px 3px,
+    linear-gradient(90deg,rgba(251,244,239,.93) 0%,rgba(251,244,239,.88) 48%,rgba(251,244,239,.5) 58%,rgba(251,244,239,.1) 70%,rgba(251,244,239,0) 86%)}
+.hero .env{position:relative;z-index:1}
+/* arriba a la derecha: abajo lo tapan el aviso de cookies y el WhatsApp flotante */
+.hero__pausa{position:absolute;right:clamp(.8rem,2vw,1.4rem);top:clamp(.8rem,2vw,1.4rem);z-index:2;
+  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;
+  border:1px solid rgba(178,92,77,.35);background:rgba(255,251,248,.78);color:var(--vela-osc);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .2s}
+.hero__pausa:hover{background:var(--blanco)}
+.hero__pausa:focus-visible{outline:2px solid var(--vela);outline-offset:3px}
+.hero__pausa svg{width:16px;height:16px;fill:currentColor}
+.hero__pausa .ico-play,.hero__pausa[aria-pressed="true"] .ico-pausa{display:none}
+.hero__pausa[aria-pressed="true"] .ico-play{display:block}
+@media(max-width:820px){
+  .hero__fondo{background-image:url(assets/portada-video-movil-poster.jpg)}
+  .hero__fondo::after{background:
+    radial-gradient(rgba(251,244,239,.22) .7px,transparent 1.2px) 0 0/3px 3px,
+    linear-gradient(180deg,rgba(251,244,239,.1) 0%,rgba(251,244,239,.18) 34%,rgba(251,244,239,.86) 44%,rgba(251,244,239,.93) 100%)}}

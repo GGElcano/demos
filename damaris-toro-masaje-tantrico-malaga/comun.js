@@ -116,3 +116,19 @@ if(anio) anio.textContent = String(new Date().getFullYear());
   },{rootMargin:"0px 0px -8% 0px",threshold:.08});
   els.forEach(function(e){ io.observe(e); });
 })();
+
+// Vídeo de fondo de la portada: se mueve siempre (aunque el sistema pida menos movimiento) y
+// tiene botón de pausa. Solo arranca parado si la visita pulsó «Reducir animaciones» en el pie.
+(function(){
+  var v = document.querySelector(".hero__video"); if(!v) return;
+  var fondo = v.parentNode, b = document.querySelector(".hero__pausa");
+  var quieto = false; try { quieto = localStorage.getItem("dt-quieto") === "1"; } catch(e){}
+  var L = EN_PAG ? ["Pause the background video", "Play the background video"] : ["Pausar el vídeo de fondo", "Reproducir el vídeo de fondo"];
+  function marcar(parado){ if(!b) return; b.setAttribute("aria-pressed", parado ? "true" : "false"); b.setAttribute("aria-label", parado ? L[1] : L[0]); }
+  function arrancar(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+  v.muted = true;
+  v.addEventListener("playing", function(){ fondo.classList.add("en-marcha"); });
+  if(!v.paused && v.currentTime > 0) fondo.classList.add("en-marcha");
+  if(quieto){ v.removeAttribute("autoplay"); v.pause(); marcar(true); } else { arrancar(); marcar(false); }
+  if(b) b.addEventListener("click", function(){ if(v.paused){ arrancar(); marcar(false); } else { v.pause(); marcar(true); } });
+})();
