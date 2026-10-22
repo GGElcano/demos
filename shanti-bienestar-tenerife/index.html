@@ -18,7 +18,7 @@
 <meta property="og:title" content="Shanti Centro de Terapias de Bienestar · Masajes en Santa Cruz de Tenerife">
 <meta property="og:description" content="Masajes terapéuticos y de relajación: descontracturante, maderoterapia, Kobido, piedras calientes y masaje prenatal. Isabel te atiende con cita previa. 5,0 en Google.">
 <meta property="og:url" content="https://ggelcano.github.io/demos/shanti-bienestar-tenerife/">
-<meta property="og:image" content="https://ggelcano.github.io/demos/shanti-bienestar-tenerife/assets/cabina-shanti-og.jpg">
+<meta property="og:image" content="https://ggelcano.github.io/demos/shanti-bienestar-tenerife/assets/cabina-shanti-favorita-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="La cabina de Shanti en Santa Cruz de Tenerife">
@@ -53,7 +53,7 @@
   "alternateName": "Shanti Masajes Tenerife",
   "description": "Centro de terapias y bienestar en Santa Cruz de Tenerife con masajes terapéuticos y de relajación: descontracturante, relajante, maderoterapia, lifting facial japonés (Kobido), drenaje linfático, reflexología podal, piedras calientes, masaje prenatal, masaje infantil y tratamientos de spa.",
   "url": "https://ggelcano.github.io/demos/shanti-bienestar-tenerife/",
-  "image": "https://ggelcano.github.io/demos/shanti-bienestar-tenerife/assets/cabina-shanti-og.jpg",
+  "image": "https://ggelcano.github.io/demos/shanti-bienestar-tenerife/assets/cabina-shanti-favorita-og.jpg",
   "priceRange": "20 € - 70 €",
   "telephone": "+34642403886",
   "email": "shaanticentrodebienestar@gmail.com",
@@ -269,24 +269,34 @@ main{ position: relative; z-index: 1; }
 }
 .hero__pie{ display:flex; align-items:flex-end; gap:2.5rem; margin-top: 2.4rem; flex-wrap:wrap; }
 .hero__sub{ max-width: 38ch; color: var(--tinta-2); font-size: 1.02rem; }
-.hero__scroll{
-  font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
-  color: var(--piedra); display:flex; align-items:center; gap:.8rem;
+.hero__botones{ display:flex; flex-wrap:wrap; gap:.8rem; margin-left:auto; }
+.boton{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 1rem 1.6rem; border-radius: 999px; border: 1px solid var(--eucalipto);
+  font: 400 .74rem/1 var(--sans); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--eucalipto); transition: background-color .35s ease, color .35s ease, border-color .35s ease;
 }
-.hero__scroll::after{
-  content:""; display:block; width:1px; height:3.2rem; background: var(--arcilla-osc);
-  transform-origin: top;
-  animation: gota 2.4s cubic-bezier(.76,0,.24,1) infinite;
-}
-@keyframes gota{ 0%{transform:scaleY(0)} 45%{transform:scaleY(1); transform-origin:top}
-                 46%{transform-origin:bottom} 100%{transform:scaleY(0); transform-origin:bottom} }
+.boton:hover{ background: var(--eucalipto); color: var(--crema); }
+.boton--lleno{ background: var(--eucalipto); color: var(--crema); }
+.boton--lleno:hover{ background: var(--eucalipto-luz); border-color: var(--eucalipto-luz); }
 .hero__media{
   position: relative;
   height: clamp(22rem, 64vh, 38rem);
   border-radius: 50vw 50vw 0 0;          /* arco de capilla: firma spa */
   overflow: hidden;
 }
-.hero__media img{ will-change: transform; }
+.hero__media video{ display:block; width:100%; height:100%; object-fit: cover; will-change: transform; }
+/* Vídeo de la cabina (de Isabel): se mueve siempre; este botón lo para (accesibilidad) */
+.hero__pausa{
+  position:absolute; right: 1rem; bottom: 1rem; z-index: 2;
+  width: 2.6rem; height: 2.6rem; border-radius: 50%;
+  display:grid; place-items:center; cursor:pointer;
+  background: rgba(245,242,235,.85); color: var(--tinta); border: 1px solid var(--linea);
+}
+.hero__pausa svg{ width: .9rem; height: .9rem; }
+.hero__pausa [data-icono-play]{ display:none; }
+.hero__pausa[aria-pressed="true"] [data-icono-play]{ display:block; }
+.hero__pausa[aria-pressed="true"] [data-icono-pausa]{ display:none; }
 @media (max-width: 820px){
   .hero{ grid-template-columns: 1fr; min-height: auto; height: auto; align-items: flex-start; }
   .hero__media{ order:-1; height: 38svh; margin-top: 1rem; }
@@ -490,7 +500,8 @@ main{ position: relative; z-index: 1; }
 }
 .zoom__marco{ position:absolute; inset:0; clip-path: inset(38% 32% 38% 32%); will-change: clip-path; }
 .zoom__marco img{ will-change: transform; }
-.zoom__marco::after{ content:""; position:absolute; inset:0; background: rgba(27,36,31,.42); }
+/* Velo más oscuro en el centro: la foto de la cabina tiene papel pintado muy cargado y la frase va encima */
+.zoom__marco::after{ content:""; position:absolute; inset:0; background: radial-gradient(ellipse 65% 50% at 50% 50%, rgba(27,36,31,.66), rgba(27,36,31,.36)); }
 .zoom__texto{
   position: relative; z-index: 2;
   font-family: var(--serif);
@@ -500,7 +511,7 @@ main{ position: relative; z-index: 1; }
   padding: 0 var(--pad);
   text-shadow: 0 2px 30px rgba(0,0,0,.5);
 }
-.zoom__texto em{ color: var(--arcilla); }
+.zoom__texto em{ color: #E4C4A8; }   /* arcilla aclarada: sobre la foto oscura, la normal no se leía */
 @media (prefers-reduced-motion: reduce){
   .zoom{ height:auto; } .zoom__pin{ height:100svh; }
   .zoom__marco{ clip-path:none; }
@@ -647,18 +658,27 @@ main{ position: relative; z-index: 1; }
     <div class="hero__contenido">
       <p class="hero__kicker" data-hero-reveal>Masajes y terapias de bienestar · Santa Cruz de Tenerife</p>
       <h1 class="hero__titulo" data-hero-reveal>
-        Donde el cuerpo suelta lo que la mente <em>carga</em>.
+        Una hora para ti por <em>50 €</em>, hasta fin de año.
       </h1>
       <div class="hero__pie">
         <p class="hero__sub" data-hero-reveal>
-          Isabel te recibe con cita previa en su estudio de la Avenida de
-          San Sebastián. Sesiones con calma, adaptadas a lo que tu cuerpo pide.
+          Descontracturante, relajante, drenaje linfático, reflexología o Kobido:
+          50 € la hora hasta el 31 de diciembre. Isabel te recibe con cita previa
+          en su cabina de la Avenida de San Sebastián.
         </p>
-        <p class="hero__scroll" data-hero-reveal>Respira y baja</p>
+        <div class="hero__botones" data-hero-reveal>
+          <a class="boton boton--lleno" href="https://wa.me/34642403886" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+          <a class="boton" href="#carta">Ver precios</a>
+        </div>
       </div>
     </div>
     <div class="hero__media" data-hero-media>
-      <img src="assets/masaje-relajante-santa-cruz-tenerife.webp" alt="Masaje relajante en Shanti Centro de Terapias de Bienestar, Santa Cruz de Tenerife" loading="eager" data-hero-parallax>
+      <video src="assets/cabina-shanti-video.mp4" poster="assets/cabina-shanti-portada.webp" autoplay muted loop playsinline preload="auto"
+        aria-label="Vídeo de la cabina de Shanti en Santa Cruz de Tenerife" data-hero-video data-hero-parallax></video>
+      <button class="hero__pausa" type="button" aria-pressed="false" aria-label="Pausar el vídeo" data-video-pausa>
+        <svg data-icono-pausa viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
+        <svg data-icono-play viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>
+      </button>
     </div>
   </section>
 
@@ -683,7 +703,7 @@ main{ position: relative; z-index: 1; }
   <!-- ════════ MANIFIESTO ════════ -->
   <section class="manifiesto" id="el-estudio">
     <figure class="flotante flotante--1" data-speed="1.0" aria-hidden="true"><img src="assets/cabina-shanti-velas-tenerife.webp" alt="Cabina de Shanti con velas y lámpara de sal" width="675" height="900" loading="lazy"></figure>
-    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="assets/cabina-shanti-camilla-tenerife.webp" alt="Camilla preparada en la cabina de Shanti" width="675" height="900" loading="lazy"></figure>
+    <figure class="flotante flotante--2" data-speed="1.7" aria-hidden="true"><img src="assets/sala-espera-shanti-kalon.webp" alt="Sala de espera de la clínica Kalon, donde está Shanti" width="675" height="900" loading="lazy"></figure>
     <figure class="flotante flotante--3" data-speed="2.6" aria-hidden="true"><img src="assets/cabina-shanti-orquidea-tenerife.webp" alt="Toalla con orquídeas sobre la camilla de Shanti" width="510" height="680" loading="lazy"></figure>
     <p data-manifiesto>
       Shanti significa paz en sánscrito. Isabel lo traduce con las manos:
@@ -860,7 +880,7 @@ main{ position: relative; z-index: 1; }
   <!-- ════════ ZOOM INMERSIVO (oscuro) ════════ -->
   <section class="zoom" aria-label="El estudio">
     <div class="zoom__pin">
-      <div class="zoom__marco"><img src="assets/cabina-shanti-santa-cruz-tenerife.webp" alt="La cabina de Shanti en Santa Cruz de Tenerife" width="1600" height="900" loading="lazy"></div>
+      <div class="zoom__marco"><img src="assets/cabina-shanti-favorita.webp" alt="La cabina de Shanti en Santa Cruz de Tenerife" width="1600" height="900" loading="lazy"></div>
       <p class="zoom__texto" data-zoom-texto>Parar también es <em>cuidarse</em>.</p>
     </div>
   </section>
@@ -903,7 +923,7 @@ main{ position: relative; z-index: 1; }
     <div class="contacto__datos">
       <div class="dato" data-reveal>
         <h4>El estudio</h4>
-        <p>Av. de San Sebastián, 80<br>38005 Santa Cruz<br>de Tenerife</p>
+        <p>Dentro de la clínica Kalon<br>Av. de San Sebastián, 80<br>38005 Santa Cruz<br>de Tenerife</p>
       </div>
       <div class="dato" data-reveal>
         <h4>Contacto</h4>
@@ -966,6 +986,24 @@ if (!REDUCE) {
   gsap.ticker.lagSmoothing(0);
   lenis.stop();
   window.lenis = lenis;
+}
+
+/* ── VÍDEO DE LA CABECERA ── se mueve siempre (también con «reducir movimiento»);
+   el botón redondo del arco lo para y lo vuelve a poner (accesibilidad). */
+{
+  const video = document.querySelector('[data-hero-video]');
+  const boton = document.querySelector('[data-video-pausa]');
+  if (video && boton) {
+    video.muted = true;
+    const reproducir = () => video.play().catch(() => {});
+    reproducir();
+    boton.addEventListener('click', () => {
+      const parar = !video.paused;
+      if (parar) video.pause(); else reproducir();
+      boton.setAttribute('aria-pressed', String(parar));
+      boton.setAttribute('aria-label', parar ? 'Reproducir el vídeo' : 'Pausar el vídeo');
+    });
+  }
 }
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -1569,13 +1607,13 @@ document.fonts.ready.then(() => {
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
       tl.set('[data-hero-reveal]', { visibility: 'visible' });
       tl.fromTo('[data-hero-media]', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
-      tl.fromTo('[data-hero-media] img', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+      tl.fromTo('[data-hero-media] video', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
       const splitTitulo = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
       tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.4);
       const splitSub = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
       tl.from(splitSub.lines, { yPercent: 105, duration: 0.9, stagger: 0.06 }, 0.65);
       tl.from('.hero__kicker', { autoAlpha: 0, y: 18, duration: 0.8 }, 0.55);
-      tl.from('.hero__scroll', { autoAlpha: 0, duration: 0.9 }, 0.95);
+      tl.from('.hero__botones', { autoAlpha: 0, y: 14, duration: 0.9 }, 0.95);
       tl.from('.cabecera', { autoAlpha: 0, y: -16, duration: 0.8 }, 0.5);
       return tl;
     }
@@ -1684,10 +1722,10 @@ document.fonts.ready.then(() => {
     /* 6.8 SENSACIONES — estela de imágenes al mover el ratón */
     if (FINE_POINTER) {
       const zona = document.querySelector('.sensaciones');
-      const POOL = ['assets/masaje-relajante-santa-cruz-tenerife.webp',
+      const POOL = ['assets/cabina-shanti-portada.webp',
                     'assets/lifting-facial-japones-tenerife.webp',
                     'assets/calma-camilla-masaje-tenerife.webp',
-                    'assets/masaje-descontracturante-tenerife.webp',
+                    'assets/cabina-shanti-turquesa.webp',
                     'assets/maderoterapia-ritual-corporal-tenerife.webp',
                     'assets/cabina-shanti-velas-tenerife.webp',
                     'assets/cabina-shanti-camilla-tenerife.webp',
