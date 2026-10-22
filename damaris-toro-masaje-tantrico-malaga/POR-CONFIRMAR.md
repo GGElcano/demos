@@ -17,9 +17,20 @@ vídeo, TikTok, minimalista y en tonos pastel). Lo que sigue pendiente de ella:
 | Si atiende en inglés | Toda la parte /en/ | Se da por hecho al tener versión inglesa |
 | Titular, NIF y email | Aviso legal y privacidad | [Pendiente de facilitar por el titular] |
 
-**Precios: NO se publican, por deseo suyo** («el que quiera precios me lo tiene que consultar
-a mí directamente»). Cada servicio tiene un botón que abre WhatsApp con el servicio ya escrito,
-y la pregunta «¿Cuánto cuesta una sesión?» remite a WhatsApp.
+**22-oct-2026: carta de servicios = la SUYA** (su PDF «masajes dama 2» + su audio de las 10:56):
+Despertar solar (masculino, 1 h), Despertar lunar (femenino, 1 h), Apertura de corazón (45 min,
+pecho, brazos, cara y cráneo), Alquimia de dos (pareja, con uno o dos masajistas), Olas en
+sincronía (cuatro manos, masajista hombre y mujer), Talleres y retiros. Más «Un espacio de
+confianza» y «Para personas que…». Quitada la tarjeta «Sexualidad holística» (no está en su lista).
+
+**Precios: SÍ se publican** (21-oct, ella dijo «pues la ponemos»). Pendiente que los mande:
+cambiar «Precio por confirmar» / «Price to be confirmed» en cada tarjeta y la pregunta
+«¿Cuánto cuesta una sesión?» (también en el JSON-LD de arriba).
+
+Pendiente también: texto propio de «Apertura de corazón» (dijo que lo manda escrito),
+duración de pareja y cuatro manos, si añade un masaje relajante NO tántrico (lo pregunta ella),
+y cuál de los dos nombres quiere en cada servicio (en el PDF pone dos: «Despertar solar o
+inmersión masculina»; se usa el primero como título y el segundo de subtítulo).
 
 **Blog:** en la demo las entradas van escritas a mano. Ella quiere «ir subiendo reflexiones,
 talleres, eventos especiales»: en la web definitiva necesita un panel para subirlas sola.
