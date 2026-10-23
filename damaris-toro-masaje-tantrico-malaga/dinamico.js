@@ -2,8 +2,8 @@
    CAPA DINÁMICA · Dámaris Toro (kit premium de la casa)
    Piezas: preloader, scroll suave (Lenis), estela fluida, cursor, hero
    coreografiado, marquee vivo, manifiesto palabra a palabra, cifra que
-   cuenta, «EL MASAJE EMPIEZA ANTES DEL TACTO» (pieza singular, con los
-   colores y la letra de su identidad de marca), zoom del gabinete,
+   cuenta, «EL MASAJE EMPIEZA ANTES DEL TACTO» (pieza singular, con el
+   mensaje de su documento de marca), zoom del gabinete,
    rejillas que suben escalonadas, vídeo que se abre y botón magnético.
    Compartido por todas las páginas (ES y EN): el idioma sale de <html lang>
    y cada pieza solo se monta si su bloque está en la página.
@@ -154,13 +154,15 @@
   })();
 
   /* ── 4) PIEZA SINGULAR: «El masaje empieza antes del tacto» ──
-     Hecha con SU identidad de marca (documento de ECSSTUDIO, jul-2026): negro,
-     rojo #E8001D y blanco, palo seco en mayúsculas y rótulos en monoespaciada.
-     Dos líneas: la roja es el sistema nervioso de quien llega (en alerta, a
-     saltos) y la blanca, la presencia de Dámaris (calma, al ritmo de una
+     El mensaje sale de su documento de marca (la frase, el Ritual de Bienvenida,
+     el Tacto Consciente, sistema nervioso, regulación) y los colores son los
+     pastel de la web, como pidió ella. El negro y el rojo de aquel documento
+     eran de la agencia que lo hizo, no suyos (Sergio, 23-oct).
+     Dos líneas: la terracota es el sistema nervioso de quien llega (en alerta,
+     a saltos) y la oscura, la presencia de Dámaris (calma, al ritmo de una
      respiración lenta). Con el scroll, escuchar, respirar y el Tacto Consciente
      las acompasan hasta que se tocan y respiran juntas: la co-regulación de la
-     que habla ella. Sin chakras ni «energía»: su marca lo prohíbe.
+     que habla ella. Sin chakras ni «energía»: su documento lo desaconseja.
      Las líneas respiran solas mientras la sección se ve; el scroll decide
      cuánto se han acompasado. */
   /* Es una función con nombre para poder llamarla también desde estatico()
@@ -178,8 +180,9 @@
     var elFase = seccion.querySelector('[data-energia-fase]');
     var elFrase = seccion.querySelector('[data-energia-frase]');
     var tramos = seccion.querySelectorAll('.energia__tramos i');
-    var ROJO = '232,0,29', BLANCO = '255,255,255', ROJO_TXT = '#FF3347';
-    var MONO = 'ui-monospace, "SFMono-Regular", Menlo, Consolas, "DejaVu Sans Mono", monospace';
+    /* la paleta de estilo.css: vela (terracota), vela-luz, vela-osc y tinta */
+    var VELA = '178,92,77', VELA_LUZ = '231,168,152', TINTA = '59,43,39', VELA_OSC = '#8E4538';
+    var LETRA = 'Jost, system-ui, sans-serif';
     var ETIQ = EN ? ['YOUR NERVOUS SYSTEM', 'PRESENCE', 'REGULATION'] : ['TU SISTEMA NERVIOSO', 'LA PRESENCIA', 'REGULACIÓN'];
     /* [desde, hasta, nombre, frase]: el vocabulario de su marca y la charla y la respiración que pidió ella */
     var FASES = EN ? [
@@ -245,7 +248,7 @@
       if (alfa <= 0.01) return;
       ctx.globalAlpha = alfa; ctx.fillStyle = color;
       ctx.beginPath(); ctx.arc(x + 3, y - 4, 3, 0, Math.PI * 2); ctx.fill();
-      ctx.font = '500 12px ' + MONO; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+      ctx.font = '400 12px ' + LETRA; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
       if ('letterSpacing' in ctx) ctx.letterSpacing = '2px';
       ctx.fillText(txt, x + 14, y);
       ctx.globalAlpha = 1;
@@ -274,26 +277,26 @@
       /* donde se van a encontrar: una guía punteada que se apaga al tocarse */
       var guia = 1 - tramo(t, 0.55, 0.70);
       if (guia > 0.01){
-        ctx.save(); ctx.setLineDash([2, 7]); ctx.strokeStyle = 'rgba(255,255,255,' + (0.16 * guia) + ')'; ctx.lineWidth = 1;
+        ctx.save(); ctx.setLineDash([2, 7]); ctx.strokeStyle = 'rgba(' + TINTA + ',' + (0.2 * guia) + ')'; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(caja.x0 + W * 0.07, yc); ctx.lineTo(caja.x1 - W * 0.07, yc); ctx.stroke(); ctx.restore();
       }
       ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      if (contacto > 0) trazo(roja, ROJO, 0.18 * contacto, 10);            // halo rojo cuando ya respiran juntas
-      trazo(roja, ROJO, 1, 2.2);
-      /* la blanca va encima: al tocarse queda como el hilo claro de dentro de la roja */
-      trazo(blanca, BLANCO, 0.9 - 0.35 * contacto, 1.6 - 0.7 * contacto);
+      if (contacto > 0) trazo(roja, VELA_LUZ, 0.5 * contacto, 10);         // halo suave cuando ya respiran juntas
+      trazo(blanca, TINTA, 0.72 - 0.3 * contacto, 1.6);
+      /* la terracota va encima: al tocarse es la que se ve, con la oscura debajo */
+      trazo(roja, VELA, 1, 2.2);
       /* el contacto: dos ondas que se abren desde el centro */
       [0, 0.05].forEach(function(d){
         var k = tramo(t, 0.68 + d, 0.86 + d); if (k <= 0 || k >= 1) return;
         var m = Math.floor(n / 2), r = 6 + k * Math.min(H * 0.5, W * 0.3);
-        ctx.strokeStyle = 'rgba(' + ROJO + ',' + (0.6 * Math.pow(1 - k, 1.4)) + ')'; ctx.lineWidth = 1.4;
+        ctx.strokeStyle = 'rgba(' + VELA + ',' + (0.6 * Math.pow(1 - k, 1.4)) + ')'; ctx.lineWidth = 1.4;
         ctx.beginPath(); ctx.arc(caja.x0 + m * PASO, roja[m], r, 0, Math.PI * 2); ctx.stroke();
       });
       /* rótulos: cada línea el suyo; al tocarse se funden en uno */
       var xr = caja.x0 + W * 0.07, sueltas = 1 - tramo(t, 0.60, 0.70);
-      rotulo(ETIQ[1], xr, yB - aB - 14, 'rgba(255,255,255,.62)', sueltas);
-      rotulo(ETIQ[0], xr, yR + aResp + aRuido + aPulso * 0.45 + 22, ROJO_TXT, sueltas);
-      rotulo(ETIQ[2], xr, yc - aB - 16, ROJO_TXT, tramo(t, 0.74, 0.86));
+      rotulo(ETIQ[1], xr, yB - aB - 14, 'rgba(' + TINTA + ',.78)', sueltas);
+      rotulo(ETIQ[0], xr, yR + aResp + aRuido + aPulso * 0.45 + 22, VELA_OSC, sueltas);
+      rotulo(ETIQ[2], xr, yc - aB - 16, VELA_OSC, tramo(t, 0.74, 0.86));
     }
     function textos(t){
       var i = 0; FASES.forEach(function(fs, k){ if (t >= fs[0]) i = k; });
@@ -337,8 +340,7 @@
       montar: function(){
         medir();
         gsap.to(prog, { v: 1, ease: 'none',
-          scrollTrigger: { trigger: seccion, start: 'top top', end: 'bottom bottom', pin: pinEl, pinSpacing: false, scrub: 1, anticipatePin: 1,
-            onToggle: function(st){ raiz.classList.toggle('en-negro', st.isActive); } } });
+          scrollTrigger: { trigger: seccion, start: 'top top', end: 'bottom bottom', pin: pinEl, pinSpacing: false, scrub: 1, anticipatePin: 1 } });
         if ('IntersectionObserver' in window)
           new IntersectionObserver(function(es){ despertar(es[0].isIntersecting); }).observe(seccion);
         else despertar(true);

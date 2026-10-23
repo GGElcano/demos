@@ -79,3 +79,10 @@ roja es el sistema nervioso de quien llega (en alerta) y la blanca, su presencia
 respirar y el Tacto Consciente se juntan y respiran a la vez (la co-regulación de la que habla ella).
 Cuatro fases con su vocabulario: El Ritual de Bienvenida (escuchar y respirar), El Tacto Consciente y
 Volver a sentir. Es la única sección oscura de la web, a propósito.
+
+**23-oct-2026, corrección (Sergio):** el negro y el rojo del documento de marca eran los colores de la
+agencia que se lo hizo, no los de ella; de aquella agencia solo se queda el documento. La web sigue en
+pastel, como pidió ella en su audio del 21-oct («me gusta mucho ese tipo de color, pastel, cálido,
+amoroso»), y la sección de la animación pasa también a los pastel de la web (fondo rubor y melocotón,
+línea terracota y línea oscura, título en la letra de la web). Se mantiene el mensaje de su documento:
+«El masaje empieza antes del tacto», las dos líneas que se acompasan y los cuatro pasos.

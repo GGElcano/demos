@@ -96,48 +96,33 @@ html.saliendo body{opacity:0}
 .tarjeta .marco-img img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .tarjeta:hover .marco-img img{transform:scale(1.07)}
 
-/* PIEZA SINGULAR «El masaje empieza antes del tacto», con SU identidad de marca
-   (documento de ECSSTUDIO): negro, rojo y blanco, palo seco en mayúsculas y rótulos
-   en monoespaciada. Es la única sección oscura de la web, a propósito.
-   El rojo de la marca (#E8001D) se queda en las líneas y en lo grande; en la letra
-   pequeña va un punto más claro (#FF3347) para que se lea bien sobre el negro. */
-.energia{--negro:#0A0A0A;--rojo:#E8001D;--rojo-txt:#FF3347;
-  --marca-sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",sans-serif;
-  --marca-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,"DejaVu Sans Mono",monospace;
-  height:360vh;position:relative;background:var(--negro);padding:0} /* sin el relleno general de section: si no, la parte fija se clavaba 112 px más abajo y se cortaba */
-.energia__pin{position:relative;height:100vh;height:100svh;overflow:hidden;display:grid;color:#fff;
-  background:radial-gradient(75% 60% at 50% 52%,#171717,var(--negro) 72%)}
+/* PIEZA SINGULAR «El masaje empieza antes del tacto»: el mensaje es el de su documento de
+   marca y los colores, los pastel de la web («pastel, cálido, amoroso», su audio del 21-oct).
+   El negro y el rojo de aquel documento eran de la agencia que lo hizo, no suyos (Sergio, 23-oct). */
+.energia{height:360vh;position:relative;background:var(--crema-2);padding:0} /* sin el relleno general de section: si no, la parte fija se clavaba 112 px más abajo y se cortaba */
+.energia__pin{position:relative;height:100vh;height:100svh;overflow:hidden;display:grid;color:var(--tinta);
+  background:radial-gradient(50% 55% at 50% 58%,rgba(255,251,248,.9),transparent 70%),linear-gradient(170deg,var(--rosa),var(--melocoton))}
 .energia__lienzo{position:absolute;inset:0;width:100%;height:100%;display:block}
 .energia__hud{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;
   padding:clamp(4.5rem,11vh,6.5rem) var(--pad) clamp(2.2rem,6vh,4rem);pointer-events:none}
 .energia__cab{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem}
-.energia .rotulo{font-family:var(--marca-mono);font-size:.7rem;letter-spacing:.2em;color:var(--rojo-txt);
-  margin:0 0 .9rem;display:flex;align-items:center;gap:.8em}
-.energia .rotulo::before{content:"";width:1.8em;height:1px;background:currentColor;flex:none}
-.energia__titulo{font-family:var(--marca-sans);font-weight:700;text-transform:uppercase;letter-spacing:-.015em;
-  line-height:.98;font-size:clamp(1.85rem,3.9vw,3.3rem);max-width:9.6em;margin:0;color:#fff} /* tres líneas, como en su documento */
-.energia__titulo em{font-family:inherit;font-style:normal;font-weight:700;color:var(--rojo)}
-.energia__num{font-family:var(--marca-sans);font-weight:700;font-size:clamp(2.4rem,6vw,4.6rem);line-height:.9;
-  letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.42);
-  font-variant-numeric:tabular-nums;white-space:nowrap}
-.energia__num i{font-style:normal;font-size:.28em;letter-spacing:.08em;-webkit-text-stroke:0;color:#6B6B6B;
-  margin-inline-start:.3em;vertical-align:top}
-.energia__pie{display:grid;gap:.7rem;max-width:40rem}
-.energia__fase{font-family:var(--marca-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--rojo-txt);border-inline-start:2px solid var(--rojo);padding-inline-start:1rem;margin:0}
-.energia__frase{font-family:var(--marca-sans);font-weight:400;font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.55;
-  color:#D9D9D9;padding-inline-start:1rem;min-height:3.2em;margin:0}
+.energia__titulo{font-size:clamp(1.6rem,3.6vw,2.9rem);max-width:13ch;margin:0}
+.energia__num{font-family:var(--serif);font-size:clamp(2rem,5.5vw,4.2rem);font-variant-numeric:tabular-nums;
+  color:var(--vela-osc);line-height:1;opacity:.75;white-space:nowrap}
+.energia__num i{font-style:normal;color:var(--vela);font-size:.42em}
+.energia__pie{display:grid;gap:.6rem;max-width:40rem}
+.energia__fase{font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--vela-osc);
+  border-inline-start:2px solid var(--vela);padding-inline-start:1rem;margin:0}
+.energia__frase{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,2.1vw,1.5rem);line-height:1.4;
+  color:var(--tinta);padding-inline-start:1rem;min-height:3.2em;margin:0}
 .energia__tramos{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-inline-start:1rem;max-width:22rem}
-.energia__tramos i{display:block;height:2px;background:#2A2A2A;position:relative;overflow:hidden}
-.energia__tramos i::after{content:"";position:absolute;inset:0;background:var(--rojo);transform-origin:left;
+.energia__tramos i{display:block;height:2px;background:var(--linea);position:relative;overflow:hidden}
+.energia__tramos i::after{content:"";position:absolute;inset:0;background:var(--vela);transform-origin:left;
   transform:scaleX(var(--p,0))}
-@media(max-width:700px){.energia__cab{gap:1rem}.energia__num{font-size:2rem}.energia__frase{min-height:4.4em}
+@media(max-width:700px){.energia__cab{gap:1rem}.energia__num{font-size:1.7rem}.energia__frase{min-height:4.4em}
   .energia__hud{padding-bottom:calc(84px + env(safe-area-inset-bottom))}}
 /* móviles estrechos: que «El Ritual de Bienvenida · Escuchar» quepa en una línea */
-@media(max-width:420px){.energia__fase,.energia .rotulo{letter-spacing:.13em}}
-/* sobre el negro, el cursor decorativo pasa a blanco */
-html.en-negro .cursor-dot{background:#fff}
-html.en-negro .cursor-ring{border-color:rgba(255,255,255,.5)}
+@media(max-width:420px){.energia__fase{letter-spacing:.1em}}
 .solo-lector{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* zoom inmersivo: la foto del gabinete se come la pantalla */
