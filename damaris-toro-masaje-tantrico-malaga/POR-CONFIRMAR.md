@@ -104,3 +104,10 @@ Despertar lunar 90 min 130 €; Alquimia de dos (pareja) 90 min 250 €. Puesto 
 en la pregunta «¿Cuánto cuesta?» (y su JSON-LD), en las ofertas del JSON-LD de la portada, en la tarjeta
 «Despertar solar y lunar» de la portada («1 hora o 90 minutos») y en llms.txt, en español e inglés. Cuatro
 manos y Apertura de corazón no cambian.
+
+**23-oct-2026, su WhatsApp de las 12:22-12:26:** la foto de la tarjeta Despertar lunar (selfie con luz roja)
+«la cambiaría»; puesta la nueva en la que sale con la mano en el pecho
+(`assets/despertar-lunar-masaje-tantrico-mujer-malaga.jpg`, ES y EN); la vieja retirada. Mandó también 3
+fotos al aire libre con ropa de deporte («por si sirven»): guardadas en
+`~/Documents/damaris-material-22oct/fotos-23oct/`, sin usar todavía. Dominio: le gusta tantracostadelsol.es
+(«Ese me gusta»); Sergio lo da por bueno; SIN comprar.
