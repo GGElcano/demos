@@ -91,3 +91,10 @@ línea terracota y línea oscura, título en la letra de la web). Se mantiene el
 páginas, de los datos para Google (sameAs y alternateName) y de llms.txt: su perfil de X lleva a su
 OnlyFans, y la web dice que no es un servicio sexual. Quedan Instagram y TikTok.
 Dominio: no tiene ninguno; propuesto damaristoro.es (+ .com), libre el 23-oct. Pendiente de compra.
+
+**23-oct-2026, su audio de las 11:26 («lo de los chakras me encantó») y orden de Sergio («pon los
+chakras en servicios»):** en Servicios, la lista fija «Cómo es una sesión» pasa a ser la animación de los
+chakras de la primera versión (velas, loto y los siete chakras de la raíz a la corona), con el título «De la
+raíz a la corona» y los mismos cuatro pasos con sus palabras. En la portada se queda la de las dos líneas
+(sistema nervioso), que también le gustó. La lista completa sigue en el código para lectores de pantalla y
+buscadores. Dominio elegido por Sergio: tantradamaris.es (libre el 23-oct), pendiente de compra.
