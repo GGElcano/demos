@@ -111,3 +111,28 @@ manos y Apertura de corazón no cambian.
 fotos al aire libre con ropa de deporte («por si sirven»): guardadas en
 `~/Documents/damaris-material-22oct/fotos-23oct/`, sin usar todavía. Dominio: le gusta tantracostadelsol.es
 («Ese me gusta»); Sergio lo da por bueno; SIN comprar.
+
+**23-oct-2026, skill seo-onpage (orden de Sergio «pasa la skill de SEO en la web»):** revisadas las 11
+páginas. Ya estaba bien: títulos únicos ≤60 con «tantra Málaga», descripciones, un H1 distinto del título,
+canonical + hreflang ES/EN, Open Graph y twitter:card con foto absoluta, JSON-LD (negocio con ofertas y
+precios, FAQPage visible, sin valoraciones), 0 imágenes sin alt, nombres de foto descriptivos, robots.txt
+sin bloqueos, sitemap con las 8 páginas indexables, llms.txt, y ningún `navigator.language` (con el
+navegador en inglés, como Googlebot, la portada sale en español). Arreglado: descripción de Servicios
+(157 → 153 caracteres, con «desde 60 €»), H2 invisibles donde se saltaba de H1 a H3 (carta de Servicios y
+entradas del Blog, ES y EN), canonical en las 3 páginas legales, «Tantra Costa del Sol» en alternateName y
+«Costa del Sol» en la respuesta «¿Dónde es?», comentario con el dominio real junto al canonical, y botón
+«Compartir» en el pie (menú de compartir del móvil o copia el enlace). Las legales siguen sin Open Graph a
+propósito (noindex, no se comparten).
+
+**AL COBRAR (orden de Sergio: la web no va al dominio hasta que pague):**
+1. Pedirle titular, NIF/DNI, dirección y correo → aviso legal, privacidad y cookies (y traducirlas al inglés).
+2. Dominio tantracostadelsol.es (DonDominio, cuenta GGElcano, titular G&G): zona en Cloudflare + proyecto
+   de Pages como Bolumburu, cambiar los NS en DonDominio.
+3. Cambiar `https://ggelcano.github.io/demos/damaris-toro-masaje-tantrico-malaga/` por
+   `https://tantracostadelsol.es/` en canonical, hreflang, og:, JSON-LD, sitemap.xml, robots.txt, llms.txt
+   y canonical de las legales; quitar `<meta name="robots" content="noindex">` de las 8 páginas (las
+   legales siguen en noindex, follow).
+4. Search Console del dominio (TXT en Cloudflare), enviar el sitemap, inspeccionar y pedir indexación de
+   las 8 páginas (publicar no es estar en Google).
+5. Ficha de Google Maps (Google Business Profile) con su zona y horario reales; es lo que más pesa en
+   «tantra Málaga». GA4 solo si se quiere, con consentimiento en el aviso de cookies y su política.

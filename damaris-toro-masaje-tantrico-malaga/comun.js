@@ -132,3 +132,19 @@ if(anio) anio.textContent = String(new Date().getFullYear());
   if(quieto){ v.removeAttribute("autoplay"); v.pause(); marcar(true); } else { arrancar(); marcar(false); }
   if(b) b.addEventListener("click", function(){ if(v.paused){ arrancar(); marcar(false); } else { v.pause(); marcar(true); } });
 })();
+
+// Botón «Compartir» del pie (lista SEO de la casa): abre el menú de compartir del móvil y, si el
+// navegador no lo tiene, copia el enlace. Sin alert: el aviso sale en el propio botón.
+(function(){
+  var b = document.querySelector("[data-compartir]");
+  if(!b) return;
+  var original = b.textContent;
+  function aviso(txt){ b.textContent = txt; setTimeout(function(){ b.textContent = original; }, 2200); }
+  b.addEventListener("click", function(){
+    var url = location.href.split("#")[0];
+    if(navigator.share){ navigator.share({ title: document.title, url: url }).catch(function(){}); return; }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){ aviso(TXT.copiado); }, function(){ aviso(TXT.copia + " " + url); });
+    } else aviso(TXT.copia + " " + url);
+  });
+})();
