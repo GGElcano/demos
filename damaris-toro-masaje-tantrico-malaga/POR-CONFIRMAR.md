@@ -98,3 +98,9 @@ chakras de la primera versión (velas, loto y los siete chakras de la raíz a la
 raíz a la corona» y los mismos cuatro pasos con sus palabras. En la portada se queda la de las dos líneas
 (sistema nervioso), que también le gustó. La lista completa sigue en el código para lectores de pantalla y
 buscadores. Dominio elegido por Sergio: tantradamaris.es (libre el 23-oct), pendiente de compra.
+
+**23-oct-2026, su WhatsApp de las 12:15 (Sergio: «Sin problema»):** opción de 90 minutos: Despertar solar y
+Despertar lunar 90 min 130 €; Alquimia de dos (pareja) 90 min 250 €. Puesto en las tarjetas de Servicios,
+en la pregunta «¿Cuánto cuesta?» (y su JSON-LD), en las ofertas del JSON-LD de la portada, en la tarjeta
+«Despertar solar y lunar» de la portada («1 hora o 90 minutos») y en llms.txt, en español e inglés. Cuatro
+manos y Apertura de corazón no cambian.
