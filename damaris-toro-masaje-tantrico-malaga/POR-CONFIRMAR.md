@@ -86,3 +86,8 @@ pastel, como pidió ella en su audio del 21-oct («me gusta mucho ese tipo de co
 amoroso»), y la sección de la animación pasa también a los pastel de la web (fondo rubor y melocotón,
 línea terracota y línea oscura, título en la letra de la web). Se mantiene el mensaje de su documento:
 «El masaje empieza antes del tacto», las dos líneas que se acompasan y los cuatro pasos.
+
+**23-oct-2026, orden de Sergio («quita el enlace de X»):** fuera el enlace a su X (@DamaTantra) de las 8
+páginas, de los datos para Google (sameAs y alternateName) y de llms.txt: su perfil de X lleva a su
+OnlyFans, y la web dice que no es un servicio sexual. Quedan Instagram y TikTok.
+Dominio: no tiene ninguno; propuesto damaristoro.es (+ .com), libre el 23-oct. Pendiente de compra.
