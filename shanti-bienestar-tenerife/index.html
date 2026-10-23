@@ -82,6 +82,8 @@
 }
 </script>
 
+<!-- «Reducir animaciones» del pie: antes de pintar, para que no se vea nada moverse -->
+<script>try{if(localStorage.getItem('shanti-quieto')==='1')document.documentElement.classList.add('quieto')}catch(e){}</script>
 <style>
 :root{
   --crema:      #F5F2EB;
@@ -124,7 +126,7 @@ body::before, body::after{
 }
 body::before{ mix-blend-mode: multiply; opacity: .16; }
 body::after { mix-blend-mode: screen;   opacity: .10; }
-@media (prefers-reduced-motion: reduce){ body::before, body::after{ display:none; } }
+html.quieto body::before, html.quieto body::after{ display:none; }
 
 ::selection{ background: var(--eucalipto); color: var(--crema); }
 
@@ -147,7 +149,7 @@ main{ position: relative; z-index: 1; }
 }
 #fluid.fluid--screen{ mix-blend-mode: screen; opacity: .9; }  /* en secciones oscuras */
 #fluid canvas{ width:100%; height:100%; display:block; }
-@media (prefers-reduced-motion: reduce){ #fluid{ display:none; } }
+html.quieto #fluid{ display:none; }
 
 .cursor-dot, .cursor-ring{
   position: fixed; top:0; left:0; z-index: 9500;
@@ -157,9 +159,10 @@ main{ position: relative; z-index: 1; }
 }
 .cursor-dot { width:6px;  height:6px;  background: var(--arcilla-osc); }
 .cursor-ring{ width:38px; height:38px; border:1px solid rgba(158,112,81,.6); }
-@media (pointer: coarse), (prefers-reduced-motion: reduce){
+@media (pointer: coarse){
   .cursor-dot,.cursor-ring{ display:none; }
 }
+html.quieto .cursor-dot, html.quieto .cursor-ring{ display:none; }
 
 /* ── PROGRESO LATERAL ── */
 .progreso{
@@ -249,25 +252,42 @@ main{ position: relative; z-index: 1; }
 }
 
 /* ── HERO ── */
+/* Vídeo de su cabina de fondo, como en la web de Dámaris (23-oct): el póster va de fondo hasta que
+   el vídeo arranca; el velo crema deja el texto siempre legible y la trama de puntos disimula la
+   poca resolución de su vídeo. Montaje: ~/Documents/shanti-material-22oct/montar_video_portada.py */
 .hero{
   min-height: 100svh;
   position: relative;
-  display:grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
-  align-items: end;
-  gap: clamp(1.5rem,4vw,4rem);
+  overflow: hidden;
+  display:flex;
+  align-items: flex-end;
   padding: clamp(7rem,14vh,9rem) var(--pad) clamp(3rem, 8vh, 5rem);
 }
+.hero__fondo{
+  position:absolute; inset:0; z-index:0; overflow:hidden;
+  background: var(--crema) url(assets/portada-video-poster.jpg) center/cover no-repeat;
+}
+.hero__video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition: opacity 1.2s ease; }
+.hero__fondo.en-marcha .hero__video{ opacity:1; }
+.hero__fondo::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(rgba(245,242,235,.12) .7px, transparent 1.2px) 0 0/3px 3px,
+    linear-gradient(180deg, rgba(245,242,235,.7) 0%, rgba(245,242,235,0) 22%),
+    linear-gradient(90deg, rgba(245,242,235,.95) 0%, rgba(245,242,235,.9) 40%, rgba(245,242,235,.55) 52%, rgba(245,242,235,.12) 64%, rgba(245,242,235,0) 78%);
+}
+.hero__contenido{ position:relative; z-index:1; width:100%; }
 .hero__kicker{
   font-size: .76rem; letter-spacing: .3em; text-transform: uppercase;
-  color: var(--piedra); margin-bottom: 1.5rem;
+  color: var(--piedra); margin-bottom: 1.5rem; max-width: 23rem;
 }
 .hero__titulo{
-  font-size: clamp(2.7rem, 7.4vw, 6.6rem);
+  font-size: clamp(2.5rem, 5.6vw, 5.6rem);
   letter-spacing: -.01em;
   max-width: 13ch;
+  text-wrap: balance;
 }
-.hero__pie{ display:flex; align-items:flex-end; gap:2.5rem; margin-top: 2.4rem; flex-wrap:wrap; }
+.hero__pie{ display:flex; align-items:flex-end; gap:2.5rem; margin-top: 2.2rem; flex-wrap:wrap; }
 .hero__sub{ max-width: 38ch; color: var(--tinta-2); font-size: 1.02rem; }
 .hero__botones{ display:flex; flex-wrap:wrap; gap:.8rem; margin-left:auto; }
 .boton{
@@ -279,30 +299,36 @@ main{ position: relative; z-index: 1; }
 .boton:hover{ background: var(--eucalipto); color: var(--crema); }
 .boton--lleno{ background: var(--eucalipto); color: var(--crema); }
 .boton--lleno:hover{ background: var(--eucalipto-luz); border-color: var(--eucalipto-luz); }
-.hero__media{
-  position: relative;
-  height: clamp(22rem, 64vh, 38rem);
-  border-radius: 50vw 50vw 0 0;          /* arco de capilla: firma spa */
-  overflow: hidden;
-}
-.hero__media video{ display:block; width:100%; height:100%; object-fit: cover; will-change: transform; }
-/* Vídeo de la cabina (de Isabel): se mueve siempre; este botón lo para (accesibilidad) */
+.hero .boton:not(.boton--lleno){ background: rgba(245,242,235,.82); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.hero .boton:not(.boton--lleno):hover{ background: var(--eucalipto); }
+/* El vídeo se mueve siempre; este botón lo para (accesibilidad). Arriba, bajo el menú: abajo lo
+   tapa el aviso de cookies. */
 .hero__pausa{
-  position:absolute; right: 1rem; bottom: 1rem; z-index: 2;
+  position:absolute; right: var(--pad); top: clamp(6.4rem, 13vh, 7.6rem); z-index: 2;
   width: 2.6rem; height: 2.6rem; border-radius: 50%;
   display:grid; place-items:center; cursor:pointer;
   background: rgba(245,242,235,.85); color: var(--tinta); border: 1px solid var(--linea);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
 .hero__pausa svg{ width: .9rem; height: .9rem; }
 .hero__pausa [data-icono-play]{ display:none; }
 .hero__pausa[aria-pressed="true"] [data-icono-play]{ display:block; }
 .hero__pausa[aria-pressed="true"] [data-icono-pausa]{ display:none; }
 @media (max-width: 820px){
-  .hero{ grid-template-columns: 1fr; min-height: auto; height: auto; align-items: flex-start; }
-  .hero__media{ order:-1; height: 38svh; margin-top: 1rem; }
-}
-@media (max-width: 768px){
-  .hero{ min-height: auto; height: auto; align-items: flex-start; }
+  .hero__fondo{ background-image: url(assets/portada-video-movil-poster.jpg); }
+  .hero__fondo::after{ background:
+    radial-gradient(rgba(245,242,235,.12) .7px, transparent 1.2px) 0 0/3px 3px,
+    linear-gradient(180deg, rgba(245,242,235,.6) 0%, rgba(245,242,235,0) 16%); }
+  /* en vertical el velo va pegado al texto, mida lo que mida */
+  .hero__contenido::before{
+    content:""; position:absolute; z-index:-1; pointer-events:none;
+    left: calc(var(--pad) * -1); right: calc(var(--pad) * -1);
+    top: -6rem; bottom: calc(clamp(3rem, 8vh, 5rem) * -1);
+    background: linear-gradient(180deg, rgba(245,242,235,0) 0, rgba(245,242,235,.9) 6rem, rgba(245,242,235,.95) 100%);
+  }
+  .hero__titulo{ font-size: clamp(2.2rem, 9.5vw, 3.2rem); }
+  .hero__pie{ gap: 1.4rem; margin-top: 1.4rem; }
+  .hero__botones{ margin-left: 0; }
 }
 [data-hero-reveal]{ visibility: hidden; }
 
@@ -385,9 +411,7 @@ main{ position: relative; z-index: 1; }
   font-size: clamp(1.05rem, 2vw, 1.45rem); color: var(--tinta-2);
   padding-left: 1rem; min-height: 2.6em;
 }
-@media (prefers-reduced-motion: reduce){
-  .ritual{ height:auto; } .ritual__pin{ height:100svh; }
-}
+html.quieto .ritual{ height:auto; } html.quieto .ritual__pin{ height:100svh; }
 
 /* ── TERAPIAS — carrusel simple (nunca pineado) ── */
 .expe{ position: relative; padding: clamp(5rem,10vh,7rem) 0 clamp(2rem,4vh,3rem); }
@@ -512,10 +536,8 @@ main{ position: relative; z-index: 1; }
   text-shadow: 0 2px 30px rgba(0,0,0,.5);
 }
 .zoom__texto em{ color: #E4C4A8; }   /* arcilla aclarada: sobre la foto oscura, la normal no se leía */
-@media (prefers-reduced-motion: reduce){
-  .zoom{ height:auto; } .zoom__pin{ height:100svh; }
-  .zoom__marco{ clip-path:none; }
-}
+html.quieto .zoom{ height:auto; } html.quieto .zoom__pin{ height:100svh; }
+html.quieto .zoom__marco{ clip-path:none; }
 
 /* ── TIRAS a contra-scroll ── */
 .tiras{ overflow:hidden; padding: clamp(5rem,10vh,8rem) 0 clamp(3rem,6vh,5rem); display:grid; gap:.4rem; }
@@ -612,12 +634,12 @@ main{ position: relative; z-index: 1; }
 
 [data-reveal]{ visibility: hidden; }
 
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
-  [data-reveal],[data-hero-reveal]{ visibility: visible !important; }
-  .preloader{ display:none; }
-  .progreso{ display:none; }
-}
+/* «Reducir animaciones» (botón del pie): la web queda quieta para quien lo pida. No se usa
+   prefers-reduced-motion: el Chrome de Sergio lo tiene puesto y la web le salía parada. */
+html.quieto *, html.quieto *::before, html.quieto *::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+html.quieto [data-reveal], html.quieto [data-hero-reveal]{ visibility: visible !important; }
+html.quieto .preloader{ display:none; }
+html.quieto .progreso{ display:none; }
 </style>
 </head>
 <body>
@@ -672,14 +694,20 @@ main{ position: relative; z-index: 1; }
         </div>
       </div>
     </div>
-    <div class="hero__media" data-hero-media>
-      <video src="assets/cabina-shanti-video.mp4" poster="assets/cabina-shanti-portada.webp" autoplay muted loop playsinline preload="auto"
-        aria-label="Vídeo de la cabina de Shanti en Santa Cruz de Tenerife" data-hero-video data-hero-parallax></video>
-      <button class="hero__pausa" type="button" aria-pressed="false" aria-label="Pausar el vídeo" data-video-pausa>
-        <svg data-icono-pausa viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
-        <svg data-icono-play viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>
-      </button>
+    <!-- VÍDEO DE FONDO (23-oct, como en la web de Dámaris): montaje de sus fotos y su vídeo con
+         ~/Documents/shanti-material-22oct/montar_video_portada.py (ordenador 16:9 y móvil 9:16).
+         Se mueve SIEMPRE, aunque el sistema pida menos movimiento, y tiene botón de pausa; solo
+         arranca parado si la visita pulsó «Reducir animaciones» en el pie. -->
+    <div class="hero__fondo" aria-hidden="true" data-hero-fondo>
+      <video class="hero__video" muted autoplay loop playsinline preload="auto" disablepictureinpicture data-hero-video>
+        <source src="assets/portada-video-movil.mp4" type="video/mp4" media="(max-width: 820px)">
+        <source src="assets/portada-video.mp4" type="video/mp4">
+      </video>
     </div>
+    <button class="hero__pausa" type="button" aria-pressed="false" aria-label="Pausar el vídeo de fondo" data-video-pausa>
+      <svg data-icono-pausa viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
+      <svg data-icono-play viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>
+    </button>
   </section>
 
   <!-- ════════ MARQUEE ════════ -->
@@ -946,6 +974,7 @@ main{ position: relative; z-index: 1; }
       <a href="legal/politica-privacidad.html">Privacidad</a>
       <a href="legal/politica-cookies.html">Cookies</a>
       <button type="button" onclick="if(window.GGConsent){window.GGConsent.open();}">Configurar cookies</button>
+      <button type="button" data-quietud>Reducir animaciones</button>
     </nav>
     <span>Propuesta de diseño · G&amp;G Elcano</span>
   </footer>
@@ -964,7 +993,10 @@ main{ position: relative; z-index: 1; }
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 CustomEase.create('hop', '0.56, 0, 0.35, 0.98');
 
-const REDUCE       = matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* Animada SIEMPRE, como la web de Dámaris: no se frena con prefers-reduced-motion (el Chrome de
+   Sergio lo tiene puesto y la web le salía quieta). El botón «Reducir animaciones» del pie la deja
+   estática para quien lo pida (localStorage 'shanti-quieto' → clase html.quieto, puesta en el head). */
+const REDUCE       = document.documentElement.classList.contains('quieto');
 const FINE_POINTER = matchMedia('(pointer: fine)').matches && matchMedia('(any-hover: hover)').matches;
 const MOBILE       = matchMedia('(pointer: coarse)').matches || innerWidth < 900;
 const DPR          = Math.min(devicePixelRatio || 1, 2);
@@ -980,20 +1012,38 @@ if (!REDUCE) {
   window.lenis = lenis;
 }
 
-/* ── VÍDEO DE LA CABECERA ── se mueve siempre (también con «reducir movimiento»);
-   el botón redondo del arco lo para y lo vuelve a poner (accesibilidad). */
+/* ── BOTÓN DEL PIE ── alterna entre animada y quieta */
+{
+  const boton = document.querySelector('[data-quietud]');
+  if (boton) {
+    boton.textContent = REDUCE ? 'Activar animaciones' : 'Reducir animaciones';
+    boton.addEventListener('click', () => {
+      try { localStorage.setItem('shanti-quieto', REDUCE ? '0' : '1'); } catch (e) {}
+      location.reload();
+    });
+  }
+}
+
+/* ── VÍDEO DE FONDO DE LA PORTADA ── se mueve siempre (también con «reducir movimiento»);
+   el botón redondo lo para y lo vuelve a poner (accesibilidad). Solo arranca parado si la
+   visita pulsó «Reducir animaciones» en el pie. */
 {
   const video = document.querySelector('[data-hero-video]');
   const boton = document.querySelector('[data-video-pausa]');
   if (video && boton) {
-    video.muted = true;
+    const fondo = video.parentNode;
+    const marcar = (parado) => {
+      boton.setAttribute('aria-pressed', String(parado));
+      boton.setAttribute('aria-label', parado ? 'Reproducir el vídeo de fondo' : 'Pausar el vídeo de fondo');
+    };
     const reproducir = () => video.play().catch(() => {});
-    reproducir();
+    video.muted = true;
+    video.addEventListener('playing', () => fondo.classList.add('en-marcha'));
+    if (!video.paused && video.currentTime > 0) fondo.classList.add('en-marcha');
+    if (REDUCE) { video.removeAttribute('autoplay'); video.pause(); marcar(true); }
+    else { reproducir(); marcar(false); }
     boton.addEventListener('click', () => {
-      const parar = !video.paused;
-      if (parar) video.pause(); else reproducir();
-      boton.setAttribute('aria-pressed', String(parar));
-      boton.setAttribute('aria-label', parar ? 'Reproducir el vídeo' : 'Pausar el vídeo');
+      if (video.paused) { reproducir(); marcar(false); } else { video.pause(); marcar(true); }
     });
   }
 }
@@ -1153,8 +1203,8 @@ if (!REDUCE) {
    3) ESTELA FLUIDA — receta aprobada (webgl-fluid-enhanced v0.8) CON los
    fixes de móvil obligatorios: X corregida por DPR, touchmove durante el
    scroll, resolución reducida en táctil, pausa por inactividad y splats
-   coalescidos a 1 por frame. Va también en móvil; solo se gatea por
-   prefers-reduced-motion. Sobre crema va en multiply; en la sección
+   coalescidos a 1 por frame. Va también en móvil; solo se apaga con el
+   botón «Reducir animaciones» del pie. Sobre crema va en multiply; en la sección
    oscura cambia a screen vía .fluid--screen.
    ════════════════════════════════════════════════════════════════════════ */
 if (!REDUCE) {
@@ -1580,12 +1630,11 @@ if (FINE_POINTER && !REDUCE) (function cursor(){
 document.fonts.ready.then(() => {
   const mm = gsap.matchMedia();
 
-  mm.add({
-    motionOK:  '(prefers-reduced-motion: no-preference)',
-    reduce:    '(prefers-reduced-motion: reduce)',
+  mm.add({                              /* siempre se cumple una: arranca en ordenador y en móvil */
     isDesktop: '(min-width: 821px)',
-  }, (ctx) => {
-    if (ctx.conditions.reduce) {
+    isMobile:  '(max-width: 820px)',
+  }, () => {
+    if (REDUCE) {
       gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
       document.querySelectorAll('[data-cuenta]').forEach((el) => {
         el.textContent = (+el.dataset.target).toLocaleString('es-ES');
@@ -1598,8 +1647,7 @@ document.fonts.ready.then(() => {
     function revealHero(){
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
       tl.set('[data-hero-reveal]', { visibility: 'visible' });
-      tl.fromTo('[data-hero-media]', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.4, ease: 'hop' }, 0);
-      tl.fromTo('[data-hero-media] video', { scale: 1.25 }, { scale: 1, duration: 1.8, ease: 'power4.out' }, 0);
+      tl.fromTo('[data-hero-fondo]', { scale: 1.12 }, { scale: 1, duration: 2.2, ease: 'power3.out' }, 0);
       const splitTitulo = SplitText.create('.hero__titulo', { type: 'words, chars', mask: 'chars' });
       tl.from(splitTitulo.chars, { yPercent: 120, duration: 1, stagger: 0.012 }, 0.4);
       const splitSub = SplitText.create('.hero__sub', { type: 'lines', mask: 'lines' });
@@ -1636,8 +1684,8 @@ document.fonts.ready.then(() => {
     });
 
     /* 6.3 Salida del hero + barra de progreso */
-    gsap.to('[data-hero-parallax]', {
-      yPercent: 14, scale: 1.12, ease: 'none',
+    gsap.to('[data-hero-fondo]', {
+      yPercent: 14, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
     });
     gsap.to('.hero__contenido', {
