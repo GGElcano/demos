@@ -69,3 +69,13 @@ entrada, quién es, «¿A quién acompaño?», «Mi enfoque y herramientas» y c
 la trayectoria, el propósito/visión/misión y sus frases de Instagram se mantienen. Servicios: sección
 nueva «Qué esperar en la sesión» (charla previa con CNV para acordar límites + respiración) y paso
 «El Ritual de Bienvenida» ampliado (también en el dibujo de la portada).
+
+**23-oct-2026, orden de Sergio («lo del arte de tocar empieza antes del contacto, la animación esa,
+hazla en base a su imagen de marca»):** la sección del scroll de la portada ya no lleva velas, loto ni
+chakras (su documento de marca prohíbe «energía» y «centros vitales»). Ahora va con su identidad de
+marca: fondo negro, su rojo (#E8001D) y letra blanca en mayúsculas, título «El masaje empieza antes
+del tacto.» (la frase de su documento, con «antes» en rojo). Dos líneas que se acompasan al bajar: la
+roja es el sistema nervioso de quien llega (en alerta) y la blanca, su presencia (calma); con escuchar,
+respirar y el Tacto Consciente se juntan y respiran a la vez (la co-regulación de la que habla ella).
+Cuatro fases con su vocabulario: El Ritual de Bienvenida (escuchar y respirar), El Tacto Consciente y
+Volver a sentir. Es la única sección oscura de la web, a propósito.
