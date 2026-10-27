@@ -363,9 +363,18 @@ html.quieto .cursor-dot, html.quieto .cursor-ring{ display:none; }
 }
 .flotante img{ aspect-ratio: 3/4; }
 .flotante--1{ top: 6%;  right: 9%;  width: clamp(9rem, 17vw, 18rem); }
-.flotante--2{ bottom: 4%; right: 30%; }
+.flotante--2{ bottom: 4%; right: 24%; }   /* 24 % y no 30 %: en portátil de 1280 rozaba el final de las líneas */
 .flotante--3{ top: 42%; left: 60%; width: clamp(6rem, 11vw, 12rem); opacity:.85; }
 @media (max-width: 720px){ .flotante--3{ display:none; } .flotante--1{ right: 2%; } }
+/* Móvil (también en horizontal): las fotos van encima y debajo del texto, no por encima de las letras (Isabel, 27-oct) */
+@media (max-width: 820px), (max-height: 500px){
+  .manifiesto{ display:flex; flex-direction:column; gap:2.5rem; padding-block: clamp(5rem,12vh,8rem); }
+  .flotante{ position:relative; top:auto; right:auto; bottom:auto; left:auto; }
+  .flotante--1{ order:0; align-self:flex-end; width: clamp(9rem, 44vw, 15rem); }
+  .manifiesto p{ order:1; }
+  .flotante--2{ order:2; align-self:flex-start; width: clamp(8rem, 36vw, 12rem); }
+  .flotante--3{ display:none; }
+}
 
 /* ── CIFRAS ── */
 .cifras{
@@ -380,8 +389,8 @@ html.quieto .cursor-dot, html.quieto .cursor-ring{ display:none; }
 .cifra__valor i{ font-style:normal; color: var(--arcilla-osc); font-size:.5em; margin-left:.06em; }
 .cifra p{ color: var(--piedra); font-size:.85rem; margin-top:.35rem; }
 
-/* ── LA SESIÓN — loto que florece (pinned + scrub canvas) ── */
-.ritual{ height: 340vh; position: relative; }
+/* ── LA SESIÓN — loto que florece solo al aparecer (canvas, sin fijar la pantalla) ── */
+.ritual{ position: relative; }
 .ritual__pin{
   position: relative; height: 100vh; height: 100svh;
   overflow: hidden; display: grid;
@@ -458,9 +467,14 @@ html.quieto .ritual{ height:auto; } html.quieto .ritual__pin{ height:100svh; }
   font-family: var(--serif); font-size: 1rem; letter-spacing:.18em;
   color: #F5F2EB; text-shadow: 0 1px 14px rgba(0,0,0,.55);
 }
-.panel__meta{ display:flex; justify-content:space-between; margin-top: 1rem; align-items:baseline; gap:1rem; }
+.panel__meta{ display:flex; flex-wrap:wrap; justify-content:space-between; margin-top: 1rem; align-items:baseline; gap:.3rem 1rem; }
 .panel__meta h3{ font-size: clamp(1.25rem, 2vw, 1.7rem); }
 .panel__meta span{ color: var(--piedra); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; white-space:nowrap; }
+/* Móvil: título y línea pequeña uno debajo del otro y centrados, sin salirse de su tarjeta (Isabel, 27-oct) */
+@media (max-width: 820px){
+  .panel__meta{ flex-direction:column; align-items:center; text-align:center; gap:.45rem; }
+  .panel__meta span{ white-space:normal; }
+}
 
 /* ── TARIFAS ── */
 .tarifas{ padding: clamp(3rem,7vh,5rem) var(--pad) clamp(6rem,12vh,9rem); max-width: 62rem; }
@@ -760,7 +774,7 @@ html.quieto .progreso{ display:none; }
     </div>
   </section>
 
-  <!-- ════════ LA SESIÓN — un loto florece con tu scroll ════════ -->
+  <!-- ════════ LA SESIÓN — un loto que florece solo al aparecer ════════ -->
   <section class="ritual" aria-label="La sesión, paso a paso, dibujada">
     <div class="ritual__pin">
       <canvas class="ritual__lienzo" aria-hidden="true"></canvas>
@@ -804,7 +818,7 @@ html.quieto .progreso{ display:none; }
           <span class="panel__num">02</span>
           <img src="assets/maderoterapia-ritual-corporal-tenerife.webp" alt="Masaje descontracturante de espalda" loading="lazy">
         </div>
-        <div class="panel__meta"><h3>Masaje descontracturante</h3><span>Cuerpo</span></div>
+        <div class="panel__meta"><h3>Masaje descontracturante</h3><span>Cuerpo entero o por zonas</span></div>
       </article>
       <article class="panel">
         <div class="panel__marco" data-img-reveal>
@@ -828,27 +842,27 @@ html.quieto .progreso{ display:none; }
     <h2 data-reveal data-split="lines">La carta de <em>tratamientos</em>.</h2>
     <p class="tarifas__grupo" data-reveal>Tratamientos terapéuticos</p>
     <div class="tarifa tarifa--destacada" data-reveal>
-      <div><h3>Masaje <em>descontracturante</em></h3><p>Libera contracturas y tensiones y relaja la musculatura. Ideal tras un esfuerzo, si tienes estrés o arrastras una mala postura.</p></div>
+      <div><h3>Masaje <em>descontracturante</em></h3><p>Para cuando la espalda, el cuello o los hombros te pasan factura. Presión firme y trabajo a fondo de la musculatura hasta deshacer contracturas y tensiones. Ideal tras un esfuerzo, en épocas de estrés o si arrastras una mala postura.</p><p>De cuerpo entero o centrado en la zona que más lo necesite, como la espalda o las piernas.</p></div>
       <span class="tarifa__precio">50 €<small>60 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Masaje relajante</h3><p>Ayuda a reducir el estrés, relaja la musculatura y deja una sensación de calma que dura.</p></div>
+      <div><h3>Masaje relajante</h3><p>Una hora para soltar. Movimientos lentos y envolventes que bajan las revoluciones, relajan la musculatura y te dejan una calma que se nota al salir y te acompaña el resto del día.</p><p>De cuerpo entero o solo en la espalda o las piernas, como prefieras.</p></div>
       <span class="tarifa__precio">50 €<small>60 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Drenaje linfático</h3><p>Masaje drenante que ayuda a eliminar líquidos y mejora la circulación del sistema linfático, con un efecto muy relajante.</p></div>
+      <div><h3>Drenaje linfático</h3><p>Maniobras suaves y rítmicas que siguen el recorrido del sistema linfático para ayudar a eliminar líquidos y activar la circulación. El cuerpo queda más ligero, las piernas menos pesadas, y además es muy relajante.</p></div>
       <span class="tarifa__precio">50 €<small>60 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Reflexología podal</h3><p>Estimulación de los pies que reduce el estrés y la ansiedad, mejora la circulación y alivia los dolores musculares.</p></div>
+      <div><h3>Reflexología podal</h3><p>Presión precisa sobre los puntos reflejos de los pies para relajar todo el cuerpo empezando por abajo. Ayuda a reducir el estrés y la ansiedad, mejora la circulación y alivia los dolores musculares.</p></div>
       <span class="tarifa__precio">50 €<small>60 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Maderoterapia</h3><p>Masaje intenso con utensilios de madera que reduce, moldea y tonifica. Además drena y descarga la musculatura.</p><ul class="tarifa__opciones"><li><span>Completa: abdomen, piernas y glúteos</span><b>60 €</b></li><li><span>Localizada: una sola zona, por ejemplo abdomen, o piernas y glúteos</span><b>50 €</b></li></ul></div>
+      <div><h3>Maderoterapia</h3><p>Masaje intenso con utensilios de madera pensados para moldear la silueta. Reduce, tonifica y reafirma, y al mismo tiempo drena líquidos y descarga la musculatura. Se nota más con varias sesiones; por eso tiene bono.</p><ul class="tarifa__opciones"><li><span>Completa: abdomen, piernas y glúteos</span><b>60 €</b></li><li><span>Localizada: una sola zona, por ejemplo abdomen, o piernas y glúteos</span><b>50 €</b></li></ul></div>
       <span class="tarifa__precio">desde 50 €<small>60 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Piedras calientes</h3><p>Masaje relajante de cuerpo entero con piedras calientes y aromaterapia, para una relajación profunda: alivia las tensiones musculares y te ayuda a desconectar. Ideal en otoño e invierno, porque es calentito.</p></div>
+      <div><h3>Piedras calientes</h3><p>Piedras calientes y aromaterapia en un masaje de cuerpo entero. El calor llega a la musculatura, deshace tensiones y te lleva a una relajación profunda en la que desconectas de todo. Perfecto en otoño e invierno, cuando apetece algo calentito.</p></div>
       <span class="tarifa__precio">60 €<small>90 min</small></span>
     </div>
     <div class="tarifa tarifa--destacada" data-reveal>
@@ -856,25 +870,33 @@ html.quieto .progreso{ display:none; }
       <span class="tarifa__precio">55 €<small>60 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Masaje infantil</h3><p>Masaje relajante con aceite de almendras en la cabecita, la espalda y las piernas. Para niños y niñas de 4 a 14 años.</p></div>
+      <div><h3>Masaje infantil</h3><p>Un ratito de calma para los peques. Masaje suave con aceite de almendras en la cabecita, la espalda y las piernas, que les ayuda a relajarse y a soltar el ajetreo del día. Para niños y niñas de 4 a 14 años.</p></div>
       <span class="tarifa__precio">20 €<small>30 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Masaje anticelulítico</h3><p>Una combinación de técnicas que contribuye a mejorar el aspecto de la celulitis, suavizar la piel y proporcionar una mayor sensación de ligereza y bienestar corporal.</p></div>
+      <div><h3>Masaje anticelulítico</h3><p>Una combinación de técnicas que contribuye a mejorar el aspecto de la celulitis y a suavizar la piel. Al terminar, el cuerpo se siente más ligero y la piel más lisa al tacto.</p></div>
       <span class="tarifa__precio">55 €<small>60 min</small></span>
+    </div>
+    <div class="tarifa" data-reveal>
+      <div><h3>Piernas cansadas</h3><p>Masaje centrado en las piernas con un aceite especial para piernas cansadas. Alivia la pesadez, activa la circulación y deja una sensación de ligereza desde el primer paso. Ideal si pasas muchas horas de pie o sin moverte.</p></div>
+      <span class="tarifa__precio">Consultar</span>
     </div>
     <p class="tarifas__grupo" data-reveal>Tratamientos de spa</p>
     <div class="tarifa" data-reveal>
-      <div><h3>Lifting facial japonés · Kobido</h3><p>Reduce las líneas de expresión, aporta firmeza y elasticidad, favorece el colágeno y la elastina y remodela el óvalo del rostro.</p></div>
+      <div><h3>Lifting facial japonés · Kobido</h3><p>El masaje facial japonés, hecho solo con las manos. Reduce las líneas de expresión, aporta firmeza y elasticidad, favorece el colágeno y la elastina y redibuja el óvalo del rostro. Sales con la cara descansada y luminosa.</p></div>
       <span class="tarifa__precio">50 €<small>60 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Chocolaterapia</h3><p>Tratamiento a base de cacao que nutre la piel, combate la celulitis, ayuda a liberar el estrés y es ideal para piernas cansadas.</p></div>
+      <div><h3>Chocolaterapia</h3><p>Dos horas de puro mimo a base de cacao. Nutre la piel, ayuda a combatir la celulitis y a liberar el estrés, y es ideal para piernas cansadas. Y sí, huele tan bien como imaginas.</p></div>
       <span class="tarifa__precio">70 €<small>120 min</small></span>
     </div>
     <div class="tarifa" data-reveal>
-      <div><h3>Cerezoterapia</h3><p>Tratamiento antioxidante a base de cerezas que aporta a la piel minerales y vitaminas B y C, con efecto antiedad.</p></div>
+      <div><h3>Cerezoterapia</h3><p>Dos horas de tratamiento antioxidante a base de cerezas, que aportan a la piel minerales y vitaminas B y C. Efecto antiedad para una piel más jugosa y luminosa.</p></div>
       <span class="tarifa__precio">70 €<small>120 min</small></span>
+    </div>
+    <div class="tarifa" data-reveal>
+      <div><h3>Vendas frías</h3><p>Vendas frías sobre las piernas para una sensación inmediata de frescor y ligereza. Ideal para piernas cansadas, deportistas y personas con retención de líquidos. Un imprescindible en verano y, si haces deporte, durante todo el año.</p></div>
+      <span class="tarifa__precio">Consultar</span>
     </div>
     <p class="tarifas__grupo" data-reveal>Bonos</p>
     <div class="tarifa" data-reveal>
@@ -892,7 +914,7 @@ html.quieto .progreso{ display:none; }
     <p class="tarifas__nota" data-reveal>
       El descontracturante, el relajante, el drenaje linfático, la reflexología podal y el Kobido mantienen su precio de 50 € hasta el 31 de diciembre de 2026.
       Para reservar, escribe por <a href="https://wa.me/34642403886" target="_blank" rel="noopener">WhatsApp</a>
-      e Isabel te responde con hueco.
+      e Isabel te confirma el día y la hora.
     </p>
   </section>
 
@@ -1564,14 +1586,12 @@ if (FINE_POINTER && !REDUCE) (function cursor(){
       valor: 1,
       ease: 'none',
       onUpdate: () => pintar(progreso.valor),
+      /* se dibuja solo en cuanto la sección asoma: no hace falta deslizar para verlo entero (Isabel, 27-oct) */
+      duration: 9,
       scrollTrigger: {
         trigger: seccion,
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: pinEl,
-        pinSpacing: false,
-        scrub: 1,
-        anticipatePin: 1,
+        start: 'top 60%',
+        toggleActions: 'play none none none',
       },
     });
   }
@@ -1638,7 +1658,8 @@ document.fonts.ready.then(() => {
   mm.add({                              /* siempre se cumple una: arranca en ordenador y en móvil */
     isDesktop: '(min-width: 821px)',
     isMobile:  '(max-width: 820px)',
-  }, () => {
+    isBajo:    '(max-height: 500px)',     /* móvil en horizontal */
+  }, (mmCtx) => {
     if (REDUCE) {
       gsap.set('[data-reveal], [data-hero-reveal]', { clearProps: 'all', autoAlpha: 1, visibility: 'visible' });
       document.querySelectorAll('[data-cuenta]').forEach((el) => {
@@ -1703,14 +1724,9 @@ document.fonts.ready.then(() => {
     });
 
     /* 6.4 Manifiesto + flotantes */
-    SplitText.create('[data-manifiesto]', {
-      type: 'words',
-      onSplit: (self) => gsap.from(self.words, {
-        opacity: 0.13, stagger: 0.05, ease: 'none',
-        scrollTrigger: { trigger: '.manifiesto', start: 'top 72%', end: 'bottom 55%', scrub: true },
-      }),
-    });
-    gsap.utils.toArray('.flotante').forEach((el) => {
+    /* el texto del manifiesto sale oscuro desde el principio: el aclarado palabra a palabra no se leía (Isabel, 27-oct) */
+    /* en el móvil las fotos se quedan quietas: al moverse tapaban el texto */
+    if (mmCtx.conditions.isDesktop && !mmCtx.conditions.isBajo) gsap.utils.toArray('.flotante').forEach((el) => {
       const sp = +el.dataset.speed || 1;
       gsap.fromTo(el, { yPercent: 16 * sp }, {
         yPercent: -16 * sp, ease: 'none',
