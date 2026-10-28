@@ -5,524 +5,191 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta name="robots" content="noindex, nofollow">
-<title>Pedidos al proveedor para World Airsoft Tactical | maqueta de G&amp;G Elcano</title>
-<meta name="description" content="Muestra de cómo los encargos de worldairsofttactical.es llegan solos al proveedor de cada producto y cómo avisa al dueño y al cliente.">
+<title>Pedidos al proveedor | World Airsoft Tactical | maqueta</title>
+<meta name="description" content="Muestra de cómo un encargo llega solo al proveedor y avisa al dueño y al cliente.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --negro: #0e0e0e; --negro-2: #1b1b1b; --rojo: #ff0006; --rojo-texto: #d10005; --rojo-claro: #fff0f0;
-  --gris: #5f6166; --linea: #e4e4e4; --fondo: #fff; --fondo-2: #f4f4f4; --texto: #141414;
-  --wa-fondo: #e5ddd5; --wa-yo: #dcf8c6; --verde: #1f8a4c; --ambar: #b26a00; --ambar-claro: #fff6e5;
-  --radio: 10px; --sombra: 0 10px 30px rgba(0,0,0,.14);
-}
+:root { --negro:#0e0e0e; --rojo:#ff0006; --gris:#5f6166; --linea:#e4e4e4; --wa:#e5ddd5; --yo:#dcf8c6; --verde:#1f8a4c; --ambar:#b26a00; }
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--fondo); color: var(--texto); font: 16px/1.6 "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
-img { max-width: 100%; height: auto; display: block; }
-a { color: inherit; }
-h1, h2, h3, .cifras b, .paso-n, .esc-n { font-family: "Roboto Condensed", "Roboto", Arial, sans-serif; }
-button { font: inherit; cursor: pointer; }
-
-.cinta { background: var(--rojo); color: #fff; text-align: center; padding: 9px 16px; font-size: 13.5px; font-weight: 700; line-height: 1.45; }
-.cinta span { font-weight: 400; }
-header.barra { background: #fff; padding: 12px 16px; border-bottom: 3px solid var(--negro); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-header.barra .logo { width: 190px; height: auto; }
-header.barra nav { margin-left: auto; display: flex; gap: 18px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; flex-wrap: wrap; }
-header.barra nav .tel { color: var(--rojo-texto); }
-
-.envoltorio { max-width: 1180px; margin: 0 auto; padding: 24px 16px 90px; }
-.hero { padding: 30px 0 6px; }
-.hero h1 { font-size: clamp(27px, 4.2vw, 42px); line-height: 1.15; margin: 0 0 12px; text-transform: uppercase; letter-spacing: .01em; }
-.hero h1 b { color: var(--rojo); }
-.hero p.entrada { font-size: 18px; color: #33363b; max-width: 74ch; margin: 0; }
-.cifras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; }
-.cifras div { background: var(--negro); color: #fff; border-radius: var(--radio); padding: 14px 16px; border-left: 4px solid var(--rojo); }
-.cifras b { display: block; font-size: 22px; line-height: 1.2; }
-.cifras span { font-size: 13.5px; color: #cfd0d3; }
-
-h2.titulo { font-size: 23px; margin: 40px 0 4px; text-transform: uppercase; letter-spacing: .01em; }
-p.subtitulo { margin: 0 0 16px; color: var(--gris); font-size: 14.5px; }
-
-/* Escenarios */
-.escenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 18px; }
-.esc { text-align: left; background: #fff; border: 1px solid var(--linea); border-top: 3px solid var(--negro); border-radius: var(--radio); padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 2px 10px rgba(0,0,0,.04); transition: transform .15s, box-shadow .15s; }
-.esc:hover { transform: translateY(-2px); box-shadow: var(--sombra); }
-.esc[aria-selected="true"] { border-top-color: var(--rojo); background: linear-gradient(180deg, var(--rojo-claro), #fff 70%); }
-.esc-n { background: var(--negro); color: #fff; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: 18px; flex: none; }
-.esc[aria-selected="true"] .esc-n { background: var(--rojo); }
-.esc h3 { margin: 0 0 2px; font-size: 17px; }
-.esc p { margin: 0; font-size: 13.5px; color: var(--gris); line-height: 1.45; }
-
-/* Escenario en marcha */
-.escena { background: var(--fondo-2); border: 1px solid var(--linea); border-radius: 14px; padding: 18px; }
-.escena-cab { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
-.escena-cab h3 { margin: 0; font-size: 20px; flex: 1 1 260px; }
-.controles { display: flex; gap: 8px; flex-wrap: wrap; }
-.controles button { border: 0; border-radius: 999px; padding: 10px 18px; font-weight: 700; }
-.btn-sig { background: var(--rojo); color: #fff; }
-.btn-sig:disabled { background: #bbb; cursor: default; }
-.btn-todo { background: var(--negro); color: #fff; }
-.btn-reset { background: #fff; border: 1px solid #c9c9c9 !important; color: var(--texto); }
-
-.cuerpo { display: grid; grid-template-columns: 300px 1fr; gap: 18px; }
-.pasos { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.paso { display: flex; gap: 10px; padding: 10px 12px; border-radius: var(--radio); background: #fff; border: 1px solid var(--linea); opacity: .55; }
-.paso.hecho { opacity: 1; }
-.paso.activo { opacity: 1; border-color: var(--rojo); box-shadow: 0 0 0 3px rgba(255,0,6,.12); }
-.paso-n { background: var(--negro); color: #fff; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; flex: none; margin-top: 2px; }
-.paso.activo .paso-n { background: var(--rojo); }
-.paso b { display: block; font-size: 14.5px; line-height: 1.3; }
-.paso span { font-size: 13px; color: var(--gris); line-height: 1.45; display: block; margin-top: 3px; }
-
-.paneles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
-.panel { background: #fff; border-radius: 14px; border: 1px solid var(--linea); overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,.07); }
-.panel-cab { display: flex; gap: 10px; align-items: center; padding: 10px 12px; background: var(--negro); color: #fff; }
-.panel-cab .av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 900; flex: none; }
-.panel-cab b { display: block; font-size: 14px; line-height: 1.2; }
-.panel-cab small { display: block; font-size: 11.5px; color: #cfd0d3; }
-.panel--cliente .av { background: #2a7de1; }
-.panel--proveedor .av { background: var(--ambar); }
-.panel--dueno .av { background: var(--rojo); }
-.panel-cuerpo { padding: 12px; min-height: 240px; display: flex; flex-direction: column; gap: 8px; background: var(--wa-fondo); }
-.panel--proveedor .panel-cuerpo { background: #f1f3f6; }
-.vacio { color: #777; font-size: 13px; text-align: center; margin: auto; padding: 20px 10px; }
-
-.msg { background: #fff; border-radius: 10px; padding: 8px 10px 20px; font-size: 13.5px; line-height: 1.45; position: relative; max-width: 94%; align-self: flex-start; box-shadow: 0 1px 1px rgba(0,0,0,.08); animation: entra .35s ease both; }
-.msg.yo { background: var(--wa-yo); align-self: flex-end; }
-.msg .hora { position: absolute; right: 8px; bottom: 4px; font-size: 10.5px; color: #888; }
-.msg .de { display: block; font-size: 11.5px; font-weight: 700; color: var(--rojo-texto); margin-bottom: 2px; }
-.msg.yo .de { color: var(--verde); }
-.msg ul { margin: 4px 0 2px; padding-left: 18px; }
-.msg li { margin: 0; }
-.mail { background: #fff; border: 1px solid #d9dde3; border-left: 4px solid var(--ambar); border-radius: 8px; padding: 10px 12px; font-size: 13px; line-height: 1.45; animation: entra .35s ease both; }
-.mail.resp { border-left-color: var(--verde); }
-.mail .asunto { font-weight: 700; display: block; margin-bottom: 2px; }
-.mail .meta { color: #777; font-size: 11.5px; display: block; margin-bottom: 6px; }
-.mail ul { margin: 4px 0; padding-left: 18px; }
-.mail .botones { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
-.mail .botones span { border-radius: 6px; padding: 5px 9px; font-size: 12px; font-weight: 700; border: 1px solid #c9c9c9; background: #fafafa; }
-.mail .botones span.ok { background: var(--verde); color: #fff; border-color: var(--verde); }
-.mail .botones span.pulsado { outline: 3px solid rgba(31,138,76,.35); }
-.mail .botones span.alt.pulsado { outline: 3px solid rgba(178,106,0,.4); background: var(--ambar-claro); border-color: var(--ambar); }
-.web { background: #fff; border: 1px solid #d9dde3; border-radius: 8px; padding: 10px 12px; font-size: 13px; animation: entra .35s ease both; }
-.web .cab { font-weight: 700; display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
-.web .cab small { color: var(--verde); font-weight: 700; }
-.web .prod { display: flex; gap: 10px; align-items: center; }
-.web .prod img { width: 64px; height: 43px; object-fit: cover; border-radius: 6px; border: 1px solid var(--linea); }
-.web .fila { display: flex; justify-content: space-between; gap: 8px; border-top: 1px dashed var(--linea); padding-top: 5px; margin-top: 6px; font-size: 12.5px; }
-.nota { font-size: 12px; color: #555; text-align: center; background: rgba(255,255,255,.75); border-radius: 8px; padding: 5px 8px; align-self: center; animation: entra .35s ease both; }
-.aviso { background: var(--ambar-claro); border: 1px solid #ffd79a; border-radius: 8px; padding: 6px 9px; font-size: 12.5px; animation: entra .35s ease both; }
-@keyframes entra { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-
-.explica { margin-top: 14px; background: #fff; border-left: 4px solid var(--rojo); border-radius: 8px; padding: 10px 14px; font-size: 14.5px; min-height: 48px; }
-.explica b { color: var(--rojo-texto); }
-
-/* Proveedores */
-.provs { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin: 16px 0 10px; }
-.prov { background: #fff; border: 1px solid var(--linea); border-radius: var(--radio); padding: 14px 16px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
-.prov h3 { margin: 0 0 8px; font-size: 17px; }
-.prov dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 13.5px; }
-.prov dt { color: var(--gris); }
-.prov dd { margin: 0; font-weight: 700; }
-.prov .si { color: var(--verde); } .prov .no { color: var(--rojo-texto); }
-p.pie { font-size: 13.5px; color: var(--gris); margin: 6px 0 0; }
-
-/* Dos columnas */
-.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
-.honesto { background: var(--negro); color: #fff; border-radius: var(--radio); padding: 4px 18px 14px; }
-.honesto h3 { font-size: 18px; margin: 12px 0 4px; }
-.honesto ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; }
-.honesto li { margin: 7px 0; }
-.honesto b { color: #ffb3b5; }
-.lista { background: #fff; border: 1px solid var(--linea); border-radius: var(--radio); padding: 4px 18px 14px; }
-.lista h3 { font-size: 18px; margin: 12px 0 4px; }
-.lista ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; }
-.lista li { margin: 7px 0; }
-
-.conectado { margin-top: 36px; background: var(--negro); color: #fff; border-radius: 14px; padding: 22px 22px 8px; }
-.conectado h2 { margin: 0 0 12px; font-size: 22px; text-transform: uppercase; }
-.conectado-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px 22px; }
-.conectado-lista div { padding: 10px 0 12px; border-top: 1px solid #333; font-size: 14px; color: #cfd0d3; line-height: 1.5; }
-.conectado-lista b { display: block; color: #fff; margin-bottom: 2px; font-size: 15px; }
-
-footer { margin-top: 44px; text-align: center; color: var(--gris); font-size: 13px; }
-
-@media (max-width: 980px) {
-  .paneles { grid-template-columns: 1fr; }
-  .cuerpo { grid-template-columns: 1fr; }
-  .pasos { flex-direction: row; overflow-x: auto; padding-bottom: 6px; }
-  .paso { flex: 0 0 230px; }
-}
-@media (max-width: 768px) {
-  .cifras, .escenarios, .dos { grid-template-columns: 1fr; }
-  .hero { padding-top: 14px; }
-  header.barra nav { display: none; }
-  .escena { padding: 12px; }
-  .panel-cuerpo { min-height: 160px; }
-}
+body { margin:0; background:#f4f4f4; color:#141414; font:15px/1.45 "Roboto", -apple-system, Segoe UI, Helvetica, Arial, sans-serif; }
+img { max-width:100%; height:auto; display:block; }
+button { font:inherit; cursor:pointer; }
+.cinta { background:var(--rojo); color:#fff; text-align:center; padding:6px 12px; font-size:12.5px; }
+header { background:#fff; border-bottom:3px solid var(--negro); padding:8px 16px; display:flex; align-items:center; gap:14px; }
+header img { width:150px; }
+header span { font-weight:700; color:var(--gris); font-size:14px; }
+.envoltorio { max-width:1100px; margin:0 auto; padding:14px 16px 60px; }
+.tabs { display:flex; gap:8px; flex-wrap:wrap; }
+.tab { flex:1 1 180px; background:#fff; border:2px solid var(--linea); border-radius:10px; padding:10px 12px; font-weight:700; text-align:left; }
+.tab[aria-selected="true"] { border-color:var(--rojo); background:#fff0f0; }
+.tab small { display:block; font-weight:400; color:var(--gris); font-size:12.5px; }
+.controles { display:flex; gap:8px; align-items:center; margin:14px 0 12px; flex-wrap:wrap; }
+.btn-sig { background:var(--rojo); color:#fff; border:0; border-radius:999px; padding:12px 26px; font-weight:700; font-size:17px; }
+.btn-sig:disabled { background:#bbb; }
+.btn-reset { background:#fff; border:1px solid #c9c9c9; border-radius:999px; padding:10px 16px; }
+.contador { color:var(--gris); font-size:13.5px; margin-left:auto; }
+.paneles { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; align-items:start; }
+.panel { background:#fff; border-radius:14px; border:1px solid var(--linea); overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.07); }
+.cab { display:flex; gap:10px; align-items:center; padding:9px 12px; background:var(--negro); color:#fff; }
+.cab .av { width:32px; height:32px; border-radius:50%; display:grid; place-items:center; font-weight:700; flex:none; }
+.cab b { display:block; font-size:14px; line-height:1.2; }
+.cab small { display:block; font-size:11.5px; color:#cfd0d3; }
+.p-cliente .av { background:#2a7de1; } .p-prov .av { background:var(--ambar); } .p-dueno .av { background:var(--rojo); }
+.cuerpo { padding:12px; min-height:260px; display:flex; flex-direction:column; gap:8px; background:var(--wa); }
+.p-prov .cuerpo { background:#f1f3f6; }
+.vacio { color:#888; font-size:13px; text-align:center; margin:auto; }
+.msg { background:#fff; border-radius:10px; padding:7px 10px 18px; font-size:13.5px; position:relative; max-width:94%; align-self:flex-start; box-shadow:0 1px 1px rgba(0,0,0,.08); animation:entra .3s ease both; }
+.msg.yo { background:var(--yo); align-self:flex-end; }
+.msg .de { display:block; font-size:11.5px; font-weight:700; color:#d10005; }
+.msg.yo .de { color:var(--verde); }
+.msg .hora { position:absolute; right:8px; bottom:3px; font-size:10.5px; color:#888; }
+.mail { background:#fff; border:1px solid #d9dde3; border-left:4px solid var(--ambar); border-radius:8px; padding:8px 10px; font-size:13px; animation:entra .3s ease both; }
+.mail.resp { border-left-color:var(--verde); }
+.mail b.asunto { display:block; margin-bottom:3px; }
+.mail .btns { display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
+.mail .btns span { border-radius:6px; padding:4px 8px; font-size:12px; font-weight:700; border:1px solid #c9c9c9; background:#fafafa; }
+.mail .btns .ok { background:var(--verde); color:#fff; border-color:var(--verde); }
+.mail .btns .alt.on { background:#fff6e5; border-color:var(--ambar); outline:3px solid rgba(178,106,0,.35); }
+.mail .btns .ok.on { outline:3px solid rgba(31,138,76,.35); }
+.web { background:#fff; border:1px solid #d9dde3; border-radius:8px; padding:8px 10px; font-size:13px; animation:entra .3s ease both; }
+.web .prod { display:flex; gap:10px; align-items:center; }
+.web img { width:60px; height:40px; object-fit:cover; border-radius:6px; border:1px solid var(--linea); }
+.nota { font-size:12px; color:#555; text-align:center; background:rgba(255,255,255,.75); border-radius:8px; padding:4px 8px; align-self:center; animation:entra .3s ease both; }
+.aviso { background:#fff6e5; border:1px solid #ffd79a; border-radius:8px; padding:6px 9px; font-size:12.5px; animation:entra .3s ease both; }
+@keyframes entra { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+@media (max-width:900px) { .paneles { grid-template-columns:1fr; } .cuerpo { min-height:120px; } header img { width:120px; } }
 </style>
 </head>
 <body>
-<div class="cinta">Maqueta de G&amp;G Elcano para World Airsoft Tactical · <span>productos y precios reales de worldairsofttactical.es · los clientes, los proveedores, las cuentas y los mensajes son de ejemplo y no se envían a nadie</span></div>
-<header class="barra">
-  <img class="logo" src="img/logo-world-airsoft-tactical.webp" alt="World Airsoft Tactical" width="300" height="87">
-  <nav><span>Réplicas</span><span>Pistolas</span><span>Cargadores</span><span>Protección</span><span class="tel">+34 922 696 060</span></nav>
-</header>
+<div class="cinta">Maqueta de G&amp;G Elcano · clientes, proveedores, cuentas y mensajes de ejemplo</div>
+<header><img src="img/logo-world-airsoft-tactical.webp" alt="World Airsoft Tactical" width="300" height="87"><span>Pedidos al proveedor</span></header>
 
 <div class="envoltorio">
-  <section class="hero">
-    <h1>Los encargos llegan <b>solos al proveedor</b></h1>
-    <p class="entrada">Un cliente pide una réplica que no tenéis en la tienda. Hoy eso es buscar al proveedor en el móvil, escribirle, esperar, pagar, estar pendiente del envío y avisar al cliente. Con esto, el encargo entra por la web, por WhatsApp o por teléfono, el pedido sale al proveedor de ese producto con el modelo exacto, vosotros recibís un WhatsApp con lo que hay que pagar y a qué cuenta, y el cliente se entera solo de cuándo llega.</p>
-    <div class="cifras">
-      <div><b>3 puertas de entrada</b><span>la web, vuestro WhatsApp y los encargos de teléfono o mostrador</span></div>
-      <div><b>0 llamadas al proveedor</b><span>el pedido sale por el canal de cada proveedor: correo o WhatsApp</span></div>
-      <div><b>Modelo exacto o nada</b><span>si el proveedor solo tiene otra versión, se para y pregunta antes de aceptar</span></div>
-    </div>
-  </section>
-
-  <h2 class="titulo">Vedlo paso a paso</h2>
-  <p class="subtitulo">Elegid cómo entra el encargo y pulsad «Siguiente paso». Veréis a la vez lo que recibe el cliente, lo que recibe el proveedor y lo que os llega a vosotros al WhatsApp.</p>
-
-  <div class="escenarios" role="tablist" id="escenarios"></div>
-
-  <div class="escena">
-    <div class="escena-cab">
-      <h3 id="escena-titulo"></h3>
-      <div class="controles">
-        <button class="btn-sig" id="btn-sig" type="button">Siguiente paso</button>
-        <button class="btn-todo" id="btn-todo" type="button">Ver todo seguido</button>
-        <button class="btn-reset" id="btn-reset" type="button">Volver a empezar</button>
-      </div>
-    </div>
-    <div class="cuerpo">
-      <ol class="pasos" id="pasos"></ol>
-      <div>
-        <div class="paneles">
-          <div class="panel panel--cliente">
-            <div class="panel-cab"><span class="av">C</span><div><b id="cab-cliente">Cliente</b><small id="cab-cliente-sub">lo que ve el cliente</small></div></div>
-            <div class="panel-cuerpo" id="p-cliente"></div>
-          </div>
-          <div class="panel panel--proveedor">
-            <div class="panel-cab"><span class="av">P</span><div><b id="cab-prov">Proveedor</b><small id="cab-prov-sub">lo que recibe el proveedor</small></div></div>
-            <div class="panel-cuerpo" id="p-proveedor"></div>
-          </div>
-          <div class="panel panel--dueno">
-            <div class="panel-cab"><span class="av">W</span><div><b>Vosotros</b><small>vuestro WhatsApp · avisos del sistema</small></div></div>
-            <div class="panel-cuerpo" id="p-dueno"></div>
-          </div>
-        </div>
-        <div class="explica" id="explica"></div>
-      </div>
-    </div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="controles">
+    <button class="btn-sig" id="btn-sig" type="button">Siguiente</button>
+    <button class="btn-reset" id="btn-reset" type="button">Volver a empezar</button>
+    <span class="contador" id="contador"></span>
   </div>
-
-  <h2 class="titulo">Lo que sabe de cada proveedor</h2>
-  <p class="subtitulo">Se mete una vez, sacándolo de vuestra agenda del móvil. A partir de ahí, cada producto ya sabe a quién se pide y por dónde.</p>
-  <div class="provs">
-    <div class="prov">
-      <h3>Distribuciones Norte <small style="font-weight:400;color:var(--gris)">(ejemplo)</small></h3>
-      <dl>
-        <dt>Pedidos por</dt><dd>correo</dd>
-        <dt>Envía a casa del cliente</dt><dd class="si">sí</dd>
-        <dt>Plazo habitual</dt><dd>7-10 días a Canarias</dd>
-        <dt>Marcas</dt><dd>Umarex, Elite Force</dd>
-        <dt>Pago</dt><dd>por adelantado, transferencia</dd>
-      </dl>
-    </div>
-    <div class="prov">
-      <h3>Importaciones Sur <small style="font-weight:400;color:var(--gris)">(ejemplo)</small></h3>
-      <dl>
-        <dt>Pedidos por</dt><dd>WhatsApp</dd>
-        <dt>Envía a casa del cliente</dt><dd class="no">no: mete publicidad de la tienda en el paquete, siempre a tienda</dd>
-        <dt>Plazo habitual</dt><dd>5-8 días</dd>
-        <dt>Marcas</dt><dd>Umarex, FMA</dd>
-        <dt>Pago</dt><dd>por adelantado, transferencia</dd>
-      </dl>
-    </div>
-    <div class="prov">
-      <h3>Airsoft Import Levante <small style="font-weight:400;color:var(--gris)">(ejemplo)</small></h3>
-      <dl>
-        <dt>Pedidos por</dt><dd>correo</dd>
-        <dt>Envía a casa del cliente</dt><dd class="si">sí</dd>
-        <dt>Plazo habitual</dt><dd>10-15 días</dd>
-        <dt>Marcas</dt><dd>VFC, Tokyo Marui, Yakeda</dd>
-        <dt>Pago</dt><dd>por adelantado, transferencia</dd>
-      </dl>
-    </div>
+  <div class="paneles">
+    <div class="panel p-cliente"><div class="cab"><span class="av">C</span><div><b id="c1">Cliente</b><small id="c1s"></small></div></div><div class="cuerpo" id="p-cliente"></div></div>
+    <div class="panel p-prov"><div class="cab"><span class="av">P</span><div><b id="c2">Proveedor</b><small id="c2s"></small></div></div><div class="cuerpo" id="p-prov"></div></div>
+    <div class="panel p-dueno"><div class="cab"><span class="av">W</span><div><b>Vosotros</b><small>vuestro WhatsApp</small></div></div><div class="cuerpo" id="p-dueno"></div></div>
   </div>
-  <p class="pie">Si un producto lo tienen dos proveedores, se pide al primero de vuestra lista y, si ese no tiene el modelo exacto, pasa al siguiente.</p>
-
-  <div class="dos">
-    <div class="lista">
-      <h3>Lo que os llega al WhatsApp</h3>
-      <ul>
-        <li><b>Ha entrado un encargo</b>: qué, para quién y a qué proveedor se ha pedido.</li>
-        <li><b>El proveedor ha confirmado</b>: cuánto hay que pagarle y a qué cuenta. Contestáis «pagado» y el proveedor recibe el aviso.</li>
-        <li><b>Ha salido</b>: agencia y número de seguimiento.</li>
-        <li><b>Está en camino y ha llegado</b>: a la tienda o a casa del cliente.</li>
-        <li><b>Algo no cuadra</b>: el proveedor solo tiene otra versión, no contesta en dos días o no tiene stock. Se para y os pregunta.</li>
-      </ul>
-    </div>
-    <div class="honesto">
-      <h3>Lo que no hace nunca</h3>
-      <ul>
-        <li><b>No paga al proveedor.</b> Os dice cuánto y a qué cuenta; el pago lo hacéis vosotros y lo confirmáis con una palabra.</li>
-        <li><b>No acepta un modelo distinto.</b> Si el proveedor solo tiene la versión nueva y el cliente pidió la antigua, nadie envía nada hasta que el cliente diga.</li>
-        <li><b>No manda a casa del cliente lo que no toca.</b> Los proveedores que meten publicidad de la tienda en el paquete van siempre a la tienda.</li>
-        <li><b>No pide el DNI</b> ni más datos de los que ya pedís hoy para enviar.</li>
-        <li><b>No inventa plazos.</b> El plazo que da al cliente es el habitual de ese proveedor a Canarias.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="conectado">
-    <h2>Y ya conectado a vuestra tienda</h2>
-    <div class="conectado-lista">
-      <div><b>Pedidos de la web</b>cada compra en worldairsofttactical.es entra sola, con el producto, el color y la dirección del cliente.</div>
-      <div><b>Vuestro WhatsApp</b>el asistente toma el encargo en el +34 922 696 060 y vosotros apuntáis los de teléfono o mostrador con una sola línea.</div>
-      <div><b>Cada proveedor por su canal</b>correo o WhatsApp, con el modelo exacto, la referencia y, si envía a casa, la dirección del cliente.</div>
-      <div><b>Seguimiento de verdad</b>el número de SEUR, ASM o Correos Express se lee solo y el cliente recibe el aviso sin que lo pidáis.</div>
-      <div><b>Cobro como hoy</b>contra reembolso o transferencia cuando el cliente recibe la réplica. No cambia nada de vuestra forma de cobrar.</div>
-      <div><b>Todo en un sitio</b>una lista con cada encargo, en qué punto está y qué queda por pagar a cada proveedor.</div>
-    </div>
-  </div>
-
-  <footer>Maqueta preparada por G&amp;G Elcano. Clientes, proveedores, cuentas bancarias y mensajes de ejemplo.</footer>
 </div>
 
 <script>
 (function () {
-  var MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-  var DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
-  function fecha(mas) { var d = new Date(); d.setDate(d.getDate() + mas); return DIAS[d.getDay()] + ' ' + d.getDate() + ' de ' + MESES[d.getMonth()]; }
-  function corta(mas) { var d = new Date(); d.setDate(d.getDate() + mas); return d.getDate() + ' de ' + MESES[d.getMonth()]; }
-  var hoy = corta(0);
+  var M = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  function f(n) { var d = new Date(); d.setDate(d.getDate() + n); return d.getDate() + ' de ' + M[d.getMonth()]; }
+  var IB1 = 'ES12 3456 7890 1234 5678 9012', IB2 = 'ES98 7654 3210 9876 5432 1098', IB3 = 'ES55 1111 2222 3333 4444 5555';
+  var T = 'World Airsoft Tactical';
+  function wa(p, de, h, yo, hora) { return { p: p, t: 'wa', de: de, h: h, yo: !!yo, hora: hora || '' }; }
+  function mail(p, asunto, h, resp) { return { p: p, t: 'mail', asunto: asunto, h: h, resp: !!resp }; }
+  function nota(p, h) { return { p: p, t: 'nota', h: h }; }
+  function aviso(p, h) { return { p: p, t: 'aviso', h: h }; }
+  function web(p, h) { return { p: p, t: 'web', h: h }; }
+  var OK = '<div class="btns"><span class="ok">Confirmo modelo exacto</span><span class="alt">Tengo otra versión</span></div>';
 
-  var IBAN_N = 'ES12 3456 7890 1234 5678 9012';
-  var IBAN_S = 'ES98 7654 3210 9876 5432 1098';
-  var IBAN_L = 'ES55 1111 2222 3333 4444 5555';
-
-  function wa(de, html, yo, hora) { return { panel: null, tipo: 'wa', de: de, html: html, yo: !!yo, hora: hora || '' }; }
-  function mail(asunto, meta, html, resp) { return { tipo: 'mail', asunto: asunto, meta: meta, html: html, resp: !!resp }; }
-  function nota(html) { return { tipo: 'nota', html: html }; }
-  function aviso(html) { return { tipo: 'aviso', html: html }; }
-  function web(html) { return { tipo: 'web', html: html }; }
-  function en(panel, m) { m.panel = panel; return m; }
-
-  var ESCENARIOS = [
-    {
-      titulo: 'Desde la web',
-      resumen: 'Un cliente compra en worldairsofttactical.es una réplica que pedís al proveedor y quiere que le llegue a casa.',
-      cab: { cliente: 'Aitor (Las Palmas)', clienteSub: 'compra en la web · envío a casa', prov: 'Distribuciones Norte', provSub: 'pedidos por correo · envía a casa del cliente' },
+  var E = [
+    { nombre: 'Desde la web', sub: 'envío a casa del cliente',
+      cab: ['Aitor', 'compra en la web', 'Distribuciones Norte', 'por correo · envía a casa del cliente'],
       pasos: [
-        { t: 'Entra el pedido en la web', s: 'Glock 17 Gen 5 GBB, negra. Envío a su casa, contra reembolso.',
-          msgs: [
-            en('cliente', web('<div class="cab"><span>Pedido 4211 · worldairsofttactical.es</span><small>confirmado</small></div><div class="prod"><img src="img/glock-17-gen-5-gbb.webp" alt="Glock 17 Gen 5 GBB" width="64" height="43"><div><b>Glock 17 Gen 5 - GBB</b><br>Umarex · negra · 165,00 €</div></div><div class="fila"><span>Entrega</span><b>a su casa, Las Palmas</b></div><div class="fila"><span>Pago</span><b>contra reembolso al recibir</b></div>')),
-            en('dueno', wa('Pedidos', '<b>Pedido 4211 entrado</b> desde la web.<ul><li>Glock 17 Gen 5 GBB, negra · 165 €</li><li>Aitor · Las Palmas · a su casa</li><li>Cobro: contra reembolso</li></ul>Lo pido a <b>Distribuciones Norte</b> (envía a casa del cliente). Te aviso cuando confirmen.', false, '10:04'))
-          ],
-          ex: '<b>Nada que hacer.</b> El sistema reconoce el producto, sabe que lo sirve Distribuciones Norte y que ese proveedor envía a casa del cliente.' },
-        { t: 'Sale el pedido al proveedor', s: 'Correo con el modelo exacto, la referencia y la dirección del cliente.',
-          msgs: [
-            en('proveedor', mail('Pedido 4211 · World Airsoft Tactical · 1 unidad', 'De: pedidos@worldairsofttactical.es · ' + hoy + ' 10:04', 'Hola, os pedimos:<ul><li><b>Glock 17 Gen 5 GBB</b> · Umarex · <b>negra</b> · ref. 2.6457 · 1 ud.</li><li>Enviar a: Aitor · c/ de ejemplo 12, 35001 Las Palmas · 6XX XXX X12</li><li>Pago por transferencia en cuanto confirméis.</li></ul><b>Importante:</b> si no tenéis exactamente este modelo, versión y color, no lo enviéis. Pulsad «Tengo otra versión» y os decimos.<div class="botones"><span class="ok">Confirmo modelo exacto y stock</span><span class="alt">Tengo otra versión / sin stock</span></div>')),
-            en('cliente', wa('World Airsoft Tactical', 'Hola Aitor, gracias por tu pedido 4211 (Glock 17 Gen 5 GBB negra). Ya está en marcha con nuestro proveedor. Te aviso cuando salga hacia tu casa; lo pagas al mensajero cuando lo recibas.', false, '10:05'))
-          ],
-          ex: '<b>El correo lo manda el sistema</b> con los datos de la ficha. El proveedor contesta pulsando un botón; no hace falta que nadie lea su respuesta.' },
-        { t: 'El proveedor confirma', s: 'Os llega cuánto pagar y a qué cuenta. Contestáis «pagado».',
-          msgs: [
-            en('proveedor', mail('Re: Pedido 4211', 'Distribuciones Norte · ' + hoy + ' 11:30', '<div class="botones"><span class="ok pulsado">Confirmo modelo exacto y stock</span></div>Importe: 118,40 € · cuenta ' + IBAN_N, true)),
-            en('dueno', wa('Pedidos', '<b>Distribuciones Norte confirma</b> el pedido 4211: Glock 17 Gen 5 GBB negra, modelo exacto, en stock.<br><br>Hay que pagarles <b>118,40 €</b><br>Cuenta: <b>' + IBAN_N + '</b><br>Concepto: <b>WAT 4211</b><br><br>Cuando lo hayas hecho, contesta <b>pagado</b>.', false, '11:30')),
-            en('dueno', wa('Vosotros', 'pagado', true, '11:52')),
-            en('dueno', wa('Pedidos', 'Apuntado. Le he dicho a Distribuciones Norte que ya pueden enviar.', false, '11:52')),
-            en('proveedor', mail('Pedido 4211 · pago realizado', 'De: pedidos@worldairsofttactical.es · ' + hoy + ' 11:52', 'Transferencia de 118,40 € hecha con concepto WAT 4211. Podéis enviar. Cuando salga, contestad a este correo con el número de seguimiento.'))
-          ],
-          ex: '<b>El pago lo hacéis vosotros</b>, como ahora. La diferencia es que no tenéis que buscar el importe ni la cuenta: os llegan al WhatsApp y con una palabra el proveedor sabe que puede enviar.' },
-        { t: 'Sale el paquete', s: 'El número de seguimiento se lee solo y el cliente recibe la fecha estimada.',
-          msgs: [
-            en('proveedor', mail('Re: Pedido 4211 · enviado', 'Distribuciones Norte · ' + corta(1) + ' 16:10', 'Enviado por SEUR, seguimiento <b>SE0000418877</b>.', true)),
-            en('dueno', wa('Pedidos', '<b>4211 enviado</b> por Distribuciones Norte. SEUR SE0000418877, directo a casa de Aitor. Plazo habitual a Canarias: 7-10 días. Le he avisado.', false, '16:11')),
-            en('cliente', wa('World Airsoft Tactical', 'Aitor, tu Glock 17 Gen 5 ya ha salido. SEUR, seguimiento SE0000418877. Llegada estimada entre el <b>' + corta(8) + '</b> y el <b>' + corta(11) + '</b>. Pagas al mensajero al recibirla: 165 € más el envío.', false, '16:11'))
-          ],
-          ex: '<b>El cliente no tiene que preguntar</b> «¿dónde está mi pedido?». Y si la agencia lo retrasa, también se entera por vosotros.' },
-        { t: 'Entregado', s: 'Se cierra el encargo. Cobro contra reembolso, como siempre.',
-          msgs: [
-            en('cliente', wa('World Airsoft Tactical', 'SEUR nos dice que tu pedido 4211 se ha entregado hoy. ¡A disfrutarla! Si quieres un cargador extra o bolas, escríbenos por aquí.', false, '12:40')),
-            en('dueno', wa('Pedidos', '<b>4211 entregado</b> a Aitor (' + fecha(9) + '). Cobrado contra reembolso por SEUR. Encargo cerrado.', false, '12:40')),
-            en('proveedor', nota('Nada más que hacer con el proveedor'))
-          ],
-          ex: '<b>Un encargo entero sin una llamada</b> ni un «me lo apunto». Vosotros habéis hecho una transferencia y habéis escrito una palabra.' }
-      ]
-    },
-    {
-      titulo: 'Por WhatsApp',
-      resumen: 'Un cliente os escribe al WhatsApp de la tienda y quiere recogerla en la tienda.',
-      cab: { cliente: 'Marta', clienteSub: 'escribe al +34 922 696 060 · recoge en tienda', prov: 'Importaciones Sur', provSub: 'pedidos por WhatsApp · solo envía a tienda' },
+        [ web('cliente', '<b>Pedido 4211 · web</b><div class="prod"><img src="img/glock-17-gen-5-gbb.webp" alt=""><div>Glock 17 Gen 5 GBB · negra · 165 €<br>A su casa · contra reembolso</div></div>'),
+          wa('dueno', 'Pedidos', '<b>Pedido 4211</b>: Glock 17 Gen 5 negra · Aitor, a su casa. Pedido a <b>Distribuciones Norte</b>.', false, '10:04') ],
+        [ mail('prov', 'Pedido 4211 · 1 ud.', '<b>Glock 17 Gen 5 GBB · negra</b> · ref. 2.6457<br>Enviar a: Aitor, Las Palmas<br>Si no tenéis este modelo exacto, no enviéis.' + OK),
+          wa('cliente', T, 'Hola Aitor, tu pedido 4211 está en marcha. Te aviso cuando salga.', false, '10:05') ],
+        [ mail('prov', 'Re: Pedido 4211', '<div class="btns"><span class="ok on">Confirmo modelo exacto</span></div>118,40 € · ' + IB1, true),
+          wa('dueno', 'Pedidos', 'Confirmado. Paga <b>118,40 €</b> a <b>' + IB1 + '</b>, concepto <b>WAT 4211</b>. Contesta <b>pagado</b>.', false, '11:30'),
+          wa('dueno', 'Vosotros', 'pagado', true, '11:52'),
+          mail('prov', 'Pedido 4211 · pagado', 'Transferencia hecha. Podéis enviar. Contestad con el seguimiento.') ],
+        [ mail('prov', 'Re: Pedido 4211', 'Enviado. SEUR <b>SE0000418877</b>', true),
+          wa('dueno', 'Pedidos', '<b>4211 enviado</b> a casa de Aitor. SEUR SE0000418877. 7-10 días.', false, '16:11'),
+          wa('cliente', T, 'Aitor, tu Glock ya ha salido. Llega entre el <b>' + f(8) + '</b> y el <b>' + f(11) + '</b>. Pagas al mensajero.', false, '16:11') ],
+        [ wa('cliente', T, 'Tu pedido 4211 se ha entregado hoy. ¡A disfrutarla!', false, '12:40'),
+          wa('dueno', 'Pedidos', '<b>4211 entregado</b>. Cobrado contra reembolso. Cerrado.', false, '12:40') ]
+      ] },
+    { nombre: 'Por WhatsApp', sub: 'recoge en tienda',
+      cab: ['Marta', 'escribe al WhatsApp de la tienda', 'Importaciones Sur', 'por WhatsApp · solo envía a tienda'],
       pasos: [
-        { t: 'El cliente pregunta por WhatsApp', s: 'El asistente toma el encargo: producto, nombre y si recoge o se le envía.',
-          msgs: [
-            en('cliente', wa('Marta', 'Hola! Tenéis la HK416 A5 eléctrica? La quiero recoger en tienda', true, '18:21')),
-            en('cliente', wa('World Airsoft Tactical', 'Hola Marta. La HK 416 A5 AEG (Umarex, 511 €) la pedimos al proveedor y suele estar en tienda en 5-8 días. La pagas al recogerla. ¿Te la encargo? Dime tu nombre completo y te aviso cuando llegue.', false, '18:21')),
-            en('cliente', wa('Marta', 'Sí, encárgala. Marta Pérez', true, '18:23')),
-            en('cliente', wa('World Airsoft Tactical', 'Hecho, encargo 4212: HK 416 A5 AEG para Marta Pérez, recogida en tienda. Te escribo por aquí cuando esté.', false, '18:23'))
-          ],
-          ex: '<b>El asistente contesta por vosotros</b> con el precio y el plazo de ese proveedor. No da por hecho nada: pregunta nombre y si recoge o se envía.' },
-        { t: 'Sale el pedido al proveedor', s: 'Este proveedor trabaja por WhatsApp y solo envía a la tienda.',
-          msgs: [
-            en('proveedor', wa('World Airsoft Tactical', '<b>Pedido 4212</b><ul><li>HK 416 A5 AEG · Umarex · ref. 2.6391X · 1 ud.</li><li>Enviar a la tienda (dirección habitual)</li><li>Pago por transferencia en cuanto confirméis</li></ul>Si no tenéis exactamente este modelo, no lo enviéis: contestad <b>OTRA VERSIÓN</b> y os decimos. Si lo tenéis, contestad <b>OK</b> con el importe.', true, '18:24')),
-            en('dueno', wa('Pedidos', '<b>Encargo 4212 entrado</b> por WhatsApp.<ul><li>HK 416 A5 AEG · 511 €</li><li>Marta Pérez · recoge en tienda · paga al recoger</li></ul>Pedido a <b>Importaciones Sur</b> por WhatsApp (sus paquetes llevan vuestra publicidad: va a la tienda).', false, '18:24'))
-          ],
-          ex: '<b>A cada proveedor por su canal.</b> Importaciones Sur no envía a casa del cliente, así que ni se le ofrece esa opción.' },
-        { t: 'El proveedor confirma', s: 'Os llega el importe y la cuenta. Contestáis «pagado».',
-          msgs: [
-            en('proveedor', wa('Importaciones Sur', 'OK, 372,00 €. Cuenta ' + IBAN_S, false, '09:05')),
-            en('dueno', wa('Pedidos', '<b>Importaciones Sur confirma</b> el 4212: HK 416 A5 AEG, modelo exacto.<br><br>Hay que pagarles <b>372,00 €</b><br>Cuenta: <b>' + IBAN_S + '</b><br>Concepto: <b>WAT 4212</b><br><br>Contesta <b>pagado</b> cuando esté.', false, '09:05')),
-            en('dueno', wa('Vosotros', 'pagado', true, '09:40')),
-            en('proveedor', wa('World Airsoft Tactical', 'Transferencia de 372,00 € hecha, concepto WAT 4212. Cuando salga, mandadnos por aquí el número de seguimiento.', true, '09:40'))
-          ],
-          ex: '<b>El sistema lee el «OK» del proveedor</b> y saca el importe. Si contestara otra cosa o no contestara en dos días, os avisaría.' },
-        { t: 'Sale hacia la tienda', s: 'Os llega el seguimiento. Al cliente todavía no se le dice nada.',
-          msgs: [
-            en('proveedor', wa('Importaciones Sur', 'Enviado, ASM 7788001234', false, '15:30')),
-            en('dueno', wa('Pedidos', '<b>4212 enviado</b> a la tienda. ASM 7788001234, llega en 5-8 días. Cuando lo recibas, contesta <b>llegó 4212</b> y aviso a Marta.', false, '15:31')),
-            en('cliente', nota('Al cliente no se le avisa hasta que la réplica está en tienda'))
-          ],
-          ex: '<b>Al cliente que recoge en tienda</b> no se le marea con el seguimiento: solo se le avisa cuando puede venir.' },
-        { t: 'Llega a la tienda', s: 'Decís «llegó» y el cliente recibe el aviso para recogerla.',
-          msgs: [
-            en('dueno', wa('Vosotros', 'llegó 4212', true, '11:15')),
-            en('dueno', wa('Pedidos', 'Avisado a Marta. Encargo 4212 pendiente de recoger y cobrar: 511 €.', false, '11:15')),
-            en('cliente', wa('World Airsoft Tactical', 'Marta, tu HK 416 A5 AEG ya está en la tienda. Puedes pasar a recogerla cuando quieras en nuestro horario. Son 511 €, los pagas en tienda por transferencia o en efectivo. Te la guardamos a tu nombre.', false, '11:15')),
-            en('cliente', wa('Marta', 'Genial, paso mañana!', true, '11:32'))
-          ],
-          ex: '<b>Con dos palabras («llegó 4212»)</b> el cliente queda avisado y el encargo queda como pendiente de cobrar hasta que lo recoja.' }
-      ]
-    },
-    {
-      titulo: 'Por teléfono o en el mostrador',
-      resumen: 'Un cliente lo pide por teléfono. Vosotros lo apuntáis con una línea en el WhatsApp. Y el proveedor solo tiene la versión nueva.',
-      cab: { cliente: 'Iker', clienteSub: 'llama a la tienda · recoge en tienda', prov: 'Distribuciones Norte → Airsoft Import Levante', provSub: 'pedidos por correo' },
+        [ wa('cliente', 'Marta', 'Hola! Tenéis la HK416 A5 eléctrica? La recojo en tienda', true, '18:21'),
+          wa('cliente', T, 'Hola Marta. La pedimos al proveedor, 5-8 días, 511 €, la pagas al recogerla. ¿Te la encargo? Dime tu nombre.', false, '18:21'),
+          wa('cliente', 'Marta', 'Sí. Marta Pérez', true, '18:23'),
+          wa('cliente', T, 'Hecho, encargo 4212. Te aviso por aquí cuando esté.', false, '18:23') ],
+        [ wa('prov', T, '<b>Pedido 4212</b>: HK 416 A5 AEG · ref. 2.6391X · 1 ud. · a la tienda.<br>Si no tenéis este modelo exacto, contestad OTRA VERSIÓN. Si sí, OK y el importe.', true, '18:24'),
+          wa('dueno', 'Pedidos', '<b>Encargo 4212</b>: HK 416 A5 · Marta, recoge en tienda. Pedido a <b>Importaciones Sur</b>.', false, '18:24') ],
+        [ wa('prov', 'Importaciones Sur', 'OK, 372,00 €. ' + IB2, false, '09:05'),
+          wa('dueno', 'Pedidos', 'Confirmado. Paga <b>372,00 €</b> a <b>' + IB2 + '</b>, concepto <b>WAT 4212</b>. Contesta <b>pagado</b>.', false, '09:05'),
+          wa('dueno', 'Vosotros', 'pagado', true, '09:40'),
+          wa('prov', T, 'Pago hecho. Mandadnos el seguimiento cuando salga.', true, '09:40') ],
+        [ wa('prov', 'Importaciones Sur', 'Enviado, ASM 7788001234', false, '15:30'),
+          wa('dueno', 'Pedidos', '<b>4212 enviado</b> a la tienda, 5-8 días. Cuando llegue contesta <b>llegó 4212</b>.', false, '15:31'),
+          nota('cliente', 'Al cliente no se le avisa hasta que esté en tienda') ],
+        [ wa('dueno', 'Vosotros', 'llegó 4212', true, '11:15'),
+          wa('dueno', 'Pedidos', 'Avisada Marta. Pendiente de recoger y cobrar: 511 €.', false, '11:15'),
+          wa('cliente', T, 'Marta, tu HK 416 A5 ya está en la tienda. Pásate cuando quieras. 511 €, los pagas al recogerla.', false, '11:15'),
+          wa('cliente', 'Marta', 'Genial, paso mañana!', true, '11:32') ]
+      ] },
+    { nombre: 'Por teléfono', sub: 'el proveedor solo tiene otra versión',
+      cab: ['Iker', 'llama a la tienda · recoge en tienda', 'Proveedores', 'por correo'],
       pasos: [
-        { t: 'Lo apuntáis con una línea', s: 'Como escribirle a un compañero. El sistema lo ordena y pide confirmación.',
-          msgs: [
-            en('cliente', nota('Iker llama a la tienda: quiere una Glock 17 de VFC, negra, «la Gen 4, no la nueva». La recoge en tienda.')),
-            en('dueno', wa('Vosotros', 'encargo glock 17 vfc negra gen 4 (no la gen 5), iker 6xx xxx x45, recoge en tienda, 185', true, '12:10')),
-            en('dueno', wa('Pedidos', 'Apunto el <b>encargo 4213</b>:<ul><li>Glock 17 GBB · VFC · <b>Gen 4</b> · negra · 185 €</li><li>Iker · 6XX XXX X45 · recoge en tienda · paga al recoger</li><li>Proveedor: Distribuciones Norte</li></ul>¿Lo pido? Contesta <b>sí</b> o corrígeme.', false, '12:10')),
-            en('dueno', wa('Vosotros', 'sí', true, '12:11'))
-          ],
-          ex: '<b>No hay que rellenar nada.</b> Una línea en vuestro WhatsApp, el sistema la ordena y os la enseña antes de pedir. Si queréis, también puede ser un formulario de tres casillas.' },
-        { t: 'Sale el pedido al proveedor', s: 'Con la versión bien clara: Gen 4, no Gen 5.',
-          msgs: [
-            en('proveedor', mail('Pedido 4213 · World Airsoft Tactical · 1 unidad', 'De: pedidos@worldairsofttactical.es · ' + hoy + ' 12:11', 'Hola, os pedimos:<ul><li><b>Glock 17 GBB · VFC · Gen 4 · negra</b> · 1 ud.</li><li>Enviar a la tienda (dirección habitual)</li></ul><b>Importante:</b> el cliente quiere la <b>Gen 4</b>. Si solo tenéis la Gen 5 u otra versión, no la enviéis: pulsad «Tengo otra versión».<div class="botones"><span class="ok">Confirmo modelo exacto y stock</span><span class="alt">Tengo otra versión / sin stock</span></div>')),
-            en('cliente', wa('World Airsoft Tactical', 'Hola Iker, soy el asistente de World Airsoft Tactical. Tu encargo 4213 (Glock 17 VFC Gen 4, negra) ya está pedido. Te aviso por aquí cuando esté en tienda.', false, '12:12'))
-          ],
-          ex: '<b>Aquí está la clave de los cambios de modelo:</b> el proveedor recibe por escrito qué versión es y qué no vale, y tiene un botón para decir que no la tiene.' },
-        { t: 'El proveedor solo tiene la Gen 5', s: 'Se para. Nadie envía nada. Os pregunta qué hacer.',
-          msgs: [
-            en('proveedor', mail('Re: Pedido 4213', 'Distribuciones Norte · ' + hoy + ' 13:40', '<div class="botones"><span class="alt pulsado">Tengo otra versión / sin stock</span></div>Solo nos queda la Gen 5 negra, mismo precio.', true)),
-            en('dueno', aviso('⚠️ <b>4213: Distribuciones Norte solo tiene la Gen 5.</b> No he aceptado nada.')),
-            en('dueno', wa('Pedidos', 'Iker pidió la Gen 4. ¿Qué hago?<ul><li><b>1</b> Le pregunto a Iker si le vale la Gen 5</li><li><b>2</b> La pido a Airsoft Import Levante (también la tienen en catálogo)</li></ul>', false, '13:40')),
-            en('dueno', wa('Vosotros', '1', true, '13:48'))
-          ],
-          ex: '<b>Esto es lo que hoy acaba en una réplica que el cliente no quería.</b> Aquí el sistema no decide por nadie: os avisa y, si queréis, pregunta al cliente.' },
-        { t: 'Se le pregunta al cliente', s: 'Iker quiere la Gen 4. Se pide al siguiente proveedor.',
-          msgs: [
-            en('cliente', wa('World Airsoft Tactical', 'Iker, de la Glock 17 VFC negra nuestro proveedor solo tiene ahora la versión Gen 5, al mismo precio. ¿Te vale la Gen 5 o prefieres que busquemos la Gen 4 en otro proveedor (unos días más)?', false, '13:48')),
-            en('cliente', wa('Iker', 'Quiero la Gen 4, no me importa esperar', true, '14:05')),
-            en('dueno', wa('Pedidos', 'Iker quiere la <b>Gen 4</b>. Cancelo el pedido en Distribuciones Norte y lo pido a <b>Airsoft Import Levante</b>. ¿Vale? (sí / no)', false, '14:05')),
-            en('dueno', wa('Vosotros', 'sí', true, '14:06')),
-            en('proveedor', mail('Pedido 4213 · anulado', 'Para: Distribuciones Norte · ' + hoy + ' 14:06', 'Gracias, el cliente quiere la Gen 4. Anulamos este pedido.')),
-            en('proveedor', mail('Pedido 4213 · World Airsoft Tactical · 1 unidad', 'Para: Airsoft Import Levante · ' + hoy + ' 14:06', '<b>Glock 17 GBB · VFC · Gen 4 · negra</b> · 1 ud. · a la tienda.<br><b>Importante:</b> solo la Gen 4.<div class="botones"><span class="ok pulsado">Confirmo modelo exacto y stock</span></div>Importe: 131,50 € · cuenta ' + IBAN_L))
-          ],
-          ex: '<b>El cliente decide y vosotros confirmáis.</b> El segundo proveedor sí tiene la Gen 4 y la confirma.' },
-        { t: 'Pago, envío y recogida', s: 'Igual que en los otros casos: cuánto pagar, seguimiento, y aviso al cliente cuando esté en tienda.',
-          msgs: [
-            en('dueno', wa('Pedidos', '<b>Airsoft Import Levante confirma</b> el 4213: Glock 17 VFC Gen 4 negra.<br><br>Hay que pagarles <b>131,50 €</b><br>Cuenta: <b>' + IBAN_L + '</b><br>Concepto: <b>WAT 4213</b><br><br>Contesta <b>pagado</b>.', false, '14:30')),
-            en('dueno', wa('Vosotros', 'pagado', true, '15:02')),
-            en('dueno', wa('Pedidos', '<b>4213 enviado</b> a la tienda. Correos Express CX2210098, 10-15 días. Contesta <b>llegó 4213</b> cuando esté.', false, '10:20')),
-            en('dueno', wa('Vosotros', 'llegó 4213', true, '13:00')),
-            en('cliente', wa('World Airsoft Tactical', 'Iker, tu Glock 17 VFC Gen 4 negra ya está en la tienda, tal y como la pediste. Pásate cuando quieras: son 185 €, los pagas al recogerla.', false, '13:00')),
-            en('proveedor', nota('Encargo cerrado con Airsoft Import Levante'))
-          ],
-          ex: '<b>El cliente recibe exactamente lo que pidió</b> y vosotros no habéis llamado a nadie ni habéis tenido que explicar una devolución.' }
-      ]
-    }
+        [ nota('cliente', 'Iker llama: quiere una Glock 17 VFC negra, «la Gen 4, no la nueva»'),
+          wa('dueno', 'Vosotros', 'encargo glock 17 vfc negra gen 4, iker 6xx xxx x45, recoge en tienda, 185', true, '12:10'),
+          wa('dueno', 'Pedidos', 'Apunto <b>encargo 4213</b>: Glock 17 VFC · <b>Gen 4</b> · negra · 185 € · Iker, recoge en tienda. ¿Lo pido?', false, '12:10'),
+          wa('dueno', 'Vosotros', 'sí', true, '12:11') ],
+        [ mail('prov', 'Pedido 4213 · 1 ud.', '<b>Glock 17 GBB · VFC · Gen 4 · negra</b> · a la tienda.<br>El cliente quiere la <b>Gen 4</b>. Si solo tenéis la Gen 5, no enviéis.' + OK),
+          wa('cliente', T, 'Hola Iker, tu encargo 4213 (Glock 17 VFC Gen 4 negra) ya está pedido. Te aviso cuando esté en tienda.', false, '12:12') ],
+        [ mail('prov', 'Re: Pedido 4213', '<div class="btns"><span class="alt on">Tengo otra versión</span></div>Solo nos queda la Gen 5, mismo precio.', true),
+          aviso('dueno', '⚠️ <b>4213: el proveedor solo tiene la Gen 5.</b> No he aceptado nada.'),
+          wa('dueno', 'Pedidos', '¿Qué hago? <b>1</b> Pregunto a Iker si le vale la Gen 5 · <b>2</b> La pido a otro proveedor', false, '13:40'),
+          wa('dueno', 'Vosotros', '1', true, '13:48') ],
+        [ wa('cliente', T, 'Iker, de la Glock 17 VFC negra solo hay ahora la Gen 5, mismo precio. ¿Te vale o buscamos la Gen 4 en otro proveedor?', false, '13:48'),
+          wa('cliente', 'Iker', 'Quiero la Gen 4, no me importa esperar', true, '14:05'),
+          wa('dueno', 'Pedidos', 'Iker quiere la <b>Gen 4</b>. La pido a <b>Airsoft Import Levante</b>. ¿Vale?', false, '14:05'),
+          wa('dueno', 'Vosotros', 'sí', true, '14:06'),
+          mail('prov', 'Pedido 4213 · anulado', 'El cliente quiere la Gen 4. Anulamos.'),
+          mail('prov', 'Pedido 4213 · Airsoft Import Levante', '<b>Glock 17 GBB · VFC · Gen 4 · negra</b> · a la tienda.<div class="btns"><span class="ok on">Confirmo modelo exacto</span></div>131,50 € · ' + IB3) ],
+        [ wa('dueno', 'Pedidos', 'Confirmado. Paga <b>131,50 €</b> a <b>' + IB3 + '</b>, concepto <b>WAT 4213</b>. Contesta <b>pagado</b>.', false, '14:30'),
+          wa('dueno', 'Vosotros', 'pagado', true, '15:02'),
+          wa('dueno', 'Pedidos', '<b>4213 enviado</b> a la tienda. Correos Express CX2210098. Contesta <b>llegó 4213</b> cuando esté.', false, '10:20'),
+          wa('dueno', 'Vosotros', 'llegó 4213', true, '13:00'),
+          wa('cliente', T, 'Iker, tu Glock 17 VFC Gen 4 negra ya está en la tienda, como la pediste. 185 €, los pagas al recogerla.', false, '13:00') ]
+      ] }
   ];
 
-  var escActual = 0, pasoActual = -1, temporizador = null;
+  var esc = 0, paso = -1;
   var $ = function (id) { return document.getElementById(id); };
-  var elEsc = $('escenarios'), elPasos = $('pasos'), elExplica = $('explica');
-  var paneles = { cliente: $('p-cliente'), proveedor: $('p-proveedor'), dueno: $('p-dueno') };
-
-  ESCENARIOS.forEach(function (e, i) {
-    var b = document.createElement('button');
-    b.className = 'esc'; b.type = 'button'; b.setAttribute('role', 'tab');
-    b.innerHTML = '<span class="esc-n">' + (i + 1) + '</span><div><h3>' + e.titulo + '</h3><p>' + e.resumen + '</p></div>';
+  var P = { cliente: $('p-cliente'), prov: $('p-prov'), dueno: $('p-dueno') };
+  var tabs = $('tabs');
+  E.forEach(function (e, i) {
+    var b = document.createElement('button'); b.className = 'tab'; b.type = 'button'; b.setAttribute('role', 'tab');
+    b.innerHTML = (i + 1) + '. ' + e.nombre + '<small>' + e.sub + '</small>';
     b.addEventListener('click', function () { cargar(i); });
-    elEsc.appendChild(b);
+    tabs.appendChild(b);
   });
-
   function cargar(i) {
-    clearTimeout(temporizador); temporizador = null;
-    escActual = i; pasoActual = -1;
-    var e = ESCENARIOS[i];
-    Array.prototype.forEach.call(elEsc.children, function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
-    $('escena-titulo').textContent = (i + 1) + '. ' + e.titulo;
-    $('cab-cliente').textContent = e.cab.cliente; $('cab-cliente-sub').textContent = e.cab.clienteSub;
-    $('cab-prov').textContent = e.cab.prov; $('cab-prov-sub').textContent = e.cab.provSub;
-    elPasos.innerHTML = '';
-    e.pasos.forEach(function (p, j) {
-      var li = document.createElement('li'); li.className = 'paso';
-      li.innerHTML = '<span class="paso-n">' + (j + 1) + '</span><div><b>' + p.t + '</b><span>' + p.s + '</span></div>';
-      li.addEventListener('click', function () { irA(j); });
-      elPasos.appendChild(li);
-    });
-    Object.keys(paneles).forEach(function (k) { paneles[k].innerHTML = '<div class="vacio">Todavía no ha pasado nada</div>'; });
-    elExplica.innerHTML = 'Pulsad <b>«Siguiente paso»</b> para empezar.';
-    $('btn-sig').disabled = false;
+    esc = i; paso = -1; var e = E[i];
+    Array.prototype.forEach.call(tabs.children, function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
+    $('c1').textContent = e.cab[0]; $('c1s').textContent = e.cab[1]; $('c2').textContent = e.cab[2]; $('c2s').textContent = e.cab[3];
+    Object.keys(P).forEach(function (k) { P[k].innerHTML = '<div class="vacio">Pulsa «Siguiente»</div>'; });
+    $('btn-sig').disabled = false; $('contador').textContent = 'Paso 0 de ' + e.pasos.length;
   }
-
   function pinta(m) {
-    var cont = paneles[m.panel], d = document.createElement('div');
-    var vacio = cont.querySelector('.vacio'); if (vacio) vacio.remove();
-    if (m.tipo === 'wa') { d.className = 'msg' + (m.yo ? ' yo' : ''); d.innerHTML = '<span class="de">' + m.de + '</span>' + m.html + '<span class="hora">' + m.hora + '</span>'; }
-    else if (m.tipo === 'mail') { d.className = 'mail' + (m.resp ? ' resp' : ''); d.innerHTML = '<span class="asunto">' + m.asunto + '</span><span class="meta">' + m.meta + '</span>' + m.html; }
-    else if (m.tipo === 'web') { d.className = 'web'; d.innerHTML = m.html; }
-    else if (m.tipo === 'aviso') { d.className = 'aviso'; d.innerHTML = m.html; }
-    else { d.className = 'nota'; d.innerHTML = m.html; }
-    cont.appendChild(d);
+    var c = P[m.p], d = document.createElement('div'); var v = c.querySelector('.vacio'); if (v) v.remove();
+    if (m.t === 'wa') { d.className = 'msg' + (m.yo ? ' yo' : ''); d.innerHTML = '<span class="de">' + m.de + '</span>' + m.h + '<span class="hora">' + m.hora + '</span>'; }
+    else if (m.t === 'mail') { d.className = 'mail' + (m.resp ? ' resp' : ''); d.innerHTML = '<b class="asunto">' + m.asunto + '</b>' + m.h; }
+    else { d.className = m.t; d.innerHTML = m.h; }
+    c.appendChild(d);
   }
-
-  function siguiente() {
-    var e = ESCENARIOS[escActual];
-    if (pasoActual >= e.pasos.length - 1) return false;
-    pasoActual++;
-    var p = e.pasos[pasoActual];
-    p.msgs.forEach(pinta);
-    elExplica.innerHTML = p.ex;
-    Array.prototype.forEach.call(elPasos.children, function (li, j) {
-      li.classList.toggle('hecho', j < pasoActual); li.classList.toggle('activo', j === pasoActual);
-    });
-    if (pasoActual === e.pasos.length - 1) $('btn-sig').disabled = true;
-    if (window.innerWidth < 980) { var act = elPasos.children[pasoActual]; if (act && act.scrollIntoView) act.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); }
-    return true;
-  }
-
-  function irA(j) {
-    clearTimeout(temporizador); temporizador = null;
-    var i = escActual; cargar(i);
-    while (pasoActual < j) siguiente();
-  }
-
-  function todo() {
-    clearTimeout(temporizador);
-    if (!siguiente()) return;
-    temporizador = setTimeout(todo, 1800);
-  }
-
-  $('btn-sig').addEventListener('click', function () { clearTimeout(temporizador); temporizador = null; siguiente(); });
-  $('btn-todo').addEventListener('click', function () { if (pasoActual >= ESCENARIOS[escActual].pasos.length - 1) cargar(escActual); todo(); });
-  $('btn-reset').addEventListener('click', function () { cargar(escActual); });
+  $('btn-sig').addEventListener('click', function () {
+    var e = E[esc]; if (paso >= e.pasos.length - 1) return;
+    paso++; e.pasos[paso].forEach(pinta);
+    $('contador').textContent = 'Paso ' + (paso + 1) + ' de ' + e.pasos.length;
+    if (paso === e.pasos.length - 1) $('btn-sig').disabled = true;
+  });
+  $('btn-reset').addEventListener('click', function () { cargar(esc); });
   cargar(0);
 })();
 </script>
