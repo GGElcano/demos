@@ -26,8 +26,6 @@ header span { font-weight:700; color:var(--gris); font-size:14px; }
 .tab[aria-selected="true"] { border-color:var(--rojo); background:#fff0f0; }
 .tab small { display:block; font-weight:400; color:var(--gris); font-size:12.5px; }
 .controles { display:flex; gap:8px; align-items:center; margin:14px 0 12px; flex-wrap:wrap; }
-.btn-sig { background:var(--rojo); color:#fff; border:0; border-radius:999px; padding:12px 26px; font-weight:700; font-size:17px; }
-.btn-sig:disabled { background:#bbb; }
 .btn-reset { background:#fff; border:1px solid #c9c9c9; border-radius:999px; padding:10px 16px; }
 .contador { color:var(--gris); font-size:13.5px; margin-left:auto; }
 .paneles { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; align-items:start; }
@@ -69,8 +67,7 @@ header span { font-weight:700; color:var(--gris); font-size:14px; }
 <div class="envoltorio">
   <div class="tabs" role="tablist" id="tabs"></div>
   <div class="controles">
-    <button class="btn-sig" id="btn-sig" type="button">Siguiente</button>
-    <button class="btn-reset" id="btn-reset" type="button">Volver a empezar</button>
+    <button class="btn-reset" id="btn-reset" type="button">Repetir</button>
     <span class="contador" id="contador"></span>
   </div>
   <div class="paneles">
@@ -159,7 +156,7 @@ header span { font-weight:700; color:var(--gris); font-size:14px; }
       ] }
   ];
 
-  var esc = 0, paso = -1;
+  var esc = 0, paso = -1, reloj = null, RITMO = 4000;
   var $ = function (id) { return document.getElementById(id); };
   var P = { cliente: $('p-cliente'), prov: $('p-prov'), dueno: $('p-dueno') };
   var tabs = $('tabs');
@@ -173,8 +170,16 @@ header span { font-weight:700; color:var(--gris); font-size:14px; }
     esc = i; paso = -1; var e = E[i];
     Array.prototype.forEach.call(tabs.children, function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
     $('c1').textContent = e.cab[0]; $('c1s').textContent = e.cab[1]; $('c2').textContent = e.cab[2]; $('c2s').textContent = e.cab[3];
-    Object.keys(P).forEach(function (k) { P[k].innerHTML = '<div class="vacio">Pulsa «Siguiente»</div>'; });
-    $('btn-sig').disabled = false; $('contador').textContent = 'Paso 0 de ' + e.pasos.length;
+    Object.keys(P).forEach(function (k) { P[k].innerHTML = '<div class="vacio">Empieza en un momento…</div>'; });
+    $('contador').textContent = 'Paso 0 de ' + e.pasos.length;
+    clearTimeout(reloj); reloj = setTimeout(avanza, 1200);
+  }
+  function avanza() {
+    var e = E[esc];
+    if (paso >= e.pasos.length - 1) { reloj = setTimeout(function () { cargar((esc + 1) % E.length); }, RITMO); return; }
+    paso++; e.pasos[paso].forEach(pinta);
+    $('contador').textContent = 'Paso ' + (paso + 1) + ' de ' + e.pasos.length;
+    reloj = setTimeout(avanza, RITMO);
   }
   function pinta(m) {
     var c = P[m.p], d = document.createElement('div'); var v = c.querySelector('.vacio'); if (v) v.remove();
@@ -183,12 +188,6 @@ header span { font-weight:700; color:var(--gris); font-size:14px; }
     else { d.className = m.t; d.innerHTML = m.h; }
     c.appendChild(d);
   }
-  $('btn-sig').addEventListener('click', function () {
-    var e = E[esc]; if (paso >= e.pasos.length - 1) return;
-    paso++; e.pasos[paso].forEach(pinta);
-    $('contador').textContent = 'Paso ' + (paso + 1) + ' de ' + e.pasos.length;
-    if (paso === e.pasos.length - 1) $('btn-sig').disabled = true;
-  });
   $('btn-reset').addEventListener('click', function () { cargar(esc); });
   cargar(0);
 })();
