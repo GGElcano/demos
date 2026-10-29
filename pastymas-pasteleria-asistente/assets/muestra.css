@@ -1,0 +1,167 @@
+/* Muestra del asistente para Pastymás (G&G Elcano, 29-oct-2026).
+   Colores de su web: rosa de los botones #D64290 (aquí algo más oscuro, #B22F72, para que el texto blanco se lea),
+   ciruela oscuro para el texto; tipografías Poppins (la de su web) e Inter. Basada en la muestra de Avegan.
+   Los nombres de variable (--rojo...) se mantienen de la plantilla: aquí --rojo es el ROSA. */
+:root {
+  --negro: #3a2430;
+  --negro-2: #4d3341;
+  --rojo: #b22f72;
+  --rojo-texto: #a62a69;
+  --rojo-claro: #fbe4ef;
+  --gris: #62565c;
+  --linea: #eddde5;
+  --fondo: #ffffff;
+  --fondo-2: #fdf6f9;
+  --texto: #24161d;
+  --radio: 10px;
+  --sombra: 0 10px 30px rgba(58, 36, 48, .16);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--fondo); color: var(--texto);
+  font: 16px/1.6 "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3, .caso-n, .cifras b { font-family: "Poppins", "Inter", Arial, sans-serif; }
+
+/* Cinta de maqueta: siempre visible, dentro de la página */
+.cinta { background: var(--rojo); color: #fff; text-align: center; padding: 9px 16px; font-size: 13.5px; font-weight: 700; line-height: 1.45; }
+.cinta span { font-weight: 400; }
+
+header.barra {
+  background: #fff; color: var(--texto); padding: 12px 16px; border-bottom: 3px solid var(--negro);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+header.barra .logo { width: 190px; height: auto; }
+header.barra nav { margin-left: auto; display: flex; gap: 18px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; flex-wrap: wrap; }
+header.barra nav .tel { color: var(--rojo-texto); }
+
+.envoltorio { max-width: 1120px; margin: 0 auto; padding: 24px 16px 90px; }
+
+/* Portada */
+.hero { padding: 30px 0 6px; }
+.hero h1 { font-size: clamp(27px, 4.2vw, 42px); line-height: 1.15; margin: 0 0 12px; text-transform: uppercase; letter-spacing: .01em; }
+.hero h1 b { color: var(--rojo); }
+.hero p.entrada { font-size: 18px; color: #33363b; max-width: 72ch; margin: 0; }
+.cifras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; }
+.cifras div { background: var(--negro); color: #fff; border-radius: var(--radio); padding: 14px 16px; border-left: 4px solid var(--rojo); }
+.cifras b { display: block; font-size: 22px; line-height: 1.2; }
+.cifras span { font-size: 13.5px; color: #d9d0c6; }
+
+h2.titulo { font-size: 23px; margin: 36px 0 4px; text-transform: uppercase; letter-spacing: .01em; }
+p.subtitulo { margin: 0; color: var(--gris); font-size: 14.5px; }
+
+/* Casos pulsables */
+.casos { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin: 16px 0 28px; }
+.caso { background: #fff; border: 1px solid var(--linea); border-top: 3px solid var(--negro); border-radius: var(--radio); padding: 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+.caso--estrella { border-top-color: var(--rojo); background: linear-gradient(180deg, var(--rojo-claro), #fff 60%); }
+.caso h3 { margin: 0; font-size: 18px; }
+.caso p { margin: 0 0 4px; font-size: 14px; color: var(--gris); line-height: 1.5; flex: 1; }
+.caso-n { width: 28px; height: 28px; border-radius: 50%; background: var(--negro); color: #fff; font-weight: 700; font-size: 14px; display: grid; place-items: center; }
+.caso--estrella .caso-n { background: var(--rojo); }
+.chat-sugerencia {
+  text-align: left; background: var(--fondo-2); border: 1px solid #cfcfcf; border-radius: 8px; padding: 9px 12px;
+  font: inherit; font-size: 13.5px; color: var(--texto); cursor: pointer;
+}
+.chat-sugerencia:hover { background: #fff; border-color: var(--rojo); }
+.chat-sugerencia::before { content: "▸ "; color: var(--rojo-texto); font-weight: 700; }
+
+/* Lo que hace solo */
+.solos { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 16px 0 26px; }
+.wa { border-radius: var(--radio); overflow: hidden; border: 1px solid var(--linea); background: #efeae2; display: flex; flex-direction: column; }
+.wa-cab { background: #075e54; color: #fff; display: flex; gap: 10px; align-items: center; padding: 10px 14px; }
+.wa-cab small { display: block; font-size: 12px; color: #cfe9e5; }
+.wa-av { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: var(--rojo); font-weight: 900; display: grid; place-items: center; }
+.wa-cuerpo { padding: 14px; flex: 1; }
+.wa-msg { background: #fff; border-radius: 10px; padding: 9px 12px 18px; font-size: 14px; max-width: 90%; position: relative; margin-bottom: 10px; box-shadow: 0 1px 1px rgba(0,0,0,.08); }
+.wa-msg.wa-yo { background: #d9fdd3; margin-left: auto; }
+.wa-hora { position: absolute; right: 9px; bottom: 3px; font-size: 11px; color: #8a9096; }
+.solo-pie { margin: 0; padding: 10px 14px; font-size: 13px; color: var(--gris); background: #fff; border-top: 1px solid var(--linea); }
+.honesto { border: 1px solid var(--linea); border-radius: var(--radio); background: #fff; overflow: hidden; display: flex; flex-direction: column; }
+.honesto-cab { background: var(--negro); color: #fff; padding: 12px 16px; font-weight: 700; }
+.honesto ul { margin: 12px 0; padding: 0 16px 0 34px; font-size: 14.5px; flex: 1; }
+.honesto li { margin-bottom: 8px; }
+
+.conectado { background: var(--fondo-2); border: 1px solid var(--linea); border-radius: var(--radio); padding: 18px 20px; margin-bottom: 28px; }
+.conectado h2 { margin: 0 0 12px; font-size: 21px; text-transform: uppercase; }
+.conectado-lista { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 14px; color: #33363b; }
+.conectado-lista b { display: block; color: var(--texto); }
+
+/* Tarjetas de producto */
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 18px; }
+.tarjeta { border: 1px solid var(--linea); border-radius: var(--radio); overflow: hidden; text-decoration: none; display: block; color: inherit; background: #fff; transition: box-shadow .2s, border-color .2s; }
+.tarjeta:hover { box-shadow: var(--sombra); border-color: var(--negro); }
+.tarjeta img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: contain; background: #fff; }
+.tarjeta .cuerpo { padding: 12px 14px 14px; border-top: 1px solid var(--linea); }
+.tarjeta .cat { font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--gris); margin-bottom: 3px; }
+.tarjeta h3 { margin: 0; font-size: 16px; line-height: 1.3; }
+.tarjeta .dato { font-size: 12.5px; color: var(--gris); margin-top: 4px; }
+.tarjeta .pvp { margin-top: 8px; font-size: 19px; font-weight: 700; color: var(--rojo-texto); }
+.tarjeta .pvp s { font-size: 13.5px; font-weight: 400; color: var(--gris); margin-left: 6px; }
+
+/* Explicación de G&G */
+.nota-gg { margin: 34px 0 0; background: var(--negro); color: #fff; border-radius: var(--radio); padding: 22px 22px 18px; border-left: 5px solid var(--rojo); }
+.nota-gg h2 { margin: 0 0 8px; font-size: 20px; text-transform: uppercase; }
+.nota-gg p, .nota-gg ul { color: #dcdde0; font-size: 15px; }
+.nota-gg p { margin: 0 0 10px; }
+.nota-gg ul { margin: 0 0 10px; padding-left: 20px; }
+.nota-gg li { margin-bottom: 5px; }
+
+footer.pie { border-top: 1px solid var(--linea); padding: 22px 16px 40px; color: var(--gris); font-size: 13.5px; text-align: center; }
+
+/* Asistente */
+.chat { position: fixed; right: 18px; bottom: 18px; z-index: 50; font-size: 15px; }
+.chat-lanzador {
+  background: var(--negro); color: #fff; border: 2px solid var(--rojo); border-radius: 999px;
+  padding: 13px 20px; font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: var(--sombra);
+  display: flex; align-items: center; gap: 9px; font-family: inherit;
+}
+.chat-lanzador::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #35c26a; }
+.chat-panel {
+  position: absolute; right: 0; bottom: 64px; width: min(410px, calc(100vw - 36px));
+  background: #fff; border: 1px solid var(--linea); border-radius: 14px; box-shadow: var(--sombra);
+  display: none; overflow: hidden;
+}
+.chat--abierto .chat-panel { display: block; }
+.chat-cabecera { background: var(--negro); color: #fff; padding: 12px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 3px solid var(--rojo); }
+.chat-cabecera .quien { font-weight: 700; }
+.chat-cabecera .que { font-size: 12.5px; color: #b9bbc0; }
+.chat-minimizar { margin-left: auto; background: transparent; border: 0; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; padding: 2px 6px; border-radius: 6px; }
+.chat-minimizar:hover { background: rgba(255,255,255,.14); }
+.chat-mensajes { padding: 14px; height: 360px; max-height: calc(100vh - 260px); overflow-y: auto; background: var(--fondo-2); }
+.chat-msg { margin-bottom: 10px; padding: 10px 13px; border-radius: 14px; max-width: 90%; white-space: pre-wrap; overflow-wrap: anywhere; }
+.chat-msg--bot { background: #fff; border: 1px solid var(--linea); border-bottom-left-radius: 4px; }
+.chat-msg--bot a { color: var(--rojo-texto); font-weight: 700; }
+.chat-msg--yo { background: var(--negro); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
+.chat-msg--esperando { color: var(--gris); font-style: italic; }
+.chat-separador { text-align: center; font-size: 12px; color: var(--gris); margin: 6px 0 12px; position: relative; }
+.chat-separador::before, .chat-separador::after { content: ""; position: absolute; top: 50%; width: 26%; height: 1px; background: var(--linea); }
+.chat-separador::before { left: 0; }
+.chat-separador::after { right: 0; }
+.chat-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--linea); }
+.chat-input { flex: 1; padding: 11px 13px; border: 1px solid var(--linea); border-radius: 10px; font: inherit; min-width: 0; }
+.chat-form button { background: var(--rojo); color: #fff; border: 0; border-radius: 10px; padding: 0 16px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.chat-clip { background: transparent !important; color: var(--negro) !important; border: 1px solid var(--linea) !important; padding: 0 10px !important; display: grid; place-items: center; }
+.chat-foto { display: block; max-width: 180px; border-radius: 10px; }
+.chat-pie-acciones { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 0 12px 12px; }
+.chat-pie { font-size: 11.5px; color: var(--gris); line-height: 1.4; }
+.chat-borrar { background: transparent; border: 0; color: var(--gris); font: inherit; font-size: 11.5px; text-decoration: underline; cursor: pointer; padding: 0; white-space: nowrap; }
+.chat-borrar:hover { color: var(--rojo-texto); }
+
+@media (max-width: 768px) {
+  .hero { min-height: auto; height: auto; align-items: flex-start; }
+  header.barra nav { display: none; }
+  header.barra .logo { width: 160px; }
+  .cifras, .solos, .conectado-lista { grid-template-columns: 1fr; }
+  .tarjetas { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .tarjeta h3 { font-size: 14px; }
+  .chat { right: 12px; bottom: 12px; }
+  .chat-panel { width: calc(100vw - 24px); }
+}
+
+/* Pastymás: la cinta en ciruela oscuro y los números de caso en el rosa de su web. */
+.cinta { background: #3a2430; color: #fff; }
+.caso-n { background: #fbe4ef; color: #a62a69; }
+.caso--estrella .caso-n { background: #b22f72; color: #fff; }
