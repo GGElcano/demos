@@ -1,0 +1,240 @@
+/**
+ * Widget del asistente para las muestras de tienda (G&G Elcano; nació con CPS Spain el 23-sep-2026,
+ * adaptado a Glovasol el 29-sep-2026: nombre, tienda y claves salen de los data- de la página).
+ *
+ * Habla con el cerebro del dependiente: POST <api>/chat/<tienda> con {messages} → {reply}.
+ * En local usa data-chat-local; publicado, data-chat-api.
+ *
+ * LA CONVERSACIÓN SE GUARDA EN EL NAVEGADOR DEL VISITANTE (localStorage, 30 días):
+ * si minimiza el chat, cambia de ficha o vuelve mañana, sigue donde lo dejó. No es una cookie
+ * de rastreo: no se manda a ningún servidor, no identifica a nadie y el propio visitante puede
+ * borrarla con "Borrar conversación". En incógnito o con el almacenamiento bloqueado, el chat
+ * funciona igual pero sin memoria (todo va dentro de try/catch).
+ *
+ * El aspa MINIMIZA: guarda el hilo y deja el botón flotante. Solo "Borrar conversación" lo tira.
+ */
+(function () {
+  const raiz = document.querySelector('[data-chat]');
+  if (!raiz) return;
+
+  const esLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const API = (esLocal && raiz.dataset.chatLocal) ? raiz.dataset.chatLocal : raiz.dataset.chatApi;
+  const SALUDO = raiz.dataset.chatSaludo || 'Hola, ¿en qué te ayudo?';
+  const FALLO = raiz.dataset.chatFallback || 'Ahora mismo no puedo contestar.';
+  // Una sola conversación para toda la muestra: si pasa de una ficha a otra, el hilo sigue.
+  const ASIS = raiz.dataset.chatAsistente || 'el asistente';
+  const TIENDA = raiz.dataset.chatTienda || '';
+  const CLAVE = (raiz.dataset.chatClave || 'tienda') + '-chat';
+  const CLAVE_ABIERTO = CLAVE + '-abierto';
+  // DEMO: quién ha "iniciado sesión". En la tienda de verdad esto lo dice WooCommerce con un pase
+  // firmado por la propia web; aquí es un cliente de ejemplo para que se vea el efecto.
+  const CLAVE_CLIENTE = CLAVE + '-cliente';
+  const CLIENTE_DEMO = raiz.dataset.chatClienteDemo || 'taller-aranda';
+  const CLIENTE_NOMBRE = raiz.dataset.chatClienteNombre || 'Marta · Serigrafía Aranda';
+  const DIAS = 30;
+
+  const panel = raiz.querySelector('.chat-panel');
+  const lista = raiz.querySelector('.chat-mensajes');
+  const form = raiz.querySelector('.chat-form');
+  const input = raiz.querySelector('.chat-input');
+  const boton = raiz.querySelector('.chat-lanzador');
+  const minimizar = raiz.querySelector('.chat-minimizar');
+  const borrar = raiz.querySelector('.chat-borrar');
+  const sugerencias = document.querySelectorAll('.chat-sugerencia');
+
+  function leeGuardado() {
+    try {
+      const crudo = localStorage.getItem(CLAVE);
+      if (!crudo) return [];
+      const d = JSON.parse(crudo);
+      if (!d || !Array.isArray(d.mensajes)) return [];
+      if (d.at && (Date.now() - d.at) > DIAS * 86400000) { localStorage.removeItem(CLAVE); return []; }
+      return d.mensajes;
+    } catch (e) { return []; }
+  }
+  function guarda() {
+    try { localStorage.setItem(CLAVE, JSON.stringify({ at: Date.now(), mensajes: historial.slice(-30) })); } catch (e) { /* incógnito */ }
+  }
+  function recuerdaEstado(abierto) {
+    try { localStorage.setItem(CLAVE_ABIERTO, abierto ? '1' : '0'); } catch (e) { /* incógnito */ }
+  }
+
+  let historial = leeGuardado();
+  let pintado = false;
+  let cliente = null;
+  try { cliente = localStorage.getItem(CLAVE_CLIENTE) || null; } catch (e) { cliente = null; }
+
+  const quien = raiz.querySelector('.chat-quien');
+  const sesionBtn = document.querySelectorAll('[data-chat-sesion]');
+
+  function pintaSesion() {
+    const dentro = Boolean(cliente);
+    raiz.classList.toggle('chat--con-cliente', dentro);
+    if (quien) quien.textContent = dentro ? (ASIS + ' · ' + CLIENTE_NOMBRE) : (ASIS + ' · asistente de ' + TIENDA);
+    sesionBtn.forEach((b) => {
+      if (!b.dataset.textoEntrar) b.dataset.textoEntrar = b.textContent;
+      b.textContent = dentro ? 'Salir de la cuenta de ejemplo' : b.dataset.textoEntrar;
+      b.classList.toggle('sesion--dentro', dentro);
+    });
+  }
+
+  function cambiaSesion() {
+    cliente = cliente ? null : CLIENTE_DEMO;
+    try {
+      if (cliente) localStorage.setItem(CLAVE_CLIENTE, cliente);
+      else localStorage.removeItem(CLAVE_CLIENTE);
+    } catch (e) { /* incógnito */ }
+    // Al entrar o salir de la cuenta se empieza conversación limpia: el asistente ya no sabe lo mismo.
+    historial = [];
+    try { localStorage.removeItem(CLAVE); } catch (e) { /* incógnito */ }
+    lista.innerHTML = '';
+    pintado = false;
+    pintaSesion();
+    abrir();
+    if (cliente) pinta('assistant', 'Has entrado como ' + CLIENTE_NOMBRE + '. Ahora veo tus pedidos y lo que has comprado: pregúntame por el último pedido, pídeme que te repita una compra o consulta una factura.');
+  }
+
+  // Respuestas del asistente: negritas (**x**) y enlaces pulsables. Se escapa TODO primero y solo se
+  // crean <b> y <a> a https://, así que nada de lo que escriba el modelo puede meter código en la página.
+  function formato(texto) {
+    const esc = String(texto).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const enlace = (url, txt) => '<a href="' + url + '" target="_blank" rel="noopener">' + txt + '</a>';
+    return esc
+      .replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>')
+      .replace(/\[([^\]\n]+)\]\((https:\/\/[^\s)]+)\)/g, (m, t, u) => enlace(u, t))
+      .replace(/(^|[\s(])(https:\/\/[^\s<)]+[^\s<).,;:])/g, (m, pre, u) => pre + enlace(u, 'ver ficha'));
+  }
+
+  function pinta(role, texto, extra) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg chat-msg--' + (role === 'user' ? 'yo' : 'bot') + (extra ? ' ' + extra : '');
+    if (role === 'user') div.textContent = texto; else div.innerHTML = formato(texto);
+    lista.appendChild(div);
+    lista.scrollTop = lista.scrollHeight;
+    return div;
+  }
+
+  function separador(texto) {
+    const div = document.createElement('div');
+    div.className = 'chat-separador';
+    div.textContent = texto;
+    lista.appendChild(div);
+  }
+
+  function pintaTodo() {
+    if (pintado) return;
+    pintado = true;
+    pinta('assistant', cliente ? ('Hola de nuevo, ' + CLIENTE_NOMBRE.split(' ·')[0] + '. Puedo ver tus pedidos y lo que has comprado. ¿Qué necesitas?') : SALUDO);
+    if (historial.length) {
+      separador('Seguimos donde lo dejaste');
+      historial.forEach((m) => pinta(m.role, /^\[foto adjunta: /.test(m.content) ? '📷 Foto adjunta' : m.content));
+    }
+    lista.scrollTop = lista.scrollHeight;
+  }
+
+  function abrir() {
+    pintaTodo();
+    raiz.classList.add('chat--abierto');
+    panel.setAttribute('aria-hidden', 'false');
+    boton.setAttribute('aria-expanded', 'true');
+    boton.textContent = historial.length ? ('Seguir con ' + ASIS) : ('Pregúntale a ' + ASIS);
+    recuerdaEstado(true);
+    setTimeout(() => input.focus(), 120);
+  }
+
+  // Minimizar: se esconde el panel y se guarda todo. La conversación NO se pierde.
+  function minimiza() {
+    raiz.classList.remove('chat--abierto');
+    panel.setAttribute('aria-hidden', 'true');
+    boton.setAttribute('aria-expanded', 'false');
+    boton.textContent = historial.length ? ('Seguir con ' + ASIS) : ('Pregúntale a ' + ASIS);
+    recuerdaEstado(false);
+  }
+
+  function borraConversacion() {
+    historial = [];
+    try { localStorage.removeItem(CLAVE); } catch (e) { /* incógnito */ }
+    lista.innerHTML = '';
+    pintado = false;
+    pintaTodo();
+    boton.textContent = 'Pregúntale a ' + ASIS;
+    input.focus();
+  }
+
+  boton.addEventListener('click', () => (raiz.classList.contains('chat--abierto') ? minimiza() : abrir()));
+  sesionBtn.forEach((b) => b.addEventListener('click', cambiaSesion));
+  pintaSesion();
+  minimizar.addEventListener('click', minimiza);
+  if (borrar) borrar.addEventListener('click', borraConversacion);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && raiz.classList.contains('chat--abierto')) minimiza(); });
+
+  sugerencias.forEach((s) => s.addEventListener('click', () => {
+    abrir();
+    input.value = s.textContent.trim();
+    form.dispatchEvent(new Event('submit'));
+  }));
+
+  let enviando = false;
+  form.addEventListener('submit', (e) => {
+    if (e.preventDefault) e.preventDefault();
+    const texto = (input.value || '').trim();
+    if (!texto || enviando) return;
+    input.value = '';
+    envia(texto);
+  });
+
+  // FOTOS (1-oct-2026): el clip deja adjuntar una foto (p. ej. de un paquete dañado). La foto se
+  // enseña en el chat y al asistente le llega solo «[foto adjunta: nombre]»: en la demo no sale
+  // del navegador del visitante; en producción iría con la incidencia al buzón de la tienda.
+  const clip = raiz.querySelector('.chat-clip');
+  const archivo = raiz.querySelector('.chat-archivo');
+  if (clip && archivo) {
+    clip.addEventListener('click', () => archivo.click());
+    archivo.addEventListener('change', () => {
+      const f = archivo.files && archivo.files[0];
+      archivo.value = '';
+      if (!f || enviando || !/^image\//.test(f.type)) return;
+      const div = pinta('user', '');
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(f); img.alt = 'Foto adjunta'; img.className = 'chat-foto';
+      div.appendChild(img);
+      const nombre = (f.name || 'foto').slice(0, 60);
+      envia('[foto adjunta: ' + nombre + ']', true);
+    });
+  }
+
+  async function envia(texto, yaPintado) {
+    enviando = true;
+    if (!yaPintado) pinta('user', texto);
+    historial.push({ role: 'user', content: texto });
+    guarda();
+    const esperando = pinta('assistant', 'Escribiendo…', 'chat-msg--esperando');
+    try {
+      const r = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: historial.slice(-14), cliente: cliente || undefined }),
+      });
+      const d = await r.json();
+      esperando.remove();
+      const reply = (d && d.reply) || FALLO;
+      pinta('assistant', reply);
+      historial.push({ role: 'assistant', content: reply });
+      guarda();
+    } catch (err) {
+      esperando.remove();
+      pinta('assistant', FALLO);
+    } finally {
+      enviando = false;
+      input.focus();
+    }
+  }
+
+  // Al cargar la página: si venía abierto (o hay conversación a medias), se abre solo.
+  let veniaAbierto = false;
+  try { veniaAbierto = localStorage.getItem(CLAVE_ABIERTO) === '1'; } catch (e) { /* incógnito */ }
+  if (historial.length) boton.textContent = 'Seguir con ' + ASIS;
+  if (veniaAbierto || (raiz.dataset.chatAuto === 'si' && !historial.length)) {
+    setTimeout(abrir, veniaAbierto ? 150 : 2000);
+  }
+})();
