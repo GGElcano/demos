@@ -182,17 +182,19 @@
 /* ── La escena ─────────────────────────────────────────────────────────── */
 .pz-lado{position:sticky;top:calc(var(--pz-top,78px) + 12px)}
 .escena{position:relative;background:#d6d2cc;color:#fff;overflow:hidden;border:1px solid #c9c4bc}
-.escena__fondo{position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 42%,#f6f4f0 0%,#e2ded7 55%,#c9c3ba 100%)}
+.escena__fondo{position:absolute;inset:0;background:radial-gradient(75% 62% at 50% 40%,#f4f2ee 0%,#e4e0d9 52%,#cbc5bc 100%)}
 .escena__fondo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:16%;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.06))}
 .escena__caras{position:absolute;top:14px;left:14px;z-index:5;display:inline-flex;border:1.5px solid #111}
 .escena__caras button{background:#fff;color:#111;padding:7px 13px;font-size:12px}
 .escena__caras button[aria-selected="true"]{background:#111;color:#fff}
-.escena__prenda{position:relative;width:min(100%,560px);margin:0 auto;aspect-ratio:600/528;touch-action:none}
+.escena__prenda{position:relative;width:min(100%,600px,calc((100vh - var(--pz-top,70px) - 120px)*600/660));margin:0 auto;aspect-ratio:600/660;touch-action:none}
 .prenda-svg{position:absolute;inset:0}
 .prenda-encima{position:absolute;inset:0;z-index:2;pointer-events:none}
 .prenda-encima svg{display:block;width:100%;height:100%}
-.prenda-svg svg{display:block;width:100%;height:100%;filter:drop-shadow(0 18px 22px rgba(0,0,0,.28))}
-.prenda-svg svg,.prenda-svg svg *{transition:fill .45s cubic-bezier(.22,1,.36,1)}
+.tee{position:absolute;inset:0;filter:drop-shadow(0 16px 18px rgba(0,0,0,.26)) drop-shadow(0 2px 3px rgba(0,0,0,.18))}
+.tee__color{position:absolute;inset:0;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;transition:background-color .45s cubic-bezier(.22,1,.36,1)}
+.prenda-encima img{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .45s ease}
+
 
 .zona{position:absolute;overflow:hidden;z-index:1}
 .zona--marcos{overflow:visible;pointer-events:none;z-index:4}
@@ -206,8 +208,8 @@
 
 /* lo impreso: recortado a la zona */
 .impreso{position:absolute;transform:translate(-50%,-50%);pointer-events:none}
-.impreso img{display:block;width:100%;height:auto;opacity:.97}
-.escena.clara .impreso img{mix-blend-mode:multiply}
+.impreso img{display:block;width:100%;height:auto}
+
 .impreso:not(.quieta){transition:left .4s cubic-bezier(.22,1,.36,1),top .4s cubic-bezier(.22,1,.36,1),width .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
 
 /* el marco y los tiradores: encima, sin recortar */
@@ -235,7 +237,7 @@
 .pz-subir--escena:hover{background:#eee}
 
 @media(prefers-reduced-motion:reduce){
-  .impreso,.pieza,.pz-progreso i,.paso__num,.colores button,.prenda-svg svg *{transition:none!important}
+  .impreso,.pieza,.pz-progreso i,.paso__num,.colores button,.tee__color,.prenda-encima img{transition:none!important}
 }
 
 /* ── Móvil: la prenda arriba y pegada; los pasos debajo ───────────────── */
@@ -244,7 +246,7 @@
   .pz{display:flex;flex-direction:column;gap:16px}
   .pz-lado{order:-1;position:sticky;top:var(--pz-top,64px);z-index:20;margin:0 -16px}
   .escena{border-left:0;border-right:0}
-  .escena__prenda{width:auto;height:min(38vh,330px);aspect-ratio:600/528}
+  .escena__prenda{width:auto;height:min(44vh,380px);aspect-ratio:600/660}
   .zona-etq{font-size:9px;padding:1px 6px}
   .escena__caras{top:8px;left:8px}
   .escena__caras button{padding:6px 10px;font-size:11px}
@@ -266,64 +268,41 @@
 .precio__total b{font-size:1.25em}
 .precio__pista span{color:#7a5c00;font-weight:600}
 
+/* ── Camiseta fotográfica, imágenes pegadas o soltadas y ayuda para las de IA ── */
+.zona--marcos::before,.zona--marcos::after{content:"";position:absolute;background:#ff2d78;opacity:0;transition:opacity .12s ease;pointer-events:none}
+.zona--marcos::before{left:50%;top:-6%;bottom:-6%;width:1px}
+.zona--marcos::after{top:50%;left:-8%;right:-8%;height:1px}
+.zona--marcos.guia-x::before,.zona--marcos.guia-y::after{opacity:1}
+.soltar{position:absolute;inset:8px;z-index:6;display:grid;place-items:center;border:2px dashed #111;background:rgba(241,203,3,.82);opacity:0;pointer-events:none;transition:opacity .2s ease}
+.soltar span{font-family:var(--f-titulo);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(16px,2.4vw,24px);color:#111}
+.escena.soltando .soltar{opacity:1}
+.pz-pegar{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--linea);background:#fff;color:var(--tierra);padding:10px 14px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:border-color .2s ease,transform .18s ease}
+.pz-pegar:hover{border-color:var(--tierra);transform:translateY(-1px)}
+.pz-img-ok{font-size:12.5px;color:var(--tierra);margin-top:8px;min-height:1em}
+.pz-img-ok:empty{display:none}
+.fondo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;font-size:12.5px;color:var(--gris)}
+.ia{margin-top:12px;border:1px solid var(--linea);background:var(--hueso);font-size:13px;line-height:1.55;color:var(--tinta)}
+.ia summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--tierra)}
+.ia ol{margin:0;padding:2px 14px 6px 34px;display:grid;gap:8px}
+.ia p{margin:0;padding:4px 14px 12px;font-size:12px;color:var(--gris)}
+.ia__frase{display:block;margin-top:6px;padding:8px 10px;background:#fff;border:1px dashed var(--tierra)}
+.ia__frase q{quotes:none;font-style:italic}
+.ia__frase button{margin-left:6px;border:0;background:#111;color:#fff;font:inherit;font-size:12px;padding:4px 9px;cursor:pointer;white-space:nowrap}
+
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function personalizador() {
   'use strict';
-  var D = {"prendas": [{"id": "chico", "nombre": "Camiseta de manga corta", "img": "assets/camiseta-lisa-verde.webp", "nota": "Manga corta, cuello redondo doble y costuras reforzadas en cuello y hombros. 100 % algodón.", "colores": [{"n": "Amarillo", "hex": "#F2C500", "precio": 10}, {"n": "Azul marino", "hex": "#1F2A44", "precio": 10}, {"n": "Blanco", "hex": "#F4F4F2", "precio": 10}, {"n": "Negro", "hex": "#1A1A1A", "precio": 10}, {"n": "Rojo", "hex": "#C8102E", "precio": 10}, {"n": "Verde", "hex": "#1E7B3A", "precio": 10}], "desde": 7}], "tallas": ["S", "M", "L", "XL"], "tramos": {"una": [{"hasta": 20, "precio": 10, "txt": "de 1 a 20 camisetas"}, {"hasta": 30, "precio": 9, "txt": "de 21 a 30 camisetas"}, {"hasta": 40, "precio": 8, "txt": "de 31 a 40 camisetas"}, {"hasta": 50, "precio": 7, "txt": "de 41 a 50 camisetas"}], "dos": [{"hasta": 20, "precio": 12, "txt": "de 1 a 20 camisetas"}, {"hasta": 30, "precio": 11, "txt": "de 21 a 30 camisetas"}, {"hasta": 40, "precio": 10, "txt": "de 31 a 40 camisetas"}, {"hasta": 50, "precio": 9, "txt": "de 41 a 50 camisetas"}]}, "whatsapp": "34693277758"};
+  var D = {"prendas": [{"id": "chico", "nombre": "Camiseta de manga corta", "img": "assets/camiseta-lisa-verde.webp", "nota": "Manga corta, cuello redondo doble y costuras reforzadas en cuello y hombros. 100 % algodón.", "colores": [{"n": "Amarillo", "hex": "#F2C500", "precio": 10}, {"n": "Azul marino", "hex": "#1F2A44", "precio": 10}, {"n": "Blanco", "hex": "#F4F4F2", "precio": 10}, {"n": "Negro", "hex": "#1A1A1A", "precio": 10}, {"n": "Rojo", "hex": "#C8102E", "precio": 10}, {"n": "Verde", "hex": "#1E7B3A", "precio": 10}], "desde": 7}], "tallas": ["S", "M", "L", "XL"], "tramos": {"una": [{"hasta": 20, "precio": 10, "txt": "de 1 a 20 camisetas"}, {"hasta": 30, "precio": 9, "txt": "de 21 a 30 camisetas"}, {"hasta": 40, "precio": 8, "txt": "de 31 a 40 camisetas"}, {"hasta": 50, "precio": 7, "txt": "de 41 a 50 camisetas"}], "dos": [{"hasta": 20, "precio": 12, "txt": "de 1 a 20 camisetas"}, {"hasta": 30, "precio": 11, "txt": "de 21 a 30 camisetas"}, {"hasta": 40, "precio": 10, "txt": "de 31 a 40 camisetas"}, {"hasta": 50, "precio": 9, "txt": "de 41 a 50 camisetas"}]}, "whatsapp": "34693277758", "foto": {"delante": {"cuelloY": 41.5, "K": 5.359, "zona": {"x": 219.6, "y": 81.7, "w": 160.8, "h": 214.4}}, "espalda": {"cuelloY": 29.0, "K": 5.161, "zona": {"x": 222.6, "y": 60.0, "w": 154.8, "h": 216.7}}, "vista": {"w": 600, "h": 660}}};
   var REDUCIDO = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (s, el) { return (el || document).querySelector(s); };
   var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
 
-  /* ── Las prendas dibujadas a escala (talla L, 5,5 px por cm) ───────────
-     Cada una con su silueta delante y detrás, su zona de impresión en px del
-     dibujo y dónde está el cuello, para dar las medidas desde el cuello. */
-  var K = 5.5;
-  var VBY = 22, VBH = 528;              // el trozo del dibujo que se ve (sin aire debajo)
-  function cuerpoSudadera(hx, cy) {
-    var a = 600 - hx;
-    return 'M' + hx + ',102 Q300,' + cy + ' ' + a + ',102 L440,126 C492,170 520,280 528,420 L536,470 L490,474 L486,424 C478,340 462,290 450,252 L446,476 L444,512 L156,512 L154,476 L150,252 C138,290 122,340 114,424 L110,474 L64,470 L72,420 C80,280 108,170 160,126 Z';
-  }
-  var GEOM = {
-    chico: {
-      delante: { d: 'M250,100 Q300,188 350,100 L432,122 C462,150 496,190 522,232 L472,282 L448,240 L440,520 Q300,530 160,520 L152,240 L128,282 L78,232 C104,190 138,150 168,122 Z',
-        dentro: 'M250,100 Q300,118 350,100 Q300,188 250,100 Z', cuelloD: 'M250,100 Q300,188 350,100', cuelloY: 144,
-        zona: { x: 217.5, y: 172, w: 165, h: 209 } },
-      espalda: { d: 'M250,100 Q300,116 350,100 L432,122 C462,150 496,190 522,232 L472,282 L448,240 L440,520 Q300,530 160,520 L152,240 L128,282 L78,232 C104,190 138,150 168,122 Z',
-        cuelloD: 'M250,100 Q300,116 350,100', cuelloY: 108, zona: { x: 217.5, y: 152, w: 165, h: 220 } },
-      costuras: ['M168,122 C176,170 160,210 152,240', 'M432,122 C424,170 440,210 448,240', 'M86,224 L136,274', 'M514,224 L464,274', 'M162,508 Q300,518 438,508'],
-      pliegues: ['M196,290 Q214,400 198,505', 'M404,290 Q386,400 402,505', 'M152,250 Q190,262 214,300', 'M448,250 Q410,262 386,300']
-    },
-    chica: {
-      delante: { d: 'M258,100 Q300,194 342,100 L420,118 C446,140 466,170 482,196 L450,226 L432,214 C424,280 410,330 414,360 C418,410 424,450 424,470 Q300,482 176,470 C176,450 182,410 186,360 C190,330 176,280 168,214 L150,226 L118,196 C134,170 154,140 180,118 Z',
-        dentro: 'M258,100 Q300,114 342,100 Q300,194 258,100 Z', cuelloD: 'M258,100 Q300,194 342,100', cuelloY: 147,
-        zona: { x: 228.5, y: 174, w: 143, h: 176 } },
-      espalda: { d: 'M258,100 Q300,112 342,100 L420,118 C446,140 466,170 482,196 L450,226 L432,214 C424,280 410,330 414,360 C418,410 424,450 424,470 Q300,482 176,470 C176,450 182,410 186,360 C190,330 176,280 168,214 L150,226 L118,196 C134,170 154,140 180,118 Z',
-        cuelloD: 'M258,100 Q300,112 342,100', cuelloY: 106, zona: { x: 223, y: 150, w: 154, h: 198 } },
-      costuras: ['M180,118 C186,160 176,190 168,214', 'M420,118 C414,160 424,190 432,214', 'M124,190 L156,220', 'M476,190 L444,220', 'M180,458 Q300,470 420,458'],
-      pliegues: ['M196,240 Q210,330 200,460', 'M404,240 Q390,330 400,460']
-    },
-    sudadera: {
-      delante: { d: cuerpoSudadera(248, 176), dentro: 'M248,102 Q300,118 352,102 Q300,176 248,102 Z', cuelloD: 'M248,102 Q300,176 352,102', cuelloY: 139,
-        zona: { x: 217.5, y: 166, w: 165, h: 198 } },
-      espalda: { d: cuerpoSudadera(248, 116), cuelloD: 'M248,102 Q300,116 352,102', cuelloY: 109, zona: { x: 212, y: 152, w: 176, h: 220 } },
-      canale: ['M154,476 L446,476 L444,512 L156,512 Z', 'M72,422 L114,426 L110,474 L64,470 Z', 'M528,422 L486,426 L490,474 L536,470 Z'],
-      costuras: ['M160,126 C170,180 156,225 150,252', 'M440,126 C430,180 444,225 450,252'],
-      pliegues: ['M196,300 Q212,400 198,470', 'M404,300 Q388,400 402,470', 'M100,300 Q118,360 106,420', 'M500,300 Q482,360 494,420']
-    },
-    hoodie: {
-      delante: { d: cuerpoSudadera(244, 190), cuelloD: 'M244,102 Q300,190 356,102', cuelloY: 146,
-        capucha: 'M222,120 C206,82 236,46 300,44 C364,46 394,82 378,120 Z', hueco: 'M252,114 C254,82 346,82 348,114 Q300,168 252,114 Z',
-        cordones: ['M286,150 C284,190 282,222 284,262', 'M314,150 C316,190 318,222 316,262'],
-        bolsillo: 'M206,372 L394,372 L420,470 L180,470 Z', zona: { x: 223, y: 192, w: 154, h: 165 } },
-      espalda: { d: cuerpoSudadera(244, 116), cuelloD: 'M244,102 Q300,116 356,102', cuelloY: 109,
-        capuchaDetras: 'M236,104 C224,160 240,222 300,246 C360,222 376,160 364,104 Z', zona: { x: 212, y: 258, w: 176, h: 198 } },
-      canale: ['M154,476 L446,476 L444,512 L156,512 Z', 'M72,422 L114,426 L110,474 L64,470 Z', 'M528,422 L486,426 L490,474 L536,470 Z'],
-      costuras: ['M160,126 C170,180 156,225 150,252', 'M440,126 C430,180 444,225 450,252'],
-      pliegues: ['M196,300 Q212,400 198,470', 'M404,300 Q388,400 402,470', 'M100,300 Q118,360 106,420', 'M500,300 Q482,360 494,420']
-    }
-  };
-
+  /* ── La camiseta es una foto: su silueta, sus pliegues y sus brillos ─────
+     Las medidas (cuello, zona de impresión y px por cm, sobre talla L) salen
+     de preparar_camiseta_foto.py. */
+  var FOTO = D.foto, VBY = 0, VBH = FOTO.vista.h;
+  var GEOM = { chico: { delante: FOTO.delante, espalda: FOTO.espalda } };
   var FUENTES = [
     { id: 'bloque', n: 'Bloque', css: "'Anton', Impact, sans-serif" },
     { id: 'fiesta', n: 'Fiesta', css: "'Bangers', Impact, sans-serif" },
@@ -361,52 +340,22 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
   function claro(hex) { var n = parseInt(hex.slice(1), 16); return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) > 150; }
   function geo() { return GEOM[st.prenda.id][st.cara]; }
   function geoDe(cara) { return GEOM[st.prenda.id][cara]; }
-  function zonaCm(cara) { var z = geoDe(cara).zona; return { w: z.w / K, h: z.h / K, top: (z.y - geoDe(cara).cuelloY) / K }; }
+  function zonaCm(cara) { var z = geoDe(cara).zona; var K = geoDe(cara).K; return { w: z.w / K, h: z.h / K, top: (z.y - geoDe(cara).cuelloY) / K }; }
 
-  /* ── El dibujo de la prenda ──────────────────────────────────────────── */
-  function svgPrenda(prenda, color, cara) {
-    var G = GEOM[prenda.id], g = G[cara], hex = color.hex, oscura = !claro(hex);
-    var luz = oscura ? .16 : .1, sombra = oscura ? .5 : .22;
-    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 ' + VBY + ' 600 ' + VBH + '" role="img" aria-label="' + prenda.nombre + ' en ' + color.n + ', ' + (cara === 'delante' ? 'delante' : 'espalda') + '">' +
-      '<defs><clipPath id="pzClip"><path d="' + g.d + '"/></clipPath>' +
-      '<linearGradient id="pzLados" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity="' + sombra + '"/><stop offset=".22" stop-color="#000" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity="' + (luz * .35) + '"/><stop offset=".78" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="' + sombra + '"/></linearGradient>' +
-      '<linearGradient id="pzAlto" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="' + luz + '"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="' + (sombra * .55) + '"/></linearGradient>' +
-      '<filter id="pzDifu" filterUnits="userSpaceOnUse" x="0" y="0" width="600" height="640"><feGaussianBlur stdDeviation="9"/></filter>' +
-      '<filter id="pzHusky" filterUnits="userSpaceOnUse" x="0" y="0" width="600" height="640"><feTurbulence type="fractalNoise" baseFrequency=".07 .12" numOctaves="4" seed="9"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.9 -.78"/></filter>' +
-      '<filter id="pzHuskyOsc" filterUnits="userSpaceOnUse" x="0" y="0" width="600" height="640"><feTurbulence type="fractalNoise" baseFrequency=".05 .09" numOctaves="3" seed="21"/><feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 2 -.85"/></filter>' +
-      '<filter id="pzGrano" filterUnits="userSpaceOnUse" x="0" y="0" width="600" height="640"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="1" seed="2"/><feColorMatrix type="saturate" values="0"/></filter>' +
-      '<pattern id="pzCanale" width="6" height="10" patternUnits="userSpaceOnUse"><rect width="2.4" height="10" fill="#000" fill-opacity=".2"/></pattern></defs>';
-    if (g.capucha) s += '<path d="' + g.capucha + '" fill="' + hex + '"/><path d="' + g.capucha + '" fill="url(#pzAlto)"/><path d="' + g.hueco + '" fill="' + hex + '"/><path d="' + g.hueco + '" fill="#000" fill-opacity="' + (oscura ? .45 : .28) + '"/>';
-    s += '<path d="' + g.d + '" fill="' + hex + '"/>';
-    s += '<g clip-path="url(#pzClip)">';
-    if (color.husky) s += '<rect width="600" height="640" filter="url(#pzHusky)" opacity="' + (oscura ? .17 : .22) + '"/><rect width="600" height="640" filter="url(#pzHuskyOsc)" opacity="' + (oscura ? .35 : .2) + '"/>';
-    s += '<rect width="600" height="640" filter="url(#pzGrano)" opacity="' + (oscura ? .07 : .09) + '" style="mix-blend-mode:multiply"/>';
-    (G.canale || []).forEach(function (c) { s += '<path d="' + c + '" fill="url(#pzCanale)"/><path d="' + c + '" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="1.4"/>'; });
-    if (g.bolsillo) s += '<path d="' + g.bolsillo + '" fill="#000" fill-opacity=".07" stroke="#000" stroke-opacity=".3" stroke-width="1.6"/><path d="M206,372 L180,470 M394,372 L420,470" stroke="#000" stroke-opacity=".45" stroke-width="5" filter="url(#pzDifu)"/>';
-    if (g.capuchaDetras) s += '<path d="' + g.capuchaDetras + '" fill="#000" fill-opacity=".2" filter="url(#pzDifu)" transform="translate(0,8)"/><path d="' + g.capuchaDetras + '" fill="' + hex + '"/>' + (color.husky ? '<path d="' + g.capuchaDetras + '" fill="#fff" fill-opacity=".05"/>' : '') + '<path d="' + g.capuchaDetras + '" fill="url(#pzAlto)"/><path d="M300,106 L300,244" stroke="#000" stroke-opacity=".3" stroke-width="1.4" stroke-dasharray="4 3"/>';
-    G.pliegues.forEach(function (p) { s += '<path d="' + p + '" fill="none" stroke="#000" stroke-opacity="' + (oscura ? .3 : .14) + '" stroke-width="16" filter="url(#pzDifu)"/>'; });
-    s += '<path d="M250,200 Q290,330 268,470" fill="none" stroke="#fff" stroke-opacity="' + (oscura ? .035 : .16) + '" stroke-width="60" filter="url(#pzDifu)"/>';
-    s += '<rect width="600" height="640" fill="url(#pzLados)"/><rect width="600" height="640" fill="url(#pzAlto)"/>';
-    s += '</g>';
-    G.costuras.forEach(function (c) { s += '<path d="' + c + '" fill="none" stroke="' + (oscura ? '#fff' : '#000') + '" stroke-opacity="' + (oscura ? .13 : .2) + '" stroke-width="1.3" stroke-dasharray="4 3"/>'; });
-    if (g.dentro) s += '<path d="' + g.dentro + '" fill="' + hex + '"/><path d="' + g.dentro + '" fill="#000" fill-opacity=".42"/>';
-    var anchoCuello = prenda.id === 'hoodie' && cara === 'delante' ? 22 : 12;
-    s += '<path d="' + g.cuelloD + '" fill="none" stroke="' + hex + '" stroke-width="' + anchoCuello + '"/>';
-    s += '<path d="' + g.cuelloD + '" fill="none" stroke="#000" stroke-opacity="' + (oscura ? .32 : .16) + '" stroke-width="' + anchoCuello + '"/>';
-    s += '<path d="' + g.cuelloD + '" fill="none" stroke="url(#pzCanale)" stroke-width="' + (anchoCuello - 2) + '"/>';
-    if (g.cordones) s += cordones(g);
-    return s + '</svg>';
-  }
-  function cordones(g) {               // van por encima de lo impreso, como en la prenda de verdad
-    var s = '';
-    g.cordones.forEach(function (c) { s += '<path d="' + c + '" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="6" stroke-linecap="round" transform="translate(1.5,2)"/><path d="' + c + '" fill="none" stroke="#e9e6df" stroke-width="4.5" stroke-linecap="round"/>'; var fin = c.split(' ').pop().split(','); s += '<rect x="' + (+fin[0] - 3.5) + '" y="' + (+fin[1] - 2) + '" width="7" height="16" rx="2" fill="#bdb8ad"/>'; });
-    return s;
-  }
-
+  /* ── La prenda: color liso recortado con la silueta + sombras y brillos de la foto ── */
+  function capa(cara, cual) { return 'assets/tee-' + cara + '-' + cual + '.webp'; }
   function dibujaPrenda() {
-    svgCaja.innerHTML = svgPrenda(st.prenda, st.color, st.cara);
-    var g = geo();
-    $('[data-prenda-encima]').innerHTML = g.cordones ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 ' + VBY + ' 600 ' + VBH + '" aria-hidden="true">' + cordones(g) + '</svg>' : '';
+    var cara = st.cara, hex = st.color.hex, oscura = !claro(hex), encima = $('[data-prenda-encima]');
+    if (svgCaja.dataset.cara !== cara) {
+      svgCaja.dataset.cara = cara;
+      var m = 'url(' + capa(cara, 'mascara') + ')';
+      svgCaja.innerHTML = '<div class="tee"><div class="tee__color" role="img" style="-webkit-mask-image:' + m + ';mask-image:' + m + '"></div></div>';
+      encima.innerHTML = '<img class="tee__sombra" alt="" src="' + capa(cara, 'sombra') + '"><img class="tee__luz" alt="" src="' + capa(cara, 'luz') + '">';
+    }
+    var col = $('.tee__color', svgCaja);
+    col.style.backgroundColor = hex;
+    col.setAttribute('aria-label', st.prenda.nombre + ' en ' + st.color.n + ', ' + (cara === 'delante' ? 'delante' : 'espalda'));
+    $('.tee__luz', encima).style.opacity = oscura ? .5 : .3;
     var z = geo().zona;
     var etq = $('[data-zona-cm]');
     etq.style.left = ((z.x + z.w / 2) / 600 * 100) + '%'; etq.style.top = ((z.y + z.h - VBY) / VBH * 100) + '%';
@@ -415,8 +364,8 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
       el.style.width = (z.w / 600 * 100) + '%'; el.style.height = (z.h / VBH * 100) + '%';
     });
     var zc = zonaCm(st.cara);
-    $('[data-zona-cm]').textContent = 'Zona de impresión ' + Math.round(zc.w) + ' × ' + Math.round(zc.h) + ' cm';
-    escena.classList.toggle('clara', claro(st.color.hex));
+    etq.textContent = 'Zona de impresión ' + Math.round(zc.w) + ' × ' + Math.round(zc.h) + ' cm';
+    escena.classList.toggle('clara', claro(hex));
   }
 
   /* ── Paso 1: prendas ─────────────────────────────────────────────────── */
@@ -505,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     minX = Math.max(0, minX - 4); minY = Math.max(0, minY - 4); maxX = Math.min(c.width - 1, maxX + 4); maxY = Math.min(c.height - 1, maxY + 4);
     var o = document.createElement('canvas'); o.width = maxX - minX + 1; o.height = maxY - minY + 1;
     o.getContext('2d').drawImage(c, minX, minY, o.width, o.height, 0, 0, o.width, o.height);
-    return { src: o.toDataURL('image/png'), prop: o.height / o.width };
+    return { src: o.toDataURL('image/png'), prop: o.height / o.width, ancho: o.width };
   }
 
   function rehacerTexto(cara) {
@@ -514,21 +463,81 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     t.src = r.src; t.prop = r.prop;
   }
 
-  /* ── Imagen subida: se queda en el navegador ─────────────────────────── */
-  function prepararImagen(el, sinFondo) {
-    var max = 1400, w = el.naturalWidth || 800, h = el.naturalHeight || 800, f = Math.min(1, max / Math.max(w, h));
-    var c = document.createElement('canvas'); c.width = Math.round(w * f); c.height = Math.round(h * f);
-    var x = c.getContext('2d'); x.drawImage(el, 0, 0, c.width, c.height);
-    if (sinFondo) {
-      var im = x.getImageData(0, 0, c.width, c.height), d = im.data;
-      for (var i = 0; i < d.length; i += 4) {
-        var m = Math.min(d[i], d[i + 1], d[i + 2]);
-        if (m > 238) d[i + 3] = 0; else if (m > 214) d[i + 3] = Math.round(d[i + 3] * (238 - m) / 24);
-      }
-      x.putImageData(im, 0, 0);
-      var r = recortar(c); if (r) return r;
+  /* ── Imagen subida: se queda en el navegador ───────────────────────────
+     Las imágenes hechas con una IA (ChatGPT, Gemini, Copilot…) casi nunca traen
+     fondo transparente: vienen sobre un color liso o con los cuadritos grises
+     «de transparencia» pintados. Se mira el borde de la imagen, se adivina el
+     fondo y se quita solo. */
+  function verFondo(d, w, h) {
+    var m = [], paso = Math.max(1, Math.round(Math.max(w, h) / 160)), transp = 0, i;
+    function toma(x, y) { var k = (y * w + x) * 4; if (d[k + 3] < 200) transp++; m.push([d[k], d[k + 1], d[k + 2]]); }
+    for (i = 0; i < w; i += paso) { toma(i, 0); toma(i, h - 1); toma(i, Math.min(h - 1, 2)); toma(i, Math.max(0, h - 3)); }
+    for (i = 0; i < h; i += paso) { toma(0, i); toma(w - 1, i); toma(Math.min(w - 1, 2), i); toma(Math.max(0, w - 3), i); }
+    if (transp > m.length * .3) return { tipo: 'transparente', colores: [] };
+    var grupos = [];
+    m.forEach(function (c) {
+      for (var g = 0; g < grupos.length; g++) { var q = grupos[g]; if (Math.abs(q.c[0] - c[0]) + Math.abs(q.c[1] - c[1]) + Math.abs(q.c[2] - c[2]) < 36) { q.n++; return; } }
+      grupos.push({ c: c, n: 1 });
+    });
+    grupos.sort(function (a, b) { return b.n - a.n; });
+    var a = grupos[0], b = grupos[1];
+    if (a.n > m.length * .86) return { tipo: 'liso', colores: [a.c] };
+    function gris(c) { return Math.max(c[0], c[1], c[2]) - Math.min(c[0], c[1], c[2]) < 14 && Math.min(c[0], c[1], c[2]) > 150; }
+    if (b && a.n + b.n > m.length * .9 && b.n > m.length * .22 && gris(a.c) && gris(b.c)) return { tipo: 'cuadritos', colores: [a.c, b.c] };
+    return { tipo: 'foto', colores: [] };
+  }
+  function nombreColor(c) {
+    var mx = Math.max(c[0], c[1], c[2]), mn = Math.min(c[0], c[1], c[2]);
+    if (mn > 232) return 'blanco'; if (mx < 40) return 'negro'; if (mx - mn < 22) return 'gris';
+    return 'de color';
+  }
+  function quitarFondo(d, w, h, colores, soloFuera) {
+    var T = 40, T2 = 78, n = w * h;
+    function dist(k) {
+      var mejor = 1e9;
+      for (var j = 0; j < colores.length; j++) { var c = colores[j], dr = d[k] - c[0], dg = d[k + 1] - c[1], db = d[k + 2] - c[2], v = Math.sqrt(dr * dr + dg * dg + db * db); if (v < mejor) mejor = v; }
+      return mejor;
     }
-    return { src: c.toDataURL('image/png'), prop: c.height / c.width };
+    function alfa(k, v) { if (v < T) d[k + 3] = 0; else if (v < T2) d[k + 3] = Math.round(d[k + 3] * (v - T) / (T2 - T)); }
+    if (!soloFuera) { for (var k = 0; k < n * 4; k += 4) alfa(k, dist(k)); return; }
+    var visto = new Uint8Array(n), pila = new Int32Array(n), tope = 0, x, y;
+    function mete(p) { if (!visto[p]) { visto[p] = 1; pila[tope++] = p; } }
+    for (x = 0; x < w; x++) { mete(x); mete((h - 1) * w + x); }
+    for (y = 0; y < h; y++) { mete(y * w); mete(y * w + w - 1); }
+    while (tope) {
+      var p = pila[--tope], v = dist(p * 4);
+      alfa(p * 4, v);
+      if (v >= T) continue;
+      x = p % w; y = (p - x) / w;
+      if (x > 0) mete(p - 1); if (x < w - 1) mete(p + 1); if (y > 0) mete(p - w); if (y < h - 1) mete(p + w);
+    }
+    /* los huecos pequeños que quedan encerrados (el interior de una O o una A) también son fondo;
+       los grandes (un círculo blanco del propio dibujo) se respetan */
+    var limite = Math.round(n * .012), isla = new Int32Array(n);
+    for (var q = 0; q < n; q++) {
+      if (visto[q] || dist(q * 4) >= T) continue;
+      var cuantos = 0; tope = 0; visto[q] = 1; pila[tope++] = q;
+      while (tope) {
+        p = pila[--tope]; if (cuantos < limite) isla[cuantos] = p; cuantos++;
+        x = p % w; y = (p - x) / w;
+        [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1].forEach(function (v2) { if (v2 >= 0 && !visto[v2] && dist(v2 * 4) < T) { visto[v2] = 1; pila[tope++] = v2; } });
+      }
+      if (cuantos < limite) for (var r2 = 0; r2 < cuantos; r2++) d[isla[r2] * 4 + 3] = 0;
+    }
+  }
+  /* modo: 'auto' (decide al subirla), 'no', 'fuera' (el de alrededor y el interior de las letras) o 'todo' (todo lo que sea de ese color) */
+  function prepararImagen(el, modo) {
+    var max = 1800, w = el.naturalWidth || 800, h = el.naturalHeight || 800, f = Math.min(1, max / Math.max(w, h));
+    var c = document.createElement('canvas'); c.width = Math.round(w * f); c.height = Math.round(h * f);
+    var x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(el, 0, 0, c.width, c.height);
+    var im = x.getImageData(0, 0, c.width, c.height), fondo = verFondo(im.data, c.width, c.height);
+    if (modo === 'auto') modo = fondo.colores.length ? 'fuera' : 'no';
+    var quitable = fondo.colores.length > 0;
+    if (modo !== 'no' && quitable) { quitarFondo(im.data, c.width, c.height, fondo.colores, modo === 'fuera'); x.putImageData(im, 0, 0); }
+    else modo = 'no';
+    var r = recortar(c) || { src: c.toDataURL('image/png'), prop: c.height / c.width, ancho: c.width };
+    r.fondo = fondo; r.modo = modo; r.quitable = quitable; r.pxAncho = r.ancho / f;
+    return r;
   }
 
   function nuevaPieza(tipo) {
@@ -539,7 +548,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
 
   function hacerSitio(cara) {
     var c = st.caras[cara], im = c.img, tx = c.txt; if (!im || !tx || !im.prop) return;
-    var hT = altoPct(tx, cara), hI = altoPct(im, cara);
+    var hT = Math.min(altoPct(tx, cara), 16), hI = altoPct(im, cara);   // con una sola letra el texto aún es «alto»: no encoger la imagen por eso
     var finTexto = tx.y + hT / 2 + 3;
     if (tx.y < im.y && im.y - hI / 2 < finTexto) {          // texto arriba: la imagen, debajo
       var libre = 98 - finTexto;
@@ -552,31 +561,68 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     }
   }
 
-  $$('[data-archivo]').forEach(function (inp) {
-    inp.addEventListener('change', function () {
-      var file = this.files && this.files[0]; if (!file) return;
-      var lector = new FileReader();
-      lector.onload = function (ev) {
-        var el = new Image();
-        el.onload = function () {
-          var cara = st.cara, prev = st.caras[cara].img, sinFondo = $('[data-sin-fondo]').checked;
-          var r = prepararImagen(el, sinFondo);
-          var p = prev ? { x: prev.x, y: prev.y, w: prev.w, g: prev.g } : nuevaPieza('img');
-          st.caras[cara].img = { tipo: 'img', nombre: file.name, original: el, src: r.src, prop: r.prop, sinFondo: sinFondo, x: p.x, y: p.y, w: p.w, g: p.g };
-          st.activa = 'img'; tocado.diseno = true;
-          montarPiezas(); estampar(); refrescar();
-          try { $('.pieza[data-tipo="img"]').focus({ preventScroll: true }); } catch (e) {}
-        };
-        el.src = ev.target.result;
+  function ponerImagen(file, nombre) {
+    if (!file || !/^image\//.test(file.type || '')) { decir('Eso no es una imagen. Vale PNG, JPG, WEBP o SVG.'); return; }
+    var lector = new FileReader();
+    lector.onload = function (ev) {
+      var el = new Image();
+      el.onload = function () {
+        var cara = st.cara, prev = st.caras[cara].img;
+        var r = prepararImagen(el, 'auto');
+        var p = prev ? { x: prev.x, y: prev.y, w: prev.w, g: prev.g } : nuevaPieza('img');
+        st.caras[cara].img = { tipo: 'img', nombre: nombre || file.name || 'imagen pegada', original: el, src: r.src, prop: r.prop, pxAncho: r.pxAncho,
+          fondo: r.fondo, modo: r.modo, quitable: r.quitable, x: p.x, y: p.y, w: p.w, g: p.g };
+        st.activa = 'img'; tocado.diseno = true;
+        montarPiezas(); estampar(); refrescar();
+        decir(r.modo !== 'no' ? 'Imagen puesta. Le hemos quitado el fondo ' + (r.fondo.tipo === 'cuadritos' ? 'de cuadritos' : nombreColor(r.fondo.colores[0])) + ' para que se vea como quedará impresa.' : 'Imagen puesta. Arrástrala para colocarla.');
+        try { $('.pieza[data-tipo="img"]').focus({ preventScroll: true }); } catch (e) {}
       };
-      lector.readAsDataURL(file);
-      inp.value = '';
+      el.onerror = function () { decir('No se ha podido abrir esa imagen. Prueba a guardarla como PNG o JPG.'); };
+      el.src = ev.target.result;
+    };
+    lector.readAsDataURL(file);
+  }
+  function decir(t) { var o = $('[data-img-ok]'); if (o) o.textContent = t; }
+  $$('[data-archivo]').forEach(function (inp) {
+    inp.addEventListener('change', function () { ponerImagen(this.files && this.files[0]); inp.value = ''; });
+  });
+  /* Pegar (Ctrl+V): lo normal cuando la imagen viene de una IA es copiarla y pegarla */
+  document.addEventListener('paste', function (ev) {
+    var its = (ev.clipboardData && ev.clipboardData.items) || [];
+    for (var i = 0; i < its.length; i++) if (its[i].kind === 'file' && /^image\//.test(its[i].type)) { ev.preventDefault(); ponerImagen(its[i].getAsFile(), 'imagen pegada'); return; }
+  });
+  $$('[data-pegar]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var teclas = /Mac|iPhone|iPad/.test(navigator.platform || '') ? 'Cmd + V' : 'Ctrl + V';
+      if (!(navigator.clipboard && navigator.clipboard.read)) { decir('Copia la imagen y pulsa ' + teclas + ' en esta página.'); return; }
+      navigator.clipboard.read().then(function (its) {
+        for (var i = 0; i < its.length; i++) {
+          var tipo = its[i].types.filter(function (t) { return /^image\//.test(t); })[0];
+          if (tipo) return its[i].getType(tipo).then(function (blob) { ponerImagen(new File([blob], 'imagen pegada', { type: tipo }), 'imagen pegada'); });
+        }
+        decir('No hay ninguna imagen copiada. Cópiala primero (botón derecho, «Copiar imagen») y vuelve a pulsar.');
+      }).catch(function () { decir('Copia la imagen y pulsa ' + teclas + ' en esta página.'); });
     });
   });
-  $('[data-sin-fondo]').addEventListener('change', function () {
-    var im = st.caras[st.cara].img; if (!im) return;
-    var r = prepararImagen(im.original, this.checked); im.src = r.src; im.prop = r.prop; im.sinFondo = this.checked;
-    montarPiezas(); estampar();
+  /* Soltar un archivo encima de la camiseta */
+  ['dragenter', 'dragover'].forEach(function (n) {
+    escena.addEventListener(n, function (ev) { if (ev.dataTransfer && Array.prototype.indexOf.call(ev.dataTransfer.types || [], 'Files') > -1) { ev.preventDefault(); escena.classList.add('soltando'); } });
+  });
+  ['dragleave', 'drop'].forEach(function (n) { escena.addEventListener(n, function (ev) { if (n === 'drop' || !escena.contains(ev.relatedTarget)) escena.classList.remove('soltando'); }); });
+  escena.addEventListener('drop', function (ev) { var f = ev.dataTransfer && ev.dataTransfer.files && ev.dataTransfer.files[0]; if (f) { ev.preventDefault(); ponerImagen(f); } });
+  $$('[data-fondo-modo]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var im = st.caras[st.cara].img; if (!im) return;
+      var r = prepararImagen(im.original, b.dataset.fondoModo);
+      im.src = r.src; im.prop = r.prop; im.modo = r.modo; im.pxAncho = r.pxAncho;
+      montarPiezas(); estampar(); refrescar();
+    });
+  });
+  $$('[data-copiar-idea]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = $('[data-idea]').textContent.trim(), hecho = function () { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar la frase'; }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(hecho, function () {});
+    });
   });
 
   /* ── Mandos del texto ────────────────────────────────────────────────── */
@@ -677,8 +723,8 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
       poses.appendChild(b);
     });
     $('[data-quitar="img"]').hidden = !c.img; $('[data-quitar="txt"]').hidden = !c.txt;
-    $('[data-fondo-caja]').hidden = !c.img;
-    if (c.img) $('[data-sin-fondo]').checked = !!c.img.sinFondo;
+    $('[data-fondo-caja]').hidden = !(c.img && c.img.quitable);
+    if (c.img) $$('[data-fondo-modo]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.fondoModo === c.img.modo ? 'true' : 'false'); });
     $$('[data-subir-txt]').forEach(function (s) { s.textContent = c.img ? 'Cambiar la imagen' : 'Subir imagen'; });
     mandos.hidden = !(c.img || c.txt);
   }
@@ -725,9 +771,10 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     var d = datosPieza(e, st.cara);
     medidas.innerHTML = (st.activa === 'img' ? 'Imagen' : 'Texto') + ' de <b>' + cm(d.ancho) + ' de ancho</b> por ' + cm(d.alto) + ' de alto, girado ' + d.giro + '°. ' +
       'Su centro queda a <b>' + cm(d.baja) + ' por debajo del cuello</b> y ' + lado(d.dx) + '.';
-    var malo = fuera(e, st.cara);
-    aviso.hidden = !malo;
-    aviso.textContent = malo ? 'Una parte se sale de la zona de impresión y no se imprimiría: es lo que ves cortado. Hazlo un poco más pequeño o muévelo hacia dentro.' : '';
+    var malo = fuera(e, st.cara), ppp = e.tipo === 'img' && e.pxAncho ? e.pxAncho / (d.ancho / 2.54) : 999;
+    aviso.hidden = !(malo || ppp < 90);
+    aviso.textContent = malo ? 'Una parte se sale de la zona de impresión y no se imprimiría: es lo que ves cortado. Hazlo un poco más pequeño o muévelo hacia dentro.' :
+      (ppp < 90 ? 'A este tamaño tu imagen se queda corta de detalle y puede salir algo borrosa. Hazla más pequeña o sube una versión más grande (si la has hecho con una IA, pídesela «en alta resolución»).' : '');
   }
 
   /* ── Mover, girar y escalar con el ratón o el dedo ───────────────────── */
@@ -739,6 +786,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     pz.addEventListener('pointercancel', soltar);
     pz.addEventListener('focus', function () { if (st.activa !== pz.dataset.tipo) { st.activa = pz.dataset.tipo; pintaEleccion(); colocar(); } });
     pz.addEventListener('keydown', teclas);
+    pz.addEventListener('wheel', rueda, { passive: false });
   }
   function enZona(px, py) { var r = zonaEl.getBoundingClientRect(); return { x: (px - r.left) / r.width * 100, y: (py - r.top) / r.height * 100, r: r }; }
   function empezar(ev) {
@@ -759,6 +807,9 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     if (gesto.tipo === 'mover') {
       var p = enZona(ev.clientX, ev.clientY);
       e.x = tope(p.x + gesto.dx, -10, 110); e.y = tope(p.y + gesto.dy, -10, 110);
+      var enX = Math.abs(e.x - 50) < 1.6, enY = Math.abs(e.y - 50) < 1.3;
+      if (enX) e.x = 50; if (enY) e.y = 50;
+      marcosEl.classList.toggle('guia-x', enX); marcosEl.classList.toggle('guia-y', enY);
     } else if (gesto.tipo === 'tam') {
       e.w = tope(gesto.w0 * Math.hypot(ev.clientX - gesto.cx, ev.clientY - gesto.cy) / gesto.d0, 8, 100);
     } else {
@@ -771,7 +822,14 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
   function soltar() {
     if (!gesto) return; gesto = null;
     $$('.pieza.arrastrando').forEach(function (el) { el.classList.remove('arrastrando'); });
+    marcosEl.classList.remove('guia-x', 'guia-y');
     quieto(false); escena.classList.remove('editando'); refrescar();
+  }
+  function rueda(ev) {
+    var e = st.caras[st.cara][ev.currentTarget.dataset.tipo]; if (!e) return;
+    ev.preventDefault(); st.activa = ev.currentTarget.dataset.tipo;
+    e.w = tope(e.w * (ev.deltaY < 0 ? 1.04 : .96), 8, 100); quieto(true); colocar();
+    clearTimeout(rueda.t); rueda.t = setTimeout(function () { quieto(false); refrescar(); }, 250);
   }
   function teclas(ev) {
     var e = st.caras[st.cara][st.activa]; if (!e) return;
@@ -838,7 +896,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
   /* ── El resumen: escena, precio, texto para la tienda y progreso ─────── */
   function lineaPieza(e, cara) {
     var d = datosPieza(e, cara);
-    var que = e.tipo === 'img' ? 'Imagen (mi archivo: ' + e.nombre + (e.sinFondo ? ', sin el fondo blanco' : '') + ')' :
+    var que = e.tipo === 'img' ? 'Imagen (mi archivo: ' + e.nombre + (e.modo && e.modo !== 'no' ? ', sin el fondo' : '') + ')' :
       'Texto «' + e.texto + '» (letra ' + (FUENTES.filter(function (f) { return f.id === e.fuente; })[0] || FUENTES[0]).n.toLowerCase() + ', color ' +
       ((TINTAS.filter(function (t) { return t.hex === e.tinta; })[0] || { n: e.tinta }).n).toLowerCase() + (e.forma === 'arco' ? ', en arco' : '') + ')';
     return '  ' + que + ': ' + cm(d.ancho) + ' de ancho × ' + cm(d.alto) + ' de alto, girado ' + d.giro + '°. Centro a ' + cm(d.baja) + ' por debajo del cuello, ' + lado(d.dx) + '.' + (fuera(e, cara) ? ' (Se sale un poco de la zona: lo vemos juntos.)' : '');
@@ -875,7 +933,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     var hayDiseno = ['delante', 'espalda'].some(function (k) { return st.caras[k].img || st.caras[k].txt; });
     var tr = tramo(n);
     $('[data-escena-resumen]').innerHTML = '<b>' + p.nombre + '</b> · ' + c.n + (tr && n ? ' · ' + eur(tr.precio) + ' cada una' : '') +
-      '<small>' + (hayDiseno ? 'Arrastra tu diseño, gíralo con el tirador de arriba y cambia el tamaño con el de la esquina.' : 'Sube tu imagen o escribe tu texto y colócalo donde quieras.') + '</small>';
+      '<small>' + (hayDiseno ? 'Arrastra tu diseño, gíralo con el tirador de arriba y cambia el tamaño con el de la esquina.' : 'Sube tu imagen, arrástrala aquí o pégala con Ctrl + V. También puedes escribir tu texto.') + '</small>';
     var caras = dosCaras() ? 'delante y detrás' : 'solo por delante';
     if (!n) {
       $('[data-precio]').innerHTML = '<div><span>Indica cuántas camisetas quieres en el paso 4</span><b>&nbsp;</b></div>';
@@ -896,7 +954,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
   }
   function estampar() {                // el barrido al imprimir, como en la tienda
     if (REDUCIDO) return;
-    $$('.impreso img', tintaEl).forEach(function (im) { im.animate([{ opacity: 0, filter: 'blur(3px)' }, { opacity: .97, filter: 'blur(0)' }], { duration: 380, easing: 'ease-out' }); });
+    $$('.impreso img', tintaEl).forEach(function (im) { im.animate([{ opacity: 0, filter: 'blur(3px)' }, { opacity: 1, filter: 'blur(0)' }], { duration: 380, easing: 'ease-out' }); });
   }
 
   /* ── Copiar, correo y vista previa ───────────────────────────────────── */
@@ -912,35 +970,37 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     ok.textContent = 'Se abre WhatsApp con el resumen escrito. Acuérdate de adjuntar tu imagen y la vista previa.';
   });
   function cargar(src) { return new Promise(function (res, rej) { var i = new Image(); i.onload = function () { res(i); }; i.onerror = rej; i.src = src; }); }
+  function pintarCara(cara, ims, piezas) {      // la camiseta con lo impreso, en un lienzo aparte
+    var W = 1200, H = W * VBH / 600, esc = W / 600, c = document.createElement('canvas'); c.width = W; c.height = H;
+    var x = c.getContext('2d'), z = GEOM[st.prenda.id][cara].zona;
+    x.fillStyle = st.color.hex; x.fillRect(0, 0, W, H);
+    x.globalCompositeOperation = 'destination-in'; x.drawImage(ims[0], 0, 0, W, H); x.globalCompositeOperation = 'source-over';
+    piezas.forEach(function (e, j) {
+      var zx = z.x * esc, zy = (z.y - VBY) * esc, zw = z.w * esc, zh = z.h * esc, w = e.w / 100 * zw, h = w * e.prop;
+      x.save(); x.beginPath(); x.rect(zx, zy, zw, zh); x.clip();
+      x.translate(zx + e.x / 100 * zw, zy + e.y / 100 * zh); x.rotate(e.g * Math.PI / 180);
+      x.drawImage(ims[3 + j], -w / 2, -h / 2, w, h); x.restore();
+    });
+    x.drawImage(ims[1], 0, 0, W, H);
+    x.globalAlpha = claro(st.color.hex) ? .3 : .5; x.drawImage(ims[2], 0, 0, W, H); x.globalAlpha = 1;
+    return c;
+  }
   $('[data-descargar]').addEventListener('click', function () {
-    var W = 1800, H = 960, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    var W = 1800, H = 1090, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
     var x = cv.getContext('2d');
-    x.fillStyle = '#f2f0ec'; x.fillRect(0, 0, W, H);
+    x.fillStyle = '#eceae5'; x.fillRect(0, 0, W, H);
     var trabajos = ['delante', 'espalda'].map(function (cara) {
-      var url = URL.createObjectURL(new Blob([svgPrenda(st.prenda, st.color, cara)], { type: 'image/svg+xml' }));
       var piezas = ['img', 'txt'].map(function (t) { return st.caras[cara][t]; }).filter(Boolean);
-      var g = GEOM[st.prenda.id][cara];
-      var urlEncima = g.cordones ? URL.createObjectURL(new Blob(['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 ' + VBY + ' 600 ' + VBH + '">' + cordones(g) + '</svg>'], { type: 'image/svg+xml' })) : null;
-      return Promise.all([cargar(url)].concat(piezas.map(function (e) { return cargar(e.src); }))).then(function (ims) {
-        URL.revokeObjectURL(url);
-        if (!urlEncima) return { cara: cara, ims: ims, piezas: piezas };
-        return cargar(urlEncima).then(function (en) { ims.encima = en; URL.revokeObjectURL(urlEncima); return { cara: cara, ims: ims, piezas: piezas }; });
-      });
+      return Promise.all(['mascara', 'sombra', 'luz'].map(function (k) { return cargar(capa(cara, k)); }).concat(piezas.map(function (e) { return cargar(e.src); })))
+        .then(function (ims) { return { cara: cara, lienzo: pintarCara(cara, ims, piezas) }; });
     });
     Promise.all(trabajos).then(function (caras) {
       caras.forEach(function (r, i) {
-        var ox = 60 + i * 870, oy = 90, ancho = 810, esc = ancho / 600, z = GEOM[st.prenda.id][r.cara].zona;
-        x.drawImage(r.ims[0], ox, oy, ancho, VBH * esc);
-        r.piezas.forEach(function (e, j) {
-          var zx = ox + z.x * esc, zy = oy + (z.y - VBY) * esc, zw = z.w * esc, zh = z.h * esc;
-          var w = e.w / 100 * zw, h = w * e.prop;
-          x.save(); x.beginPath(); x.rect(zx, zy, zw, zh); x.clip();
-          x.translate(zx + e.x / 100 * zw, zy + e.y / 100 * zh); x.rotate(e.g * Math.PI / 180);
-          x.drawImage(r.ims[j + 1], -w / 2, -h / 2, w, h); x.restore();
-        });
-        if (r.ims.encima) x.drawImage(r.ims.encima, ox, oy, ancho, VBH * esc);
+        var ox = 60 + i * 870, oy = 86, ancho = 810;
+        x.save(); x.shadowColor = 'rgba(0,0,0,.28)'; x.shadowBlur = 38; x.shadowOffsetY = 22;
+        x.drawImage(r.lienzo, ox, oy, ancho, ancho * VBH / 600); x.restore();
         x.fillStyle = '#111'; x.font = '700 30px Poppins, sans-serif'; x.textAlign = 'center';
-        x.fillText(r.cara === 'delante' ? 'DELANTE' : 'ESPALDA', ox + ancho / 2, 64);
+        x.fillText(r.cara === 'delante' ? 'DELANTE' : 'ESPALDA', ox + ancho / 2, 60);
       });
       x.textAlign = 'left'; x.font = '500 24px Poppins, sans-serif'; x.fillStyle = '#111';
       var tallas = TALLAS.filter(function (t) { return st.cant[t]; }).map(function (t) { return t + '×' + st.cant[t]; }).join('  ');
@@ -1022,7 +1082,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
   <div class="pz-pasos">
     <p class="pz-antetitulo">Taller propio · desde 1 camiseta</p>
     <h1>Diseña tu camiseta</h1>
-    <p class="pz-intro">Elige el color, sube el escudo de la peña o vuestra foto, escribe la frase y colócalo a tu gusto: arrástralo, gíralo y cámbiale el tamaño, delante y detrás. El precio sale al momento según cuántas camisetas pidas.</p>
+    <p class="pz-intro">Elige el color, sube el escudo de la peña, vuestra foto o el dibujo que hayas hecho con una IA, escribe la frase y colócalo a tu gusto sobre la camiseta: arrástralo, gíralo y cámbiale el tamaño, delante y detrás. El precio sale al momento según cuántas camisetas pidas.</p>
     <div class="pz-progreso" aria-hidden="true"><i data-progreso></i></div>
 
     <section class="paso" data-paso="prenda">
@@ -1045,16 +1105,38 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
       </div>
 
       <div class="bloque">
-        <div class="bloque__tit"><b>Imagen o logo</b><small>PNG, JPG, SVG o WEBP. Se queda en tu navegador.</small></div>
+        <div class="bloque__tit"><b>Imagen o logo</b><small>Súbela, arrástrala a la camiseta o pégala con Ctrl + V. Se queda en tu navegador.</small></div>
         <div class="fila">
           <label class="pz-subir">
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg>
             <span data-subir-txt>Subir imagen</span>
             <input type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp" data-archivo hidden>
           </label>
-          <label class="interruptor" data-fondo-caja hidden><input type="checkbox" data-sin-fondo> <span>Quitar el fondo blanco</span></label>
+          <button type="button" class="pz-pegar" data-pegar>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M8 5H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2"/></svg>
+            <span>Pegar imagen copiada</span>
+          </button>
           <button type="button" class="pz-quitar" data-quitar="img" hidden>Quitar imagen</button>
         </div>
+        <p class="pz-img-ok" data-img-ok aria-live="polite"></p>
+        <div class="fondo" data-fondo-caja hidden>
+          <span>Fondo de la imagen</span>
+          <div class="opciones opciones--mini" role="group" aria-label="Fondo de la imagen">
+            <button type="button" data-fondo-modo="fuera" aria-pressed="false">Quitarlo</button>
+            <button type="button" data-fondo-modo="todo" aria-pressed="false">Quitarlo también por dentro</button>
+            <button type="button" data-fondo-modo="no" aria-pressed="false">Dejarlo</button>
+          </div>
+        </div>
+        <details class="ia">
+          <summary>¿Vas a hacer el dibujo o el logo con una IA?</summary>
+          <ol>
+            <li>Pídeselo a la que uses (ChatGPT, Gemini, Copilot…) y añade al final esta frase para que salga listo para imprimir:
+              <span class="ia__frase"><q data-idea>fondo blanco liso, colores planos, sin sombras ni degradados, centrado, en alta resolución</q> <button type="button" data-copiar-idea>Copiar la frase</button></span></li>
+            <li>Copia la imagen que te dé (botón derecho, «Copiar imagen») y pégala aquí con <b>Ctrl + V</b>, o descárgala y arrástrala a la camiseta.</li>
+            <li>El fondo se quita solo. Colócala, cámbiale el tamaño y mira el precio.</li>
+          </ol>
+          <p>Recuerda que no se imprimen personajes, marcas ni logos de otros sin su permiso.</p>
+        </details>
       </div>
 
       <div class="bloque">
@@ -1124,6 +1206,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
         <div class="prenda-encima" data-prenda-encima aria-hidden="true"></div>
         <div class="zona zona--marcos" data-marcos></div>
         <div class="zona-etq" data-zona-cm aria-hidden="true"></div>
+        <div class="soltar" aria-hidden="true"><span>Suelta aquí tu imagen</span></div>
       </div>
       <div class="escena__pie">
         <p class="escena__resumen" data-escena-resumen></p>
