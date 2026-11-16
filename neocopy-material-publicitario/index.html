@@ -56,26 +56,74 @@
 .gg-mitad-contain{background:#fff}
 .gg-variantes-fila .gg-variante{text-align:left}
 
-/* 16-nov-2026 (Sergio: «el header es feucho, no le metas ese filtro»): cabecera CLARA, sin oscurecer ni trama.
-   Texto a la izquierda sobre blanco y el vídeo de sus roll ups a la derecha, fundido con el fondo. */
-.hero.hero-min{background:#fff;min-height:0;display:block;padding:0}
+/* 16-nov-2026 (3.ª vuelta, Sergio: «muy pobre, básate en una página real»): estructura de expandmedia.com
+   (fabricante sueco de displays): foto a sangre arriba, mosaico de losas con pie blanco, lema grande en texto,
+   banda ancha, familias en rejilla. Sin filtros ni trama sobre las fotos. */
+.hero.hero-min{background:#e9ebe6;min-height:0;display:block;padding:0;height:min(72vh,680px)}
 .hero-min .hero-img-overlay{display:none}
-.hero-min .hero-video{position:absolute;top:0;right:0;left:auto;width:56%;height:100%;object-fit:contain;object-position:center;background:#fff}
-.hero-min .hero-content-min{position:relative;max-width:1280px;margin:0 auto;padding:72px 60px 80px;min-height:min(640px,calc(100svh - 124px));display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:30px;color:var(--tinta)}
-.hero-min .hero-content-min h1{max-width:11ch;width:44%;min-width:340px;margin:0;color:var(--tinta);text-shadow:none;font-weight:800;letter-spacing:-.02em;line-height:.98}
-.hero-min .hero-content-min h1 em{display:block;font-style:normal;font-family:var(--f-texto);font-weight:400;font-size:.3em;letter-spacing:0;line-height:1.45;color:var(--gris);margin-top:.9em;max-width:30ch}
-.hero-min .quick-actions{display:flex;gap:12px;flex-wrap:wrap;margin:0}
+.hero-min .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.hero-min .hero-content-min{position:absolute;left:max(24px,calc((100% - 1180px)/2));bottom:44px;width:auto;max-width:470px;margin:0;padding:30px 34px 32px;background:rgba(255,255,255,.94);display:block;color:var(--tinta);box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.hero-min .hero-content-min h1{max-width:none;margin:0 0 22px;color:var(--tinta);text-shadow:none;font-weight:800;font-size:clamp(28px,2.7vw,38px);letter-spacing:-.02em;line-height:1.06}
+.hero-min .hero-content-min h1 em{display:block;font-style:normal;font-family:var(--f-texto);font-weight:400;font-size:17px;letter-spacing:0;line-height:1.45;color:var(--gris);margin-top:12px}
+.hero-min .quick-actions{display:flex;gap:10px;flex-wrap:wrap;margin:0;justify-content:flex-start}
 .hero-min .btn-primary{background:var(--brasa);border-color:var(--brasa);color:#fff}
-.hero-min .btn-primary:hover{background:var(--brasa-2);color:#fff}
+.hero-min .btn-primary:hover,.nc-banda .btn-primary:hover{background:var(--brasa-2);border-color:var(--brasa-2);color:#fff;transform:none}
 .hero-min .btn-ghost{color:var(--tinta);border-color:var(--tinta);background:transparent}
 .hero-min .btn-ghost:hover{background:var(--tinta);color:#fff}
-.hero-min .hero-pausa{border-color:rgba(0,0,0,.25)!important;background:rgba(255,255,255,.8)!important}
+.hero-min .hero-pausa{border-color:rgba(0,0,0,.25)!important;background:rgba(255,255,255,.85)!important}
 .hero-min .hero-pausa svg rect,.hero-min .hero-pausa svg path{fill:var(--tinta)}
+.gg-portada{background:#fff}
+.gg-mitades:empty,.gg-colecciones{display:none}
+.nc-ancho{max-width:1180px;margin:0 auto;padding:0 24px}
+.nc-mosaico{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:56px}
+.nc-losa{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:#eef0eb;color:var(--tinta)}
+.nc-losa img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.nc-losa:hover img{transform:scale(1.035)}
+.nc-losa.nc-clara{background:#fff;border:1px solid var(--linea)}
+.nc-losa.nc-clara img{object-fit:contain;padding:4% 4% 15%}
+.nc-pie{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(255,255,255,.95);padding:13px 22px;text-align:center;min-width:62%;max-width:88%;box-shadow:0 6px 24px rgba(0,0,0,.1)}
+.nc-pie b{display:block;font-family:var(--f-titulo);font-weight:800;font-size:16px;line-height:1.2}
+.nc-pie span{display:block;font-size:14px;color:var(--gris);margin-top:3px}
+.nc-nota{position:absolute;top:10px;right:10px;font-style:normal;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.45);color:#fff;padding:3px 8px}
+.nc-lema{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:10px 6% 10px 4%}
+.nc-lema h2{font-family:var(--f-titulo);font-weight:800;font-size:clamp(30px,3.6vw,48px);line-height:1.04;letter-spacing:-.025em;color:var(--tinta);margin:0 0 16px}
+.nc-lema p{font-size:17px;line-height:1.55;color:var(--gris);margin:0 0 18px;max-width:42ch}
+.nc-enlace{font-weight:700;color:var(--brasa-2);border-bottom:2px solid var(--brasa);padding-bottom:2px}
+.nc-pasos{margin:0 0 20px;padding:0;list-style:none;counter-reset:p;display:grid;gap:11px}
+.nc-pasos li{counter-increment:p;position:relative;padding-left:44px;font-size:16px;line-height:1.45;color:var(--gris)}
+.nc-pasos li b{color:var(--tinta)}
+.nc-pasos li::before{content:counter(p);position:absolute;left:0;top:-3px;width:30px;height:30px;border-radius:50%;background:var(--brasa);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center}
+.nc-banda{position:relative;margin-top:56px}
+.nc-banda img{width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;object-position:center 58%;display:block}
+.nc-banda-txt{position:absolute;right:60px;top:50%;transform:translateY(-50%);width:340px;background:rgba(255,255,255,.95);padding:28px 30px;box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.nc-banda-txt h2{font-family:var(--f-titulo);font-weight:800;font-size:26px;line-height:1.1;letter-spacing:-.02em;margin:0 0 10px;color:var(--tinta)}
+.nc-banda-txt p{font-size:15px;line-height:1.5;color:var(--gris);margin:0 0 18px}
+.nc-banda .btn-primary{background:var(--brasa);border-color:var(--brasa);color:#fff}
+.nc-familias{margin-top:64px}
+.nc-rotulo{font-family:var(--f-titulo);font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;text-align:center;color:var(--tinta);margin:0 0 26px}
+.nc-rejilla{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.nc-rejilla a{display:block;text-align:center;color:var(--tinta)}
+.nc-rejilla img{width:100%;aspect-ratio:1;object-fit:contain;background:#f5f6f3;padding:9%;display:block;transition:background .3s}
+.nc-rejilla a:hover img{background:#ecefe6}
+.nc-rejilla b{display:block;font-family:var(--f-titulo);font-weight:800;font-size:18px;margin-top:14px}
+.nc-rejilla span{font-size:14px;color:var(--gris)}
+.nc-mas{text-align:center;margin:30px 0 0;font-size:15px;color:var(--gris);line-height:2}
+.nc-mas a{color:var(--tinta);border-bottom:1px solid var(--linea)}
+.nc-mas a:hover{border-color:var(--brasa)}
+.nc-dos{margin-bottom:26px}
 @media(max-width:900px){
-  .hero-min .hero-video{position:relative;width:100%;height:auto;aspect-ratio:4/3;display:block}
-  .hero-min .hero-content-min{min-height:0;padding:8px 22px 40px;gap:22px}
-  .hero-min .hero-content-min h1{width:auto;min-width:0;max-width:none}
-  .hero-min .hero-content-min h1 em{font-size:17px}
+  .hero.hero-min{height:auto}
+  .hero-min .hero-video{position:relative;aspect-ratio:1;height:auto}
+  .hero-min .hero-content-min{position:relative;left:auto;bottom:auto;max-width:none;box-shadow:none;padding:24px 22px 30px;background:#fff}
+  .nc-ancho{padding:0 16px}
+  .nc-mosaico{grid-template-columns:1fr;gap:18px;margin-top:30px}
+  .nc-lema{padding:14px 4px}
+  .nc-banda{margin-top:30px}
+  .nc-banda img{aspect-ratio:4/3}
+  .nc-banda-txt{position:static;transform:none;width:auto;box-shadow:none;padding:20px 4px 0}
+  .nc-familias{margin-top:40px}
+  .nc-rejilla{grid-template-columns:1fr 1fr;gap:16px}
+  .nc-pie{min-width:80%;padding:11px 14px}
 }
 @media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
 </style>
@@ -136,20 +184,45 @@
   <video class="hero-photo hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/video-portada-neocopy-poster.webp" width="1920" height="1080" aria-hidden="true"><source src="assets/video-portada-neocopy-movil.mp4" type="video/mp4" media="(max-width: 900px)"><source src="assets/video-portada-neocopy.mp4" type="video/mp4"></video><button type="button" class="hero-pausa" id="heroPausa" aria-label="Pausar el vídeo"><svg class="ico-pausa" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1" width="3" height="10" fill="#fff"/><rect x="7" y="1" width="3" height="10" fill="#fff"/></svg><svg class="ico-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1l8 5-8 5z" fill="#fff"/></svg></button><style>.hero-pausa{position:absolute;top:18px;right:18px;z-index:4;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.28);color:#fff;font-size:11px;letter-spacing:-1px;cursor:pointer;display:grid;place-items:center;padding:0}.hero-pausa:hover{background:rgba(0,0,0,.5)}.hero-pausa:focus-visible{outline:2px solid #fff;outline-offset:2px}.hero-pausa .ico-play,.hero-pausa.parado .ico-pausa{display:none}.hero-pausa.parado .ico-play{display:block}</style><script>(function(){var v=document.getElementById("heroVideo"),b=document.getElementById("heroPausa");if(!v)return;v.muted=true;function arranca(){var p=v.play();if(p&&p.catch)p.catch(function(){});}arranca();v.addEventListener("canplay",function(){if(!v.dataset.parado)arranca();},{once:true});["touchstart","pointerdown","scroll","keydown"].forEach(function(e){window.addEventListener(e,function(){if(v.paused&&!v.dataset.parado)arranca();},{once:true,passive:true});});b.addEventListener("click",function(){if(v.paused){delete v.dataset.parado;arranca();b.classList.remove("parado");b.setAttribute("aria-label","Pausar el vídeo");}else{v.pause();v.dataset.parado="1";b.classList.add("parado");b.setAttribute("aria-label","Reproducir el vídeo");}});})();</script>
   <div class="hero-img-overlay hero-overlay-min"></div>
   <div class="hero-content hero-content-min">
-    <h1>Roll Ups superventas <em>Económicos y duraderos, desde 60 cm hasta 2 m de ancho</em></h1>
-    <div class="quick-actions"><a href="tienda.html#roll-ups" class="btn btn-primary">Ver los roll ups</a><a href="tienda.html" class="btn btn-ghost">Toda la tienda</a></div>
+    <h1>Material publicitario para ferias y eventos <em>Stands, photocall y roll ups listos para tu próxima feria</em></h1>
+    <div class="quick-actions"><a href="tienda.html#stands" class="btn btn-primary">Ver los stands</a><a href="tienda.html" class="btn btn-ghost">Toda la tienda</a></div>
   </div>
 </header>
 
 
-<section class="gg-mitades" aria-label="Secciones"><a class="gg-mitad gg-mitad-contain" href="tienda.html#stands"><img src="assets/formulate-5m.webp" alt="Stands de tela para ferias" width="1200" height="1198" loading="lazy" style="object-fit:contain;background:#fff;padding:6%"><span class="gg-mitad-txt"><b>Stands de tela para ferias</b><small>Ver la colección</small></span></a><a class="gg-mitad gg-mitad-contain" href="tienda.html#photocall"><img src="assets/formulate-straight-3000mm-fabric-exhibit.webp" alt="Photocall" width="900" height="900" loading="lazy" style="object-fit:contain;background:#fff;padding:6%"><span class="gg-mitad-txt"><b>Photocall</b><small>Ver la colección</small></span></a></section>
+<section class="nc-mosaico nc-ancho">
+  <a class="nc-losa " href="tienda.html#stands"><img src="assets/evento.webp" alt="¿Tienes feria o evento?" width="1500" height="1000" loading="lazy"><span class="nc-pie"><b>¿Tienes feria o evento?</b><span>Urgente en 24 h si lo pides antes de las 11:30</span></span><i class="nc-nota">Foto de ejemplo</i></a>
+  <a class="nc-losa nc-clara" href="tienda.html#stands"><img src="assets/t-pack.webp" alt="Stand completo en una caja" width="1000" height="1000" loading="lazy"><span class="nc-pie"><b>Stand completo en una caja</b><span>Dos roll ups, fondo y mostrador a juego</span></span></a>
+  <div class="nc-lema"><h2>Todo para que tu marca se vea</h2><p>Roll ups, photocall, stands de tela, banderas y mostradores. Los imprimimos y los montamos en nuestro taller.</p><a class="nc-enlace" href="tienda.html">Ver toda la tienda</a></div>
+  <a class="nc-losa " href="{WEB}/sobre-nosotros/"><img src="assets/taller.webp" alt="Fabricado en Cocentaina" width="1500" height="1000" loading="lazy"><span class="nc-pie"><b>Fabricado en Cocentaina</b><span>Más de 20 años imprimiendo para ferias y eventos</span></span><i class="nc-nota">Foto de ejemplo</i></a>
+</section>
+<section class="nc-banda nc-ancho">
+  <img src="assets/t-stand-curvo.webp" alt="Stand de tela tensada curvo de 6 metros" width="1500" height="1125" loading="lazy">
+  <div class="nc-banda-txt"><h2>Stands de tela tensada</h2><p>Sin costuras, se montan sin herramientas y la tela se cambia cuando cambias de campaña.</p><a class="btn btn-primary" href="tienda.html#stands">Ver los stands</a></div>
+</section>
+<section class="nc-familias nc-ancho">
+  <h2 class="nc-rotulo">Qué necesitas</h2>
+  <div class="nc-rejilla">
+    <a href="tienda.html#roll-ups"><img src="assets/t-rollup-xxl.webp" alt="Roll ups" width="1000" height="1000" loading="lazy"><b>Roll Ups</b><span>desde 18,04 €</span></a>
+    <a href="tienda.html#photocall"><img src="assets/t-photocall.webp" alt="Photocall" width="1152" height="1200" loading="lazy"><b>Photocall</b><span>Para bodas, eventos y prensa</span></a>
+    <a href="tienda.html#luz"><img src="assets/t-led.webp" alt="Cajas de luz LED" width="1000" height="1000" loading="lazy"><b>Cajas de luz LED</b><span>Retroiluminadas, se ven de lejos</span></a>
+    <a href="tienda.html#mostradores"><img src="assets/t-maleta.webp" alt="Mostradores" width="800" height="1200" loading="lazy"><b>Mostradores</b><span>Plegables, con su maleta</span></a>
+  </div>
+  <p class="nc-mas"><a href="tienda.html#techo">Banners de techo</a> · <a href="tienda.html#carpas">Carpas</a> · <a href="tienda.html#exterior">Banderas y exterior</a> · <a href="tienda.html#marcos">Marcos y X-Banner</a> · <a href="tienda.html#impresion">Impresión</a> · <a href="tienda.html#manteles">Manteles y textil</a> · <a href="tienda.html#accesorios">Recambios</a></p>
+</section>
+<section class="nc-mosaico nc-dos nc-ancho">
+  <a class="nc-losa " href="tienda.html#manteles"><img src="assets/t-mostrador.webp" alt="Manteles y mostradores textiles" width="1500" height="1135" loading="lazy"><span class="nc-pie"><b>Manteles y mostradores textiles</b><span>Tu mesa de feria, con tu marca</span></span></a>
+  <div class="nc-lema"><h2>Tu diseño, en cuatro pasos</h2><ol class="nc-pasos"><li><b>Eliges</b> el producto y sus opciones.</li><li><b>Subes tu archivo</b> o lo preparas con nuestras plantillas de Canva.</li><li><b>Lo imprimimos</b> y lo montamos en el taller.</li><li><b>Te llega</b> por mensajería con seguimiento.</li></ol><a class="nc-enlace" href="https://neocopy.es/uso-de-las-plantillas-en-canva/">Cómo usar las plantillas</a></div>
+</section>
+
+<section class="gg-mitades" aria-label="Secciones"></section>
 
 <section class="gg-bloque gg-colecciones">
   <div class="gg-bloque-cab"><h2>Todo para tu feria o evento</h2></div>
-  <div class="gg-carril"><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#photocall"><span class="gg-baldosa-foto"><img src="assets/p/grafica-textil-para-formulate.webp" alt="Photocall" width="600" height="600" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Photocall</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#stands"><span class="gg-baldosa-foto"><img src="assets/p/pack-stand-basic-neocopy-roll-ups-pop-up-mostrador-basic.webp" alt="Stands de feria" width="600" height="600" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Stands de feria</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#luz"><span class="gg-baldosa-foto"><img src="assets/p/stand-retroiluminable-led-6-x-25m-kit-modular-gran-formato-con-doble-arco-y-mostrador.webp" alt="Cajas de luz LED" width="600" height="600" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Cajas de luz LED</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#techo"><span class="gg-baldosa-foto"><img src="assets/p/banner-de-techo-circular-de-3-niveles-sistema-publicitario-triple-ring-2.webp" alt="Banners de techo" width="600" height="600" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Banners de techo</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#carpas"><span class="gg-baldosa-foto"><img src="assets/p/stand-retroiluminable-led-6-x-25m-kit-modular-extendido-con-triple-muro-y-mostrador.webp" alt="Carpas" width="600" height="600" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Carpas</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#mostradores"><span class="gg-baldosa-foto"><img src="assets/p/mostrador-basico-curvado-rulo.webp" alt="Mostradores" width="432" height="520" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Mostradores</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#exterior"><span class="gg-baldosa-foto"><img src="assets/p/bandera-fly-banner-surf-m-completa.webp" alt="Banderas y exterior" width="600" height="600" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Banderas y exterior</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#marcos"><span class="gg-baldosa-foto"><img src="assets/p/barra-de-suspension-para-lona.webp" alt="Marcos y X-Banner" width="300" height="400" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Marcos y X-Banner</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#impresion"><span class="gg-baldosa-foto"><img src="assets/p/lona-para-rollup-85x206-2.webp" alt="Impresión" width="600" height="397" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Impresión</b></span></a><a class="gg-baldosa gg-baldosa-contain" href="tienda.html#manteles"><span class="gg-baldosa-foto"><img src="assets/p/grafica-textil-para-pop-up-velcro.webp" alt="Manteles y textil" width="600" height="420" loading="lazy" style="object-fit:contain;background:#fff;padding:8%"></span><span class="gg-baldosa-txt"><b>Manteles y textil</b></span></a></div>
+  <div class="gg-carril"></div>
 </section>
 <section class="gg-bloque gg-prendas-fila">
-  <div class="gg-bloque-cab"><h2>Roll ups</h2><a class="gg-bloque-todo" href="tienda.html">Ver todo</a></div>
+  <div class="gg-bloque-cab"><h2>Roll ups superventas</h2><a class="gg-bloque-todo" href="tienda.html">Ver todo</a></div>
   <div class="gg-carril gg-carril-prendas"><article class="gg-prenda" data-cats="roll-ups mostradores comuniones" data-nombre="mini roll up a4">
   <a class="gg-prenda-foto gg-foto-contain" href="producto/mini-roll-up-a4.html"><img src="assets/p/mini-roll-up-a4.webp" alt="Mini Roll Up A4" width="449" height="600" loading="lazy"></a>
   <a class="gg-prenda-nombre" href="producto/mini-roll-up-a4.html">Mini Roll Up A4</a>
