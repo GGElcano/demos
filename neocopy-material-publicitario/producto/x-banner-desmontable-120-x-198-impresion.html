@@ -36,8 +36,6 @@
   --f-titulo:'Manrope',system-ui,sans-serif; --f-texto:'Lato',system-ui,sans-serif;
 }
 /* Neocopy (16-nov-2026): el verde de su web y el amarillo de su rombo, sobre blanco */
-.hero h1{font-weight:800;letter-spacing:-.01em;line-height:.98;text-shadow:0 6px 30px rgba(0,0,0,.55)}
-.hero h1 em{display:block;font-style:normal;font-weight:500;color:#fff;letter-spacing:.01em;font-size:.42em;margin-top:.5em;opacity:.92}
 .gg-mitad-txt b,.gg-baldosa-txt b,.gg-bloque-cab h2,.gg-listado-cab h1,.gg-relacionados h2{font-weight:800;letter-spacing:-.01em}
 .gg-ficha h1{font-weight:800;line-height:1.05}
 .topbar{letter-spacing:.08em}
@@ -51,14 +49,6 @@
 .gg-variante-bola{width:16px;height:16px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 .gg-variantes-fila{max-height:260px;overflow:auto}
 /* 16-oct-2026 (Sergio): cabecera con vídeo a lo Deus Ex Machina y botones a la DERECHA */
-.hero-min{min-height:calc(100vh - 124px);min-height:calc(100svh - 124px)}
-@media(min-width:901px){.hero-content-min{padding-bottom:96px}}
-.hero-overlay-min{background:linear-gradient(180deg,rgba(0,0,0,.2) 0%,rgba(0,0,0,.05) 35%,rgba(0,0,0,.72) 100%)}
-.hero-overlay-min::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(0,0,0,.35) 1px,transparent 1.4px);background-size:3px 3px;opacity:.5}
-.hero-content-min{width:100%;max-width:none;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
-.hero-content-min h1{margin-bottom:0;max-width:15ch}
-.hero-min .quick-actions{justify-content:flex-end;flex-wrap:nowrap;margin-left:auto}
-@media(max-width:900px){.hero-content-min{flex-direction:column;align-items:stretch;gap:22px}.hero-min .quick-actions{flex-wrap:wrap}}
 /* página de profesionales */
 @media(max-width:600px){.gg-prenda-nombre{font-size:16px;line-height:1.25}.gg-prenda-precio{font-size:14px}.hero h1{font-size:clamp(34px,10vw,44px)}}
 @media(max-width:600px){.gg-cesta-tabla{display:block;max-width:100%;overflow-x:auto;font-size:14px}.gg-cesta-tabla th{font-size:10px;letter-spacing:.04em;white-space:nowrap}.gg-cesta-tabla td,.gg-cesta-tabla th{padding:10px 6px}.gg-cesta-tabla td:nth-child(n+3){white-space:nowrap}.gg-cesta-tabla th:nth-child(2),.gg-cesta-tabla td:nth-child(2){display:none}.gg-cesta-tabla img{width:44px;height:auto}}
@@ -66,6 +56,27 @@
 .gg-mitad-contain{background:#fff}
 .gg-variantes-fila .gg-variante{text-align:left}
 
+/* 16-nov-2026 (Sergio: «el header es feucho, no le metas ese filtro»): cabecera CLARA, sin oscurecer ni trama.
+   Texto a la izquierda sobre blanco y el vídeo de sus roll ups a la derecha, fundido con el fondo. */
+.hero.hero-min{background:#fff;min-height:0;display:block;padding:0}
+.hero-min .hero-img-overlay{display:none}
+.hero-min .hero-video{position:absolute;top:0;right:0;left:auto;width:56%;height:100%;object-fit:contain;object-position:center;background:#fff}
+.hero-min .hero-content-min{position:relative;max-width:1280px;margin:0 auto;padding:72px 60px 80px;min-height:min(640px,calc(100svh - 124px));display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:30px;color:var(--tinta)}
+.hero-min .hero-content-min h1{max-width:11ch;width:44%;min-width:340px;margin:0;color:var(--tinta);text-shadow:none;font-weight:800;letter-spacing:-.02em;line-height:.98}
+.hero-min .hero-content-min h1 em{display:block;font-style:normal;font-family:var(--f-texto);font-weight:400;font-size:.3em;letter-spacing:0;line-height:1.45;color:var(--gris);margin-top:.9em;max-width:30ch}
+.hero-min .quick-actions{display:flex;gap:12px;flex-wrap:wrap;margin:0}
+.hero-min .btn-primary{background:var(--brasa);border-color:var(--brasa);color:#fff}
+.hero-min .btn-primary:hover{background:var(--brasa-2);color:#fff}
+.hero-min .btn-ghost{color:var(--tinta);border-color:var(--tinta);background:transparent}
+.hero-min .btn-ghost:hover{background:var(--tinta);color:#fff}
+.hero-min .hero-pausa{border-color:rgba(0,0,0,.25)!important;background:rgba(255,255,255,.8)!important}
+.hero-min .hero-pausa svg rect,.hero-min .hero-pausa svg path{fill:var(--tinta)}
+@media(max-width:900px){
+  .hero-min .hero-video{position:relative;width:100%;height:auto;aspect-ratio:4/3;display:block}
+  .hero-min .hero-content-min{min-height:0;padding:8px 22px 40px;gap:22px}
+  .hero-min .hero-content-min h1{width:auto;min-width:0;max-width:none}
+  .hero-min .hero-content-min h1 em{font-size:17px}
+}
 @media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
 </style>
 
