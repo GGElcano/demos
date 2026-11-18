@@ -125,6 +125,21 @@
   .nc-rejilla{grid-template-columns:1fr 1fr;gap:16px}
   .nc-pie{min-width:80%;padding:11px 14px}
 }
+/* 18-nov-2026: pieza de la portada que lleva al personalizador */
+.nc-diseno{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:0;align-items:stretch;margin-top:56px;background:#fff;border:1px solid var(--linea)}
+.nc-diseno-foto{display:block;background:#F4F1F0;overflow:hidden}
+.nc-diseno-foto img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;max-height:520px}
+.nc-diseno-txt{padding:40px 44px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.nc-diseno-txt .nc-diseno-rot{margin:0;text-align:left;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--brasa-2)}
+.nc-diseno-txt h2{font-family:var(--f-titulo);font-weight:800;font-size:clamp(26px,2.6vw,36px);line-height:1.08;letter-spacing:-.02em;margin:0;color:var(--tinta)}
+.nc-diseno-txt p{font-size:15px;line-height:1.6;color:var(--gris);margin:0}
+.nc-diseno-txt ul{margin:2px 0 8px;padding:0;list-style:none;display:grid;gap:7px;font-size:14.5px;color:var(--tinta)}
+.nc-diseno-txt li{padding-left:22px;position:relative}
+.nc-diseno-txt li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;background:var(--brasa);border-radius:50%}
+.nc-diseno-txt .btn{align-self:flex-start;background:var(--brasa);border-color:var(--brasa);color:#fff}
+.nc-diseno-txt .btn:hover{background:var(--brasa-2);border-color:var(--brasa-2);transform:none}
+@media(max-width:820px){.nc-diseno{grid-template-columns:1fr;margin-top:30px}.nc-diseno-txt{padding:24px 20px 28px}.nc-diseno-foto img{max-height:320px}}
+
 @media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
 </style>
 
@@ -139,7 +154,8 @@
       
     </a>
     <div class="nav-links">
-      <a href="../tienda.html#roll-ups" class="">Roll Ups</a>
+      <a href="../personalizar.html" class="">Diseña tu roll up</a>
+<a href="../tienda.html#roll-ups" class="">Roll Ups</a>
 <a href="../tienda.html#photocall" class="">Photocall</a>
 <div class="dropdown">
         <a href="../tienda.html#stands" class="drop-label">Stands de feria</a>
@@ -159,7 +175,7 @@
       </button>
     </div>
     <a class="gg-nav-cesta" href="../cesta.html">Carrito<b class="gg-cesta-n" data-cesta-n hidden>0</b></a>
-    <a href="https://neocopy.es/presupuesto-b2b/" class="nav-cta" target="_blank" rel="noopener">Presupuesto</a>
+    <a href="personalizar.html" class="nav-cta">Diseña el tuyo</a>
     <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
   <div class="gg-search-bar" id="ggBuscador" hidden>
@@ -168,7 +184,8 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <button class="mm-close" id="mmClose" aria-label="Cerrar menú">&times;</button>
-  <div class="mm-group"><div class="mm-group-title">Roll Ups</div><div class="mm-sub"><a href="../tienda.html#roll-ups">Roll Ups</a></div></div>
+  <div class="mm-group"><div class="mm-group-title">Diseña tu roll up</div><div class="mm-sub"><a href="../personalizar.html">Diseña tu roll up</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Roll Ups</div><div class="mm-sub"><a href="../tienda.html#roll-ups">Roll Ups</a></div></div>
 <div class="mm-group"><div class="mm-group-title">Photocall</div><div class="mm-sub"><a href="../tienda.html#photocall">Photocall</a></div></div>
 <div class="mm-group"><div class="mm-group-title">Stands de feria</div><div class="mm-sub"><a href="../tienda.html#stands">Todo Stands de feria</a><a href="../tienda.html#stands">Stands de tela y pop up</a><a href="../tienda.html#luz">Cajas de luz LED</a><a href="../tienda.html#techo">Banners de techo</a><a href="../tienda.html#mostradores">Mostradores</a><a href="../tienda.html#carpas">Carpas</a></div></div>
 <div class="mm-group"><div class="mm-group-title">Exterior</div><div class="mm-sub"><a href="../tienda.html#exterior">Todo Exterior</a><a href="../tienda.html#exterior">Banderas y exterior</a><a href="../tienda.html#marcos">Marcos y X-Banner</a></div></div>
@@ -176,7 +193,7 @@
 
   <a href="../cesta.html">Carrito</a>
   <div class="mm-buscador"><form class="gg-buscador" action="../tienda.html" method="get" role="search"><input type="search" name="q" placeholder="Buscar en la tienda" aria-label="Buscar"><button type="submit">Buscar</button></form></div>
-  <a href="https://neocopy.es/presupuesto-b2b/" class="mm-cta" target="_blank" rel="noopener">Pide presupuesto</a>
+  <a href="personalizar.html" class="mm-cta">Diseña tu roll up</a>
 </div>
 
 <main id="gg-contenido" tabindex="-1" class="gg-main">
@@ -189,6 +206,7 @@
         <div class="gg-ficha-precio"><span data-precio>31,00</span> €<small>IVA incluido</small></div>
         <div class="gg-ficha-meta"><span>Banderas y exterior</span><span>Marcos y X-Banner</span></div>
         <p class="gg-ficha-desc">Barrier banner El Barrier Banner es una solución innovadora y versátil para delimitar espacios y promocionar marcas en eventos al aire libre, áreas de construcción, festivales, conciertos y más. Este producto combina la funcionalidad de una barrera de seguridad con la visibilidad de un banner publicitario, proporcionando una manera efectiva de controlar multitudes mientras se promociona activamente una marca o mensaje.</p>
+        
         <div class="gg-variantes"><span class="gg-variantes-tit">Diseño · Caras · Estructura</span><div class="gg-variantes-fila" data-variantes><button type="button" class="gg-variante" data-precio="31,00" data-nombre="Enviaré archivo · Una Cara · solo gráfica" aria-pressed="true">Enviaré archivo · Una Cara · solo gráfica</button><button type="button" class="gg-variante" data-precio="163,00" data-nombre="Enviaré archivo · Una Cara · estructura + gráfica" aria-pressed="false">Enviaré archivo · Una Cara · estructura + gráfica</button><button type="button" class="gg-variante" data-precio="193,00" data-nombre="Enviaré archivo · Doble Cara · estructura + gráfica" aria-pressed="false">Enviaré archivo · Doble Cara · estructura + gráfica</button><button type="button" class="gg-variante" data-precio="193,00" data-nombre="Solicito diseño · Una Cara · estructura + gráfica" aria-pressed="false">Solicito diseño · Una Cara · estructura + gráfica</button></div></div>
         <div class="gg-compra">
         <div class="gg-cant"><button type="button" data-menos aria-label="Menos">&minus;</button><input type="number" min="1" max="99" value="1" data-cant aria-label="Cantidad"><button type="button" data-mas aria-label="Más">+</button></div>
