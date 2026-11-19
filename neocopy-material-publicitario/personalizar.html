@@ -356,7 +356,46 @@
   .soporte-op img{width:62px;height:48px}
   .soporte-op b{font-size:13px}
   .paso{padding:16px 14px}
+  /* 19-nov: que ocupe todo el ancho, sin irse de lado, y que la escena no tape media pantalla */
+  .pz{align-items:stretch}
+  .pz-pasos{min-width:0}
+  .escena__prod{touch-action:pan-y}
+  .escena__sitio{min-height:0;transition:height .3s ease}
+  .escena.plegada .escena__sitio{display:none}
+  .escena.plegada .escena__caras{display:none}
+  .pz-plegar{display:inline-flex;align-items:center;justify-content:center;flex:none;width:40px;height:36px;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:#fff;cursor:pointer;padding:0}
+  .pz-plegar svg{width:18px;height:18px;transition:transform .25s ease}
+  .escena.plegada .pz-plegar svg{transform:rotate(180deg)}
+  .escena__pie{min-height:52px}
+  /* tamaños de dedo: botones de 40 px o más; letra de 16 px en los campos (si no, el iPhone hace zoom) */
+  .pz-texto{font-size:16px;padding:12px 13px}
+  .familias{width:100%}
+  .familias button{flex:1 1 auto;padding:11px 10px}
+  .caras button,.escena__caras button{padding:9px 14px}
+  .soporte-op{min-height:62px}
+  .opciones button{padding:10px 13px;min-height:42px}
+  .opciones--mini button{padding:9px 12px;font-size:13px;min-height:40px}
+  .fondos{gap:10px}
+  .fondos button,.fondos label{width:40px;height:40px}
+  .tintas{gap:10px}
+  .tintas button{width:38px;height:38px}
+  .fila--fuentes{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+  .fila--fuentes button{padding:9px 8px}
+  .pz-subir,.pz-pegar{flex:1 1 150px;justify-content:center;min-height:46px}
+  .pz-quitar{padding:8px 0;font-size:13.5px}
+  .mando{grid-template-columns:52px 1fr}
+  .mando input[type=range]{height:34px}
+  .pz-teclas{display:none}
+  .cantidad button{width:46px;height:46px}
+  .fila--botones{display:grid;grid-template-columns:1fr;gap:8px}
+  .fila--botones .btn{width:100%;padding:14px 16px;font-size:14px}
+  .resumen{font-size:12px}
+  .tirador{width:34px;height:34px;opacity:1}
+  .tirador--giro{top:-42px;margin-left:-17px}
+  .tirador--giro::after{top:33px}
+  .tirador--tam{right:-24px;bottom:-24px}
 }
+@media(min-width:981px){.pz-plegar{display:none}}
 @media(max-width:380px){.soportes{grid-template-columns:1fr}}
 
 </style>
@@ -482,7 +521,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     if (!LAY) return;
     var movil = matchMedia('(max-width:980px)').matches;
     var libreW = Math.max(200, sitio.clientWidth - (movil ? 20 : 36));
-    var libreH = movil ? Math.min(window.innerHeight * .42, 380) : Math.max(360, Math.min(window.innerHeight - 270, 740));
+    var libreH = movil ? Math.max(170, Math.min(window.innerHeight * .30, 270)) : Math.max(360, Math.min(window.innerHeight - 270, 740));
     var f = Math.min(libreW / LAY.Wt, libreH / LAY.Ht);
     caja.style.width = Math.round(LAY.Wt * f) + 'px'; caja.style.height = Math.round(LAY.Ht * f) + 'px';
     sitio.style.minHeight = (Math.round(LAY.Ht * f) + 26) + 'px';
@@ -552,7 +591,14 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     }
     $('[data-soporte-nota]').innerHTML = '<b>Para tu archivo.</b> ' + esc(s.nota) + ' <a href="' + esc(s.url_real) + '" target="_blank" rel="noopener">Ficha en neocopy.es</a>';
   }
+  function desplegar() {            // en móvil el dibujo se puede plegar; al tocar algo del diseño vuelve a salir
+    if (!escena.classList.contains('plegada')) return;
+    escena.classList.remove('plegada'); var bt = $('[data-plegar]');
+    if (bt) { bt.setAttribute('aria-expanded', 'true'); bt.setAttribute('aria-label', 'Ocultar el dibujo'); }
+    ajusta(); colocar();
+  }
   function elegirSoporte(s) {
+    desplegar();
     st.sop = s; st.cfg = 0; st.dis = false; tocado.soporte = true;
     $('[data-paso="soporte"]').dataset.hecho = 'si';
     pintaFamilias(); pintaSoportes(); pintaOpciones(); aCaras();
@@ -702,6 +748,7 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
   }
 
   function ponerImagen(file, nombre) {
+    desplegar();
     if (!file || !/^image\//.test(file.type || '')) { decir('Eso no es una imagen. Vale PNG, JPG, WEBP o SVG.'); return; }
     var lector = new FileReader();
     lector.onload = function (ev) {
@@ -1183,6 +1230,12 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
     var id = (location.hash || '').replace('#', ''), s = D.soportes.filter(function (q) { return q.id === id; })[0];
     return s || null;
   }
+  var plegar = $('[data-plegar]');
+  if (plegar) plegar.addEventListener('click', function () {
+    if (escena.classList.contains('plegada')) { desplegar(); return; }
+    escena.classList.add('plegada'); plegar.setAttribute('aria-expanded', 'false'); plegar.setAttribute('aria-label', 'Ver el dibujo');
+  });
+  $$('[data-texto],[data-m-tam],[data-m-giro]').forEach(function (el) { el.addEventListener('input', desplegar); });
   altoMenu();
   window.addEventListener('resize', function () { altoMenu(); ajusta(); colocar(); });
   window.addEventListener('hashchange', function () { var s = porHash(); if (s && s.id !== st.sop.id) elegirSoporte(s); });
@@ -1410,6 +1463,9 @@ document.addEventListener('DOMContentLoaded', function personalizador() {
           <span>Subir imagen</span>
           <input type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp" data-archivo hidden>
         </label>
+        <button type="button" class="pz-plegar" data-plegar aria-expanded="true" aria-label="Ocultar el dibujo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>
+        </button>
       </div>
     </div>
   </div>
