@@ -8,20 +8,28 @@
   var pantalla = $('prPantalla'), portada = $('prPortada');
   var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-  var TIPOS = { boda: 'Nos casamos', comunion: 'Mi Primera Comunión', bautizo: 'Mi bautizo', xv: 'Mis XV años' };
-  var CAT = { boda: 'boda', comunion: 'comunion', bautizo: 'bautizo', xv: 'xv' };
+  var TIPOS = { boda: 'Nos casamos', comunion: 'Mi Primera Comunión', bautizo: 'Mi bautizo', xv: 'Mis XV años', babyshower: 'Baby shower' };
+  var CAT = { boda: 'boda', comunion: 'comunion', bautizo: 'bautizo', xv: 'xv', babyshower: 'babyshower' };
   var CLAVE = 'cesta-invitacionesdigitales';
   var fotoURL = null;
 
-  // fecha por defecto: un sábado dentro de ~7 meses
-  var d0 = new Date(); d0.setMonth(d0.getMonth() + 7); d0.setDate(d0.getDate() + (6 - d0.getDay()));
-  form.fecha.value = d0.toISOString().slice(0, 10);
+  // nombres, fecha y evento guardados en el resto del sitio (invitacion.js); si no hay, fecha de ejemplo: un sábado a unos diez meses
+  var guard = window.ID ? window.ID.pareja() : { n1: '', n2: '', f: '', ev: 'boda' };
+  var d0 = new Date(); d0.setMonth(d0.getMonth() + 10); d0.setDate(d0.getDate() + ((6 - d0.getDay() + 7) % 7));
+  form.fecha.value = guard.f || (d0.getFullYear() + '-' + ('0' + (d0.getMonth() + 1)).slice(-2) + '-' + ('0' + d0.getDate()).slice(-2));
+  form.n1.value = guard.n1; form.n2.value = guard.n2;
+  var rg = form.querySelector('input[name="evento"][value="' + guard.ev + '"]'); if (rg) rg.checked = true;
 
   function v(n) { var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; }
   function radio(n) { var el = form.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; }
   function fechaObj() { var f = v('fecha'), h = v('hora') || '12:00'; if (!f) return null; var d = new Date(f + 'T' + h + ':00'); return isNaN(d) ? null : d; }
   function fechaLarga(d) { return d ? DIAS[d.getDay()] + ', ' + d.getDate() + ' de ' + MESES[d.getMonth()] + ' de ' + d.getFullYear() : ''; }
-  function nombres() { var ev = radio('evento'), a = v('n1') || 'Lucía', b = v('n2'); return ev === 'boda' && b ? [a, b] : [a]; }
+  function nombres() {
+    var ev = radio('evento'), a = v('n1'), b = v('n2');
+    if (ev !== 'boda') return [a || b || 'Lucía'];
+    if (!a && !b) return ['Lucía', 'Marcos'];       // nombres de ejemplo hasta que escriban los suyos
+    return [a, b].filter(Boolean);
+  }
 
   function pintar() {
     var ev = radio('evento'), ns = nombres(), d = fechaObj();
@@ -50,12 +58,17 @@
   }
   setInterval(cuenta, 1000);
 
-  form.addEventListener('input', pintar);
+  form.addEventListener('input', function (e) {
+    // lo que escriben aquí rotula también el resto del sitio
+    if (window.ID && /^(n1|n2|fecha|evento)$/.test(e.target.name || '')) { window.ID.guardarPareja({ ev: radio('evento'), n1: v('n1'), n2: v('n2'), f: v('fecha') }); window.ID.pintar(); }
+    pintar();
+  });
   form.addEventListener('change', function (e) {
     if (e.target.name === 'foto') {
       var f = e.target.files && e.target.files[0];
       if (fotoURL) { URL.revokeObjectURL(fotoURL); fotoURL = null; }
       if (f && /^image\//.test(f.type)) fotoURL = URL.createObjectURL(f);
+      $('prFotoNombre').textContent = fotoURL ? f.name : '';
     }
     if (e.target.name === 'evento') llenarModelos();
     pintar();
@@ -75,7 +88,7 @@
     if (!n) { aviso('Escribe tu nombre para confirmar.'); $('prRsvpNombre').focus(); return; }
     var g = $('prGracias'); g.textContent = '¡Gracias, ' + n + '! ' + nombres().join(' y ') + ' ya saben que venís (' + $('prRsvpN').value + ').';
     g.hidden = false; $('prRsvp').hidden = true;
-    aviso('En la tienda en marcha, cada confirmación os llega al momento con el nombre, cuántos vienen y el menú.');
+    aviso('En vuestra invitación, las confirmaciones os llegan al correo o al WhatsApp.');
   });
 
   // pedir con estos datos
@@ -107,17 +120,21 @@
       'Frase: ' + (v('frase') || '-') + '\n' + 'Estilo elegido en la prueba: ' + radio('estilo') + '\n' +
       'Foto: ' + (fotoURL ? 'adjunta' : 'la mandan después');
   }
-  sel.addEventListener('change', modelo);
-  $('prAnadir').addEventListener('click', function () {
+  /* una invitación se pide una vez: tras añadirla, el botón lleva al sobre (al cambiar de modelo vuelve a añadir) */
+  var anadida = false, btnAnadir = $('prAnadir'), txtAnadir = btnAnadir.textContent;
+  sel.addEventListener('change', function () { anadida = false; btnAnadir.textContent = txtAnadir; modelo(); });
+  btnAnadir.addEventListener('click', function () {
+    if (anadida) { location.href = 'cesta.html'; return; }
     var m = actual(); if (!m) return;
     var d = fechaObj(), ns = nombres();
     var c; try { c = JSON.parse(localStorage.getItem(CLAVE) || '[]'); } catch (e) { c = []; }
-    var nombre = m.nombre + ' · ' + ns.join(' y ') + (d ? ' · ' + d.toLocaleDateString('es-ES') : '');
+    var nombre = m.nombre + ' · ' + m.fmt + ' · ' + ns.join(' y ') + (d ? ' · ' + d.toLocaleDateString('es-ES') : '');
     c.push({ id: m.slug + '::' + ns.join('-') + '::' + Date.now(), nombre: nombre, img: m.img, precio: m.precio ? m.precio.toFixed(2).replace('.', ',') : '', cant: 1 });
     try { localStorage.setItem(CLAVE, JSON.stringify(c)); } catch (e) { /* modo privado: sigue sin cesta */ }
     var tot = c.reduce(function (s, x) { return s + x.cant; }, 0);
     Array.prototype.forEach.call(document.querySelectorAll('[data-cesta-n]'), function (el) { el.textContent = tot; el.removeAttribute('hidden'); });
-    $('prAviso').innerHTML = 'Añadida al carrito con vuestros datos. <a href="cesta.html" style="text-decoration:underline">Ver el carrito</a>';
+    $('prAviso').innerHTML = 'Añadida a vuestro sobre con estos datos. <a href="cesta.html" style="text-decoration:underline">Ver el sobre</a>';
+    anadida = true; btnAnadir.textContent = 'Ver vuestro sobre';
   });
 
   llenarModelos();

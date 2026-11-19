@@ -5,7 +5,7 @@
   'use strict';
   var CLAVE = "cesta-invitacionesdigitales";                 // dónde guarda la cesta este navegador
   var ENVIO_GRATIS = 0;
-  var ENVIO_TXT = "Digital: sin envío";
+  var ENVIO_TXT = "Gratis";
 
   var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
 
