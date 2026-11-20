@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>ShindoTech® · El colchón que te da masaje y te calienta los pies</title>
+<meta name="description" content="Colchón ShindoTech® con masaje por vibración, termoterapia en los pies, protección Viruclean® y control por Bluetooth para cada lado de la cama. Envío gratuito y financiación.">
+<meta name="theme-color" content="#23263A">
+<!-- Maqueta: sin indexar mientras viva en la carpeta de demos. -->
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ShindoTech">
+<meta property="og:title" content="ShindoTech® · El colchón que te da masaje y te calienta los pies">
+<meta property="og:description" content="Masaje por vibración, termoterapia en los pies y una app para cada lado de la cama. Envío gratuito y financiación.">
+<meta property="og:image" content="https://ggelcano.github.io/demos/shindotech-colchones/assets/despertar.webp">
+<meta property="og:locale" content="es_ES">
+<link rel="icon" href="assets/logo-blanco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem('shindo-quieto')==='1')document.documentElement.classList.add('quieto')}catch(e){}</script>
+<style>
+:root{
+  --noche:#23263A; --noche-2:#1A1C2C; --tinta:#262838; --gris:#5E6175; --linea:#E3E1EE;
+  --fondo:#F6F5FB; --blanco:#FFFFFF; --lila:#7C6BC4; --lila-2:#5B4AA0; --lila-clara:#E9E5F8;
+  --calor:#F29A4A; --calor-2:#E7663A;
+  --f-t:'Outfit',system-ui,sans-serif; --f-x:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-x);color:var(--tinta);background:var(--fondo);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-t);font-weight:400;letter-spacing:-.01em;line-height:1.08}
+.envoltura{max-width:1200px;margin:0 auto;padding:0 24px}
+.cinta{background:var(--noche-2);color:#B9B6D3;font-size:12px;text-align:center;padding:6px 16px}
+/* cabecera */
+.cab{position:sticky;top:0;z-index:50;background:rgba(35,38,58,.94);backdrop-filter:blur(10px);color:#fff}
+.cab .envoltura{display:flex;align-items:center;gap:28px;height:68px}
+.cab img{height:22px;width:auto}
+.cab nav{display:flex;gap:22px;margin-left:auto;font-size:14px}
+.cab nav a{text-decoration:none;opacity:.85}.cab nav a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:600 15px var(--f-x);padding:14px 22px;border-radius:999px;text-decoration:none;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-lila{background:var(--lila);color:#fff}.btn-lila:hover{background:var(--lila-2)}
+.btn-blanco{background:#fff;color:var(--noche)}
+.btn-borde{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
+.cab .btn{padding:10px 18px;font-size:14px}
+.hamburguesa{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer;margin-left:auto}
+/* hero */
+.hero{position:relative;height:min(88vh,760px);min-height:520px;overflow:hidden;color:#fff;background:var(--noche)}
+.hero picture img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;animation:empuje 22s ease-in-out infinite alternate;will-change:transform}
+@keyframes empuje{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.12) translate3d(-1.5%,-1%,0)}}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(to top,rgba(26,28,44,.82),rgba(26,28,44,0))}
+.hero .envoltura{position:relative;z-index:2;height:100%;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;padding-bottom:64px}
+.hero .kicker{display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.hero h1{font-size:clamp(34px,5.2vw,64px);max-width:640px}
+.hero h1 em{font-style:normal;color:#FFD3A8}
+.hero p{max-width:520px;margin-top:16px;font-size:18px;opacity:.92}
+.hero .botones{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+/* franja */
+.franja{background:#fff;border-bottom:1px solid var(--linea)}
+.franja .envoltura{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-top:22px;padding-bottom:22px}
+.franja div{display:flex;gap:12px;align-items:center;font-size:14px;color:var(--gris)}
+.franja b{display:block;color:var(--tinta);font-size:15px}
+.franja svg{flex:none;width:30px;height:30px;color:var(--lila)}
+/* secciones */
+section{padding:96px 0}
+.etiqueta{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--lila-2);font-weight:700;margin-bottom:12px}
+.titulo{font-size:clamp(30px,4vw,48px);max-width:760px}
+.entrada{color:var(--gris);font-size:18px;max-width:640px;margin-top:14px}
+/* test de retos */
+.retos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.reto{background:#fff;border:1.5px solid var(--linea);border-radius:22px;padding:28px;text-align:left;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s,transform .2s,box-shadow .2s}
+.reto:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(35,38,58,.4)}
+.reto[aria-pressed="true"]{border-color:var(--lila);box-shadow:0 0 0 4px var(--lila-clara)}
+.reto .n{font-family:var(--f-t);font-size:46px;color:var(--lila);line-height:1}
+.reto h3{font-size:24px;margin:14px 0 8px}
+.reto p{color:var(--gris);font-size:15px}
+.receta{margin-top:22px;background:var(--noche);color:#fff;border-radius:22px;padding:30px;display:none;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.receta.visible{display:grid;animation:subir .45s ease}
+@keyframes subir{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.receta h3{font-size:26px}.receta p{opacity:.85;margin-top:6px;max-width:640px}
+.receta .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.receta .chips span{background:rgba(255,255,255,.12);padding:6px 12px;border-radius:999px;font-size:13px}
+/* cama interactiva */
+.cama-sec{background:linear-gradient(180deg,var(--noche) 0%,var(--noche-2) 100%);color:#fff}
+.cama-sec .entrada{color:#C3C0DA}
+.cama-sec .etiqueta{color:#B7A9F2}
+.estudio{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center;margin-top:48px}
+.cama-marco{position:relative;aspect-ratio:1/1.1;max-width:520px;width:100%;margin:0 auto}
+.cama-marco svg{width:100%;height:100%;overflow:visible}
+.motor{transform-box:fill-box;transform-origin:center}
+.motor circle.onda{fill:none;stroke:#B7A9F2;stroke-width:2;opacity:0}
+.lado-activo .motor.on circle.onda{animation:onda var(--vel,1.4s) ease-out infinite;animation-delay:var(--d,0s)}
+.lado-activo .motor.on circle.nucleo{fill:#CFC4FF}
+@keyframes onda{0%{opacity:.9;r:4}100%{opacity:0;r:20}}
+.motor circle.nucleo{fill:#5C5880;transition:fill .3s}
+.pies{opacity:0;transition:opacity .8s}
+.pies.on{opacity:1;animation:latido 3.4s ease-in-out infinite}
+@keyframes latido{0%,100%{opacity:.75}50%{opacity:1}}
+.lado-nombre{font:500 15px var(--f-t);fill:#fff;opacity:.55}
+.lado-elegido .lado-nombre{opacity:1}
+.lado-toque{cursor:pointer}
+.lado-elegido .borde-lado{stroke:#B7A9F2;stroke-width:3}
+/* app */
+.movil{background:#111321;border-radius:38px;padding:14px;max-width:360px;margin:0 auto;box-shadow:0 40px 80px -30px rgba(0,0,0,.7),inset 0 0 0 1.5px #34374F}
+.pantalla{background:#1C1F32;border-radius:28px;padding:22px 20px;min-height:520px}
+.pantalla .barra{display:flex;justify-content:space-between;font-size:12px;opacity:.6;margin-bottom:16px}
+.lados{display:grid;grid-template-columns:1fr 1fr;background:#2A2D45;border-radius:14px;padding:4px;margin-bottom:18px}
+.lados button{background:none;border:0;color:#B9B6D3;padding:10px;border-radius:10px;font:600 14px var(--f-x);cursor:pointer}
+.lados button[aria-pressed="true"]{background:var(--lila);color:#fff}
+.app-t{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8E8AB0;margin:16px 0 8px}
+.programas{display:grid;gap:8px}
+.programas button{display:flex;justify-content:space-between;align-items:center;text-align:left;background:#262941;border:1.5px solid transparent;color:#E9E7F5;padding:11px 14px;border-radius:12px;font:500 14px var(--f-x);cursor:pointer}
+.programas button small{display:block;color:#9D99C0;font-size:12px;font-weight:400;margin-top:2px}
+.programas button[aria-pressed="true"]{border-color:var(--lila);background:#2F2A55}
+.programas button[aria-pressed="true"]::after{content:"●";color:#B7A9F2;font-size:10px}
+.deslizador{display:flex;align-items:center;gap:12px;font-size:13px;color:#C3C0DA}
+.deslizador input{flex:1;accent-color:var(--lila)}
+.interruptor{display:flex;justify-content:space-between;align-items:center;background:#262941;padding:12px 14px;border-radius:12px;font-size:14px}
+.interruptor button{width:50px;height:28px;border-radius:999px;border:0;background:#3A3D58;position:relative;cursor:pointer;transition:background .25s}
+.interruptor button::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .25s}
+.interruptor button[aria-pressed="true"]{background:var(--calor-2)}
+.interruptor button[aria-pressed="true"]::after{transform:translateX(22px)}
+.aviso-app{font-size:12px;color:#8E8AB0;margin-top:14px}
+/* tecnologías */
+.tecs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+.tec{background:#fff;border-radius:22px;padding:28px;border:1px solid var(--linea)}
+.tec .ic{width:46px;height:46px;border-radius:14px;background:var(--lila-clara);color:var(--lila-2);display:grid;place-items:center;margin-bottom:16px}
+.tec h3{font-size:22px;margin-bottom:8px}
+.tec p{color:var(--gris);font-size:15px}
+.tec.grande{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;background:var(--noche);color:#fff;border:0}
+.tec.grande p{color:#C3C0DA}
+.tec.grande .cifra{font-family:var(--f-t);font-size:64px;color:#B7A9F2;line-height:1}
+.tec.grande img{background:#fff;border-radius:16px;padding:12px}
+.cinco{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.cinco span{font-size:12px;background:var(--lila-clara);color:var(--lila-2);padding:5px 10px;border-radius:999px;font-weight:700}
+/* ciencia */
+.ciencia{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.ciencia img{border-radius:24px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.ciencia blockquote{font-family:var(--f-t);font-size:clamp(22px,2.6vw,32px);line-height:1.3;font-weight:300;margin-top:20px}
+.ciencia cite{display:block;margin-top:18px;font-style:normal;color:var(--gris)}
+.ciencia cite b{color:var(--tinta)}
+.esci{margin-top:28px;display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--linea);border-radius:16px;padding:16px 18px;font-size:14px;color:var(--gris)}
+.esci b{color:var(--tinta)}
+/* banda foto */
+.banda{position:relative;height:440px;overflow:hidden}
+.banda img{width:100%;height:100%;object-fit:cover}
+.banda::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(35,38,58,.55) 0%,rgba(35,38,58,.15) 45%,rgba(35,38,58,0) 70%)}
+.banda .envoltura{z-index:2}
+.banda .envoltura{position:absolute;inset:0;display:flex;align-items:center}
+.banda h2{color:#fff;font-size:clamp(28px,3.6vw,44px);max-width:460px;text-shadow:0 2px 24px rgba(20,20,40,.35)}
+/* opiniones */
+.opiniones{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.op{background:#fff;border-radius:22px;padding:26px;border:1px solid var(--linea)}
+.op .est{color:#F4B400;letter-spacing:2px}
+.op p{margin:12px 0 16px;font-size:15px}
+.op .quien{display:flex;align-items:center;gap:10px;font-size:14px}
+.op .av{width:34px;height:34px;border-radius:50%;background:var(--lila-clara);color:var(--lila-2);display:grid;place-items:center;font-weight:700}
+.op small{color:var(--gris)}
+/* resumen y compra */
+.compra{background:#fff;border-top:1px solid var(--linea)}
+.compra-caja{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.compra-caja img{border-radius:24px;aspect-ratio:16/10;object-fit:cover;width:100%}
+.resumen{background:var(--fondo);border-radius:18px;padding:20px;margin:22px 0;font-size:15px}
+.resumen div{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--linea)}
+.resumen div:last-child{border:0}
+.resumen span{color:var(--gris)}
+.ventajas{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;font-size:14px;color:var(--gris)}
+.ventajas span::before{content:"✓ ";color:var(--lila-2);font-weight:700}
+/* pie */
+footer{background:var(--noche-2);color:#B9B6D3;padding:64px 0 28px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+footer img{height:22px;width:auto;margin-bottom:16px}
+footer h4{color:#fff;font:500 15px var(--f-t);margin-bottom:10px}
+footer a{text-decoration:none}
+footer .abajo{border-top:1px solid #2E3150;margin-top:44px;padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer button{background:none;border:1px solid #3A3D58;color:#B9B6D3;padding:6px 12px;border-radius:999px;cursor:pointer;font:inherit;font-size:13px}
+/* aparecer */
+.ap{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.ap.dentro{opacity:1;transform:none}
+html.quieto *{animation:none!important;transition:none!important}
+html.quieto .ap{opacity:1;transform:none}
+/* móvil */
+@media (max-width:900px){
+  .cab nav,.cab .btn{display:none}.hamburguesa{display:block}
+  .cab.abierto nav{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;background:var(--noche);padding:18px 24px;gap:16px}
+  .hero{height:auto;min-height:640px}
+  .hero .envoltura{flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:22px;padding-bottom:40px;min-height:640px}
+  .hero .botones{justify-content:flex-start}
+  .franja .envoltura{grid-template-columns:1fr 1fr}
+  section{padding:68px 0}
+  .retos,.tecs,.opiniones{grid-template-columns:1fr}
+  .tec.grande{grid-column:auto;grid-template-columns:1fr}
+  .estudio,.ciencia,.compra-caja,footer .cols{grid-template-columns:1fr}
+  .estudio{gap:28px}
+  .cama-marco{max-width:340px}
+  .ciencia img{max-width:300px;margin:0 auto}
+  .receta{grid-template-columns:1fr}
+  .banda{height:340px}
+}
+@media (max-width:520px){
+  .envoltura{padding:0 16px}
+  .franja .envoltura{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+}
+</style>
+</head>
+<body>
+<div class="cinta">Muestra de G&amp;G Elcano para ShindoTech · textos y fotos de shindo.es a 20 de noviembre de 2026 · la cesta no cobra</div>
+
+<header class="cab" id="cab">
+  <div class="envoltura">
+    <a href="#inicio" aria-label="ShindoTech, inicio"><img src="assets/logo-blanco.png" alt="ShindoTech" width="600" height="80"></a>
+    <nav aria-label="Menú">
+      <a href="#retos">Tu descanso</a>
+      <a href="#app">Tu lado de la cama</a>
+      <a href="#tecnologias">Tecnologías</a>
+      <a href="#opiniones">Opiniones</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-lila" href="#comprar">Configurar el mío</a>
+    <button class="hamburguesa" aria-label="Abrir menú" aria-expanded="false" id="hamb">☰</button>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="hero" style="padding:0" aria-label="Portada">
+  <picture>
+    <source media="(max-width:700px)" srcset="assets/despertar-movil.webp">
+    <img src="assets/despertar.webp" alt="Mujer que se despierta descansada y estira los brazos en la cama" width="1500" height="563" fetchpriority="high">
+  </picture>
+  <div class="envoltura">
+    <div>
+      <span class="kicker">Envío gratuito · Financiación</span>
+      <h1>El colchón que te da <em>masaje</em> y te calienta los pies</h1>
+      <p>Masaje por vibración, termoterapia y una app para cada lado de la cama. Desarrollado junto al European Sleep Care Institute.</p>
+    </div>
+    <div class="botones">
+      <a class="btn btn-blanco" href="#retos">¿Qué te quita el sueño?</a>
+      <a class="btn btn-borde" href="#app">Probar la app</a>
+    </div>
+  </div>
+</section>
+
+<div class="franja">
+  <div class="envoltura">
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><p><b>Envío gratuito</b>sin coste de transporte</p></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg><p><b>Financiación</b>paga tu descanso a plazos</p></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 13a8 8 0 0 1 16 0v4a2 2 0 0 1-2 2h-1v-6h3M4 13v4a2 2 0 0 0 2 2h1v-6H4"/></svg><p><b>Atención al cliente</b>de lunes a viernes, 9 h a 18 h</p></div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/></svg><p><b>Con base científica</b>junto al ESCI</p></div>
+  </div>
+</div>
+
+<section id="retos">
+  <div class="envoltura">
+    <p class="etiqueta">Los 3 grandes retos del descanso</p>
+    <h2 class="titulo ap">¿Qué es lo que te quita el sueño?</h2>
+    <p class="entrada ap">Pulsa el tuyo y te enseñamos cómo dejaría la cama ShindoTech® para esta noche.</p>
+    <div class="retos">
+      <button class="reto ap" data-reto="insomnio" aria-pressed="false"><span class="n">1</span><h3>Vencer al insomnio</h3><p>Me meto en la cama y la cabeza no para.</p></button>
+      <button class="reto ap" data-reto="conciliar" aria-pressed="false"><span class="n">2</span><h3>Dormirme rápido</h3><p>Tardo en coger el sueño, sobre todo con los pies fríos.</p></button>
+      <button class="reto ap" data-reto="reparador" aria-pressed="false"><span class="n">3</span><h3>Un sueño reparador</h3><p>Duermo, pero me levanto cargado y con contracturas.</p></button>
+    </div>
+    <div class="receta" id="receta" aria-live="polite">
+      <div><h3 id="receta-t"></h3><p id="receta-p"></p><div class="chips" id="receta-c"></div></div>
+      <a class="btn btn-lila" href="#app" id="receta-b">Verlo en la cama</a>
+    </div>
+  </div>
+</section>
+
+<section class="cama-sec" id="app">
+  <div class="envoltura">
+    <p class="etiqueta">Tecnología Bluetooth</p>
+    <h2 class="titulo ap">Tu lado, tus reglas. El de tu pareja, los suyos.</h2>
+    <p class="entrada ap">Cada lado de la cama es un sistema independiente. Elige programa y zona de masaje, ajusta la intensidad y enciende el calor de los pies desde el móvil. Pruébalo aquí:</p>
+    <div class="estudio">
+      <div class="cama-marco" id="cama">
+        <svg viewBox="0 0 400 440" role="img" aria-label="Cama vista desde arriba con los motores de masaje y la zona de calor de cada lado">
+          <defs>
+            <radialGradient id="calorG" cx="50%" cy="60%" r="60%"><stop offset="0" stop-color="#F29A4A" stop-opacity=".95"/><stop offset=".6" stop-color="#E7663A" stop-opacity=".45"/><stop offset="1" stop-color="#E7663A" stop-opacity="0"/></radialGradient>
+            <linearGradient id="colchonG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A3D5C"/><stop offset="1" stop-color="#2C2F4A"/></linearGradient>
+          </defs>
+          <rect x="20" y="4" width="360" height="40" rx="14" fill="#4A4470"/>
+          <rect x="30" y="50" width="340" height="380" rx="22" fill="url(#colchonG)" stroke="#4B4F72" stroke-width="2"/>
+          <line x1="200" y1="60" x2="200" y2="420" stroke="#4B4F72" stroke-width="2" stroke-dasharray="6 8"/>
+          <g id="lado-izq" class="lado lado-toque" data-lado="0">
+            <rect class="borde-lado" x="38" y="58" width="156" height="364" rx="18" fill="transparent" stroke="transparent"/>
+            <rect x="62" y="70" width="108" height="46" rx="16" fill="#ECEAF6" opacity=".9"/>
+            <ellipse class="pies" cx="116" cy="380" rx="70" ry="44" fill="url(#calorG)"/>
+            <text class="lado-nombre" x="116" y="100" text-anchor="middle" fill="#23263A" style="fill:#23263A">Tu lado</text>
+          </g>
+          <g id="lado-der" class="lado lado-toque" data-lado="1">
+            <rect class="borde-lado" x="206" y="58" width="156" height="364" rx="18" fill="transparent" stroke="transparent"/>
+            <rect x="230" y="70" width="108" height="46" rx="16" fill="#ECEAF6" opacity=".9"/>
+            <ellipse class="pies" cx="284" cy="380" rx="70" ry="44" fill="url(#calorG)"/>
+            <text class="lado-nombre" x="284" y="100" text-anchor="middle" style="fill:#23263A">Tu pareja</text>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <div class="movil" aria-label="Simulación de la app ShindoTech">
+          <div class="pantalla">
+            <div class="barra"><span>ShindoTech®</span><span>Bluetooth ●</span></div>
+            <div class="lados" role="group" aria-label="Lado de la cama">
+              <button aria-pressed="true" data-lado-btn="0">Tu lado</button>
+              <button aria-pressed="false" data-lado-btn="1">Tu pareja</button>
+            </div>
+            <p class="app-t">Massage® · programa</p>
+            <div class="programas" id="programas"></div>
+            <p class="app-t">Intensidad y velocidad</p>
+            <div class="deslizador"><span>Suave</span><input type="range" min="1" max="5" value="3" id="intensidad" aria-label="Intensidad del masaje"><span>Fuerte</span></div>
+            <p class="app-t">Head Pad® · calor en los pies</p>
+            <div class="interruptor"><span>Termoterapia</span><button id="calor" aria-pressed="false" aria-label="Encender el calor de los pies"></button></div>
+            <p class="aviso-app">Cada lado se controla por separado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tecnologias">
+  <div class="envoltura">
+    <p class="etiqueta">La tecnología hecha colchón</p>
+    <h2 class="titulo ap">Todo lo que hace tu cama mientras duermes</h2>
+    <div class="tecs">
+      <article class="tec ap">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12h3l2-5 3 10 3-8 2 3h7"/></svg></div>
+        <h3>Massage®</h3>
+        <p>Masaje por vibración para facilitar el relax, aliviar el estrés, mitigar las contracturas y fortalecer el sistema nervioso.</p>
+        <div class="cinco"><span>Detox</span><span>Relajante</span><span>Analgésico</span><span>Linfático</span><span>Descontracturante</span></div>
+      </article>
+      <article class="tec ap">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c2 3 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg></div>
+        <h3>Head Pad®</h3>
+        <p>Un calor ligero y agradable en la parte de los pies para alcanzar el equilibrio térmico hasta 10 veces antes. Adiós al síndrome de los pies fríos.</p>
+      </article>
+      <article class="tec ap">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+        <h3>Bluetooth</h3>
+        <p>Regula la termoterapia, escoge programa y zona del masaje, combina intensidad y velocidad o crea el tuyo. Tu sueño empieza en la palma de tu mano.</p>
+      </article>
+      <article class="tec grande ap">
+        <div>
+          <div class="ic" style="background:#34375A;color:#CFC4FF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Viruclean®</h3>
+          <p style="margin:8px 0 18px">Protección antiviral con sales de plata que recubren las fibras del colchón. Resultados certificados microbiológicamente en laboratorios suizos.</p>
+          <span class="cifra">99,84&nbsp;%</span><p>higienizado en 4 horas</p>
+        </div>
+        <img src="assets/viruclean.webp" alt="Esquema del colchón ShindoTech higienizado al 99,84 % en 4 horas" width="755" height="560" loading="lazy">
+      </article>
+      <article class="tec ap">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18M3 11h18M3 15h18M3 19h18"/></svg></div>
+        <h3>Núcleo de 4 capas</h3>
+        <p>Alineación óptima de la columna, con soporte y confort durante toda la noche. Tejidos inteligentes y materiales biosaludables.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="banda" aria-hidden="false">
+  <img src="assets/calma.webp" alt="Persona meditando en casa, relajada" width="1200" height="800" loading="lazy">
+  <div class="envoltura"><h2>Dormir bien no es un lujo, es una necesidad.</h2></div>
+</div>
+
+<section>
+  <div class="envoltura ciencia">
+    <img class="ap" src="assets/vicente-barbera.webp" alt="Vicente Barberá, CEO de Grupo Delax" width="600" height="831" loading="lazy">
+    <div>
+      <p class="etiqueta">Ciencia, tecnología y cuidado</p>
+      <h2 class="titulo ap">Hemos creado un colchón para vivir mejor</h2>
+      <blockquote class="ap">«En ShindoTech® creemos que dormir bien no es un lujo, sino una necesidad esencial para vivir plenamente. Por eso, junto al ESCI, desarrollamos soluciones de descanso basadas en ciencia, tecnología y cuidado personalizado.»</blockquote>
+      <cite><b>Vicente Barberá</b> · CEO de Grupo Delax</cite>
+      <div class="esci"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B4AA0" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg><p><b>European Sleep Care Institute.</b> El centro de innovación del Grupo Delax investiga nuevas tecnologías para mejorar la calidad del sueño con método científico.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="opiniones" style="padding-top:0">
+  <div class="envoltura">
+    <p class="etiqueta">Opiniones en Google</p>
+    <h2 class="titulo ap">Lo que cuentan al despertar</h2>
+    <div class="opiniones">
+      <article class="op ap"><div class="est">★★★★★</div><p>«Sin duda una inversión en bienestar más que justificada. No me sorprende la fama de estos colchones, tengo el Contact hace un mes y el cambio que he notado al levantarme por las mañanas…»</p><div class="quien"><span class="av">C</span><div>Cristina<br><small>Google · hace un año</small></div></div></article>
+      <article class="op ap"><div class="est">★★★★★</div><p>«Diría que Tec Moon ha cambiado mi forma de ver el descanso. Nunca me había sentido tan descansada al levantarme por las mañanas.»</p><div class="quien"><span class="av">A</span><div>Angela<br><small>Google · hace un año</small></div></div></article>
+      <article class="op ap"><div class="est">★★★★★</div><p>«Es como dormir sobre una nube mullida. Lo que más estoy usando es su termoterapia para calentar suavemente los pies en la cama.»</p><div class="quien"><span class="av">P</span><div>Paula<br><small>Google · hace un año</small></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="compra" id="comprar">
+  <div class="envoltura compra-caja">
+    <img class="ap" src="assets/tecnologia.webp" alt="ShindoTech, la tecnología hecha colchón" width="1600" height="930" loading="lazy">
+    <div>
+      <p class="etiqueta">Tu ShindoTech®</p>
+      <h2 class="titulo ap">Así queda tu cama</h2>
+      <p class="entrada">Lo que has elegido arriba se guarda aquí. Mándanoslo y te decimos precio, medida y plazo.</p>
+      <div class="resumen" id="resumen"></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-lila" id="pedir" href="https://wa.me/34677619319" target="_blank" rel="noopener">Pedir mi ShindoTech por WhatsApp</a>
+        <a class="btn" style="background:var(--fondo)" href="tel:+34961431848">Llamar al 96 143 18 48</a>
+      </div>
+      <div class="ventajas"><span>Envío gratuito</span><span>Financiación</span><span>Atención de lunes a viernes</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer id="contacto">
+  <div class="envoltura">
+    <div class="cols">
+      <div><img src="assets/logo-blanco.png" alt="ShindoTech" width="600" height="80"><p>ShindoTech®, tecnología que cuida de ti mientras duermes. Una marca de Grupo Delax.</p></div>
+      <div><h4>Contáctanos</h4><p>Carrer Ciudad Darío, 45<br>46250 L'Alcúdia, Valencia</p><p style="margin-top:8px"><a href="tel:+34677619319">677 61 93 19</a> · <a href="tel:+34961431848">96 143 18 48</a></p><p>Lunes a viernes de 9 h a 18 h</p></div>
+      <div><h4>Información</h4><p><a href="#tecnologias">Tecnologías</a></p><p><a href="#app">Programas de masaje</a></p><p><a href="#opiniones">Opiniones</a></p></div>
+    </div>
+    <div class="abajo"><span>© 2026 ShindoTech®</span><button id="quieto" type="button">Reducir animaciones</button></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var PROG=[
+    {id:'detox',n:'Detox',d:'Limpia y activa',zonas:[0,1,2,3,4,5],vel:1.6},
+    {id:'relajante',n:'Relajante y propioceptivo',d:'Relajación y equilibrio',zonas:[0,1,2,3],vel:2.2},
+    {id:'analgesico',n:'Analgésico',d:'Agujetas y dolor muscular',zonas:[2,3,4,5],vel:1.2},
+    {id:'linfatico',n:'Linfático y circulatorio',d:'Drenaje y defensas',zonas:[4,5,2,3,0,1],vel:1.8,ola:true},
+    {id:'descontracturante',n:'Descontracturante',d:'Recupera la contractura',zonas:[0,1,2,3],vel:.9}
+  ];
+  var RETOS={
+    insomnio:{t:'Para vencer al insomnio',p:'Masaje relajante y propioceptivo a intensidad suave para desconectar el cuerpo, y calor en los pies para que la mente no tenga que pelear con el frío.',prog:'relajante',int:2,calor:true},
+    conciliar:{t:'Para dormirte rápido',p:'Head Pad® encendido: el calor en los pies equilibra la temperatura del cuerpo hasta 10 veces antes. Con un masaje relajante de fondo.',prog:'relajante',int:2,calor:true},
+    reparador:{t:'Para un sueño reparador',p:'Masaje descontracturante para acelerar la recuperación de la espalda, y núcleo de 4 capas para que la columna amanezca alineada.',prog:'descontracturante',int:4,calor:false}
+  };
+  // motores: 6 por lado (espalda alta, lumbar, piernas)
+  var POS=[[96,170],[136,170],[96,240],[136,240],[96,310],[136,310]];
+  var estado=[{prog:'relajante',int:3,calor:false},{prog:'detox',int:3,calor:false}];
+  var lado=0;
+  var svgNS='http://www.w3.org/2000/svg';
+  ['lado-izq','lado-der'].forEach(function(id,i){
+    var g=document.getElementById(id);
+    POS.forEach(function(p,k){
+      var m=document.createElementNS(svgNS,'g');m.setAttribute('class','motor');m.dataset.k=k;
+      var o=document.createElementNS(svgNS,'circle');o.setAttribute('class','onda');o.setAttribute('cx',p[0]+i*168);o.setAttribute('cy',p[1]);o.setAttribute('r',4);
+      var o2=o.cloneNode();o2.style.setProperty('--d','.5s');
+      var c=document.createElementNS(svgNS,'circle');c.setAttribute('class','nucleo');c.setAttribute('cx',p[0]+i*168);c.setAttribute('cy',p[1]);c.setAttribute('r',6);
+      m.appendChild(o);m.appendChild(o2);m.appendChild(c);g.appendChild(m);
+    });
+    g.addEventListener('click',function(){elegirLado(i)});
+  });
+  var cont=document.getElementById('programas');
+  PROG.forEach(function(p){
+    var b=document.createElement('button');b.type='button';b.dataset.prog=p.id;b.setAttribute('aria-pressed','false');
+    b.innerHTML='<span>'+p.n+'<small>'+p.d+'</small></span>';
+    b.addEventListener('click',function(){estado[lado].prog=p.id;pintar()});
+    cont.appendChild(b);
+  });
+  var rango=document.getElementById('intensidad'),calor=document.getElementById('calor');
+  rango.addEventListener('input',function(){estado[lado].int=+rango.value;pintar()});
+  calor.addEventListener('click',function(){estado[lado].calor=!estado[lado].calor;pintar()});
+  document.querySelectorAll('[data-lado-btn]').forEach(function(b){b.addEventListener('click',function(){elegirLado(+b.dataset.ladoBtn)})});
+  function elegirLado(i){lado=i;pintar()}
+  function nombre(id){for(var i=0;i<PROG.length;i++)if(PROG[i].id===id)return PROG[i];return PROG[0]}
+  function pintar(){
+    var s=estado[lado];
+    document.querySelectorAll('[data-lado-btn]').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.ladoBtn===lado?'true':'false')});
+    cont.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.prog===s.prog?'true':'false')});
+    rango.value=s.int;calor.setAttribute('aria-pressed',s.calor?'true':'false');
+    ['lado-izq','lado-der'].forEach(function(id,i){
+      var g=document.getElementById(id),e=estado[i],p=nombre(e.prog);
+      g.classList.add('lado-activo');g.classList.toggle('lado-elegido',i===lado);
+      g.querySelector('.pies').classList.toggle('on',e.calor);
+      var vel=(p.vel*(1.3-e.int*0.12)).toFixed(2)+'s';
+      g.querySelectorAll('.motor').forEach(function(m){
+        var k=+m.dataset.k,pos=p.zonas.indexOf(k);
+        m.classList.toggle('on',pos>-1);
+        m.querySelectorAll('.onda').forEach(function(o,j){
+          o.style.setProperty('--vel',vel);
+          o.style.setProperty('--d',((p.ola?pos*0.18:0)+j*0.5)+'s');
+          o.style.strokeWidth=(1+e.int*0.5);
+        });
+      });
+    });
+    resumen();
+  }
+  function fila(t,v){return '<div><span>'+t+'</span><b>'+v+'</b></div>'}
+  function resumen(){
+    var a=estado[0],b=estado[1],pa=nombre(a.prog),pb=nombre(b.prog);
+    document.getElementById('resumen').innerHTML=
+      fila('Tu lado',pa.n+' · intensidad '+a.int+'/5')+fila('Calor en tus pies',a.calor?'Encendido':'Apagado')+
+      fila('Lado de tu pareja',pb.n+' · intensidad '+b.int+'/5')+fila('Calor en sus pies',b.calor?'Encendido':'Apagado');
+    var txt='Hola, quiero un ShindoTech. Mi lado: '+pa.n+' ('+a.int+'/5), calor '+(a.calor?'sí':'no')+'. Lado de mi pareja: '+pb.n+' ('+b.int+'/5), calor '+(b.calor?'sí':'no')+'. ¿Precio y medida?';
+    document.getElementById('pedir').href='https://wa.me/34677619319?text='+encodeURIComponent(txt);
+  }
+  // retos
+  document.querySelectorAll('.reto').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.reto').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      var r=RETOS[b.dataset.reto],p=nombre(r.prog);
+      document.getElementById('receta-t').textContent=r.t;
+      document.getElementById('receta-p').textContent=r.p;
+      document.getElementById('receta-c').innerHTML='<span>Massage® '+p.n+'</span><span>Intensidad '+r.int+'/5</span><span>Head Pad® '+(r.calor?'encendido':'apagado')+'</span>';
+      var box=document.getElementById('receta');box.classList.remove('visible');void box.offsetWidth;box.classList.add('visible');
+      estado[0]={prog:r.prog,int:r.int,calor:r.calor};lado=0;pintar();
+    });
+  });
+  // menú móvil
+  var cab=document.getElementById('cab'),hamb=document.getElementById('hamb');
+  hamb.addEventListener('click',function(){var a=cab.classList.toggle('abierto');hamb.setAttribute('aria-expanded',a)});
+  cab.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){cab.classList.remove('abierto')})});
+  // aparecer al bajar
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('dentro');io.unobserve(e.target)}})},{threshold:.12}):null;
+  document.querySelectorAll('.ap').forEach(function(el){io?io.observe(el):el.classList.add('dentro')});
+  // reducir animaciones
+  var q=document.getElementById('quieto');
+  function rotulo(){q.textContent=document.documentElement.classList.contains('quieto')?'Activar animaciones':'Reducir animaciones'}
+  q.addEventListener('click',function(){var on=document.documentElement.classList.toggle('quieto');try{localStorage.setItem('shindo-quieto',on?'1':'0')}catch(e){}rotulo()});
+  rotulo();pintar();
+})();
+</script>
+</body>
+</html>
