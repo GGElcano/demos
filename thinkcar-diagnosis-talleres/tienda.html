@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Toda la tienda · THINKCAR España</title>
+<meta name="description" content="Máquinas de diagnosis THINKCAR y THINKTOOL para talleres: térmicos, híbridos, eléctricos, camiones y motos. TPMS, programación de llaves, osciloscopios y actualizaciones.">
+<meta name="theme-color" content="#0E1118">
+<!-- Maqueta: mientras vive en la carpeta de demos va SIN indexar, para no competir en
+     Google con la tienda real del cliente. Al mudarla a su dominio se quita esta línea. -->
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://ggelcano.github.io/demos/thinkcar-diagnosis-talleres/tienda.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="THINKCAR España">
+<meta property="og:title" content="Toda la tienda · THINKCAR España">
+<meta property="og:description" content="Máquinas de diagnosis THINKCAR y THINKTOOL para talleres: térmicos, híbridos, eléctricos, camiones y motos. TPMS, programación de llaves, osciloscopios y actualizaciones.">
+<meta property="og:url" content="https://ggelcano.github.io/demos/thinkcar-diagnosis-talleres/tienda.html">
+<meta property="og:image" content="https://ggelcano.github.io/demos/thinkcar-diagnosis-talleres/assets/i_1.webp">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tienda.css">
+
+<style>
+:root{
+  --crema:#F3F5F8; --hueso:#FFFFFF; --tierra:#141821;
+  --tierra-2:#0E1118; --carbon:#0A0C11; --tinta:#151922;
+  --gris:#5A6170; --linea:#E1E5EC; --brasa:#A9252B;
+  --brasa-clara:#F2A6A9; --brasa-2:#8E1F24;
+  --f-titulo:'Barlow Semi Condensed',system-ui,sans-serif; --f-texto:'Inter',system-ui,sans-serif;
+}
+
+.hero-overlay-min::after{display:none}
+.gw-ficha p{margin:0 0 10px;line-height:1.6}
+.gw-env{max-width:1200px;margin:0 auto;padding:0 24px}
+.gw-eti{font:700 13px var(--f-texto);letter-spacing:.14em;text-transform:uppercase;color:var(--brasa)}
+.gw-cab{max-width:760px;margin-bottom:28px}
+.gw-cab h2{font-family:var(--f-titulo);font-size:clamp(30px,4vw,46px);line-height:1.05;margin:8px 0 12px;color:var(--tinta)}
+.gw-cab p{color:var(--gris);font-size:16px;line-height:1.6}
+@media (max-width:520px){.gw-env{padding:0 16px}}
+/* THINKCAR (22-nov-2026): rojo de su marca sobre gris oscuro de taller */
+.hero-overlay-min{background:linear-gradient(0deg,rgba(10,12,17,.78) 0%,rgba(10,12,17,.3) 38%,rgba(10,12,17,0) 62%)}
+.hero h1{text-transform:none;font-weight:700}
+.hero h1 em{font-style:normal;display:block;font-size:.4em;font-weight:500;margin-top:.5em;opacity:.92}
+.tc-elige{padding:78px 0;background:var(--crema)}
+.tc-preg{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.tc-preg span{display:block;font-weight:700;margin-bottom:10px;color:var(--tinta)}
+.tc-chips{display:flex;flex-wrap:wrap;gap:8px}
+.tc-chips button{background:#fff;border:1.5px solid var(--linea);border-radius:8px;padding:10px 14px;font:600 14px var(--f-texto);color:var(--tinta);cursor:pointer}
+.tc-chips button[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.tc-res{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.tc-prod{display:flex;flex-direction:column;background:#fff;border:1px solid var(--linea);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--tinta);transition:transform .2s,box-shadow .2s;animation:tc-in .4s ease both}
+.tc-prod:hover{transform:translateY(-3px);box-shadow:0 18px 30px -22px rgba(0,0,0,.5)}
+.tc-prod img{aspect-ratio:1;object-fit:contain;background:#fff;padding:14px;width:100%}
+.tc-prod b{font:700 17px var(--f-titulo);padding:0 14px}
+.tc-prod small{padding:6px 14px 14px;color:var(--brasa);font-weight:700}
+.tc-prod em{font-style:normal;font-size:12px;color:var(--gris);padding:12px 14px 4px;text-transform:uppercase;letter-spacing:.08em}
+@keyframes tc-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.tc-vacio{grid-column:1/-1;background:#fff;border:1px dashed var(--linea);border-radius:12px;padding:22px;color:var(--gris)}
+.tc-wa{display:inline-block;margin-top:22px;color:var(--brasa);font-weight:700}
+@media (max-width:900px){.tc-preg{grid-template-columns:1fr}.tc-res{grid-template-columns:1fr 1fr}.tc-elige{padding:56px 0}}
+
+@media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
+</style>
+
+</head>
+<body>
+<a class="gg-saltar" href="#gg-contenido">Ir al contenido</a>
+<div class="topbar"><span><b>Nuevo THINKTOOL EURO 399</b> con IA</span><span>Diagnosis para térmicos, híbridos, eléctricos y camiones</span><span>WhatsApp <b>669 48 59 45</b></span></div>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.webp" alt="Logotipo de THINKCAR España" class="brand-logo" style="height:34px;width:auto">
+      
+    </a>
+    <div class="nav-links">
+      <div class="dropdown">
+        <a href="tienda.html#termicos" class="drop-label">Diagnosis</a>
+        <div class="drop-panel"><a href="tienda.html#termicos" class="drop-todo">Todo Diagnosis</a><a href="tienda.html#termicos">Diagnosis térmicos e híbridos</a><a href="tienda.html#electricos">Diagnosis eléctricos e híbridos</a><a href="tienda.html#camiones">Diagnosis camiones</a><a href="tienda.html#motos">Diagnosis motos</a></div>
+      </div>
+<a href="tienda.html#tpms" class="">TPMS</a>
+<a href="tienda.html#llaves" class="">Llaves</a>
+<a href="tienda.html#accesorios" class="">Accesorios</a>
+<a href="tienda.html#software" class="">Software</a>
+<a href="index.html#elige" class="">¿Qué equipo?</a>
+
+      <button type="button" class="gg-nav-icono" id="ggBuscarBtn" aria-controls="ggBuscador" aria-expanded="false" aria-label="Buscar productos">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+      </button>
+    </div>
+    <a class="gg-nav-cesta" href="cesta.html">Carrito<b class="gg-cesta-n" data-cesta-n hidden>0</b></a>
+    <a href="https://wa.me/34669485945?text=Hola%2C%20quer%C3%ADa%20asesoramiento%20sobre%20un%20equipo" class="nav-cta" target="_blank" rel="noopener">WhatsApp</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="gg-search-bar" id="ggBuscador" hidden>
+    <div class="gg-search-inner"><form class="gg-buscador" action="tienda.html" method="get" role="search"><input type="search" name="q" placeholder="Buscar en la tienda" aria-label="Buscar"><button type="submit">Buscar</button></form></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menú">&times;</button>
+  <div class="mm-group"><div class="mm-group-title">Diagnosis</div><div class="mm-sub"><a href="tienda.html#termicos">Todo Diagnosis</a><a href="tienda.html#termicos">Diagnosis térmicos e híbridos</a><a href="tienda.html#electricos">Diagnosis eléctricos e híbridos</a><a href="tienda.html#camiones">Diagnosis camiones</a><a href="tienda.html#motos">Diagnosis motos</a></div></div>
+<div class="mm-group"><div class="mm-group-title">TPMS</div><div class="mm-sub"><a href="tienda.html#tpms">TPMS</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Llaves</div><div class="mm-sub"><a href="tienda.html#llaves">Llaves</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Accesorios</div><div class="mm-sub"><a href="tienda.html#accesorios">Accesorios</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Software</div><div class="mm-sub"><a href="tienda.html#software">Software</a></div></div>
+<div class="mm-group"><div class="mm-group-title">¿Qué equipo?</div><div class="mm-sub"><a href="index.html#elige">¿Qué equipo?</a></div></div>
+
+  <a href="cesta.html">Carrito</a>
+  <div class="mm-buscador"><form class="gg-buscador" action="tienda.html" method="get" role="search"><input type="search" name="q" placeholder="Buscar en la tienda" aria-label="Buscar"><button type="submit">Buscar</button></form></div>
+  <a href="https://wa.me/34669485945?text=Hola%2C%20quer%C3%ADa%20asesoramiento%20sobre%20un%20equipo" class="mm-cta" target="_blank" rel="noopener">Te asesoramos por WhatsApp</a>
+</div>
+
+<main id="gg-contenido" tabindex="-1" class="gg-main">
+  <div class="wrap">
+    <p class="gg-migas"><a href="index.html">Inicio</a> / La tienda</p>
+    <div class="gg-listado-cab"><h1 data-listado-titulo>Toda la tienda</h1><span class="gg-listado-n"><span data-listado-n>64</span> productos</span></div>
+    <div class="gg-chips" data-chips><button type="button" class="gg-chip gg-chip-on" data-cat="">Todo</button><button type="button" class="gg-chip" data-cat="termicos">Diagnosis térmicos e híbridos</button><button type="button" class="gg-chip" data-cat="electricos">Diagnosis eléctricos e híbridos</button><button type="button" class="gg-chip" data-cat="camiones">Diagnosis camiones</button><button type="button" class="gg-chip" data-cat="motos">Diagnosis motos</button><button type="button" class="gg-chip" data-cat="tpms">TPMS</button><button type="button" class="gg-chip" data-cat="llaves">Programación y llaves</button><button type="button" class="gg-chip" data-cat="adas">Calibración ADAS</button><button type="button" class="gg-chip" data-cat="accesorios">Accesorios para la diagnosis</button><button type="button" class="gg-chip" data-cat="prueba">Equipamiento de prueba</button><button type="button" class="gg-chip" data-cat="ruedas">Equipamiento ruedas</button><button type="button" class="gg-chip" data-cat="software">Actualizaciones y SAT</button></div>
+    <div class="gg-rejilla" data-rejilla><article class="gg-prenda" data-cats="software" data-nombre="sat multimarca">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/sat-multimarca.html"><img src="assets/p/sat-multimarca.webp" alt="SAT Multimarca" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/sat-multimarca.html">SAT Multimarca</a>
+  <div class="gg-prenda-precio">300,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="sat thinkcar">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/sat-thinkcar.html"><img src="assets/p/sat-thinkcar.webp" alt="SAT Thinkcar" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/sat-thinkcar.html">SAT Thinkcar</a>
+  <div class="gg-prenda-precio">300,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="tpms" data-nombre="thinkcar venu vt5">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-venu-vt5.html"><img src="assets/p/thinkcar-venu-vt5.webp" alt="THINKCAR VENU VT5" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-venu-vt5.html">THINKCAR VENU VT5</a>
+  <div class="gg-prenda-precio">725,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="thinkcar t394 immo">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-t394-immo.html"><img src="assets/p/thinkcar-t394-immo.webp" alt="THINKCAR T394 IMMO" width="600" height="400" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-t394-immo.html">THINKCAR T394 IMMO</a>
+  <div class="gg-prenda-precio">800,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba ruedas" data-nombre="thinkcar tht118">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-tht118.html"><img src="assets/p/thinkcar-tht118.webp" alt="ThinkCar THT118" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-tht118.html">ThinkCar THT118</a>
+  <div class="gg-prenda-precio">480,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkcar tjs180">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-tjs-180.html"><img src="assets/p/thinkcar-tjs-180.webp" alt="THINKCAR TJS180" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-tjs-180.html">THINKCAR TJS180</a>
+  <div class="gg-prenda-precio">175,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios" data-nombre="thinkcar ptc 207">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-ptc-207.html"><img src="assets/p/thinkcar-ptc-207.webp" alt="THINKCAR PTC 207" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-ptc-207.html">THINKCAR PTC 207</a>
+  <div class="gg-prenda-precio">249,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkcar ptc 107">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/ptc107.html"><img src="assets/p/ptc107.webp" alt="THINKCAR PTC 107" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/ptc107.html">THINKCAR PTC 107</a>
+  <div class="gg-prenda-precio">550,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinktool expert 191 – actualización 1 año premium">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-expert-191-actualizacion-1-ano-premium.html"><img src="assets/p/thinktool-expert-191-actualizacion-1-ano-premium.webp" alt="THINKTOOL EXPERT 191 – Actualización 1 año PREMIUM" width="600" height="400" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-expert-191-actualizacion-1-ano-premium.html">THINKTOOL EXPERT 191 – Actualización 1 año PREMIUM</a>
+  <div class="gg-prenda-precio">450,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkcar tbt 360 pro">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-tbt-360-pro.html"><img src="assets/p/thinkcar-tbt-360-pro.webp" alt="THINKCAR TBT 360 Pro" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-tbt-360-pro.html">THINKCAR TBT 360 Pro</a>
+  <div class="gg-prenda-precio">175,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="es 401 endoscopio">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/es-401-endoscopio.html"><img src="assets/p/es-401-endoscopio.webp" alt="ES 401 ENDOSCOPIO" width="497" height="497" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/es-401-endoscopio.html">ES 401 ENDOSCOPIO</a>
+  <div class="gg-prenda-precio">280,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba ruedas" data-nombre="thinkcar twa 825m">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-twa825m.html"><img src="assets/p/thinkcar-twa825m.webp" alt="ThinkCar TWA 825M" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-twa825m.html">ThinkCar TWA 825M</a>
+  <div class="gg-prenda-precio">6000,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkpps 100">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkpps-100.html"><img src="assets/p/thinkpps-100.webp" alt="THINKPPS 100" width="600" height="450" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkpps-100.html">THINKPPS 100</a>
+  <div class="gg-prenda-precio">490,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="electricos" data-nombre="thinktool ce evp 903">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-ce-evp-903.html"><img src="assets/p/thinktool-ce-evp-903.webp" alt="THINKTOOL CE EVP 903" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-ce-evp-903.html">THINKTOOL CE EVP 903</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="camiones" data-nombre="thinkscan hd">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkscan-hd.html"><img src="assets/p/thinkscan-hd.webp" alt="THINKSCAN HD" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkscan-hd.html">THINKSCAN HD</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkcar pld212">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-pld212.html"><img src="assets/p/thinkcar-pld212.webp" alt="THINKCAR PLD212" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-pld212.html">THINKCAR PLD212</a>
+  <div class="gg-prenda-precio">460,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios" data-nombre="thinkeasy battery test clip 2">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkeasy-battery-test-clip-2-comprobador-de-baterias-de-coche-con-bluetooth-5-0-y-aplicacion-movil-comprobador-de-alternador-para-automovil.html"><img src="assets/p/thinkeasy-battery-test-clip-2-comprobador-de-baterias-de-coche-con-bluetooth-5-0-y-aplicacion-movil-comprobador-de-alternador-para-automovil.webp" alt="THINKEASY BATTERY TEST CLIP 2" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkeasy-battery-test-clip-2-comprobador-de-baterias-de-coche-con-bluetooth-5-0-y-aplicacion-movil-comprobador-de-alternador-para-automovil.html">THINKEASY BATTERY TEST CLIP 2</a>
+  <div class="gg-prenda-precio">100,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios" data-nombre="thinktool video scope">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-video-scope.html"><img src="assets/p/thinktool-video-scope.webp" alt="THINKTOOL VIDEO SCOPE" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-video-scope.html">THINKTOOL VIDEO SCOPE</a>
+  <div class="gg-prenda-precio">100,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="motos" data-nombre="thinkcheck m70 moto">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcheck-m70-moto.html"><img src="assets/p/thinkcheck-m70-moto.webp" alt="THINKCHECK M70 MOTO" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcheck-m70-moto.html">THINKCHECK M70 MOTO</a>
+  <div class="gg-prenda-precio">410,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkeasy maintenance">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkeasy-maintenance.html"><img src="assets/p/thinkeasy-maintenance.webp" alt="THINKEASY MAINTENANCE" width="548" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkeasy-maintenance.html">THINKEASY MAINTENANCE</a>
+  <div class="gg-prenda-precio">1050,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="thinktool 191">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-191.html"><img src="assets/p/thinktool-191.webp" alt="THINKTOOL 191" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-191.html">THINKTOOL 191</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="camiones" data-nombre="thinktool master cv">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-master-cv.html"><img src="assets/p/thinktool-master-cv.webp" alt="THINKTOOL MASTER CV" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-master-cv.html">THINKTOOL MASTER CV</a>
+  <div class="gg-prenda-precio">2200,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="vci con conector eobd">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/pantalla-vci.html"><img src="assets/p/pantalla-vci.webp" alt="VCI CON CONECTOR EOBD" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/pantalla-vci.html">VCI CON CONECTOR EOBD</a>
+  <div class="gg-prenda-precio">890,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="tpms" data-nombre="válvula 7bt para tesla">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/valvula-7bt.html"><img src="assets/p/valvula-7bt.webp" alt="VÁLVULA 7BT PARA TESLA" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/valvula-7bt.html">VÁLVULA 7BT PARA TESLA</a>
+  <div class="gg-prenda-precio">35,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="tpms" data-nombre="tmps venu 701 + remoto">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/tmps-701.html"><img src="assets/p/tmps-701.webp" alt="TMPS VENU 701 + Remoto" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/tmps-701.html">TMPS VENU 701 + Remoto</a>
+  <div class="gg-prenda-precio">800,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="camiones" data-nombre="conectores track vehículo industrial">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/conectores-track-vehiculo-industrial.html"><img src="assets/p/conectores-track-vehiculo-industrial.webp" alt="CONECTORES TRACK VEHÍCULO INDUSTRIAL" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/conectores-track-vehiculo-industrial.html">CONECTORES TRACK VEHÍCULO INDUSTRIAL</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinktool euro master lite – actualización 1 año">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-euro-master-lite-actualizacion-1-ano.html"><img src="assets/p/thinktool-euro-master-lite-actualizacion-1-ano.webp" alt="THINKTOOL EURO MASTER LITE – Actualización 1 año" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-euro-master-lite-actualizacion-1-ano.html">THINKTOOL EURO MASTER LITE – Actualización 1 año</a>
+  <div class="gg-prenda-precio">560,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinktool cv – actualización 1 año">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-cv-actualizacion-1-ano.html"><img src="assets/p/thinktool-cv-actualizacion-1-ano.webp" alt="THINKTOOL CV – Actualización 1 año" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-cv-actualizacion-1-ano.html">THINKTOOL CV – Actualización 1 año</a>
+  <div class="gg-prenda-precio">1100,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinktool master se – actualización 1 año">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/master-se-actualizacion-1-ano.html"><img src="assets/p/master-se-actualizacion-1-ano.webp" alt="THINKTOOL MASTER SE – Actualización 1 año" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/master-se-actualizacion-1-ano.html">THINKTOOL MASTER SE – Actualización 1 año</a>
+  <div class="gg-prenda-precio">560,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinktool master x – actualización 1 año">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/master-x-actualizacion-1-ano.html"><img src="assets/p/master-x-actualizacion-1-ano.webp" alt="THINKTOOL MASTER X – Actualización 1 año" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/master-x-actualizacion-1-ano.html">THINKTOOL MASTER X – Actualización 1 año</a>
+  <div class="gg-prenda-precio">680,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinktool euro max – actualización 1 año">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-max-actualizacion-1-ano.html"><img src="assets/p/thinktool-max-actualizacion-1-ano.webp" alt="THINKTOOL EURO MAX – Actualización 1 año" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-max-actualizacion-1-ano.html">THINKTOOL EURO MAX – Actualización 1 año</a>
+  <div class="gg-prenda-precio">800,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="electricos" data-nombre="conectores vehiculo electrico 100%">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/conectores-100-electricos.html"><img src="assets/p/conectores-100-electricos.webp" alt="CONECTORES VEHICULO ELECTRICO 100%" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/conectores-100-electricos.html">CONECTORES VEHICULO ELECTRICO 100%</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="accesorios" data-nombre="thinkcar osciloscopio 8 canales">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-osciloscopio-8-canales.html"><img src="assets/p/thinkcar-osciloscopio-8-canales.webp" alt="THINKCAR OSCILOSCOPIO 8 CANALES" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-osciloscopio-8-canales.html">THINKCAR OSCILOSCOPIO 8 CANALES</a>
+  <div class="gg-prenda-precio">400,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios" data-nombre="thinkcar osciloscopio 4 canales scope box">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-osciolscopio-4-canales-scope-box.html"><img src="assets/p/thinkcar-osciolscopio-4-canales-scope-box.webp" alt="THINKCAR OSCILOSCOPIO 4 CANALES SCOPE BOX" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-osciolscopio-4-canales-scope-box.html">THINKCAR OSCILOSCOPIO 4 CANALES SCOPE BOX</a>
+  <div class="gg-prenda-precio">1050,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkcar act20">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-act20.html"><img src="assets/p/thinkcar-act20.webp" alt="THINKCAR ACT20" width="600" height="577" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-act20.html">THINKCAR ACT20</a>
+  <div class="gg-prenda-precio">120,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkcar gdi 300">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-gdi-300.html"><img src="assets/p/thinkcar-gdi-300.webp" alt="THINKCAR GDI 300" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-gdi-300.html">THINKCAR GDI 300</a>
+  <div class="gg-prenda-precio">1300,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="trucks y comercial – actualización 1 año">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/trucks-y-comercial-actualizacion-1-ano.html"><img src="assets/p/trucks-y-comercial-actualizacion-1-ano.webp" alt="TRUCKS Y COMERCIAL – Actualización 1 año" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/trucks-y-comercial-actualizacion-1-ano.html">TRUCKS Y COMERCIAL – Actualización 1 año</a>
+  <div class="gg-prenda-precio">1100,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinktool t78 – actualización 1 año premium">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-t78-actualizacion-1-ano.html"><img src="assets/p/thinktool-t78-actualizacion-1-ano.webp" alt="THINKTOOL T78 – Actualización 1 año PREMIUM" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-t78-actualizacion-1-ano.html">THINKTOOL T78 – Actualización 1 año PREMIUM</a>
+  <div class="gg-prenda-precio">490,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinkcar evd pro – actualización 1 año">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-evd-pro-actualizacion-1-ano.html"><img src="assets/p/thinkcar-evd-pro-actualizacion-1-ano.webp" alt="THINKCAR EVD PRO – Actualización 1 año" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-evd-pro-actualizacion-1-ano.html">THINKCAR EVD PRO – Actualización 1 año</a>
+  <div class="gg-prenda-precio">800,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinkcar 399 – actualización 1 año premium">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-399-actualizacion-1-ano.html"><img src="assets/p/thinkcar-399-actualizacion-1-ano.webp" alt="THINKCAR 399 – Actualización 1 año PREMIUM" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-399-actualizacion-1-ano.html">THINKCAR 399 – Actualización 1 año PREMIUM</a>
+  <div class="gg-prenda-precio">850,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinkcar 391 – actualización 1 año premium">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-391-actualizacion-1-ano.html"><img src="assets/p/thinkcar-391-actualizacion-1-ano.webp" alt="THINKCAR 391 – Actualización 1 año PREMIUM" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-391-actualizacion-1-ano.html">THINKCAR 391 – Actualización 1 año PREMIUM</a>
+  <div class="gg-prenda-precio">680,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinktool expert 195 – actualización 1 año premium">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-expert-195-actualizacion-1-ano.html"><img src="assets/p/thinktool-expert-195-actualizacion-1-ano.webp" alt="THINKTOOL EXPERT 195 – Actualización 1 año PREMIUM" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-expert-195-actualizacion-1-ano.html">THINKTOOL EXPERT 195 – Actualización 1 año PREMIUM</a>
+  <div class="gg-prenda-precio">560,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="software" data-nombre="thinkcar 394 – actualización 1 año premium">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-394-actualizacion-1-ano.html"><img src="assets/p/thinkcar-394-actualizacion-1-ano.webp" alt="THINKCAR 394 – Actualización 1 año PREMIUM" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-394-actualizacion-1-ano.html">THINKCAR 394 – Actualización 1 año PREMIUM</a>
+  <div class="gg-prenda-precio">800,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="accesorios" data-nombre="thinktool trolley">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-trolley.html"><img src="assets/p/thinktool-trolley.webp" alt="THINKTOOL TROLLEY" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-trolley.html">THINKTOOL TROLLEY</a>
+  <div class="gg-prenda-precio">1200,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="camiones" data-nombre="thinktool reader hd">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-reader-hd.html"><img src="assets/p/thinktool-reader-hd.webp" alt="THINKTOOL READER HD" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-reader-hd.html">THINKTOOL READER HD</a>
+  <div class="gg-prenda-precio">1300,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="thinkcar euro t78">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-t78.html"><img src="assets/p/thinkcar-t78.webp" alt="THINKCAR EURO T78" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-t78.html">THINKCAR EURO T78</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="thinktool euro 195">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-expert-195.html"><img src="assets/p/thinktool-expert-195.webp" alt="THINKTOOL EURO 195" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-expert-195.html">THINKTOOL EURO 195</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="electricos" data-nombre="thinkcar ce evc 201 medidor de aislamiento">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-medidor-de-aislamiento.html"><img src="assets/p/thinkcar-medidor-de-aislamiento.webp" alt="THINKCAR CE EVC 201 MEDIDOR DE AISLAMIENTO" width="300" height="300" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-medidor-de-aislamiento.html">THINKCAR CE EVC 201 MEDIDOR DE AISLAMIENTO</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="electricos" data-nombre="thinkcar ce evc 303">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-ce-evc-302.html"><img src="assets/p/thinkcar-ce-evc-302.webp" alt="THINKCAR CE EVC 303" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-ce-evc-302.html">THINKCAR CE EVC 303</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="electricos" data-nombre="thinktool ce evp501">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-ce-evp501.html"><img src="assets/p/thinkcar-ce-evp501.webp" alt="THINKTOOL CE EVP501" width="587" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-ce-evp501.html">THINKTOOL CE EVP501</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="electricos" data-nombre="thinkcar ce evp 803">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-ce-evp803.html"><img src="assets/p/thinkcar-ce-evp803.webp" alt="THINKCAR CE EVP 803" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-ce-evp803.html">THINKCAR CE EVP 803</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="accesorios prueba" data-nombre="thinkpps 150">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkpps-150.html"><img src="assets/p/thinkpps-150.webp" alt="THINKPPS 150" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkpps-150.html">THINKPPS 150</a>
+  <div class="gg-prenda-precio">980,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="thinktool euro 391">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-expert-391.html"><img src="assets/p/thinktool-expert-391.webp" alt="THINKTOOL EURO 391" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-expert-391.html">THINKTOOL EURO 391</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="thinktool euro reader 8">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-reader-8.html"><img src="assets/p/thinktool-reader-8.webp" alt="THINKTOOL EURO READER 8" width="500" height="500" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-reader-8.html">THINKTOOL EURO READER 8</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="thinktool euro 394">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-expert-394.html"><img src="assets/p/thinktool-expert-394.webp" alt="THINKTOOL EURO 394" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-expert-394.html">THINKTOOL EURO 394</a>
+  <div class="gg-prenda-precio">800,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="llaves" data-nombre="tkey 101 llave inteligente universal con 6 unidades de mandos a distancia">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/tkey-101-llave-inteligente-universal-con-6-unidades-de-mandos-a-distancia.html"><img src="assets/p/tkey-101-llave-inteligente-universal-con-6-unidades-de-mandos-a-distancia.webp" alt="TKey 101 llave inteligente universal con 6 unidades de mandos a distancia" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/tkey-101-llave-inteligente-universal-con-6-unidades-de-mandos-a-distancia.html">TKey 101 llave inteligente universal con 6 unidades de mandos a distancia</a>
+  <div class="gg-prenda-precio">725,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="tpms" data-nombre="thinkcar venu 5 pro">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-venu-5-pro.html"><img src="assets/p/thinkcar-venu-5-pro.webp" alt="THINKCAR VENU 5 Pro" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-venu-5-pro.html">THINKCAR VENU 5 Pro</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="tpms" data-nombre="thinkcar venu 90">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-venu-90.html"><img src="assets/p/thinkcar-venu-90.webp" alt="THINKCAR VENU 90" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-venu-90.html">THINKCAR VENU 90</a>
+  <div class="gg-prenda-precio">300,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="adas" data-nombre="thinkcar adas calibration kit">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-adas-calibration-kit.html"><img src="assets/p/thinkcar-adas-calibration-kit.webp" alt="THINKCAR ADAS CALIBRATION KIT" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-adas-calibration-kit.html">THINKCAR ADAS CALIBRATION KIT</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="termicos" data-nombre="thinktool euro 399">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-expert-399.html"><img src="assets/p/thinktool-expert-399.webp" alt="THINKTOOL EURO 399" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-expert-399.html">THINKTOOL EURO 399</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="llaves" data-nombre="thinkcar prog2">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-prog2.html"><img src="assets/p/thinkcar-prog2.webp" alt="THINKCAR PROG2" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-prog2.html">THINKCAR PROG2</a>
+  <div class="gg-prenda-precio">925,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="electricos" data-nombre="thinktool ce evd pro">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinktool-ce-evd.html"><img src="assets/p/thinktool-ce-evd.webp" alt="THINKTOOL CE EVD PRO" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinktool-ce-evd.html">THINKTOOL CE EVD PRO</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+<article class="gg-prenda" data-cats="tpms" data-nombre="thinkcar venu-i pro tpms">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-venu-i-pro-tpms.html"><img src="assets/p/thinkcar-venu-i-pro-tpms.webp" alt="THINKCAR VENU-i Pro TPMS" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-venu-i-pro-tpms.html">THINKCAR VENU-i Pro TPMS</a>
+  <div class="gg-prenda-precio">180,00 € <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="tpms" data-nombre="thinkcar venu 5">
+  <a class="gg-prenda-foto gg-foto-contain" href="producto/thinkcar-venu-5.html"><img src="assets/p/thinkcar-venu-5.webp" alt="THINKCAR VENU 5" width="600" height="600" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/thinkcar-venu-5.html">THINKCAR VENU 5</a>
+  <div class="gg-prenda-precio">Consultar precio</div>
+</article>
+</div>
+    <p class="gg-vacio" data-vacio hidden>No hay productos que coincidan. Prueba con otra búsqueda.</p>
+  </div>
+</main>
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="brand" style="gap:12px">
+        <img src="assets/logo.webp" alt="" style="height:40px;width:auto;height:40px;width:auto;background:#fff;border-radius:6px;padding:6px 10px">
+        <span class="brand-text"><b style="font-family:var(--f-titulo);font-size:22px;color:var(--crema)">THINKCAR España</b><small style="font-size:9px;letter-spacing:.32em;color:var(--brasa-clara);text-transform:uppercase">Equipos de diagnosis para talleres</small></span>
+      </div>
+      <p>Equipos de diagnosis THINKCAR y THINKTOOL para talleres: térmicos, híbridos, eléctricos, camiones y motos, TPMS, programación de llaves y equipamiento.</p>
+    </div>
+    <div class="foot-col"><p class="pie-titulo">Equipos</p><ul><li><a href="tienda.html#termicos">Diagnosis térmicos e híbridos</a></li><li><a href="tienda.html#electricos">Diagnosis eléctricos e híbridos</a></li><li><a href="tienda.html#camiones">Diagnosis camiones</a></li><li><a href="tienda.html#tpms">TPMS</a></li><li><a href="tienda.html#llaves">Programación y llaves</a></li></ul></div>
+<div class="foot-col"><p class="pie-titulo">THINKCAR</p><ul><li><a href="https://thinkcar.es/">Cobertura de vehículos</a></li><li><a href="https://thinkcar.es/">Distribuidores</a></li><li><a href="https://thinkcar.es/">Ir a la web actual</a></li></ul></div>
+<div class="foot-col"><p class="pie-titulo">Contacto</p><ul><li><a href="https://wa.me/34669485945">WhatsApp 669 48 59 45</a></li><li><a href="mailto:info@vagindauto.com">info@vagindauto.com</a></li></ul></div>
+
+  </div>
+  <div class="foot-legal"><span class="foot-legal-tit">Información legal</span><div class="foot-legal-menu"><ul></ul></div></div>
+  <div class="foot-bottom">
+    <span>&copy; <span id="year"></span> THINKCAR España · THINKCAR España</span>
+    <span></span>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/34669485945" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.4 2 7.7L.3 31.6l8.1-2.1c2.2 1.2 4.8 1.9 7.6 1.9 8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.5c-2.5 0-4.8-.7-6.8-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5c-1.3-2-2-4.4-2-6.9C2.9 8.8 8.8 2.9 16 2.9S29.1 8.8 29.1 16 23.2 28.9 16 28.9zm7.2-9.7c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1 .5-.4.4-1.4 1.3-1.4 3.2s1.4 3.7 1.6 4c.2.2 2.7 4.2 6.6 5.9.9.4 1.6.6 2.2.8.9.3 1.7.2 2.4.1.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.4z"/></svg>
+</a>
+
+
+<div class="gg-demo-cinta" aria-hidden="true">Muestra de G&amp;G Elcano para THINKCAR España · productos, fotos y precios de thinkcar.es (22 de noviembre de 2026) · el carrito no cobra</div>
+<script src="assets/tienda.js"></script>
+<script src="assets/tc-datos.js"></script><script src="assets/thinkcar.js"></script>
+</body>
+</html>
