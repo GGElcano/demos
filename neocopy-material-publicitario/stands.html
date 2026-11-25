@@ -142,7 +142,7 @@
 
 @media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
 </style>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <style>
 /* Montador de stands 3D · muestra Neocopy (25-nov-2026) */
 .st{padding:18px 20px 40px;max-width:1680px;margin:0 auto;color:var(--tinta)}
@@ -322,6 +322,10 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 const D = window.ST_DATOS;
 const MOD = Object.fromEntries(D.modulos.map(m => [m.id, m]));
@@ -337,7 +341,7 @@ const MOQUETAS = [['#3B4048', 'Gris marengo'], ['#1B1D21', 'Negra'], ['#7C8187',
 const ALTO_COLGANTE = 3.6;
 
 // ── estado ────────────────────────────────────────────────────────────────
-const st = { ancho: 6, fondo: 3, tipo: 'linea', moqueta: MOQUETAS[0][0], piezas: [], sel: null, iman: true, montaje: false, diseno: false,
+const st = { ancho: 6, fondo: 3, tipo: 'linea', moqueta: MOQUETAS[0][0], piezas: [], sel: null, iman: true, montaje: false, diseno: false, luces: false, gente: true,
   marca: { nombre: 'Tu marca', lema: 'Ven a vernos a nuestro stand', color: COLORES[0], acento: ACENTOS[0] } };
 let uidN = 1;
 const graficas = new Map();   // uid → { img (canvas o imagen), w, h } que sube el cliente
@@ -361,11 +365,20 @@ escena.fog = new THREE.Fog('#E6E9E2', 28, 70);
 const pmrem = new THREE.PMREMGenerator(renderer);
 escena.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 const cam = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
-escena.add(new THREE.HemisphereLight('#ffffff', '#9aa08f', 0.55));
+const hemi = new THREE.HemisphereLight('#ffffff', '#9aa08f', 0.55); escena.add(hemi);
 const sol = new THREE.DirectionalLight('#fff6ea', 1.6);
 sol.position.set(6, 14, 9); sol.castShadow = true; sol.shadow.mapSize.set(2048, 2048); sol.shadow.bias = -0.0004; sol.shadow.radius = 4;
 escena.add(sol, sol.target);
 const relleno = new THREE.DirectionalLight('#e8f0ff', 0.45); relleno.position.set(-8, 6, -4); escena.add(relleno);
+// foco del pabellón: solo se enciende en el modo «Luces»
+const focoSala = new THREE.SpotLight('#FFE9C7', 0, 0, 0.5, 0.8, 2); focoSala.position.set(1.5, 9, 5); focoSala.castShadow = true;
+focoSala.shadow.mapSize.set(1024, 1024); focoSala.shadow.bias = -0.0005; escena.add(focoSala, focoSala.target);
+// resplandor (solo en el modo «Luces»)
+const dpr = Math.min(window.devicePixelRatio, 2);
+const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(4, 4, { type: THREE.HalfFloatType, samples: 4 }));
+composer.setPixelRatio(Math.min(dpr, 1.5)); composer.addPass(new RenderPass(escena, cam));
+const bloom = new UnrealBloomPass(new THREE.Vector2(4, 4), 0.32, 0.6, 0.92); composer.addPass(bloom); composer.addPass(new OutputPass());
+const pintar3d = () => { if (st.luces) composer.render(); else renderer.render(escena, cam); };
 
 // el pabellón: suelo grande con cuadrícula suave
 const suelo = new THREE.Mesh(new THREE.PlaneGeometry(120, 120), new THREE.MeshStandardMaterial({ color: '#CFD3CB', roughness: 0.95 }));
@@ -389,6 +402,13 @@ const MAT = {
   cable: new THREE.LineBasicMaterial({ color: '#555', transparent: true, opacity: 0.6 }),
   haz: new THREE.MeshBasicMaterial({ color: '#FFF3C4', transparent: true, opacity: 0.12, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }),
 };
+
+MAT.gente = new THREE.MeshStandardMaterial({ color: '#8F969C', roughness: 0.85 });
+const texMoqueta = (() => {                     // grano de moqueta
+  const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d'), d = x.createImageData(128, 128);
+  for (let i = 0; i < d.data.length; i += 4) { const v = 205 + Math.random() * 50; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+  x.putImageData(d, 0, 0); const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; return t;
+})();
 
 // ── gráficas: con la marca o la que sube el cliente ───────────────────────
 function lienzoGrafica(m) {
@@ -510,6 +530,8 @@ function hacerMuro(m, tex, p) {
     cabeza.position.set(x, alto + 0.02, z + 0.38); cabeza.rotation.x = -0.6; G.add(cabeza);
     const haz = new THREE.Mesh(new THREE.ConeGeometry(0.55, 1.5, 24, 1, true), MAT.haz);
     haz.position.set(x, alto - 0.7, z + 0.2); haz.rotation.x = 0.27; G.add(haz);
+    const sp = new THREE.SpotLight('#FFF0D2', st.luces ? 9 : 2, 6, 0.62, 0.75, 1.4); sp.position.set(x, alto + 0.05, z + 0.42);
+    sp.target.position.set(x, alto * 0.45, z); G.add(sp, sp.target);
   }
   return G;
 }
@@ -551,10 +573,11 @@ function hacerMostrador(m, tex) {
 }
 function hacerLed(m, tex) {
   const G = new THREE.Group();
-  const luz = new THREE.MeshStandardMaterial({ map: tex, emissive: '#ffffff', emissiveMap: tex, emissiveIntensity: 0.75, roughness: 0.6 });
-  const lado = new THREE.MeshStandardMaterial({ color: '#FFFFFF', emissive: '#FFF8E8', emissiveIntensity: 0.35, roughness: 0.7 });
+  const luz = new THREE.MeshStandardMaterial({ map: tex, emissive: '#ffffff', emissiveMap: tex, emissiveIntensity: st.luces ? 1.25 : 0.75, roughness: 0.6 });
+  const lado = new THREE.MeshStandardMaterial({ color: '#FFFFFF', emissive: '#FFF8E8', emissiveIntensity: st.luces ? 0.8 : 0.35, roughness: 0.7 });
   const cuerpo = malla(new RoundedBoxGeometry(m.w, m.h - 0.04, m.d, 3, 0.02), [lado, lado, lado, lado, luz, lado]); cuerpo.position.y = (m.h - 0.04) / 2; G.add(cuerpo);
   const tapa = malla(new RoundedBoxGeometry(m.w + 0.04, 0.04, m.d + 0.04, 2, 0.015), MAT.blanco); tapa.position.y = m.h - 0.02; G.add(tapa);
+  if (st.luces) { const l = new THREE.PointLight('#FFF6E6', 1.6, 4, 1.6); l.position.set(0, m.h * 0.5, m.d / 2 + 0.4); G.add(l); }
   return G;
 }
 function hacerMesa(m, tex) {
@@ -566,9 +589,10 @@ function hacerMesa(m, tex) {
 function hacerCaja(m, tex) {
   const G = new THREE.Group(), y0 = 0.06;
   const marco = malla(new RoundedBoxGeometry(m.w + 0.06, m.h + 0.06, 0.08, 2, 0.01), MAT.alu); marco.position.y = y0 + m.h / 2; G.add(marco);
-  const luz = new THREE.MeshStandardMaterial({ map: tex, emissive: '#ffffff', emissiveMap: tex, emissiveIntensity: 0.85, roughness: 0.5 });
+  const luz = new THREE.MeshStandardMaterial({ map: tex, emissive: '#ffffff', emissiveMap: tex, emissiveIntensity: st.luces ? 1.3 : 0.85, roughness: 0.5 });
   [1, -1].forEach(s => { const cara = malla(new THREE.PlaneGeometry(m.w, m.h), luz); cara.position.set(0, y0 + m.h / 2, s * 0.041); if (s < 0) cara.rotation.y = Math.PI; G.add(cara); });
   [-1, 1].forEach(s => { const pie = malla(new THREE.BoxGeometry(0.05, 0.03, m.d), MAT.alu); pie.position.set(s * m.w * 0.4, 0.015, 0); G.add(pie); });
+  if (st.luces) [1, -1].forEach(s => { const l = new THREE.PointLight('#FFFFFF', 1.8, 4.5, 1.6); l.position.set(0, 1.2, s * 0.5); G.add(l); });
   return G;
 }
 function hacerColgante(m, tex) {
@@ -612,7 +636,8 @@ function textoSuelo(txt, w) {
 function construirStand() {
   grupoStand.clear();
   const W = st.ancho, F = st.fondo;
-  const moq = malla(new THREE.BoxGeometry(W, 0.02, F), new THREE.MeshStandardMaterial({ color: st.moqueta, roughness: 1 }), false); moq.position.y = 0.01; grupoStand.add(moq);
+  texMoqueta.repeat.set(W * 1.6, F * 1.6);
+  const moq = malla(new THREE.BoxGeometry(W, 0.02, F), new THREE.MeshStandardMaterial({ color: st.moqueta, map: texMoqueta, roughness: 1 }), false); moq.position.y = 0.01; grupoStand.add(moq);
   const borde = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(W, 0.021, F)), new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.35 }));
   borde.position.y = 0.011; grupoStand.add(borde);
   const lados = { linea: ['fondo', 'izq', 'der'], esquina: ['fondo', 'izq'], peninsula: ['fondo'], isla: [] }[st.tipo];
@@ -635,7 +660,49 @@ function construirStand() {
   const cotaA = cartel(m2(W) + ' m'); cotaA.position.set(0, 0.25, F / 2 + 0.45); grupoStand.add(cotaA);
   const cotaF = cartel(m2(F) + ' m'); cotaF.position.set(W / 2 + 0.5, 0.25, 0); grupoStand.add(cotaF);
   const pasillo = textoSuelo('PASILLO', Math.max(4, W)); pasillo.position.set(0, 0.003, F / 2 + 1.3); grupoStand.add(pasillo);
+  // los stands de al lado, para que se vea como en la feria
+  [-1, 1].forEach((sg, i) => {
+    const pared = lados.includes(sg < 0 ? 'izq' : 'der'), aw = 4, x0 = sg * (W / 2 + (pared ? 0.1 : 2.6) + aw / 2), col = ['#55606B', '#6A5A50'][i];
+    const losa = malla(new THREE.BoxGeometry(aw, 0.02, F), new THREE.MeshStandardMaterial({ color: col, roughness: 1 }), false); losa.position.set(x0, 0.01, 0); grupoStand.add(losa);
+    const fondoV = malla(new THREE.BoxGeometry(aw, H, e), MAT.vecino); fondoV.position.set(x0, H / 2, -F / 2 - e / 2); grupoStand.add(fondoV);
+    const ladoV = malla(new THREE.BoxGeometry(e, H, F), MAT.vecino); ladoV.position.set(x0 + sg * aw / 2, H / 2, 0); grupoStand.add(ladoV);
+    const franja = malla(new THREE.BoxGeometry(aw - 0.4, 0.5, 0.03), new THREE.MeshStandardMaterial({ color: col, roughness: 0.8 })); franja.position.set(x0, H - 0.45, -F / 2 + 0.03); grupoStand.add(franja);
+    const mesa = malla(new RoundedBoxGeometry(1.2, 1, 0.5, 3, 0.04), MAT.blanco); mesa.position.set(x0, 0.5, F / 2 - 0.6); grupoStand.add(mesa);
+  });
+  if (st.gente) [[-W * 0.22, F / 2 + 0.95, 0.25, 1], [-W * 0.22 + 0.6, F / 2 + 1.15, -0.5, 0.94], [W * 0.3, F / 2 + 1.7, 2.6, 1.03]].forEach(q => grupoStand.add(persona(...q)));
+  focoSala.target.position.set(0, 0.8, 0);
   const s = Math.max(W, F) * 0.9 + 3; Object.assign(sol.shadow.camera, { left: -s, right: s, top: s, bottom: -s, near: 1, far: 40 }); sol.shadow.camera.updateProjectionMatrix();
+}
+
+function persona(x, z, giro, esc2) {           // figura a escala (1,72 m) para hacerse una idea del tamaño
+  const G = new THREE.Group(), M = MAT.gente, c = (r, l) => new THREE.CapsuleGeometry(r, l, 6, 14);
+  const torso = malla(c(0.15, 0.4), M); torso.position.y = 1.17; torso.scale.z = 0.65; G.add(torso);
+  const cabeza = malla(new THREE.SphereGeometry(0.105, 20, 14), M); cabeza.position.y = 1.615; G.add(cabeza);
+  [-1, 1].forEach(sg => {
+    const pierna = malla(c(0.068, 0.72), M); pierna.position.set(sg * 0.085, 0.43, 0); G.add(pierna);
+    const brazo = malla(c(0.045, 0.52), M); brazo.position.set(sg * 0.215, 1.1, 0); brazo.rotation.z = sg * 0.09; G.add(brazo);
+  });
+  G.position.set(x, 0, z); G.rotation.y = giro; G.scale.setScalar(esc2); return G;
+}
+function aplicarLuces() {
+  const n = st.luces;
+  escena.background.set(n ? '#101216' : '#E6E9E2'); escena.fog.color.copy(escena.background);
+  hemi.intensity = n ? 0.1 : 0.55; sol.intensity = n ? 0.15 : 1.6; relleno.intensity = n ? 0.05 : 0.45; escena.environmentIntensity = n ? 0.16 : 1;
+  suelo.material.color.set(n ? '#4A4E55' : '#CFD3CB'); suelo.material.roughness = n ? 0.5 : 0.95; rejilla.visible = !n;
+  focoSala.intensity = n ? 120 : 0; MAT.haz.opacity = n ? 0.045 : 0.12;
+  st.piezas.forEach(repintarPieza); pintarSeleccion();
+  $('[data-luces]').setAttribute('aria-pressed', n); $('[data-gente]').setAttribute('aria-pressed', st.gente);
+}
+const anims = [];
+function aparecer(g, espera) { if (!g) return; g.scale.setScalar(0.001); anims.push({ g, t0: performance.now() + espera }); }
+function moverAnims(t) {
+  for (let i = anims.length - 1; i >= 0; i--) {
+    const a = anims[i], k = (t - a.t0) / 520; if (k < 0) continue;
+    if (!a.g.parent) { anims.splice(i, 1); continue; }
+    const q = Math.min(1, k), c1 = 1.70158, e = 1 + (c1 + 1) * Math.pow(q - 1, 3) + c1 * Math.pow(q - 1, 2);
+    a.g.scale.setScalar(Math.max(0.001, e));
+    if (q >= 1) { a.g.scale.setScalar(1); anims.splice(i, 1); if (!anims.length) pintarSeleccion(); }
+  }
 }
 
 // ── huella de cada pieza (para encajar y avisar) ──────────────────────────
@@ -780,7 +847,7 @@ function anadir(id, donde) {
   const m = MOD[id], pos = donde || sitioLibre(m);
   const p = { uid: nuevoUid(), m: id, x: pos.x, z: pos.z, r: 0, focos: 0 };
   if (donde) Object.assign(p, encajarPos(p, pos.x, pos.z));
-  st.piezas.push(p); repintarPieza(p); seleccionar(p.uid); guardarHist(); pintarPresupuesto();
+  st.piezas.push(p); repintarPieza(p); aparecer(mallas.get(p.uid), 0); seleccionar(p.uid); guardarHist(); pintarPresupuesto();
   aviso(`${m.corto} añadido al stand.`);
 }
 function girar(g) {
@@ -845,6 +912,8 @@ $('[data-tipo]').addEventListener('change', e => { st.tipo = e.target.value; con
 $('[data-moquetas]').innerHTML = MOQUETAS.map(([c, n]) => `<button type="button" data-c="${c}" style="background:${c}" title="Moqueta ${n.toLowerCase()}" aria-label="Moqueta ${n.toLowerCase()}"></button>`).join('');
 $$('[data-moquetas] button').forEach(b => b.addEventListener('click', () => { st.moqueta = b.dataset.c; construirStand(); pintarBarra(); guardarHist(); }));
 $('[data-iman]').addEventListener('click', () => { st.iman = !st.iman; pintarBarra(); });
+$('[data-luces]').addEventListener('click', () => { st.luces = !st.luces; aplicarLuces(); });
+$('[data-gente]').addEventListener('click', () => { st.gente = !st.gente; construirStand(); $('[data-gente]').setAttribute('aria-pressed', st.gente); });
 $('[data-vaciar]').addEventListener('click', () => { if (!st.piezas.length) return; st.piezas = []; graficas.clear(); pintarPiezas(); seleccionar(null); guardarHist(); pintarPresupuesto(); aviso('Stand vacío. Puedes deshacerlo con ↶.'); });
 
 // ── vistas de cámara ──────────────────────────────────────────────────────
@@ -857,23 +926,23 @@ function pose(v) {
   else pos = new THREE.Vector3(W * 0.75 + 1.5, M * 0.75 * asp + 1.6, F / 2 + M * 1.05 * asp + 2.2);
   return { pos, obj };
 }
-function vista(v, sinAnim) {
+function vista(v, sinAnim, dur = 650) {
   vistaActual = v; controles.autoRotate = v === 'paseo'; controles.autoRotateSpeed = 1.4;
   $$('[data-vista]').forEach(b => b.setAttribute('aria-pressed', b.dataset.vista === v));
   const { pos, obj } = pose(v);
   if (sinAnim) { cam.position.copy(pos); controles.target.copy(obj); controles.update(); return; }
   const p0 = cam.position.clone(), o0 = controles.target.clone(), t0 = performance.now();
-  animCam = (t) => { const k = Math.min(1, (t - t0) / 650), e = 1 - Math.pow(1 - k, 3); cam.position.lerpVectors(p0, pos, e); controles.target.lerpVectors(o0, obj, e); if (k >= 1) animCam = null; };
+  animCam = (t) => { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); cam.position.lerpVectors(p0, pos, e); controles.target.lerpVectors(o0, obj, e); if (k >= 1) animCam = null; };
 }
 $$('[data-vista]').forEach(b => b.addEventListener('click', () => vista(b.dataset.vista)));
 
 // ── tamaño y bucle ────────────────────────────────────────────────────────
 function ajustar() {
   const r = lienzo.getBoundingClientRect(); if (!r.width || !r.height) return;
-  renderer.setSize(r.width, r.height, false); cam.aspect = r.width / r.height; cam.updateProjectionMatrix();
+  renderer.setSize(r.width, r.height, false); composer.setSize(r.width, r.height); cam.aspect = r.width / r.height; cam.updateProjectionMatrix();
 }
 new ResizeObserver(ajustar).observe(lienzo);
-function bucle(t) { requestAnimationFrame(bucle); if (animCam) animCam(t); controles.update(); renderer.render(escena, cam); }
+function bucle(t) { requestAnimationFrame(bucle); if (animCam) animCam(t); moverAnims(t); controles.update(); pintar3d(); }
 
 // ── biblioteca de módulos (tocar o arrastrar) ─────────────────────────────
 let filtro = 'todos';
@@ -913,7 +982,7 @@ function cargarPlantilla(id) {
   const pl = D.plantillas.find(p => p.id === id); if (!pl) return;
   st.ancho = pl.ancho; st.fondo = pl.fondo; st.tipo = pl.tipo; graficas.clear();
   st.piezas = pl.piezas.map(x => ({ uid: nuevoUid(), m: x.m, x: x.x, z: x.z, r: x.r || 0, focos: x.focos || 0 }));
-  st.sel = null; construirStand(); pintarPiezas(); pintarBarra(); seleccionar(null); guardarHist(); pintarPresupuesto(); vista('3d');
+  st.sel = null; construirStand(); pintarPiezas(); st.piezas.forEach((p, i) => aparecer(mallas.get(p.uid), 150 + i * 110)); pintarBarra(); seleccionar(null); guardarHist(); pintarPresupuesto(); vista('3d');
   $$('[data-pl]').forEach(b => b.classList.toggle('activo', b.dataset.pl === id));
 }
 
@@ -1059,7 +1128,7 @@ $('[data-form]').addEventListener('submit', e => {
 function capturar(v) {
   const pos = cam.position.clone(), obj = controles.target.clone(), sel = caja; if (sel) sel.visible = false;
   if (v) { const q = pose(v); cam.position.copy(q.pos); cam.lookAt(q.obj); }
-  renderer.render(escena, cam); const url = renderer.domElement.toDataURL('image/jpeg', 0.9);
+  pintar3d(); const url = renderer.domElement.toDataURL('image/jpeg', 0.9);
   cam.position.copy(pos); controles.target.copy(obj); controles.update(); if (sel) sel.visible = true; return url;
 }
 $('[data-captura]').addEventListener('click', () => {
@@ -1117,6 +1186,7 @@ function arrancar() {
   if (!cargado) cargarPlantilla('p6x3');
   else { hist.push(foto()); botonesHist(); }
   pintarBarra(); pintarPresupuesto(); ajustar(); vista('3d', true);
+  cam.position.set(cam.position.x * 1.2 - 10, cam.position.y * 1.9, cam.position.z * 1.7); vista('3d', false, 1900);   // entrada volando
   $('[data-cargando]').remove();
   requestAnimationFrame(bucle);
 }
@@ -1247,6 +1317,8 @@ function arrancar() {
         <div class="st-acc">
           <button type="button" data-deshacer title="Deshacer (Ctrl+Z)" aria-label="Deshacer">↶</button>
           <button type="button" data-rehacer title="Rehacer (Ctrl+Y)" aria-label="Rehacer">↷</button>
+          <button type="button" data-luces aria-pressed="false" title="Apaga el pabellón y enciende los focos y las cajas de luz">Luces</button>
+          <button type="button" data-gente aria-pressed="true" title="Personas a escala para ver el tamaño">Personas</button>
           <button type="button" data-iman aria-pressed="true" title="Imán: encaja las piezas entre sí y con los bordes">Imán</button>
           <button type="button" data-captura title="Descargar una imagen del stand">Foto</button>
           <button type="button" data-vaciar title="Quitar todas las piezas">Vaciar</button>
