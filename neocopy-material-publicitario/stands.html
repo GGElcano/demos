@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Diseña tu stand en 3D · Neocopy</title>
+<meta name="description" content="Monta tu stand de feria en 3D con los muros de tela, pop ups, mostradores, cajas de luz y colgantes de Neocopy, ponle tu marca y mira el precio al momento.">
+<meta name="theme-color" content="#16200D">
+<!-- Maqueta: mientras vive en la carpeta de demos va SIN indexar, para no competir en
+     Google con la tienda real del cliente. Al mudarla a su dominio se quita esta línea. -->
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://ggelcano.github.io/demos/neocopy-material-publicitario/stands.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Neocopy">
+<meta property="og:title" content="Diseña tu stand en 3D · Neocopy">
+<meta property="og:description" content="Monta tu stand de feria en 3D con los muros de tela, pop ups, mostradores, cajas de luz y colgantes de Neocopy, ponle tu marca y mira el precio al momento.">
+<meta property="og:url" content="https://ggelcano.github.io/demos/neocopy-material-publicitario/stands.html">
+<meta property="og:image" content="https://ggelcano.github.io/demos/neocopy-material-publicitario/assets/formulate-5m.webp">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon-neocopy.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;family=Lato:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tienda.css">
+
+<style>
+:root{
+  --crema:#F6F8F1; --hueso:#FFFFFF; --tierra:#1E2A12;
+  --tierra-2:#16200D; --carbon:#111709; --tinta:#1F2614;
+  --gris:#5E6655; --linea:#E3E9D8; --brasa:#6FA524;
+  --brasa-clara:#F5D20A; --brasa-2:#578419;
+  --f-titulo:'Manrope',system-ui,sans-serif; --f-texto:'Lato',system-ui,sans-serif;
+}
+/* Neocopy (16-nov-2026): el verde de su web y el amarillo de su rombo, sobre blanco */
+.gg-mitad-txt b,.gg-baldosa-txt b,.gg-bloque-cab h2,.gg-listado-cab h1,.gg-relacionados h2{font-weight:800;letter-spacing:-.01em}
+.gg-ficha h1{font-weight:800;line-height:1.05}
+.topbar{letter-spacing:.08em}
+.topbar b{color:#F5D20A;font-weight:700}
+.nav-cta{background:var(--brasa)!important;border-color:var(--brasa)!important;color:#fff!important}
+.nav-cta:hover{background:var(--brasa-2)!important}
+.gg-prenda-foto{background:#F4F1F0}
+.gg-prenda-foto img{mix-blend-mode:multiply}
+.gg-ficha-foto{background:#F4F1F0}
+.gg-ficha-foto img{mix-blend-mode:multiply}
+.gg-variante-bola{width:16px;height:16px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.gg-variantes-fila{max-height:260px;overflow:auto}
+/* 16-oct-2026 (Sergio): cabecera con vídeo a lo Deus Ex Machina y botones a la DERECHA */
+/* página de profesionales */
+@media(max-width:600px){.gg-prenda-nombre{font-size:16px;line-height:1.25}.gg-prenda-precio{font-size:14px}.hero h1{font-size:clamp(34px,10vw,44px)}}
+@media(max-width:600px){.gg-cesta-tabla{display:block;max-width:100%;overflow-x:auto;font-size:14px}.gg-cesta-tabla th{font-size:10px;letter-spacing:.04em;white-space:nowrap}.gg-cesta-tabla td,.gg-cesta-tabla th{padding:10px 6px}.gg-cesta-tabla td:nth-child(n+3){white-space:nowrap}.gg-cesta-tabla th:nth-child(2),.gg-cesta-tabla td:nth-child(2){display:none}.gg-cesta-tabla img{width:44px;height:auto}}
+.gg-mitad-contain img,.gg-baldosa-contain img{mix-blend-mode:multiply}
+.gg-mitad-contain{background:#fff}
+.gg-variantes-fila .gg-variante{text-align:left}
+
+/* 16-nov-2026 (3.ª vuelta, Sergio: «muy pobre, básate en una página real»): estructura de expandmedia.com
+   (fabricante sueco de displays): foto a sangre arriba, mosaico de losas con pie blanco, lema grande en texto,
+   banda ancha, familias en rejilla. Sin filtros ni trama sobre las fotos. */
+.hero.hero-min{background:#e9ebe6;min-height:0;display:block;padding:0;height:min(72vh,680px)}
+.hero-min .hero-img-overlay{display:none}
+.hero-min .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.hero-min .hero-content-min{position:absolute;left:max(24px,calc((100% - 1180px)/2));bottom:44px;width:auto;max-width:470px;margin:0;padding:30px 34px 32px;background:rgba(255,255,255,.94);display:block;color:var(--tinta);box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.hero-min .hero-content-min h1{max-width:none;margin:0 0 22px;color:var(--tinta);text-shadow:none;font-weight:800;font-size:clamp(28px,2.7vw,38px);letter-spacing:-.02em;line-height:1.06}
+.hero-min .hero-content-min h1 em{display:block;font-style:normal;font-family:var(--f-texto);font-weight:400;font-size:17px;letter-spacing:0;line-height:1.45;color:var(--gris);margin-top:12px}
+.hero-min .quick-actions{display:flex;gap:10px;flex-wrap:wrap;margin:0;justify-content:flex-start}
+.hero-min .btn-primary{background:var(--brasa);border-color:var(--brasa);color:#fff}
+.hero-min .btn-primary:hover,.nc-banda .btn-primary:hover{background:var(--brasa-2);border-color:var(--brasa-2);color:#fff;transform:none}
+.hero-min .btn-ghost{color:var(--tinta);border-color:var(--tinta);background:transparent}
+.hero-min .btn-ghost:hover{background:var(--tinta);color:#fff}
+.hero-min .hero-pausa{border-color:rgba(0,0,0,.25)!important;background:rgba(255,255,255,.85)!important}
+.hero-min .hero-pausa svg rect,.hero-min .hero-pausa svg path{fill:var(--tinta)}
+.gg-portada{background:#fff}
+.gg-mitades:empty,.gg-colecciones{display:none}
+.nc-ancho{max-width:1180px;margin:0 auto;padding:0 24px}
+.nc-mosaico{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:56px}
+.nc-losa{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:#eef0eb;color:var(--tinta)}
+.nc-losa img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.nc-losa:hover img{transform:scale(1.035)}
+.nc-losa.nc-clara{background:#fff;border:1px solid var(--linea)}
+.nc-losa.nc-clara img{object-fit:contain;padding:4% 4% 15%}
+.nc-pie{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:rgba(255,255,255,.95);padding:13px 22px;text-align:center;min-width:62%;max-width:88%;box-shadow:0 6px 24px rgba(0,0,0,.1)}
+.nc-pie b{display:block;font-family:var(--f-titulo);font-weight:800;font-size:16px;line-height:1.2}
+.nc-pie span{display:block;font-size:14px;color:var(--gris);margin-top:3px}
+.nc-nota{position:absolute;top:10px;right:10px;font-style:normal;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.45);color:#fff;padding:3px 8px}
+.nc-lema{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:10px 6% 10px 4%}
+.nc-lema h2{font-family:var(--f-titulo);font-weight:800;font-size:clamp(30px,3.6vw,48px);line-height:1.04;letter-spacing:-.025em;color:var(--tinta);margin:0 0 16px}
+.nc-lema p{font-size:17px;line-height:1.55;color:var(--gris);margin:0 0 18px;max-width:42ch}
+.nc-enlace{font-weight:700;color:var(--brasa-2);border-bottom:2px solid var(--brasa);padding-bottom:2px}
+.nc-pasos{margin:0 0 20px;padding:0;list-style:none;counter-reset:p;display:grid;gap:11px}
+.nc-pasos li{counter-increment:p;position:relative;padding-left:44px;font-size:16px;line-height:1.45;color:var(--gris)}
+.nc-pasos li b{color:var(--tinta)}
+.nc-pasos li::before{content:counter(p);position:absolute;left:0;top:-3px;width:30px;height:30px;border-radius:50%;background:var(--brasa);color:#fff;font-weight:800;font-size:14px;display:grid;place-items:center}
+.nc-banda{position:relative;margin-top:56px}
+.nc-banda img{width:100%;height:auto;aspect-ratio:21/9;object-fit:cover;object-position:center 58%;display:block}
+.nc-banda-txt{position:absolute;right:60px;top:50%;transform:translateY(-50%);width:340px;background:rgba(255,255,255,.95);padding:28px 30px;box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.nc-banda-txt h2{font-family:var(--f-titulo);font-weight:800;font-size:26px;line-height:1.1;letter-spacing:-.02em;margin:0 0 10px;color:var(--tinta)}
+.nc-banda-txt p{font-size:15px;line-height:1.5;color:var(--gris);margin:0 0 18px}
+.nc-banda .btn-primary{background:var(--brasa);border-color:var(--brasa);color:#fff}
+.nc-familias{margin-top:64px}
+.nc-rotulo{font-family:var(--f-titulo);font-weight:700;font-size:15px;letter-spacing:.16em;text-transform:uppercase;text-align:center;color:var(--tinta);margin:0 0 26px}
+.nc-rejilla{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.nc-rejilla a{display:block;text-align:center;color:var(--tinta)}
+.nc-rejilla img{width:100%;aspect-ratio:1;object-fit:contain;background:#f5f6f3;padding:9%;display:block;transition:background .3s}
+.nc-rejilla a:hover img{background:#ecefe6}
+.nc-rejilla b{display:block;font-family:var(--f-titulo);font-weight:800;font-size:18px;margin-top:14px}
+.nc-rejilla span{font-size:14px;color:var(--gris)}
+.nc-mas{text-align:center;margin:30px 0 0;font-size:15px;color:var(--gris);line-height:2}
+.nc-mas a{color:var(--tinta);border-bottom:1px solid var(--linea)}
+.nc-mas a:hover{border-color:var(--brasa)}
+.nc-dos{margin-bottom:26px}
+@media(max-width:900px){
+  .hero.hero-min{height:auto}
+  .hero-min .hero-video{position:relative;aspect-ratio:1;height:auto}
+  .hero-min .hero-content-min{position:relative;left:auto;bottom:auto;max-width:none;box-shadow:none;padding:24px 22px 30px;background:#fff}
+  .nc-ancho{padding:0 16px}
+  .nc-mosaico{grid-template-columns:1fr;gap:18px;margin-top:30px}
+  .nc-lema{padding:14px 4px}
+  .nc-banda{margin-top:30px}
+  .nc-banda img{aspect-ratio:4/3}
+  .nc-banda-txt{position:static;transform:none;width:auto;box-shadow:none;padding:20px 4px 0}
+  .nc-familias{margin-top:40px}
+  .nc-rejilla{grid-template-columns:1fr 1fr;gap:16px}
+  .nc-pie{min-width:80%;padding:11px 14px}
+}
+/* 18-nov-2026: pieza de la portada que lleva al personalizador */
+.nc-diseno{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:0;align-items:stretch;margin-top:56px;background:#fff;border:1px solid var(--linea)}
+.nc-diseno-foto{display:block;background:#F4F1F0;overflow:hidden}
+.nc-diseno-foto img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;max-height:520px}
+.nc-diseno-txt{padding:40px 44px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.nc-diseno-txt .nc-diseno-rot{margin:0;text-align:left;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--brasa-2)}
+.nc-diseno-txt h2{font-family:var(--f-titulo);font-weight:800;font-size:clamp(26px,2.6vw,36px);line-height:1.08;letter-spacing:-.02em;margin:0;color:var(--tinta)}
+.nc-diseno-txt p{font-size:15px;line-height:1.6;color:var(--gris);margin:0}
+.nc-diseno-txt ul{margin:2px 0 8px;padding:0;list-style:none;display:grid;gap:7px;font-size:14.5px;color:var(--tinta)}
+.nc-diseno-txt li{padding-left:22px;position:relative}
+.nc-diseno-txt li::before{content:"";position:absolute;left:0;top:.5em;width:10px;height:10px;background:var(--brasa);border-radius:50%}
+.nc-diseno-txt .btn{align-self:flex-start;background:var(--brasa);border-color:var(--brasa);color:#fff}
+.nc-diseno-txt .btn:hover{background:var(--brasa-2);border-color:var(--brasa-2);transform:none}
+@media(max-width:820px){.nc-diseno{grid-template-columns:1fr;margin-top:30px}.nc-diseno-txt{padding:24px 20px 28px}.nc-diseno-foto img{max-height:320px}}
+
+@media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>
+/* Montador de stands 3D · muestra Neocopy (25-nov-2026) */
+.st{padding:18px 20px 40px;max-width:1680px;margin:0 auto;color:var(--tinta)}
+.st section{padding:0}
+.st [hidden]{display:none!important}
+.st h1,.st h2{font-family:var(--f-titulo);color:var(--tinta)}
+.st-cab{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:center;margin-bottom:12px}
+.st-rot{margin:0;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--brasa-2)}
+.st-cab h1{font-size:clamp(24px,2.4vw,32px);line-height:1.1;margin:4px 0 4px;font-weight:800}
+.st-sub{margin:0;color:var(--gris);font-size:15px;line-height:1.5;max-width:640px}
+@media (min-width:901px){.st-plantilla span{display:none}.st-plantilla{min-width:0;padding:9px 14px}}
+.st-plantillas{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.st-plantilla{border:1.5px solid var(--linea);background:#fff;border-radius:12px;padding:9px 13px;text-align:left;cursor:pointer;font:inherit;color:var(--tinta);min-width:150px;max-width:210px;transition:border-color .15s,box-shadow .15s}
+.st-plantilla b{display:block;font:800 14px var(--f-titulo)}
+.st-plantilla span{display:block;font-size:12px;color:var(--gris);line-height:1.35;margin-top:2px}
+.st-plantilla:hover,.st-plantilla.activo{border-color:var(--brasa);box-shadow:0 0 0 3px rgba(111,165,36,.18)}
+
+.st-app{display:grid;grid-template-columns:300px minmax(0,1fr) 330px;gap:14px;height:calc(100vh - 40px);min-height:600px;max-height:920px}
+.st-izq,.st-der{background:#fff;border:1.5px solid var(--linea);border-radius:14px;overflow:auto;min-height:0}
+.st-der{display:flex;flex-direction:column}
+.st-panel{padding:14px 16px}
+.st-der .st-panel+.st-panel{border-top:1.5px solid var(--linea)}
+.st-panel h2{font-size:17px;margin:0 0 8px;font-weight:800}
+.st-tabs{display:none}
+.st-tabs-d{display:flex;border-bottom:1.5px solid var(--linea);position:sticky;top:0;background:#fff;z-index:2}
+.st-tabs-d button,.st-tabs button{flex:1;border:0;background:none;padding:12px 6px;font:700 14px var(--f-texto);color:var(--gris);cursor:pointer;border-bottom:3px solid transparent;min-height:46px}
+.st-tabs-d button[aria-selected="true"],.st-tabs button[aria-selected="true"]{color:var(--tinta);border-bottom-color:var(--brasa)}
+@media (min-width:901px){.st-panel[data-lado="izq"]:not(.activo-d){display:none}}
+
+.st-filtros{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.st-filtros button{border:1.5px solid var(--linea);background:#fff;border-radius:999px;padding:6px 11px;font:700 12.5px var(--f-texto);color:var(--tinta);cursor:pointer;min-height:34px}
+.st-filtros button[aria-pressed="true"]{background:var(--tierra);border-color:var(--tierra);color:#fff}
+.st-nota{font-size:13px;color:var(--gris);line-height:1.45;margin:0 0 10px}
+.st-lista{display:grid;gap:8px}
+.st-mod{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:10px;align-items:center;border:1.5px solid var(--linea);border-radius:11px;padding:7px 9px 7px 7px;background:#fff;cursor:grab;text-align:left;font:inherit;color:var(--tinta);width:100%;transition:border-color .15s,transform .15s}
+.st-mod:hover{border-color:var(--brasa)}
+.st-mod:active{cursor:grabbing}
+.st-mod img{width:64px;height:64px;object-fit:contain;background:#F4F6F0;border-radius:8px}
+.st-mod b{display:block;font-size:14px;line-height:1.25}
+.st-mod small{display:block;font-size:12px;color:var(--gris);margin-top:2px}
+.st-mod em{font-style:normal;font-weight:800;font-size:14px;white-space:nowrap}
+.st-mod i{display:block;font-style:normal;font-size:11px;color:var(--brasa-2);font-weight:700;text-align:right}
+
+.st-campo{display:grid;gap:6px;margin:0 0 14px;font-size:13px;font-weight:700;color:var(--tinta)}
+.st-campo input[type=text],.st-campo input:not([type]),.st-campo input[type=email],.st-campo input[type=tel],.st-campo input[type=date],.st-campo textarea{font:400 16px var(--f-texto);border:1.5px solid var(--linea);border-radius:9px;padding:9px 11px;width:100%;box-sizing:border-box;color:var(--tinta);background:#fff}
+.st-campo-fila{grid-template-columns:auto 1fr auto;align-items:center}
+.st-campo-fila input[type=range]{width:100%;accent-color:var(--brasa)}
+.st-colores{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.st-colores button{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px var(--linea);cursor:pointer;padding:0}
+.st-colores button[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--brasa)}
+.st-colores input[type=color]{width:34px;height:32px;border:0;padding:0;background:none;cursor:pointer}
+.st-subir{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.st-estado{margin:0;font-size:12.5px;font-weight:600;color:var(--gris)}
+.st-estado.bien{color:#2E7D32}.st-estado.mal{color:#B3261E}
+.st-cant{display:inline-flex;align-items:center;gap:10px}
+.st-cant button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--linea);background:#fff;font:700 18px var(--f-texto);cursor:pointer;color:var(--tinta)}
+
+.st-centro{display:flex;flex-direction:column;min-width:0;min-height:0;gap:10px}
+.st-barra{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;background:#fff;border:1.5px solid var(--linea);border-radius:14px;padding:8px 10px}
+.st-medida{display:flex;align-items:center;gap:6px;font-weight:700;font-size:14px}
+.st-medida input{width:62px;font:700 15px var(--f-texto);border:1.5px solid var(--linea);border-radius:8px;padding:6px 6px;text-align:center}
+.st-barra select{font:600 14px var(--f-texto);border:1.5px solid var(--linea);border-radius:8px;padding:7px 8px;background:#fff;color:var(--tinta);min-height:36px}
+.st-moqueta{display:flex;gap:5px}
+.st-moqueta button{width:24px;height:24px;border-radius:6px;border:2px solid #fff;box-shadow:0 0 0 1.5px var(--linea);cursor:pointer;padding:0}
+.st-moqueta button[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--brasa)}
+.st-vistas,.st-acc{display:flex;gap:4px;flex-wrap:wrap}
+.st-vistas button,.st-acc button{border:1.5px solid var(--linea);background:#fff;border-radius:8px;padding:6px 10px;font:700 13px var(--f-texto);color:var(--tinta);cursor:pointer;min-height:36px}
+.st-vistas button[aria-pressed="true"],.st-acc button[aria-pressed="true"]{background:var(--tierra);border-color:var(--tierra);color:#fff}
+.st-acc button:disabled{opacity:.4;cursor:default}
+.st-acc{margin-left:auto}
+
+.st-lienzo{position:relative;flex:1;min-height:0;border-radius:14px;overflow:hidden;background:linear-gradient(#EEF1EA,#DADFD3);border:1.5px solid var(--linea);touch-action:none}
+.st-lienzo canvas{display:block;width:100%;height:100%;outline:none}
+.st-lienzo.arrastrando{box-shadow:inset 0 0 0 3px var(--brasa)}
+.st-cargando{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;color:var(--gris);background:#EEF1EA;z-index:3}
+.st-ayuda{position:absolute;left:12px;bottom:12px;right:12px;font-size:12px;color:#4A5240;background:rgba(255,255,255,.85);padding:6px 10px;border-radius:8px;width:max-content;max-width:calc(100% - 24px);pointer-events:none;transition:opacity .4s}
+.st-avisos{position:absolute;top:12px;left:12px;max-width:min(420px,calc(100% - 24px));display:grid;gap:6px;z-index:2}
+.st-avisos p{margin:0;background:#FFF4F2;border:1.5px solid #F2C4BE;color:#8A1C12;font-size:13px;font-weight:600;padding:7px 10px;border-radius:9px}
+.st-avisos p.info{background:#F3F7EC;border-color:#D6E4BF;color:#3A5217}
+.st-selbar{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;align-items:center;gap:6px;background:#fff;border-radius:12px;padding:6px 8px;box-shadow:0 8px 28px rgba(20,30,10,.18);z-index:2;max-width:calc(100% - 24px);flex-wrap:wrap;justify-content:center}
+.st-selbar b{font-size:13px;padding:0 6px;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st-selbar button{border:1.5px solid var(--linea);background:#fff;border-radius:8px;padding:6px 10px;font:700 13px var(--f-texto);cursor:pointer;color:var(--tinta);min-height:38px;min-width:38px}
+.st-selbar .st-rojo{color:#B3261E}
+
+.st-pieza-cab{display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center;margin-bottom:12px}
+.st-pieza-cab img{width:72px;height:72px;object-fit:contain;background:#F4F6F0;border-radius:9px}
+.st-pieza-cab h2{font-size:15px;margin:0 0 2px;line-height:1.25}
+.st-pieza-cab p{margin:0 0 4px;font-size:12.5px;color:var(--gris)}
+.st-pieza-cab a{font-size:12.5px;font-weight:700;color:var(--brasa-2);text-decoration:underline}
+
+.st-lineas{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:7px;font-size:13.5px}
+.st-lineas li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline}
+.st-lineas a{color:var(--tinta);text-decoration:none;border-bottom:1px dotted var(--gris)}
+.st-lineas b{white-space:nowrap}
+.st-lineas .vacio{color:var(--gris);display:block}
+.st-check{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;font-size:13.5px;margin:0 0 8px;cursor:pointer}
+.st-check input{accent-color:var(--brasa);width:18px;height:18px;margin:1px 0 0}
+.st-check small{display:block;color:var(--gris);font-size:12px}
+.st-total{display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px solid var(--linea);padding-top:10px;margin-top:6px}
+.st-total b{font:800 28px var(--f-titulo)}
+.st-nota-env{margin:4px 0 12px}
+.st-btn{display:flex;width:100%;justify-content:center;align-items:center;border:2px solid var(--brasa);background:var(--brasa);color:#fff;font:800 15px var(--f-titulo);border-radius:11px;padding:12px 14px;cursor:pointer;margin-bottom:8px;min-height:46px;box-sizing:border-box;text-align:center}
+.st-btn:hover{background:var(--brasa-2);border-color:var(--brasa-2)}
+.st-btn-2{background:#fff;color:var(--tinta);border-color:var(--linea)}
+.st-btn-2:hover{background:#F4F6F0;border-color:var(--brasa)}
+.st-subir .st-btn{width:auto;margin:0;padding:8px 14px;min-height:40px;font-size:14px}
+.st-mini{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.st-link{border:0;background:none;padding:6px 0;font:700 13px var(--f-texto);color:var(--brasa-2);text-decoration:underline;cursor:pointer}
+.st-ok{margin:8px 0 0;font-size:13px;font-weight:600;color:#2E7D32}
+.st-ok:empty{display:none}
+.st-ok a{text-decoration:underline}
+.st-barra-movil{display:none}
+
+.st-dialogo{border:0;border-radius:16px;padding:0;max-width:620px;width:calc(100% - 32px);box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.st-dialogo::backdrop{background:rgba(15,20,8,.55)}
+.st-dialogo form{padding:22px 22px 18px}
+.st-dialogo h2{margin:0 0 6px;font-size:22px}
+.st-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.st-dlg-acc{display:flex;gap:10px;justify-content:flex-end}
+.st-dlg-acc .st-btn{width:auto;margin:0}
+.st-imprimir{display:none}
+
+@media (max-width:1250px){.st-app{grid-template-columns:270px minmax(0,1fr) 300px}.st-plantilla{min-width:130px}}
+@media (max-width:1080px){.st-cab{grid-template-columns:1fr}.st-plantillas{justify-content:flex-start}}
+@media (max-width:900px){
+  .st{padding:12px 16px 150px}
+  .st-cab h1{font-size:25px}.st-sub{font-size:15px}
+  .st-plantillas{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:2px 16px 6px;justify-content:flex-start}
+  .st-plantilla{flex:0 0 auto;min-width:150px}
+  .st-app{display:flex;flex-direction:column;height:auto;max-height:none;min-height:0;gap:0}
+  .st-lienzo{flex:none;height:58vh;min-height:330px}
+  .st-izq,.st-der{display:contents}
+  .st-tabs-d{display:none}
+  .st-app>*{order:3}
+  .st-app>.st-tabs{display:flex;position:sticky;top:0;z-index:5;background:#fff;border:1.5px solid var(--linea);border-radius:12px;margin:10px 0;order:2}
+  .st-app>.st-centro{order:1}
+  .st-panel{background:#fff;border:1.5px solid var(--linea);border-radius:14px;order:3;margin-bottom:10px}
+  .st-der .st-panel+.st-panel{border-top:1.5px solid var(--linea)}
+  .st-panel:not(.activo-m){display:none}
+  .st-barra{gap:8px}
+  .st-acc{margin-left:0}
+  .st-ayuda{display:none}
+  .st-selbar{bottom:8px;flex-wrap:nowrap;gap:4px;padding:5px}
+  .st-selbar b{display:none}
+  .st-selbar button{padding:6px 8px;min-height:40px}
+  .st-barra-movil{display:flex;position:fixed;left:0;right:0;bottom:var(--st-cinta,44px);z-index:30;background:#fff;border-top:1.5px solid var(--linea);padding:10px 16px;gap:12px;align-items:center;justify-content:space-between;box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+  .st-barra-movil small{display:block;font-size:12px;color:var(--gris)}
+  .st-barra-movil b{font:800 21px var(--f-titulo)}
+  .st-barra-movil .st-btn{width:auto;margin:0}
+  .st-form-grid{grid-template-columns:1fr}
+}
+
+@media print{
+  body *{visibility:hidden}
+  .st-imprimir,.st-imprimir *{visibility:visible}
+  .st-imprimir{display:block;position:absolute;left:0;top:0;width:100%;color:#111;font:12px/1.45 Lato,Arial,sans-serif}
+  .st-imprimir h1{font:800 22px Manrope,Arial,sans-serif;margin:0 0 4px}
+  .st-imprimir img.foto{width:100%;border-radius:8px;margin:8px 0}
+  .st-imprimir .dos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .st-imprimir table{width:100%;border-collapse:collapse;margin-top:8px}
+  .st-imprimir td,.st-imprimir th{border-bottom:1px solid #ddd;padding:5px 4px;text-align:left}
+  .st-imprimir td.n,.st-imprimir th.n{text-align:right;white-space:nowrap}
+  .st-imprimir .tot td{font-weight:800;font-size:14px;border-bottom:0}
+  .st-imprimir .cab{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #6FA524;padding-bottom:8px;margin-bottom:8px}
+  .st-imprimir .cab img{height:40px}
+  @page{margin:12mm}
+}
+
+</style>
+<script>window.ST_DATOS = {"modulos": [{"id": "f24", "grupo": "muros", "corto": "Muro de tela recto 2,4 m", "tipo": "muro", "w": 2.4, "h": 2.38, "d": 0.4, "gw": 240, "gh": 238, "nombre": "Photocall de Tela Tensada Formulate Recto 2.4m", "opcion": "Formulate Completo", "precio": 403.0, "img": "assets/p/formulate-recto-2-4m-muro-grafico.webp", "url": "producto/formulate-recto-2-4m-muro-grafico.html", "slug": "formulate-recto-2-4m-muro-grafico"}, {"id": "f3", "grupo": "muros", "corto": "Muro de tela recto 3 m", "tipo": "muro", "w": 3.0, "h": 2.38, "d": 0.4, "gw": 300, "gh": 238, "nombre": "Stand de Tela Tensada Formulate Recto 3m", "opcion": "", "precio": 504.0, "img": "assets/p/photocall-3m-formulate.webp", "url": "producto/photocall-3m-formulate.html", "slug": "photocall-3m-formulate"}, {"id": "f4", "grupo": "muros", "corto": "Muro de tela recto 4 m", "tipo": "muro", "w": 4.0, "h": 2.38, "d": 0.45, "gw": 400, "gh": 238, "nombre": "Stand de Tela Tensada Formulate Recto 4m", "opcion": "", "precio": 722.0, "img": "assets/p/formulate-recto-4m-muro-grafico.webp", "url": "producto/formulate-recto-4m-muro-grafico.html", "slug": "formulate-recto-4m-muro-grafico"}, {"id": "f5", "grupo": "muros", "corto": "Muro de tela recto 5 m", "tipo": "muro", "w": 5.0, "h": 2.38, "d": 0.45, "gw": 500, "gh": 238, "nombre": "Stand Textil Formulate Recto 5m", "opcion": "", "precio": 829.0, "img": "assets/p/formulate-recto-5m-muro-grafico.webp", "url": "producto/formulate-recto-5m-muro-grafico.html", "slug": "formulate-recto-5m-muro-grafico"}, {"id": "f6", "grupo": "muros", "corto": "Muro de tela recto 6 m", "tipo": "muro", "w": 6.0, "h": 2.38, "d": 0.5, "gw": 600, "gh": 238, "nombre": "Stand de Tela Tensada Formulate Recto 6m", "opcion": "", "precio": 898.0, "img": "assets/p/formulate-recto-6m-muro-grafico.webp", "url": "producto/formulate-recto-6m-muro-grafico.html", "slug": "formulate-recto-6m-muro-grafico"}, {"id": "fc3", "grupo": "muros", "corto": "Muro de tela curvo 3 m", "tipo": "muro", "w": 2.85, "h": 2.38, "d": 0.5, "curva": 0.45, "gw": 300, "gh": 238, "nombre": "Stand de Tela Tensada Formulate Curvo 3m", "opcion": "", "precio": 488.01, "img": "assets/p/formulate-curvo-3m-muro-grafico.webp", "url": "producto/formulate-curvo-3m-muro-grafico.html", "slug": "formulate-curvo-3m-muro-grafico"}, {"id": "fc6", "grupo": "muros", "corto": "Muro de tela curvo 6 m", "tipo": "muro", "w": 5.8, "h": 2.38, "d": 0.6, "curva": 0.8, "gw": 610, "gh": 238, "nombre": "Stand de Tela Tensada Formulate Curvo 6m", "opcion": "", "precio": 908.13, "img": "assets/p/formulate-curved-6m.webp", "url": "producto/formulate-curved-6m.html", "slug": "formulate-curved-6m"}, {"id": "pu3", "grupo": "popup", "corto": "Pop up 3×3 recto", "tipo": "muro", "w": 2.26, "h": 2.26, "d": 0.35, "lados": true, "gw": 226, "gh": 226, "nombre": "Photocall Pop Up 3×3 Textil Velcro", "opcion": "Pop Up Completo", "precio": 339.49, "img": "assets/p/pop-up-3x3-velcro-serie-econo.webp", "url": "producto/pop-up-3x3-velcro-serie-econo.html", "slug": "pop-up-3x3-velcro-serie-econo"}, {"id": "pu4", "grupo": "popup", "corto": "Pop up 4×3 recto", "tipo": "muro", "w": 2.99, "h": 2.26, "d": 0.35, "lados": true, "gw": 299, "gh": 226, "nombre": "Muro Textil Pop Up 4×3 Recto Velcro", "opcion": "", "precio": 427.54, "img": "assets/p/pop-up-4x3-velcro-serie-econo.webp", "url": "producto/pop-up-4x3-velcro-serie-econo.html", "slug": "pop-up-4x3-velcro-serie-econo"}, {"id": "pu4c", "grupo": "popup", "corto": "Pop up 4×3 curvo", "tipo": "muro", "w": 2.9, "h": 2.26, "d": 0.5, "curva": 0.4, "lados": true, "gw": 341, "gh": 226, "nombre": "Photocall Pop Up 4×3 Curvo Textil", "opcion": "", "precio": 474.6, "img": "assets/p/pop-up-4x3-velcro-curvo.webp", "url": "producto/pop-up-4x3-velcro-curvo.html", "slug": "pop-up-4x3-velcro-curvo"}, {"id": "pu5", "grupo": "popup", "corto": "Pop up 5×3 recto", "tipo": "muro", "w": 3.73, "h": 2.26, "d": 0.35, "lados": true, "gw": 373, "gh": 226, "nombre": "Muro Promocional Pop Up 5×3 Textil Velcro", "opcion": "", "precio": 516.66, "img": "assets/p/pop-up-5x3-velcro-impresion-incluida-medidas-380x229cm.webp", "url": "producto/pop-up-5x3-velcro-impresion-incluida-medidas-380x229cm.html", "slug": "pop-up-5x3-velcro-impresion-incluida-medidas-380x229cm"}, {"id": "tele", "grupo": "popup", "corto": "Photocall telescópico 3×2,4 m", "tipo": "tele", "w": 3.0, "h": 2.4, "d": 0.6, "gw": 300, "gh": 240, "nombre": "Photocall telescópico 3×2,40 m", "opcion": "", "precio": 287.37, "img": "assets/p/photocall-telescopico-3x240-m.webp", "url": "producto/photocall-telescopico-3x240-m.html", "slug": "photocall-telescopico-3x240-m"}, {"id": "mv", "grupo": "mostradores", "corto": "Mostrador portátil de velcro", "tipo": "mostrador", "w": 1.02, "h": 1.065, "d": 0.4, "gw": 180, "gh": 95, "nombre": "Mostrador publicitario portatil velcro", "opcion": "Mostrador completo", "precio": 199.0, "img": "assets/p/mostrador-publicitario-portatil-velcro.webp", "url": "producto/mostrador-publicitario-portatil-velcro.html", "slug": "mostrador-publicitario-portatil-velcro"}, {"id": "mc", "grupo": "mostradores", "corto": "Mostrador curvado magnético", "tipo": "mostrador", "w": 1.1, "h": 0.96, "d": 0.5, "gw": 206, "gh": 95, "nombre": "Mostrador Curvado Magnético Ultra-Portatil", "opcion": "", "precio": 236.1, "img": "assets/p/mostrador-curvado-magnetico-ultra-portatil.webp", "url": "producto/mostrador-curvado-magnetico-ultra-portatil.html", "slug": "mostrador-curvado-magnetico-ultra-portatil"}, {"id": "mr", "grupo": "mostradores", "corto": "Mostrador curvado RULO", "tipo": "mostrador", "w": 1.0, "h": 0.9, "d": 0.45, "gw": 170, "gh": 88, "nombre": "Mostrador Basic curvado", "opcion": "", "precio": 199.0, "img": "assets/p/mostrador-basico-curvado-rulo.webp", "url": "producto/mostrador-basico-curvado-rulo.html", "slug": "mostrador-basico-curvado-rulo"}, {"id": "mz", "grupo": "mostradores", "corto": "Maleta mostrador Zeus", "tipo": "mostrador", "w": 0.95, "h": 0.95, "d": 0.4, "gw": 160, "gh": 90, "nombre": "Maleta Mostrador Portatil Zeus", "opcion": "", "precio": 285.0, "img": "assets/p/maleta-mostrador-portatil-zeus.webp", "url": "producto/maleta-mostrador-portatil-zeus.html", "slug": "maleta-mostrador-portatil-zeus"}, {"id": "ml", "grupo": "mostradores", "corto": "Mostrador luminoso LED 1×1 m", "tipo": "led", "w": 1.0, "h": 1.0, "d": 0.5, "gw": 100, "gh": 100, "nombre": "Mostrador Retroiluminable LED 1m x 1m", "opcion": "Completo · Con LED", "precio": 580.0, "img": "assets/p/mostrador-retroiluminable-led-1m-x-1m-mesa-publicitaria-con-luz-y-tela-tensada.webp", "url": "producto/mostrador-retroiluminable-led-1m-x-1m-mesa-publicitaria-con-luz-y-tela-tensada.html", "slug": "mostrador-retroiluminable-led-1m-x-1m-mesa-publicitaria-con-luz-y-tela-tensada"}, {"id": "mesa", "grupo": "mostradores", "corto": "Mesa con mantel elástico 180×70", "tipo": "mesa", "w": 1.8, "h": 0.75, "d": 0.7, "gw": 180, "gh": 70, "nombre": "Mantel Textil Personalizable 180×70", "opcion": "", "precio": 142.0, "img": "assets/p/mostrador-textil-ovalado-180x70-mesa-promocional-portatil-con-tela-tensada.webp", "url": "producto/mostrador-textil-ovalado-180x70-mesa-promocional-portatil-con-tela-tensada.html", "slug": "mostrador-textil-ovalado-180x70-mesa-promocional-portatil-con-tela-tensada"}, {"id": "cl", "grupo": "luz", "corto": "Caja de luz LED 100×200", "tipo": "caja", "w": 1.0, "h": 2.0, "d": 0.35, "gw": 100, "gh": 200, "nombre": "LED Display 80/100×200", "opcion": "Completo (Estructura + 2 gráficas) · 100x200cm", "precio": 310.0, "img": "assets/p/neo-slim-led-display.webp", "url": "producto/neo-slim-led-display.html", "slug": "neo-slim-led-display"}, {"id": "hc", "grupo": "colgantes", "corto": "Colgante circular 3 m", "tipo": "colgante", "forma": "circulo", "w": 3.05, "h": 0.61, "d": 3.05, "gw": 957, "gh": 61, "nombre": "Banner Colgante Circular 3,0 x 0,6m Techo", "opcion": "Estructura + Una Impresión", "precio": 700.0, "img": "assets/p/banner-colgante-circular-30-x-06m-techo-estructura-de-aluminio-y-textil-personalizable.webp", "url": "producto/banner-colgante-circular-30-x-06m-techo-estructura-de-aluminio-y-textil-personalizable.html", "slug": "banner-colgante-circular-30-x-06m-techo-estructura-de-aluminio-y-textil-personalizable"}, {"id": "hs", "grupo": "colgantes", "corto": "Colgante cuadrado 3 m", "tipo": "colgante", "forma": "cuadrado", "w": 3.0, "h": 1.2, "d": 3.0, "gw": 1220, "gh": 120, "nombre": "Banner Colgante Cuadrado 3,0 x 1,2 m Techo", "opcion": "Estructura + Una Impresión", "precio": 963.0, "img": "assets/p/banner-colgante-cuadrado-30-x-12-m-techo-estructura-de-aluminio-y-textil-personalizable.webp", "url": "producto/banner-colgante-cuadrado-30-x-12-m-techo-estructura-de-aluminio-y-textil-personalizable.html", "slug": "banner-colgante-cuadrado-30-x-12-m-techo-estructura-de-aluminio-y-textil-personalizable"}, {"id": "ht", "grupo": "colgantes", "corto": "Colgante triangular 3 m", "tipo": "colgante", "forma": "triangulo", "w": 3.05, "h": 0.91, "d": 2.64, "gw": 914, "gh": 107, "nombre": "Banner Colgante Triangular 3,0 x 0,9m Techo", "opcion": "Estructura + Una Impresión", "precio": 771.0, "img": "assets/p/banner-colgante-triangular-30-x-09m-techo-estructura-de-aluminio-y-textil-personalizable.webp", "url": "producto/banner-colgante-triangular-30-x-09m-techo-estructura-de-aluminio-y-textil-personalizable.html", "slug": "banner-colgante-triangular-30-x-09m-techo-estructura-de-aluminio-y-textil-personalizable"}, {"id": "hr", "grupo": "colgantes", "corto": "Colgante rectangular 2,4×1,2", "tipo": "colgante", "forma": "rectangulo", "w": 2.43, "h": 0.91, "d": 1.22, "gw": 731, "gh": 91, "nombre": "Banner Colgante Rectangular 2,4 x 1,2 x 0,9m", "opcion": "Estructura + Una Impresión", "precio": 848.0, "img": "assets/p/banner-colgante-rectangular-24-x-12-x-09m-estructura-y-grafica-en-tela.webp", "url": "producto/banner-colgante-rectangular-24-x-12-x-09m-estructura-y-grafica-en-tela.html", "slug": "banner-colgante-rectangular-24-x-12-x-09m-estructura-y-grafica-en-tela"}, {"id": "ru150", "grupo": "rollups", "corto": "Roll up 150×200", "tipo": "rollup", "w": 1.5, "h": 2.06, "d": 0.3, "gw": 150, "gh": 206, "nombre": "Roll Up 150×200 photocall display lona", "opcion": "", "precio": 100.83, "img": "assets/p/roll-up-150x200.webp", "url": "producto/roll-up-150x200.html", "slug": "roll-up-150x200"}, {"id": "ru200", "grupo": "rollups", "corto": "Roll up XXL 200×200", "tipo": "rollup", "w": 2.0, "h": 2.03, "d": 0.3, "gw": 200, "gh": 200, "nombre": "Roll Up XXL 200×200", "opcion": "", "precio": 201.57, "img": "assets/p/roll-up-xxl-200x200.webp", "url": "producto/roll-up-xxl-200x200.html", "slug": "roll-up-xxl-200x200"}], "grupos": [["muros", "Muros de tela"], ["popup", "Pop up y photocall"], ["mostradores", "Mostradores"], ["luz", "Cajas de luz"], ["colgantes", "Colgantes"], ["rollups", "Roll ups"]], "plantillas": [{"id": "p3x2", "nombre": "Stand en línea 3×2", "desc": "Muro de 3 m, mostrador y roll up", "ancho": 3, "fondo": 2, "tipo": "linea", "piezas": [{"m": "f3", "x": 0, "z": -0.8, "r": 0}, {"m": "mc", "x": 0.55, "z": 0.45, "r": 0}, {"m": "ru150", "x": -0.95, "z": 0.35, "r": 20}]}, {"id": "p4x3", "nombre": "Stand de esquina 4×3", "desc": "Pop up curvo, muro lateral, mostrador y caja de luz", "ancho": 4, "fondo": 3, "tipo": "esquina", "piezas": [{"m": "pu4c", "x": -0.35, "z": -1.05, "r": 0}, {"m": "f24", "x": 1.75, "z": -0.15, "r": -90}, {"m": "mv", "x": -0.4, "z": 0.75, "r": 0}, {"m": "cl", "x": -1.75, "z": 0.2, "r": 60}]}, {"id": "p6x3", "nombre": "Stand profesional 6×3", "desc": "Muro de 6 m, dos mostradores, caja de luz y colgante", "ancho": 6, "fondo": 3, "tipo": "linea", "piezas": [{"m": "f6", "x": 0, "z": -1.25, "r": 0, "focos": 3}, {"m": "ml", "x": -1.2, "z": 0.6, "r": 0}, {"m": "mc", "x": 1.2, "z": 0.6, "r": 0}, {"m": "cl", "x": 2.4, "z": -0.25, "r": -30}, {"m": "hc", "x": 0, "z": 0, "r": 0}]}, {"id": "p6x6", "nombre": "Isla 6×6", "desc": "Cuatro muros espalda con espalda, mostradores y colgante cuadrado", "ancho": 6, "fondo": 6, "tipo": "isla", "piezas": [{"m": "f3", "x": 0, "z": -0.25, "r": 0}, {"m": "f3", "x": 0, "z": 0.25, "r": 180}, {"m": "f24", "x": -1.75, "z": 0, "r": 90}, {"m": "f24", "x": 1.75, "z": 0, "r": -90}, {"m": "mc", "x": 0, "z": 2.0, "r": 0}, {"m": "mc", "x": 0, "z": -2.0, "r": 180}, {"m": "ru150", "x": -2.3, "z": 2.2, "r": 30}, {"m": "ru150", "x": 2.3, "z": -2.2, "r": 210}, {"m": "hs", "x": 0, "z": 0, "r": 0}]}], "foco": {"nombre": "Foco Led para pop up", "corto": "Foco LED para muro", "precio": 63.65, "url": "producto/foco-led-para-pop-up.html", "img": "assets/p/foco-led-para-pop-up.webp"}, "instalacion": 0.15, "correo": "info@neocopy.es", "tel": "96 554 03 02", "clave_cesta": "cesta-neocopy"};</script>
+<script type="module">
+/* Montador de stands 3D · muestra para Neocopy (25-nov-2026).
+   Parte del «Tube-Planner 3D» que nos pasó Nicolás y lo lleva a su tienda: cada pieza es un producto real de neocopy.es
+   (precio con IVA, foto y ficha), la gráfica se genera con tu marca o se sube por pieza (imagen o PDF), el presupuesto
+   va al carrito o a Neocopy por correo, y funciona con el dedo en el móvil. Datos en window.ST_DATOS (stands_datos.py). */
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const D = window.ST_DATOS;
+const MOD = Object.fromEntries(D.modulos.map(m => [m.id, m]));
+const $ = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+const eur = n => { const t = (Math.round(n * 100) / 100).toFixed(2).split('.'); return t[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + t[1] + ' €'; };
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const m2 = n => String(Math.round(n * 100) / 100).replace('.', ',');
+const lienzo = $('[data-lienzo]');
+const COLORES = ['#14213D', '#1F2614', '#0B4F6C', '#7A1E2C', '#111111', '#F2F2EE', '#6FA524', '#E2572B'];
+const ACENTOS = ['#F5D20A', '#6FA524', '#FFFFFF', '#E2572B', '#29B6F6', '#E91E63', '#111111'];
+const MOQUETAS = [['#3B4048', 'Gris marengo'], ['#1B1D21', 'Negra'], ['#7C8187', 'Gris claro'], ['#24477A', 'Azul'], ['#8E1F22', 'Roja'], ['#3F6B2A', 'Verde']];
+const ALTO_COLGANTE = 3.6;
+
+// ── estado ────────────────────────────────────────────────────────────────
+const st = { ancho: 6, fondo: 3, tipo: 'linea', moqueta: MOQUETAS[0][0], piezas: [], sel: null, iman: true, montaje: false, diseno: false,
+  marca: { nombre: 'Tu marca', lema: 'Ven a vernos a nuestro stand', color: COLORES[0], acento: ACENTOS[0] } };
+let uidN = 1;
+const graficas = new Map();   // uid → { img (canvas o imagen), w, h } que sube el cliente
+let logo = null;              // canvas o imagen del logo
+const nuevoUid = () => 'p' + (uidN++);
+
+// ── 3D: escena, luces, cámara ─────────────────────────────────────────────
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true }); }
+catch (e) { $('[data-cargando]').textContent = 'Este navegador no puede mostrar el 3D. Prueba con Chrome, Safari o Edge actualizados.'; throw e; }
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+lienzo.appendChild(renderer.domElement);
+renderer.domElement.setAttribute('aria-label', 'Vista 3D del stand'); renderer.domElement.tabIndex = 0;
+
+const escena = new THREE.Scene();
+escena.background = new THREE.Color('#E6E9E2');
+escena.fog = new THREE.Fog('#E6E9E2', 28, 70);
+const pmrem = new THREE.PMREMGenerator(renderer);
+escena.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+const cam = new THREE.PerspectiveCamera(38, 1, 0.1, 200);
+escena.add(new THREE.HemisphereLight('#ffffff', '#9aa08f', 0.55));
+const sol = new THREE.DirectionalLight('#fff6ea', 1.6);
+sol.position.set(6, 14, 9); sol.castShadow = true; sol.shadow.mapSize.set(2048, 2048); sol.shadow.bias = -0.0004; sol.shadow.radius = 4;
+escena.add(sol, sol.target);
+const relleno = new THREE.DirectionalLight('#e8f0ff', 0.45); relleno.position.set(-8, 6, -4); escena.add(relleno);
+
+// el pabellón: suelo grande con cuadrícula suave
+const suelo = new THREE.Mesh(new THREE.PlaneGeometry(120, 120), new THREE.MeshStandardMaterial({ color: '#CFD3CB', roughness: 0.95 }));
+suelo.rotation.x = -Math.PI / 2; suelo.receiveShadow = true; escena.add(suelo);
+const rejilla = new THREE.GridHelper(120, 60, '#B9BEB3', '#C3C8BD'); rejilla.position.y = 0.002; rejilla.material.transparent = true; rejilla.material.opacity = 0.5; escena.add(rejilla);
+
+const grupoStand = new THREE.Group(); escena.add(grupoStand);   // moqueta, paredes vecinas, cotas
+const grupoPiezas = new THREE.Group(); escena.add(grupoPiezas);
+
+const controles = new OrbitControls(cam, renderer.domElement);
+controles.enableDamping = true; controles.dampingFactor = 0.08; controles.maxPolarAngle = Math.PI / 2 - 0.04;
+controles.minDistance = 2.5; controles.maxDistance = 40; controles.target.set(0, 1, 0);
+
+// ── materiales ────────────────────────────────────────────────────────────
+const MAT = {
+  alu: new THREE.MeshStandardMaterial({ color: '#C9CDD2', metalness: 0.85, roughness: 0.32 }),
+  negro: new THREE.MeshStandardMaterial({ color: '#1E1F22', roughness: 0.55, metalness: 0.2 }),
+  blanco: new THREE.MeshStandardMaterial({ color: '#F4F4F1', roughness: 0.9 }),
+  vecino: new THREE.MeshStandardMaterial({ color: '#F7F7F4', roughness: 0.95 }),
+  madera: new THREE.MeshStandardMaterial({ color: '#2B2B2E', roughness: 0.4, metalness: 0.1 }),
+  cable: new THREE.LineBasicMaterial({ color: '#555', transparent: true, opacity: 0.6 }),
+  haz: new THREE.MeshBasicMaterial({ color: '#FFF3C4', transparent: true, opacity: 0.12, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }),
+};
+
+// ── gráficas: con la marca o la que sube el cliente ───────────────────────
+function lienzoGrafica(m) {
+  const r = m.gw / m.gh, max = m.tipo === 'colgante' ? 4096 : 1536;
+  const w = r >= 1 ? max : Math.round(max * r), h = r >= 1 ? Math.max(64, Math.round(max / r)) : max;
+  const c = document.createElement('canvas'); c.width = w; c.height = h; return c;
+}
+function encajar(x, img, X, Y, W, H, cubrir) {
+  const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
+  const s = cubrir ? Math.max(W / iw, H / ih) : Math.min(W / iw, H / ih);
+  const w = iw * s, h = ih * s; x.drawImage(img, X + (W - w) / 2, Y + (H - h) / 2, w, h);
+}
+function texto(x, t, X, Y, W, tam, peso, color, alin) {
+  let f = tam; x.font = `${peso} ${f}px Manrope, Lato, Arial, sans-serif`;
+  while (x.measureText(t).width > W && f > 8) { f -= 2; x.font = `${peso} ${f}px Manrope, Lato, Arial, sans-serif`; }
+  x.fillStyle = color; x.textAlign = alin || 'left'; x.textBaseline = 'middle'; x.fillText(t, X, Y); return f;
+}
+function claro(hex) { const n = parseInt(hex.slice(1), 16); return ((n >> 16) * 299 + ((n >> 8) & 255) * 587 + (n & 255) * 114) / 1000 > 150; }
+function grafMarca(m) {
+  const c = lienzoGrafica(m), x = c.getContext('2d'), W = c.width, H = c.height, M = st.marca;
+  const tinta = claro(M.color) ? '#16180F' : '#FFFFFF';
+  const g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, M.color); g.addColorStop(1, mezclar(M.color, '#000000', 0.28));
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.fillStyle = M.acento;
+  if (m.tipo === 'colgante') {                                   // tira que da la vuelta: marca repetida
+    const n = Math.max(2, Math.round(m.gw / m.gh / 3.2)), paso = W / n;
+    x.fillRect(0, H * 0.86, W, H * 0.14);
+    for (let i = 0; i < n; i++) {
+      const cx = paso * (i + 0.5);
+      if (logo) { encajar(x, logo, cx - paso * 0.42, H * 0.1, paso * 0.26, H * 0.66, false); texto(x, M.nombre, cx - paso * 0.12, H * 0.43, paso * 0.5, H * 0.42, 800, tinta); }
+      else texto(x, M.nombre, cx, H * 0.43, paso * 0.8, H * 0.5, 800, tinta, 'center');
+    }
+    return c;
+  }
+  const ancho = W / H > 1.25;
+  if (ancho) {                                                   // muros y pop ups: texto a la izquierda, logo a la derecha
+    x.save(); x.beginPath(); x.moveTo(W * 0.62, H); x.lineTo(W * 0.78, 0); x.lineTo(W * 0.8, 0); x.lineTo(W * 0.64, H); x.fill(); x.restore();
+    x.globalAlpha = 0.1; x.fillStyle = '#fff'; x.beginPath(); x.arc(W * 0.86, H * 0.5, H * 0.62, 0, Math.PI * 2); x.fill(); x.globalAlpha = 1;
+    x.fillStyle = M.acento; x.fillRect(W * 0.06, H * 0.36, W * 0.08, H * 0.018);
+    const f = texto(x, M.nombre, W * 0.06, H * 0.48, W * 0.52, H * 0.16, 800, tinta);
+    texto(x, M.lema, W * 0.06, H * 0.48 + f * 0.95, W * 0.52, H * 0.055, 600, tinta);
+    if (logo) encajar(x, logo, W * 0.7, H * 0.24, W * 0.25, H * 0.5, false);
+    else { x.fillStyle = M.acento; x.font = `800 ${H * 0.3}px Manrope, Arial`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText((M.nombre.trim()[0] || 'N').toUpperCase(), W * 0.83, H * 0.5); }
+  } else {                                                       // roll ups, cajas de luz y mostradores: de arriba abajo
+    x.fillRect(0, H * 0.9, W, H * 0.1);
+    if (logo) encajar(x, logo, W * 0.15, H * 0.1, W * 0.7, H * 0.3, false);
+    const y = logo ? H * 0.55 : H * 0.42;
+    const f = texto(x, M.nombre, W / 2, y, W * 0.84, Math.min(W * 0.16, H * 0.12), 800, tinta, 'center');
+    texto(x, M.lema, W / 2, y + f * 1.05, W * 0.84, Math.min(W * 0.06, H * 0.045), 600, tinta, 'center');
+  }
+  return c;
+}
+function grafSubida(m, g) {
+  const c = lienzoGrafica(m), x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+  encajar(x, g.img, 0, 0, c.width, c.height, true); return c;
+}
+function mezclar(a, b, t) {
+  const pa = parseInt(a.slice(1), 16), pb = parseInt(b.slice(1), 16), f = (s) => [(s >> 16) & 255, (s >> 8) & 255, s & 255];
+  const A = f(pa), B = f(pb); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join('');
+}
+function texturaPara(p) {
+  const m = MOD[p.m], g = graficas.get(p.uid);
+  const t = new THREE.CanvasTexture(g ? grafSubida(m, g) : grafMarca(m));
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy()); return t;
+}
+
+// ── piezas en 3D ──────────────────────────────────────────────────────────
+function malla(geo, mat, sombra = true) { const o = new THREE.Mesh(geo, mat); o.castShadow = sombra; o.receiveShadow = true; return o; }
+function superficie(w, h, curva, r, segs) {        // muro recto o curvo (cóncavo hacia el visitante), con la gráfica entera
+  const g = new THREE.PlaneGeometry(1, h, curva ? segs : 1, 1), pos = g.attributes.position;
+  if (!curva) { for (let i = 0; i < pos.count; i++) pos.setX(i, pos.getX(i) * w); g.translate(0, h / 2, r); return g; }
+  const R = (w * w / 4 + curva * curva) / (2 * curva), a = Math.asin(w / 2 / R), c = R - curva / 2;
+  for (let i = 0; i < pos.count; i++) {
+    const t = -a + (pos.getX(i) + 0.5) * 2 * a, rr = R + r;
+    pos.setX(i, rr * Math.sin(t)); pos.setZ(i, c - rr * Math.cos(t));
+  }
+  g.translate(0, h / 2, 0); g.computeVertexNormals(); return g;
+}
+function bordeArco(w, curva, r, y) {               // tubo del canto de arriba siguiendo la curva
+  const pts = [];
+  if (!curva) { pts.push(new THREE.Vector3(-w / 2, y, 0), new THREE.Vector3(w / 2, y, 0)); }
+  else { const R = (w * w / 4 + curva * curva) / (2 * curva), a = Math.asin(w / 2 / R), c = R - curva / 2;
+    for (let i = 0; i <= 24; i++) { const t = -a + i / 24 * 2 * a; pts.push(new THREE.Vector3((R + r) * Math.sin(t), y, c - (R + r) * Math.cos(t))); } }
+  return new THREE.CatmullRomCurve3(pts);
+}
+function extremos(w, curva) { return curva ? [new THREE.Vector3(-w / 2, 0, curva / 2), new THREE.Vector3(w / 2, 0, curva / 2)] : [new THREE.Vector3(-w / 2, 0, 0), new THREE.Vector3(w / 2, 0, 0)]; }
+
+function hacerMuro(m, tex, p) {
+  const G = new THREE.Group(), grosor = m.lados ? 0.05 : 0.07, cur = m.curva || 0;
+  const canto = new THREE.MeshStandardMaterial({ color: mezclar(st.marca.color, '#000000', 0.15), roughness: 0.85 });
+  const tela = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.82, side: THREE.FrontSide });
+  const detras = new THREE.MeshStandardMaterial({ color: '#EDEDE8', roughness: 0.9, side: THREE.BackSide });
+  const alto = m.h, pie = m.lados ? 0.03 : 0.06;
+  const delante = malla(superficie(m.w, alto - pie, cur, cur ? 0 : grosor / 2, 40), tela); delante.position.y = pie;
+  const atras = malla(superficie(m.w, alto - pie, cur, cur ? grosor : -grosor / 2, 40), detras); atras.position.y = pie;
+  G.add(delante, atras);
+  const r = grosor / 2;
+  const arriba = malla(new THREE.TubeGeometry(bordeArco(m.w, cur, cur ? r : 0, 0), 40, r, 10, false), canto);
+  arriba.position.y = alto; if (!cur) arriba.position.z = 0; G.add(arriba);
+  extremos(m.w, cur).forEach((e, i) => {
+    if (m.lados) {                                   // pop up: tapas redondas a los lados
+      const tapa = malla(new THREE.CylinderGeometry(0.17, 0.17, alto - pie, 24, 1, false, i ? 0 : Math.PI, Math.PI),
+        new THREE.MeshStandardMaterial({ color: st.marca.color, roughness: 0.85, side: THREE.DoubleSide }));
+      tapa.position.set(e.x, pie + (alto - pie) / 2, e.z); G.add(tapa);
+    } else {
+      const lado = malla(new THREE.CylinderGeometry(r, r, alto - pie, 10), canto); lado.position.set(e.x, pie + (alto - pie) / 2, e.z); G.add(lado);
+      const bola = malla(new THREE.SphereGeometry(r, 12, 8), canto); bola.position.set(e.x, alto, e.z); G.add(bola);
+      const pata = malla(new THREE.BoxGeometry(0.05, 0.03, m.d), MAT.alu); pata.position.set(e.x, 0.015, e.z); G.add(pata);
+    }
+  });
+  if (m.lados) { const base = malla(new THREE.BoxGeometry(m.w, 0.03, 0.12), MAT.negro); base.position.set(0, 0.015, cur ? cur / 2 - 0.1 : 0); G.add(base); }
+  // focos LED encima (producto de Neocopy), con su haz de luz sobre la gráfica
+  const n = p.focos || 0;
+  for (let i = 0; i < n; i++) {
+    const x = -m.w / 2 + m.w * (i + 0.5) / n, z = cur ? zEnCurva(m.w, cur, x) : 0;
+    const brazo = malla(new THREE.CylinderGeometry(0.008, 0.008, 0.38, 6), MAT.negro);
+    brazo.rotation.x = Math.PI / 2; brazo.position.set(x, alto + 0.03, z + 0.18); G.add(brazo);
+    const cabeza = malla(new THREE.CylinderGeometry(0.035, 0.05, 0.11, 14), MAT.negro);
+    cabeza.position.set(x, alto + 0.02, z + 0.38); cabeza.rotation.x = -0.6; G.add(cabeza);
+    const haz = new THREE.Mesh(new THREE.ConeGeometry(0.55, 1.5, 24, 1, true), MAT.haz);
+    haz.position.set(x, alto - 0.7, z + 0.2); haz.rotation.x = 0.27; G.add(haz);
+  }
+  return G;
+}
+function zEnCurva(w, curva, x) { const R = (w * w / 4 + curva * curva) / (2 * curva), c = R - curva / 2; return c - Math.sqrt(Math.max(0, R * R - x * x)); }
+
+function hacerTele(m, tex) {
+  const G = new THREE.Group();
+  const lona = malla(new THREE.PlaneGeometry(m.w - 0.06, m.h - 0.1), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.7, side: THREE.DoubleSide }));
+  lona.position.set(0, 0.1 + (m.h - 0.1) / 2, 0.02); G.add(lona);
+  [-1, 1].forEach(s => {
+    const poste = malla(new THREE.CylinderGeometry(0.018, 0.018, m.h + 0.05, 10), MAT.alu); poste.position.set(s * m.w / 2, (m.h + 0.05) / 2, 0); G.add(poste);
+    const base = malla(new THREE.CylinderGeometry(0.2, 0.22, 0.02, 24), MAT.negro); base.position.set(s * m.w / 2, 0.01, 0); G.add(base);
+  });
+  const barra = malla(new THREE.CylinderGeometry(0.014, 0.014, m.w, 8), MAT.alu); barra.rotation.z = Math.PI / 2; barra.position.y = m.h + 0.02; G.add(barra);
+  return G;
+}
+function hacerRollup(m, tex) {
+  const G = new THREE.Group();
+  const caja = malla(new RoundedBoxGeometry(m.w + 0.04, 0.1, 0.2, 3, 0.03), MAT.alu); caja.position.y = 0.05; G.add(caja);
+  const lona = malla(new THREE.PlaneGeometry(m.w, m.h - 0.06), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.55 }));
+  lona.position.set(0, 0.1 + (m.h - 0.06) / 2, 0.01); G.add(lona);
+  const dorso = malla(new THREE.PlaneGeometry(m.w, m.h - 0.06), MAT.blanco); dorso.rotation.y = Math.PI; dorso.position.set(0, 0.1 + (m.h - 0.06) / 2, 0.005); G.add(dorso);
+  const barra = malla(new THREE.CylinderGeometry(0.012, 0.012, m.w, 8), MAT.alu); barra.rotation.z = Math.PI / 2; barra.position.set(0, m.h + 0.04, 0.012); G.add(barra);
+  [-1, 1].forEach(s => { const pie = malla(new THREE.BoxGeometry(0.04, 0.02, 0.36), MAT.alu); pie.position.set(s * m.w * 0.38, 0.01, 0); G.add(pie); });
+  return G;
+}
+function hacerMostrador(m, tex) {
+  const G = new THREE.Group(), w = m.w, d = m.d, h = m.h, segs = 40;
+  const g = new THREE.PlaneGeometry(1, h - 0.04, segs, 1), pos = g.attributes.position;
+  for (let i = 0; i < pos.count; i++) { const t = Math.PI - (pos.getX(i) + 0.5) * Math.PI; pos.setX(i, w / 2 * Math.cos(t)); pos.setZ(i, -d / 2 + d * Math.sin(t)); }
+  g.translate(0, (h - 0.04) / 2, 0); g.computeVertexNormals();
+  G.add(malla(g, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.7, side: THREE.DoubleSide })));
+  const forma = new THREE.Shape(); forma.absellipse(0, 0, w / 2 + 0.02, d + 0.02, 0, Math.PI, false);
+  const tapa = malla(new THREE.ExtrudeGeometry(forma, { depth: 0.035, bevelEnabled: false, curveSegments: 40 }), MAT.madera);
+  tapa.rotation.x = Math.PI / 2; tapa.position.set(0, h, -d / 2); G.add(tapa);
+  const fondo = malla(new THREE.PlaneGeometry(w, h - 0.04), MAT.negro); fondo.rotation.y = Math.PI; fondo.position.set(0, (h - 0.04) / 2, -d / 2); G.add(fondo);
+  const balda = malla(new THREE.BoxGeometry(w * 0.8, 0.02, d * 0.6), MAT.madera); balda.position.set(0, h * 0.5, -d * 0.15); G.add(balda);
+  return G;
+}
+function hacerLed(m, tex) {
+  const G = new THREE.Group();
+  const luz = new THREE.MeshStandardMaterial({ map: tex, emissive: '#ffffff', emissiveMap: tex, emissiveIntensity: 0.75, roughness: 0.6 });
+  const lado = new THREE.MeshStandardMaterial({ color: '#FFFFFF', emissive: '#FFF8E8', emissiveIntensity: 0.35, roughness: 0.7 });
+  const cuerpo = malla(new RoundedBoxGeometry(m.w, m.h - 0.04, m.d, 3, 0.02), [lado, lado, lado, lado, luz, lado]); cuerpo.position.y = (m.h - 0.04) / 2; G.add(cuerpo);
+  const tapa = malla(new RoundedBoxGeometry(m.w + 0.04, 0.04, m.d + 0.04, 2, 0.015), MAT.blanco); tapa.position.y = m.h - 0.02; G.add(tapa);
+  return G;
+}
+function hacerMesa(m, tex) {
+  const G = new THREE.Group();
+  const tela = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85 }), liso = new THREE.MeshStandardMaterial({ color: st.marca.color, roughness: 0.85 });
+  const cuerpo = malla(new RoundedBoxGeometry(m.w, m.h, m.d, 4, 0.06), [liso, liso, liso, liso, tela, liso]); cuerpo.position.y = m.h / 2; G.add(cuerpo);
+  return G;
+}
+function hacerCaja(m, tex) {
+  const G = new THREE.Group(), y0 = 0.06;
+  const marco = malla(new RoundedBoxGeometry(m.w + 0.06, m.h + 0.06, 0.08, 2, 0.01), MAT.alu); marco.position.y = y0 + m.h / 2; G.add(marco);
+  const luz = new THREE.MeshStandardMaterial({ map: tex, emissive: '#ffffff', emissiveMap: tex, emissiveIntensity: 0.85, roughness: 0.5 });
+  [1, -1].forEach(s => { const cara = malla(new THREE.PlaneGeometry(m.w, m.h), luz); cara.position.set(0, y0 + m.h / 2, s * 0.041); if (s < 0) cara.rotation.y = Math.PI; G.add(cara); });
+  [-1, 1].forEach(s => { const pie = malla(new THREE.BoxGeometry(0.05, 0.03, m.d), MAT.alu); pie.position.set(s * m.w * 0.4, 0.015, 0); G.add(pie); });
+  return G;
+}
+function hacerColgante(m, tex) {
+  const G = new THREE.Group(), y = ALTO_COLGANTE + m.h / 2;
+  const seg = { circulo: 64, cuadrado: 4, triangulo: 3, rectangulo: 4 }[m.forma];
+  let r = m.w / 2, rot = 0, sx = 1, sz = 1;
+  if (m.forma === 'cuadrado') { r = m.w / Math.SQRT2; rot = Math.PI / 4; }
+  if (m.forma === 'triangulo') { r = m.w / Math.sqrt(3); rot = Math.PI; }
+  if (m.forma === 'rectangulo') { r = Math.SQRT1_2; rot = Math.PI / 4; sx = m.w; sz = m.d; }
+  const fuera = malla(new THREE.CylinderGeometry(r, r, m.h, seg, 1, true, rot), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.75 }));
+  const dentro = malla(new THREE.CylinderGeometry(r * 0.995, r * 0.995, m.h, seg, 1, true, rot), new THREE.MeshStandardMaterial({ color: '#EDEDE8', side: THREE.BackSide, roughness: 0.9 }));
+  [fuera, dentro].forEach(o => { o.position.y = y; o.scale.set(sx, 1, sz); G.add(o); });
+  const pts = [];
+  for (let i = 0; i < 4; i++) { const a = rot + i * Math.PI / 2 + Math.PI / 4; const px = Math.cos(a) * r * 0.7 * sx, pz = Math.sin(a) * r * 0.7 * sz; pts.push(new THREE.Vector3(px, y + m.h / 2, pz), new THREE.Vector3(px * 0.2, 9, pz * 0.2)); }
+  G.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), MAT.cable));
+  return G;
+}
+function construirPieza(p) {
+  const m = MOD[p.m], tex = texturaPara(p);
+  const G = { muro: hacerMuro, tele: hacerTele, rollup: hacerRollup, mostrador: hacerMostrador, led: hacerLed, mesa: hacerMesa, caja: hacerCaja, colgante: hacerColgante }[m.tipo](m, tex, p);
+  G.userData.uid = p.uid; G.traverse(o => { o.userData.uid = p.uid; });
+  G.position.set(p.x, 0, p.z); G.rotation.y = -p.r * Math.PI / 180;
+  return G;
+}
+
+// ── el stand: moqueta, paredes de los vecinos y cotas ─────────────────────
+function cartel(txt, tam = 64, color = '#2A3020') {
+  const c = document.createElement('canvas'), x = c.getContext('2d'); x.font = `800 ${tam}px Manrope, Arial`;
+  c.width = Math.ceil(x.measureText(txt).width) + 40; c.height = tam + 30;
+  x.font = `800 ${tam}px Manrope, Arial`; x.fillStyle = 'rgba(255,255,255,.88)'; x.beginPath(); x.roundRect(0, 0, c.width, c.height, 18); x.fill();
+  x.fillStyle = color; x.textBaseline = 'middle'; x.fillText(txt, 20, c.height / 2 + 2);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, depthTest: false })); s.scale.set(c.width / c.height * 0.32, 0.32, 1); s.renderOrder = 9; return s;
+}
+function textoSuelo(txt, w) {
+  const c = document.createElement('canvas'); c.width = 1024; c.height = 128; const x = c.getContext('2d');
+  x.font = '800 72px Manrope, Arial'; x.fillStyle = 'rgba(60,66,52,.55)'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(txt, 512, 66);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+  const o = new THREE.Mesh(new THREE.PlaneGeometry(w, w / 8), new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false })); o.rotation.x = -Math.PI / 2; return o;
+}
+function construirStand() {
+  grupoStand.clear();
+  const W = st.ancho, F = st.fondo;
+  const moq = malla(new THREE.BoxGeometry(W, 0.02, F), new THREE.MeshStandardMaterial({ color: st.moqueta, roughness: 1 }), false); moq.position.y = 0.01; grupoStand.add(moq);
+  const borde = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(W, 0.021, F)), new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.35 }));
+  borde.position.y = 0.011; grupoStand.add(borde);
+  const lados = { linea: ['fondo', 'izq', 'der'], esquina: ['fondo', 'izq'], peninsula: ['fondo'], isla: [] }[st.tipo];
+  const H = 2.5, e = 0.04;
+  lados.forEach(l => {
+    const largo = l === 'fondo' ? W : F, pared = malla(new THREE.BoxGeometry(largo, H, e), MAT.vecino);
+    if (l === 'fondo') pared.position.set(0, H / 2, -F / 2 - e / 2);
+    else { pared.rotation.y = Math.PI / 2; pared.position.set((l === 'izq' ? -1 : 1) * (W / 2 + e / 2), H / 2, 0); }
+    grupoStand.add(pared);
+    const n = Math.max(1, Math.round(largo));                       // perfiles de aluminio cada metro, como en las ferias
+    for (let i = 0; i <= n; i++) {
+      const perfil = malla(new THREE.BoxGeometry(0.04, H + 0.02, 0.05), MAT.alu), u = -largo / 2 + largo * i / n;
+      if (l === 'fondo') perfil.position.set(u, H / 2, -F / 2 - e / 2); else perfil.position.set((l === 'izq' ? -1 : 1) * (W / 2 + e / 2), H / 2, u);
+      grupoStand.add(perfil);
+    }
+    const friso = malla(new THREE.BoxGeometry(l === 'fondo' ? W : 0.06, 0.06, l === 'fondo' ? 0.06 : F), MAT.alu);
+    if (l === 'fondo') friso.position.set(0, H, -F / 2 - e / 2); else friso.position.set((l === 'izq' ? -1 : 1) * (W / 2 + e / 2), H, 0);
+    grupoStand.add(friso);
+  });
+  const cotaA = cartel(m2(W) + ' m'); cotaA.position.set(0, 0.25, F / 2 + 0.45); grupoStand.add(cotaA);
+  const cotaF = cartel(m2(F) + ' m'); cotaF.position.set(W / 2 + 0.5, 0.25, 0); grupoStand.add(cotaF);
+  const pasillo = textoSuelo('PASILLO', Math.max(4, W)); pasillo.position.set(0, 0.003, F / 2 + 1.3); grupoStand.add(pasillo);
+  const s = Math.max(W, F) * 0.9 + 3; Object.assign(sol.shadow.camera, { left: -s, right: s, top: s, bottom: -s, near: 1, far: 40 }); sol.shadow.camera.updateProjectionMatrix();
+}
+
+// ── huella de cada pieza (para encajar y avisar) ──────────────────────────
+function huella(p, r = p.r) {
+  const m = MOD[p.m], a = r * Math.PI / 180, c = Math.abs(Math.cos(a)), s = Math.abs(Math.sin(a));
+  const fondo = m.tipo === 'colgante' ? m.d : Math.max(m.d, (m.curva || 0) + 0.1);
+  return { hx: c * m.w / 2 + s * fondo / 2, hz: s * m.w / 2 + c * fondo / 2 };
+}
+function encajarPos(p, x, z) {
+  if (!st.iman) return { x: Math.round(x * 100) / 100, z: Math.round(z * 100) / 100 };
+  const { hx, hz } = huella(p), W = st.ancho / 2, F = st.fondo / 2, U = 0.22;
+  const cx = [-W + hx, W - hx, 0], cz = [-F + hz, F - hz, 0];
+  const colg = MOD[p.m].tipo === 'colgante';
+  st.piezas.forEach(o => {
+    if (o.uid === p.uid || (MOD[o.m].tipo === 'colgante') !== colg) return;
+    const h = huella(o);
+    cx.push(o.x - h.hx - hx, o.x + h.hx + hx, o.x); cz.push(o.z - h.hz - hz, o.z + h.hz + hz, o.z);
+  });
+  const mejor = (v, cs) => { let b = null, d = U; cs.forEach(c => { if (Math.abs(c - v) < d) { d = Math.abs(c - v); b = c; } }); return b == null ? Math.round(v / 0.05) * 0.05 : b; };
+  return { x: mejor(x, cx), z: mejor(z, cz) };
+}
+function avisos() {
+  const out = [], W = st.ancho / 2, F = st.fondo / 2, malas = new Set();
+  const suelo = st.piezas.filter(p => MOD[p.m].tipo !== 'colgante');
+  st.piezas.forEach(p => {
+    const { hx, hz } = huella(p);
+    if (p.x - hx < -W - 0.03 || p.x + hx > W + 0.03 || p.z - hz < -F - 0.03 || p.z + hz > F + 0.03) { out.push(`${MOD[p.m].corto}: se sale del stand`); malas.add(p.uid); }
+  });
+  for (let i = 0; i < suelo.length; i++) for (let j = i + 1; j < suelo.length; j++) {
+    const a = suelo[i], b = suelo[j], ha = huella(a), hb = huella(b);
+    if (Math.abs(a.x - b.x) < ha.hx + hb.hx - 0.06 && Math.abs(a.z - b.z) < ha.hz + hb.hz - 0.06) {
+      out.push(`${MOD[a.m].corto} choca con ${MOD[b.m].corto}`); malas.add(a.uid); malas.add(b.uid);
+    }
+  }
+  const info = st.piezas.some(p => MOD[p.m].tipo === 'colgante') ? ['El colgante va del techo: pregunta a la feria si hay punto de cuelgue.'] : [];
+  return { out, malas, info };
+}
+
+// ── pintar ────────────────────────────────────────────────────────────────
+const mallas = new Map();      // uid → Group
+let caja = null;
+function pintarPiezas() {
+  grupoPiezas.children.slice().forEach(g => { grupoPiezas.remove(g); liberar(g); });
+  mallas.clear();
+  st.piezas.forEach(p => { const g = construirPieza(p); mallas.set(p.uid, g); grupoPiezas.add(g); });
+  pintarSeleccion();
+}
+function repintarPieza(p) {
+  const v = mallas.get(p.uid); if (v) { grupoPiezas.remove(v); liberar(v); }
+  const g = construirPieza(p); mallas.set(p.uid, g); grupoPiezas.add(g);
+}
+function liberar(g) {
+  g.traverse(o => {
+    if (o.geometry) o.geometry.dispose();
+    const ms = Array.isArray(o.material) ? o.material : o.material ? [o.material] : [];
+    ms.forEach(m => { if (Object.values(MAT).includes(m)) return; if (m.map) m.map.dispose(); m.dispose(); });
+  });
+}
+function pintarSeleccion() {
+  if (caja) { escena.remove(caja); caja = null; }
+  const av = avisos();
+  if (st.sel && mallas.get(st.sel)) {
+    const b = new THREE.Box3().setFromObject(mallas.get(st.sel));
+    caja = new THREE.Box3Helper(b, av.malas.has(st.sel) ? '#E53935' : '#6FA524'); escena.add(caja);
+  }
+  const caj = $('[data-avisos]');
+  caj.innerHTML = av.out.slice(0, 4).map(t => `<p>${esc(t)}</p>`).join('') + av.info.map(t => `<p class="info">${esc(t)}</p>`).join('');
+  caj.hidden = !caj.innerHTML;
+}
+
+// ── selección, arrastre y teclado ─────────────────────────────────────────
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+let arrastre = null, movido = false;
+function rayoDesde(ev) {
+  const r = renderer.domElement.getBoundingClientRect();
+  ptr.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(ptr, cam);
+}
+function puntoEnPlano(y) { const p = new THREE.Vector3(); return ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), -y), p) ? p : null; }
+renderer.domElement.addEventListener('pointerdown', ev => {
+  if (ev.button !== 0) return;
+  rayoDesde(ev);
+  const hit = ray.intersectObjects(grupoPiezas.children, true).find(h => h.object.isMesh && h.object.userData.uid && h.object.material !== MAT.haz);
+  if (!hit) { arrastre = { vacio: true, x: ev.clientX, y: ev.clientY }; return; }
+  const p = st.piezas.find(q => q.uid === hit.object.userData.uid); if (!p) return;
+  controles.enabled = false; seleccionar(p.uid);
+  const y = hit.point.y, q = puntoEnPlano(y);
+  arrastre = { p, y, dx: p.x - q.x, dz: p.z - q.z, id: ev.pointerId };
+  movido = false; renderer.domElement.setPointerCapture(ev.pointerId); ocultarAyuda();
+});
+renderer.domElement.addEventListener('pointermove', ev => {
+  if (!arrastre || arrastre.vacio) return;
+  rayoDesde(ev); const q = puntoEnPlano(arrastre.y); if (!q) return;
+  const pos = encajarPos(arrastre.p, q.x + arrastre.dx, q.z + arrastre.dz);
+  if (pos.x === arrastre.p.x && pos.z === arrastre.p.z) return;
+  arrastre.p.x = pos.x; arrastre.p.z = pos.z; movido = true;
+  const g = mallas.get(arrastre.p.uid); g.position.set(pos.x, 0, pos.z); pintarSeleccion();
+});
+const soltar = ev => {
+  if (!arrastre) return;
+  if (arrastre.vacio) { if (Math.hypot(ev.clientX - arrastre.x, ev.clientY - arrastre.y) < 5) seleccionar(null); }
+  else { controles.enabled = true; if (movido) { guardarHist(); pintarPresupuesto(); } }
+  arrastre = null;
+};
+renderer.domElement.addEventListener('pointerup', soltar);
+renderer.domElement.addEventListener('pointercancel', soltar);
+document.addEventListener('keydown', ev => {
+  if (/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) || $('[data-dialogo]').open) return;
+  const p = piezaSel();
+  if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'z') { ev.preventDefault(); ev.shiftKey ? rehacer() : deshacer(); return; }
+  if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'y') { ev.preventDefault(); rehacer(); return; }
+  if (!p) return;
+  if (ev.key === 'Delete' || ev.key === 'Backspace') { ev.preventDefault(); borrar(); }
+  else if (ev.key === 'r' || ev.key === 'R') girar(ev.shiftKey ? -90 : 90);
+  else if (ev.key === 'Escape') seleccionar(null);
+  else if (ev.key.startsWith('Arrow')) {
+    ev.preventDefault(); const d = ev.shiftKey ? 0.25 : 0.05;
+    if (ev.key === 'ArrowLeft') p.x -= d; if (ev.key === 'ArrowRight') p.x += d; if (ev.key === 'ArrowUp') p.z -= d; if (ev.key === 'ArrowDown') p.z += d;
+    p.x = Math.round(p.x * 100) / 100; p.z = Math.round(p.z * 100) / 100; mallas.get(p.uid).position.set(p.x, 0, p.z); pintarSeleccion(); guardarHist();
+  }
+});
+const piezaSel = () => st.piezas.find(p => p.uid === st.sel);
+function seleccionar(uid) {
+  st.sel = uid; pintarSeleccion(); pintarPanelPieza();
+  const p = piezaSel(), bar = $('[data-selbar]');
+  bar.hidden = !p; if (p) $('[data-selbar-nombre]').textContent = MOD[p.m].corto;
+}
+
+// ── acciones ──────────────────────────────────────────────────────────────
+function sitioLibre(m) {        // donde cabe: primero pegado al fondo, luego delante
+  const p = { uid: '_', m: m.id, x: 0, z: 0, r: 0 };
+  if (m.tipo === 'colgante') return { x: 0, z: 0 };
+  const { hx, hz } = huella(p), W = st.ancho / 2, F = st.fondo / 2;
+  const zs = m.tipo === 'muro' || m.tipo === 'tele' ? [-F + hz, -F + hz + 0.6] : [F - hz - 0.3, 0, -F + hz + 0.8, F - hz];
+  for (const z of zs) for (let x = 0; x <= W; x += 0.25) for (const sx of [x, -x]) {
+    const cand = { ...p, x: sx, z };
+    const ok = Math.abs(sx) + hx <= W + 0.01 && st.piezas.every(o => MOD[o.m].tipo === 'colgante' || (() => { const h = huella(o); return !(Math.abs(o.x - sx) < h.hx + hx - 0.02 && Math.abs(o.z - z) < h.hz + hz - 0.02); })());
+    if (ok) return { x: Math.round(sx * 100) / 100, z: Math.round(z * 100) / 100 };
+  }
+  return { x: 0, z: 0 };
+}
+function anadir(id, donde) {
+  const m = MOD[id], pos = donde || sitioLibre(m);
+  const p = { uid: nuevoUid(), m: id, x: pos.x, z: pos.z, r: 0, focos: 0 };
+  if (donde) Object.assign(p, encajarPos(p, pos.x, pos.z));
+  st.piezas.push(p); repintarPieza(p); seleccionar(p.uid); guardarHist(); pintarPresupuesto();
+  aviso(`${m.corto} añadido al stand.`);
+}
+function girar(g) {
+  const p = piezaSel(); if (!p) return;
+  p.r = ((p.r + g + 540) % 360) - 180; mallas.get(p.uid).rotation.y = -p.r * Math.PI / 180;
+  pintarSeleccion(); pintarPanelPieza(); guardarHist();
+}
+function borrar() {
+  const p = piezaSel(); if (!p) return;
+  st.piezas = st.piezas.filter(q => q !== p); graficas.delete(p.uid);
+  const g = mallas.get(p.uid); grupoPiezas.remove(g); liberar(g); mallas.delete(p.uid);
+  seleccionar(null); guardarHist(); pintarPresupuesto();
+}
+function duplicar() {
+  const p = piezaSel(); if (!p) return;
+  const n = { ...p, uid: nuevoUid() }, pos = sitioLibre(MOD[p.m]); n.x = pos.x; n.z = pos.z; n.r = p.r;
+  if (graficas.has(p.uid)) graficas.set(n.uid, graficas.get(p.uid));
+  st.piezas.push(n); repintarPieza(n); seleccionar(n.uid); guardarHist(); pintarPresupuesto();
+}
+$$('[data-girar]').forEach(b => b.addEventListener('click', () => girar(+b.dataset.girar)));
+$('[data-duplicar]').addEventListener('click', duplicar);
+$('[data-borrar]').addEventListener('click', borrar);
+
+// ── deshacer / rehacer y guardar ──────────────────────────────────────────
+const hist = [], futuro = [];
+const foto = () => JSON.stringify({ a: st.ancho, f: st.fondo, t: st.tipo, q: st.moqueta, p: st.piezas.map(p => [p.m, p.x, p.z, p.r, p.focos || 0, p.uid]) });
+function aplicarFoto(s) {
+  const d = JSON.parse(s); st.ancho = d.a; st.fondo = d.f; st.tipo = d.t; st.moqueta = d.q;
+  st.piezas = d.p.filter(x => MOD[x[0]]).map(x => ({ m: x[0], x: x[1], z: x[2], r: x[3], focos: x[4], uid: x[5] || nuevoUid() }));
+  st.piezas.forEach(p => { const n = +String(p.uid).slice(1); if (n >= uidN) uidN = n + 1; });
+  if (!st.piezas.some(p => p.uid === st.sel)) st.sel = null;
+  construirStand(); pintarPiezas(); pintarBarra(); pintarPresupuesto(); seleccionar(st.sel);
+}
+function guardarHist() {
+  const s = foto(); if (hist[hist.length - 1] === s) return;
+  hist.push(s); if (hist.length > 80) hist.shift(); futuro.length = 0; botonesHist();
+  try { localStorage.setItem('stand-neocopy', JSON.stringify({ d: s, marca: st.marca })); } catch (e) {}
+}
+function deshacer() { if (hist.length < 2) return; futuro.push(hist.pop()); aplicarFoto(hist[hist.length - 1]); botonesHist(); }
+function rehacer() { if (!futuro.length) return; const s = futuro.pop(); hist.push(s); aplicarFoto(s); botonesHist(); }
+function botonesHist() { $('[data-deshacer]').disabled = hist.length < 2; $('[data-rehacer]').disabled = !futuro.length; }
+$('[data-deshacer]').addEventListener('click', deshacer);
+$('[data-rehacer]').addEventListener('click', rehacer);
+const b64 = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const deb64 = s => decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/'))));
+function enlaceDiseno() {
+  const d = JSON.parse(foto()); d.p = d.p.map(x => x.slice(0, 5)); d.m = [st.marca.nombre, st.marca.lema, st.marca.color, st.marca.acento];
+  return location.href.split('#')[0] + '#s' + b64(JSON.stringify(d));
+}
+
+// ── barra del stand ───────────────────────────────────────────────────────
+function pintarBarra() {
+  $('[data-ancho]').value = st.ancho; $('[data-fondo]').value = st.fondo; $('[data-tipo]').value = st.tipo;
+  $$('[data-moquetas] button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === st.moqueta));
+  $('[data-iman]').setAttribute('aria-pressed', st.iman);
+}
+['ancho', 'fondo'].forEach(k => $(`[data-${k}]`).addEventListener('change', e => {
+  const v = Math.min(12, Math.max(2, Math.round((parseFloat(String(e.target.value).replace(',', '.')) || st[k]) * 2) / 2));
+  st[k] = v; e.target.value = v; construirStand(); pintarSeleccion(); guardarHist(); vista(vistaActual, true);
+}));
+$('[data-tipo]').addEventListener('change', e => { st.tipo = e.target.value; construirStand(); guardarHist(); });
+$('[data-moquetas]').innerHTML = MOQUETAS.map(([c, n]) => `<button type="button" data-c="${c}" style="background:${c}" title="Moqueta ${n.toLowerCase()}" aria-label="Moqueta ${n.toLowerCase()}"></button>`).join('');
+$$('[data-moquetas] button').forEach(b => b.addEventListener('click', () => { st.moqueta = b.dataset.c; construirStand(); pintarBarra(); guardarHist(); }));
+$('[data-iman]').addEventListener('click', () => { st.iman = !st.iman; pintarBarra(); });
+$('[data-vaciar]').addEventListener('click', () => { if (!st.piezas.length) return; st.piezas = []; graficas.clear(); pintarPiezas(); seleccionar(null); guardarHist(); pintarPresupuesto(); aviso('Stand vacío. Puedes deshacerlo con ↶.'); });
+
+// ── vistas de cámara ──────────────────────────────────────────────────────
+let vistaActual = '3d', animCam = null;
+function pose(v) {
+  const W = st.ancho, F = st.fondo, M = Math.max(W, F, 3), asp = cam.aspect < 1 ? 1.5 / cam.aspect : 1;
+  let pos, obj = new THREE.Vector3(0, 0.9, 0);
+  if (v === 'planta') { pos = new THREE.Vector3(0, M * 2.1 * asp + 2, 0.01); obj.set(0, 0, 0); }
+  else if (v === 'frente') pos = new THREE.Vector3(0, 1.65, F / 2 + M * 1.25 * asp + 1.5);
+  else pos = new THREE.Vector3(W * 0.75 + 1.5, M * 0.75 * asp + 1.6, F / 2 + M * 1.05 * asp + 2.2);
+  return { pos, obj };
+}
+function vista(v, sinAnim) {
+  vistaActual = v; controles.autoRotate = v === 'paseo'; controles.autoRotateSpeed = 1.4;
+  $$('[data-vista]').forEach(b => b.setAttribute('aria-pressed', b.dataset.vista === v));
+  const { pos, obj } = pose(v);
+  if (sinAnim) { cam.position.copy(pos); controles.target.copy(obj); controles.update(); return; }
+  const p0 = cam.position.clone(), o0 = controles.target.clone(), t0 = performance.now();
+  animCam = (t) => { const k = Math.min(1, (t - t0) / 650), e = 1 - Math.pow(1 - k, 3); cam.position.lerpVectors(p0, pos, e); controles.target.lerpVectors(o0, obj, e); if (k >= 1) animCam = null; };
+}
+$$('[data-vista]').forEach(b => b.addEventListener('click', () => vista(b.dataset.vista)));
+
+// ── tamaño y bucle ────────────────────────────────────────────────────────
+function ajustar() {
+  const r = lienzo.getBoundingClientRect(); if (!r.width || !r.height) return;
+  renderer.setSize(r.width, r.height, false); cam.aspect = r.width / r.height; cam.updateProjectionMatrix();
+}
+new ResizeObserver(ajustar).observe(lienzo);
+function bucle(t) { requestAnimationFrame(bucle); if (animCam) animCam(t); controles.update(); renderer.render(escena, cam); }
+
+// ── biblioteca de módulos (tocar o arrastrar) ─────────────────────────────
+let filtro = 'todos';
+function pintarLista() {
+  const gs = [['todos', 'Todo']].concat(D.grupos);
+  $('[data-filtros]').innerHTML = gs.map(([k, n]) => `<button type="button" data-f="${k}" aria-pressed="${k === filtro}">${esc(n)}</button>`).join('');
+  $$('[data-filtros] button').forEach(b => b.addEventListener('click', () => { filtro = b.dataset.f; pintarLista(); }));
+  $('[data-lista]').innerHTML = D.modulos.filter(m => filtro === 'todos' || m.grupo === filtro).map(m => `
+    <button type="button" class="st-mod" draggable="true" data-add="${m.id}" title="${esc(m.nombre)}">
+      <img src="${esc(m.img)}" alt="" loading="lazy" width="64" height="64">
+      <span><b>${esc(m.corto)}</b><small>${medidaTxt(m)}</small></span>
+      <span><em>${eur(m.precio)}</em><i>+ Añadir</i></span>
+    </button>`).join('');
+  $$('[data-add]').forEach(b => {
+    b.addEventListener('click', () => { anadir(b.dataset.add); if (matchMedia('(max-width:900px)').matches) lienzo.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+    b.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', b.dataset.add); e.dataTransfer.effectAllowed = 'copy'; });
+  });
+}
+function medidaTxt(m) {
+  if (m.tipo === 'colgante') return `${m2(m.w)} × ${m2(m.h)} m · colgado`;
+  if (['mostrador', 'led', 'mesa'].includes(m.tipo)) return `${Math.round(m.w * 100)} × ${Math.round(m.h * 100)} cm de alto`;
+  return `${m2(m.w)} m de ancho × ${m2(m.h)} m de alto`;
+}
+lienzo.addEventListener('dragover', e => { e.preventDefault(); lienzo.classList.add('arrastrando'); });
+lienzo.addEventListener('dragleave', () => lienzo.classList.remove('arrastrando'));
+lienzo.addEventListener('drop', e => {
+  e.preventDefault(); lienzo.classList.remove('arrastrando');
+  const id = e.dataTransfer.getData('text/plain'); if (!MOD[id]) return;
+  rayoDesde(e); const q = puntoEnPlano(0);
+  anadir(id, q && MOD[id].tipo !== 'colgante' ? { x: q.x, z: q.z } : null);
+});
+
+// ── plantillas ────────────────────────────────────────────────────────────
+$('[data-plantillas]').innerHTML = D.plantillas.map(p => `<button type="button" class="st-plantilla" data-pl="${p.id}" title="${esc(p.desc)}"><b>${esc(p.nombre)}</b><span>${esc(p.desc)}</span></button>`).join('');
+$$('[data-pl]').forEach(b => b.addEventListener('click', () => cargarPlantilla(b.dataset.pl)));
+function cargarPlantilla(id) {
+  const pl = D.plantillas.find(p => p.id === id); if (!pl) return;
+  st.ancho = pl.ancho; st.fondo = pl.fondo; st.tipo = pl.tipo; graficas.clear();
+  st.piezas = pl.piezas.map(x => ({ uid: nuevoUid(), m: x.m, x: x.x, z: x.z, r: x.r || 0, focos: x.focos || 0 }));
+  st.sel = null; construirStand(); pintarPiezas(); pintarBarra(); seleccionar(null); guardarHist(); pintarPresupuesto(); vista('3d');
+  $$('[data-pl]').forEach(b => b.classList.toggle('activo', b.dataset.pl === id));
+}
+
+// ── tu marca ──────────────────────────────────────────────────────────────
+function pintarMarca() {
+  $('[data-marca="nombre"]').value = st.marca.nombre; $('[data-marca="lema"]').value = st.marca.lema;
+  [['color', COLORES], ['acento', ACENTOS]].forEach(([k, lista]) => {
+    const caja = $(`[data-colores="${k}"]`);
+    caja.innerHTML = lista.map(c => `<button type="button" data-col="${c}" style="background:${c}" aria-label="Color ${c}" aria-pressed="${c.toLowerCase() === st.marca[k].toLowerCase()}"></button>`).join('') +
+      `<input type="color" value="${st.marca[k]}" aria-label="Otro color">`;
+    $$('button', caja).forEach(b => b.addEventListener('click', () => { st.marca[k] = b.dataset.col; pintarMarca(); repintarTodo(); }));
+    $('input', caja).addEventListener('change', e => { st.marca[k] = e.target.value; pintarMarca(); repintarTodo(); });
+  });
+}
+let tMarca;
+$$('[data-marca]').forEach(i => i.addEventListener('input', () => { st.marca[i.dataset.marca] = i.value || ' '; clearTimeout(tMarca); tMarca = setTimeout(repintarTodo, 250); }));
+function repintarTodo() { st.piezas.forEach(repintarPieza); pintarSeleccion(); guardarMarca(); }
+function guardarMarca() { try { const v = JSON.parse(localStorage.getItem('stand-neocopy') || '{}'); v.marca = st.marca; localStorage.setItem('stand-neocopy', JSON.stringify(v)); } catch (e) {} }
+
+// leer imagen o PDF (1.ª página) → lienzo
+const PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+let pdfListo = null;
+function cargarPdfJs() {
+  if (!pdfListo) pdfListo = new Promise((res, rej) => { const s = document.createElement('script'); s.src = PDFJS + 'pdf.min.js';
+    s.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + 'pdf.worker.min.js'; res(window.pdfjsLib); };
+    s.onerror = () => { pdfListo = null; rej(new Error('pdf')); }; document.head.appendChild(s); });
+  return pdfListo;
+}
+async function leerArchivo(f) {
+  if (f.type === 'application/pdf' || /\.pdf$/i.test(f.name)) {
+    const lib = await cargarPdfJs(), doc = await lib.getDocument({ data: await f.arrayBuffer() }).promise, pag = await doc.getPage(1);
+    const v0 = pag.getViewport({ scale: 1 }), esc2 = Math.min(4, 3000 / Math.max(v0.width, v0.height)), v = pag.getViewport({ scale: esc2 });
+    const c = document.createElement('canvas'); c.width = v.width; c.height = v.height;
+    const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+    await pag.render({ canvasContext: x, viewport: v }).promise; return { img: c, w: c.width, h: c.height, pdf: true };
+  }
+  const url = URL.createObjectURL(f), img = new Image(); img.src = url; await img.decode();
+  return { img, w: img.naturalWidth, h: img.naturalHeight };
+}
+$('[data-logo]').addEventListener('change', async e => {
+  const f = e.target.files[0], est = $('[data-logo-estado]'); if (!f) return;
+  est.className = 'st-estado'; est.textContent = 'Leyendo…';
+  try { logo = (await leerArchivo(f)).img; est.textContent = 'Logo puesto en todo el stand.'; est.classList.add('bien'); $('[data-logo-quitar]').hidden = false; repintarTodo(); }
+  catch (err) { est.textContent = 'No he podido leer ese archivo. Prueba con PNG, JPG o PDF.'; est.classList.add('mal'); }
+  e.target.value = '';
+});
+$('[data-logo-quitar]').addEventListener('click', () => { logo = null; $('[data-logo-quitar]').hidden = true; $('[data-logo-estado]').textContent = ''; repintarTodo(); });
+
+// ── panel de la pieza elegida ─────────────────────────────────────────────
+function pintarPanelPieza() {
+  const p = piezaSel();
+  $('[data-pieza-vacia]').hidden = !!p; $('[data-pieza]').hidden = !p; if (!p) return;
+  const m = MOD[p.m];
+  $('[data-pieza-img]').src = m.img; $('[data-pieza-nombre]').textContent = m.nombre + (m.opcion ? ' · ' + m.opcion : '');
+  $('[data-pieza-medida]').textContent = `${medidaTxt(m)} · gráfica de ${m.gw} × ${m.gh} cm · ${eur(m.precio)}`;
+  $('[data-pieza-ficha]').href = m.url;
+  $('[data-pieza-giro]').value = p.r; $('[data-pieza-giro-txt]').textContent = p.r + '°';
+  $('[data-pieza-focos-caja]').hidden = m.tipo !== 'muro'; $('[data-pieza-focos]').textContent = p.focos || 0;
+  const g = graficas.get(p.uid), est = $('[data-pieza-grafica-estado]');
+  $('[data-pieza-grafica-quitar]').hidden = !g;
+  est.className = 'st-estado';
+  if (!g) { est.textContent = 'Ahora lleva la gráfica de tu marca.'; return; }
+  const ppp = Math.round(Math.min(g.w / (m.gw / 2.54), g.h / (m.gh / 2.54)));
+  if (ppp >= 60) { est.textContent = `Tu gráfica a ${ppp} ppp: buena para imprimir a ${m.gw} × ${m.gh} cm.`; est.classList.add('bien'); }
+  else if (ppp >= 30) est.textContent = `Tu gráfica a ${ppp} ppp: se verá bien de lejos; para que salga nítida, súbela más grande.`;
+  else { est.textContent = `Tu gráfica a ${ppp} ppp: saldrá pixelada a ${m.gw} × ${m.gh} cm. Sube una más grande o un PDF.`; est.classList.add('mal'); }
+}
+$('[data-pieza-giro]').addEventListener('input', e => { const p = piezaSel(); if (!p) return; p.r = +e.target.value; mallas.get(p.uid).rotation.y = -p.r * Math.PI / 180; $('[data-pieza-giro-txt]').textContent = p.r + '°'; pintarSeleccion(); });
+$('[data-pieza-giro]').addEventListener('change', guardarHist);
+$$('[data-focos]').forEach(b => b.addEventListener('click', () => {
+  const p = piezaSel(); if (!p) return; p.focos = Math.max(0, Math.min(6, (p.focos || 0) + +b.dataset.focos));
+  repintarPieza(p); pintarSeleccion(); pintarPanelPieza(); guardarHist(); pintarPresupuesto();
+}));
+$('[data-pieza-grafica]').addEventListener('change', async e => {
+  const f = e.target.files[0], p = piezaSel(), est = $('[data-pieza-grafica-estado]'); if (!f || !p) return;
+  est.className = 'st-estado'; est.textContent = 'Leyendo…';
+  try { graficas.set(p.uid, await leerArchivo(f)); repintarPieza(p); pintarSeleccion(); pintarPanelPieza(); }
+  catch (err) { est.textContent = 'No he podido leer ese archivo. Prueba con PNG, JPG o PDF.'; est.classList.add('mal'); }
+  e.target.value = '';
+});
+$('[data-pieza-grafica-quitar]').addEventListener('click', () => { const p = piezaSel(); if (!p) return; graficas.delete(p.uid); repintarPieza(p); pintarSeleccion(); pintarPanelPieza(); });
+
+// ── presupuesto ───────────────────────────────────────────────────────────
+function lineas() {
+  const por = new Map();
+  st.piezas.forEach(p => { const l = por.get(p.m) || { m: MOD[p.m], n: 0 }; l.n++; por.set(p.m, l); });
+  const out = Array.from(por.values()).map(l => ({ nombre: l.m.corto, largo: l.m.nombre + (l.m.opcion ? ' · ' + l.m.opcion : ''), n: l.n, ud: l.m.precio, url: l.m.url, img: l.m.img, id: l.m.id }));
+  const focos = st.piezas.reduce((a, p) => a + (p.focos || 0), 0);
+  if (focos) out.push({ nombre: D.foco.corto, largo: D.foco.nombre, n: focos, ud: D.foco.precio, url: D.foco.url, img: D.foco.img, id: 'foco' });
+  return out;
+}
+function cuentas() {
+  const ls = lineas(), sub = ls.reduce((a, l) => a + l.n * l.ud, 0), mont = st.montaje ? sub * D.instalacion : 0;
+  return { ls, sub, mont, total: sub + mont };
+}
+function pintarPresupuesto() {
+  const c = cuentas();
+  $('[data-lineas]').innerHTML = c.ls.length ? c.ls.map(l => `<li><span>${l.n} × <a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.nombre)}</a></span><b>${eur(l.n * l.ud)}</b></li>`).join('') +
+    (c.mont ? `<li><span>Montaje y desmontaje (estimado)</span><b>${eur(c.mont)}</b></li>` : '') + (st.diseno ? '<li><span>Diseño de las gráficas</span><b>a presupuestar</b></li>' : '')
+    : '<li><span class="vacio">Aún no hay piezas. Elige una plantilla o añade módulos.</span></li>';
+  $('[data-total]').textContent = eur(c.total); $('[data-total-movil]').textContent = eur(c.total);
+}
+$('[data-montaje]').addEventListener('change', e => { st.montaje = e.target.checked; pintarPresupuesto(); });
+$('[data-diseno]').addEventListener('change', e => { st.diseno = e.target.checked; pintarPresupuesto(); });
+function textoPedido(datos) {
+  const c = cuentas(), L = [];
+  if (datos) { L.push(`Empresa: ${datos.empresa}`, `Nombre: ${datos.nombre}`, `Correo: ${datos.email}`); if (datos.tel) L.push(`Teléfono: ${datos.tel}`); if (datos.feria) L.push(`Feria: ${datos.feria}`); if (datos.fecha) L.push(`Fecha de montaje: ${datos.fecha}`); L.push(''); }
+  L.push(`Stand de ${m2(st.ancho)} × ${m2(st.fondo)} m (${$('[data-tipo]').selectedOptions[0].textContent.toLowerCase()})`, '');
+  c.ls.forEach(l => L.push(`${l.n} × ${l.largo}: ${eur(l.n * l.ud)}`));
+  if (c.mont) L.push(`Montaje y desmontaje (estimado 15 %): ${eur(c.mont)}`);
+  if (st.diseno) L.push('Quiero que Neocopy diseñe las gráficas.');
+  L.push('', `Total con IVA: ${eur(c.total)}`, '', 'Mi diseño en 3D:', enlaceDiseno());
+  if (datos && datos.obs) L.push('', datos.obs);
+  return L.join('\n');
+}
+function aviso(t, html) { const ok = $('[data-ok]'); ok[html ? 'innerHTML' : 'textContent'] = t; clearTimeout(aviso.t); aviso.t = setTimeout(() => { ok.textContent = ''; }, 6000); }
+$('[data-carrito]').addEventListener('click', () => {
+  const ls = lineas(); if (!ls.length) { aviso('Añade alguna pieza antes.'); return; }
+  let c = []; try { c = JSON.parse(localStorage.getItem(D.clave_cesta) || '[]'); } catch (e) {}
+  const nota = 'Stand diseñado en 3D: ' + enlaceDiseno();
+  ls.forEach(l => c.push({ id: 'stand::' + l.id + '::' + Date.now(), nombre: l.largo + ' · para tu stand', img: l.img, precio: l.ud.toFixed(2).replace('.', ','), cant: l.n, nota }));
+  try { localStorage.setItem(D.clave_cesta, JSON.stringify(c)); } catch (e) { aviso('Este navegador no deja guardar el carrito. Usa «Pedir presupuesto».'); return; }
+  const n = c.reduce((a, x) => a + (x.cant || 1), 0);
+  $$('[data-cesta-n]').forEach(el => { el.textContent = n; el.removeAttribute('hidden'); });
+  aviso('Todo el stand está en el carrito. <a href="cesta.html">Ver el carrito</a>', true);
+});
+$('[data-enlace]').addEventListener('click', async () => {
+  const u = enlaceDiseno();
+  try { await navigator.clipboard.writeText(u); aviso('Enlace copiado. Quien lo abra verá tu stand tal cual.'); }
+  catch (e) { prompt('Copia este enlace:', u); }
+});
+const dlg = $('[data-dialogo]');
+$$('[data-pedir]').forEach(b => b.addEventListener('click', () => { if (!st.piezas.length) { aviso('Añade alguna pieza antes.'); return; } dlg.showModal(); }));
+$('[data-cerrar]').addEventListener('click', () => dlg.close());
+$('[data-form]').addEventListener('submit', e => {
+  e.preventDefault(); const f = new FormData(e.target), d = Object.fromEntries(f.entries());
+  const asunto = `Presupuesto de stand ${m2(st.ancho)}×${m2(st.fondo)} m · ${d.empresa}`;
+  location.href = `mailto:${D.correo}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(textoPedido(d))}`;
+  dlg.close(); aviso('Se ha abierto tu correo con el presupuesto para Neocopy. Si no se abre, llámales al ' + D.tel + '.');
+});
+
+// ── foto y PDF ────────────────────────────────────────────────────────────
+function capturar(v) {
+  const pos = cam.position.clone(), obj = controles.target.clone(), sel = caja; if (sel) sel.visible = false;
+  if (v) { const q = pose(v); cam.position.copy(q.pos); cam.lookAt(q.obj); }
+  renderer.render(escena, cam); const url = renderer.domElement.toDataURL('image/jpeg', 0.9);
+  cam.position.copy(pos); controles.target.copy(obj); controles.update(); if (sel) sel.visible = true; return url;
+}
+$('[data-captura]').addEventListener('click', () => {
+  const a = document.createElement('a'); a.href = capturar(); a.download = `stand-${m2(st.ancho)}x${m2(st.fondo)}.jpg`; a.click();
+});
+$('[data-pdf]').addEventListener('click', () => {
+  if (!st.piezas.length) { aviso('Añade alguna pieza antes.'); return; }
+  const c = cuentas(), f3d = capturar('3d'), fpl = capturar('planta'), hoy = new Date().toLocaleDateString('es-ES');
+  $('[data-imprimir]').innerHTML = `
+    <div class="cab"><img src="assets/logo-neocopy.webp" alt="Neocopy"><div><b>Presupuesto de stand</b><br>${hoy}</div></div>
+    <h1>Stand de ${m2(st.ancho)} × ${m2(st.fondo)} m · ${esc(st.marca.nombre)}</h1>
+    <div class="dos"><img class="foto" src="${f3d}" alt=""><img class="foto" src="${fpl}" alt=""></div>
+    <table><thead><tr><th>Pieza</th><th class="n">Uds.</th><th class="n">Precio</th><th class="n">Importe</th></tr></thead><tbody>
+    ${c.ls.map(l => `<tr><td>${esc(l.largo)}</td><td class="n">${l.n}</td><td class="n">${eur(l.ud)}</td><td class="n">${eur(l.n * l.ud)}</td></tr>`).join('')}
+    ${c.mont ? `<tr><td>Montaje y desmontaje (estimado 15 %)</td><td></td><td></td><td class="n">${eur(c.mont)}</td></tr>` : ''}
+    <tr class="tot"><td>Total con IVA</td><td></td><td></td><td class="n">${eur(c.total)}</td></tr></tbody></table>
+    <p>Precios de neocopy.es con IVA. Envío gratis a península. ${st.diseno ? 'Diseño de las gráficas: a presupuestar. ' : ''}Neocopy · ${esc(D.tel)} · ${esc(D.correo)}</p>`;
+  setTimeout(() => window.print(), 300);
+});
+
+// ── pestañas ──────────────────────────────────────────────────────────────
+function pestanaMovil(t) {
+  $$('[data-tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t));
+  $$('.st-panel').forEach(p => p.classList.toggle('activo-m', p.dataset.panel === t));
+}
+$$('[data-tab]').forEach(b => b.addEventListener('click', () => pestanaMovil(b.dataset.tab)));
+$$('[data-tab-d]').forEach(b => b.addEventListener('click', () => {
+  $$('[data-tab-d]').forEach(x => x.setAttribute('aria-selected', x === b));
+  $$('.st-panel[data-lado="izq"]').forEach(p => p.classList.toggle('activo-d', p.dataset.panel === b.dataset.tabD));
+}));
+let ayudaOculta = false;
+function ocultarAyuda() { if (ayudaOculta) return; ayudaOculta = true; const a = $('[data-ayuda]'); a.style.opacity = '0'; }
+
+// ── arranque ──────────────────────────────────────────────────────────────
+function arrancar() {
+  const cinta = document.querySelector('.gg-cinta-demo, [class*="cinta"]'); if (cinta) document.documentElement.style.setProperty('--st-cinta', cinta.getBoundingClientRect().height + 'px');
+  pintarLista(); pintarMarca();
+  let cargado = false;
+  const h = location.hash;
+  if (h.startsWith('#s')) {
+    try {
+      const d = JSON.parse(deb64(h.slice(2)));
+      if (d.m) Object.assign(st.marca, { nombre: d.m[0], lema: d.m[1], color: d.m[2], acento: d.m[3] });
+      aplicarFoto(JSON.stringify(d)); cargado = true;
+    } catch (e) {}
+  }
+  if (!cargado) {
+    try {
+      const v = JSON.parse(localStorage.getItem('stand-neocopy') || 'null');
+      if (v && v.marca) Object.assign(st.marca, v.marca);
+      if (v && v.d && JSON.parse(v.d).p.length) { aplicarFoto(v.d); cargado = true; }
+    } catch (e) {}
+  }
+  pintarMarca();
+  if (!cargado) cargarPlantilla('p6x3');
+  else { hist.push(foto()); botonesHist(); }
+  pintarBarra(); pintarPresupuesto(); ajustar(); vista('3d', true);
+  $('[data-cargando]').remove();
+  requestAnimationFrame(bucle);
+}
+(document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]) : Promise.resolve()).then(arrancar);
+
+</script>
+</head>
+<body>
+<a class="gg-saltar" href="#gg-contenido">Ir al contenido</a>
+<div class="topbar"><span>Envío <b>gratis</b> a península desde 43 €</span><span>Urgente en <b>24 h</b> si lo pides antes de las 11:30</span><span>Tel. <b>96 554 03 02</b></span></div>
+<div class="gg-paginas"><div class="gg-paginas-in"><a href="https://neocopy.es/sobre-nosotros/" target="_blank" rel="noopener">Sobre nosotros</a><a href="https://neocopy.es/tutorial-como-comprar/" target="_blank" rel="noopener">Cómo comprar</a><a href="https://neocopy.es/carga-de-archivos/" target="_blank" rel="noopener">Subir archivos</a><a href="https://neocopy.es/uso-de-las-plantillas-en-canva/" target="_blank" rel="noopener">Plantillas en Canva</a><a href="https://neocopy.es/montar-roll-en-30-segundos/" target="_blank" rel="noopener">Montar un roll up</a><a href="https://neocopy.es/presupuesto-b2b/" target="_blank" rel="noopener">Presupuesto B2B</a><a href="https://neocopy.es/contacto" target="_blank" rel="noopener">Contacto</a></div></div>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo-neocopy.webp" alt="Logotipo de Neocopy" class="brand-logo" style="height:50px;width:auto">
+      
+    </a>
+    <div class="nav-links">
+      <a href="personalizar.html" class="">Diseña tu roll up</a>
+<a href="stands.html" class="">Diseña tu stand 3D</a>
+<a href="tienda.html#roll-ups" class="">Roll Ups</a>
+<a href="tienda.html#photocall" class="">Photocall</a>
+<div class="dropdown">
+        <a href="tienda.html#stands" class="drop-label">Stands de feria</a>
+        <div class="drop-panel"><a href="tienda.html#stands" class="drop-todo">Todo Stands de feria</a><a href="tienda.html#stands">Stands de tela y pop up</a><a href="tienda.html#luz">Cajas de luz LED</a><a href="tienda.html#techo">Banners de techo</a><a href="tienda.html#mostradores">Mostradores</a><a href="tienda.html#carpas">Carpas</a></div>
+      </div>
+<div class="dropdown">
+        <a href="tienda.html#exterior" class="drop-label">Exterior</a>
+        <div class="drop-panel"><a href="tienda.html#exterior" class="drop-todo">Todo Exterior</a><a href="tienda.html#exterior">Banderas y exterior</a><a href="tienda.html#marcos">Marcos y X-Banner</a></div>
+      </div>
+<div class="dropdown">
+        <a href="tienda.html#impresion" class="drop-label">Impresión</a>
+        <div class="drop-panel"><a href="tienda.html#impresion" class="drop-todo">Todo Impresión</a><a href="tienda.html#impresion">Impresión</a><a href="tienda.html#manteles">Manteles y textil</a><a href="tienda.html#accesorios">Recambios y accesorios</a></div>
+      </div>
+
+      <button type="button" class="gg-nav-icono" id="ggBuscarBtn" aria-controls="ggBuscador" aria-expanded="false" aria-label="Buscar productos">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+      </button>
+    </div>
+    <a class="gg-nav-cesta" href="cesta.html">Carrito<b class="gg-cesta-n" data-cesta-n hidden>0</b></a>
+    <a href="personalizar.html" class="nav-cta">Diseña el tuyo</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="gg-search-bar" id="ggBuscador" hidden>
+    <div class="gg-search-inner"><form class="gg-buscador" action="tienda.html" method="get" role="search"><input type="search" name="q" placeholder="Buscar en la tienda" aria-label="Buscar"><button type="submit">Buscar</button></form></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menú">&times;</button>
+  <div class="mm-group"><div class="mm-group-title">Diseña tu roll up</div><div class="mm-sub"><a href="personalizar.html">Diseña tu roll up</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Diseña tu stand 3D</div><div class="mm-sub"><a href="stands.html">Diseña tu stand 3D</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Roll Ups</div><div class="mm-sub"><a href="tienda.html#roll-ups">Roll Ups</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Photocall</div><div class="mm-sub"><a href="tienda.html#photocall">Photocall</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Stands de feria</div><div class="mm-sub"><a href="tienda.html#stands">Todo Stands de feria</a><a href="tienda.html#stands">Stands de tela y pop up</a><a href="tienda.html#luz">Cajas de luz LED</a><a href="tienda.html#techo">Banners de techo</a><a href="tienda.html#mostradores">Mostradores</a><a href="tienda.html#carpas">Carpas</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Exterior</div><div class="mm-sub"><a href="tienda.html#exterior">Todo Exterior</a><a href="tienda.html#exterior">Banderas y exterior</a><a href="tienda.html#marcos">Marcos y X-Banner</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Impresión</div><div class="mm-sub"><a href="tienda.html#impresion">Todo Impresión</a><a href="tienda.html#impresion">Impresión</a><a href="tienda.html#manteles">Manteles y textil</a><a href="tienda.html#accesorios">Recambios y accesorios</a></div></div>
+<div class="mm-group mm-group--paginas"><div class="mm-group-title">Neocopy</div><div class="mm-sub"><a href="https://neocopy.es/sobre-nosotros/" target="_blank" rel="noopener">Sobre nosotros</a><a href="https://neocopy.es/tutorial-como-comprar/" target="_blank" rel="noopener">Cómo comprar</a><a href="https://neocopy.es/carga-de-archivos/" target="_blank" rel="noopener">Subir archivos</a><a href="https://neocopy.es/uso-de-las-plantillas-en-canva/" target="_blank" rel="noopener">Plantillas en Canva</a><a href="https://neocopy.es/montar-roll-en-30-segundos/" target="_blank" rel="noopener">Montar un roll up</a><a href="https://neocopy.es/presupuesto-b2b/" target="_blank" rel="noopener">Presupuesto B2B</a><a href="https://neocopy.es/contacto" target="_blank" rel="noopener">Contacto</a></div></div>
+
+  <a href="cesta.html">Carrito</a>
+  <div class="mm-buscador"><form class="gg-buscador" action="tienda.html" method="get" role="search"><input type="search" name="q" placeholder="Buscar en la tienda" aria-label="Buscar"><button type="submit">Buscar</button></form></div>
+  <a href="personalizar.html" class="mm-cta">Diseña tu roll up</a>
+</div>
+<main id="gg-contenido" tabindex="-1" class="st">
+  <div class="st-cab">
+    <div>
+      <p class="st-rot">Montador de stands 3D</p>
+      <h1>Diseña tu stand en 3D</h1>
+      <p class="st-sub">Muros de tela, pop ups, mostradores, cajas de luz y colgantes de Neocopy, con tu marca y el precio al momento.</p>
+    </div>
+    <div class="st-plantillas" data-plantillas aria-label="Plantillas de stand"></div>
+  </div>
+
+
+  <div class="st-app">
+    <div class="st-tabs" role="tablist" aria-label="Paneles del montador">
+      <button type="button" role="tab" data-tab="modulos" aria-selected="true">Módulos</button>
+      <button type="button" role="tab" data-tab="marca">Tu marca</button>
+      <button type="button" role="tab" data-tab="pieza">Pieza</button>
+      <button type="button" role="tab" data-tab="presupuesto">Presupuesto</button>
+    </div>
+
+    <aside class="st-izq">
+      <div class="st-tabs-d" role="tablist">
+        <button type="button" data-tab-d="modulos" aria-selected="true">Módulos</button>
+        <button type="button" data-tab-d="marca">Tu marca</button>
+      </div>
+
+      <div class="st-panel activo-d activo-m" data-panel="modulos" data-lado="izq">
+        <div class="st-filtros" data-filtros></div>
+        <p class="st-nota">Toca un módulo para ponerlo en el stand, o arrástralo encima.</p>
+        <div class="st-lista" data-lista></div>
+      </div>
+
+      <div class="st-panel" data-panel="marca" data-lado="izq">
+        <p class="st-nota">Lo que pongas aquí se imprime en todas las piezas. Luego puedes subir una gráfica distinta para cada una.</p>
+        <label class="st-campo"><span>Nombre de tu empresa</span><input type="text" data-marca="nombre" maxlength="40" autocomplete="organization"></label>
+        <label class="st-campo"><span>Frase</span><input type="text" data-marca="lema" maxlength="60"></label>
+        <div class="st-campo"><span>Color de fondo</span><div class="st-colores" data-colores="color"></div></div>
+        <div class="st-campo"><span>Color de detalle</span><div class="st-colores" data-colores="acento"></div></div>
+        <div class="st-campo"><span>Tu logo (imagen o PDF)</span>
+          <div class="st-subir"><label class="st-btn st-btn-2"><input type="file" accept="image/*,application/pdf" data-logo hidden>Subir logo</label>
+          <button type="button" class="st-link" data-logo-quitar hidden>Quitar logo</button></div>
+          <p class="st-estado" data-logo-estado></p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="st-centro">
+      <div class="st-barra">
+        <div class="st-medida">
+          <span>Stand</span>
+          <input type="number" min="2" max="12" step="0.5" data-ancho aria-label="Ancho del stand en metros"><b>×</b>
+          <input type="number" min="2" max="12" step="0.5" data-fondo aria-label="Fondo del stand en metros"><span>m</span>
+        </div>
+        <select data-tipo aria-label="Tipo de stand">
+          <option value="linea">En línea (3 paredes)</option>
+          <option value="esquina">Esquina (2 paredes)</option>
+          <option value="peninsula">Península (1 pared)</option>
+          <option value="isla">Isla (abierto)</option>
+        </select>
+        <div class="st-moqueta" data-moquetas aria-label="Color de la moqueta"></div>
+        <div class="st-vistas" role="group" aria-label="Vista">
+          <button type="button" data-vista="3d" aria-pressed="true">3D</button>
+          <button type="button" data-vista="planta">Planta</button>
+          <button type="button" data-vista="frente">Frente</button>
+          <button type="button" data-vista="paseo">Paseo</button>
+        </div>
+        <div class="st-acc">
+          <button type="button" data-deshacer title="Deshacer (Ctrl+Z)" aria-label="Deshacer">↶</button>
+          <button type="button" data-rehacer title="Rehacer (Ctrl+Y)" aria-label="Rehacer">↷</button>
+          <button type="button" data-iman aria-pressed="true" title="Imán: encaja las piezas entre sí y con los bordes">Imán</button>
+          <button type="button" data-captura title="Descargar una imagen del stand">Foto</button>
+          <button type="button" data-vaciar title="Quitar todas las piezas">Vaciar</button>
+        </div>
+      </div>
+
+      <div class="st-lienzo" data-lienzo>
+        <div class="st-cargando" data-cargando>Preparando el stand en 3D…</div>
+        <div class="st-avisos" data-avisos hidden></div>
+        <div class="st-ayuda" data-ayuda>Arrastra una pieza para moverla · arrastra el fondo para girar la vista · rueda o dos dedos para acercar</div>
+        <div class="st-selbar" data-selbar hidden>
+          <b data-selbar-nombre></b>
+          <button type="button" data-girar="-15" aria-label="Girar a la izquierda">↺</button>
+          <button type="button" data-girar="15" aria-label="Girar a la derecha">↻</button>
+          <button type="button" data-girar="90">90°</button>
+          <button type="button" data-duplicar>Duplicar</button>
+          <button type="button" data-borrar class="st-rojo">Quitar</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="st-der">
+      <div class="st-panel activo-d" data-panel="pieza" data-lado="der">
+        <div data-pieza-vacia><h2>Pieza elegida</h2><p class="st-nota">Toca una pieza del stand para cambiarle la gráfica, girarla o ver su ficha.</p></div>
+        <div data-pieza hidden>
+          <div class="st-pieza-cab"><img data-pieza-img alt="" width="72" height="72"><div><h2 data-pieza-nombre></h2><p data-pieza-medida></p><a data-pieza-ficha target="_blank" rel="noopener">Ver la ficha del producto</a></div></div>
+          <label class="st-campo st-campo-fila"><span>Giro</span><input type="range" min="-180" max="180" step="5" data-pieza-giro><output data-pieza-giro-txt></output></label>
+          <div class="st-campo st-campo-fila" data-pieza-focos-caja><span>Focos LED encima</span><div class="st-cant"><button type="button" data-focos="-1" aria-label="Un foco menos">−</button><b data-pieza-focos>0</b><button type="button" data-focos="1" aria-label="Un foco más">+</button></div></div>
+          <div class="st-campo"><span>Gráfica de esta pieza</span>
+            <div class="st-subir"><label class="st-btn st-btn-2"><input type="file" accept="image/*,application/pdf" data-pieza-grafica hidden>Subir imagen o PDF</label>
+            <button type="button" class="st-link" data-pieza-grafica-quitar hidden>Volver a la de mi marca</button></div>
+            <p class="st-estado" data-pieza-grafica-estado></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="st-panel activo-d" data-panel="presupuesto" data-lado="der">
+        <h2>Tu presupuesto</h2>
+        <ul class="st-lineas" data-lineas></ul>
+        <label class="st-check"><input type="checkbox" data-montaje><span>Montaje y desmontaje en la feria <small>estimado, 15 %</small></span></label>
+        <label class="st-check"><input type="checkbox" data-diseno><span>Que Neocopy me diseñe las gráficas <small>te lo presupuestamos</small></span></label>
+        <div class="st-total"><span>Total con IVA</span><b data-total>0,00 €</b></div>
+        <p class="st-nota st-nota-env">Precios de neocopy.es con IVA. Envío gratis a península.</p>
+        <button type="button" class="st-btn" data-pedir>Pedir presupuesto con montaje</button>
+        <button type="button" class="st-btn st-btn-2" data-carrito>Añadir todo al carrito</button>
+        <div class="st-mini">
+          <button type="button" class="st-link" data-pdf>Descargar en PDF</button>
+          <button type="button" class="st-link" data-enlace>Copiar enlace de mi diseño</button>
+        </div>
+        <p class="st-ok" data-ok role="status"></p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="st-barra-movil"><span><small>Total con IVA</small><b data-total-movil>0,00 €</b></span><button type="button" class="st-btn" data-pedir>Pedir presupuesto</button></div>
+
+  <dialog class="st-dialogo" data-dialogo aria-labelledby="st-dlg-tit">
+    <form method="dialog" data-form>
+      <h2 id="st-dlg-tit">Pide tu presupuesto</h2>
+      <p class="st-nota">Se abre tu correo con todo rellenado para Neocopy: las piezas, las medidas, el precio y el enlace a tu diseño.</p>
+      <div class="st-form-grid">
+        <label class="st-campo"><span>Empresa *</span><input name="empresa" required autocomplete="organization"></label>
+        <label class="st-campo"><span>Tu nombre *</span><input name="nombre" required autocomplete="name"></label>
+        <label class="st-campo"><span>Correo *</span><input name="email" type="email" required autocomplete="email"></label>
+        <label class="st-campo"><span>Teléfono</span><input name="tel" type="tel" autocomplete="tel"></label>
+        <label class="st-campo"><span>Feria o evento</span><input name="feria"></label>
+        <label class="st-campo"><span>Fecha de montaje</span><input name="fecha" type="date"></label>
+      </div>
+      <label class="st-campo"><span>Algo más que debamos saber</span><textarea name="obs" rows="3"></textarea></label>
+      <div class="st-dlg-acc"><button type="button" class="st-btn st-btn-2" data-cerrar>Cancelar</button><button type="submit" class="st-btn" value="enviar">Enviar a Neocopy</button></div>
+    </form>
+  </dialog>
+
+  <div class="st-imprimir" data-imprimir aria-hidden="true"></div>
+</main>
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="brand" style="gap:12px">
+        <img src="assets/logo-neocopy.webp" alt="" style="height:40px;width:auto;height:50px;width:auto">
+        <span class="brand-text"><b style="font-family:var(--f-titulo);font-size:22px;color:var(--crema)">Neocopy</b><small style="font-size:9px;letter-spacing:.32em;color:var(--brasa-clara);text-transform:uppercase">Material publicitario para ferias y eventos</small></span>
+      </div>
+      <p>Más de 20 años fabricando material publicitario para ferias y eventos: roll ups, photocall, stands de tela, pop ups, banderas, mostradores e impresión en gran formato, todo en nuestro taller.</p>
+    </div>
+    <div class="foot-col"><p class="pie-titulo">Tienda</p><ul><li><a href="tienda.html">Toda la tienda</a></li><li><a href="tienda.html#roll-ups">Roll Ups</a></li><li><a href="tienda.html#photocall">Photocall</a></li><li><a href="tienda.html#stands">Stands de feria</a></li><li><a href="tienda.html#impresion">Impresión</a></li><li><a href="cesta.html">Carrito</a></li></ul></div>
+<div class="foot-col"><p class="pie-titulo">Neocopy</p><ul><li><a href="https://neocopy.es/sobre-nosotros/">Sobre nosotros</a></li><li><a href="https://neocopy.es/carga-de-archivos/">Subir archivos</a></li><li><a href="https://neocopy.es/uso-de-las-plantillas-en-canva/">Plantillas en Canva</a></li><li><a href="https://neocopy.es/montar-roll-en-30-segundos/">Montar un roll up</a></li><li><a href="https://neocopy.es/condiciones-generales/">Condiciones generales</a></li><li><a href="https://neocopy.es/politica-de-devoluciones/">Devoluciones</a></li></ul></div>
+<div class="foot-col"><p class="pie-titulo">Contacto</p><ul><li><a href="tel:+34965540302">Tel. 96 554 03 02</a></li><li><a href="mailto:info@neocopy.es">info@neocopy.es</a></li><li><a href="https://neocopy.es/presupuesto-b2b/">Pide presupuesto</a></li></ul></div>
+
+  </div>
+  <div class="foot-legal"><span class="foot-legal-tit">Información legal</span><div class="foot-legal-menu"><ul><li><a href="https://neocopy.es/aviso-legal/" target="_blank" rel="noopener">Aviso legal</a></li><li><a href="https://neocopy.es/politica-de-cookies/" target="_blank" rel="noopener">Política de cookies</a></li><li><a href="https://neocopy.es/condiciones-generales/" target="_blank" rel="noopener">Condiciones generales</a></li></ul></div></div>
+  <div class="foot-bottom">
+    <span>&copy; <span id="year"></span> Neocopy · Neocopy Servicios de Impresión S.L. · C/ Banyeres de Mariola, 10 · 03820 Cocentaina (Alicante)</span>
+    <span>Hecho en Cocentaina</span>
+  </div>
+</footer>
+
+
+
+<div class="gg-demo-cinta" aria-hidden="true">Muestra de G&amp;G Elcano para Neocopy · precios de neocopy.es a 16 de noviembre de 2026 · el carrito no cobra</div>
+<script src="assets/tienda.js"></script>
+
+</body>
+</html>
