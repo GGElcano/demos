@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Toda la tienda · JarénCrafts</title>
+<meta name="description" content="Cajas para relojes, watch winder, estuches de viaje, joyeros y accesorios de piel hechos a mano en Villamartín (Cádiz) desde 1980.">
+<meta name="theme-color" content="#120F0D">
+<!-- Maqueta: mientras vive en la carpeta de demos va SIN indexar, para no competir en
+     Google con la tienda real del cliente. Al mudarla a su dominio se quita esta línea. -->
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://ggelcano.github.io/demos/jarencrafts-cajas-relojes/tienda.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JarénCrafts">
+<meta property="og:title" content="Toda la tienda · JarénCrafts">
+<meta property="og:description" content="Cajas para relojes, watch winder, estuches de viaje, joyeros y accesorios de piel hechos a mano en Villamartín (Cádiz) desde 1980.">
+<meta property="og:url" content="https://ggelcano.github.io/demos/jarencrafts-cajas-relojes/tienda.html">
+<meta property="og:image" content="https://ggelcano.github.io/demos/jarencrafts-cajas-relojes/assets/hero.webp">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tienda.css">
+
+<style>
+:root{
+  --crema:#F4EFE7; --hueso:#FBF8F3; --tierra:#1E1A17;
+  --tierra-2:#120F0D; --carbon:#1E1A17; --tinta:#1E1A17;
+  --gris:#6B635B; --linea:#E4DCD0; --brasa:#9C6B3C;
+  --brasa-clara:#E7D3BC; --brasa-2:#7E5530;
+  --f-titulo:'Playfair Display',Georgia,serif; --f-texto:'Inter',system-ui,sans-serif;
+}
+
+.hero-overlay-min::after{display:none}
+.gw-ficha p{margin:0 0 10px;line-height:1.6}
+.gw-env{max-width:1200px;margin:0 auto;padding:0 24px}
+.gw-eti{font:700 13px var(--f-texto);letter-spacing:.14em;text-transform:uppercase;color:var(--brasa)}
+.gw-cab{max-width:760px;margin-bottom:28px}
+.gw-cab h2{font-family:var(--f-titulo);font-size:clamp(30px,4vw,46px);line-height:1.05;margin:8px 0 12px;color:var(--tinta)}
+.gw-cab p{color:var(--gris);font-size:16px;line-height:1.6}
+@media (max-width:520px){.gw-env{padding:0 16px}}
+/* JarénCrafts (26-nov-2026): negro, crema y cuero */
+.hero-overlay-min{background:linear-gradient(90deg,rgba(18,15,13,.8) 0%,rgba(18,15,13,.45) 48%,rgba(0,0,0,.05) 75%)}
+.hero h1{font-weight:500}
+.hero h1 em{font-style:normal;display:block;font:400 .34em/1.55 var(--f-texto);margin-top:.8em;opacity:.95;color:#fff;max-width:34em}
+@media (max-width:700px){.hero-overlay-min{background:linear-gradient(0deg,rgba(18,15,13,.88) 0%,rgba(18,15,13,.6) 52%,rgba(18,15,13,.15) 82%)}}
+.jc-bus-sec{padding:76px 0;background:var(--crema)}
+.jc-bus-sec .gw-cab h2{font-weight:500}
+.jc-chips{display:flex;flex-wrap:wrap;gap:8px}
+.jc-chips button{min-width:56px;min-height:48px;padding:10px 14px;border:1.5px solid var(--linea);background:#fff;border-radius:999px;font:600 17px var(--f-texto);color:var(--tinta);cursor:pointer}
+.jc-chips button[aria-pressed="true"]{background:var(--tierra);border-color:var(--tierra);color:#fff}
+.jc-chips button::after{content:" relojes";font-weight:400;font-size:14px}
+.jc-auto{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:15px;color:var(--tinta);cursor:pointer;min-height:44px}
+.jc-auto input{width:20px;height:20px;accent-color:var(--brasa)}
+.jc-n{margin:18px 0 12px;color:var(--gris);font-weight:600}
+.jc-res{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.jc-caja{background:#fff;border:1px solid var(--linea);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.jc-foto{display:block;aspect-ratio:1/1;background:#fff}
+.jc-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.jc-txt{padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.jc-txt h3{font-family:var(--f-titulo);font-weight:500;font-size:24px;margin:0;color:var(--tinta)}
+.jc-cap{margin:0;color:var(--gris);font-size:14px}
+.jc-precio{margin:2px 0 4px;font-weight:700;font-size:20px;color:var(--brasa-2)}
+.jc-bolas{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
+.jc-bola{width:30px;height:30px;border-radius:50%;background:var(--c);border:2px solid #fff;box-shadow:0 0 0 1px var(--linea);cursor:pointer;padding:0;display:inline-block}
+.jc-bola[aria-pressed="true"],.jc-bola[aria-current]{box-shadow:0 0 0 2px var(--tierra)}
+.jc-txt .btn-carrito{margin-top:auto;text-align:center}
+.jc-otros{margin:0 0 14px}
+.jc-otros p{margin:0 0 8px;font-size:14px;color:var(--gris)}
+.jc-otros .jc-bola{width:34px;height:34px}
+.jc-ts{display:flex;flex-wrap:wrap;gap:8px}
+.jc-t{display:inline-block;padding:9px 12px;border:1px solid var(--linea);border-radius:8px;font-size:14px;color:var(--tinta);text-decoration:none;background:#fff;min-height:40px}
+.jc-t[aria-current]{background:var(--tierra);color:#fff;border-color:var(--tierra)}
+.jc-taller{padding:76px 0}
+.jc-ta-caja{display:grid;grid-template-columns:minmax(0,480px) 1fr;gap:48px;align-items:center}
+.jc-ta-caja img{width:100%;height:auto;border-radius:14px}
+.jc-ta-caja h2{font-family:var(--f-titulo);font-weight:500;font-size:clamp(30px,4vw,46px);margin:6px 0 12px;color:var(--tinta)}
+.jc-ta-caja p{color:var(--gris);line-height:1.65}
+.jc-lista{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+.jc-lista li{padding-left:22px;position:relative;color:var(--tinta);line-height:1.5}
+.jc-lista li::before{content:"";position:absolute;left:4px;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--brasa)}
+@media (max-width:900px){.jc-ta-caja{grid-template-columns:1fr}.jc-taller,.jc-bus-sec{padding:52px 0}}
+@media (max-width:520px){.jc-res{grid-template-columns:1fr 1fr;gap:10px}.jc-txt{padding:12px}.jc-txt h3{font-size:19px}.jc-precio{font-size:17px}.jc-bola{width:26px;height:26px}.jc-chips button{min-width:48px;padding:8px 12px;font-size:16px}.jc-chips button::after{content:""}}
+
+@media (max-width: 768px){ .hero{ min-height: auto; height: auto; align-items: flex-start; } .hero-min{ min-height: 62vh; } }
+</style>
+
+</head>
+<body>
+<a class="gg-saltar" href="#gg-contenido">Ir al contenido</a>
+<div class="topbar"><span>Hecho a mano en Villamartín (Cádiz)</span><span>Artesanía en piel desde 1980</span><span>WhatsApp <b>647 708 714</b></span></div>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.webp" alt="Logotipo de JarénCrafts" class="brand-logo" style="height:44px;width:auto">
+      
+    </a>
+    <div class="nav-links">
+      <a href="tienda.html#relojes" class="">Cajas para relojes</a>
+<a href="tienda.html#winder" class="">Watch winder</a>
+<a href="tienda.html#viaje" class="">Estuches de viaje</a>
+<a href="tienda.html#joyas" class="">Joyeros</a>
+<a href="tienda.html#gafas" class="">Cajas para gafas</a>
+<a href="tienda.html#bolsos" class="">Bolsos</a>
+<a href="tienda.html#hogar" class="">Hogar y regalo</a>
+
+      <button type="button" class="gg-nav-icono" id="ggBuscarBtn" aria-controls="ggBuscador" aria-expanded="false" aria-label="Buscar productos">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+      </button>
+    </div>
+    <a class="gg-nav-cesta" href="cesta.html">Carrito<b class="gg-cesta-n" data-cesta-n hidden>0</b></a>
+    <a href="index.html#tu-caja" class="nav-cta">Tu caja</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="gg-search-bar" id="ggBuscador" hidden>
+    <div class="gg-search-inner"><form class="gg-buscador" action="tienda.html" method="get" role="search"><input type="search" name="q" placeholder="Buscar en la tienda" aria-label="Buscar"><button type="submit">Buscar</button></form></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" id="mmClose" aria-label="Cerrar menú">&times;</button>
+  <div class="mm-group"><div class="mm-group-title">Cajas para relojes</div><div class="mm-sub"><a href="tienda.html#relojes">Cajas para relojes</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Watch winder</div><div class="mm-sub"><a href="tienda.html#winder">Watch winder</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Estuches de viaje</div><div class="mm-sub"><a href="tienda.html#viaje">Estuches de viaje</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Joyeros</div><div class="mm-sub"><a href="tienda.html#joyas">Joyeros</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Cajas para gafas</div><div class="mm-sub"><a href="tienda.html#gafas">Cajas para gafas</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Bolsos</div><div class="mm-sub"><a href="tienda.html#bolsos">Bolsos</a></div></div>
+<div class="mm-group"><div class="mm-group-title">Hogar y regalo</div><div class="mm-sub"><a href="tienda.html#hogar">Hogar y regalo</a></div></div>
+
+  <a href="cesta.html">Carrito</a>
+  <div class="mm-buscador"><form class="gg-buscador" action="tienda.html" method="get" role="search"><input type="search" name="q" placeholder="Buscar en la tienda" aria-label="Buscar"><button type="submit">Buscar</button></form></div>
+  <a href="index.html#tu-caja" class="mm-cta">¿Cuántos relojes tienes?</a>
+</div>
+
+<main id="gg-contenido" tabindex="-1" class="gg-main">
+  <div class="wrap">
+    <p class="gg-migas"><a href="index.html">Inicio</a> / La tienda</p>
+    <div class="gg-listado-cab"><h1 data-listado-titulo>Toda la tienda</h1><span class="gg-listado-n"><span data-listado-n>111</span> productos</span></div>
+    <div class="gg-chips" data-chips><button type="button" class="gg-chip gg-chip-on" data-cat="">Todo</button><button type="button" class="gg-chip" data-cat="relojes">Cajas para relojes</button><button type="button" class="gg-chip" data-cat="clasica">Clásica</button><button type="button" class="gg-chip" data-cat="premium">Premium</button><button type="button" class="gg-chip" data-cat="moderna">Moderna</button><button type="button" class="gg-chip" data-cat="eco">Eco</button><button type="button" class="gg-chip" data-cat="winder">Watch winder</button><button type="button" class="gg-chip" data-cat="viaje">Estuches de viaje</button><button type="button" class="gg-chip" data-cat="joyas">Joyeros</button><button type="button" class="gg-chip" data-cat="gafas">Cajas para gafas</button><button type="button" class="gg-chip" data-cat="bolsos">Bolsos</button><button type="button" class="gg-chip" data-cat="hogar">Hogar y regalo</button></div>
+    <div class="gg-rejilla" data-rejilla><article class="gg-prenda" data-cats="relojes eco" data-nombre="eco · 8 relojes · antracita">
+  <a class="gg-prenda-foto" href="producto/eco-8-relojes-antracita-5896.html"><img src="assets/p/eco-8-relojes-antracita-5896.webp" alt="Eco · 8 relojes · Antracita" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/eco-8-relojes-antracita-5896.html">Eco · 8 relojes · Antracita</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes eco" data-nombre="eco · 6 relojes · antracita">
+  <a class="gg-prenda-foto" href="producto/eco-6-relojes-antracita-5893.html"><img src="assets/p/eco-6-relojes-antracita-5893.webp" alt="Eco · 6 relojes · Antracita" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/eco-6-relojes-antracita-5893.html">Eco · 6 relojes · Antracita</a>
+  <div class="gg-prenda-precio">285 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes eco" data-nombre="eco · 5 relojes · antracita">
+  <a class="gg-prenda-foto" href="producto/eco-5-relojes-antracita-5890.html"><img src="assets/p/eco-5-relojes-antracita-5890.webp" alt="Eco · 5 relojes · Antracita" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/eco-5-relojes-antracita-5890.html">Eco · 5 relojes · Antracita</a>
+  <div class="gg-prenda-precio">245 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes eco" data-nombre="eco · 10 relojes · antracita">
+  <a class="gg-prenda-foto" href="producto/eco-10-relojes-antracita-5887.html"><img src="assets/p/eco-10-relojes-antracita-5887.webp" alt="Eco · 10 relojes · Antracita" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/eco-10-relojes-antracita-5887.html">Eco · 10 relojes · Antracita</a>
+  <div class="gg-prenda-precio">365 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="vaciabolsillos">
+  <a class="gg-prenda-foto" href="producto/vaciabolsillos-5612.html"><img src="assets/p/vaciabolsillos-5612.webp" alt="Vaciabolsillos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/vaciabolsillos-5612.html">Vaciabolsillos</a>
+  <div class="gg-prenda-precio">150 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="vaciabolsillos">
+  <a class="gg-prenda-foto" href="producto/vaciabolsillos-5611.html"><img src="assets/p/vaciabolsillos-5611.webp" alt="Vaciabolsillos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/vaciabolsillos-5611.html">Vaciabolsillos</a>
+  <div class="gg-prenda-precio">150 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes viaje" data-nombre="viaje ultra fino · 6 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/viaje-ultra-fino-6-relojes-verde-5610.html"><img src="assets/p/viaje-ultra-fino-6-relojes-verde-5610.webp" alt="Viaje ultra fino · 6 relojes · Verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/viaje-ultra-fino-6-relojes-verde-5610.html">Viaje ultra fino · 6 relojes · Verde</a>
+  <div class="gg-prenda-precio">300 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes viaje" data-nombre="viaje ultra fino · 6 relojes · negro">
+  <a class="gg-prenda-foto" href="producto/viaje-ultra-fino-6-relojes-negro-5609.html"><img src="assets/p/viaje-ultra-fino-6-relojes-negro-5609.webp" alt="Viaje ultra fino · 6 relojes · Negro" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/viaje-ultra-fino-6-relojes-negro-5609.html">Viaje ultra fino · 6 relojes · Negro</a>
+  <div class="gg-prenda-precio">300 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes viaje" data-nombre="viaje ultra fino · 4 relojes · marrón">
+  <a class="gg-prenda-foto" href="producto/viaje-ultra-fino-4-relojes-marron-5608.html"><img src="assets/p/viaje-ultra-fino-4-relojes-marron-5608.webp" alt="Viaje ultra fino · 4 relojes · Marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/viaje-ultra-fino-4-relojes-marron-5608.html">Viaje ultra fino · 4 relojes · Marrón</a>
+  <div class="gg-prenda-precio">225 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes viaje" data-nombre="viaje ultra fino · 4 relojes · azul">
+  <a class="gg-prenda-foto" href="producto/viaje-ultra-fino-4-relojes-azul-5607.html"><img src="assets/p/viaje-ultra-fino-4-relojes-azul-5607.webp" alt="Viaje ultra fino · 4 relojes · Azul" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/viaje-ultra-fino-4-relojes-azul-5607.html">Viaje ultra fino · 4 relojes · Azul</a>
+  <div class="gg-prenda-precio">225 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes viaje" data-nombre="viaje ultra fino · 2 relojes · azul">
+  <a class="gg-prenda-foto" href="producto/viaje-ultra-fino-2-relojes-azul-5464.html"><img src="assets/p/viaje-ultra-fino-2-relojes-azul-5464.webp" alt="Viaje ultra fino · 2 relojes · Azul" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/viaje-ultra-fino-2-relojes-azul-5464.html">Viaje ultra fino · 2 relojes · Azul</a>
+  <div class="gg-prenda-precio">155 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes moderna" data-nombre="moderna · 10 relojes · negro">
+  <a class="gg-prenda-foto" href="producto/moderna-10-relojes-negro-5408.html"><img src="assets/p/moderna-10-relojes-negro-5408.webp" alt="Moderna · 10 relojes · Negro" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/moderna-10-relojes-negro-5408.html">Moderna · 10 relojes · Negro</a>
+  <div class="gg-prenda-precio">795 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes moderna" data-nombre="moderna · 10 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/moderna-10-relojes-verde-5407.html"><img src="assets/p/moderna-10-relojes-verde-5407.webp" alt="Moderna · 10 relojes · Verde" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/moderna-10-relojes-verde-5407.html">Moderna · 10 relojes · Verde</a>
+  <div class="gg-prenda-precio">795 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes moderna" data-nombre="moderna · 10 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/moderna-10-relojes-marino-5388.html"><img src="assets/p/moderna-10-relojes-marino-5388.webp" alt="Moderna · 10 relojes · Marino" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/moderna-10-relojes-marino-5388.html">Moderna · 10 relojes · Marino</a>
+  <div class="gg-prenda-precio">795 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes moderna" data-nombre="moderna · 5 relojes · negro">
+  <a class="gg-prenda-foto" href="producto/moderna-5-relojes-negro-5387.html"><img src="assets/p/moderna-5-relojes-negro-5387.webp" alt="Moderna · 5 relojes · Negro" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/moderna-5-relojes-negro-5387.html">Moderna · 5 relojes · Negro</a>
+  <div class="gg-prenda-precio">485 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes moderna" data-nombre="moderna · 5 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/moderna-5-relojes-verde-5386.html"><img src="assets/p/moderna-5-relojes-verde-5386.webp" alt="Moderna · 5 relojes · Verde" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/moderna-5-relojes-verde-5386.html">Moderna · 5 relojes · Verde</a>
+  <div class="gg-prenda-precio">485 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes moderna" data-nombre="moderna · 5 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/moderna-5-relojes-marino-5373.html"><img src="assets/p/moderna-5-relojes-marino-5373.webp" alt="Moderna · 5 relojes · Marino" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/moderna-5-relojes-marino-5373.html">Moderna · 5 relojes · Marino</a>
+  <div class="gg-prenda-precio">485 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="marco de fotos">
+  <a class="gg-prenda-foto" href="producto/marco-de-fotos-5182.html"><img src="assets/p/marco-de-fotos-5182.webp" alt="Marco de fotos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/marco-de-fotos-5182.html">Marco de fotos</a>
+  <div class="gg-prenda-precio">265 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="marco de fotos">
+  <a class="gg-prenda-foto" href="producto/marco-de-fotos-5181.html"><img src="assets/p/marco-de-fotos-5181.webp" alt="Marco de fotos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/marco-de-fotos-5181.html">Marco de fotos</a>
+  <div class="gg-prenda-precio">265 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="marco de fotos">
+  <a class="gg-prenda-foto" href="producto/marco-de-fotos-5180.html"><img src="assets/p/marco-de-fotos-5180.webp" alt="Marco de fotos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/marco-de-fotos-5180.html">Marco de fotos</a>
+  <div class="gg-prenda-precio">265 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="set de 6 posavasos en cuero">
+  <a class="gg-prenda-foto" href="producto/set-de-6-posavasos-en-cuero-5179.html"><img src="assets/p/set-de-6-posavasos-en-cuero-5179.webp" alt="Set de 6 posavasos en cuero" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/set-de-6-posavasos-en-cuero-5179.html">Set de 6 posavasos en cuero</a>
+  <div class="gg-prenda-precio">125 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="set de 6 posavasos en cuero">
+  <a class="gg-prenda-foto" href="producto/set-de-6-posavasos-en-cuero-5178.html"><img src="assets/p/set-de-6-posavasos-en-cuero-5178.webp" alt="Set de 6 posavasos en cuero" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/set-de-6-posavasos-en-cuero-5178.html">Set de 6 posavasos en cuero</a>
+  <div class="gg-prenda-precio">125 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="set de 6 posavasos en cuero">
+  <a class="gg-prenda-foto" href="producto/set-de-6-posavasos-en-cuero-5167.html"><img src="assets/p/set-de-6-posavasos-en-cuero-5167.webp" alt="Set de 6 posavasos en cuero" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/set-de-6-posavasos-en-cuero-5167.html">Set de 6 posavasos en cuero</a>
+  <div class="gg-prenda-precio">125 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="set de aseo para mascotas">
+  <a class="gg-prenda-foto" href="producto/set-de-aseo-para-mascotas-5120.html"><img src="assets/p/set-de-aseo-para-mascotas-5120.webp" alt="Set de aseo para mascotas" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/set-de-aseo-para-mascotas-5120.html">Set de aseo para mascotas</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="gafas" data-nombre="caja de cuero marino para gafas">
+  <a class="gg-prenda-foto" href="producto/caja-de-cuero-marino-para-gafas-5061.html"><img src="assets/p/caja-de-cuero-marino-para-gafas-5061.webp" alt="Caja de cuero marino para gafas" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/caja-de-cuero-marino-para-gafas-5061.html">Caja de cuero marino para gafas</a>
+  <div class="gg-prenda-precio">120 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="gafas" data-nombre="caja de cuero hueso para gafas">
+  <a class="gg-prenda-foto" href="producto/caja-de-cuero-hueso-para-gafas-5060.html"><img src="assets/p/caja-de-cuero-hueso-para-gafas-5060.webp" alt="Caja de cuero hueso para gafas" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/caja-de-cuero-hueso-para-gafas-5060.html">Caja de cuero hueso para gafas</a>
+  <div class="gg-prenda-precio">120 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="gafas" data-nombre="caja de cuero verde para gafas">
+  <a class="gg-prenda-foto" href="producto/caja-de-cuero-verde-para-gafas-5059.html"><img src="assets/p/caja-de-cuero-verde-para-gafas-5059.webp" alt="Caja de cuero verde para gafas" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/caja-de-cuero-verde-para-gafas-5059.html">Caja de cuero verde para gafas</a>
+  <div class="gg-prenda-precio">120 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="gafas" data-nombre="caja de cuero camel para gafas">
+  <a class="gg-prenda-foto" href="producto/caja-de-cuero-camel-para-gafas-5058.html"><img src="assets/p/caja-de-cuero-camel-para-gafas-5058.webp" alt="Caja de cuero camel para gafas" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/caja-de-cuero-camel-para-gafas-5058.html">Caja de cuero camel para gafas</a>
+  <div class="gg-prenda-precio">120 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica gafas" data-nombre="caja de cuero marrón para 4 relojes y 4 gafas">
+  <a class="gg-prenda-foto" href="producto/caja-de-cuero-marron-para-4-relojes-y-4-gafas-5057.html"><img src="assets/p/caja-de-cuero-marron-para-4-relojes-y-4-gafas-5057.webp" alt="Caja de cuero marrón para 4 relojes y 4 gafas" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/caja-de-cuero-marron-para-4-relojes-y-4-gafas-5057.html">Caja de cuero marrón para 4 relojes y 4 gafas</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · burdeos">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-burdeos-4951.html"><img src="assets/p/clasica-10-relojes-burdeos-4951.webp" alt="Clásica · 10 relojes · Burdeos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-burdeos-4951.html">Clásica · 10 relojes · Burdeos</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 8 relojes · violeta">
+  <a class="gg-prenda-foto" href="producto/clasica-8-relojes-violeta-4926.html"><img src="assets/p/clasica-8-relojes-violeta-4926.webp" alt="Clásica · 8 relojes · Violeta" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-8-relojes-violeta-4926.html">Clásica · 8 relojes · Violeta</a>
+  <div class="gg-prenda-precio">445 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · ciruela">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-ciruela-4909.html"><img src="assets/p/clasica-5-relojes-ciruela-4909.webp" alt="Clásica · 5 relojes · Ciruela" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-ciruela-4909.html">Clásica · 5 relojes · Ciruela</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · amarillo">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-amarillo-4908.html"><img src="assets/p/clasica-5-relojes-amarillo-4908.webp" alt="Clásica · 5 relojes · Amarillo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-amarillo-4908.html">Clásica · 5 relojes · Amarillo</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · verdoso">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-verdoso-4907.html"><img src="assets/p/clasica-5-relojes-verdoso-4907.webp" alt="Clásica · 5 relojes · Verdoso" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-verdoso-4907.html">Clásica · 5 relojes · Verdoso</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · azul">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-azul-4906.html"><img src="assets/p/clasica-5-relojes-azul-4906.webp" alt="Clásica · 5 relojes · Azul" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-azul-4906.html">Clásica · 5 relojes · Azul</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes winder" data-nombre="watch winder swisskubik · 9 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/watch-winder-swisskubik-9-relojes-marino-4808.html"><img src="assets/p/watch-winder-swisskubik-9-relojes-marino-4808.webp" alt="Watch winder SwissKubik · 9 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/watch-winder-swisskubik-9-relojes-marino-4808.html">Watch winder SwissKubik · 9 relojes · Marino</a>
+  <div class="gg-prenda-precio">3.050 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes winder" data-nombre="watch winder swisskubik · 6 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/watch-winder-swisskubik-6-relojes-marino-4807.html"><img src="assets/p/watch-winder-swisskubik-6-relojes-marino-4807.webp" alt="Watch winder SwissKubik · 6 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/watch-winder-swisskubik-6-relojes-marino-4807.html">Watch winder SwissKubik · 6 relojes · Marino</a>
+  <div class="gg-prenda-precio">2.100 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 20 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/clasica-20-relojes-marino-4806.html"><img src="assets/p/clasica-20-relojes-marino-4806.webp" alt="Clásica · 20 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-20-relojes-marino-4806.html">Clásica · 20 relojes · Marino</a>
+  <div class="gg-prenda-precio">1.100 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero mediano con bandeja extraible cuero verde">
+  <a class="gg-prenda-foto" href="producto/joyero-mediano-con-bandeja-extraible-cuero-verde-4497.html"><img src="assets/p/joyero-mediano-con-bandeja-extraible-cuero-verde-4497.webp" alt="Joyero mediano con bandeja extraible cuero verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-mediano-con-bandeja-extraible-cuero-verde-4497.html">Joyero mediano con bandeja extraible cuero verde</a>
+  <div class="gg-prenda-precio">375 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 5 relojes · burdeos">
+  <a class="gg-prenda-foto" href="producto/premium-5-relojes-burdeos-4058.html"><img src="assets/p/premium-5-relojes-burdeos-4058.webp" alt="Premium · 5 relojes · Burdeos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-5-relojes-burdeos-4058.html">Premium · 5 relojes · Burdeos</a>
+  <div class="gg-prenda-precio">395 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 6 relojes · burdeos">
+  <a class="gg-prenda-foto" href="producto/premium-6-relojes-burdeos-4057.html"><img src="assets/p/premium-6-relojes-burdeos-4057.webp" alt="Premium · 6 relojes · Burdeos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-6-relojes-burdeos-4057.html">Premium · 6 relojes · Burdeos</a>
+  <div class="gg-prenda-precio">465 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 8 relojes · burdeos">
+  <a class="gg-prenda-foto" href="producto/premium-8-relojes-burdeos-4056.html"><img src="assets/p/premium-8-relojes-burdeos-4056.webp" alt="Premium · 8 relojes · Burdeos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-8-relojes-burdeos-4056.html">Premium · 8 relojes · Burdeos</a>
+  <div class="gg-prenda-precio">545 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 10 relojes · burdeos">
+  <a class="gg-prenda-foto" href="producto/premium-10-relojes-burdeos-4055.html"><img src="assets/p/premium-10-relojes-burdeos-4055.webp" alt="Premium · 10 relojes · Burdeos" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-10-relojes-burdeos-4055.html">Premium · 10 relojes · Burdeos</a>
+  <div class="gg-prenda-precio">695 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 5 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/premium-5-relojes-marino-4054.html"><img src="assets/p/premium-5-relojes-marino-4054.webp" alt="Premium · 5 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-5-relojes-marino-4054.html">Premium · 5 relojes · Marino</a>
+  <div class="gg-prenda-precio">395 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 6 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/premium-6-relojes-marino-4053.html"><img src="assets/p/premium-6-relojes-marino-4053.webp" alt="Premium · 6 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-6-relojes-marino-4053.html">Premium · 6 relojes · Marino</a>
+  <div class="gg-prenda-precio">465 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 8 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/premium-8-relojes-marino-4052.html"><img src="assets/p/premium-8-relojes-marino-4052.webp" alt="Premium · 8 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-8-relojes-marino-4052.html">Premium · 8 relojes · Marino</a>
+  <div class="gg-prenda-precio">545 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 10 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/premium-10-relojes-marino-4051.html"><img src="assets/p/premium-10-relojes-marino-4051.webp" alt="Premium · 10 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-10-relojes-marino-4051.html">Premium · 10 relojes · Marino</a>
+  <div class="gg-prenda-precio">695 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 5 relojes · marrón">
+  <a class="gg-prenda-foto" href="producto/premium-5-relojes-marron-3856.html"><img src="assets/p/premium-5-relojes-marron-3856.webp" alt="Premium · 5 relojes · Marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-5-relojes-marron-3856.html">Premium · 5 relojes · Marrón</a>
+  <div class="gg-prenda-precio">395 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 6 relojes · marrón">
+  <a class="gg-prenda-foto" href="producto/premium-6-relojes-marron-3837.html"><img src="assets/p/premium-6-relojes-marron-3837.webp" alt="Premium · 6 relojes · Marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-6-relojes-marron-3837.html">Premium · 6 relojes · Marrón</a>
+  <div class="gg-prenda-precio">465 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 8 relojes · marrón">
+  <a class="gg-prenda-foto" href="producto/premium-8-relojes-marron-3820.html"><img src="assets/p/premium-8-relojes-marron-3820.webp" alt="Premium · 8 relojes · Marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-8-relojes-marron-3820.html">Premium · 8 relojes · Marrón</a>
+  <div class="gg-prenda-precio">545 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 10 relojes · marrón">
+  <a class="gg-prenda-foto" href="producto/premium-10-relojes-marron-3791.html"><img src="assets/p/premium-10-relojes-marron-3791.webp" alt="Premium · 10 relojes · Marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-10-relojes-marron-3791.html">Premium · 10 relojes · Marrón</a>
+  <div class="gg-prenda-precio">695 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 5 relojes · rojo">
+  <a class="gg-prenda-foto" href="producto/premium-5-relojes-rojo-3770.html"><img src="assets/p/premium-5-relojes-rojo-3770.webp" alt="Premium · 5 relojes · Rojo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-5-relojes-rojo-3770.html">Premium · 5 relojes · Rojo</a>
+  <div class="gg-prenda-precio">395 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 6 relojes · rojo">
+  <a class="gg-prenda-foto" href="producto/premium-6-relojes-rojo-3755.html"><img src="assets/p/premium-6-relojes-rojo-3755.webp" alt="Premium · 6 relojes · Rojo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-6-relojes-rojo-3755.html">Premium · 6 relojes · Rojo</a>
+  <div class="gg-prenda-precio">465 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 8 relojes · rojo">
+  <a class="gg-prenda-foto" href="producto/premium-8-relojes-rojo-3748.html"><img src="assets/p/premium-8-relojes-rojo-3748.webp" alt="Premium · 8 relojes · Rojo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-8-relojes-rojo-3748.html">Premium · 8 relojes · Rojo</a>
+  <div class="gg-prenda-precio">545 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes premium" data-nombre="premium · 10 relojes · rojo">
+  <a class="gg-prenda-foto" href="producto/premium-10-relojes-rojo-3717.html"><img src="assets/p/premium-10-relojes-rojo-3717.webp" alt="Premium · 10 relojes · Rojo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/premium-10-relojes-rojo-3717.html">Premium · 10 relojes · Rojo</a>
+  <div class="gg-prenda-precio">695 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · rosa">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-rosa-3716.html"><img src="assets/p/clasica-10-relojes-rosa-3716.webp" alt="Clásica · 10 relojes · Rosa" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-rosa-3716.html">Clásica · 10 relojes · Rosa</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel marrón">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-marron-3066.html"><img src="assets/p/bolso-de-piel-marron-3066.webp" alt="Bolso de piel marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-marron-3066.html">Bolso de piel marrón</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero grande con bandeja extraible cuero aqua">
+  <a class="gg-prenda-foto" href="producto/joyero-grande-con-bandeja-extraible-cuero-aqua-3033.html"><img src="assets/p/joyero-grande-con-bandeja-extraible-cuero-aqua-3033.webp" alt="Joyero grande con bandeja extraible cuero aqua" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-grande-con-bandeja-extraible-cuero-aqua-3033.html">Joyero grande con bandeja extraible cuero aqua</a>
+  <div class="gg-prenda-precio">695 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero grande con bandeja extraible cuero salmón">
+  <a class="gg-prenda-foto" href="producto/joyero-grande-con-bandeja-extraible-cuero-salmon-3032.html"><img src="assets/p/joyero-grande-con-bandeja-extraible-cuero-salmon-3032.webp" alt="Joyero grande con bandeja extraible cuero salmón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-grande-con-bandeja-extraible-cuero-salmon-3032.html">Joyero grande con bandeja extraible cuero salmón</a>
+  <div class="gg-prenda-precio">695 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero grande con bandeja extraible cuero camel">
+  <a class="gg-prenda-foto" href="producto/joyero-grande-con-bandeja-extraible-cuero-camel-3022.html"><img src="assets/p/joyero-grande-con-bandeja-extraible-cuero-camel-3022.webp" alt="Joyero grande con bandeja extraible cuero camel" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-grande-con-bandeja-extraible-cuero-camel-3022.html">Joyero grande con bandeja extraible cuero camel</a>
+  <div class="gg-prenda-precio">695 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero grande con bandeja extraible cuero fucsia">
+  <a class="gg-prenda-foto" href="producto/joyero-grande-con-bandeja-extraible-cuero-fucsia-3021.html"><img src="assets/p/joyero-grande-con-bandeja-extraible-cuero-fucsia-3021.webp" alt="Joyero grande con bandeja extraible cuero fucsia" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-grande-con-bandeja-extraible-cuero-fucsia-3021.html">Joyero grande con bandeja extraible cuero fucsia</a>
+  <div class="gg-prenda-precio">695 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero mediano con bandeja extraible cuero coco marrón">
+  <a class="gg-prenda-foto" href="producto/joyero-mediano-con-bandeja-extraible-cuero-coco-marron-3020.html"><img src="assets/p/joyero-mediano-con-bandeja-extraible-cuero-coco-marron-3020.webp" alt="Joyero mediano con bandeja extraible cuero coco marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-mediano-con-bandeja-extraible-cuero-coco-marron-3020.html">Joyero mediano con bandeja extraible cuero coco marrón</a>
+  <div class="gg-prenda-precio">375 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero mediano con bandeja extraible cuero fucsia">
+  <a class="gg-prenda-foto" href="producto/joyero-mediano-con-bandeja-extraible-cuero-fucsia-3019.html"><img src="assets/p/joyero-mediano-con-bandeja-extraible-cuero-fucsia-3019.webp" alt="Joyero mediano con bandeja extraible cuero Fucsia" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-mediano-con-bandeja-extraible-cuero-fucsia-3019.html">Joyero mediano con bandeja extraible cuero Fucsia</a>
+  <div class="gg-prenda-precio">375 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero mediano con bandeja extraible cuero camel">
+  <a class="gg-prenda-foto" href="producto/joyero-mediano-con-bandeja-extraible-cuero-camel-3018.html"><img src="assets/p/joyero-mediano-con-bandeja-extraible-cuero-camel-3018.webp" alt="Joyero mediano con bandeja extraible cuero camel" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-mediano-con-bandeja-extraible-cuero-camel-3018.html">Joyero mediano con bandeja extraible cuero camel</a>
+  <div class="gg-prenda-precio">375 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero mediano con bandeja extraible cuero coco celeste">
+  <a class="gg-prenda-foto" href="producto/joyero-mediano-con-bandeja-extraible-cuero-coco-celeste-3017.html"><img src="assets/p/joyero-mediano-con-bandeja-extraible-cuero-coco-celeste-3017.webp" alt="Joyero mediano con bandeja extraible cuero coco celeste" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-mediano-con-bandeja-extraible-cuero-coco-celeste-3017.html">Joyero mediano con bandeja extraible cuero coco celeste</a>
+  <div class="gg-prenda-precio">375 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="joyas" data-nombre="joyero mediano con bandeja extraible cuero coco camel">
+  <a class="gg-prenda-foto" href="producto/joyero-mediano-con-bandeja-extraible-cuero-coco-camel-3016.html"><img src="assets/p/joyero-mediano-con-bandeja-extraible-cuero-coco-camel-3016.webp" alt="Joyero mediano con bandeja extraible cuero coco camel" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/joyero-mediano-con-bandeja-extraible-cuero-coco-camel-3016.html">Joyero mediano con bandeja extraible cuero coco camel</a>
+  <div class="gg-prenda-precio">375 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel negro">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-negro-2155.html"><img src="assets/p/bolso-de-piel-negro-2155.webp" alt="Bolso de piel negro" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-negro-2155.html">Bolso de piel negro</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel con textura de serpiente">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-con-textura-de-serpiente-2128.html"><img src="assets/p/bolso-de-piel-con-textura-de-serpiente-2128.webp" alt="Bolso de piel con textura de serpiente" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-con-textura-de-serpiente-2128.html">Bolso de piel con textura de serpiente</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel negro brillo">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-negro-brillo-2119.html"><img src="assets/p/bolso-de-piel-negro-brillo-2119.webp" alt="Bolso de piel negro brillo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-negro-brillo-2119.html">Bolso de piel negro brillo</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel con textura en serpiente">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-con-textura-en-serpiente-2110.html"><img src="assets/p/bolso-de-piel-con-textura-en-serpiente-2110.webp" alt="Bolso de piel con textura en serpiente" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-con-textura-en-serpiente-2110.html">Bolso de piel con textura en serpiente</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel con textura en serpiente">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-con-textura-en-serpiente-2101.html"><img src="assets/p/bolso-de-piel-con-textura-en-serpiente-2101.webp" alt="Bolso de piel con textura en serpiente" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-con-textura-en-serpiente-2101.html">Bolso de piel con textura en serpiente</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel oro claro">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-oro-claro-2100.html"><img src="assets/p/bolso-de-piel-oro-claro-2100.webp" alt="Bolso de piel oro claro" width="700" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-oro-claro-2100.html">Bolso de piel oro claro</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel blanco">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-blanco-2018.html"><img src="assets/p/bolso-de-piel-blanco-2018.webp" alt="Bolso de piel blanco" width="467" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-blanco-2018.html">Bolso de piel blanco</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel rojo con textura de coco">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-rojo-con-textura-de-coco-2009.html"><img src="assets/p/bolso-de-piel-rojo-con-textura-de-coco-2009.webp" alt="Bolso de piel rojo con textura de coco" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-rojo-con-textura-de-coco-2009.html">Bolso de piel rojo con textura de coco</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="bolsos" data-nombre="bolso de piel rojo">
+  <a class="gg-prenda-foto" href="producto/bolso-de-piel-rojo-2008.html"><img src="assets/p/bolso-de-piel-rojo-2008.webp" alt="Bolso de piel rojo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/bolso-de-piel-rojo-2008.html">Bolso de piel rojo</a>
+  <div class="gg-prenda-precio">250 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · marrón">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-marron-1985.html"><img src="assets/p/clasica-5-relojes-marron-1985.webp" alt="Clásica · 5 relojes · Marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-marron-1985.html">Clásica · 5 relojes · Marrón</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · beige">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-beige-1982.html"><img src="assets/p/clasica-5-relojes-beige-1982.webp" alt="Clásica · 5 relojes · Beige" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-beige-1982.html">Clásica · 5 relojes · Beige</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 6 relojes · beige">
+  <a class="gg-prenda-foto" href="producto/clasica-6-relojes-beige-1981.html"><img src="assets/p/clasica-6-relojes-beige-1981.webp" alt="Clásica · 6 relojes · Beige" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-6-relojes-beige-1981.html">Clásica · 6 relojes · Beige</a>
+  <div class="gg-prenda-precio">385 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 6 relojes · marrón">
+  <a class="gg-prenda-foto" href="producto/clasica-6-relojes-marron-1980.html"><img src="assets/p/clasica-6-relojes-marron-1980.webp" alt="Clásica · 6 relojes · Marrón" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-6-relojes-marron-1980.html">Clásica · 6 relojes · Marrón</a>
+  <div class="gg-prenda-precio">385 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · rojo">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-rojo-1975.html"><img src="assets/p/clasica-10-relojes-rojo-1975.webp" alt="Clásica · 10 relojes · Rojo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-rojo-1975.html">Clásica · 10 relojes · Rojo</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · verde música">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-verde-musica-1974.html"><img src="assets/p/clasica-10-relojes-verde-musica-1974.webp" alt="Clásica · 10 relojes · Verde música" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-verde-musica-1974.html">Clásica · 10 relojes · Verde música</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · camel caballo">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-camel-caballo-1973.html"><img src="assets/p/clasica-10-relojes-camel-caballo-1973.webp" alt="Clásica · 10 relojes · Camel caballo" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-camel-caballo-1973.html">Clásica · 10 relojes · Camel caballo</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · verde camuflaje">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-verde-camuflaje-1972.html"><img src="assets/p/clasica-10-relojes-verde-camuflaje-1972.webp" alt="Clásica · 10 relojes · Verde camuflaje" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-verde-camuflaje-1972.html">Clásica · 10 relojes · Verde camuflaje</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · beige camuflaje">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-beige-camuflaje-1971.html"><img src="assets/p/clasica-10-relojes-beige-camuflaje-1971.webp" alt="Clásica · 10 relojes · Beige camuflaje" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-beige-camuflaje-1971.html">Clásica · 10 relojes · Beige camuflaje</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · negro camuflaje">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-negro-camuflaje-1970.html"><img src="assets/p/clasica-10-relojes-negro-camuflaje-1970.webp" alt="Clásica · 10 relojes · Negro camuflaje" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-negro-camuflaje-1970.html">Clásica · 10 relojes · Negro camuflaje</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · aqua">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-aqua-1969.html"><img src="assets/p/clasica-10-relojes-aqua-1969.webp" alt="Clásica · 10 relojes · Aqua" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-aqua-1969.html">Clásica · 10 relojes · Aqua</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · camel">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-camel-1968.html"><img src="assets/p/clasica-5-relojes-camel-1968.webp" alt="Clásica · 5 relojes · Camel" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-camel-1968.html">Clásica · 5 relojes · Camel</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · hueso">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-hueso-1967.html"><img src="assets/p/clasica-5-relojes-hueso-1967.webp" alt="Clásica · 5 relojes · Hueso" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-hueso-1967.html">Clásica · 5 relojes · Hueso</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-verde-1966.html"><img src="assets/p/clasica-5-relojes-verde-1966.webp" alt="Clásica · 5 relojes · Verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-verde-1966.html">Clásica · 5 relojes · Verde</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-marino-1965.html"><img src="assets/p/clasica-5-relojes-marino-1965.webp" alt="Clásica · 5 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-marino-1965.html">Clásica · 5 relojes · Marino</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 5 relojes · negro">
+  <a class="gg-prenda-foto" href="producto/clasica-5-relojes-negro-1964.html"><img src="assets/p/clasica-5-relojes-negro-1964.webp" alt="Clásica · 5 relojes · Negro" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-5-relojes-negro-1964.html">Clásica · 5 relojes · Negro</a>
+  <div class="gg-prenda-precio">325 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 6 relojes · camel">
+  <a class="gg-prenda-foto" href="producto/clasica-6-relojes-camel-1959.html"><img src="assets/p/clasica-6-relojes-camel-1959.webp" alt="Clásica · 6 relojes · Camel" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-6-relojes-camel-1959.html">Clásica · 6 relojes · Camel</a>
+  <div class="gg-prenda-precio">385 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 6 relojes · hueso">
+  <a class="gg-prenda-foto" href="producto/clasica-6-relojes-hueso-1958.html"><img src="assets/p/clasica-6-relojes-hueso-1958.webp" alt="Clásica · 6 relojes · Hueso" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-6-relojes-hueso-1958.html">Clásica · 6 relojes · Hueso</a>
+  <div class="gg-prenda-precio">385 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 6 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/clasica-6-relojes-verde-1957.html"><img src="assets/p/clasica-6-relojes-verde-1957.webp" alt="Clásica · 6 relojes · Verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-6-relojes-verde-1957.html">Clásica · 6 relojes · Verde</a>
+  <div class="gg-prenda-precio">385 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 6 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/clasica-6-relojes-marino-1956.html"><img src="assets/p/clasica-6-relojes-marino-1956.webp" alt="Clásica · 6 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-6-relojes-marino-1956.html">Clásica · 6 relojes · Marino</a>
+  <div class="gg-prenda-precio">385 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 6 relojes · negro">
+  <a class="gg-prenda-foto" href="producto/clasica-6-relojes-negro-1955.html"><img src="assets/p/clasica-6-relojes-negro-1955.webp" alt="Clásica · 6 relojes · Negro" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-6-relojes-negro-1955.html">Clásica · 6 relojes · Negro</a>
+  <div class="gg-prenda-precio">385 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 8 relojes · camel">
+  <a class="gg-prenda-foto" href="producto/clasica-8-relojes-camel-1954.html"><img src="assets/p/clasica-8-relojes-camel-1954.webp" alt="Clásica · 8 relojes · Camel" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-8-relojes-camel-1954.html">Clásica · 8 relojes · Camel</a>
+  <div class="gg-prenda-precio">445 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 8 relojes · hueso">
+  <a class="gg-prenda-foto" href="producto/clasica-8-relojes-hueso-1953.html"><img src="assets/p/clasica-8-relojes-hueso-1953.webp" alt="Clásica · 8 relojes · Hueso" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-8-relojes-hueso-1953.html">Clásica · 8 relojes · Hueso</a>
+  <div class="gg-prenda-precio">445 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 8 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/clasica-8-relojes-verde-1952.html"><img src="assets/p/clasica-8-relojes-verde-1952.webp" alt="Clásica · 8 relojes · Verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-8-relojes-verde-1952.html">Clásica · 8 relojes · Verde</a>
+  <div class="gg-prenda-precio">445 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 8 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/clasica-8-relojes-marino-1951.html"><img src="assets/p/clasica-8-relojes-marino-1951.webp" alt="Clásica · 8 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-8-relojes-marino-1951.html">Clásica · 8 relojes · Marino</a>
+  <div class="gg-prenda-precio">445 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 8 relojes · negro">
+  <a class="gg-prenda-foto" href="producto/clasica-8-relojes-negro-1950.html"><img src="assets/p/clasica-8-relojes-negro-1950.webp" alt="Clásica · 8 relojes · Negro" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-8-relojes-negro-1950.html">Clásica · 8 relojes · Negro</a>
+  <div class="gg-prenda-precio">445 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · hueso">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-hueso-1949.html"><img src="assets/p/clasica-10-relojes-hueso-1949.webp" alt="Clásica · 10 relojes · Hueso" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-hueso-1949.html">Clásica · 10 relojes · Hueso</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · camel">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-camel-1948.html"><img src="assets/p/clasica-10-relojes-camel-1948.webp" alt="Clásica · 10 relojes · Camel" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-camel-1948.html">Clásica · 10 relojes · Camel</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-verde-1947.html"><img src="assets/p/clasica-10-relojes-verde-1947.webp" alt="Clásica · 10 relojes · Verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-verde-1947.html">Clásica · 10 relojes · Verde</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · marino">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-marino-1946.html"><img src="assets/p/clasica-10-relojes-marino-1946.webp" alt="Clásica · 10 relojes · Marino" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-marino-1946.html">Clásica · 10 relojes · Marino</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 10 relojes · negro">
+  <a class="gg-prenda-foto" href="producto/clasica-10-relojes-negro-1407.html"><img src="assets/p/clasica-10-relojes-negro-1407.webp" alt="Clásica · 10 relojes · Negro" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-10-relojes-negro-1407.html">Clásica · 10 relojes · Negro</a>
+  <div class="gg-prenda-precio">595 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes clasica" data-nombre="clásica · 20 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/clasica-20-relojes-verde-870.html"><img src="assets/p/clasica-20-relojes-verde-870.webp" alt="Clásica · 20 relojes · Verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/clasica-20-relojes-verde-870.html">Clásica · 20 relojes · Verde</a>
+  <div class="gg-prenda-precio">1.100 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="juego de backgammon">
+  <a class="gg-prenda-foto" href="producto/juego-de-backgammon-688.html"><img src="assets/p/juego-de-backgammon-688.webp" alt="Juego de backgammon" width="700" height="525" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/juego-de-backgammon-688.html">Juego de backgammon</a>
+  <div class="gg-prenda-precio">650 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="hogar" data-nombre="juego de ajedrez">
+  <a class="gg-prenda-foto" href="producto/juego-de-ajedrez-663.html"><img src="assets/p/juego-de-ajedrez-663.webp" alt="Juego de ajedrez" width="700" height="525" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/juego-de-ajedrez-663.html">Juego de ajedrez</a>
+  <div class="gg-prenda-precio">875 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes winder" data-nombre="watch winder swisskubik · 6 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/watch-winder-swisskubik-6-relojes-verde-662.html"><img src="assets/p/watch-winder-swisskubik-6-relojes-verde-662.webp" alt="Watch winder SwissKubik · 6 relojes · Verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/watch-winder-swisskubik-6-relojes-verde-662.html">Watch winder SwissKubik · 6 relojes · Verde</a>
+  <div class="gg-prenda-precio">2.100 <small>IVA incluido</small></div>
+</article>
+<article class="gg-prenda" data-cats="relojes winder" data-nombre="watch winder swisskubik · 9 relojes · verde">
+  <a class="gg-prenda-foto" href="producto/watch-winder-swisskubik-9-relojes-verde-639.html"><img src="assets/p/watch-winder-swisskubik-9-relojes-verde-639.webp" alt="Watch winder SwissKubik · 9 relojes · Verde" width="525" height="700" loading="lazy"></a>
+  <a class="gg-prenda-nombre" href="producto/watch-winder-swisskubik-9-relojes-verde-639.html">Watch winder SwissKubik · 9 relojes · Verde</a>
+  <div class="gg-prenda-precio">3.050 <small>IVA incluido</small></div>
+</article>
+</div>
+    <p class="gg-vacio" data-vacio hidden>No hay productos que coincidan. Prueba con otra búsqueda.</p>
+  </div>
+</main>
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="brand" style="gap:12px">
+        <img src="assets/logo.webp" alt="" style="height:40px;width:auto;height:52px;width:auto">
+        <span class="brand-text"><b style="font-family:var(--f-titulo);font-size:22px;color:var(--crema)">JarénCrafts</b><small style="font-size:9px;letter-spacing:.32em;color:var(--brasa-clara);text-transform:uppercase">Artesanía en piel desde 1980</small></span>
+      </div>
+      <p>Artesanía en piel hecha en España desde 1980. Cajas para relojes, joyeros y accesorios de piel desde nuestro taller de Villamartín.</p>
+    </div>
+    <div class="foot-col"><p class="pie-titulo">Tienda</p><ul><li><a href="tienda.html#relojes">Cajas para relojes</a></li><li><a href="tienda.html#clasica">Clásica</a></li><li><a href="tienda.html#premium">Premium</a></li><li><a href="tienda.html#moderna">Moderna</a></li><li><a href="tienda.html#eco">Eco</a></li><li><a href="tienda.html#winder">Watch winder</a></li><li><a href="tienda.html#viaje">Estuches de viaje</a></li><li><a href="tienda.html#joyas">Joyeros</a></li><li><a href="tienda.html#gafas">Cajas para gafas</a></li><li><a href="tienda.html#bolsos">Bolsos</a></li><li><a href="tienda.html#hogar">Hogar y regalo</a></li></ul></div>
+<div class="foot-col"><p class="pie-titulo">JarénCrafts</p><ul><li><a href="index.html#tu-caja">¿Cuántos relojes tienes?</a></li><li><a href="https://jarencrafts.com/">Ir a la web actual</a></li></ul></div>
+<div class="foot-col"><p class="pie-titulo">Contacto</p><ul><li><a href="https://wa.me/34647708714?text=Hola%2C%20">WhatsApp 647 708 714</a></li><li><a href="tel:+34647708714">Tel. 647 708 714</a></li><li><a href="mailto:info@jarencrafts.com">info@jarencrafts.com</a></li></ul></div>
+
+  </div>
+  <div class="foot-legal"><span class="foot-legal-tit">Información legal</span><div class="foot-legal-menu"><ul></ul></div></div>
+  <div class="foot-bottom">
+    <span>&copy; <span id="year"></span> JarénCrafts · JarénCrafts</span>
+    <span></span>
+  </div>
+</footer>
+
+
+
+<div class="gg-demo-cinta" aria-hidden="true">Muestra de G&amp;G Elcano para JarénCrafts · productos, fotos, textos y precios de jarencrafts.com (26 de noviembre de 2026) · el carrito no cobra</div>
+<script src="assets/tienda.js"></script>
+<script src="assets/jc-datos.js"></script><script src="assets/jarencrafts.js"></script>
+</body>
+</html>
